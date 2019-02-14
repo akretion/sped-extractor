@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 # we used a patched camelot
 # see https://github.com/socialcopsdev/camelot/issues/217
@@ -7,18 +7,22 @@ import camelot
 START = 0
 STEP = 10
 
+
 def extract_csv(module, max_pages):
     print("extracting tables from pdf for module %s (%s pages)..." % (module,
           max_pages))
     print("WARNING! It can take a while (easily 20 minutes)")
-# we process the pages 10 by 10 to avoid malloc errors
+    # we process the pages 10 by 10 to avoid malloc errors
     i = START
     while i < max_pages:
         limit = min(i + STEP, max_pages)
         print('extracting pages %s to %s...' % (i, limit))
-        tables = camelot.read_pdf('/home/rvalyi/DEV/l10n_br_spec_sped/l10n_br_spec_sped/specs/%s.pdf' % (module,),
-                                  pages='%s-%s' % (i, limit), line_size_scaling=80)
-        tables.export('../specs/%s/%s.csv' % (module, module), f='csv', compress=False)
+        tables = camelot.read_pdf('../specs/%s.pdf' % (module,),
+                                  pages='%s-%s' % (i, limit),
+                                  line_size_scaling=80,
+                                  strip_text=' .\n')
+        tables.export('../specs/%s/%s.csv' % (module, module), f='csv',
+                      compress=False)
         i += STEP
 
 
@@ -33,4 +37,3 @@ if __name__ == '__main__':
     extract_csv('ecf', 575)
     extract_csv('efd_icms_ipi', 262)
     extract_csv('efd_pis_cofins', 381)
-
