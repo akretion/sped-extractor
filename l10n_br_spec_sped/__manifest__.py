@@ -12,6 +12,7 @@
     'website': 'www.akretion.com',
     'depends': ['base'],
     'data': [
+        'security/ir.model.access.csv',
         'views/ecd.xml',
         'views/ecf.xml',
         'views/efd_icms_ipi.xml',

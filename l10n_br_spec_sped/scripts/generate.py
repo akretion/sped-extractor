@@ -44,9 +44,9 @@ class ProgramOptions(object):
 
 
 class Writer(object):
-    def __init__(self, outfilename, stdout_also=False):
+    def __init__(self, outfilename, stdout_also=False, mode='w'):
         self.outfilename = outfilename
-        self.outfile = open(outfilename, 'w')
+        self.outfile = open(outfilename, mode)
         self.stdout_also = stdout_also
         self.line_count = 0
 
@@ -542,9 +542,13 @@ def generate_model(options, module_name):
         sys.exit(1)
     models_writer = Writer(models_file_name)
     views_writer = Writer(views_file_name)
+    security_writer = Writer("../security/%s" % (
+                             'ir.model.access.csv',), mode='a')
 
     wrtmodels = models_writer.write
     wrtviews = views_writer.write
+    wrtsecurity = security_writer.write
+
     wrtmodels("# -*- coding: utf-8 -*-\n\n")
     wrtmodels("from odoo import models, fields\n\n")
     wrtmodels("from . import spec_models\n\n")
@@ -618,6 +622,15 @@ def generate_model(options, module_name):
         wrtmodels('    _description = u"""%s"""\n' % (
             register_spec['desc'] or register_name,))
         wrtmodels("    _inherit = 'l10n.br.sped.mixin'\n")
+
+        wrtsecurity("access_%s_%s,%s.%s,model_%s_%s_%s,base.group_user,1,1,1,1\n" % (
+            module_name.lower(), register_name.lower(),
+            module_name.lower(), register_name.lower(),
+            'l10n_br_sped', module_name.lower(),
+            register_name.lower().replace('.', '_')))
+
+
+
         bloco_char = register_name[0]
         if bloco_char != last_bloco:
             # TODO put back bloco desc in menuitem name after extracting it
