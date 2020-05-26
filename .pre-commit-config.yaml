@@ -10,6 +10,8 @@ exclude: |
   ^docs/_templates/.*\.html$|
   # You don't usually want a bot to modify your legal texts
   (LICENSE.*|COPYING.*)
+  # Temporary Exclude generate.py
+  */generate.py
 default_language_version:
   python: python3
 repos:
