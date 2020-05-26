@@ -1,0 +1,2 @@
+camelot-py==0.8.0a0
+unidecode
