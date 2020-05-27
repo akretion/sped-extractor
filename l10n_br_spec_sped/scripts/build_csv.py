@@ -1,8 +1,8 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-from os import walk
-import re
 import csv
+import re
+from os import walk
 
 
 def is_register_code(code):
@@ -83,7 +83,7 @@ def natural_keys(text):
     http://nedbatchelder.com/blog/200712/human_sorting.html
     (See Toothy's implementation in the comments)
     """
-    return [atoi(c) for c in re.split("(\d+)", text)]
+    return [atoi(c) for c in re.split(r"(\d+)", text)]
 
 
 # used to sort register name according to their bloc
@@ -91,21 +91,21 @@ def register_keys(text):
     if text[0] == "9":  # bloc 9 registers come at last
         return ["Z", text[1:3]]
     else:
-        return [atoi(c) for c in re.split("(\d+)", text)]
+        return [atoi(c) for c in re.split(r"(\d+)", text)]
 
 
 def extract_registers_spec(mod):
     """scans the csv tables to read the registers (registros),
     specially their description and hierarchy."""
-    path = "../specs/{}".format(mod)
+    path = "../specs/{}/raw/".format(mod)
     files = []
     rows = []
     in_register = False
 
-    for (dirpath, dirnames, filenames) in walk(path):
+    for (_dirpath, _dirnames, filenames) in walk(path):
         files = sorted(filenames, key=natural_keys)
     for csv_file in files:
-        with open("../specs/{}/{}".format(mod, csv_file), "r") as csvfile:
+        with open(path + "{}".format(csv_file), "r") as csvfile:
             reader = csv.reader(csvfile, delimiter=",", quotechar='"')
             for row in reader:
                 if (
@@ -113,7 +113,7 @@ def extract_registers_spec(mod):
                     and (
                         "NÍVEL" in row
                         or "Nível" in row
-                        or "N\xc3\xadvel" in row
+                        or r"N\xc3\xadvel" in row
                         or "Nome do Registro" in row
                         or "Reg." in row
                     )
@@ -135,7 +135,7 @@ def extract_registers_spec(mod):
     return rows
 
 
-def write_registers_spec_csv(mod):
+def build_registers_spec_csv(mod):
     """Generate a csv with the Registers specifications. One line for each register.
     """
     filename = mod + "_reg_spec.csv"
@@ -159,7 +159,7 @@ def write_registers_spec_csv(mod):
 
 
 if __name__ == "__main__":
-    write_registers_spec_csv('ecd')
-    write_registers_spec_csv('ecf')
-    write_registers_spec_csv("efd_icms_ipi")
-    write_registers_spec_csv('efd_pis_cofins')
+    build_registers_spec_csv("ecd")
+    build_registers_spec_csv("ecf")
+    build_registers_spec_csv("efd_icms_ipi")
+    build_registers_spec_csv("efd_pis_cofins")

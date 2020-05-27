@@ -88,7 +88,7 @@ def normalize_field_code(code):
         (code.replace("  ", " ").replace("__", "_").replace(" _", "_"))
         .replace("_ ", "_")
         .replace(" ", "_")
-        .replace("\r", "")
+        .replace(r"\r", "")
     )
     # .replace('ÇÃO', 'CAO')
 
