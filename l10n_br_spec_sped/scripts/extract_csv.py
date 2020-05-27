@@ -1,30 +1,37 @@
 #!/usr/bin/env python
 
+import logging
+
 # we used a patched camelot
 # see https://github.com/socialcopsdev/camelot/issues/217
 import camelot
+
+logger = logging.getLogger(__name__)
+logger.addHandler(logging.StreamHandler())
+logger.setLevel(logging.INFO)
 
 START = 0
 STEP = 10
 
 
 def extract_csv(module, max_pages):
-    print(
-        "extracting tables from pdf for module %s (%s pages)..." % (module, max_pages)
+    logger.info(
+        "extracting tables from pdf for module {} ({} pages)...".format(
+            module, max_pages
+        )
     )
-    print("WARNING! It can take a while (easily 20 minutes)")
+    logger.warning("WARNING! It can take a while (easily 20 minutes)")
     # we process the pages 10 by 10 to avoid malloc errors
     i = START
     while i < max_pages:
         limit = min(i + STEP, max_pages)
-        print("extracting pages %s to %s..." % (i, limit))
+        logger.info("extracting pages {} to {}...".format(i, limit))
         tables = camelot.read_pdf(
-            "../specs/%s.pdf" % (module,),
-            pages="%s-%s" % (i, limit),
-            # line_size_scaling=80,
-            # strip_text=' .\n',
+            "../specs/{}.pdf".format(module), pages="{}-{}".format(i, limit),
         )
-        tables.export("../specs/%s/%s.csv" % (module, module), f="csv", compress=False)
+        tables.export(
+            "../specs/{}/raw/{}.csv".format(module, module), f="csv", compress=False
+        )
         i += STEP
 
 
@@ -35,7 +42,7 @@ def extract_csv(module, max_pages):
 #   then append it at the end of table of previous page.
 
 if __name__ == "__main__":
-    extract_csv("ecd", 190)
-    extract_csv("ecf", 575)
-    extract_csv("efd_icms_ipi", 262)
-    extract_csv("efd_pis_cofins", 381)
+    extract_csv("ecd", 12)
+    extract_csv("ecf", 12)
+    extract_csv("efd_icms_ipi", 12)
+    extract_csv("efd_pis_cofins", 12)
