@@ -19,6 +19,21 @@ logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
 logger.setLevel(logging.INFO)
 
+
+# used to sort csv files
+def atoi(text):
+    return int(text) if text.isdigit() else text
+
+
+# used to sort csv files
+def natural_keys(text):
+    """
+    alist.sort(key=natural_keys) sorts in human order
+    http://nedbatchelder.com/blog/200712/human_sorting.html
+    """
+    return [atoi(c) for c in re.split(r"(\d+)", text)]
+
+
 # 1. build_registers_spec_csv
 # ===========================
 
@@ -28,7 +43,10 @@ def is_register_code(code):
 
 
 def map_register_row(mod, row):
-    # extracts row information for each kind of file, deal with CSV errors
+    """extracts row information for each kind of file, deal with CSV errors"""
+    # TODO : Join rows content when they are from the same register's line but
+    # splited in two because of page break.
+    # Example : EFD ICMS IPI pdf Outubro 2019 p20-21
     v = {}
     if len(row) > 2:
         if mod == "ecd":
@@ -89,29 +107,6 @@ def map_register_row(mod, row):
         return False
 
 
-# used to sort csv files
-def atoi(text):
-    return int(text) if text.isdigit() else text
-
-
-# used to sort csv files
-def natural_keys(text):
-    """
-    alist.sort(key=natural_keys) sorts in human order
-    http://nedbatchelder.com/blog/200712/human_sorting.html
-    (See Toothy's implementation in the comments)
-    """
-    return [atoi(c) for c in re.split(r"(\d+)", text)]
-
-
-# used to sort register name according to their bloc
-def register_keys(text):
-    if text[0] == "9":  # bloc 9 registers come at last
-        return ["Z", text[1:3]]
-    else:
-        return [atoi(c) for c in re.split(r"(\d+)", text)]
-
-
 def extract_registers_spec(mod):
     """scans the csv tables to read the registers (registros),
     specially their description and hierarchy."""
@@ -147,8 +142,6 @@ def extract_registers_spec(mod):
                         rows.append(v)
                         if v["code"] == "9999":
                             return rows
-                    else:
-                        break
 
     return rows
 
@@ -311,8 +304,8 @@ def map_field_row(mod, page, register, row, headers, in_out):
             pass
             # TODO print and ensure all cases are dealt with (some
             # are properly dealt when type is discovered later, but check)
-    #            row[2] = 'desc (skipped here)'
-    #            print("BBBBBBBBBBBBBB", row)
+            #    row[2] = 'desc (skipped here)'
+            #    print("BBBBBBBBBBBBBB", row)
     if not v.get("type"):
         f_type = infer_field_type(v["code"], None, row)
         if f_type is not None:
@@ -327,7 +320,7 @@ def show_problematic_field_rows(row, page, v):
         logger.info("page {}, field type cannot be resolved:{}".format(page, row))
 
 
-def is_register_row(row):
+def is_register_first_row(row):
     if len(row) > 5 and (
         row[1].replace(" ", "") == "REG"
         or row[2].replace(" ", "") == "REG"
@@ -337,7 +330,7 @@ def is_register_row(row):
     return False
 
 
-def is_register_header_match(register_name, row):
+def is_register_first_row_match(register_name, row):
     if register_name in "".join(row) and "Texto" in "".join(row):
         return True
     return False
@@ -402,31 +395,30 @@ def extract_fields_spec(mod, register_name):
     in_register = False
     header = False
     header_candidate = False
-    reg_line = None
     cols = 0
     values_col = None
     rule_col = None
-    last_row = None
     last_field_index = 1
     rows = []
     in_out = None
     in_required = False
     out_required = False
 
-    for (dirpath, dirnames, filenames) in walk(path):
+    for (_dirpath, _dirnames, filenames) in walk(path):
         files = sorted(filenames, key=natural_keys)
     for csv_file in files:
         page = int(csv_file.split("-")[2])
         if register_name == "I510" and csv_file == "ecd-page-20-table-1.csv":
             continue  # seems like a false positive, real table is later
-        with open("../specs/{}/raw/{}".format(mod, csv_file), "r") as csvfile:
+        with open(path + csv_file, "r") as csvfile:
             reader = csv.reader(csvfile, delimiter=",", quotechar='"')
             for row in reader:
                 if (
                     not in_register
-                    and is_register_row(row)
-                    and is_register_header_match(register_name, row)
+                    and is_register_first_row(row)
+                    and is_register_first_row_match(register_name, row)
                 ):
+                    # print("row in_register False :", row)
                     in_register = True
                     header = header_candidate
 
@@ -436,7 +428,6 @@ def extract_fields_spec(mod, register_name):
                             rule_col = c
                         c += 1
 
-                    reg_line = row  # the line with the 'REG' field
                     cols = len(header)
                     if register_name in row[cols - 2] or register_name in [
                         "Y681"
@@ -476,7 +467,7 @@ def extract_fields_spec(mod, register_name):
                 if in_register:
                     if "".join(row) == "" or len(row) < 4:
                         continue  # empty line
-                    elif is_register_row(row) and not is_register_header_match(
+                    elif is_register_first_row(row) and not is_register_first_row_match(
                         register_name, row
                     ):
                         # next register table found -> stopping
@@ -486,7 +477,6 @@ def extract_fields_spec(mod, register_name):
                         v = map_field_row(mod, page, register_name, row, header, in_out)
                         last_field_index = v["index"]
                         rows.append(v)
-                        last_row = row
                 elif "".join(row) != "":
                     header_candidate = row
     return header, rows
@@ -500,7 +490,13 @@ def build_fields_spec_csv(mod):
     with open(reg_spec_path, "r") as reg_spec_file:
         reg_spec = csv.reader(reg_spec_file, delimiter=",", quotechar='"')
 
+        limit = 5
+        count = 0
+
         for reg_spec_line in reg_spec:
+            count += 1
+            if count > limit:
+                break
             reg_name = reg_spec_line[1]
             reg_file_path = "../specs/{}/{}-{}.csv".format(mod, mod, reg_name)
 

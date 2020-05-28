@@ -66,6 +66,14 @@ class Writer(object):
         self.outfile.close()
 
 
+# used to sort register name according to their block
+def register_keys(text):
+    if text[0] == "9":  # block 9 registers come at last
+        return ["Z", text[1:3]]
+    else:
+        return [atoi(c) for c in re.split(r"(\d+)", text)]
+
+
 def compare_register_fields(module_name, registers):
     "compares register_fields found scanning the PDF with python-sped when possible"
     registers_lib = Escrituracao(module_name, 2017)._registros
