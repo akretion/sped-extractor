@@ -2,9 +2,8 @@
 
 import logging
 
-# we used a patched camelot
-# see https://github.com/socialcopsdev/camelot/issues/217
 import camelot
+from PyPDF2 import PdfFileReader
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
@@ -14,24 +13,29 @@ START = 0
 STEP = 10
 
 
-def extract_csv(module, max_pages):
+def extract_csv(module, limit=False):
+    """Extract tables from module's pdf with camelot.
+    If a limit is given, on the first pages will be parsed until the limit number."""
+    pdf_path = "../specs/{}.pdf".format(module)
+    export_csv_path = "../specs/{}/raw/{}.csv".format(module, module)
+
+    pdf = PdfFileReader(pdf_path)
+    max_pages = limit if limit else pdf.getNumPages()
+
     logger.info(
-        "extracting tables from pdf for module {} ({} pages)...".format(
+        """extracting tables from pdf for module {} ({} pages)...\
+        \nWARNING! It can take a while (easily 20 minutes)""".format(
             module, max_pages
         )
     )
-    logger.warning("WARNING! It can take a while (easily 20 minutes)")
+
     # we process the pages 10 by 10 to avoid malloc errors
     i = START
     while i < max_pages:
         limit = min(i + STEP, max_pages)
-        logger.info("extracting pages {} to {}...".format(i, limit))
-        tables = camelot.read_pdf(
-            "../specs/{}.pdf".format(module), pages="{}-{}".format(i, limit),
-        )
-        tables.export(
-            "../specs/{}/raw/{}.csv".format(module, module), f="csv", compress=False
-        )
+        logger.info("\nextracting pages {} to {}...".format(i, limit))
+        tables = camelot.read_pdf(pdf_path, pages="{}-{}".format(i, limit),)
+        tables.export(export_csv_path, f="csv", compress=False)
         i += STEP
 
 
@@ -42,7 +46,7 @@ def extract_csv(module, max_pages):
 #   then append it at the end of table of previous page.
 
 if __name__ == "__main__":
-    extract_csv("ecd", 12)
-    extract_csv("ecf", 12)
-    extract_csv("efd_icms_ipi", 12)
-    extract_csv("efd_pis_cofins", 12)
+    extract_csv("ecd")
+    extract_csv("ecf")
+    extract_csv("efd_icms_ipi")
+    extract_csv("efd_pis_cofins")
