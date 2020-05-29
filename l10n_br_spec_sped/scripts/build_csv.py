@@ -69,7 +69,7 @@ def map_register_row(mod, row):
                 }
         # the most problematic pdf
         elif mod == "efd_pis_cofins":
-            if len(row[2]) == 4:
+            if len(row[2]) == 4 and len(row) >= 5:
                 v = {
                     "block": row[0],
                     "code": row[2],
@@ -386,6 +386,46 @@ def is_field_row(mod, register, row, last_field_index):
         return test, row
 
 
+def _define_register_in_out_required(reg_row, header, register_name, rule_col):
+    """Return if the Register has "Entr"-"Saída" columns (returning `in_out`)
+    and their values given by `in_required` and `out_required`"""
+    in_out = None
+    in_required = None
+    out_required = None
+    cols = len(header)
+    if register_name in reg_row[cols - 2] or register_name in ["Y681"]:  # ECF error
+        in_out = False  # because only 1 col left
+        values_col = cols - 2
+    elif register_name in reg_row[cols - 3]:
+        values_col = cols - 3
+        if reg_row[cols - 1] == reg_row[cols - 2] == "O":
+            in_out = True
+            in_required = True
+            out_required = True
+        elif rule_col is None or rule_col < values_col:
+            in_out = True  # but it never happens
+        else:
+            in_out = False
+    else:
+        if reg_row[cols - 1] == reg_row[cols - 2] == "O":
+            in_out = True
+            in_required = True
+            out_required = True
+        if len(header) == 8 and "Entr" in header[6]:
+            in_out = True
+            if reg_row[cols - 2] == "O":
+                in_required = True
+            else:
+                in_required = False
+            if reg_row[cols - 1] == "O":
+                out_required = True
+            else:
+                out_required = False
+        else:
+            in_out = False
+    return in_out, in_required, out_required
+
+
 def extract_fields_spec(mod, register_name):
     """scans the csv files to find the rows describing the fields
     of a given register."""
@@ -400,9 +440,6 @@ def extract_fields_spec(mod, register_name):
     rule_col = None
     last_field_index = 1
     rows = []
-    in_out = None
-    in_required = False
-    out_required = False
 
     for (_dirpath, _dirnames, filenames) in walk(path):
         files = sorted(filenames, key=natural_keys)
@@ -418,51 +455,40 @@ def extract_fields_spec(mod, register_name):
                     and is_register_first_row(row)
                     and is_register_first_row_match(register_name, row)
                 ):
-                    # print("row in_register False :", row)
                     in_register = True
+                    # The register header is the previous row of this current row
+                    # (which is matching to be the table's first row)
                     header = header_candidate
 
                     c = 0
-                    for x in header:
-                        if "Regras" in x:
+                    for index, col_name in enumerate(header):
+                        if "Regras" in col_name:
                             rule_col = c
                         c += 1
+                        # Clean header columns names
+                        clean_name = col_name
+                        if "\n" in col_name:
+                            clean_name = col_name.replace("\n", "").replace("  ", " ")
+                        if re.match(r"^[a-zA-Z]+\.$", col_name):
+                            clean_name = col_name[:-1]
+                        if clean_name != col_name:
+                            header[index] = clean_name
 
-                    cols = len(header)
-                    if register_name in row[cols - 2] or register_name in [
-                        "Y681"
-                    ]:  # ECF error
-                        in_out = False  # because only 1 col left
-                        values_col = cols - 2
-                    elif register_name in row[cols - 3]:
-                        values_col = cols - 3
-                        if row[cols - 1] == row[cols - 2] == "O":
-                            in_out = True
-                            in_required = True
-                            out_required = True
-                        elif rule_col is None or rule_col < values_col:
-                            in_out = True  # but it never happens
-                        else:
-                            in_out = False
-                    else:
-                        if row[cols - 1] == row[cols - 2] == "O":
-                            in_out = True
-                            in_required = True
-                            out_required = True
-                        if len(header) == 8 and "Entr" in header[6]:
-                            in_out = True
-                            if row[cols - 2] == "O":
-                                in_required = True
-                            else:
-                                in_required = False
-                            if row[cols - 1] == "O":
-                                out_required = True
-                            else:
-                                out_required = False
-                        else:
-                            in_out = False
-                    if in_out is True and in_required is None or out_required is None:
-                        logger.info("ERROR", header, row)
+                        (
+                            in_out,
+                            in_required,
+                            out_required,
+                        ) = _define_register_in_out_required(
+                            row, header, register_name, rule_col
+                        )
+
+                    if in_out is True and (in_required is None or out_required is None):
+                        logger.warning(
+                            "WARNING the register '{}' has not a 'REG' row valid :\
+                            \n{}\n{}".format(
+                                register_name, header, row
+                            )
+                        )
                     continue
                 if in_register:
                     if "".join(row) == "" or len(row) < 4:
@@ -484,48 +510,48 @@ def extract_fields_spec(mod, register_name):
 
 def build_fields_spec_csv(mod):
     reg_spec_path = "../specs/{}/{}_reg_spec.csv".format(mod, mod)
+    fields_spec_path = "../specs/{}/{}_fields_spec.csv".format(mod, mod)
 
     # Open the CSV created by 'build_registers_spec_csv' with the module's
     # registers list
-    with open(reg_spec_path, "r") as reg_spec_file:
+    with open(reg_spec_path, "r") as reg_spec_file, open(
+        fields_spec_path, "w"
+    ) as fields_file:
+        # Delete actual fields_file's datas before writing
+        fields_file.seek(0)
+        fields_file.truncate()
+
         reg_spec = csv.reader(reg_spec_file, delimiter=",", quotechar='"')
+        fields = csv.writer(
+            fields_file, delimiter=",", quotechar='"', quoting=csv.QUOTE_ALL
+        )
 
-        limit = 5
-        count = 0
-
+        # First collect all the module's fields headers and all the rows
+        headers = []
+        rows = []
         for reg_spec_line in reg_spec:
-            count += 1
-            if count > limit:
-                break
             reg_name = reg_spec_line[1]
-            reg_file_path = "../specs/{}/{}-{}.csv".format(mod, mod, reg_name)
+            reg_header, reg_rows = extract_fields_spec(mod, reg_name)
+            rows.extend(reg_rows)
 
-            with open(reg_file_path, "w") as reg_file:
-                # Delete actual reg_spec_file's datas before writing
-                reg_file.seek(0)
-                reg_file.truncate()
-
-                # Write rows
-                reg = csv.writer(
-                    reg_file, delimiter=",", quotechar='"', quoting=csv.QUOTE_ALL
-                )
-                header, rows = extract_fields_spec(mod, reg_name)
-                # TODO : What should we do with when register is empty ?
-                if header:
-                    # First line is columns titles
-                    reg.writerow(header)
-                    for row in rows:
-                        reg.writerow(list(row.values()))
+        # First line is columns titles
+        fields.writerow(rows[0].keys())
+        for row in rows:
+            fields.writerow(list(row.values()))
 
 
 if __name__ == "__main__":
     for module in ["ecd", "ecf", "efd_icms_ipi", "efd_pis_cofins"]:
-        logger.info("Building the CSV file with the {}'s registers list".format(module))
+        logger.info(
+            "\nBuilding the CSV file with the {}'s registers list".format(
+                module.upper()
+            )
+        )
         build_registers_spec_csv(module)
 
         logger.info(
             "Building the CSV files with the fields for each {}'s registers".format(
-                module
+                module.upper()
             )
         )
         build_fields_spec_csv(module)
