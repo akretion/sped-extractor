@@ -1,0 +1,2 @@
+"Register","Page","Nº","Campo","Descrição","Tipo","Tam","Dec","Obrig"
+"0120",72,"02","MES_REFER","Mês de referência do ano-calendário da escrituração  sem dados, dispensada da entrega. Campo a ser preenchido no formato “mmaaaa”","C","006*","-","S"

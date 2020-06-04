@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """
-This module define 2 methods in order to build clean CSV files from the CSV
+This module defines 3 methods in order to build clean CSV files from the CSV
 extracted by extract_csv.py :
 
-1. `build_registers_spec_csv` create CSV files listing module's registers (one CSV
+1. `build_registers_csv` creates CSV files listing module's registers (one CSV
     for each module)
-2. `build_fields_spec_csv` create CSV files listing register's fields (one CSV for
-    each register)
+2. `build_accurate_fields_csv` creates CSV files listing register's fields with
+    no modification of the fields cells values (also one CSV for each module)
+3. `build_usable_fields_csv` creates CSV listing the register's fields but interpreting
+    the fields cells values in order to be usable by a third party application.
 
 """
 
@@ -19,9 +21,46 @@ logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
 logger.setLevel(logging.INFO)
 
+# Hard coding module fields headers because it looks easier to actualize than
+# heuristic coding based on observation. Used in _get_mod_header() method.
+MODULE_HEADER = {
+    "ecd": [
+        "Nº",
+        "Campo",
+        "Descrição",
+        "Tipo",
+        "Tamanho",
+        "Decimal",
+        "Valores Válidos",
+        "Obrigatório",
+        "Regras de Validação do Campo",
+    ],
+    "ecf": [
+        "Nº",
+        "Campo",
+        "Descrição",
+        "Tipo",
+        "Tamanho",
+        "Decimal",
+        "Valores Válidos",
+        "Obrigatório",
+    ],
+    "efd_icms_ipi": [
+        "Nº",
+        "Campo",
+        "Descrição",
+        "Tipo",
+        "Tam",
+        "Dec",
+        "Obrig",
+        "Entr",
+        "Saídas",
+    ],
+    "efd_pis_cofins": ["Nº", "Campo", "Descrição", "Tipo", "Tam", "Dec", "Obrig"],
+}
 
 # used to sort csv files
-def atoi(text):
+def _atoi(text):
     return int(text) if text.isdigit() else text
 
 
@@ -31,19 +70,48 @@ def natural_keys(text):
     alist.sort(key=natural_keys) sorts in human order
     http://nedbatchelder.com/blog/200712/human_sorting.html
     """
-    return [atoi(c) for c in re.split(r"(\d+)", text)]
+    return [_atoi(c) for c in re.split(r"(\d+)", text)]
+
+def _is_joined_columns(row, c):
+    """ Check if row's column 'c' need to be split"""
+    if len(row) > 4 and row[c][0:2].isdigit() and len(row[c]) > 5 and " " in row[c]:
+        return True
+    return False
+
+def clean_row(row):
+    # Separate the 2 first columns joined together
+    # Change ["04  VL_BC_RET", ""] into ["04","VL_BC_RET"]
+    if _is_joined_columns(row, 0) and row[1] == "":
+        split = row[0].split(" ")
+        row = [row[0][0:2], split[len(split) - 1]] + row[2 : len(row) - 1]
+    # Change ["", "04  VL_BC_RET"] into ["04","VL_BC_RET"]
+    if _is_joined_columns(row, 1) and row[0] == "":
+        split = row[1].split(" ")
+        row = [row[1][0:2], split[len(split) - 1]] + row[2 : len(row) - 1]
+
+    # Clean content
+    for index, cell in enumerate(row):
+        clean_cell = cell
+        if "\n" in cell:
+            clean_cell = cell.replace("\n", "").replace("  ", " ").replace("  ", " ")
+        # Change "Entr." to "Entr" in fields table's headers
+        if re.match(r"^[a-zA-Z]+\.$", cell):
+            clean_cell = cell[:-1]
+        if clean_cell != cell:
+            row[index] = clean_cell
+    return row
 
 
-# 1. build_registers_spec_csv
+# 1. build_registers_csv
 # ===========================
 
 
-def is_register_code(code):
+def _is_register_code(code):
     return code and len(code) == 4 and code[1:3].isdigit()
 
 
-def map_register_row(mod, row):
-    """extracts row information for each kind of file, deal with CSV errors"""
+def _map_register_row(mod, row):
+    """extracts register's row information for each kind of file, deal with CSV errors"""
     # TODO : Join rows content when they are from the same register's line but
     # splited in two because of page break.
     # Example : EFD ICMS IPI pdf Outubro 2019 p20-21
@@ -88,18 +156,9 @@ def map_register_row(mod, row):
                     "card": row[4],
                 }
 
-    if v.get("code") and is_register_code(v["code"]):
+    if v.get("code") and _is_register_code(v["code"]):
         if str(v["level"]).isdigit():
             v["level"] = int(v["level"])
-            # Clean description
-            v["desc"] = (
-                v["desc"]
-                .replace("\n", "")
-                .replace("\r", "")
-                .replace("  ", " ")
-                .replace("  ", " ")
-            )
-            v["card"] = v["card"].replace("\n", "").replace("\r", "")
             return v
         else:
             return False
@@ -107,9 +166,10 @@ def map_register_row(mod, row):
         return False
 
 
-def extract_registers_spec(mod):
-    """scans the csv tables to read the registers (registros),
-    specially their description and hierarchy."""
+def extract_registers(mod):
+    """Scans the raw csv tables and return 'rows', a list of dictionaries giving all the
+    information about the module's registers (block, code, description, hierarchy level
+    and card)."""
     path = "../specs/{}/raw/".format(mod)
     files = []
     rows = []
@@ -137,7 +197,7 @@ def extract_registers_spec(mod):
                 if in_register:
                     if "".join(row) == "":
                         continue  # empty line
-                    v = map_register_row(mod, row)
+                    v = _map_register_row(mod, clean_row(row))
                     if v:
                         rows.append(v)
                         if v["code"] == "9999":
@@ -146,30 +206,271 @@ def extract_registers_spec(mod):
     return rows
 
 
-def build_registers_spec_csv(mod):
+def build_registers_csv(mod):
     """Generate a csv with the Registers specifications. One line for each register.
     """
-    filename = mod + "_reg_spec.csv"
+    filename = mod + "_registers.csv"
     path = "../specs/{}/{}".format(mod, filename)
-    rows = extract_registers_spec(mod)
+    rows = extract_registers(mod)
     header = list(rows[0].keys())
 
-    with open(path, "w") as reg_spec_file:
-        # Delete actual reg_spec_file's datas before writing
-        reg_spec_file.seek(0)
-        reg_spec_file.truncate()
+    with open(path, "w") as reg_file:
+        # Delete actual reg_file's datas before writing
+        reg_file.seek(0)
+        reg_file.truncate()
 
         # Write rows
-        reg_spec_csv = csv.writer(
-            reg_spec_file, delimiter=",", quotechar='"', quoting=csv.QUOTE_ALL
+        reg_csv = csv.writer(
+            reg_file, delimiter=",", quotechar='"', quoting=csv.QUOTE_ALL
         )
         # First line is columns titles
-        reg_spec_csv.writerow(header)
+        reg_csv.writerow(header)
         for row in rows:
-            reg_spec_csv.writerow(list(row.values()))
+            reg_csv.writerow(list(row.values()))
 
 
-# 2. build_fields_spec_csv
+# 2. build_accurate_fields_csv
+# ===========================
+
+
+def camelot_row_patches():
+    """for rows that were not extracted properly in the csv with camelot,
+    we manually maintain e dictionary of proper rows. The key is formed with
+    the module-the register-the field index.
+    The field description is not required if the csv has it properly.
+    """
+    return {
+        "ecf-Y671-8": ["8", "VL_INC_FIN", None, "N", "19", "2", "-", "Não"],
+        "ecf-0020-33": [
+            "33",
+            "IND_DEREX",
+            "Declaração sobre utilização dos recursos em moeda estrangeira"
+            " decorrentes do recebimento de exportações (DEREX) S – Sim N – Não",
+            "C",
+            "1",
+            "-",
+            "[S;N]",
+            "Sim",
+        ],
+        "efd_icms_ipi-1391-11": ["11", "SAÍDAS", None, "N", "-", "02", "OC"],
+        "efd_pis_cofins-0120-02": [
+            "02",
+            "MES_REFER",
+            "Mês de referência do ano-calendário da"
+            " escrituração  sem dados, dispensada da entrega."
+            " Campo a ser preenchido no formato “mmaaaa”",
+            "C",
+            "006*",
+            "-",
+            "S",
+        ],
+    }
+
+
+def _is_field_row(row, last_field_index, register):
+    # TODO return true in the case of EFD PIS COFINS page 78 Registro 0200
+    if (
+        len(row) > 4
+        and row[1].upper() == row[1]
+        and row[1] != ""
+        and len(row[1]) < 32
+        and len(row[1]) > 1
+        and not row[1][0].isdigit()
+        and "RZ_CONT" not in row[1]  # in ECD, doesn't look like a real data field
+        and (
+            row[0].isdigit()
+            and row[1].replace(" ", "") != "REG"
+            and int(row[0]) == last_field_index + 1
+            or row[0] == "*"
+        )
+    ):
+        return True
+    else:
+        return False
+
+
+def apply_camelot_patch(mod, register, row):
+    #TODO : catch the patched rows in the CSV files in ./camelot_patch/2019/
+    return row
+    # """Apply camelot_row_patches() if necessary and return row"""
+    # patch = camelot_row_patches().get("{}-{}-{}".format(mod, register, row[0]))
+    # if not patch:  # in case 1st is a blank before position
+    #     patch = camelot_row_patches().get("{}-{}-{}".format(mod, register, row[1][0:2]))
+    # if patch:
+    #     logger.info("PATCHING ROW: {} {}".format(register, patch))
+    #     if patch[2] is None:  # assuming descr was correct
+    #         patch[2] = row[2]
+    #     row = patch
+    #     return True, row
+    # else:
+    #     return clean_row(row)
+
+
+def _is_reg_row(row):
+    if len(row) > 5 and (
+        row[1].replace(" ", "") == "REG"
+        or row[2].replace(" ", "") == "REG"
+        or " REG" in row[0]
+    ):
+        return True
+    return False
+
+
+def _is_reg_row_match(register_name, row):
+    if register_name in "".join(row) and "Texto" in "".join(row):
+        return True
+    return False
+
+
+def _get_mod_header(mod):
+    """Override this method if the hard code MODULE_HEADER is not wanted"""
+    return MODULE_HEADER.get(mod)
+
+
+def _map_mod_header(row, mod):
+    len_header = len(_get_mod_header(mod))
+
+    if row and mod == "efd_icms_ipi":
+        if len(row) == len_header - 1:
+            # i.e. row has the columns 'Entr' and 'Saída' but not 'Obrig'
+            row.insert(6, "")
+        elif len(row) == len_header - 2:
+            # i.e. row has the column 'Obrig' but neither 'Entr' nor 'Saída'
+            row.extend(["", ""])
+
+    elif row and mod == "efd_pis_cofins":
+        if len(row) == len_header - 1:
+            # i.e. row doesn't have a column 'Obrig'
+            row.extend([""])
+
+    return row
+
+
+def extract_fields_rows(mod, register_name):
+    """scans the csv files to find the rows describing the fields
+    of a given register."""
+    # TODO map back into register: required, in_required, out_required
+    path = "../specs/{}/raw/".format(mod)
+    files = []
+    in_register = False
+    header = False
+    header_candidate = False
+    cols = 0
+    values_col = None
+    rule_col = None
+    last_field_index = 1
+    reg_rows = []
+
+    for (_dirpath, _dirnames, filenames) in walk(path):
+        files = sorted(filenames, key=natural_keys)
+    for csv_file in files:
+        page = int(csv_file.split("-")[2])
+        # TODO check if this condition is still necessary
+        if register_name == "I510" and csv_file == "ecd-page-20-table-1.csv":
+            continue  # seems like a false positive, real table is later
+        with open(path + csv_file, "r") as csvfile:
+            reader = csv.reader(csvfile, delimiter=",", quotechar='"')
+            for row in reader:
+                if (
+                    not in_register
+                    and _is_reg_row(row)
+                    and _is_reg_row_match(register_name, row)
+                ):
+                    in_register = True
+                    # The register header is the previous row of this current row
+                    # (which is matching to be the table's first 'REG' row)
+                    # TODO: register's header is not useful anymore as module's header
+                    # is hard coded.
+                    # TODO : Need to define a separated method catching the different
+                    # register's headers in order to help actualize hard coded headers.
+                    header = clean_row(header_candidate)
+
+                    # Add register's name and page columns
+                    header.insert(0, "Page")
+                    header.insert(0, "Register")
+
+                if in_register:
+                    if "".join(row) == "" or len(row) < 4:
+                        continue  # empty line
+                    elif _is_reg_row(row) and not _is_reg_row_match(register_name, row):
+                        # next register table found -> stopping
+                        return header, reg_rows
+
+                    row = clean_row(row)
+
+                    if _is_field_row(row, last_field_index, register_name):
+                        row = apply_camelot_patch(mod, register_name, row)
+                        # Align row cells under module's header
+                        row = _map_mod_header(row, mod)
+
+                        last_field_index = int(row[0])
+                        # Add register's name and page columns
+                        row.insert(0, page)
+                        row.insert(0, register_name)
+
+                        reg_rows.append(row)
+
+                elif "".join(row) != "":
+                    header_candidate = row
+    return header, reg_rows
+
+
+def build_accurate_fields_csv(mod):
+    reg_path = "../specs/{}/{}_registers.csv".format(mod, mod)
+    fields_path = "../specs/{}/{}_fields.csv".format(mod, mod)
+
+    # Open the CSV created by 'build_registers_csv' with the module's
+    # registers list
+    with open(reg_path, "r") as reg_file, open(fields_path, "w") as fields_file:
+        registers = csv.reader(reg_file, delimiter=",", quotechar='"')
+        # Delete actual fields_file's datas before writing
+        fields_file.seek(0)
+        fields_file.truncate()
+        fields = csv.writer(
+            fields_file, delimiter=",", quotechar='"', quoting=csv.QUOTE_ALL
+        )
+
+        # headers = []
+        mod_rows = []
+        mod_header = ["Register", "Page"] + _get_mod_header(mod)
+        fields.writerow(mod_header)
+        for reg_line in registers:
+            reg_name = reg_line[1]
+
+            _reg_header, reg_rows = extract_fields_rows(mod, reg_name)
+            mod_rows.extend(reg_rows)
+
+            # if _reg_header not in headers:
+            #     headers.append(_reg_header)
+            #     print(reg_name)
+            #     print("    ", _reg_header)
+
+            # OPTIONAL - Individual CSV for each register
+            reg_fields_path = "../specs/{}/{}-{}.csv".format(mod, mod, reg_name)
+            with open(reg_fields_path, "w") as reg_fields_file:
+                # Delete actual reg_fields_file's datas before writing
+                reg_fields_file.seek(0)
+                reg_fields_file.truncate()
+
+                reg_fields = csv.writer(
+                    reg_fields_file, delimiter=",", quotechar='"', quoting=csv.QUOTE_ALL
+                )
+                if _reg_header:
+                    reg_fields.writerow(_reg_header)
+                else:
+                    reg_fields.writerow(["NO HEADER"])
+                if reg_rows:
+                    for row in reg_rows:
+                        reg_fields.writerow(row)
+                else:
+                    reg_fields.writerow(["NO ROWS"])
+            # =================================================
+        logger.info("Fields number in {} : {}".format(mod.upper(), len(mod_rows)))
+        for row in mod_rows:
+            fields.writerow(row)
+
+
+# 3. build_usable_fields_csv
 # ===========================
 
 
@@ -183,43 +484,6 @@ def normalize_field_code(code):
         .replace(r"\r", "")
     )
     # .replace('ÇÃO', 'CAO')
-
-
-def row_patches():
-    """for rows that were not extracted properly in the csv with camelot,
-    we manually maintain e dictionary of proper rows. The key is formed with
-    the module-the register-the field index.
-    The field description is not required if the csv has it properly.
-    """
-    return {
-        "ecf-Y671-8": ["8", "VL_INC_FIN", None, "N", "19", "2", "-", "Não"],
-        "ecf-0020-33": [
-            "33",
-            "IND_DEREX",
-            """Declaração sobre utilização dos recursos"""
-            """em moeda estrangeira decorrentes do recebimento
-de exportações (DEREX)
-S – Sim
-N – Não""",
-            "C",
-            "1",
-            "-",
-            "[S;N]",
-            "Sim",
-        ],
-        "efd_icms_ipi-1391-11": ["11", "SAÍDAS", None, "N", "-", "02", "OC"],
-        "efd_pis_cofins-0120-02": [
-            "02",
-            "MES_REFER",
-            "Mês de referência do ano-calendário da"
-            "escrituração  sem dados, dispensada da entrega. "
-            "Campo a ser preenchido no formato “mmaaaa”",
-            "C",
-            "006*",
-            "-",
-            "S",
-        ],
-    }
 
 
 def infer_field_type(name, spec_type, row):
@@ -320,72 +584,6 @@ def show_problematic_field_rows(row, page, v):
         logger.info("page {}, field type cannot be resolved:{}".format(page, row))
 
 
-def is_register_first_row(row):
-    if len(row) > 5 and (
-        row[1].replace(" ", "") == "REG"
-        or row[2].replace(" ", "") == "REG"
-        or " REG" in row[0]
-    ):
-        return True
-    return False
-
-
-def is_register_first_row_match(register_name, row):
-    if register_name in "".join(row) and "Texto" in "".join(row):
-        return True
-    return False
-
-
-def is_field_row_start(row, last_field_index, register):
-    if (
-        len(row) > 4
-        and row[1].upper() == row[1]
-        and row[1] != ""
-        and len(row[1]) < 32
-        and len(row[1]) > 1
-        and not row[1][0].isdigit()
-        and (
-            row[0].isdigit()
-            and row[1].replace(" ", "") != "REG"
-            and int(row[0]) == last_field_index + 1
-            or row[0] == "*"
-        )
-    ):
-        return True
-    #    if row[0].isdigit() and int(row[0]) == last_field_index + 2:
-    #        print("WARNING FIELD LIKELY MISSED FROM %s, %s to %s" % (register,
-    #                                                                 last_field_index,
-    #                                                                 row[0]))
-    return False
-
-
-def is_field_row(mod, register, row, last_field_index):
-    if "RZ_CONT" in row[1]:  # ECD, doesn't look like a real data field
-        return False, row
-    patch = row_patches().get("{}-{}-{}".format(mod, register, row[0]))
-    if not patch:  # in case 1st is a blank before position
-        patch = row_patches().get("{}-{}-{}".format(mod, register, row[1][0:2]))
-    if patch:
-        logger.info("PATCHING ROW: {} {}".format(register, patch))
-        if patch[2] is None:  # assuming descr was correct
-            patch[2] = row[2]
-        row = patch
-        return True, row
-    else:
-        if len(row) > 5 and row[0] == "":  # sometimes 1st is a blank
-            row.pop(0)
-        if (
-            mod == "efd_pis_cofins"
-            and len(row) > 4
-            and row[0][0:2].isdigit()
-            and len(row[0]) > 6
-        ):
-            split = row[0].split(" ")
-            row = [row[0][0:2], split[len(split) - 1]] + row[2 : len(row) - 1]
-        test = is_field_row_start(row, last_field_index, register)
-        return test, row
-
-
 def _define_register_in_out_required(reg_row, header, register_name, rule_col):
     """Return if the Register has "Entr"-"Saída" columns (returning `in_out`)
     and their values given by `in_required` and `out_required`"""
@@ -426,120 +624,6 @@ def _define_register_in_out_required(reg_row, header, register_name, rule_col):
     return in_out, in_required, out_required
 
 
-def extract_fields_spec(mod, register_name):
-    """scans the csv files to find the rows describing the fields
-    of a given register."""
-    # TODO map back into register: required, in_required, out_required
-    path = "../specs/{}/raw/".format(mod)
-    files = []
-    in_register = False
-    header = False
-    header_candidate = False
-    cols = 0
-    values_col = None
-    rule_col = None
-    last_field_index = 1
-    rows = []
-
-    for (_dirpath, _dirnames, filenames) in walk(path):
-        files = sorted(filenames, key=natural_keys)
-    for csv_file in files:
-        page = int(csv_file.split("-")[2])
-        if register_name == "I510" and csv_file == "ecd-page-20-table-1.csv":
-            continue  # seems like a false positive, real table is later
-        with open(path + csv_file, "r") as csvfile:
-            reader = csv.reader(csvfile, delimiter=",", quotechar='"')
-            for row in reader:
-                if (
-                    not in_register
-                    and is_register_first_row(row)
-                    and is_register_first_row_match(register_name, row)
-                ):
-                    in_register = True
-                    # The register header is the previous row of this current row
-                    # (which is matching to be the table's first row)
-                    header = header_candidate
-
-                    c = 0
-                    for index, col_name in enumerate(header):
-                        if "Regras" in col_name:
-                            rule_col = c
-                        c += 1
-                        # Clean header columns names
-                        clean_name = col_name
-                        if "\n" in col_name:
-                            clean_name = col_name.replace("\n", "").replace("  ", " ")
-                        if re.match(r"^[a-zA-Z]+\.$", col_name):
-                            clean_name = col_name[:-1]
-                        if clean_name != col_name:
-                            header[index] = clean_name
-
-                        (
-                            in_out,
-                            in_required,
-                            out_required,
-                        ) = _define_register_in_out_required(
-                            row, header, register_name, rule_col
-                        )
-
-                    if in_out is True and (in_required is None or out_required is None):
-                        logger.warning(
-                            "WARNING the register '{}' has not a 'REG' row valid :\
-                            \n{}\n{}".format(
-                                register_name, header, row
-                            )
-                        )
-                    continue
-                if in_register:
-                    if "".join(row) == "" or len(row) < 4:
-                        continue  # empty line
-                    elif is_register_first_row(row) and not is_register_first_row_match(
-                        register_name, row
-                    ):
-                        # next register table found -> stopping
-                        return header, rows
-                    test, row = is_field_row(mod, register_name, row, last_field_index)
-                    if test:
-                        v = map_field_row(mod, page, register_name, row, header, in_out)
-                        last_field_index = v["index"]
-                        rows.append(v)
-                elif "".join(row) != "":
-                    header_candidate = row
-    return header, rows
-
-
-def build_fields_spec_csv(mod):
-    reg_spec_path = "../specs/{}/{}_reg_spec.csv".format(mod, mod)
-    fields_spec_path = "../specs/{}/{}_fields_spec.csv".format(mod, mod)
-
-    # Open the CSV created by 'build_registers_spec_csv' with the module's
-    # registers list
-    with open(reg_spec_path, "r") as reg_spec_file, open(
-        fields_spec_path, "w"
-    ) as fields_file:
-        # Delete actual fields_file's datas before writing
-        fields_file.seek(0)
-        fields_file.truncate()
-
-        reg_spec = csv.reader(reg_spec_file, delimiter=",", quotechar='"')
-        fields = csv.writer(
-            fields_file, delimiter=",", quotechar='"', quoting=csv.QUOTE_ALL
-        )
-
-        # First collect all the module's fields headers and all the rows
-        headers = []
-        rows = []
-        for reg_spec_line in reg_spec:
-            reg_name = reg_spec_line[1]
-            reg_header, reg_rows = extract_fields_spec(mod, reg_name)
-            rows.extend(reg_rows)
-
-        # First line is columns titles
-        fields.writerow(rows[0].keys())
-        for row in rows:
-            fields.writerow(list(row.values()))
-
-
 if __name__ == "__main__":
     for module in ["ecd", "ecf", "efd_icms_ipi", "efd_pis_cofins"]:
         logger.info(
@@ -547,11 +631,11 @@ if __name__ == "__main__":
                 module.upper()
             )
         )
-        build_registers_spec_csv(module)
+        build_registers_csv(module)
 
         logger.info(
             "Building the CSV files with the fields for each {}'s registers".format(
                 module.upper()
             )
         )
-        build_fields_spec_csv(module)
+        build_accurate_fields_csv(module)

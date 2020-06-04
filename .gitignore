@@ -1,4 +1,6 @@
 ecd/
+!ecd/ecd_fields.csv
+!ecd/ecd_registers.csv
 ecf/
 efd_icms_ipi/
 efd_pis_cofins/

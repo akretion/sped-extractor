@@ -1,0 +1,11 @@
+"Register","Page","Nº","Campo","Descrição","Tipo","Tamanho","Decimal","Valores Válidos","Obrigatório"
+"Y671",563,8,"VL_INC_FIN","None","N",19,2,"-","Não"
+"0020",79,33,"IND_DEREX","Declaração sobre utilização dos recursos em moeda estrangeira decorrentes do recebimento de exportações (DEREX) S – Sim, N – Não","C",1,"-","[S;N]","Sim"
+,,,,,,,,,
+,,,,,,,,," Campo a ser preenchido no formato “mmaaaa”"",
+    ""C"",
+    ""006*"",
+    ""-"",
+    ""S"",
+],
+"
