@@ -260,21 +260,22 @@ def _is_field_row(row, last_field_index, register):
         return False
 
 
-def apply_camelot_patch(mod, register, row):
-    # TODO : catch the patched rows in the CSV files in ./camelot_patch/2019/
+def apply_camelot_patch(mod, register, row, pdf_year):
+    """Catch patched row in ./camelot_patch/ and return override current row"""
+    patch_path = "./camelot_patch/" + str(pdf_year) + "/" + mod + "_camelot_patch.csv"
+
+    try:
+        with open(patch_path, "r") as csvfile:
+            reader = csv.reader(csvfile, delimiter=",", quotechar='"')
+            for patch_row in reader:
+                if patch_row[0] == register and patch_row[2] == row[0]:
+                    row = patch_row[2:]
+                    logger.info(
+                        "PATCHED ROW in register {} :\n{}".format(register, row)
+                    )
+    except FileNotFoundError:
+        return row
     return row
-    # """Apply camelot_row_patches() if necessary and return row"""
-    # patch = camelot_row_patches().get("{}-{}-{}".format(mod, register, row[0]))
-    # if not patch:  # in case 1st is a blank before position
-    #     patch = camelot_row_patches().get("{}-{}-{}".format(mod, register, row[1][0:2]))
-    # if patch:
-    #     logger.info("PATCHING ROW: {} {}".format(register, patch))
-    #     if patch[2] is None:  # assuming descr was correct
-    #         patch[2] = row[2]
-    #     row = patch
-    #     return True, row
-    # else:
-    #     return clean_row(row)
 
 
 def _is_reg_row(row):
@@ -360,13 +361,13 @@ def extract_fields_rows(mod, register_name):
                         # next register table found -> stopping
                         return reg_rows
                     # TODO : handle instances where the field's row is split in two by a
-                    # page break. (=all the fields are empty except Description)
-                    # Example : EFD PIS COFINS page 78 Registro 0200
+                    # page break. (=all the fields are empty except Description - 3rd
+                    # column). Example : EFD PIS COFINS page 78 Registro 0200
 
                     row = clean_row(row)
+                    row = apply_camelot_patch(mod, register_name, row, 2019)
 
                     if _is_field_row(row, last_field_index, register_name):
-                        row = apply_camelot_patch(mod, register_name, row)
                         # Align row cells under module's header
                         row = _map_row_mod_header(row, mod)
                         last_field_index = int(row[0])
@@ -581,7 +582,7 @@ if __name__ == "__main__":
 
         # OPTIONAL : log the different headers found in the module in order to define
         # hard-coded unified module's header at the beginning of this script
-        headers = get_all_headers(module)
-        logger.info("{}'s headers :".format(module.upper()))
-        for header in headers:
-            logger.info(header)
+        # headers = get_all_headers(module)
+        # logger.info("{}'s headers :".format(module.upper()))
+        # for header in headers:
+        #     logger.info(header)

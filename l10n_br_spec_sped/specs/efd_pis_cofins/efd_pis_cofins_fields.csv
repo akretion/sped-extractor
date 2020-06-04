@@ -38,6 +38,8 @@
 "0111","70","04","REC_BRU_ NCUM_EXP","Receita Bruta Não-Cumulativa – Exportação","N","-","02","S"
 "0111","70","05","REC_BRU_CUM","Receita Bruta Cumulativa","N","-","02","S"
 "0111","70","06","REC_BRU_TOTAL","Receita Bruta Total","N","-","02","S"
+"0120","72","02","MES_REFER","Mês de referência do ano-calendário da escrituração  sem dados, dispensada da entrega. Campo a ser preenchido no formato “mmaaaa”","C","006*","-","S"
+"0120","72","03","INF_COMP","Informação complementar do registro. No caso de escrituração sem dados, deve ser informado o real motivo dessa situação, conforme indicadores abaixo: 01 - Pessoa jurídica imune ou isenta do IRPJ 02 - Órgãos públicos, autarquias e fundações públicas 03 - Pessoa jurídica inativa 04 - Pessoa jurídica em geral, que não realizou operações geradoras de receitas (tributáveis ou não) ou de créditos 05 - Sociedade em Conta de Participação - SCP, que não realizou operações geradoras de receitas (tributáveis ou não) ou de créditos 06 - Sociedade Cooperativa, que não realizou operações geradoras de receitas (tributáveis ou não) ou de créditos 07 - Escrituração decorrente de incorporação, fusão ou cisão, sem operações geradoras de receitas (tributáveis ou não) ou de créditos 99 - Demais hipóteses de dispensa de escrituração, relacionadas no art. 5º, da IN RFB nº 1.252, de 2012","C","090","-","S"
 "0140","73","02","COD_EST","Código de identificação do estabelecimento","C","060","-","N"
 "0140","73","03","NOME","Nome empresarial do estabelecimento","C","100","-","S"
 "0140","73","04","CNPJ","Número de inscrição do estabelecimento no CNPJ.","N","014*","-","S"
