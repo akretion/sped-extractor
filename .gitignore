@@ -1,19 +1,21 @@
+l10n_br_spec_sped/scripts/__pycache__/*
+
 # ECD
 l10n_br_spec_sped/specs/ecd/*
-!l10n_br_spec_sped/specs/ecd/ecd_fields.csv
+!l10n_br_spec_sped/specs/ecd/ecd_accurate_fields.csv
 !l10n_br_spec_sped/specs/ecd/ecd_registers.csv
 
 # ECF
 l10n_br_spec_sped/specs/ecf/*
-!l10n_br_spec_sped/specs/ecf/ecf_fields.csv
+!l10n_br_spec_sped/specs/ecf/ecf_accurate_fields.csv
 !l10n_br_spec_sped/specs/ecf/ecf_registers.csv
 
 # EFD_ICMS_IPI
 l10n_br_spec_sped/specs/efd_icms_ipi/*
-!l10n_br_spec_sped/specs/efd_icms_ipi/efd_icms_ipi_fields.csv
+!l10n_br_spec_sped/specs/efd_icms_ipi/efd_icms_ipi_accurate_fields.csv
 !l10n_br_spec_sped/specs/efd_icms_ipi/efd_icms_ipi_registers.csv
 
 # EFD_PIS_COFINS
 l10n_br_spec_sped/specs/efd_pis_cofins/*
-!l10n_br_spec_sped/specs/efd_pis_cofins/efd_pis_cofins_fields.csv
+!l10n_br_spec_sped/specs/efd_pis_cofins/efd_pis_cofins_accurate_fields.csv
 !l10n_br_spec_sped/specs/efd_pis_cofins/efd_pis_cofins_registers.csv
