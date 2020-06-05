@@ -16,6 +16,7 @@ import csv
 import logging
 import re
 from os import walk
+import click
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
@@ -61,6 +62,12 @@ MODULE_HEADER = {
     ],
     "efd_pis_cofins": ["Nº", "Campo", "Descrição", "Tipo", "Tam", "Dec", "Obrig"],
 }
+
+
+def _get_mod_header(mod):
+    """Override this method if the hard code MODULE_HEADER is not wanted"""
+    return MODULE_HEADER.get(mod)
+
 
 # used to sort csv files
 def _atoi(text):
@@ -260,7 +267,7 @@ def _is_field_row(row, last_field_index, register):
         return False
 
 
-def apply_camelot_patch(mod, register, row, pdf_year):
+def _apply_camelot_patch(mod, register, row, pdf_year):
     """Catch patched row in ./camelot_patch/ and return override current row"""
     patch_path = "./camelot_patch/" + str(pdf_year) + "/" + mod + "_camelot_patch.csv"
 
@@ -294,43 +301,17 @@ def _is_reg_row_match(register_name, row):
     return False
 
 
-def _get_mod_header(mod):
-    """Override this method if the hard code MODULE_HEADER is not wanted"""
-    return MODULE_HEADER.get(mod)
-
-
 def _map_row_mod_header(row, mod):
-    len_header = len(_get_mod_header(mod))
-
+    """Insert empty column when needed to align with module's header columns order"""
     if row and mod == "efd_icms_ipi":
-        if len(row) == len_header - 1:
+        if len(row) == len(_get_mod_header(mod)) - 1:
             # i.e. row has the columns 'Entr' and 'Saída' but not 'Obrig'
             row.insert(6, "")
 
     return row
 
 
-def get_all_headers(mod):
-    """Return a list of all the different fields headers found in the module.
-    Used to define module's header hard-coded at the beginning of this script."""
-    path = "../specs/{}/raw/".format(mod)
-    files = []
-    previous_row = False
-    headers = []
-
-    for (_dirpath, _dirnames, filenames) in walk(path):
-        files = sorted(filenames, key=natural_keys)
-    for csv_file in files:
-        with open(path + csv_file, "r") as csvfile:
-            reader = csv.reader(csvfile, delimiter=",", quotechar='"')
-            for row in reader:
-                if _is_reg_row(row) and previous_row not in headers:
-                    headers.append(previous_row)
-                previous_row = row
-    return headers
-
-
-def extract_fields_rows(mod, register_name):
+def extract_fields_rows(mod, register_name, patch=True):
     """scans the csv files to find the rows describing the fields
     of a given register."""
     # TODO map back into register: required, in_required, out_required
@@ -365,7 +346,8 @@ def extract_fields_rows(mod, register_name):
                     # column). Example : EFD PIS COFINS page 78 Registro 0200
 
                     row = clean_row(row)
-                    row = apply_camelot_patch(mod, register_name, row, 2019)
+                    if patch:
+                        row = _apply_camelot_patch(mod, register_name, row, 2019)
 
                     if _is_field_row(row, last_field_index, register_name):
                         # Align row cells under module's header
@@ -381,9 +363,9 @@ def extract_fields_rows(mod, register_name):
     return reg_rows
 
 
-def build_accurate_fields_csv(mod):
+def build_accurate_fields_csv(mod, patch=True):
     reg_path = "../specs/{}/{}_registers.csv".format(mod, mod)
-    fields_path = "../specs/{}/{}_fields.csv".format(mod, mod)
+    fields_path = "../specs/{}/{}_accurate_fields.csv".format(mod, mod)
 
     # Open the CSV created by 'build_registers_csv' with the module's
     # registers list
@@ -402,7 +384,7 @@ def build_accurate_fields_csv(mod):
         fields.writerow(mod_header)
         for reg_line in registers:
             reg_name = reg_line[1]
-            reg_rows = extract_fields_rows(mod, reg_name)
+            reg_rows = extract_fields_rows(mod, reg_name, patch)
             mod_rows.extend(reg_rows)
 
         logger.info("Fields number in {} : {}".format(mod.upper(), len(mod_rows)))
@@ -564,7 +546,27 @@ def _define_register_in_out_required(reg_row, header, register_name, rule_col):
     return in_out, in_required, out_required
 
 
-if __name__ == "__main__":
+@click.command()
+# TODO : Add argument to this patch option in order to choose the foler with the patches
+@click.option(
+    "--patch/--no-patch",
+    default=True,
+    help="Override fields rows extracted by camelot with rows listed in folder "
+    "'./camelot_patch/2019/'",
+    show_default=True,
+)
+def main(patch):
+    """Build 3 CSV files for each SPED modules (ECD, ECF, EFD_ICMS_IPI and
+    EFD_PIS_COFINS) :
+
+    - MODULE_registers.csv : list the module's registers with its useful information.
+
+    - MODULE_accurate_fields.csv : list all the module's registers fields as they appear
+    in the original pdf tables (useful to check the extracted CSV reliability).
+
+    - MODULE_fields.csv : list all the module's registers fields with unified and
+    interpreted columns (useful to create python objects from these fields)."""
+
     for module in ["ecd", "ecf", "efd_icms_ipi", "efd_pis_cofins"]:
         logger.info(
             "\nBuilding the CSV file with the {}'s registers list".format(
@@ -578,11 +580,8 @@ if __name__ == "__main__":
                 module.upper()
             )
         )
-        build_accurate_fields_csv(module)
+        build_accurate_fields_csv(module, patch)
 
-        # OPTIONAL : log the different headers found in the module in order to define
-        # hard-coded unified module's header at the beginning of this script
-        # headers = get_all_headers(module)
-        # logger.info("{}'s headers :".format(module.upper()))
-        # for header in headers:
-        #     logger.info(header)
+
+if __name__ == "__main__":
+    main()

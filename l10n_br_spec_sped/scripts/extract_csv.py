@@ -39,12 +39,6 @@ def extract_csv(module, limit=False):
         i += STEP
 
 
-# TODO improve tables:
-# - remove empty lines
-# - if table has the same num of columns as table from previous page
-#   and seems to have no header and seems continuation of previous table,
-#   then append it at the end of table of previous page.
-
 if __name__ == "__main__":
     extract_csv("ecd")
     extract_csv("ecf")

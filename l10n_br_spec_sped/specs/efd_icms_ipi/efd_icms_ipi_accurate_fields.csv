@@ -1830,7 +1830,7 @@
 "1391","251","08","PERDA","Evaporação (litros) ou Quebra de peso (kg)","N","-","02","OC"
 "1391","251","09","CONS","Consumo (litros)","N","-","02","OC"
 "1391","251","10","SAI_ANI_HID","Saída para transformação (litros).","N","-","02","OC"
-"1391","251","11","SAÍDAS","Saídas (litros / kg)","N","-","02","OC","",""
+"1391","251","11","SAÍDAS","Saídas (litros / kg)","N","-","02","OC"
 "1391","251","12","ESTQ_FIN","Estoque final  (litros / kg)","N","-","02","O"
 "1391","251","13","ESTQ_INI_MEL","Estoque inicial de mel residual (kg)","N","-","02","OC"
 "1391","251","14","PROD_DIA_MEL","Produção de mel residual (kg) e entradas de mel (kg)","N","-","02","OC"
