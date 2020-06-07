@@ -1,6 +1,6 @@
-l10n_br_spec_sped/scripts/__pycache__/*
+extract_sped/scripts/__pycache__/*
 
-l10n_br_spec_sped/specs/ecd/raw_camelot_csv/*
-l10n_br_spec_sped/specs/ecf/raw_camelot_csv/*
-l10n_br_spec_sped/specs/efd_icms_ipi/raw_camelot_csv/*
-l10n_br_spec_sped/specs/efd_pis_cofins/raw_camelot_csv/*
+extract_sped/specs/ecd/raw_camelot_csv/*
+extract_sped/specs/ecf/raw_camelot_csv/*
+extract_sped/specs/efd_icms_ipi/raw_camelot_csv/*
+extract_sped/specs/efd_pis_cofins/raw_camelot_csv/*
