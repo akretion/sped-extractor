@@ -2,7 +2,6 @@
 
 import json
 import logging
-from os import walk
 
 import click
 from build_csv import extract_fields
@@ -20,7 +19,7 @@ def _build_json(mod):
         json_file.seek(0)
         json_file.truncate()
 
-        json.dump(fields, json_file, indent = 4)
+        json.dump(fields, json_file, indent=4)
 
 
 @click.command()

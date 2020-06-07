@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
 import logging
-import click
+from pathlib import Path
 
 import camelot
+import click
 from PyPDF2 import PdfFileReader
-from pathlib import Path
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
@@ -52,7 +52,7 @@ def main(limit):
 
     The pdf must be present at '../specs/' and the extracted CSV files will be placed
     in '../specs/MODULE/raw_camelot_csv/'.
-    
+
     If an option --limit is given, only the first pages will be parsed until the limit
     number."""
     logger.info(

@@ -10,8 +10,10 @@ exclude: |
   ^docs/_templates/.*\.html$|
   # You don't usually want a bot to modify your legal texts
   (LICENSE.*|COPYING.*)|
-  # Temporary Exclude generate.py and build_csv.py
-  .*/generate.py$|
+  # Temporary ignore l10n_br_spec_sped models and views
+  /models/|
+  /views/|
+  .*/generate.py$
 default_language_version:
   python: python3
 repos:

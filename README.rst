@@ -76,4 +76,3 @@ promote its widespread use.
     :alt: rvalyi
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
-

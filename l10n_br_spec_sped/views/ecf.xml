@@ -1,557 +1,528 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <menuitem name="SPED" id="menu_root" sequence="115"/>
+    <menuitem name="SPED" id="menu_root" sequence="115" />
     <menuitem name="ECF" parent="menu_root" id="ecf" sequence="2" />
-
-    <menuitem name="Bloco 0" parent="ecf" id="ecf_0"/>
-
+    <menuitem name="Bloco 0" parent="ecf" id="ecf_0" />
     <record id='ecf_0000_action' model='ir.actions.act_window'>
-        <field name="name">Abertura do Arquivo Digital e Identificação da Pessoa Jurídica</field>
+        <field
+            name="name"
+        >Abertura do Arquivo Digital e Identificação da Pessoa Jurídica</field>
         <field name="res_model">l10n.br.sped.ecf.0000</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_0000_action" parent="ecf_0" id="ecf_0000"/>
-
+    <menuitem action="ecf_0000_action" parent="ecf_0" id="ecf_0000" />
     <record id='ecf_0010_action' model='ir.actions.act_window'>
         <field name="name">Parâmetros de Tributação</field>
         <field name="res_model">l10n.br.sped.ecf.0010</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_0010_action" parent="ecf_0" id="ecf_0010"/>
-
+    <menuitem action="ecf_0010_action" parent="ecf_0" id="ecf_0010" />
     <record id='ecf_0020_action' model='ir.actions.act_window'>
         <field name="name">Parâmetros Complementares</field>
         <field name="res_model">l10n.br.sped.ecf.0020</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_0020_action" parent="ecf_0" id="ecf_0020"/>
-
+    <menuitem action="ecf_0020_action" parent="ecf_0" id="ecf_0020" />
     <record id='ecf_0021_action' model='ir.actions.act_window'>
         <field name="name">Parâmetros de Identificação dos Tipos de Programa</field>
         <field name="res_model">l10n.br.sped.ecf.0021</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_0021_action" parent="ecf_0" id="ecf_0021"/>
-
+    <menuitem action="ecf_0021_action" parent="ecf_0" id="ecf_0021" />
     <record id='ecf_0030_action' model='ir.actions.act_window'>
         <field name="name">Dados Cadastrais</field>
         <field name="res_model">l10n.br.sped.ecf.0030</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_0030_action" parent="ecf_0" id="ecf_0030"/>
-
+    <menuitem action="ecf_0030_action" parent="ecf_0" id="ecf_0030" />
     <record id='ecf_0035_action' model='ir.actions.act_window'>
         <field name="name">Identificação das SCP</field>
         <field name="res_model">l10n.br.sped.ecf.0035</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_0035_action" parent="ecf_0" id="ecf_0035"/>
-
+    <menuitem action="ecf_0035_action" parent="ecf_0" id="ecf_0035" />
     <record id='ecf_0930_action' model='ir.actions.act_window'>
         <field name="name">Identificação dos Signatários da ECF</field>
         <field name="res_model">l10n.br.sped.ecf.0930</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_0930_action" parent="ecf_0" id="ecf_0930"/>
-
-    <menuitem name="Bloco C" parent="ecf" id="ecf_c"/>
-
+    <menuitem action="ecf_0930_action" parent="ecf_0" id="ecf_0930" />
+    <menuitem name="Bloco C" parent="ecf" id="ecf_c" />
     <record id='ecf_c040_action' model='ir.actions.act_window'>
         <field name="name">Identificador da ECD</field>
         <field name="res_model">l10n.br.sped.ecf.c040</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_c040_action" parent="ecf_c" id="ecf_c040"/>
-
-    <menuitem name="Bloco E" parent="ecf" id="ecf_e"/>
-
+    <menuitem action="ecf_c040_action" parent="ecf_c" id="ecf_c040" />
+    <menuitem name="Bloco E" parent="ecf" id="ecf_e" />
     <record id='ecf_e010_action' model='ir.actions.act_window'>
         <field name="name">Saldos Finais Recuperados da ECF Anterior</field>
         <field name="res_model">l10n.br.sped.ecf.e010</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_e010_action" parent="ecf_e" id="ecf_e010"/>
-
+    <menuitem action="ecf_e010_action" parent="ecf_e" id="ecf_e010" />
     <record id='ecf_e020_action' model='ir.actions.act_window'>
-        <field name="name"> Saldos Finais das Contas da Parte B do e-Lalur da ECF...</field>
+        <field
+            name="name"
+        > Saldos Finais das Contas da Parte B do e-Lalur da ECF...</field>
         <field name="res_model">l10n.br.sped.ecf.e020</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_e020_action" parent="ecf_e" id="ecf_e020"/>
-
+    <menuitem action="ecf_e020_action" parent="ecf_e" id="ecf_e020" />
     <record id='ecf_e030_action' model='ir.actions.act_window'>
         <field name="name">Identificação do Período</field>
         <field name="res_model">l10n.br.sped.ecf.e030</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_e030_action" parent="ecf_e" id="ecf_e030"/>
-
-    <menuitem name="Bloco J" parent="ecf" id="ecf_j"/>
-
+    <menuitem action="ecf_e030_action" parent="ecf_e" id="ecf_e030" />
+    <menuitem name="Bloco J" parent="ecf" id="ecf_j" />
     <record id='ecf_j050_action' model='ir.actions.act_window'>
         <field name="name">Plano de Contas do Contribuinte</field>
         <field name="res_model">l10n.br.sped.ecf.j050</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_j050_action" parent="ecf_j" id="ecf_j050"/>
-
+    <menuitem action="ecf_j050_action" parent="ecf_j" id="ecf_j050" />
     <record id='ecf_j100_action' model='ir.actions.act_window'>
         <field name="name">Centro de Custos</field>
         <field name="res_model">l10n.br.sped.ecf.j100</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_j100_action" parent="ecf_j" id="ecf_j100"/>
-
-    <menuitem name="Bloco K" parent="ecf" id="ecf_k"/>
-
+    <menuitem action="ecf_j100_action" parent="ecf_j" id="ecf_j100" />
+    <menuitem name="Bloco K" parent="ecf" id="ecf_k" />
     <record id='ecf_k030_action' model='ir.actions.act_window'>
-        <field name="name"> Identificação dos Períodos e Formas de Apuração do IRPJ e da...</field>
+        <field
+            name="name"
+        > Identificação dos Períodos e Formas de Apuração do IRPJ e da...</field>
         <field name="res_model">l10n.br.sped.ecf.k030</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_k030_action" parent="ecf_k" id="ecf_k030"/>
-
-    <menuitem name="Bloco L" parent="ecf" id="ecf_l"/>
-
+    <menuitem action="ecf_k030_action" parent="ecf_k" id="ecf_k030" />
+    <menuitem name="Bloco L" parent="ecf" id="ecf_l" />
     <record id='ecf_l030_action' model='ir.actions.act_window'>
-        <field name="name"> Identificação dos Períodos e Formas de Apuração do IRPJ e da...</field>
+        <field
+            name="name"
+        > Identificação dos Períodos e Formas de Apuração do IRPJ e da...</field>
         <field name="res_model">l10n.br.sped.ecf.l030</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_l030_action" parent="ecf_l" id="ecf_l030"/>
-
-    <menuitem name="Bloco M" parent="ecf" id="ecf_m"/>
-
+    <menuitem action="ecf_l030_action" parent="ecf_l" id="ecf_l030" />
+    <menuitem name="Bloco M" parent="ecf" id="ecf_m" />
     <record id='ecf_m010_action' model='ir.actions.act_window'>
         <field name="name">Identificação da Conta na Parte B e-Lalur e do e-Lacs</field>
         <field name="res_model">l10n.br.sped.ecf.m010</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_m010_action" parent="ecf_m" id="ecf_m010"/>
-
+    <menuitem action="ecf_m010_action" parent="ecf_m" id="ecf_m010" />
     <record id='ecf_m030_action' model='ir.actions.act_window'>
-        <field name="name"> Identificação do Período e Forma de Apuração do IRPJ e da...</field>
+        <field
+            name="name"
+        > Identificação do Período e Forma de Apuração do IRPJ e da...</field>
         <field name="res_model">l10n.br.sped.ecf.m030</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_m030_action" parent="ecf_m" id="ecf_m030"/>
-
-    <menuitem name="Bloco N" parent="ecf" id="ecf_n"/>
-
+    <menuitem action="ecf_m030_action" parent="ecf_m" id="ecf_m030" />
+    <menuitem name="Bloco N" parent="ecf" id="ecf_n" />
     <record id='ecf_n030_action' model='ir.actions.act_window'>
-        <field name="name"> Identificação do Período e Forma de Apuração do IRPJ e da...</field>
+        <field
+            name="name"
+        > Identificação do Período e Forma de Apuração do IRPJ e da...</field>
         <field name="res_model">l10n.br.sped.ecf.n030</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_n030_action" parent="ecf_n" id="ecf_n030"/>
-
-    <menuitem name="Bloco P" parent="ecf" id="ecf_p"/>
-
+    <menuitem action="ecf_n030_action" parent="ecf_n" id="ecf_n030" />
+    <menuitem name="Bloco P" parent="ecf" id="ecf_p" />
     <record id='ecf_p030_action' model='ir.actions.act_window'>
-        <field name="name"> Identificação  dos  Períodos  e  Forma  de  Apuração  do...</field>
+        <field
+            name="name"
+        > Identificação  dos  Períodos  e  Forma  de  Apuração  do...</field>
         <field name="res_model">l10n.br.sped.ecf.p030</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_p030_action" parent="ecf_p" id="ecf_p030"/>
-
-    <menuitem name="Bloco Q" parent="ecf" id="ecf_q"/>
-
+    <menuitem action="ecf_p030_action" parent="ecf_p" id="ecf_p030" />
+    <menuitem name="Bloco Q" parent="ecf" id="ecf_q" />
     <record id='ecf_q100_action' model='ir.actions.act_window'>
         <field name="name">Demonstrativo do Livro Caixa</field>
         <field name="res_model">l10n.br.sped.ecf.q100</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_q100_action" parent="ecf_q" id="ecf_q100"/>
-
-    <menuitem name="Bloco T" parent="ecf" id="ecf_t"/>
-
+    <menuitem action="ecf_q100_action" parent="ecf_q" id="ecf_q100" />
+    <menuitem name="Bloco T" parent="ecf" id="ecf_t" />
     <record id='ecf_t030_action' model='ir.actions.act_window'>
-        <field name="name"> Identificação  dos  Períodos  e  Forma  de  Apuração  do...</field>
+        <field
+            name="name"
+        > Identificação  dos  Períodos  e  Forma  de  Apuração  do...</field>
         <field name="res_model">l10n.br.sped.ecf.t030</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_t030_action" parent="ecf_t" id="ecf_t030"/>
-
-    <menuitem name="Bloco U" parent="ecf" id="ecf_u"/>
-
+    <menuitem action="ecf_t030_action" parent="ecf_t" id="ecf_t030" />
+    <menuitem name="Bloco U" parent="ecf" id="ecf_u" />
     <record id='ecf_u030_action' model='ir.actions.act_window'>
-        <field name="name"> Identificação dos Períodos e Formas de Apuração do IPRJ e da...</field>
+        <field
+            name="name"
+        > Identificação dos Períodos e Formas de Apuração do IPRJ e da...</field>
         <field name="res_model">l10n.br.sped.ecf.u030</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_u030_action" parent="ecf_u" id="ecf_u030"/>
-
-    <menuitem name="Bloco W" parent="ecf" id="ecf_w"/>
-
+    <menuitem action="ecf_u030_action" parent="ecf_u" id="ecf_u030" />
+    <menuitem name="Bloco W" parent="ecf" id="ecf_w" />
     <record id='ecf_w300_action' model='ir.actions.act_window'>
         <field name="name">Observações Adicionais</field>
         <field name="res_model">l10n.br.sped.ecf.w300</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_w300_action" parent="ecf_w" id="ecf_w300"/>
-
-    <menuitem name="Bloco X" parent="ecf" id="ecf_x"/>
-
+    <menuitem action="ecf_w300_action" parent="ecf_w" id="ecf_w300" />
+    <menuitem name="Bloco X" parent="ecf" id="ecf_x" />
     <record id='ecf_x280_action' model='ir.actions.act_window'>
         <field name="name">Atividades Incentivadas - PJ em Geral</field>
         <field name="res_model">l10n.br.sped.ecf.x280</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_x280_action" parent="ecf_x" id="ecf_x280"/>
-
+    <menuitem action="ecf_x280_action" parent="ecf_x" id="ecf_x280" />
     <record id='ecf_x291_action' model='ir.actions.act_window'>
-        <field name="name"> Operações com o Exterior - Pessoa Vinculada/Interposta/País...</field>
+        <field
+            name="name"
+        > Operações com o Exterior - Pessoa Vinculada/Interposta/País...</field>
         <field name="res_model">l10n.br.sped.ecf.x291</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_x291_action" parent="ecf_x" id="ecf_x291"/>
-
+    <menuitem action="ecf_x291_action" parent="ecf_x" id="ecf_x291" />
     <record id='ecf_x292_action' model='ir.actions.act_window'>
-        <field name="name"> Operações  com  o  Exterior  -  Pessoa  Não  Vinculada/ Não...</field>
+        <field
+            name="name"
+        > Operações  com  o  Exterior  -  Pessoa  Não  Vinculada/ Não...</field>
         <field name="res_model">l10n.br.sped.ecf.x292</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_x292_action" parent="ecf_x" id="ecf_x292"/>
-
+    <menuitem action="ecf_x292_action" parent="ecf_x" id="ecf_x292" />
     <record id='ecf_x300_action' model='ir.actions.act_window'>
-        <field name="name">Operações com o Exterior - Exportações (Entradas de Divisas)</field>
+        <field
+            name="name"
+        >Operações com o Exterior - Exportações (Entradas de Divisas)</field>
         <field name="res_model">l10n.br.sped.ecf.x300</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_x300_action" parent="ecf_x" id="ecf_x300"/>
-
+    <menuitem action="ecf_x300_action" parent="ecf_x" id="ecf_x300" />
     <record id='ecf_x320_action' model='ir.actions.act_window'>
         <field name="name">Operações  com  o  Exterior  -  Importações  </field>
         <field name="res_model">l10n.br.sped.ecf.x320</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_x320_action" parent="ecf_x" id="ecf_x320"/>
-
+    <menuitem action="ecf_x320_action" parent="ecf_x" id="ecf_x320" />
     <record id='ecf_x340_action' model='ir.actions.act_window'>
         <field name="name">Identificação da Participação no Exterior</field>
         <field name="res_model">l10n.br.sped.ecf.x340</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_x340_action" parent="ecf_x" id="ecf_x340"/>
-
+    <menuitem action="ecf_x340_action" parent="ecf_x" id="ecf_x340" />
     <record id='ecf_x390_action' model='ir.actions.act_window'>
         <field name="name">Origem e Aplicação de Recursos - Imunes ou Isentas</field>
         <field name="res_model">l10n.br.sped.ecf.x390</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_x390_action" parent="ecf_x" id="ecf_x390"/>
-
+    <menuitem action="ecf_x390_action" parent="ecf_x" id="ecf_x390" />
     <record id='ecf_x400_action' model='ir.actions.act_window'>
-        <field name="name"> Comércio  Eletrônico  e  Tecnologia  da  Informação  –...</field>
+        <field
+            name="name"
+        > Comércio  Eletrônico  e  Tecnologia  da  Informação  –...</field>
         <field name="res_model">l10n.br.sped.ecf.x400</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_x400_action" parent="ecf_x" id="ecf_x400"/>
-
+    <menuitem action="ecf_x400_action" parent="ecf_x" id="ecf_x400" />
     <record id='ecf_x410_action' model='ir.actions.act_window'>
         <field name="name">Comércio Eletrônico – Informação de Homepage/Servidor</field>
         <field name="res_model">l10n.br.sped.ecf.x410</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_x410_action" parent="ecf_x" id="ecf_x410"/>
-
+    <menuitem action="ecf_x410_action" parent="ecf_x" id="ecf_x410" />
     <record id='ecf_x420_action' model='ir.actions.act_window'>
-        <field name="name"> Royalties  Recebidos  ou  Pagos  a  Beneficiários  do Brasil...</field>
+        <field
+            name="name"
+        > Royalties  Recebidos  ou  Pagos  a  Beneficiários  do Brasil...</field>
         <field name="res_model">l10n.br.sped.ecf.x420</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_x420_action" parent="ecf_x" id="ecf_x420"/>
-
+    <menuitem action="ecf_x420_action" parent="ecf_x" id="ecf_x420" />
     <record id='ecf_x430_action' model='ir.actions.act_window'>
-        <field name="name"> Rendimentos Relativos a Serviços, Juros e Dividendos...</field>
+        <field
+            name="name"
+        > Rendimentos Relativos a Serviços, Juros e Dividendos...</field>
         <field name="res_model">l10n.br.sped.ecf.x430</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_x430_action" parent="ecf_x" id="ecf_x430"/>
-
+    <menuitem action="ecf_x430_action" parent="ecf_x" id="ecf_x430" />
     <record id='ecf_x450_action' model='ir.actions.act_window'>
-        <field name="name"> Pagamentos ou Remessas Relativos a Serviços, Juros e...</field>
+        <field
+            name="name"
+        > Pagamentos ou Remessas Relativos a Serviços, Juros e...</field>
         <field name="res_model">l10n.br.sped.ecf.x450</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_x450_action" parent="ecf_x" id="ecf_x450"/>
-
+    <menuitem action="ecf_x450_action" parent="ecf_x" id="ecf_x450" />
     <record id='ecf_x460_action' model='ir.actions.act_window'>
         <field name="name">Inovação Tecnológica e Desenvolvimento Tecnológico</field>
         <field name="res_model">l10n.br.sped.ecf.x460</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_x460_action" parent="ecf_x" id="ecf_x460"/>
-
+    <menuitem action="ecf_x460_action" parent="ecf_x" id="ecf_x460" />
     <record id='ecf_x470_action' model='ir.actions.act_window'>
         <field name="name">Capacitação de Informática e Inclusão Digital</field>
         <field name="res_model">l10n.br.sped.ecf.x470</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_x470_action" parent="ecf_x" id="ecf_x470"/>
-
+    <menuitem action="ecf_x470_action" parent="ecf_x" id="ecf_x470" />
     <record id='ecf_x480_action' model='ir.actions.act_window'>
-        <field name="name"> Repes,  Recap, Padis, PATVD,  Reidi,  Repenec, Reicomp,...</field>
+        <field
+            name="name"
+        > Repes,  Recap, Padis, PATVD,  Reidi,  Repenec, Reicomp,...</field>
         <field name="res_model">l10n.br.sped.ecf.x480</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_x480_action" parent="ecf_x" id="ecf_x480"/>
-
+    <menuitem action="ecf_x480_action" parent="ecf_x" id="ecf_x480" />
     <record id='ecf_x490_action' model='ir.actions.act_window'>
         <field name="name">Pólo Industrial de Manaus e Amazônia Ocidental</field>
         <field name="res_model">l10n.br.sped.ecf.x490</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_x490_action" parent="ecf_x" id="ecf_x490"/>
-
+    <menuitem action="ecf_x490_action" parent="ecf_x" id="ecf_x490" />
     <record id='ecf_x500_action' model='ir.actions.act_window'>
         <field name="name">Zonas de Processamento de Exportação (ZPE)</field>
         <field name="res_model">l10n.br.sped.ecf.x500</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_x500_action" parent="ecf_x" id="ecf_x500"/>
-
+    <menuitem action="ecf_x500_action" parent="ecf_x" id="ecf_x500" />
     <record id='ecf_x510_action' model='ir.actions.act_window'>
         <field name="name">Áreas de Livre Comércio (ALC)</field>
         <field name="res_model">l10n.br.sped.ecf.x510</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_x510_action" parent="ecf_x" id="ecf_x510"/>
-
-    <menuitem name="Bloco Y" parent="ecf" id="ecf_y"/>
-
+    <menuitem action="ecf_x510_action" parent="ecf_x" id="ecf_x510" />
+    <menuitem name="Bloco Y" parent="ecf" id="ecf_y" />
     <record id='ecf_y520_action' model='ir.actions.act_window'>
-        <field name="name">Pagamentos/Recebimentos  do  Exterior  ou  de  Não Residentes</field>
+        <field
+            name="name"
+        >Pagamentos/Recebimentos  do  Exterior  ou  de  Não Residentes</field>
         <field name="res_model">l10n.br.sped.ecf.y520</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_y520_action" parent="ecf_y" id="ecf_y520"/>
-
+    <menuitem action="ecf_y520_action" parent="ecf_y" id="ecf_y520" />
     <record id='ecf_y540_action' model='ir.actions.act_window'>
-        <field name="name"> Discriminação da Receita de Vendas dos Estabelecimentos por...</field>
+        <field
+            name="name"
+        > Discriminação da Receita de Vendas dos Estabelecimentos por...</field>
         <field name="res_model">l10n.br.sped.ecf.y540</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_y540_action" parent="ecf_y" id="ecf_y540"/>
-
+    <menuitem action="ecf_y540_action" parent="ecf_y" id="ecf_y540" />
     <record id='ecf_y550_action' model='ir.actions.act_window'>
-        <field name="name">Vendas a Comercial Exportadora com Fim Específico de Exportação</field>
+        <field
+            name="name"
+        >Vendas a Comercial Exportadora com Fim Específico de Exportação</field>
         <field name="res_model">l10n.br.sped.ecf.y550</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_y550_action" parent="ecf_y" id="ecf_y550"/>
-
+    <menuitem action="ecf_y550_action" parent="ecf_y" id="ecf_y550" />
     <record id='ecf_y560_action' model='ir.actions.act_window'>
         <field name="name">Detalhamento das Exportações da Comercial Exportadora</field>
         <field name="res_model">l10n.br.sped.ecf.y560</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_y560_action" parent="ecf_y" id="ecf_y560"/>
-
+    <menuitem action="ecf_y560_action" parent="ecf_y" id="ecf_y560" />
     <record id='ecf_y570_action' model='ir.actions.act_window'>
-        <field name="name">Demonstrativo do Imposto de Renda e CSLL Retidos na Fonte</field>
+        <field
+            name="name"
+        >Demonstrativo do Imposto de Renda e CSLL Retidos na Fonte</field>
         <field name="res_model">l10n.br.sped.ecf.y570</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_y570_action" parent="ecf_y" id="ecf_y570"/>
-
+    <menuitem action="ecf_y570_action" parent="ecf_y" id="ecf_y570" />
     <record id='ecf_y580_action' model='ir.actions.act_window'>
         <field name="name">Doações a Campanhas Eleitorais</field>
         <field name="res_model">l10n.br.sped.ecf.y580</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_y580_action" parent="ecf_y" id="ecf_y580"/>
-
+    <menuitem action="ecf_y580_action" parent="ecf_y" id="ecf_y580" />
     <record id='ecf_y590_action' model='ir.actions.act_window'>
         <field name="name">Ativos no Exterior</field>
         <field name="res_model">l10n.br.sped.ecf.y590</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_y590_action" parent="ecf_y" id="ecf_y590"/>
-
+    <menuitem action="ecf_y590_action" parent="ecf_y" id="ecf_y590" />
     <record id='ecf_y600_action' model='ir.actions.act_window'>
-        <field name="name"> Identificação  e  Remuneração  de  Sócios,  Titulares,...</field>
+        <field
+            name="name"
+        > Identificação  e  Remuneração  de  Sócios,  Titulares,...</field>
         <field name="res_model">l10n.br.sped.ecf.y600</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_y600_action" parent="ecf_y" id="ecf_y600"/>
-
+    <menuitem action="ecf_y600_action" parent="ecf_y" id="ecf_y600" />
     <record id='ecf_y612_action' model='ir.actions.act_window'>
-        <field name="name"> Identificação e Rendimentos de Dirigentes e Conselheiros -...</field>
+        <field
+            name="name"
+        > Identificação e Rendimentos de Dirigentes e Conselheiros -...</field>
         <field name="res_model">l10n.br.sped.ecf.y612</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_y612_action" parent="ecf_y" id="ecf_y612"/>
-
+    <menuitem action="ecf_y612_action" parent="ecf_y" id="ecf_y612" />
     <record id='ecf_y620_action' model='ir.actions.act_window'>
-        <field name="name">Participações Avaliadas pelo Método de Equivalência Patrimonial</field>
+        <field
+            name="name"
+        >Participações Avaliadas pelo Método de Equivalência Patrimonial</field>
         <field name="res_model">l10n.br.sped.ecf.y620</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_y620_action" parent="ecf_y" id="ecf_y620"/>
-
+    <menuitem action="ecf_y620_action" parent="ecf_y" id="ecf_y620" />
     <record id='ecf_y630_action' model='ir.actions.act_window'>
         <field name="name">Fundos/Clubes de Investimento</field>
         <field name="res_model">l10n.br.sped.ecf.y630</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_y630_action" parent="ecf_y" id="ecf_y630"/>
-
+    <menuitem action="ecf_y630_action" parent="ecf_y" id="ecf_y630" />
     <record id='ecf_y640_action' model='ir.actions.act_window'>
         <field name="name">Participações em Consórcios de Empresas</field>
         <field name="res_model">l10n.br.sped.ecf.y640</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_y640_action" parent="ecf_y" id="ecf_y640"/>
-
+    <menuitem action="ecf_y640_action" parent="ecf_y" id="ecf_y640" />
     <record id='ecf_y650_action' model='ir.actions.act_window'>
         <field name="name">Participantes do Consórcio</field>
         <field name="res_model">l10n.br.sped.ecf.y650</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_y650_action" parent="ecf_y" id="ecf_y650"/>
-
+    <menuitem action="ecf_y650_action" parent="ecf_y" id="ecf_y650" />
     <record id='ecf_y660_action' model='ir.actions.act_window'>
         <field name="name">Dados de Sucessoras</field>
         <field name="res_model">l10n.br.sped.ecf.y660</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_y660_action" parent="ecf_y" id="ecf_y660"/>
-
+    <menuitem action="ecf_y660_action" parent="ecf_y" id="ecf_y660" />
     <record id='ecf_y671_action' model='ir.actions.act_window'>
         <field name="name">Outras Informações</field>
         <field name="res_model">l10n.br.sped.ecf.y671</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_y671_action" parent="ecf_y" id="ecf_y671"/>
-
+    <menuitem action="ecf_y671_action" parent="ecf_y" id="ecf_y671" />
     <record id='ecf_y672_action' model='ir.actions.act_window'>
-        <field name="name">Outras Informações (Lucro  Presumido ou  Lucro Arbitrado)</field>
+        <field
+            name="name"
+        >Outras Informações (Lucro  Presumido ou  Lucro Arbitrado)</field>
         <field name="res_model">l10n.br.sped.ecf.y672</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_y672_action" parent="ecf_y" id="ecf_y672"/>
-
+    <menuitem action="ecf_y672_action" parent="ecf_y" id="ecf_y672" />
     <record id='ecf_y680_action' model='ir.actions.act_window'>
         <field name="name">Mês  das  Informações  de  Optantes  pelo  Refis  </field>
         <field name="res_model">l10n.br.sped.ecf.y680</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_y680_action" parent="ecf_y" id="ecf_y680"/>
-
+    <menuitem action="ecf_y680_action" parent="ecf_y" id="ecf_y680" />
     <record id='ecf_y682_action' model='ir.actions.act_window'>
-        <field name="name">Informações  de  Optantes  pelo  Refis - Imunes  ou Isentas</field>
+        <field
+            name="name"
+        >Informações  de  Optantes  pelo  Refis - Imunes  ou Isentas</field>
         <field name="res_model">l10n.br.sped.ecf.y682</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_y682_action" parent="ecf_y" id="ecf_y682"/>
-
+    <menuitem action="ecf_y682_action" parent="ecf_y" id="ecf_y682" />
     <record id='ecf_y690_action' model='ir.actions.act_window'>
         <field name="name">Informações de Optantes pelo Paes</field>
         <field name="res_model">l10n.br.sped.ecf.y690</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_y690_action" parent="ecf_y" id="ecf_y690"/>
-
+    <menuitem action="ecf_y690_action" parent="ecf_y" id="ecf_y690" />
     <record id='ecf_y720_action' model='ir.actions.act_window'>
         <field name="name">Informações de Períodos Anteriores</field>
         <field name="res_model">l10n.br.sped.ecf.y720</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_y720_action" parent="ecf_y" id="ecf_y720"/>
-
+    <menuitem action="ecf_y720_action" parent="ecf_y" id="ecf_y720" />
     <record id='ecf_y800_action' model='ir.actions.act_window'>
         <field name="name">Outras Informações</field>
         <field name="res_model">l10n.br.sped.ecf.y800</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_y800_action" parent="ecf_y" id="ecf_y800"/>
-
-    <menuitem name="Bloco 9" parent="ecf" id="ecf_9"/>
-
+    <menuitem action="ecf_y800_action" parent="ecf_y" id="ecf_y800" />
+    <menuitem name="Bloco 9" parent="ecf" id="ecf_9" />
     <record id='ecf_9100_action' model='ir.actions.act_window'>
         <field name="name">Avisos da Escrituração</field>
         <field name="res_model">l10n.br.sped.ecf.9100</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_9100_action" parent="ecf_9" id="ecf_9100"/>
-
+    <menuitem action="ecf_9100_action" parent="ecf_9" id="ecf_9100" />
     <record id='ecf_9900_action' model='ir.actions.act_window'>
         <field name="name">Registros do Arquivo</field>
         <field name="res_model">l10n.br.sped.ecf.9900</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_9900_action" parent="ecf_9" id="ecf_9900"/>
-
+    <menuitem action="ecf_9900_action" parent="ecf_9" id="ecf_9900" />
     <record id='ecf_9999_action' model='ir.actions.act_window'>
         <field name="name">Encerramento do Arquivo Digital</field>
         <field name="res_model">l10n.br.sped.ecf.9999</field>
         <field name="view_type">form</field>
         <field name="view_mode">tree,form</field>
     </record>
-    <menuitem action="ecf_9999_action" parent="ecf_9" id="ecf_9999"/>
+    <menuitem action="ecf_9999_action" parent="ecf_9" id="ecf_9999" />
 </odoo>

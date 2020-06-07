@@ -16,6 +16,7 @@ import csv
 import logging
 import re
 from os import walk
+
 import click
 
 logger = logging.getLogger(__name__)
@@ -135,7 +136,7 @@ def _is_register_code(code):
 
 
 def _map_register_row(mod, row):
-    """extracts register's row information for each kind of file, deal with CSV errors"""
+    """Extracts register's row information for each kind of file"""
     # TODO : Join rows content when they are from the same register's line but
     # splited in two because of page break.
     # Example : EFD ICMS IPI pdf Outubro 2019 p20-21
