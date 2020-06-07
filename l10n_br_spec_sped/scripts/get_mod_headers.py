@@ -34,7 +34,7 @@ def _get_mod_headers(mod):
 def main():
     """Return a list of all the different fields headers found in the four modules.
 
-    Used to define every module's header hard-coded at the beginning of ./build_csv.py .
+    Used to define the modules headers hard-coded at the beginning of ./build_csv.py .
     """
     for module in ["ecd", "ecf", "efd_icms_ipi", "efd_pis_cofins"]:
         headers = _get_mod_headers(module)

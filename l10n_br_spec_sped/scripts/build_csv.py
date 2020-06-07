@@ -29,38 +29,48 @@ logger.setLevel(logging.INFO)
 # - Used in _get_mod_header() method.
 MODULE_HEADER = {
     "ecd": [
-        "Nº",
-        "Campo",
-        "Descrição",
-        "Tipo",
-        "Tamanho",
-        "Decimal",
-        "Valores Válidos",
-        "Obrigatório",
-        "Regras de Validação do Campo",
+        ("Nº", "index"),
+        ("Campo", "code"),
+        ("Descrição", "desc"),
+        # key "type" reserved for the interpreted field dictionary
+        ("Tipo", "spec_type"),
+        ("Tamanho", "length"),
+        ("Decimal", "decimal"),
+        ("Valores Válidos", "spec_values"),
+        # key "required" reserved for the interpreted field dictionary
+        ("Obrigatório", "spec_required"),
+        ("Regras de Validação do Campo", "rules"),
     ],
     "ecf": [
-        "Nº",
-        "Campo",
-        "Descrição",
-        "Tipo",
-        "Tamanho",
-        "Decimal",
-        "Valores Válidos",
-        "Obrigatório",
+        ("Nº", "index"),
+        ("Campo", "code"),
+        ("Descrição", "desc"),
+        ("Tipo", "spec_type"),
+        ("Tamanho", "length"),
+        ("Decimal", "decimal"),
+        ("Valores Válidos", "spec_values"),
+        ("Obrigatório", "spec_required"),
     ],
     "efd_icms_ipi": [
-        "Nº",
-        "Campo",
-        "Descrição",
-        "Tipo",
-        "Tam",
-        "Dec",
-        "Obrig",
-        "Entr",
-        "Saídas",
+        ("Nº", "index"),
+        ("Campo", "code"),
+        ("Descrição", "desc"),
+        ("Tipo", "spec_type"),
+        ("Tam", "length"),
+        ("Dec", "decimal"),
+        ("Obrig", "spec_required"),
+        ("Entr", "spec_in"),
+        ("Saídas", "spec_out"),
     ],
-    "efd_pis_cofins": ["Nº", "Campo", "Descrição", "Tipo", "Tam", "Dec", "Obrig"],
+    "efd_pis_cofins": [
+        ("Nº", "index"),
+        ("Campo", "code"),
+        ("Descrição", "desc"),
+        ("Tipo", "spec_type"),
+        ("Tam", "length"),
+        ("Dec", "decimal"),
+        ("Obrig", "spec_required"),
+    ],
 }
 
 
@@ -91,26 +101,28 @@ def _is_joined_columns(row, c):
 
 
 def clean_row(row):
-    # Separate the 2 first columns joined together
-    # Change ["04  VL_BC_RET", ""] into ["04","VL_BC_RET"]
-    if _is_joined_columns(row, 0) and row[1] == "":
-        split = row[0].split(" ")
-        row = [row[0][0:2], split[len(split) - 1]] + row[2 : len(row) - 1]
-    # Change ["", "04  VL_BC_RET"] into ["04","VL_BC_RET"]
-    if _is_joined_columns(row, 1) and row[0] == "":
-        split = row[1].split(" ")
-        row = [row[1][0:2], split[len(split) - 1]] + row[2 : len(row) - 1]
-
     # Clean content
     for index, cell in enumerate(row):
-        clean_cell = cell
-        if "\n" in cell:
-            clean_cell = cell.replace("\n", "").replace("  ", " ").replace("  ", " ")
-        # Change "Entr." to "Entr" in fields table's headers
-        if re.match(r"^[a-zA-Z]+\.$", cell):
-            clean_cell = cell[:-1]
-        if clean_cell != cell:
-            row[index] = clean_cell
+        # replace all whitespaces ("  ", \n, \r...)
+        clean_cell = " ".join(cell.split())
+        # e.g. change "Entr." to "Entr" in fields table's headers
+        if re.match(r"^[a-zA-Z]+\.$", clean_cell):
+            clean_cell = clean_cell[:-1]
+        # e.g. change "N’" to "N" in column "Tipo"
+        if re.match(r"^[a-zA-Z]+\’$", clean_cell):
+            clean_cell = clean_cell[:-1]
+        row[index] = clean_cell
+
+    # Separate the 2 first columns joined together
+    # e.g. change ["04  VL_BC_RET", ""] into ["04","VL_BC_RET"]
+    if _is_joined_columns(row, 0) and row[1] == "":
+        split = row[0].split(" ")
+        row = [row[0][0:2], split[len(split) - 1]] + row[2:]
+    # e.g. change ["", "04  VL_BC_RET"] into ["04","VL_BC_RET"]
+    if _is_joined_columns(row, 1) and row[0] == "":
+        split = row[1].split(" ")
+        row = [row[1][0:2], split[len(split) - 1]] + row[2:]
+
     return row
 
 
@@ -127,11 +139,11 @@ def _map_register_row(mod, row):
     # TODO : Join rows content when they are from the same register's line but
     # splited in two because of page break.
     # Example : EFD ICMS IPI pdf Outubro 2019 p20-21
-    v = {}
+    register = {}
     if len(row) > 2:
         if mod == "ecd":
             if len(row[0]) == 1 and row[0] != "":
-                v = {
+                register = {
                     "block": row[0],
                     "code": row[2],
                     "desc": row[1],
@@ -140,7 +152,7 @@ def _map_register_row(mod, row):
                 }
         elif mod == "ecf":
             if len(row[0]) == 4:
-                v = {
+                register = {
                     "block": row[0][0],
                     "code": row[0],
                     "desc": row[2],
@@ -150,7 +162,7 @@ def _map_register_row(mod, row):
         # the most problematic pdf
         elif mod == "efd_pis_cofins":
             if len(row[2]) == 4 and len(row) >= 5:
-                v = {
+                register = {
                     "block": row[0],
                     "code": row[2],
                     "desc": row[1],
@@ -160,7 +172,7 @@ def _map_register_row(mod, row):
 
         elif mod == "efd_icms_ipi":
             if len(row[0]) == 1 and row[0] != "":
-                v = {
+                register = {
                     "block": row[0],
                     "code": row[2],
                     "desc": row[1],
@@ -168,10 +180,10 @@ def _map_register_row(mod, row):
                     "card": row[4],
                 }
 
-    if v.get("code") and _is_register_code(v["code"]):
-        if str(v["level"]).isdigit():
-            v["level"] = int(v["level"])
-            return v
+    if register.get("code") and _is_register_code(register["code"]):
+        if str(register["level"]).isdigit():
+            register["level"] = int(register["level"])
+            return register
         else:
             return False
     else:
@@ -185,7 +197,7 @@ def extract_registers(mod):
     path = "../specs/{}/raw/".format(mod)
     files = []
     rows = []
-    in_register = False
+    in_block = False
 
     for (_dirpath, _dirnames, filenames) in walk(path):
         files = sorted(filenames, key=natural_keys)
@@ -204,18 +216,59 @@ def extract_registers(mod):
                     )
                     or "BLOCO  DESCRIÇÃO" in row  # ecf
                 ):  # ecd
-                    in_register = True
+                    in_block = True
                     continue
-                if in_register:
+                if in_block:
                     if "".join(row) == "":
                         continue  # empty line
-                    v = _map_register_row(mod, clean_row(row))
-                    if v:
-                        rows.append(v)
-                        if v["code"] == "9999":
+                    register = _map_register_row(mod, clean_row(row))
+                    if register:
+                        rows.append(register)
+                        if register["code"] == "9999":
                             return rows
 
     return rows
+
+
+# TODO : Add in-out required properties to registers CSV
+# def _define_register_in_out_required(reg_row, header, register_name, rule_col):
+#     """Return if the Register has "Entr"-"Saída" columns (returning `in_out`)
+#     and their values given by `in_required` and `out_required`"""
+#     in_out = None
+#     in_required = None
+#     out_required = None
+#     cols = len(header)
+#     if register_name in reg_row[cols - 2] or register_name in ["Y681"]:  # ECF error
+#         in_out = False  # because only 1 col left
+#         values_col = cols - 2
+#     elif register_name in reg_row[cols - 3]:
+#         values_col = cols - 3
+#         if reg_row[cols - 1] == reg_row[cols - 2] == "O":
+#             in_out = True
+#             in_required = True
+#             out_required = True
+#         elif rule_col is None or rule_col < values_col:
+#             in_out = True  # but it never happens
+#         else:
+#             in_out = False
+#     else:
+#         if reg_row[cols - 1] == reg_row[cols - 2] == "O":
+#             in_out = True
+#             in_required = True
+#             out_required = True
+#         if len(header) == 8 and "Entr" in header[6]:
+#             in_out = True
+#             if reg_row[cols - 2] == "O":
+#                 in_required = True
+#             else:
+#                 in_required = False
+#             if reg_row[cols - 1] == "O":
+#                 out_required = True
+#             else:
+#                 out_required = False
+#         else:
+#             in_out = False
+#     return in_out, in_required, out_required
 
 
 def build_registers_csv(mod):
@@ -275,10 +328,13 @@ def _apply_camelot_patch(mod, register, row, pdf_year):
         with open(patch_path, "r") as csvfile:
             reader = csv.reader(csvfile, delimiter=",", quotechar='"')
             for patch_row in reader:
+                # N-B : A patch can be applied twice if a row which is not a register's
+                # field match this condition (e.g. field TIP_ENT in ECF register 0010).
+                # But it is not a problem as the non-field row will be ignore after.
                 if patch_row[0] == register and patch_row[2] == row[0]:
                     row = patch_row[2:]
                     logger.info(
-                        "PATCHED ROW in register {} :\n{}".format(register, row)
+                        "    PATCH : field {} in register {}".format(row[1], register)
                     )
     except FileNotFoundError:
         return row
@@ -380,14 +436,14 @@ def build_accurate_fields_csv(mod, patch=True):
         )
 
         mod_rows = []
-        mod_header = ["Register", "Page"] + _get_mod_header(mod)
+        mod_header = ["Register", "Page"] + [c[0] for c in _get_mod_header(mod)]
         fields.writerow(mod_header)
         for reg_line in registers:
             reg_name = reg_line[1]
             reg_rows = extract_fields_rows(mod, reg_name, patch)
             mod_rows.extend(reg_rows)
 
-        logger.info("Fields number in {} : {}".format(mod.upper(), len(mod_rows)))
+        logger.info("    Fields number in {} : {}".format(mod.upper(), len(mod_rows)))
         for row in mod_rows:
             fields.writerow(row)
 
@@ -396,8 +452,7 @@ def build_accurate_fields_csv(mod, patch=True):
 # ===========================
 
 
-def normalize_field_code(code):
-    # TODO lookup table for manual name patches
+def _normalize_field_code(code):
     # TODO return original_name attr if need to remove accents
     return (
         (code.replace("  ", " ").replace("__", "_").replace(" _", "_"))
@@ -408,146 +463,178 @@ def normalize_field_code(code):
     # .replace('ÇÃO', 'CAO')
 
 
-def infer_field_type(name, spec_type, row):
-    # TODO use more and refine with values (Boolean) + Monetary/Dec
-    if name.startswith("DT_") or name.startswith("DATA_"):
-        return "D"
-    elif spec_type == "D":  # Date
-        return "D"
-    elif spec_type and "N" in spec_type:  # Numeric
-        return "N"
-    elif spec_type == "C":  # Char
-        return "C"
+def _convert_field_type(field):
+    """Return a string giving the 'interpreted' field's type :
+    'char', 'int', 'float' or 'date'. """
+    spec_type = field["spec_type"]
+    code = field["code"]
+
+    if spec_type == "D" or code.startswith("DT_") or code.startswith("DATA_"):
+        return "date"
+    elif spec_type == "N":
+        return "float" if field.get("decimal") else "int"
+    # If no given type, define it as "character"
+    # "NS" ("Numérico Com Sinal") means that the field's value must be "+" ou "-"
+    # cf. ECF pdf page 26
+    elif not spec_type or spec_type in ["C", "NS"]:
+        return "char"
     else:
-        for i in row[1 : len(row) - 1]:
-            if i.isdigit() and int(i) > 16:  # char size assumed
-                return "C"
-        return None
+        logger.warning(
+            "Could not define field {} type in register {}".format(
+                field["code"], field["register"]
+            )
+        )
+        return "undefined"
 
 
-def map_field_row(mod, page, register, row, headers, in_out):
-    "extracts field information from its row in the csv file"
-    # TODO extract possible values (valores)
-    # TODO extract rules to mention them (to suggest overrides)
-    v = {
-        "index": int(row[0].replace("*", "0")),  # TODO check * cases
-        "code": normalize_field_code(row[1]),
-        "page": page,
-        "desc": row[2],
-    }
-
-    # past this point, iteration is required to find the field type
-    # while dealing with pissible blank columns.
-    items = iter(row[3:50])
-    index = 2
-    for item in items:
-        if item in ("C", "N", "NS", "N’", "D"):  # all known types
-            v["spec_type"] = item  # keep original value for reference
-            if item == "D":  # Date
-                v["type"] = "D"
-            elif "N" in item:  # Numeric
-                v["type"] = "N"
-            else:  # Char
-                v["type"] = "C"
-            try:
-                while True:  # hunt for size, digits, values and required
-                    i = next(items)
-                    index += 1
-                    if i.replace("*", "").isdigit():
-                        if v["type"] == "N":
-                            if v.get("int_size"):
-                                # TODO can it be Decimal with no int_size?
-                                # -> yes it can!! TODO
-                                v["digits"] = int(i.replace("*", ""))
-                            else:
-                                v["int_size"] = int(i.replace("*", ""))
-                        else:
-                            v["length"] = i
-                    if i in ["O", "S", "Sim", "OC"]:
-                        if not in_out:
-                            # O "OC" significa que o campo deve ser preenchido
-                            # sempre que houver a informação.
-                            if i == "OC":
-                                v["conditional_required"] = True
-                            else:
-                                v["required"] = True
-                            break
-                        else:  # in and out case:
-                            j = next(items)
-                            if j in ["O", "S", "Sim", "OC"]:
-                                if i == "OC":
-                                    v["conditional_required_in"] = True
-                                if j == "OC":
-                                    v["conditional_required_out"] = True
-                                else:
-                                    v["required"] = True
-                                break
-                            # TODO deal with in not required and out required
-            except StopIteration:
-                break
-            break
-        elif item != "":
-            pass
-            # TODO print and ensure all cases are dealt with (some
-            # are properly dealt when type is discovered later, but check)
-            #    row[2] = 'desc (skipped here)'
-            #    print("BBBBBBBBBBBBBB", row)
-    if not v.get("type"):
-        f_type = infer_field_type(v["code"], None, row)
-        if f_type is not None:
-            v["type"] = f_type
-    show_problematic_field_rows(row, page, v)
-    return v
-
-
-def show_problematic_field_rows(row, page, v):
-    if not v.get("type") or v["type"] is None:
-        row[2] = "desc (skipped here)"
-        logger.info("page {}, field type cannot be resolved:{}".format(page, row))
-
-
-def _define_register_in_out_required(reg_row, header, register_name, rule_col):
-    """Return if the Register has "Entr"-"Saída" columns (returning `in_out`)
-    and their values given by `in_required` and `out_required`"""
-    in_out = None
-    in_required = None
-    out_required = None
-    cols = len(header)
-    if register_name in reg_row[cols - 2] or register_name in ["Y681"]:  # ECF error
-        in_out = False  # because only 1 col left
-        values_col = cols - 2
-    elif register_name in reg_row[cols - 3]:
-        values_col = cols - 3
-        if reg_row[cols - 1] == reg_row[cols - 2] == "O":
-            in_out = True
-            in_required = True
-            out_required = True
-        elif rule_col is None or rule_col < values_col:
-            in_out = True  # but it never happens
-        else:
-            in_out = False
+def _convert_field_required(field):
+    """Return field with additional required boolean keys if necessary"""
+    spec_required = field["spec_required"]
+    if spec_required in ["O", "S", "Sim", "Sm", "sim"]:
+        field["required"] = True
+    elif spec_required in ["N", "Não"]:
+        field["required"] = False
+    elif spec_required == "OC":
+        field["conditional_required"] = True
     else:
-        if reg_row[cols - 1] == reg_row[cols - 2] == "O":
-            in_out = True
-            in_required = True
-            out_required = True
-        if len(header) == 8 and "Entr" in header[6]:
-            in_out = True
-            if reg_row[cols - 2] == "O":
-                in_required = True
-            else:
-                in_required = False
-            if reg_row[cols - 1] == "O":
-                out_required = True
-            else:
-                out_required = False
-        else:
-            in_out = False
-    return in_out, in_required, out_required
+        logger.warning(
+            "Could not define if field {} is required in register {}".format(
+                field["code"], field["register"]
+            )
+        )
+    return field
+
+
+def _convert_field_in_out(field):
+    # TODO : interpret field["spec_in"] when it is an integer
+    # (cf register C170 in EFD_ICMS_IPI page 71)
+    spec_in = field.get("spec_in")
+    if spec_in == "0":
+        field["in_required"] = True
+    elif spec_in == "OC":
+        field["conditional_in_required"] = True
+
+    spec_out = field.get("spec_out")
+    if spec_out == "0":
+        field["out_required"] = True
+    elif spec_out == "OC":
+        field["conditional_out_required"] = True
+    return field
+
+
+def _convert_values(field):
+    """Add a 'values' keys if field["spec_values"] can be interpreted as a list of items
+    """
+    # Remove unnecessary quotes
+    values = field["spec_values"].replace("”", "").replace("“", "").replace('"', "")
+    if values[0] == "[" and values[-1] == "]":
+        values = values[1:-1]
+    if "," in values:
+        values = values.split(",")
+    elif ";" in values:
+        values = values.split(";")
+    if type(values) == list:
+        field["values"] = [v.replace(" ", "").replace("''", "") for v in values]
+    # TODO : There is still around 30 fields with "spec_values" which is not easily
+    # convertible into a list
+    return field
+
+
+def _convert_rules(rules):
+    """Convert rules string in a iterable list"""
+    return rules[:-1].replace(" ", "").replace("[", "").split("]")
+
+
+def _map_field_row(row, mod):
+    """Return a field dictionary with its interpreted row information given by the
+    accurate csv file"""
+    field = {}
+    mod_keys = [c[1] for c in _get_mod_header(mod)]
+
+    # Catch raw datas from row
+    field["register"] = row[0]
+    for index, key in enumerate(mod_keys):
+        if index + 2 < len(row) and row[index + 2] not in ["-", ""]:
+            field[key] = row[index + 2]
+
+    # Interpret raw datas
+    field["index"] = int(field["index"].replace("*", "0"))  # TODO check * cases
+    field["code"] = _normalize_field_code(field["code"])
+    if field.get("spec_type"):
+        field["type"] = _convert_field_type(field)
+    if field.get("spec_required"):
+        field = _convert_field_required(field)
+    if field.get("spec_in") or field.get("spec_out"):
+        field = _convert_field_in_out(field)
+    if field.get("spec_values"):
+        field = _convert_values(field)
+    if field.get("rules"):
+        field["rules"] = _convert_rules(field["rules"])
+
+    return field
+
+
+def extract_fields(mod):
+    """Return the list of the module's fields recorded as dictionaries which keys
+    are given by the MODULE_HEADER tuples"""
+    accurate_path = "../specs/{}/{}_accurate_fields.csv".format(mod, mod)
+    fields = []
+
+    # Open the CSV with the accurate fields list
+    with open(accurate_path, "r") as accurate_file:
+        accurate_fields = csv.reader(accurate_file, delimiter=",", quotechar='"')
+        # Avoid CSV header
+        next(accurate_fields)
+        for row in accurate_fields:
+            fields.append(_map_field_row(row, mod))
+
+    return fields
+
+
+def _get_usable_csv_header(fields):
+    """Return a list of all the different keys available in fields"""
+    header = []
+    for field in fields:
+        for key in field.keys():
+            if key not in header:
+                header.append(key)
+    return header
+
+
+def _get_fields_with_empty_keys(fields, header):
+    """Return a list of the module's fields recorded as dictionaries with additional
+    keys with empty values in order to have the same keys in all the module's fields"""
+
+
+def build_usable_fields_csv(mod):
+    usable_path = "../specs/{}/{}_fields.csv".format(mod, mod)
+    fields = extract_fields(mod)
+
+    # Open the CSV with the accurate fields list
+    with open(usable_path, "w") as usable_file:
+        # Delete actual usable_file's datas before writing
+        usable_file.seek(0)
+        usable_file.truncate()
+
+        usable_fields = csv.writer(
+            usable_file, delimiter=",", quotechar='"', quoting=csv.QUOTE_ALL
+        )
+
+        header = _get_usable_csv_header(fields)
+        usable_fields.writerow(header)
+        for field in fields:
+            row = []
+            # Add missing keys with empty values to field
+            for col in header:
+                if col not in field.keys():
+                    field[col] = ""
+                row.append(field[col])
+            usable_fields.writerow(row)
 
 
 @click.command()
-# TODO : Add argument to this patch option in order to choose the foler with the patches
+# TODO : Add argument to this patch option in order to choose the folder with the right
+# year's patches
 @click.option(
     "--patch/--no-patch",
     default=True,
@@ -565,22 +652,18 @@ def main(patch):
     in the original pdf tables (useful to check the extracted CSV reliability).
 
     - MODULE_fields.csv : list all the module's registers fields with unified and
-    interpreted columns (useful to create python objects from these fields)."""
+    'usable' interpreted values (useful to create python objects from these fields)."""
 
     for module in ["ecd", "ecf", "efd_icms_ipi", "efd_pis_cofins"]:
-        logger.info(
-            "\nBuilding the CSV file with the {}'s registers list".format(
-                module.upper()
-            )
-        )
+        logger.info("\nBuilding CSV files for {}...".format(module.upper()))
         build_registers_csv(module)
+        logger.info("> {}_registers.csv".format(module))
 
-        logger.info(
-            "Building the CSV files with the fields for each {}'s registers".format(
-                module.upper()
-            )
-        )
         build_accurate_fields_csv(module, patch)
+        logger.info("> {}_accurate_fields.csv".format(module))
+
+        build_usable_fields_csv(module)
+        logger.info("> {}_fields.csv".format(module))
 
 
 if __name__ == "__main__":
