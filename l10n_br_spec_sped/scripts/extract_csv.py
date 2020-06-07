@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 
 import logging
+import click
 
 import camelot
 from PyPDF2 import PdfFileReader
+from pathlib import Path
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
@@ -13,34 +15,56 @@ START = 0
 STEP = 10
 
 
-def extract_csv(module, limit=False):
-    """Extract tables from module's pdf with camelot.
-    If a limit is given, on the first pages will be parsed until the limit number."""
-    pdf_path = "../specs/{}.pdf".format(module)
-    export_csv_path = "../specs/{}/raw/{}.csv".format(module, module)
-
+def _limit_pages(pdf_path, limit=False):
+    """Return the pages number to be extracted"""
     pdf = PdfFileReader(pdf_path)
-    max_pages = limit if limit else pdf.getNumPages()
+    return limit if limit else pdf.getNumPages()
 
-    logger.info(
-        """extracting tables from pdf for module {} ({} pages)...\
-        \nWARNING! It can take a while (easily 20 minutes)""".format(
-            module, max_pages
-        )
-    )
+
+def _extract_csv(mod, limit=False):
+    pdf_path = "../specs/{}.pdf".format(mod)
+    limit_pages = _limit_pages(pdf_path, limit)
+
+    export_csv_path = "../specs/{}/raw_camelot_csv/".format(mod)
+    Path(export_csv_path).mkdir(parents=True, exist_ok=True)
 
     # we process the pages 10 by 10 to avoid malloc errors
     i = START
-    while i < max_pages:
-        limit = min(i + STEP, max_pages)
-        logger.info("\nextracting pages {} to {}...".format(i, limit))
+    while i < limit_pages:
+        limit = min(i + STEP, limit_pages)
+        logger.info("    extracting pages {} to {}...".format(i, limit))
         tables = camelot.read_pdf(pdf_path, pages="{}-{}".format(i, limit),)
-        tables.export(export_csv_path, f="csv", compress=False)
+        tables.export(export_csv_path + "{}.csv".format(mod), f="csv", compress=False)
         i += STEP
 
 
+@click.command()
+@click.option(
+    "-l",
+    "--limit",
+    default=False,
+    show_default=True,
+    type=int,
+    help="Extract a limited number of pdf pages",
+)
+def main(limit):
+    """Extract tables from module's pdf using camelot.
+
+    The pdf must be present at '../specs/' and the extracted CSV files will be placed
+    in '../specs/MODULE/raw_camelot_csv/'.
+    
+    If an option --limit is given, only the first pages will be parsed until the limit
+    number."""
+    logger.info(
+        "Extracting tables from SPED pdf. It can take a while (easily 20 minutes)"
+    )
+    for module in ["ecd", "ecf", "efd_icms_ipi", "efd_pis_cofins"]:
+        pdf_path = "../specs/{}.pdf".format(module)
+        limit_pages = _limit_pages(pdf_path, limit)
+
+        logger.info("""> {} - {} pages""".format(module.upper(), limit_pages))
+        _extract_csv(module, limit)
+
+
 if __name__ == "__main__":
-    extract_csv("ecd")
-    extract_csv("ecf")
-    extract_csv("efd_icms_ipi")
-    extract_csv("efd_pis_cofins")
+    main()

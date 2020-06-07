@@ -194,7 +194,7 @@ def extract_registers(mod):
     """Scans the raw csv tables and return 'rows', a list of dictionaries giving all the
     information about the module's registers (block, code, description, hierarchy level
     and card)."""
-    path = "../specs/{}/raw/".format(mod)
+    path = "../specs/{}/raw_camelot_csv/".format(mod)
     files = []
     rows = []
     in_block = False
@@ -371,7 +371,7 @@ def extract_fields_rows(mod, register_name, patch=True):
     """scans the csv files to find the rows describing the fields
     of a given register."""
     # TODO map back into register: required, in_required, out_required
-    path = "../specs/{}/raw/".format(mod)
+    path = "../specs/{}/raw_camelot_csv/".format(mod)
     files = []
     in_register = False
     last_field_index = 1
@@ -656,14 +656,14 @@ def main(patch):
 
     for module in ["ecd", "ecf", "efd_icms_ipi", "efd_pis_cofins"]:
         logger.info("\nBuilding CSV files for {}...".format(module.upper()))
-        build_registers_csv(module)
         logger.info("> {}_registers.csv".format(module))
+        build_registers_csv(module)
 
-        build_accurate_fields_csv(module, patch)
         logger.info("> {}_accurate_fields.csv".format(module))
+        build_accurate_fields_csv(module, patch)
 
-        build_usable_fields_csv(module)
         logger.info("> {}_fields.csv".format(module))
+        build_usable_fields_csv(module)
 
 
 if __name__ == "__main__":
