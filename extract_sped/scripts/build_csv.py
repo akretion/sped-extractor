@@ -192,12 +192,12 @@ def _map_register_row(mod, row):
 
 
 def extract_registers(mod):
-    """Scans the raw csv tables and return 'rows', a list of dictionaries giving all the
-    information about the module's registers (block, code, description, hierarchy level
-    and card)."""
+    """Scans the raw csv tables and return 'registers', a list of dictionaries giving
+    all the information about the module's registers (block, code, description,
+    hierarchy level and card)."""
     path = "../specs/{}/raw_camelot_csv/".format(mod)
     files = []
-    rows = []
+    registers = []
     in_block = False
 
     for (_dirpath, _dirnames, filenames) in walk(path):
@@ -224,11 +224,11 @@ def extract_registers(mod):
                         continue  # empty line
                     register = _map_register_row(mod, clean_row(row))
                     if register:
-                        rows.append(register)
+                        registers.append(register)
                         if register["code"] == "9999":
-                            return rows
+                            return registers
 
-    return rows
+    return registers
 
 
 # TODO : Add in-out required properties to registers CSV
@@ -277,21 +277,20 @@ def build_registers_csv(mod):
     """
     filename = mod + "_registers.csv"
     path = "../specs/{}/{}".format(mod, filename)
-    rows = extract_registers(mod)
-    header = list(rows[0].keys())
+    registers = extract_registers(mod)
+    header = list(registers[0].keys())
 
     with open(path, "w") as reg_file:
         # Delete actual reg_file's datas before writing
         reg_file.seek(0)
         reg_file.truncate()
 
-        # Write rows
         reg_csv = csv.writer(
             reg_file, delimiter=",", quotechar='"', quoting=csv.QUOTE_ALL
         )
         # First line is columns titles
         reg_csv.writerow(header)
-        for row in rows:
+        for row in registers:
             reg_csv.writerow(list(row.values()))
 
 
@@ -360,10 +359,15 @@ def _is_reg_row_match(register_name, row):
 
 def _map_row_mod_header(row, mod):
     """Insert empty column when needed to align with module's header columns order"""
+    len_header = len(_get_mod_header(mod))
     if row and mod == "efd_icms_ipi":
-        if len(row) == len(_get_mod_header(mod)) - 1:
+        if len(row) == len_header - 1:
             # i.e. row has the columns 'Entr' and 'Saída' but not 'Obrig'
             row.insert(6, "")
+    # Add empty cells in row if incomplete
+    if row and len(row) < len_header:
+        extension = [""] * (len_header - len(row))
+        row.extend(extension)
 
     return row
 
