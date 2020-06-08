@@ -5,7 +5,7 @@ import logging
 from os import walk
 
 import click
-from build_csv import _is_reg_row, natural_keys
+from build_csv import _is_reg_row, clean_row, natural_keys
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
@@ -13,7 +13,7 @@ logger.setLevel(logging.INFO)
 
 
 def _get_mod_headers(mod):
-    path = "../specs/{}/raw/".format(mod)
+    path = "../specs/{}/raw_camelot_csv/".format(mod)
     files = []
     previous_row = False
     headers = []
@@ -24,6 +24,7 @@ def _get_mod_headers(mod):
         with open(path + csv_file, "r") as csvfile:
             reader = csv.reader(csvfile, delimiter=",", quotechar='"')
             for row in reader:
+                row = clean_row(row)
                 if _is_reg_row(row) and previous_row not in headers:
                     headers.append(previous_row)
                 previous_row = row
