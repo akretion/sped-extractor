@@ -160,9 +160,12 @@ Para definir "manualmente" esses cabeçalhos, é possível usar o script ``./get
 
   [...]
 
+Comparar sped_extractor com python-sped_
+~~~~~~~
 
+python-sped_ é uma biblioteca python com a lista dos campos de cada módulo da SPED, porém escrita "manualmente" e desatualizada (ECD e ECF seguindo os pdf das especificações de 2017, EFD/ICMS-IPI e EFD/PIS-COFINS seguindo os pdf das especificações de 2015).
 
-
+Apesar disso, pode ser interessante comparar essas listas de campos com as listas extraidas pelo **sped_extractor**. Para isso é só lançar o script ``./compare_ptyhon-sped.py``.
 
 
 Roadmap
@@ -194,6 +197,7 @@ Administradores
 Esse package está administrado por `Akretion <https://akretion.com/pt-BR>`_.
 
 .. _camelot: https://github.com/atlanhq/camelot
+.. _python-sped: https://github.com/sped-br/python-sped/
 
 .. _ECD_registers.csv: specs/ecd/ecd_registers.csv
 .. _ECF_registers.csv: specs/ecf/ecf_registers.csv

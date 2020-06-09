@@ -1,3 +1,5 @@
 camelot-py==0.8.0a0
 unidecode
 click
+# only for ./compare_python-sped.py :
+python-sped

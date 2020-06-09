@@ -627,7 +627,7 @@
   {
     "register": "1900",
     "index": 3,
-    "code": "DESCR_COMPL_OUT_APU_R",
+    "code": "DESCR_COMPL_OUT_APUR",
     "desc": "Descri\u00e7\u00e3o complementar de Outra Apura\u00e7\u00e3o do ICMS",
     "spec_type": "C",
     "spec_required": "O",
@@ -670,7 +670,7 @@
   {
     "register": "1920",
     "index": 5,
-    "code": "VL_TOT_TRANSF_CREDITOS_O_A",
+    "code": "VL_TOT_TRANSF_CREDITOS_OA",
     "desc": "Valor total dos cr\u00e9ditos por \u201cEntradas e aquisi\u00e7\u00f5es com cr\u00e9dito do imposto\u201d",
     "spec_type": "N",
     "decimal": "02",
@@ -1080,7 +1080,7 @@
   {
     "register": "1900",
     "index": 3,
-    "code": "DESCR_COMPL_OUT_APU_R",
+    "code": "DESCR_COMPL_OUT_APUR",
     "desc": "Descri\u00e7\u00e3o complementar de Outra Apura\u00e7\u00e3o do ICMS",
     "spec_type": "C",
     "spec_required": "O",
@@ -1398,7 +1398,7 @@
   {
     "register": "C101",
     "index": 3,
-    "code": "VL_ICMS_UF_DES_T",
+    "code": "VL_ICMS_UF_DEST",
     "desc": "Valor total do ICMS Interestadual para a UF de destino",
     "spec_type": "N",
     "decimal": "02",
@@ -1431,7 +1431,7 @@
   {
     "register": "D101",
     "index": 3,
-    "code": "VL_ICMS_UF_DES_T",
+    "code": "VL_ICMS_UF_DEST",
     "desc": "Valor total do ICMS Interestadual para a UF de destino",
     "spec_type": "N",
     "decimal": "02",
@@ -1606,7 +1606,7 @@
   {
     "register": "E310",
     "index": 13,
-    "code": "VL_SLD_CRED_TRANSPOR_TAR",
+    "code": "VL_SLD_CRED_TRANSPORTAR",
     "desc": "Saldo credor a transportar para o per\u00edodo seguinte referente a FCP e Imposto do Diferencial de Al\u00edquota da UF de Origem/Destino",
     "spec_type": "N",
     "decimal": "02",
@@ -2259,7 +2259,7 @@
   {
     "register": "K280",
     "index": 5,
-    "code": "QTD_COR_NE_G",
+    "code": "QTD_COR_NEG",
     "desc": "Quantidade de corre\u00e7\u00e3o negativa de apontamento ocorrido em per\u00edodo de apura\u00e7\u00e3o anterior",
     "spec_type": "N",
     "decimal": "3",
@@ -2483,7 +2483,7 @@
   {
     "register": "B020",
     "index": 11,
-    "code": "COD_MUN_SER_V",
+    "code": "COD_MUN_SERV",
     "desc": "C\u00f3digo do munic\u00edpio onde o servi\u00e7o foi prestado, conforme a tabela IBGE.",
     "spec_type": "C",
     "length": "007*",
@@ -2795,7 +2795,7 @@
   {
     "register": "B440",
     "index": 5,
-    "code": "VL_BC_ISS_R_T",
+    "code": "VL_BC_ISS_RT",
     "desc": "Totaliza\u00e7\u00e3o do Valor da base de c\u00e1lculo de reten\u00e7\u00e3o do ISS das presta\u00e7\u00f5es e/ou aquisi\u00e7\u00f5es do declarante pela combina\u00e7\u00e3o de tipo de opera\u00e7\u00e3o e participante.",
     "spec_type": "N",
     "decimal": "02",
@@ -3178,7 +3178,7 @@
   {
     "register": "K292",
     "index": 2,
-    "code": "COD_ITE_M",
+    "code": "COD_ITEM",
     "desc": "C\u00f3digo do insumo/componente consumido (campo 02 do Registro 0200)",
     "spec_type": "C",
     "length": "60",
@@ -3836,7 +3836,7 @@
   {
     "register": "C185",
     "index": 10,
-    "code": "VL_UNIT_ICMS_NA_OPE_RACAO_CONV",
+    "code": "VL_UNIT_ICMS_NA_OPERACAO_CONV",
     "desc": "Valor unit\u00e1rio para o ICMS na opera\u00e7\u00e3o, caso n\u00e3o houvesse a ST, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d, considerando redu\u00e7\u00e3o da base de c\u00e1lculo do ICMS ST na tributa\u00e7\u00e3o, se houver.",
     "spec_type": "N",
     "decimal": "06",
@@ -3847,7 +3847,7 @@
   {
     "register": "C185",
     "index": 11,
-    "code": "VL_UNIT_ICMS_OP_CON_V",
+    "code": "VL_UNIT_ICMS_OP_CONV",
     "desc": "Valor unit\u00e1rio do ICMS que o contribuinte teria se creditado, ou pode se creditar, referente \u00e0 opera\u00e7\u00e3o de entrada da mercadoria, caso estivesse submetida ao regime comum de tributa\u00e7\u00e3o, no desfazimento da substitui\u00e7\u00e3o tribut\u00e1ria, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
     "spec_type": "N",
     "decimal": "06",
@@ -3858,7 +3858,7 @@
   {
     "register": "C185",
     "index": 12,
-    "code": "VL_UNIT_ICMS_OP_EST_OQUE_CONV",
+    "code": "VL_UNIT_ICMS_OP_ESTOQUE_CONV",
     "desc": "Valor m\u00e9dio unit\u00e1rio do ICMS que o contribuinte teria se creditado referente \u00e0 opera\u00e7\u00e3o de entrada das mercadorias em estoque caso estivesse submetida ao regime comum de tributa\u00e7\u00e3o, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
     "spec_type": "N",
     "decimal": "06",
@@ -3869,7 +3869,7 @@
   {
     "register": "C185",
     "index": 13,
-    "code": "VL_UNIT_ICMS_ST_EST_OQUE_CONV",
+    "code": "VL_UNIT_ICMS_ST_ESTOQUE_CONV",
     "desc": "Valor m\u00e9dio unit\u00e1rio do ICMS ST, incluindo FCP ST, das mercadorias em estoque, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
     "spec_type": "N",
     "decimal": "06",
@@ -3880,7 +3880,7 @@
   {
     "register": "C330",
     "index": 2,
-    "code": "COD_MOT_REST_COMP_L",
+    "code": "COD_MOT_REST_COMPL",
     "desc": "C\u00f3digo do motivo da restitui\u00e7\u00e3o ou complementa\u00e7\u00e3o conforme Tabela 5.7",
     "spec_type": "C",
     "length": "005*",
@@ -3917,7 +3917,7 @@
   {
     "register": "C330",
     "index": 6,
-    "code": "VL_UNIT_ICMS_NA_OPE_RACAO_CONV",
+    "code": "VL_UNIT_ICMS_NA_OPERACAO_CONV",
     "desc": "Valor unit\u00e1rio para o ICMS na opera\u00e7\u00e3o, caso n\u00e3o houvesse a ST, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d, aplicando-se a mesma redu\u00e7\u00e3o da base de c\u00e1lculo do ICMS ST na tributa\u00e7\u00e3o, se houver.",
     "spec_type": "N",
     "decimal": "06",
@@ -3928,7 +3928,7 @@
   {
     "register": "C330",
     "index": 7,
-    "code": "VL_UNIT_ICMS_OP_CON_V",
+    "code": "VL_UNIT_ICMS_OP_CONV",
     "desc": "Valor unit\u00e1rio correspondente ao ICMS OP utilizado no c\u00e1lculo do ressarcimento / restitui\u00e7\u00e3o, no desfazimento da substitui\u00e7\u00e3o tribut\u00e1ria, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
     "spec_type": "N",
     "decimal": "06",
@@ -3939,7 +3939,7 @@
   {
     "register": "C330",
     "index": 8,
-    "code": "VL_UNIT_ICMS_OP_EST_OQUE_CONV",
+    "code": "VL_UNIT_ICMS_OP_ESTOQUE_CONV",
     "desc": "Valor m\u00e9dio unit\u00e1rio do ICMS que o contribuinte teria se creditado referente \u00e0 opera\u00e7\u00e3o de entrada das mercadorias em estoque caso estivesse submetida ao regime comum de tributa\u00e7\u00e3o, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
     "spec_type": "N",
     "decimal": "06",
@@ -3950,7 +3950,7 @@
   {
     "register": "C330",
     "index": 9,
-    "code": "VL_UNIT_ICMS_ST_EST_OQUE_CONV",
+    "code": "VL_UNIT_ICMS_ST_ESTOQUE_CONV",
     "desc": "Valor m\u00e9dio unit\u00e1rio do ICMS ST, incluindo FCP ST, das mercadorias em estoque, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
     "spec_type": "N",
     "decimal": "06",
@@ -3961,7 +3961,7 @@
   {
     "register": "C380",
     "index": 2,
-    "code": "COD_MOT_REST_CO_MPL",
+    "code": "COD_MOT_REST_COMPL",
     "desc": "C\u00f3digo do motivo da restitui\u00e7\u00e3o ou complementa\u00e7\u00e3o conforme Tabela 5.7",
     "spec_type": "C",
     "length": "005*",
@@ -3998,7 +3998,7 @@
   {
     "register": "C380",
     "index": 6,
-    "code": "VL_UNIT_ICMS_NA_O_PERACAO_CONV",
+    "code": "VL_UNIT_ICMS_NA_OPERACAO_CONV",
     "desc": "Valor unit\u00e1rio para o ICMS na opera\u00e7\u00e3o, caso n\u00e3o houvesse a ST, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d, aplicando-se a mesma redu\u00e7\u00e3o da base de c\u00e1lculo do ICMS ST na tributa\u00e7\u00e3o, se houver.",
     "spec_type": "N",
     "decimal": "06",
@@ -4009,7 +4009,7 @@
   {
     "register": "C380",
     "index": 7,
-    "code": "VL_UNIT_ICMS_OP_C_ONV",
+    "code": "VL_UNIT_ICMS_OP_CONV",
     "desc": "Valor unit\u00e1rio correspondente ao ICMS OP utilizado no c\u00e1lculo do ressarcimento / restitui\u00e7\u00e3o, no desfazimento da substitui\u00e7\u00e3o tribut\u00e1ria, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
     "spec_type": "N",
     "decimal": "06",
@@ -4020,7 +4020,7 @@
   {
     "register": "C380",
     "index": 8,
-    "code": "VL_UNIT_ICMS_OP_E_STOQUE_CONV",
+    "code": "VL_UNIT_ICMS_OP_ESTOQUE_CONV",
     "desc": "Valor m\u00e9dio unit\u00e1rio do ICMS que o contribuinte teria se creditado referente \u00e0 opera\u00e7\u00e3o de entrada das mercadorias em estoque caso estivesse submetida ao regime comum de tributa\u00e7\u00e3o, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
     "spec_type": "N",
     "decimal": "06",
@@ -4031,7 +4031,7 @@
   {
     "register": "C380",
     "index": 9,
-    "code": "VL_UNIT_ICMS_ST_ES_TOQUE_CONV",
+    "code": "VL_UNIT_ICMS_ST_ESTOQUE_CONV",
     "desc": "Valor m\u00e9dio unit\u00e1rio do ICMS ST, incluindo FCP ST, das mercadorias em estoque, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
     "spec_type": "N",
     "decimal": "06",
@@ -4042,7 +4042,7 @@
   {
     "register": "C430",
     "index": 2,
-    "code": "COD_MOT_REST_COMP_L",
+    "code": "COD_MOT_REST_COMPL",
     "desc": "C\u00f3digo do motivo da restitui\u00e7\u00e3o ou complementa\u00e7\u00e3o conforme Tabela 5.7",
     "spec_type": "C",
     "length": "005*",
@@ -4079,7 +4079,7 @@
   {
     "register": "C430",
     "index": 6,
-    "code": "VL_UNIT_ICMS_NA_OPE_RACAO_CONV",
+    "code": "VL_UNIT_ICMS_NA_OPERACAO_CONV",
     "desc": "Valor unit\u00e1rio para o ICMS na opera\u00e7\u00e3o, caso n\u00e3o houvesse a ST, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d, considerando redu\u00e7\u00e3o da base de c\u00e1lculo do ICMS ST na tributa\u00e7\u00e3o, se houver.",
     "spec_type": "N",
     "decimal": "06",
@@ -4090,7 +4090,7 @@
   {
     "register": "C430",
     "index": 7,
-    "code": "VL_UNIT_ICMS_OP_CO_NV",
+    "code": "VL_UNIT_ICMS_OP_CONV",
     "desc": "Valor unit\u00e1rio do ICMS que o contribuinte teria se creditado, ou pode se creditar, referente \u00e0 opera\u00e7\u00e3o de entrada da mercadoria, caso estivesse submetida ao regime comum de tributa\u00e7\u00e3o, no desfazimento da substitui\u00e7\u00e3o tribut\u00e1ria, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
     "spec_type": "N",
     "decimal": "06",
@@ -4101,7 +4101,7 @@
   {
     "register": "C430",
     "index": 8,
-    "code": "VL_UNIT_ICMS_OP_EST_OQUE_CONV",
+    "code": "VL_UNIT_ICMS_OP_ESTOQUE_CONV",
     "desc": "Valor m\u00e9dio unit\u00e1rio do ICMS que o contribuinte teria se creditado referente \u00e0 opera\u00e7\u00e3o de entrada das mercadorias em estoque caso estivesse submetida ao regime comum de tributa\u00e7\u00e3o, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
     "spec_type": "N",
     "decimal": "06",
@@ -4112,7 +4112,7 @@
   {
     "register": "C430",
     "index": 9,
-    "code": "VL_UNIT_ICMS_ST_EST_OQUE_CONV",
+    "code": "VL_UNIT_ICMS_ST_ESTOQUE_CONV",
     "desc": "Valor m\u00e9dio unit\u00e1rio do ICMS ST, incluindo FCP ST, das mercadorias em estoque, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
     "spec_type": "N",
     "decimal": "06",
@@ -4123,7 +4123,7 @@
   {
     "register": "C480",
     "index": 2,
-    "code": "COD_MOT_REST_C_OMPL",
+    "code": "COD_MOT_REST_COMPL",
     "desc": "C\u00f3digo do motivo da restitui\u00e7\u00e3o ou complementa\u00e7\u00e3o conforme Tabela 5.7",
     "spec_type": "C",
     "length": "005*",
@@ -4449,7 +4449,7 @@
   {
     "register": "C815",
     "index": 6,
-    "code": "VL_UNIT_ICMS_NA_OPE_RACAO_CONV",
+    "code": "VL_UNIT_ICMS_NA_OPERACAO_CONV",
     "desc": "Valor unit\u00e1rio para o ICMS na opera\u00e7\u00e3o, caso n\u00e3o houvesse a ST, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d, aplicando-se a mesma redu\u00e7\u00e3o da base de c\u00e1lculo do ICMS ST na tributa\u00e7\u00e3o, se houver.",
     "spec_type": "N",
     "decimal": "06",
@@ -4460,7 +4460,7 @@
   {
     "register": "C815",
     "index": 7,
-    "code": "VL_UNIT_ICMS_OP_CON_V",
+    "code": "VL_UNIT_ICMS_OP_CONV",
     "desc": "Valor unit\u00e1rio correspondente ao ICMS OP utilizado no c\u00e1lculo do ressarcimento / restitui\u00e7\u00e3o, no desfazimento da substitui\u00e7\u00e3o tribut\u00e1ria, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
     "spec_type": "N",
     "decimal": "06",
@@ -4471,7 +4471,7 @@
   {
     "register": "C815",
     "index": 8,
-    "code": "VL_UNIT_ICMS_OP_ESTO_QUE_CONV",
+    "code": "VL_UNIT_ICMS_OP_ESTOQUE_CONV",
     "desc": "Valor m\u00e9dio unit\u00e1rio do ICMS que o contribuinte teria se creditado referente \u00e0 opera\u00e7\u00e3o de entrada das mercadorias em estoque caso estivesse submetida ao regime comum de tributa\u00e7\u00e3o, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
     "spec_type": "N",
     "decimal": "06",
@@ -4482,7 +4482,7 @@
   {
     "register": "C815",
     "index": 9,
-    "code": "VL_UNIT_ICMS_ST_ESTO_QUE_CONV",
+    "code": "VL_UNIT_ICMS_ST_ESTOQUE_CONV",
     "desc": "Valor m\u00e9dio unit\u00e1rio do ICMS ST, incluindo FCP ST, das mercadorias em estoque, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
     "spec_type": "N",
     "decimal": "06",
@@ -4560,7 +4560,7 @@
   {
     "register": "C880",
     "index": 6,
-    "code": "VL_UNIT_ICMS_NA_OPE_RACAO_CONV",
+    "code": "VL_UNIT_ICMS_NA_OPERACAO_CONV",
     "desc": "Valor unit\u00e1rio para o ICMS na opera\u00e7\u00e3o, caso n\u00e3o houvesse a ST, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d, aplicando-se a mesma redu\u00e7\u00e3o da base de c\u00e1lculo do ICMS ST na tributa\u00e7\u00e3o, se houver.",
     "spec_type": "N",
     "decimal": "03",
@@ -4571,7 +4571,7 @@
   {
     "register": "C880",
     "index": 7,
-    "code": "VL_UNIT_ICMS_OP_CON_V",
+    "code": "VL_UNIT_ICMS_OP_CONV",
     "desc": "Valor unit\u00e1rio correspondente ao ICMS OP utilizado no c\u00e1lculo do ressarcimento / restitui\u00e7\u00e3o, no desfazimento da substitui\u00e7\u00e3o tribut\u00e1ria, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
     "spec_type": "N",
     "decimal": "03",
@@ -4582,7 +4582,7 @@
   {
     "register": "C880",
     "index": 8,
-    "code": "VL_UNIT_ICMS_OP_EST_OQUE_CONV",
+    "code": "VL_UNIT_ICMS_OP_ESTOQUE_CONV",
     "desc": "Valor m\u00e9dio unit\u00e1rio do ICMS que o contribuinte teria se creditado referente \u00e0 opera\u00e7\u00e3o de entrada das mercadorias em estoque caso estivesse submetida ao regime comum de tributa\u00e7\u00e3o, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
     "spec_type": "N",
     "decimal": "03",
@@ -4593,7 +4593,7 @@
   {
     "register": "C880",
     "index": 9,
-    "code": "VL_UNIT_ICMS_ST_EST_OQUE_CONV",
+    "code": "VL_UNIT_ICMS_ST_ESTOQUE_CONV",
     "desc": "Valor m\u00e9dio unit\u00e1rio do ICMS ST, incluindo FCP ST, das mercadorias em estoque, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
     "spec_type": "N",
     "decimal": "03",
@@ -5075,7 +5075,7 @@
   {
     "register": "0100",
     "index": 14,
-    "code": "COD_MU_N",
+    "code": "COD_MUN",
     "desc": "C\u00f3digo do munic\u00edpio, conforme tabela IBGE.",
     "spec_type": "N",
     "length": "007*",
@@ -5668,7 +5668,7 @@
   {
     "register": "B020",
     "index": 11,
-    "code": "COD_MUN_SER_V",
+    "code": "COD_MUN_SERV",
     "desc": "C\u00f3digo do munic\u00edpio onde o servi\u00e7o foi prestado, conforme a tabela IBGE.",
     "spec_type": "C",
     "length": "007*",
@@ -5980,7 +5980,7 @@
   {
     "register": "B440",
     "index": 5,
-    "code": "VL_BC_ISS_R_T",
+    "code": "VL_BC_ISS_RT",
     "desc": "Totaliza\u00e7\u00e3o do Valor da base de c\u00e1lculo de reten\u00e7\u00e3o do ISS das presta\u00e7\u00f5es e/ou aquisi\u00e7\u00f5es do declarante pela combina\u00e7\u00e3o de tipo de opera\u00e7\u00e3o e participante.",
     "spec_type": "N",
     "decimal": "02",
@@ -6688,7 +6688,7 @@
   {
     "register": "C101",
     "index": 3,
-    "code": "VL_ICMS_UF_DES_T",
+    "code": "VL_ICMS_UF_DEST",
     "desc": "Valor total do ICMS Interestadual para a UF de destino",
     "spec_type": "N",
     "decimal": "02",
@@ -7090,7 +7090,7 @@
   {
     "register": "C115",
     "index": 10,
-    "code": "COD_MUN_ENT_G",
+    "code": "COD_MUN_ENTG",
     "desc": "C\u00f3digo do Munic\u00edpio do local de entrega",
     "spec_type": "N",
     "length": "007*",
@@ -7187,7 +7187,7 @@
   {
     "register": "C120",
     "index": 5,
-    "code": "COFINS_IMP",
+    "code": "COFINSIMP",
     "desc": "Valor pago de COFINS na importa\u00e7\u00e3o",
     "spec_type": "N",
     "decimal": "02",
@@ -7964,7 +7964,7 @@
   {
     "register": "C170",
     "index": 34,
-    "code": "QUANT_BC_COF_INS",
+    "code": "QUANT_BC_COFINS",
     "desc": "Quantidade \u2013 Base de c\u00e1lculo COFINS",
     "spec_type": "N",
     "spec_in": "03",
@@ -8332,7 +8332,7 @@
   {
     "register": "C176",
     "index": 14,
-    "code": "VL_UNIT_LIMITE_B_C_ICMS_ULT_E",
+    "code": "VL_UNIT_LIMITE_BC_ICMS_ULT_E",
     "desc": "Valor unit\u00e1rio da base de c\u00e1lculo do ICMS relativo \u00e0 \u00faltima entrada da mercadoria, limitado ao valor da BC da reten\u00e7\u00e3o (corresponde ao menor valor entre os campos VL_UNIT_BC_ST e VL_UNIT_BC_ICMS_ULT_E )",
     "spec_type": "N",
     "decimal": "02",
@@ -8343,7 +8343,7 @@
   {
     "register": "C176",
     "index": 15,
-    "code": "VL_UNIT_ICMS_UL_T_E",
+    "code": "VL_UNIT_ICMS_ULT_E",
     "desc": "Valor unit\u00e1rio do cr\u00e9dito de ICMS sobre opera\u00e7\u00f5es pr\u00f3prias do remetente, relativo \u00e0 \u00faltima entrada da mercadoria, decorrente da quebra da ST \u2013 equivalente a multiplica\u00e7\u00e3o entre os campos 13 e 14",
     "spec_type": "N",
     "decimal": "03",
@@ -8409,7 +8409,7 @@
   {
     "register": "C176",
     "index": 21,
-    "code": "COD_PART_NFE_R_ET",
+    "code": "COD_PART_NFE_RET",
     "desc": "C\u00f3digo do participante do emitente da NF-e em que houve a reten\u00e7\u00e3o do ICMS ST \u2013 campo 02 do registro 0150",
     "spec_type": "C",
     "length": "060",
@@ -8525,7 +8525,7 @@
   {
     "register": "C178",
     "index": 4,
-    "code": "QUANT_PA_D",
+    "code": "QUANT_PAD",
     "desc": "Quantidade total de produtos na unidade padr\u00e3o de tributa\u00e7\u00e3o",
     "spec_type": "N",
     "decimal": "03",
@@ -8764,7 +8764,7 @@
   {
     "register": "C185",
     "index": 10,
-    "code": "VL_UNIT_ICMS_NA_OPE_RACAO_CONV",
+    "code": "VL_UNIT_ICMS_NA_OPERACAO_CONV",
     "desc": "Valor unit\u00e1rio para o ICMS na opera\u00e7\u00e3o, caso n\u00e3o houvesse a ST, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d, considerando redu\u00e7\u00e3o da base de c\u00e1lculo do ICMS ST na tributa\u00e7\u00e3o, se houver.",
     "spec_type": "N",
     "decimal": "06",
@@ -8775,7 +8775,7 @@
   {
     "register": "C185",
     "index": 11,
-    "code": "VL_UNIT_ICMS_OP_CON_V",
+    "code": "VL_UNIT_ICMS_OP_CONV",
     "desc": "Valor unit\u00e1rio do ICMS que o contribuinte teria se creditado, ou pode se creditar, referente \u00e0 opera\u00e7\u00e3o de entrada da mercadoria, caso estivesse submetida ao regime comum de tributa\u00e7\u00e3o, no desfazimento da substitui\u00e7\u00e3o tribut\u00e1ria, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
     "spec_type": "N",
     "decimal": "06",
@@ -8786,7 +8786,7 @@
   {
     "register": "C185",
     "index": 12,
-    "code": "VL_UNIT_ICMS_OP_EST_OQUE_CONV",
+    "code": "VL_UNIT_ICMS_OP_ESTOQUE_CONV",
     "desc": "Valor m\u00e9dio unit\u00e1rio do ICMS que o contribuinte teria se creditado referente \u00e0 opera\u00e7\u00e3o de entrada das mercadorias em estoque caso estivesse submetida ao regime comum de tributa\u00e7\u00e3o, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
     "spec_type": "N",
     "decimal": "06",
@@ -8797,7 +8797,7 @@
   {
     "register": "C185",
     "index": 13,
-    "code": "VL_UNIT_ICMS_ST_EST_OQUE_CONV",
+    "code": "VL_UNIT_ICMS_ST_ESTOQUE_CONV",
     "desc": "Valor m\u00e9dio unit\u00e1rio do ICMS ST, incluindo FCP ST, das mercadorias em estoque, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
     "spec_type": "N",
     "decimal": "06",
@@ -9334,7 +9334,7 @@
   {
     "register": "C330",
     "index": 2,
-    "code": "COD_MOT_REST_COMP_L",
+    "code": "COD_MOT_REST_COMPL",
     "desc": "C\u00f3digo do motivo da restitui\u00e7\u00e3o ou complementa\u00e7\u00e3o conforme Tabela 5.7",
     "spec_type": "C",
     "length": "005*",
@@ -9371,7 +9371,7 @@
   {
     "register": "C330",
     "index": 6,
-    "code": "VL_UNIT_ICMS_NA_OPE_RACAO_CONV",
+    "code": "VL_UNIT_ICMS_NA_OPERACAO_CONV",
     "desc": "Valor unit\u00e1rio para o ICMS na opera\u00e7\u00e3o, caso n\u00e3o houvesse a ST, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d, aplicando-se a mesma redu\u00e7\u00e3o da base de c\u00e1lculo do ICMS ST na tributa\u00e7\u00e3o, se houver.",
     "spec_type": "N",
     "decimal": "06",
@@ -9382,7 +9382,7 @@
   {
     "register": "C330",
     "index": 7,
-    "code": "VL_UNIT_ICMS_OP_CON_V",
+    "code": "VL_UNIT_ICMS_OP_CONV",
     "desc": "Valor unit\u00e1rio correspondente ao ICMS OP utilizado no c\u00e1lculo do ressarcimento / restitui\u00e7\u00e3o, no desfazimento da substitui\u00e7\u00e3o tribut\u00e1ria, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
     "spec_type": "N",
     "decimal": "06",
@@ -9393,7 +9393,7 @@
   {
     "register": "C330",
     "index": 8,
-    "code": "VL_UNIT_ICMS_OP_EST_OQUE_CONV",
+    "code": "VL_UNIT_ICMS_OP_ESTOQUE_CONV",
     "desc": "Valor m\u00e9dio unit\u00e1rio do ICMS que o contribuinte teria se creditado referente \u00e0 opera\u00e7\u00e3o de entrada das mercadorias em estoque caso estivesse submetida ao regime comum de tributa\u00e7\u00e3o, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
     "spec_type": "N",
     "decimal": "06",
@@ -9404,7 +9404,7 @@
   {
     "register": "C330",
     "index": 9,
-    "code": "VL_UNIT_ICMS_ST_EST_OQUE_CONV",
+    "code": "VL_UNIT_ICMS_ST_ESTOQUE_CONV",
     "desc": "Valor m\u00e9dio unit\u00e1rio do ICMS ST, incluindo FCP ST, das mercadorias em estoque, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
     "spec_type": "N",
     "decimal": "06",
@@ -9531,7 +9531,7 @@
   {
     "register": "C380",
     "index": 2,
-    "code": "COD_MOT_REST_CO_MPL",
+    "code": "COD_MOT_REST_COMPL",
     "desc": "C\u00f3digo do motivo da restitui\u00e7\u00e3o ou complementa\u00e7\u00e3o conforme Tabela 5.7",
     "spec_type": "C",
     "length": "005*",
@@ -9568,7 +9568,7 @@
   {
     "register": "C380",
     "index": 6,
-    "code": "VL_UNIT_ICMS_NA_O_PERACAO_CONV",
+    "code": "VL_UNIT_ICMS_NA_OPERACAO_CONV",
     "desc": "Valor unit\u00e1rio para o ICMS na opera\u00e7\u00e3o, caso n\u00e3o houvesse a ST, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d, aplicando-se a mesma redu\u00e7\u00e3o da base de c\u00e1lculo do ICMS ST na tributa\u00e7\u00e3o, se houver.",
     "spec_type": "N",
     "decimal": "06",
@@ -9579,7 +9579,7 @@
   {
     "register": "C380",
     "index": 7,
-    "code": "VL_UNIT_ICMS_OP_C_ONV",
+    "code": "VL_UNIT_ICMS_OP_CONV",
     "desc": "Valor unit\u00e1rio correspondente ao ICMS OP utilizado no c\u00e1lculo do ressarcimento / restitui\u00e7\u00e3o, no desfazimento da substitui\u00e7\u00e3o tribut\u00e1ria, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
     "spec_type": "N",
     "decimal": "06",
@@ -9590,7 +9590,7 @@
   {
     "register": "C380",
     "index": 8,
-    "code": "VL_UNIT_ICMS_OP_E_STOQUE_CONV",
+    "code": "VL_UNIT_ICMS_OP_ESTOQUE_CONV",
     "desc": "Valor m\u00e9dio unit\u00e1rio do ICMS que o contribuinte teria se creditado referente \u00e0 opera\u00e7\u00e3o de entrada das mercadorias em estoque caso estivesse submetida ao regime comum de tributa\u00e7\u00e3o, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
     "spec_type": "N",
     "decimal": "06",
@@ -9601,7 +9601,7 @@
   {
     "register": "C380",
     "index": 9,
-    "code": "VL_UNIT_ICMS_ST_ES_TOQUE_CONV",
+    "code": "VL_UNIT_ICMS_ST_ESTOQUE_CONV",
     "desc": "Valor m\u00e9dio unit\u00e1rio do ICMS ST, incluindo FCP ST, das mercadorias em estoque, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
     "spec_type": "N",
     "decimal": "06",
@@ -9768,7 +9768,7 @@
   {
     "register": "C405",
     "index": 5,
-    "code": "NUM_COO_FI_N",
+    "code": "NUM_COO_FIN",
     "desc": "N\u00famero do Contador de Ordem de Opera\u00e7\u00e3o do \u00faltimo documento emitido no dia. (N\u00famero do COO na Redu\u00e7\u00e3o Z)",
     "spec_type": "N",
     "length": "009",
@@ -9901,7 +9901,7 @@
   {
     "register": "C430",
     "index": 2,
-    "code": "COD_MOT_REST_COMP_L",
+    "code": "COD_MOT_REST_COMPL",
     "desc": "C\u00f3digo do motivo da restitui\u00e7\u00e3o ou complementa\u00e7\u00e3o conforme Tabela 5.7",
     "spec_type": "C",
     "length": "005*",
@@ -9938,7 +9938,7 @@
   {
     "register": "C430",
     "index": 6,
-    "code": "VL_UNIT_ICMS_NA_OPE_RACAO_CONV",
+    "code": "VL_UNIT_ICMS_NA_OPERACAO_CONV",
     "desc": "Valor unit\u00e1rio para o ICMS na opera\u00e7\u00e3o, caso n\u00e3o houvesse a ST, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d, considerando redu\u00e7\u00e3o da base de c\u00e1lculo do ICMS ST na tributa\u00e7\u00e3o, se houver.",
     "spec_type": "N",
     "decimal": "06",
@@ -9949,7 +9949,7 @@
   {
     "register": "C430",
     "index": 7,
-    "code": "VL_UNIT_ICMS_OP_CO_NV",
+    "code": "VL_UNIT_ICMS_OP_CONV",
     "desc": "Valor unit\u00e1rio do ICMS que o contribuinte teria se creditado, ou pode se creditar, referente \u00e0 opera\u00e7\u00e3o de entrada da mercadoria, caso estivesse submetida ao regime comum de tributa\u00e7\u00e3o, no desfazimento da substitui\u00e7\u00e3o tribut\u00e1ria, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
     "spec_type": "N",
     "decimal": "06",
@@ -9960,7 +9960,7 @@
   {
     "register": "C430",
     "index": 8,
-    "code": "VL_UNIT_ICMS_OP_EST_OQUE_CONV",
+    "code": "VL_UNIT_ICMS_OP_ESTOQUE_CONV",
     "desc": "Valor m\u00e9dio unit\u00e1rio do ICMS que o contribuinte teria se creditado referente \u00e0 opera\u00e7\u00e3o de entrada das mercadorias em estoque caso estivesse submetida ao regime comum de tributa\u00e7\u00e3o, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
     "spec_type": "N",
     "decimal": "06",
@@ -9971,7 +9971,7 @@
   {
     "register": "C430",
     "index": 9,
-    "code": "VL_UNIT_ICMS_ST_EST_OQUE_CONV",
+    "code": "VL_UNIT_ICMS_ST_ESTOQUE_CONV",
     "desc": "Valor m\u00e9dio unit\u00e1rio do ICMS ST, incluindo FCP ST, das mercadorias em estoque, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
     "spec_type": "N",
     "decimal": "06",
@@ -10147,7 +10147,7 @@
   {
     "register": "C480",
     "index": 2,
-    "code": "COD_MOT_REST_C_OMPL",
+    "code": "COD_MOT_REST_COMPL",
     "desc": "C\u00f3digo do motivo da restitui\u00e7\u00e3o ou complementa\u00e7\u00e3o conforme Tabela 5.7",
     "spec_type": "C",
     "length": "005*",
@@ -10744,7 +10744,7 @@
   {
     "register": "C500",
     "index": 26,
-    "code": "TP_LIGACAO",
+    "code": "TPLIGACAO",
     "desc": "C\u00f3digo de tipo de Liga\u00e7\u00e3o 1 - Monof\u00e1sico 2 - Bif\u00e1sico 3 - Trif\u00e1sico",
     "spec_type": "N",
     "length": "001*",
@@ -10898,7 +10898,7 @@
   {
     "register": "C510",
     "index": 14,
-    "code": "VL_BC_ICMS_S_T",
+    "code": "VL_BC_ICMS_ST",
     "desc": "Valor da base de c\u00e1lculo referente \u00e0 substitui\u00e7\u00e3o tribut\u00e1ria",
     "spec_type": "N",
     "decimal": "02",
@@ -12090,7 +12090,7 @@
   {
     "register": "C815",
     "index": 6,
-    "code": "VL_UNIT_ICMS_NA_OPE_RACAO_CONV",
+    "code": "VL_UNIT_ICMS_NA_OPERACAO_CONV",
     "desc": "Valor unit\u00e1rio para o ICMS na opera\u00e7\u00e3o, caso n\u00e3o houvesse a ST, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d, aplicando-se a mesma redu\u00e7\u00e3o da base de c\u00e1lculo do ICMS ST na tributa\u00e7\u00e3o, se houver.",
     "spec_type": "N",
     "decimal": "06",
@@ -12101,7 +12101,7 @@
   {
     "register": "C815",
     "index": 7,
-    "code": "VL_UNIT_ICMS_OP_CON_V",
+    "code": "VL_UNIT_ICMS_OP_CONV",
     "desc": "Valor unit\u00e1rio correspondente ao ICMS OP utilizado no c\u00e1lculo do ressarcimento / restitui\u00e7\u00e3o, no desfazimento da substitui\u00e7\u00e3o tribut\u00e1ria, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
     "spec_type": "N",
     "decimal": "06",
@@ -12112,7 +12112,7 @@
   {
     "register": "C815",
     "index": 8,
-    "code": "VL_UNIT_ICMS_OP_ESTO_QUE_CONV",
+    "code": "VL_UNIT_ICMS_OP_ESTOQUE_CONV",
     "desc": "Valor m\u00e9dio unit\u00e1rio do ICMS que o contribuinte teria se creditado referente \u00e0 opera\u00e7\u00e3o de entrada das mercadorias em estoque caso estivesse submetida ao regime comum de tributa\u00e7\u00e3o, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
     "spec_type": "N",
     "decimal": "06",
@@ -12123,7 +12123,7 @@
   {
     "register": "C815",
     "index": 9,
-    "code": "VL_UNIT_ICMS_ST_ESTO_QUE_CONV",
+    "code": "VL_UNIT_ICMS_ST_ESTOQUE_CONV",
     "desc": "Valor m\u00e9dio unit\u00e1rio do ICMS ST, incluindo FCP ST, das mercadorias em estoque, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
     "spec_type": "N",
     "decimal": "06",
@@ -12176,7 +12176,7 @@
   {
     "register": "C850",
     "index": 6,
-    "code": "VL_BC_ICM_S",
+    "code": "VL_BC_ICMS",
     "desc": "Valor acumulado da base de c\u00e1lculo do ICMS, referente \u00e0 combina\u00e7\u00e3o de CST_ICMS, CFOP, e al\u00edquota do ICMS.",
     "spec_type": "N",
     "decimal": "2",
@@ -12207,7 +12207,7 @@
   {
     "register": "C860",
     "index": 2,
-    "code": "COD_MO_D",
+    "code": "COD_MOD",
     "desc": "C\u00f3digo do modelo do documento fiscal, conforme a Tabela 4.1.1",
     "spec_type": "C",
     "length": "002",
@@ -12324,7 +12324,7 @@
   {
     "register": "C880",
     "index": 6,
-    "code": "VL_UNIT_ICMS_NA_OPE_RACAO_CONV",
+    "code": "VL_UNIT_ICMS_NA_OPERACAO_CONV",
     "desc": "Valor unit\u00e1rio para o ICMS na opera\u00e7\u00e3o, caso n\u00e3o houvesse a ST, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d, aplicando-se a mesma redu\u00e7\u00e3o da base de c\u00e1lculo do ICMS ST na tributa\u00e7\u00e3o, se houver.",
     "spec_type": "N",
     "decimal": "03",
@@ -12335,7 +12335,7 @@
   {
     "register": "C880",
     "index": 7,
-    "code": "VL_UNIT_ICMS_OP_CON_V",
+    "code": "VL_UNIT_ICMS_OP_CONV",
     "desc": "Valor unit\u00e1rio correspondente ao ICMS OP utilizado no c\u00e1lculo do ressarcimento / restitui\u00e7\u00e3o, no desfazimento da substitui\u00e7\u00e3o tribut\u00e1ria, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
     "spec_type": "N",
     "decimal": "03",
@@ -12346,7 +12346,7 @@
   {
     "register": "C880",
     "index": 8,
-    "code": "VL_UNIT_ICMS_OP_EST_OQUE_CONV",
+    "code": "VL_UNIT_ICMS_OP_ESTOQUE_CONV",
     "desc": "Valor m\u00e9dio unit\u00e1rio do ICMS que o contribuinte teria se creditado referente \u00e0 opera\u00e7\u00e3o de entrada das mercadorias em estoque caso estivesse submetida ao regime comum de tributa\u00e7\u00e3o, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
     "spec_type": "N",
     "decimal": "03",
@@ -12357,7 +12357,7 @@
   {
     "register": "C880",
     "index": 9,
-    "code": "VL_UNIT_ICMS_ST_EST_OQUE_CONV",
+    "code": "VL_UNIT_ICMS_ST_ESTOQUE_CONV",
     "desc": "Valor m\u00e9dio unit\u00e1rio do ICMS ST, incluindo FCP ST, das mercadorias em estoque, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
     "spec_type": "N",
     "decimal": "03",
@@ -12580,7 +12580,7 @@
   {
     "register": "D101",
     "index": 3,
-    "code": "VL_ICMS_UF_DES_T",
+    "code": "VL_ICMS_UF_DEST",
     "desc": "Valor total do ICMS Interestadual para a UF de destino",
     "spec_type": "N",
     "decimal": "02",
@@ -12883,7 +12883,7 @@
   {
     "register": "D140",
     "index": 11,
-    "code": "VL_DESP_CAR_DE_SC",
+    "code": "VL_DESP_CAR_DESC",
     "desc": "Valor das despesas com carga e descarga",
     "spec_type": "N",
     "decimal": "02",
@@ -13274,7 +13274,7 @@
   {
     "register": "D170",
     "index": 2,
-    "code": "COD_PART_CONS_G",
+    "code": "COD_PART_CONSG",
     "desc": "C\u00f3digo do participante (campo 02 do Registro 0150): - consignat\u00e1rio, se houver",
     "spec_type": "C",
     "length": "060",
@@ -13818,7 +13818,7 @@
   {
     "register": "D300",
     "index": 6,
-    "code": "NUM_DOC_FI_N",
+    "code": "NUM_DOC_FIN",
     "desc": "N\u00famero do \u00faltimo documento fiscal emitido (mesmo modelo, s\u00e9rie e subs\u00e9rie)",
     "spec_type": "N",
     "spec_out": "O",
@@ -13911,7 +13911,7 @@
   {
     "register": "D300",
     "index": 15,
-    "code": "VL_OUT_DESP",
+    "code": "VL_OUTDESP",
     "desc": "Valor de outras despesas",
     "spec_type": "N",
     "decimal": "02",
@@ -14417,7 +14417,7 @@
   {
     "register": "D400",
     "index": 12,
-    "code": "VL_BC_ICM_S",
+    "code": "VL_BC_ICMS",
     "desc": "Valor total da base de c\u00e1lculo do ICMS",
     "spec_type": "N",
     "decimal": "02",
@@ -16068,7 +16068,7 @@
   {
     "register": "E110",
     "index": 14,
-    "code": "VL_SLD_CREDOR_TRA_NSPORTAR",
+    "code": "VL_SLD_CREDOR_TRANSPORTAR",
     "desc": "Valor total de \"Saldo credor a transportar para o per\u00edodo seguinte\u201d",
     "spec_type": "N",
     "decimal": "02",
@@ -16522,7 +16522,7 @@
   {
     "register": "E210",
     "index": 14,
-    "code": "VL_SLD_CRED_ST_TRANS_PORTAR",
+    "code": "VL_SLD_CRED_ST_TRANSPORTAR",
     "desc": "Saldo credor de ST a transportar para o per\u00edodo seguinte [(03+04+05+06+07+12)\u2013 (08+09+10)].",
     "spec_type": "N",
     "decimal": "02",
@@ -16944,7 +16944,7 @@
   {
     "register": "E310",
     "index": 13,
-    "code": "VL_SLD_CRED_TRANSPOR_TAR",
+    "code": "VL_SLD_CRED_TRANSPORTAR",
     "desc": "Saldo credor a transportar para o per\u00edodo seguinte referente a FCP e Imposto do Diferencial de Al\u00edquota da UF de Origem/Destino",
     "spec_type": "N",
     "decimal": "02",
@@ -18814,7 +18814,7 @@
   {
     "register": "K280",
     "index": 5,
-    "code": "QTD_COR_NE_G",
+    "code": "QTD_COR_NEG",
     "desc": "Quantidade de corre\u00e7\u00e3o negativa de apontamento ocorrido em per\u00edodo de apura\u00e7\u00e3o anterior",
     "spec_type": "N",
     "decimal": "3",
@@ -18847,7 +18847,7 @@
   {
     "register": "K292",
     "index": 2,
-    "code": "COD_ITE_M",
+    "code": "COD_ITEM",
     "desc": "C\u00f3digo do insumo/componente consumido (campo 02 do Registro 0200)",
     "spec_type": "C",
     "length": "60",
@@ -20657,7 +20657,7 @@
   {
     "register": "1900",
     "index": 3,
-    "code": "DESCR_COMPL_OUT_APU_R",
+    "code": "DESCR_COMPL_OUT_APUR",
     "desc": "Descri\u00e7\u00e3o complementar de Outra Apura\u00e7\u00e3o do ICMS",
     "spec_type": "C",
     "spec_required": "O",
@@ -20700,7 +20700,7 @@
   {
     "register": "1920",
     "index": 5,
-    "code": "VL_TOT_TRANSF_CREDITOS_O_A",
+    "code": "VL_TOT_TRANSF_CREDITOS_OA",
     "desc": "Valor total dos cr\u00e9ditos por \u201cEntradas e aquisi\u00e7\u00f5es com cr\u00e9dito do imposto\u201d",
     "spec_type": "N",
     "decimal": "02",

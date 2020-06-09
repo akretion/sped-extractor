@@ -4099,7 +4099,7 @@
   {
     "register": "M500",
     "index": 8,
-    "code": "VL_LCTO_PARTE_B",
+    "code": "VL_LCTO_PARTEB",
     "desc": "Somat\u00f3rio dos Lan\u00e7amentos da Parte B Sem Reflexo na Parte A no Per\u00edodo (entre contas da parte B).",
     "spec_type": "N",
     "length": "19",
@@ -4111,7 +4111,7 @@
   {
     "register": "M500",
     "index": 9,
-    "code": "IND_VL_LCTO_PARTE_B",
+    "code": "IND_VL_LCTO_PARTEB",
     "desc": "Indicador Somat\u00f3rio dos Lan\u00e7amentos da Parte B Sem Reflexo na Parte A no Per\u00edodo (entre contas da parte B): C \u2013 Para preju\u00edzos ou valores que ser\u00e3o exclu\u00eddos do lucro real ou da base de c\u00e1lculo da contribui\u00e7\u00e3o social em per\u00edodos subsequentes. D \u2013 Para valores que ser\u00e3o adicionados ao lucro real ou \u00e0 base de c\u00e1lculo da contribui\u00e7\u00e3o social em per\u00edodos subsequentes.",
     "spec_type": "C",
     "length": "1",
@@ -4233,7 +4233,7 @@
   {
     "register": "M510",
     "index": 9,
-    "code": "VL_LCTO_PARTE_B",
+    "code": "VL_LCTO_PARTEB",
     "desc": "Somat\u00f3rio dos Lan\u00e7amentos da Parte B Sem Reflexo na Parte A no Per\u00edodo (entre contas da parte B).",
     "spec_type": "N",
     "length": "19",
@@ -4245,7 +4245,7 @@
   {
     "register": "M510",
     "index": 10,
-    "code": "IND_VL_LCTO_PARTE_B",
+    "code": "IND_VL_LCTO_PARTEB",
     "desc": "Indicador Somat\u00f3rio dos Lan\u00e7amentos da Parte B Sem Reflexo na Parte A no Per\u00edodo (entre contas da parte B): C \u2013 Para preju\u00edzos ou valores que ser\u00e3o exclu\u00eddos do lucro real ou da base de c\u00e1lculo da contribui\u00e7\u00e3o social em per\u00edodos subsequentes. D \u2013 Para valores que ser\u00e3o adicionados ao lucro real ou \u00e0 base de c\u00e1lculo da contribui\u00e7\u00e3o social em per\u00edodos subsequentes.",
     "spec_type": "C",
     "length": "1",

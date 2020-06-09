@@ -372,8 +372,8 @@ def _map_row_mod_header(row, mod):
     return row
 
 
-def extract_fields_rows(mod, register_name, patch=True):
-    """scans the csv files to find the rows describing the fields
+def extract_accurate_fields(mod, register_name, patch=True):
+    """Scans the csv files to find the rows describing the fields
     of a given register."""
     # TODO map back into register: required, in_required, out_required
     path = "../specs/{}/raw_camelot_csv/".format(mod)
@@ -427,11 +427,14 @@ def extract_fields_rows(mod, register_name, patch=True):
 def build_accurate_fields_csv(mod, patch=True):
     reg_path = "../specs/{}/{}_registers.csv".format(mod, mod)
     fields_path = "../specs/{}/{}_accurate_fields.csv".format(mod, mod)
+    reg_with_no_field = []
 
     # Open the CSV created by 'build_registers_csv' with the module's
     # registers list
     with open(reg_path, "r") as reg_file, open(fields_path, "w") as fields_file:
         registers = csv.reader(reg_file, delimiter=",", quotechar='"')
+        # Pass reg_file header
+        next(registers)
         # Delete actual fields_file's datas before writing
         fields_file.seek(0)
         fields_file.truncate()
@@ -445,10 +448,17 @@ def build_accurate_fields_csv(mod, patch=True):
         fields.writerow(mod_header)
         for reg_line in registers:
             reg_name = reg_line[1]
-            reg_rows = extract_fields_rows(mod, reg_name, patch)
+            reg_rows = extract_accurate_fields(mod, reg_name, patch)
             mod_rows.extend(reg_rows)
+            if not reg_rows:
+                reg_with_no_field.append(reg_name)
 
         logger.info("    Fields number in {} : {}".format(mod.upper(), len(mod_rows)))
+        logger.info(
+            "    /!\\ {} registers with no field catched by camelot :\n{}".format(
+                len(reg_with_no_field), reg_with_no_field
+            )
+        )
         for row in mod_rows:
             fields.writerow(row)
 
@@ -460,10 +470,10 @@ def build_accurate_fields_csv(mod, patch=True):
 def _normalize_field_code(code):
     # TODO return original_name attr if need to remove accents
     return (
-        (code.replace("  ", " ").replace("__", "_").replace(" _", "_"))
+        (code.replace("  ", "").replace(" ", "").replace(r"\r", ""))
         .replace("_ ", "_")
-        .replace(" ", "_")
-        .replace(r"\r", "")
+        .replace("__", "_")
+        .replace(" _", "_")
     )
     # .replace('ÇÃO', 'CAO')
 

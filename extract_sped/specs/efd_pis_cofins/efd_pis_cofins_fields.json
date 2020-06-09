@@ -35,7 +35,7 @@
   {
     "register": "0000",
     "index": 5,
-    "code": "NUM_REC_ANTERI_OR",
+    "code": "NUM_REC_ANTERIOR",
     "desc": "N\u00famero do Recibo da Escritura\u00e7\u00e3o anterior a ser retificada, utilizado quando TIPO_ESCRIT for igual a 1",
     "spec_type": "C",
     "length": "041*",
@@ -333,7 +333,7 @@
   {
     "register": "0110",
     "index": 3,
-    "code": "IND_APRO_CR_ED",
+    "code": "IND_APRO_CRED",
     "desc": "C\u00f3digo indicador de m\u00e9todo de apropria\u00e7\u00e3o de cr\u00e9ditos comuns, no caso de incid\u00eancia no regime n\u00e3o-cumulativo (COD_INC_TRIB = 1 ou 3): 1 \u2013 M\u00e9todo de Apropria\u00e7\u00e3o Direta; 2 \u2013 M\u00e9todo de Rateio Proporcional (Receita Bruta)",
     "spec_type": "N",
     "length": "001 *",
@@ -344,7 +344,7 @@
   {
     "register": "0110",
     "index": 4,
-    "code": "COD_TIPO_CO_NT",
+    "code": "COD_TIPO_CONT",
     "desc": "C\u00f3digo indicador do Tipo de Contribui\u00e7\u00e3o Apurada no Per\u00edodo 1 \u2013 Apura\u00e7\u00e3o da Contribui\u00e7\u00e3o Exclusivamente a Al\u00edquota B\u00e1sica 2 \u2013 Apura\u00e7\u00e3o da Contribui\u00e7\u00e3o a Al\u00edquotas Espec\u00edficas (Diferenciadas e/ou por Unidade de Medida de Produto)",
     "spec_type": "N",
     "length": "001 *",
@@ -530,7 +530,7 @@
   {
     "register": "0145",
     "index": 2,
-    "code": "COD_IN_C_TRIB",
+    "code": "COD_INC_TRIB",
     "desc": "C\u00f3digo indicador da incid\u00eancia tribut\u00e1ria no per\u00edodo: 1 \u2013 Contribui\u00e7\u00e3o Previdenci\u00e1ria apurada no per\u00edodo, exclusivamente com base na Receita Bruta; 2 \u2013 Contribui\u00e7\u00e3o Previdenci\u00e1ria apurada no per\u00edodo, com base na Receita Bruta e com base nas Remunera\u00e7\u00f5es pagas, na forma dos nos incisos I e III do art. 22 da Lei no 8.212, de 1991.",
     "spec_type": "N",
     "length": "001*",
@@ -563,7 +563,7 @@
   {
     "register": "0145",
     "index": 5,
-    "code": "VL_REC_DEMAI_S_ATIV",
+    "code": "VL_REC_DEMAIS_ATIV",
     "desc": "Valor da Receita Bruta da(s) Atividade(s) n\u00e3o Sujeita(s) \u00e0 Contribui\u00e7\u00e3o Previdenci\u00e1ria sobre a Receita Bruta",
     "spec_type": "N",
     "decimal": "02",
@@ -574,7 +574,7 @@
   {
     "register": "0145",
     "index": 6,
-    "code": "INFO_C_OMPL",
+    "code": "INFO_COMPL",
     "desc": "Informa\u00e7\u00e3o complementar",
     "spec_type": "C",
     "spec_required": "N",
@@ -584,7 +584,7 @@
   {
     "register": "0150",
     "index": 2,
-    "code": "COD_PAR_T",
+    "code": "COD_PART",
     "desc": "C\u00f3digo de identifica\u00e7\u00e3o do participante no arquivo.",
     "spec_type": "C",
     "length": "060",
@@ -658,7 +658,7 @@
   {
     "register": "0200",
     "index": 5,
-    "code": "COD_ANT_ITE_M",
+    "code": "COD_ANT_ITEM",
     "desc": "C\u00f3digo anterior do item com rela\u00e7\u00e3o \u00e0 \u00faltima informa\u00e7\u00e3o apresentada.",
     "spec_type": "C",
     "length": "060",
@@ -747,7 +747,7 @@
   {
     "register": "0205",
     "index": 2,
-    "code": "DESCR_ANT_ITE_M",
+    "code": "DESCR_ANT_ITEM",
     "desc": "Descri\u00e7\u00e3o anterior do item",
     "spec_type": "C",
     "spec_required": "N",
@@ -910,7 +910,7 @@
   {
     "register": "0500",
     "index": 8,
-    "code": "COD_CTA_R_EF",
+    "code": "COD_CTA_REF",
     "desc": "C\u00f3digo da conta correlacionada no Plano de Contas Referenciado, publicado pela RFB.",
     "spec_type": "C",
     "length": "060",
@@ -1284,7 +1284,7 @@
   {
     "register": "A120",
     "index": 6,
-    "code": "VL_BC_COFIN_S",
+    "code": "VL_BC_COFINS",
     "desc": "Valor da base de c\u00e1lculo da Opera\u00e7\u00e3o \u2013 COFINS \u2013 Importa\u00e7\u00e3o",
     "spec_type": "N",
     "decimal": "02",
@@ -1295,7 +1295,7 @@
   {
     "register": "A120",
     "index": 7,
-    "code": "VL_COFINS_IM_P",
+    "code": "VL_COFINS_IMP",
     "desc": "Valor pago/recolhido de COFINS \u2013 Importa\u00e7\u00e3o",
     "spec_type": "N",
     "decimal": "02",
@@ -1306,7 +1306,7 @@
   {
     "register": "A120",
     "index": 8,
-    "code": "DT_PAG_COFI_NS",
+    "code": "DT_PAG_COFINS",
     "desc": "Data de pagamento do COFINS \u2013 Importa\u00e7\u00e3o",
     "spec_type": "N",
     "length": "008 *",
@@ -1317,7 +1317,7 @@
   {
     "register": "A120",
     "index": 9,
-    "code": "LOC_EXE_SER_V",
+    "code": "LOC_EXE_SERV",
     "desc": "Local da execu\u00e7\u00e3o do servi\u00e7o: 0 \u2013 Executado no Pa\u00eds; 1 \u2013 Executado no Exterior, cujo resultado se verifique no Pa\u00eds.",
     "spec_type": "C",
     "length": "001 *",
@@ -1867,7 +1867,7 @@
   {
     "register": "C110",
     "index": 3,
-    "code": "TXT_COMP_L",
+    "code": "TXT_COMPL",
     "desc": "Descri\u00e7\u00e3o complementar do c\u00f3digo de refer\u00eancia.",
     "spec_type": "C",
     "spec_required": "N",
@@ -1877,7 +1877,7 @@
   {
     "register": "C111",
     "index": 2,
-    "code": "NUM_PRO_C",
+    "code": "NUM_PROC",
     "desc": "Identifica\u00e7\u00e3o do processo ou ato concess\u00f3rio",
     "spec_type": "C",
     "length": "020",
@@ -1921,7 +1921,7 @@
   {
     "register": "C120",
     "index": 4,
-    "code": "VL_PIS_IM_P",
+    "code": "VL_PIS_IMP",
     "desc": "Valor pago de PIS na importa\u00e7\u00e3o",
     "spec_type": "N",
     "decimal": "02",
@@ -1932,7 +1932,7 @@
   {
     "register": "C120",
     "index": 5,
-    "code": "VL_COFIN_S_IMP",
+    "code": "VL_COFINS_IMP",
     "desc": "Valor pago de COFINS na importa\u00e7\u00e3o",
     "spec_type": "N",
     "decimal": "02",
@@ -1943,7 +1943,7 @@
   {
     "register": "C120",
     "index": 6,
-    "code": "NUM_ACD_RAW",
+    "code": "NUM_ACDRAW",
     "desc": "N\u00famero do Ato Concess\u00f3rio do regime Drawback",
     "spec_type": "C",
     "length": "020",
@@ -2032,7 +2032,7 @@
   {
     "register": "C175",
     "index": 9,
-    "code": "ALIQ_PIS_QU_ANT",
+    "code": "ALIQ_PIS_QUANT",
     "desc": "Al\u00edquota do PIS (em reais)",
     "spec_type": "N",
     "decimal": "04",
@@ -2065,7 +2065,7 @@
   {
     "register": "C175",
     "index": 12,
-    "code": "VL_BC_COFI_NS",
+    "code": "VL_BC_COFINS",
     "desc": "Valor da base de c\u00e1lculo da Cofins",
     "spec_type": "N",
     "decimal": "02",
@@ -2076,7 +2076,7 @@
   {
     "register": "C175",
     "index": 13,
-    "code": "ALIQ_COFIN_S",
+    "code": "ALIQ_COFINS",
     "desc": "Al\u00edquota da Cofins (em percentual)",
     "spec_type": "N",
     "length": "008",
@@ -2099,7 +2099,7 @@
   {
     "register": "C175",
     "index": 15,
-    "code": "ALIQ_COFIN_S_QUANT",
+    "code": "ALIQ_COFINS_QUANT",
     "desc": "Al\u00edquota da COFINS (em reais)",
     "spec_type": "N",
     "decimal": "04",
@@ -2829,7 +2829,7 @@
   {
     "register": "C385",
     "index": 8,
-    "code": "ALIQ_COFINS_QUAN_T",
+    "code": "ALIQ_COFINS_QUANT",
     "desc": "Al\u00edquota da COFINS (em reais)",
     "spec_type": "N",
     "decimal": "04",
@@ -3117,7 +3117,7 @@
   {
     "register": "C405",
     "index": 5,
-    "code": "NUM_COO_FI_N",
+    "code": "NUM_COO_FIN",
     "desc": "N\u00famero do Contador de Ordem de Opera\u00e7\u00e3o do \u00faltimo documento emitido no dia (N\u00famero do COO na Redu\u00e7\u00e3o Z)",
     "spec_type": "N",
     "length": "006",
@@ -4972,7 +4972,7 @@
   {
     "register": "D350",
     "index": 21,
-    "code": "ALIQ_COFINS_QUAN_T",
+    "code": "ALIQ_COFINS_QUANT",
     "desc": "Al\u00edquota da COFINS (em reais)",
     "spec_type": "N",
     "decimal": "04",
@@ -5612,7 +5612,7 @@
   {
     "register": "D605",
     "index": 6,
-    "code": "VL_BC_COFI_NS",
+    "code": "VL_BC_COFINS",
     "desc": "Valor da base de c\u00e1lculo da COFINS",
     "spec_type": "N",
     "decimal": "02",
@@ -5845,7 +5845,7 @@
   {
     "register": "F100",
     "index": 19,
-    "code": "DESC_DOC_OPE_R",
+    "code": "DESC_DOC_OPER",
     "desc": "Descri\u00e7\u00e3o do Documento/Opera\u00e7\u00e3o",
     "spec_type": "C",
     "spec_required": "N",
@@ -5910,7 +5910,7 @@
   {
     "register": "F120",
     "index": 5,
-    "code": "IND_UTIL_BEM_IMO_B",
+    "code": "IND_UTIL_BEM_IMOB",
     "desc": "Indicador da Utiliza\u00e7\u00e3o dos Bens Incorporados ao Ativo Imobilizado: 1 \u2013 Produ\u00e7\u00e3o de Bens Destinados a Venda; 2 \u2013 Presta\u00e7\u00e3o de Servi\u00e7os; 3 \u2013 Loca\u00e7\u00e3o a Terceiros; 9 \u2013 Outros.",
     "spec_type": "N",
     "length": "001*",
@@ -5932,7 +5932,7 @@
   {
     "register": "F120",
     "index": 7,
-    "code": "PARC_OPER_NAO_B_C_CRED",
+    "code": "PARC_OPER_NAO_BC_CRED",
     "desc": "Parcela do Valor do Encargo de Deprecia\u00e7\u00e3o/Amortiza\u00e7\u00e3o a excluir da base de c\u00e1lculo de Cr\u00e9dito",
     "spec_type": "N",
     "decimal": "02",
@@ -6120,7 +6120,7 @@
   {
     "register": "F130",
     "index": 5,
-    "code": "IND_UTIL_BEM_IMO_B",
+    "code": "IND_UTIL_BEM_IMOB",
     "desc": "Indicador da Utiliza\u00e7\u00e3o dos Bens Incorporados ao Ativo Imobilizado: 1 \u2013 Produ\u00e7\u00e3o de Bens Destinados a Venda; 2 \u2013 Presta\u00e7\u00e3o de Servi\u00e7os; 3 \u2013 Loca\u00e7\u00e3o a Terceiros; 9 \u2013 Outros.",
     "spec_type": "N",
     "length": "001*",
@@ -6153,7 +6153,7 @@
   {
     "register": "F130",
     "index": 8,
-    "code": "PARC_OPER_NAO_B_C_CRED",
+    "code": "PARC_OPER_NAO_BC_CRED",
     "desc": "Parcela do Valor de Aquisi\u00e7\u00e3o a excluir da base de c\u00e1lculo de Cr\u00e9dito",
     "spec_type": "N",
     "decimal": "02",
@@ -6428,7 +6428,7 @@
   {
     "register": "F200",
     "index": 7,
-    "code": "CPF_CNPJ_ADQ_U",
+    "code": "CPF_CNPJ_ADQU",
     "desc": "Identifica\u00e7\u00e3o da pessoa f\u00edsica (CPF) ou da pessoa jur\u00eddica (CNPJ) adquirente da unidade imobili\u00e1ria",
     "spec_type": "C",
     "length": "014",
@@ -6450,7 +6450,7 @@
   {
     "register": "F205",
     "index": 2,
-    "code": "VL_CUS_INC_A_CUM_ANT",
+    "code": "VL_CUS_INC_ACUM_ANT",
     "desc": "Valor Total do Custo Incorrido da unidade imobili\u00e1ria acumulado at\u00e9 o m\u00eas anterior ao da escritura\u00e7\u00e3o",
     "spec_type": "N",
     "decimal": "02",
@@ -6461,7 +6461,7 @@
   {
     "register": "F205",
     "index": 3,
-    "code": "VL_CUS_INC_P_ER_ESC",
+    "code": "VL_CUS_INC_PER_ESC",
     "desc": "Valor Total do Custo Incorrido da unidade imobili\u00e1ria no m\u00eas da escritura\u00e7\u00e3o",
     "spec_type": "N",
     "decimal": "02",
@@ -6472,7 +6472,7 @@
   {
     "register": "F205",
     "index": 4,
-    "code": "VL_CUS_INC_A_CUM",
+    "code": "VL_CUS_INC_ACUM",
     "desc": "Valor Total do Custo Incorrido da unidade imobili\u00e1ria acumulado at\u00e9 o m\u00eas da escritura\u00e7\u00e3o (Campo 02 + 03)",
     "spec_type": "N",
     "decimal": "02",
@@ -6483,7 +6483,7 @@
   {
     "register": "F205",
     "index": 5,
-    "code": "VL_EXC_BC_C_US_INC_ACUM",
+    "code": "VL_EXC_BC_CUS_INC_ACUM",
     "desc": "Parcela do Custo Incorrido sem direito ao cr\u00e9dito da atividade imobili\u00e1ria, acumulado at\u00e9 o per\u00edodo.",
     "spec_type": "N",
     "decimal": "02",
@@ -6494,7 +6494,7 @@
   {
     "register": "F205",
     "index": 6,
-    "code": "VL_BC_CUS_IN_C",
+    "code": "VL_BC_CUS_INC",
     "desc": "Valor da Base de C\u00e1lculo do Cr\u00e9dito sobre o Custo Incorrido, acumulado at\u00e9 o per\u00edodo da escritura\u00e7\u00e3o (Campo 04 \u2013 05)",
     "spec_type": "N",
     "decimal": "02",
@@ -6595,7 +6595,7 @@
   {
     "register": "F205",
     "index": 15,
-    "code": "VL_CRED_COFI_NS_ACUM",
+    "code": "VL_CRED_COFINS_ACUM",
     "desc": "Valor Total do Cr\u00e9dito Acumulado sobre o custo incorrido - COFINS (Campo 06 x 14)",
     "spec_type": "N",
     "decimal": "02",
@@ -6606,7 +6606,7 @@
   {
     "register": "F205",
     "index": 16,
-    "code": "VL_CRED_COFI_NS_DESC_ANT",
+    "code": "VL_CRED_COFINS_DESC_ANT",
     "desc": "Parcela do cr\u00e9dito descontada at\u00e9 o per\u00edodo anterior da escritura\u00e7\u00e3o \u2013 COFINS (proporcional \u00e0 receita recebida at\u00e9 o m\u00eas anterior).",
     "spec_type": "N",
     "decimal": "02",
@@ -6617,7 +6617,7 @@
   {
     "register": "F205",
     "index": 17,
-    "code": "VL_CRED_COFI_NS_DESC",
+    "code": "VL_CRED_COFINS_DESC",
     "desc": "Parcela a descontar no per\u00edodo da escritura\u00e7\u00e3o \u2013 COFINS (proporcional \u00e0 receita recebida no m\u00eas).",
     "spec_type": "N",
     "decimal": "02",
@@ -6628,7 +6628,7 @@
   {
     "register": "F205",
     "index": 18,
-    "code": "VL_CRED_COFI_NS_DESC_FUT",
+    "code": "VL_CRED_COFINS_DESC_FUT",
     "desc": "Parcela a descontar em per\u00edodos futuros \u2013 COFINS (Campo 15 \u2013 16 \u2013 17).",
     "spec_type": "N",
     "decimal": "02",
@@ -6740,7 +6740,7 @@
   {
     "register": "F210",
     "index": 11,
-    "code": "VL_CRED_COFI_NS_UTIL",
+    "code": "VL_CRED_COFINS_UTIL",
     "desc": "Valor do Cr\u00e9dito sobre o custo or\u00e7ado a ser utilizado no per\u00edodo da escritura\u00e7\u00e3o - COFINS (Campo 05 x 10)",
     "spec_type": "N",
     "decimal": "02",
@@ -6851,7 +6851,7 @@
   {
     "register": "F500",
     "index": 9,
-    "code": "VL_DESC_COFIN_S",
+    "code": "VL_DESC_COFINS",
     "desc": "Valor do desconto / exclus\u00e3o da base de c\u00e1lculo",
     "spec_type": "N",
     "decimal": "02",
@@ -6961,7 +6961,7 @@
   {
     "register": "F510",
     "index": 2,
-    "code": "VL_REC_CAI_XA",
+    "code": "VL_REC_CAIXA",
     "desc": "Valor total da receita recebida, referente \u00e0 combina\u00e7\u00e3o de CST e Al\u00edquota.",
     "spec_type": "N",
     "decimal": "02",
@@ -7060,7 +7060,7 @@
   {
     "register": "F525",
     "index": 7,
-    "code": "VL_REC_DE_T",
+    "code": "VL_REC_DET",
     "desc": "Valor da receita detalhada, correspondente ao conte\u00fado informado no campo 04, 05, 06 ou 10.",
     "spec_type": "N",
     "decimal": "02",
@@ -7160,7 +7160,7 @@
   {
     "register": "F550",
     "index": 9,
-    "code": "VL_DESC_COFIN_S",
+    "code": "VL_DESC_COFINS",
     "desc": "Valor do desconto / exclus\u00e3o da base de c\u00e1lculo",
     "spec_type": "N",
     "decimal": "02",
@@ -7270,7 +7270,7 @@
   {
     "register": "F560",
     "index": 2,
-    "code": "VL_REC_COM_P",
+    "code": "VL_REC_COMP",
     "desc": "Valor total da receita auferida, referente \u00e0 combina\u00e7\u00e3o de CST e Al\u00edquota.",
     "spec_type": "N",
     "decimal": "02",
@@ -7303,7 +7303,7 @@
   {
     "register": "F560",
     "index": 5,
-    "code": "QUANT_BC_PI_S",
+    "code": "QUANT_BC_PIS",
     "desc": "Base de c\u00e1lculo em quantidade - PIS/PASEP",
     "spec_type": "N",
     "decimal": "03",
@@ -7314,7 +7314,7 @@
   {
     "register": "F560",
     "index": 6,
-    "code": "ALIQ_PIS_QU_ANT",
+    "code": "ALIQ_PIS_QUANT",
     "desc": "Al\u00edquota do PIS/PASEP (em reais)",
     "spec_type": "N",
     "length": "008",
@@ -7348,7 +7348,7 @@
   {
     "register": "F560",
     "index": 9,
-    "code": "VL_DESC_COF_INS",
+    "code": "VL_DESC_COFINS",
     "desc": "Valor do desconto / exclus\u00e3o",
     "spec_type": "N",
     "decimal": "02",
@@ -7359,7 +7359,7 @@
   {
     "register": "F560",
     "index": 10,
-    "code": "QUANT_BC_C_OFINS",
+    "code": "QUANT_BC_COFINS",
     "desc": "Base de c\u00e1lculo em quantidade \u2013 COFINS",
     "spec_type": "N",
     "decimal": "03",
@@ -7579,7 +7579,7 @@
   {
     "register": "F800",
     "index": 2,
-    "code": "IND_NAT_EVE_N",
+    "code": "IND_NAT_EVEN",
     "desc": "Indicador da Natureza do Evento de Sucess\u00e3o: 01 \u2013 Incorpora\u00e7\u00e3o 02 \u2013 Fus\u00e3o 03 \u2013 Cis\u00e3o Total 04 \u2013 Cis\u00e3o Parcial 99 \u2013 Outros",
     "spec_type": "N",
     "length": "002*",
@@ -7612,7 +7612,7 @@
   {
     "register": "F800",
     "index": 5,
-    "code": "PA_CONT_CRE_D",
+    "code": "PA_CONT_CRED",
     "desc": "Per\u00edodo de Apura\u00e7\u00e3o do Cr\u00e9dito \u2013 M\u00eas/Ano (MM/AAAA)",
     "spec_type": "N",
     "length": "006*",
@@ -7645,7 +7645,7 @@
   {
     "register": "F800",
     "index": 8,
-    "code": "VL_CRED_COF_INS",
+    "code": "VL_CRED_COFINS",
     "desc": "Valor do Cr\u00e9dito Transferido de Cofins",
     "spec_type": "N",
     "decimal": "02",
@@ -7700,7 +7700,7 @@
   {
     "register": "I100",
     "index": 3,
-    "code": "CST_PIS_CO_FINS",
+    "code": "CST_PIS_COFINS",
     "desc": "C\u00f3digo de Situa\u00e7\u00e3o Tribut\u00e1ria referente \u00e0 Receita informada no Campo 02 (Tabelas 4.3.3 e 4.3.4)",
     "spec_type": "N",
     "length": "002*",
@@ -7709,7 +7709,7 @@
   {
     "register": "I100",
     "index": 4,
-    "code": "VL_TOT_DE_D_GER",
+    "code": "VL_TOT_DED_GER",
     "desc": "Valor Total das Dedu\u00e7\u00f5es e Exclus\u00f5es de Car\u00e1ter Geral",
     "spec_type": "N",
     "decimal": "02",
@@ -7718,7 +7718,7 @@
   {
     "register": "I100",
     "index": 5,
-    "code": "VL_TOT_DE_D_ESP",
+    "code": "VL_TOT_DED_ESP",
     "desc": "Valor Total das Dedu\u00e7\u00f5es e Exclus\u00f5es de Car\u00e1ter Espec\u00edfico",
     "spec_type": "N",
     "decimal": "02",
@@ -7755,7 +7755,7 @@
   {
     "register": "I100",
     "index": 9,
-    "code": "VL_BC_COF_INS",
+    "code": "VL_BC_COFINS",
     "desc": "Valor da base de c\u00e1lculo da Cofins",
     "spec_type": "N",
     "decimal": "02",
@@ -7764,7 +7764,7 @@
   {
     "register": "I100",
     "index": 10,
-    "code": "ALIQ_COFI_NS",
+    "code": "ALIQ_COFINS",
     "desc": "Al\u00edquota da COFINS (em percentual)",
     "spec_type": "N",
     "length": "008",
@@ -7783,7 +7783,7 @@
   {
     "register": "I100",
     "index": 12,
-    "code": "INFO_COMP_L",
+    "code": "INFO_COMPL",
     "desc": "Informa\u00e7\u00e3o Complementar dos dados informados no registro",
     "spec_type": "C",
     "type": "char"
@@ -8113,7 +8113,7 @@
   {
     "register": "M200",
     "index": 2,
-    "code": "VL_TOT_CONT_N_C_PER",
+    "code": "VL_TOT_CONT_NC_PER",
     "desc": "Valor Total da Contribui\u00e7\u00e3o N\u00e3o Cumulativa do Per\u00edodo (recuperado do campo 13 do Registro M210, quando o campo \u201cCOD_CONT\u201d = 01, 02, 03, 04, 32 e 71)",
     "spec_type": "N",
     "decimal": "02",
@@ -8124,7 +8124,7 @@
   {
     "register": "M200",
     "index": 3,
-    "code": "VL_TOT_CRED_D_ESC",
+    "code": "VL_TOT_CRED_DESC",
     "desc": "Valor do Cr\u00e9dito Descontado, Apurado no Pr\u00f3prio Per\u00edodo da Escritura\u00e7\u00e3o (recuperado do campo 14 do Registro M100)",
     "spec_type": "N",
     "decimal": "02",
@@ -8135,7 +8135,7 @@
   {
     "register": "M200",
     "index": 4,
-    "code": "VL_TOT_CRED_D_ESC_ANT",
+    "code": "VL_TOT_CRED_DESC_ANT",
     "desc": "Valor do Cr\u00e9dito Descontado, Apurado em Per\u00edodo de Apura\u00e7\u00e3o Anterior (recuperado do campo 13 do Registro 1100)",
     "spec_type": "N",
     "decimal": "02",
@@ -8146,7 +8146,7 @@
   {
     "register": "M200",
     "index": 5,
-    "code": "VL_TOT_CONT_N_C_DEV",
+    "code": "VL_TOT_CONT_NC_DEV",
     "desc": "Valor Total da Contribui\u00e7\u00e3o N\u00e3o Cumulativa Devida (02 \u2013 03 - 04)",
     "spec_type": "N",
     "decimal": "02",
@@ -8179,7 +8179,7 @@
   {
     "register": "M200",
     "index": 8,
-    "code": "VL_CONT_NC_RE_C",
+    "code": "VL_CONT_NC_REC",
     "desc": "Valor da Contribui\u00e7\u00e3o N\u00e3o Cumulativa a Recolher/Pagar (05 \u2013 06 - 07)",
     "spec_type": "N",
     "decimal": "02",
@@ -8190,7 +8190,7 @@
   {
     "register": "M200",
     "index": 9,
-    "code": "VL_TOT_CONT_C_UM_PER",
+    "code": "VL_TOT_CONT_CUM_PER",
     "desc": "Valor Total da Contribui\u00e7\u00e3o Cumulativa do Per\u00edodo (recuperado do campo 13 do Registro M210, quando o campo \u201cCOD_CONT\u201d = 31, 32, 51, 52, 53, 54 e 72)",
     "spec_type": "N",
     "decimal": "02",
@@ -8212,7 +8212,7 @@
   {
     "register": "M200",
     "index": 11,
-    "code": "VL_OUT_DED_CU_M",
+    "code": "VL_OUT_DED_CUM",
     "desc": "Outras Dedu\u00e7\u00f5es no Per\u00edodo",
     "spec_type": "N",
     "decimal": "02",
@@ -8223,7 +8223,7 @@
   {
     "register": "M200",
     "index": 12,
-    "code": "VL_CONT_CUM_R_EC",
+    "code": "VL_CONT_CUM_REC",
     "desc": "Valor da Contribui\u00e7\u00e3o Cumulativa a Recolher/Pagar (09 - 10 \u2013 11)",
     "spec_type": "N",
     "decimal": "02",
@@ -8234,7 +8234,7 @@
   {
     "register": "M200",
     "index": 13,
-    "code": "VL_TOT_CONT_R_EC",
+    "code": "VL_TOT_CONT_REC",
     "desc": "Valor Total da Contribui\u00e7\u00e3o a Recolher/Pagar no Per\u00edodo (08 + 12)",
     "spec_type": "N",
     "decimal": "02",
@@ -8334,7 +8334,7 @@
   {
     "register": "M210",
     "index": 7,
-    "code": "VL_BC_CONT_A_JUS",
+    "code": "VL_BC_CONT_AJUS",
     "desc": "Valor da Base de C\u00e1lculo da Contribui\u00e7\u00e3o, ap\u00f3s os ajustes. (Campo 07 = Campo 04 + Campo 05 - Campo 06)",
     "spec_type": "N",
     "decimal": "02",
@@ -8368,7 +8368,7 @@
   {
     "register": "M210",
     "index": 10,
-    "code": "ALIQ_PIS_QUAN_T",
+    "code": "ALIQ_PIS_QUANT",
     "desc": "Al\u00edquota do PIS (em reais)",
     "spec_type": "N",
     "decimal": "04",
@@ -8390,7 +8390,7 @@
   {
     "register": "M211",
     "index": 3,
-    "code": "VL_BC_CONT_AN_T_EXC_COOP",
+    "code": "VL_BC_CONT_ANT_EXC_COOP",
     "desc": "Valor da Base de C\u00e1lculo da Contribui\u00e7\u00e3o, conforme Registros escriturados nos Blocos A, C, D e F, antes das Exclus\u00f5es das Cooperativas.",
     "spec_type": "N",
     "decimal": "02",
@@ -8401,7 +8401,7 @@
   {
     "register": "M211",
     "index": 4,
-    "code": "VL_EXC_COOP_G_ER",
+    "code": "VL_EXC_COOP_GER",
     "desc": "Valor de Exclus\u00e3o Especifica das Cooperativas em Geral, decorrente das Sobras Apuradas na DRE, destinadas a constitui\u00e7\u00e3o do Fundo de Reserva e do FATES.",
     "spec_type": "N",
     "decimal": "02",
@@ -8412,7 +8412,7 @@
   {
     "register": "M211",
     "index": 5,
-    "code": "VL_EXC_ESP_COO_P",
+    "code": "VL_EXC_ESP_COOP",
     "desc": "Valor das Exclus\u00f5es da Base de C\u00e1lculo Especifica do Tipo da Sociedade Cooperativa, conforme Campo 02 (IND_TIP_COOP).",
     "spec_type": "N",
     "decimal": "02",
@@ -8477,7 +8477,7 @@
   {
     "register": "M215",
     "index": 6,
-    "code": "DESCR_AJ_B_C",
+    "code": "DESCR_AJ_BC",
     "desc": "Descri\u00e7\u00e3o resumida do ajuste na base de c\u00e1lculo.",
     "spec_type": "C",
     "spec_required": "N",
@@ -8725,7 +8725,7 @@
   {
     "register": "M300",
     "index": 4,
-    "code": "NAT_CRED_DES_C",
+    "code": "NAT_CRED_DESC",
     "desc": "Natureza do Cr\u00e9dito Diferido, vinculado \u00e0 receita tributada no mercado interno, a descontar: 01 \u2013 Cr\u00e9dito a Al\u00edquota B\u00e1sica; 02 \u2013 Cr\u00e9dito a Al\u00edquota Diferenciada; 03 \u2013 Cr\u00e9dito a Al\u00edquota por Unidade de Produto; 04 \u2013 Cr\u00e9dito Presumido da Agroind\u00fastria.",
     "spec_type": "C",
     "length": "002",
@@ -8978,7 +8978,7 @@
   {
     "register": "M500",
     "index": 7,
-    "code": "ALIQ_COFINS_QUA_NT",
+    "code": "ALIQ_COFINS_QUANT",
     "desc": "Al\u00edquota da COFINS (em reais)",
     "spec_type": "N",
     "decimal": "04",
@@ -9143,7 +9143,7 @@
   {
     "register": "M505",
     "index": 8,
-    "code": "QUANT_BC_COF_INS_TOT",
+    "code": "QUANT_BC_COFINS_TOT",
     "desc": "Quantidade Total da Base de C\u00e1lculo do Cr\u00e9dito apurado em Unidade de Medida de Produto, escriturada nos documentos e opera\u00e7\u00f5es (Blocos \u201cA\u201d, \u201cC\u201d, \u201cD\u201d e \u201cF\u201d), referente ao CST_COFINS informado no Campo 03",
     "spec_type": "N",
     "decimal": "03",
@@ -9154,7 +9154,7 @@
   {
     "register": "M505",
     "index": 9,
-    "code": "QUANT_BC_COF_INS",
+    "code": "QUANT_BC_COFINS",
     "desc": "Parcela da base de c\u00e1lculo do cr\u00e9dito em quantidade (campo 08) vinculada ao tipo de cr\u00e9dito escriturado em M500. - Para os CST_COFINS = \u201c50\u201d, \u201c51\u201d e \u201c52\u201d: Informar o valor do Campo 08 (QUANT_BC_COFINS); - Para os CST_COFINS = \u201c53\u201d, \u201c54\u201d, \u201c55\u201d e \u201c56\u201d (cr\u00e9dito vinculado a mais de um tipo de receita): Informar a parcela do valor do Campo 08 (QUANT_BC_COFINS) vinculada ao tipo de cr\u00e9dito escriturado em M500.",
     "spec_type": "N",
     "decimal": "03",
@@ -9371,7 +9371,7 @@
   {
     "register": "M600",
     "index": 7,
-    "code": "VL_OUT_DED_N_C",
+    "code": "VL_OUT_DED_NC",
     "desc": "Outras Dedu\u00e7\u00f5es no Per\u00edodo",
     "spec_type": "N",
     "decimal": "02",
@@ -9382,7 +9382,7 @@
   {
     "register": "M600",
     "index": 8,
-    "code": "VL_CONT_NC_R_EC",
+    "code": "VL_CONT_NC_REC",
     "desc": "Valor da Contribui\u00e7\u00e3o N\u00e3o Cumulativa a Recolher/Pagar (05 - 06 - 07)",
     "spec_type": "N",
     "decimal": "02",
@@ -9415,7 +9415,7 @@
   {
     "register": "M600",
     "index": 11,
-    "code": "VL_OUT_DED_C_UM",
+    "code": "VL_OUT_DED_CUM",
     "desc": "Outras Dedu\u00e7\u00f5es no Per\u00edodo",
     "spec_type": "N",
     "decimal": "02",
@@ -9526,7 +9526,7 @@
   {
     "register": "M610",
     "index": 6,
-    "code": "QUANT_BC_COFI_NS",
+    "code": "QUANT_BC_COFINS",
     "desc": "Quantidade \u2013 Base de c\u00e1lculo COFINS",
     "spec_type": "N",
     "decimal": "03",
@@ -9537,7 +9537,7 @@
   {
     "register": "M610",
     "index": 7,
-    "code": "ALIQ_COFINS_QU_ANT",
+    "code": "ALIQ_COFINS_QUANT",
     "desc": "Al\u00edquota do COFINS (em reais)",
     "spec_type": "N",
     "decimal": "04",
@@ -9625,7 +9625,7 @@
   {
     "register": "M611",
     "index": 3,
-    "code": "VL_BC_CONT_A_NT_EXC_COOP",
+    "code": "VL_BC_CONT_ANT_EXC_COOP",
     "desc": "Valor da Base de C\u00e1lculo da Contribui\u00e7\u00e3o, conforme Registros escriturados nos Blocos A, C, D e F, antes das Exclus\u00f5es das Sociedades Cooperativas.",
     "spec_type": "N",
     "decimal": "02",
@@ -9647,7 +9647,7 @@
   {
     "register": "M611",
     "index": 5,
-    "code": "VL_EXC_ESP_CO_OP",
+    "code": "VL_EXC_ESP_COOP",
     "desc": "Valor das Exclus\u00f5es da Base de C\u00e1lculo Especifica do Tipo da Sociedade Cooperativa, conforme Campo 02 (IND_TIP_COOP).",
     "spec_type": "N",
     "decimal": "02",
@@ -9712,7 +9712,7 @@
   {
     "register": "M615",
     "index": 6,
-    "code": "DESCR_AJ_B_C",
+    "code": "DESCR_AJ_BC",
     "desc": "Descri\u00e7\u00e3o resumida do ajuste na base de c\u00e1lculo.",
     "spec_type": "C",
     "spec_required": "N",
@@ -9896,7 +9896,7 @@
   {
     "register": "M700",
     "index": 4,
-    "code": "NAT_CRED_DES_C",
+    "code": "NAT_CRED_DESC",
     "desc": "Natureza do Cr\u00e9dito Diferido, vinculado \u00e0 receita tributada no mercado interno, a descontar: 01 \u2013 Cr\u00e9dito a Al\u00edquota B\u00e1sica; 02 \u2013 Cr\u00e9dito a Al\u00edquota Diferenciada; 03 \u2013 Cr\u00e9dito a Al\u00edquota por Unidade de Produto; 04 \u2013 Cr\u00e9dito Presumido da Agroind\u00fastria.",
     "spec_type": "C",
     "length": "002",
@@ -10037,7 +10037,7 @@
   {
     "register": "P001",
     "index": 2,
-    "code": "IND_MO_V",
+    "code": "IND_MOV",
     "desc": "Indicador de movimento: 0 - Bloco com dados informados; 1 - Bloco sem dados informados",
     "spec_type": "C",
     "length": "001",
@@ -10070,7 +10070,7 @@
   {
     "register": "P100",
     "index": 4,
-    "code": "VL_REC_TO_T_EST",
+    "code": "VL_REC_TOT_EST",
     "desc": "Valor da Receita Bruta Total do Estabelecimento no Per\u00edodo",
     "spec_type": "N",
     "decimal": "02",
@@ -10081,7 +10081,7 @@
   {
     "register": "P100",
     "index": 5,
-    "code": "COD_ATIV_E_CON",
+    "code": "COD_ATIV_ECON",
     "desc": "C\u00f3digo indicador correspondente \u00e0 atividade sujeita a incid\u00eancia da Contribui\u00e7\u00e3o Previdenci\u00e1ria sobre a Receita Bruta, conforme Tabela 5.1.1.",
     "spec_type": "C",
     "length": "008*",
@@ -10092,7 +10092,7 @@
   {
     "register": "P100",
     "index": 6,
-    "code": "VL_REC_ATI_V_ESTAB",
+    "code": "VL_REC_ATIV_ESTAB",
     "desc": "Valor da Receita Bruta do Estabelecimento, correspondente \u00e0s atividades/produtos referidos no Campo 05 (COD_ATIV_ECON)",
     "spec_type": "N",
     "decimal": "02",
@@ -10114,7 +10114,7 @@
   {
     "register": "P100",
     "index": 8,
-    "code": "VL_BC_CON_T",
+    "code": "VL_BC_CONT",
     "desc": "Valor da Base de C\u00e1lculo da Contribui\u00e7\u00e3o Previdenci\u00e1ria sobre a Receita Bruta (Campo 08 = Campo 06 \u2013 Campo 07)",
     "spec_type": "N",
     "decimal": "02",
@@ -10137,7 +10137,7 @@
   {
     "register": "P100",
     "index": 10,
-    "code": "VL_CONT_A_PU",
+    "code": "VL_CONT_APU",
     "desc": "Valor da Contribui\u00e7\u00e3o Previdenci\u00e1ria Apurada sobre a Receita Bruta",
     "spec_type": "N",
     "decimal": "02",
@@ -10159,7 +10159,7 @@
   {
     "register": "P100",
     "index": 12,
-    "code": "INFO_COMP_L",
+    "code": "INFO_COMPL",
     "desc": "Informa\u00e7\u00e3o complementar do registro",
     "spec_type": "C",
     "spec_required": "N",
@@ -10169,7 +10169,7 @@
   {
     "register": "P110",
     "index": 2,
-    "code": "NUM_CAMP_O",
+    "code": "NUM_CAMPO",
     "desc": "Informar o n\u00famero do campo do registro \u201cP100\u201d, objeto de detalhamento neste registro.",
     "spec_type": "C",
     "length": "002*",
@@ -10224,7 +10224,7 @@
   {
     "register": "P200",
     "index": 3,
-    "code": "VL_TOT_CONT_A_PU",
+    "code": "VL_TOT_CONT_APU",
     "desc": "Valor total apurado da Contribui\u00e7\u00e3o Previdenci\u00e1ria sobre a Receita Bruta (Somat\u00f3rio do Campo 10 \u201cVL_CONT_APU\u201c, do(s) Registro(s) P100)",
     "spec_type": "N",
     "decimal": "02",
@@ -10235,7 +10235,7 @@
   {
     "register": "P200",
     "index": 4,
-    "code": "VL_TOT_AJ_REDU_C",
+    "code": "VL_TOT_AJ_REDUC",
     "desc": "Valor total de \u201cAjustes de redu\u00e7\u00e3o\u201d (Registro P210, Campo 03, quando Campo 02 = \u201c0\u201d)",
     "spec_type": "N",
     "decimal": "02",
@@ -10246,7 +10246,7 @@
   {
     "register": "P200",
     "index": 5,
-    "code": "VL_TOT_AJ_ACRE_S",
+    "code": "VL_TOT_AJ_ACRES",
     "desc": "Valor total de \u201cAjustes de acr\u00e9scimo\u201d (Registro P210, Campo 03, quando Campo 02 = \u201c1\u201d)",
     "spec_type": "N",
     "decimal": "02",
@@ -10257,7 +10257,7 @@
   {
     "register": "P200",
     "index": 6,
-    "code": "VL_TOT_CONT_D_EV",
+    "code": "VL_TOT_CONT_DEV",
     "desc": "Valor total da Contribui\u00e7\u00e3o Previdenci\u00e1ria sobre a Receita Bruta a recolher (Campo 03 \u2013 Campo 04 + Campo 05)",
     "spec_type": "N",
     "decimal": "02",
@@ -10611,7 +10611,7 @@
   {
     "register": "1020",
     "index": 3,
-    "code": "IND_NAT_AC_AO",
+    "code": "IND_NAT_ACAO",
     "desc": "Indicador da Natureza da A\u00e7\u00e3o, decorrente de Processo Administrativo na Secretaria da Receita Federal do Brasil: 01 \u2013 Processo Administrativo de Consulta 02 \u2013 Despacho Decis\u00f3rio 03 \u2013 Ato Declarat\u00f3rio Executivo 04 \u2013 Ato Declarat\u00f3rio Interpretativo 05 \u2013 Decis\u00e3o Administrativa de DRJ ou do CARF 06 \u2013 Auto de Infra\u00e7\u00e3o 99 \u2013 Outros",
     "spec_type": "C",
     "length": "002*",
@@ -10765,7 +10765,7 @@
   {
     "register": "1100",
     "index": 11,
-    "code": "VL_CRED_DCO_MP_PA_ANT",
+    "code": "VL_CRED_DCOMP_PA_ANT",
     "desc": "Valor do Cr\u00e9dito utilizado mediante Declara\u00e7\u00e3o de Compensa\u00e7\u00e3o Intermedi\u00e1ria (Cr\u00e9dito de Exporta\u00e7\u00e3o), em Per\u00edodo(s) Anterior(es).",
     "spec_type": "N",
     "decimal": "02",
@@ -10809,7 +10809,7 @@
   {
     "register": "1100",
     "index": 15,
-    "code": "VL_CRED_DCO_MP_EFD",
+    "code": "VL_CRED_DCOMP_EFD",
     "desc": "Valor do Cr\u00e9dito utilizado mediante Declara\u00e7\u00e3o de Compensa\u00e7\u00e3o Intermedi\u00e1ria neste per\u00edodo de escritura\u00e7\u00e3o.",
     "spec_type": "N",
     "decimal": "02",
@@ -10820,7 +10820,7 @@
   {
     "register": "1100",
     "index": 16,
-    "code": "VL_CRED_TRAN_S",
+    "code": "VL_CRED_TRANS",
     "desc": "Valor do cr\u00e9dito transferido em evento de cis\u00e3o, fus\u00e3o ou incorpora\u00e7\u00e3o.",
     "spec_type": "N",
     "decimal": "02",
@@ -10963,7 +10963,7 @@
   {
     "register": "1101",
     "index": 12,
-    "code": "NAT_BC_CRE_D",
+    "code": "NAT_BC_CRED",
     "desc": "C\u00f3digo da Base de C\u00e1lculo do Cr\u00e9dito, conforme a Tabela indicada no item 4.3.7.",
     "spec_type": "C",
     "length": "002*",
@@ -10974,7 +10974,7 @@
   {
     "register": "1101",
     "index": 13,
-    "code": "IND_ORIG_C_RED",
+    "code": "IND_ORIG_CRED",
     "desc": "Indicador da origem do cr\u00e9dito: 0 \u2013 Opera\u00e7\u00e3o no Mercado Interno 1 \u2013 Opera\u00e7\u00e3o de Importa\u00e7\u00e3o",
     "spec_type": "C",
     "length": "001*",
@@ -11051,7 +11051,7 @@
   {
     "register": "1101",
     "index": 20,
-    "code": "DESC_COMP_L",
+    "code": "DESC_COMPL",
     "desc": "Descri\u00e7\u00e3o complementar do Documento/Opera\u00e7\u00e3o.",
     "spec_type": "C",
     "spec_required": "N",
@@ -11127,7 +11127,7 @@
   {
     "register": "1200",
     "index": 5,
-    "code": "VL_CRED_PIS_DES_C",
+    "code": "VL_CRED_PIS_DESC",
     "desc": "Valor do Cr\u00e9dito de PIS/PASEP a Descontar, da Contribui\u00e7\u00e3o Social Extempor\u00e2nea.",
     "spec_type": "N",
     "decimal": "02",
@@ -11599,7 +11599,7 @@
   {
     "register": "1502",
     "index": 2,
-    "code": "VL_CRED_COFINS_TR_IB_MI",
+    "code": "VL_CRED_COFINS_TRIB_MI",
     "desc": "Parcela do Cr\u00e9dito de COFINS, vinculada a Receita Tributada no Mercado Interno",
     "spec_type": "N",
     "decimal": "02",
@@ -11665,7 +11665,7 @@
   {
     "register": "1600",
     "index": 5,
-    "code": "VL_CRED_COFIN_S_DESC",
+    "code": "VL_CRED_COFINS_DESC",
     "desc": "Valor do Cr\u00e9dito de COFINS a Descontar, da Contribui\u00e7\u00e3o Social Extempor\u00e2nea.",
     "spec_type": "N",
     "decimal": "02",
@@ -12049,7 +12049,7 @@
   {
     "register": "1900",
     "index": 7,
-    "code": "VL_TOT_RE_C",
+    "code": "VL_TOT_REC",
     "desc": "Valor total da receita, conforme os documentos emitidos no per\u00edodo, representativos da venda de bens e servi\u00e7os",
     "spec_type": "N",
     "decimal": "02",
