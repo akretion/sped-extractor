@@ -1,5 +1,5 @@
 ============
-extract_sped
+sped_extractor
 ============
 
 
@@ -52,7 +52,7 @@ Depois de ter baixado esse repositório, todos os arquivos da pasta *scripts/* p
 
 ::
 
-  PATH_TO/extract_sped/scripts$ ./download.sh
+  PATH_TO/sped_extractor/scripts$ ./download.sh
   downloading ECD pdf Dezembro 2019
   [...]
   downloading ECF pdf Dezembro 2019
@@ -67,7 +67,7 @@ Depois de ter baixado esse repositório, todos os arquivos da pasta *scripts/* p
 
 ::
 
-  PATH_TO/extract_sped/scripts$ ./extract_csv.py --limit=5
+  PATH_TO/sped_extractor/scripts$ ./extract_csv.py --limit=5
   Extracting tables from SPED pdf. It can take a while (easily 20 minutes)
   > ECD - 5 pages
       extracting pages 0 to 5...
@@ -84,7 +84,7 @@ Depois de ter baixado esse repositório, todos os arquivos da pasta *scripts/* p
 
 ::
 
-  PATH_TO/extract_sped/scripts$ ./build_csv.py
+  PATH_TO/sped_extractor/scripts$ ./build_csv.py
 
   Building CSV files for ECD...
   > ecd_registers.csv
@@ -116,7 +116,7 @@ Além desses scripts básicos, existe também o ``./build_json.py`` para **criar
 
 ::
 
-  PATH_TO/extract_sped/scripts$ ./build_json.py
+  PATH_TO/sped_extractor/scripts$ ./build_json.py
   Building JSON files for each modules...
   > ecd_fields.json
   > ecf_fields.json
@@ -144,7 +144,7 @@ Para definir "manualmente" esses cabeçalhos, é possível usar o script ``./get
 
 ::
 
-  PATH_TO/extract_sped/scripts$ ./get_mod_headers.py
+  PATH_TO/sped_extractor/scripts$ ./get_mod_headers.py
 
   ECD's headers :
   ['Nº', 'Campo', 'Descrição', 'Tipo', 'Tamanho', 'Decimal']
