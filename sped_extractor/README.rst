@@ -160,7 +160,7 @@ Para definir "manualmente" esses cabeçalhos, é possível usar o script ``./get
 
   [...]
 
-Comparar sped_extractor com python-sped_
+Comparar sped_extractor com python-sped
 ~~~~~~~
 
 python-sped_ é uma biblioteca python com a lista dos campos de cada módulo da SPED, porém escrita "manualmente" e desatualizada (ECD e ECF seguindo os pdf das especificações de 2017, EFD/ICMS-IPI e EFD/PIS-COFINS seguindo os pdf das especificações de 2015).
@@ -175,6 +175,7 @@ Roadmap
 - Detalhar a Instalação no README.
 - Criar o arquivo JSON para os registros de cada módulo.
 - Adicionar o atributo interpretado ``required`` aos registros.
+- Work on ``./build_json.py`` in order to render JSON with a real nested structure : *Block > Register > Field* (with nested Registers following their own level)
 
 Créditos
 =======

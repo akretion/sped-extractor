@@ -12,6 +12,8 @@ logger.setLevel(logging.INFO)
 
 
 def _build_json(mod):
+    # TODO : Build module's JSON with a real nested structure : Block > Register > Field
+    # (with nested Registers following their own level)
     path = "../specs/{}/".format(mod)
     fields = extract_fields(mod)
     with open(path + "{}_fields.json".format(mod), "w") as json_file:

@@ -13,7 +13,8 @@ exclude: |
   # Temporary ignore l10n_br_spec_sped models and views
   /models/|
   /views/|
-  .*/generate.py$
+  .*/generate.py$|
+  .*/download.py$
 default_language_version:
   python: python3
 repos:

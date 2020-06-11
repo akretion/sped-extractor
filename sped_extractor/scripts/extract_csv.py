@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import logging
+import os
 from pathlib import Path
 
 import camelot
@@ -26,14 +27,20 @@ def _extract_csv(mod, limit=False):
     limit_pages = _limit_pages(pdf_path, limit)
 
     export_csv_path = "../specs/{}/raw_camelot_csv/".format(mod)
+    # Creating directory if not existing
     Path(export_csv_path).mkdir(parents=True, exist_ok=True)
+    # Deleting previous extracted files if existing
+    for filename in os.listdir(export_csv_path):
+        os.unlink(os.path.join(export_csv_path, filename))
 
-    # we process the pages 10 by 10 to avoid malloc errors
+    # Extracting with camelot : we process the pages 10 by 10 to avoid malloc errors
     i = START
     while i < limit_pages:
         limit = min(i + STEP, limit_pages)
         logger.info("    extracting pages {} to {}...".format(i, limit))
-        tables = camelot.read_pdf(pdf_path, pages="{}-{}".format(i, limit),)
+        tables = camelot.read_pdf(
+            pdf_path, pages="{}-{}".format(i, limit), line_scale=40
+        )
         tables.export(export_csv_path + "{}.csv".format(mod), f="csv", compress=False)
         i += STEP
 

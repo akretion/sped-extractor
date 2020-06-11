@@ -80,27 +80,42 @@ def _compare_registers(mod, pysped_registers):
 
 def _compare_fields(mod, common_reg, pysped_fields):
     ext_fields = extract_fields(mod)
+    not_in_pysped = {}
+    not_in_extractor = {}
 
     for reg in common_reg:
         ext_fields_reg = [f["code"] for f in ext_fields if f["register"] == reg]
-        pysped_fields_reg = [f["code"] for f in pysped_fields if f["register"] == reg]
+        psped_fields_reg = [f["code"] for f in pysped_fields if f["register"] == reg]
 
-        not_in_pysped = [c for c in ext_fields_reg if c not in pysped_fields_reg]
-        not_in_extractor = [c for c in pysped_fields_reg if c not in ext_fields_reg]
+        not_in_pysped[reg] = [c for c in ext_fields_reg if c not in psped_fields_reg]
+        not_in_extractor[reg] = [c for c in psped_fields_reg if c not in ext_fields_reg]
 
-        if not_in_pysped or not_in_extractor:
-            logger.info("{} :".format(reg))
-        if not_in_pysped:
-            logger.info("    Not in python-sped : {}".format(not_in_pysped))
-        if not_in_extractor:
-            logger.info("    Not in sped_extractor : {}".format(not_in_extractor))
+    logger.info("  Not in python-sped :")
+    fields_nb = 0
+    reg_nb = 0
+    for reg, fields in not_in_pysped.items():
+        if fields:
+            logger.info("    {} : {}".format(reg, fields))
+            fields_nb += len(fields)
+            reg_nb += 1
+    logger.info("  >> {} missing fields in {} registers\n".format(fields_nb, reg_nb))
+
+    logger.info("  Not in sped_extractor :")
+    fields_nb = 0
+    reg_nb = 0
+    for reg, fields in not_in_extractor.items():
+        if fields:
+            logger.info("    {} : {}".format(reg, fields))
+            fields_nb += len(fields)
+            reg_nb += 1
+    logger.info("  >> {} missing fields in {} registers\n".format(fields_nb, reg_nb))
 
 
 @click.command()
 def main():
     """Compare extracted registerts and fields with python-sped library."""
     for mod in ["ecd", "ecf", "efd_icms_ipi", "efd_pis_cofins"]:
-        logger.info("\n\nComparing {} module...".format(mod.upper()))
+        logger.info("\nComparing {} module...".format(mod.upper()))
         logger.info("\nRegisters :")
         pysped_registers, pysped_fields = _get_python_sped_reg_and_fields(mod)
         common_reg = _compare_registers(mod, pysped_registers)
