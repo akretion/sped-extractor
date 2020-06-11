@@ -25,7 +25,7 @@ logger.setLevel(logging.INFO)
 
 # Hard-coding module fields headers because it looks easier to actualize than
 # heuristic coding based on observation.
-# - Defined "manually" after runing `get_all_headers()` method which display all the
+# - Defined "manually" after runing `./get_all_headers.py` script which display all the
 # possible headers for a module.
 # - Used in _get_mod_header() method.
 MODULE_HEADER = {
@@ -94,13 +94,6 @@ def natural_keys(text):
     return [_atoi(c) for c in re.split(r"(\d+)", text)]
 
 
-def _is_joined_columns(row, c):
-    """ Check if row's column 'c' need to be split"""
-    if len(row) > 4 and row[c][0:2].isdigit() and len(row[c]) > 5 and " " in row[c]:
-        return True
-    return False
-
-
 def clean_row(row):
     # Clean content
     for index, cell in enumerate(row):
@@ -113,16 +106,6 @@ def clean_row(row):
         if re.match(r"^[a-zA-Z]+\’$", clean_cell):
             clean_cell = clean_cell[:-1]
         row[index] = clean_cell
-
-    # Separate the 2 first columns joined together
-    # e.g. change ["04  VL_BC_RET", ""] into ["04","VL_BC_RET"]
-    if _is_joined_columns(row, 0) and row[1] == "":
-        split = row[0].split(" ")
-        row = [row[0][0:2], split[len(split) - 1]] + row[2:]
-    # e.g. change ["", "04  VL_BC_RET"] into ["04","VL_BC_RET"]
-    if _is_joined_columns(row, 1) and row[0] == "":
-        split = row[1].split(" ")
-        row = [row[1][0:2], split[len(split) - 1]] + row[2:]
 
     return row
 
@@ -298,26 +281,20 @@ def build_registers_csv(mod):
 # ===========================
 
 
-def _is_field_row(row, last_field_index, register):
-    """Return True if the row match a series of condition to be a register's field"""
-    if (
-        len(row) > 4
-        and row[1].upper() == row[1]
-        and row[1] != ""
-        and len(row[1]) < 32
-        and len(row[1]) > 1
-        and not row[1][0].isdigit()
-        and "RZ_CONT" not in row[1]  # in ECD, doesn't look like a real data field
-        and (
-            row[0].isdigit()
-            and row[1].replace(" ", "") != "REG"
-            and int(row[0]) == last_field_index + 1
-            or row[0] == "*"
-        )
+def _is_reg_row(row):
+    if len(row) > 5 and (
+        row[1].replace(" ", "") == "REG"
+        or row[2].replace(" ", "") == "REG"
+        or " REG" in row[0]
     ):
         return True
-    else:
-        return False
+    return False
+
+
+def _is_reg_row_match(register_name, row):
+    if register_name in "".join(row) and "Texto" in "".join(row):
+        return True
+    return False
 
 
 def _apply_camelot_patch(mod, register, row, pdf_year):
@@ -341,20 +318,67 @@ def _apply_camelot_patch(mod, register, row, pdf_year):
     return row
 
 
-def _is_reg_row(row):
-    if len(row) > 5 and (
-        row[1].replace(" ", "") == "REG"
-        or row[2].replace(" ", "") == "REG"
-        or " REG" in row[0]
+def _is_joined_index(row, c):
+    """ Check if row's column 'c' start with row's index and need to be split"""
+    if len(row) > 4 and row[c][0:2].isdigit() and len(row[c]) > 5 and " " in row[c]:
+        return True
+    return False
+
+
+def _is_joined_code(row, c):
+    """ Check if row's column 'c' start with row's code and need to be split"""
+    if len(row) > 4 and re.match(r"\b[A-Z_]+\b", row[c].split(" ")[0]):
+        return True
+    return False
+
+
+def _format_row(row):
+    """Separate columns joined together"""
+    # e.g. change ["04  VL_BC_RET", ""] into ["04","VL_BC_RET"]
+    if _is_joined_index(row, 0) and row[1] == "":
+        split = row[0].split(" ")
+        row = [split[0], " ".join(split[1:])] + row[2:]
+    # e.g. change ["", "04  VL_BC_RET"] into ["04","VL_BC_RET"]
+    if _is_joined_index(row, 1) and row[0] == "":
+        split = row[1].split(" ")
+        row = [split[0], " ".join(split[1:])] + row[2:]
+
+    # e.g. change ["02","NUM_ITEM  Número seqüencial do item no documento fiscal",""]
+    # into ["02","NUM_ITEM", "Número seqüencial do item no documento fiscal"]
+    if _is_joined_code(row, 1) and row[2] == "":
+        split = row[1].split(" ")
+        row[1] = split[0]
+        row[2] = " ".join(split[1:])
+    # e.g. change ["02","", "NUM_ITEM  Número seqüencial do item no documento fiscal"]
+    # into ["02","NUM_ITEM", "Número seqüencial do item no documento fiscal"]
+    if _is_joined_code(row, 2) and row[1] == "":
+        split = row[2].split(" ")
+        row[1] = split[0]
+        row[2] = " ".join(split[1:])
+
+    return row
+
+
+def _is_field_row(row, last_field_index):
+    """Return True if the row match a series of condition to be a register's field"""
+    if (
+        len(row) > 4
+        and row[1].upper() == row[1]
+        and row[1] != ""
+        and len(row[1]) < 32
+        and len(row[1]) > 1
+        and not row[1][0].isdigit()
+        and "RZ_CONT" not in row[1]  # in ECD, doesn't look like a real data field
+        and (
+            row[0].isdigit()
+            and row[1].replace(" ", "") != "REG"
+            and int(row[0]) == last_field_index + 1
+            or row[0] == "*"
+        )
     ):
         return True
-    return False
-
-
-def _is_reg_row_match(register_name, row):
-    if register_name in "".join(row) and "Texto" in "".join(row):
-        return True
-    return False
+    else:
+        return False
 
 
 def _map_row_mod_header(row, mod):
@@ -407,10 +431,11 @@ def extract_accurate_fields(mod, register_name, patch=True):
                     # column). Example : EFD PIS COFINS page 78 Registro 0200
 
                     row = clean_row(row)
+                    row = _format_row(row)
                     if patch:
                         row = _apply_camelot_patch(mod, register_name, row, 2019)
 
-                    if _is_field_row(row, last_field_index, register_name):
+                    if _is_field_row(row, last_field_index):
                         # Align row cells under module's header
                         row = _map_row_mod_header(row, mod)
                         last_field_index = int(row[0])
@@ -455,7 +480,7 @@ def build_accurate_fields_csv(mod, patch=True):
 
         logger.info("    Fields number in {} : {}".format(mod.upper(), len(mod_rows)))
         logger.info(
-            "    /!\\ {} registers with no field catched by camelot :\n{}".format(
+            "    /!\\ {} registers with no field catched by camelot : {}".format(
                 len(reg_with_no_field), reg_with_no_field
             )
         )
