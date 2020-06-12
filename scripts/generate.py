@@ -4,6 +4,11 @@
 # @author Raphael Valyi (rvalyi@akretion.com.br)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+# ==================================
+#
+# WORK IN PROGRESS...
+#
+# ===================================
 
 """
 Synopsis:
