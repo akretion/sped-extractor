@@ -12,7 +12,7 @@ Os módulos da SPED tratados por esse package são :
 - `EFD Contribuições (PIS, COFINS) <http://sped.rfb.gov.br/pasta/show/1989>`_
 - `EFD ICMS IPI <http://sped.rfb.gov.br/pasta/show/1573>`_
 
-📚 Para cada módulo estão gerados 4 arquivos :
+📚  Para cada módulo estão gerados 4 arquivos :
 
 - *MODULE_registers.csv* : a lista detalhada dos **registros** do módulo ``MODULE``.
 - *MODULE_accurate_fields.csv* : a lista das linhas dos **campos** de cada registro *como eles aparecem no pdf* das especificações (para conferir e melhorar o resultado da extração).
@@ -48,11 +48,13 @@ Utilização
 
 Depois de ter baixado esse repositório, todos os arquivos da pasta *scripts/* podem ser usados como Interface de linha de comando no seu terminal.
 
-1. 📥 ``./download.sh`` : **Baixe os arquivos pdf** originais contendo as especificaões da SPED :
+1. 📥 ``./download.sh`` : **Baixe os arquivos pdf** originais contendo as especificações da SPED :
+
+  🔎  A opção ``--year`` permite definir a versão dos pdf do ano desejado. Se não indicar nada os pdf mais recentes serão baixados.
 
 ::
 
-  PATH_TO/sped_extractor/scripts$ ./download.sh
+  PATH_TO/sped_extractor/scripts$ ./download.sh --year=2019
   downloading ECD pdf Dezembro 2019
   [...]
   downloading ECF pdf Dezembro 2019
@@ -63,7 +65,8 @@ Depois de ter baixado esse repositório, todos os arquivos da pasta *scripts/* p
   [...]
 
 2. ⛏️ ``./extract_csv.py`` : Use `camelot`_ para **extrair as tabelas dos pdf** e coloque os arquivos CSV extraidos na pasta */specs/MODULE/raw_camelot_csv/* :
-  A opção ``--limit=n`` é facultativa para extrair apenas as tabelas das 'n' primeiras páginas.
+
+  🔎  A opção ``--limit=n`` é facultativa para extrair apenas as tabelas das 'n' primeiras páginas.
 
 ::
 
@@ -80,7 +83,7 @@ Depois de ter baixado esse repositório, todos os arquivos da pasta *scripts/* p
 
 3. 🏗️ ``./build_csv.py`` : Percorre os CSV da pasta */specs/MODULE/raw_camelot_csv/* e **cria 3 arquivos CSV** por módulo :
 
-  🔎 O ``./build_csv.py`` aplica linhas corretivas escritas em duro na pasta *scripts/camelot_patch/2019/* por padrão. Para não aplicar essas correções, usar a opção ``--no-patch``.
+  🔎  O ``./build_csv.py`` aplica linhas corretivas escritas em duro na pasta *scripts/camelot_patch/2019/* por padrão. Para não aplicar essas correções, usar a opção ``--no-patch``.
 
 ::
 
@@ -112,7 +115,7 @@ Depois de ter baixado esse repositório, todos os arquivos da pasta *scripts/* p
 
 Além desses scripts básicos, existe também o ``./build_json.py`` para **criar um arquivo JSON** por módulo com a lista dos campos com atributos "interpretados" :
 
-  ⚠️ Como esse script usa os arquivos CSV dos campos "fiéis" criados por ``./build_csv.py`` para criar os JSON, é nécessário ter gerado esses arquivos primeiro.
+  ⚠️  Como esse script usa os arquivos CSV dos campos "fiéis" criados por ``./build_csv.py`` para criar os JSON, é nécessário ter gerado esses arquivos primeiro.
 
 ::
 
@@ -133,7 +136,7 @@ Apesar de `camelot`_ ser o melhor package python para extrair tabelas de pdf, el
 
 Para isso basta escrever a linha correta no arquivo *scripts/camelot_patch/2019/MODULE_camelot_patch.csv* para ela ser applicada no lugar certo no CSV *MODULE_accurate_fields.csv*.
 
-  🔎 O ``./build_csv.py`` aplica as linhas corretivas por padrão. Para não aplicar essas correções, usar a opção ``--no-patch``.
+  🔎  O ``./build_csv.py`` aplica as linhas corretivas por padrão. Para não aplicar essas correções, usar a opção ``--no-patch``.
 
 Cabeçalhos de Módulos
 ~~~~~~~
@@ -167,15 +170,16 @@ python-sped_ é uma biblioteca python com a lista dos campos de cada módulo da 
 
 Apesar disso, pode ser interessante comparar essas listas de campos com as listas extraidas pelo **sped_extractor**. Para isso é só lançar o script ``./compare_ptyhon-sped.py``.
 
+Um exemple de comparação com python-sped_ pode ser encontrada `aqui <https://gist.github.com/clementmbr/3a730276bd19f639780521777628d763>`_.
+
 
 Roadmap
 ========
 
-- Tirar esse package do module Odoo **l10n_br_spec_sped** para poder ser usado para outras utilizações do que implementar as specificações da SPED em Odoo.
 - Detalhar a Instalação no README.
 - Criar o arquivo JSON para os registros de cada módulo.
 - Adicionar o atributo interpretado ``required`` aos registros.
-- Work on ``./build_json.py`` in order to render JSON with a real nested structure : *Block > Register > Field* (with nested Registers following their own level)
+- Work on ``./build_json.py`` in order to render JSON with a real nested structure : *Block > Register > Field* (with nested Registers following their own level, following *python-sped* structure)
 
 Créditos
 =======
