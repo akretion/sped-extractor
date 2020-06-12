@@ -325,36 +325,54 @@ def _is_joined_index(row, c):
     return False
 
 
-def _is_joined_code(row, c):
-    """ Check if row's column 'c' start with row's code and need to be split"""
-    if len(row) > 4 and re.match(r"\b[A-Z_]+\b", row[c].split(" ")[0]):
-        return True
-    return False
+def _split_code_desc(row, c):
+    """Check if row's column 'c' is a joined code and description and return 2 split
+    items to be used if true"""
+    i_end = 0
+    code = []
+    desc = []
+    for i, part_cell in enumerate(row[c].split(" ")):
+        if not re.match(r"\b[A-Z_ÇÃÕÍÚe0-9]+\b", part_cell):
+            i_end = i
+            break
+    if i_end != 0:
+        split = row[c].split(" ")
+        code = " ".join(split[:i_end])
+        desc = " ".join(split[i_end:])
+        return code, desc
+    else:
+        return None
 
 
 def _format_row(row):
     """Separate columns joined together"""
-    # e.g. change ["04  VL_BC_RET", ""] into ["04","VL_BC_RET"]
+    # change ["04  VL_BC_RET", ""] into ["04","VL_BC_RET"]
     if _is_joined_index(row, 0) and row[1] == "":
         split = row[0].split(" ")
         row = [split[0], " ".join(split[1:])] + row[2:]
-    # e.g. change ["", "04  VL_BC_RET"] into ["04","VL_BC_RET"]
+    # change ["", "04  VL_BC_RET"] into ["04","VL_BC_RET"]
     if _is_joined_index(row, 1) and row[0] == "":
         split = row[1].split(" ")
         row = [split[0], " ".join(split[1:])] + row[2:]
 
-    # e.g. change ["02","NUM_ITEM  Número seqüencial do item no documento fiscal",""]
-    # into ["02","NUM_ITEM", "Número seqüencial do item no documento fiscal"]
-    if _is_joined_code(row, 1) and row[2] == "":
-        split = row[1].split(" ")
-        row[1] = split[0]
-        row[2] = " ".join(split[1:])
-    # e.g. change ["02","", "NUM_ITEM  Número seqüencial do item no documento fiscal"]
-    # into ["02","NUM_ITEM", "Número seqüencial do item no documento fiscal"]
-    if _is_joined_code(row, 2) and row[1] == "":
-        split = row[2].split(" ")
-        row[1] = split[0]
-        row[2] = " ".join(split[1:])
+    # change ["02","NUM_ITEM  Número seqüencial do item no documento fiscal","", "N"]
+    # into ["02","NUM_ITEM", "Número seqüencial do item no documento fiscal", "N"]
+    if _split_code_desc(row, 1) and row[2] == "":
+        row[1], row[2] = _split_code_desc(row, 1)
+
+    # fix ["02","", "NUM_ITEM  Número seqüencial do item no documento fiscal", "N"]
+    if _split_code_desc(row, 2) and row[1] == "":
+        row[1], row[2] = _split_code_desc(row, 2)
+
+    # fix ["02", "NUM_ ITEM  Número seqüencial do item no documento fiscal", "N"]
+    if _split_code_desc(row, 1) and row[2] != "":
+        row[1], desc = _split_code_desc(row, 1)
+        row.insert(2, desc)
+
+    # Sommetimes the description cell (=row[2]) itself is split and override type's cell
+    # (=row[3])
+    if len(row[3]) > 2:
+        row[2] = row[2] + " " + row.pop(3)
 
     return row
 
@@ -363,7 +381,6 @@ def _is_field_row(row, last_field_index):
     """Return True if the row match a series of condition to be a register's field"""
     if (
         len(row) > 4
-        and row[1].upper() == row[1]
         and row[1] != ""
         and len(row[1]) < 32
         and len(row[1]) > 1
@@ -494,12 +511,7 @@ def build_accurate_fields_csv(mod, patch=True):
 
 def _normalize_field_code(code):
     # TODO return original_name attr if need to remove accents
-    return (
-        (code.replace("  ", "").replace(" ", "").replace(r"\r", ""))
-        .replace("_ ", "_")
-        .replace("__", "_")
-        .replace(" _", "_")
-    )
+    return code.replace("  ", "").replace(" ", "").replace("__", "_")
     # .replace('ÇÃO', 'CAO')
 
 
