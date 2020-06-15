@@ -451,7 +451,8 @@ def extract_accurate_fields(mod, register_name, patch=True):
                     row = clean_row(row)
                     row = _format_row(row)
                     if patch:
-                        row = _apply_camelot_patch(mod, register_name, row, 2019)
+                        # TODO : Add option to apply patch dependind on the pdf year
+                        row = _apply_camelot_patch(mod, register_name, row, 2020)
 
                     if _is_field_row(row, last_field_index):
                         # Align row cells under module's header
