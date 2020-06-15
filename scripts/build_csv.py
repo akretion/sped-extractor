@@ -650,12 +650,23 @@ def _get_usable_csv_header(fields):
         for key in field.keys():
             if key not in header:
                 header.append(key)
+    # Reorder hearder's keys
+    header_base = ["register", "index", "code", "type", "required", "values", "rules"]
+
+    def sort_order(key):
+        if key == "desc":
+            return 99
+        elif key.startswith("spec_"):
+            return 90
+        elif key.startswith("conditional_"):
+            return 5
+        elif key in header_base:
+            return header_base.index(key)
+        else:
+            return 50
+
+    header.sort(key=sort_order)
     return header
-
-
-def _get_fields_with_empty_keys(fields, header):
-    """Return a list of the module's fields recorded as dictionaries with additional
-    keys with empty values in order to have the same keys in all the module's fields"""
 
 
 def build_usable_fields_csv(mod):
