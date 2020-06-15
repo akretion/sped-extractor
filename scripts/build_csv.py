@@ -97,7 +97,7 @@ def natural_keys(text):
 def clean_row(row):
     # Clean content
     for index, cell in enumerate(row):
-        # replace all whitespaces ("  ", \n, \r...)
+        # replace all the whitespaces ("  ", \n, \r...)
         clean_cell = " ".join(cell.split())
         # e.g. change "Entr." to "Entr" in fields table's headers
         if re.match(r"^[a-zA-Z]+\.$", clean_cell):
@@ -145,10 +145,11 @@ def _map_register_row(mod, row):
                 }
         # the most problematic pdf
         elif mod == "efd_pis_cofins":
-            if len(row[2]) == 4 and len(row) >= 5:
+            code = row[2][:-4] if row[2].endswith(" (*)") else row[2]
+            if len(code) == 4 and len(row) >= 5:
                 register = {
                     "block": row[0],
-                    "code": row[2],
+                    "code": code,
                     "desc": row[1],
                     "level": row[3],
                     "card": row[4],
