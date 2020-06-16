@@ -604,6 +604,115 @@
     "required": true
   },
   {
+    "register": "0150",
+    "index": 4,
+    "code": "COD_PAIS",
+    "desc": "C\u00f3digo do pa\u00eds do participante, conforme a tabela indicada no item 3.2.1.",
+    "spec_type": "N",
+    "length": "005",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "0150",
+    "index": 5,
+    "code": "CNPJ",
+    "desc": "CNPJ do participante.",
+    "spec_type": "N",
+    "length": "014*",
+    "spec_required": "N",
+    "type": "int",
+    "required": false
+  },
+  {
+    "register": "0150",
+    "index": 6,
+    "code": "CPF",
+    "desc": "CPF do participante.",
+    "spec_type": "N",
+    "length": "011*",
+    "spec_required": "N",
+    "type": "int",
+    "required": false
+  },
+  {
+    "register": "0150",
+    "index": 7,
+    "code": "IE",
+    "desc": "Inscri\u00e7\u00e3o Estadual do participante.",
+    "spec_type": "C",
+    "length": "014",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "0150",
+    "index": 8,
+    "code": "COD_MUN",
+    "desc": "C\u00f3digo do munic\u00edpio, conforme a tabela IBGE",
+    "spec_type": "N",
+    "length": "007*",
+    "spec_required": "N",
+    "type": "int",
+    "required": false
+  },
+  {
+    "register": "0150",
+    "index": 9,
+    "code": "SUFRAMA",
+    "desc": "N\u00famero de inscri\u00e7\u00e3o do participante na Suframa",
+    "spec_type": "C",
+    "length": "009*",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "0150",
+    "index": 10,
+    "code": "END",
+    "desc": "Logradouro e endere\u00e7o do im\u00f3vel",
+    "spec_type": "C",
+    "length": "060",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "0150",
+    "index": 11,
+    "code": "NUM",
+    "desc": "N\u00famero do im\u00f3vel",
+    "spec_type": "C",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "0150",
+    "index": 12,
+    "code": "COMPL",
+    "desc": "Dados complementares do endere\u00e7o",
+    "spec_type": "C",
+    "length": "060",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "0150",
+    "index": 13,
+    "code": "BAIRRO",
+    "desc": "Bairro em que o im\u00f3vel est\u00e1 situado",
+    "spec_type": "C",
+    "length": "060",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
     "register": "0190",
     "index": 2,
     "code": "UNID",
@@ -777,6 +886,27 @@
     "required": true
   },
   {
+    "register": "0205",
+    "index": 5,
+    "code": "COD_ANT_ITEM",
+    "desc": "C\u00f3digo anterior do item com rela\u00e7\u00e3o \u00e0 \u00faltima informa\u00e7\u00e3o apresentada.",
+    "spec_type": "C",
+    "length": "060",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "0206",
+    "index": 2,
+    "code": "COD_COMB",
+    "desc": "C\u00f3digo do combust\u00edvel, conforme tabela publicada pela ANP",
+    "spec_type": "C",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
     "register": "0208",
     "index": 2,
     "code": "COD_TAB",
@@ -816,6 +946,16 @@
     "desc": "C\u00f3digo da natureza da opera\u00e7\u00e3o/presta\u00e7\u00e3o",
     "spec_type": "C",
     "length": "010",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "0400",
+    "index": 3,
+    "code": "DESCR_NAT",
+    "desc": "Descri\u00e7\u00e3o da natureza da opera\u00e7\u00e3o/presta\u00e7\u00e3o",
+    "spec_type": "C",
     "spec_required": "S",
     "type": "char",
     "required": true
@@ -916,6 +1056,17 @@
     "length": "060",
     "spec_required": "N",
     "type": "char",
+    "required": false
+  },
+  {
+    "register": "0500",
+    "index": 9,
+    "code": "CNPJ_EST",
+    "desc": "CNPJ do estabelecimento, no caso da conta informada no campo COD_CTA ser espec\u00edfica de um estabelecimento.",
+    "spec_type": "N",
+    "length": "014*",
+    "spec_required": "N",
+    "type": "int",
     "required": false
   },
   {
@@ -1106,6 +1257,16 @@
     "required": false
   },
   {
+    "register": "0990",
+    "index": 2,
+    "code": "QTD_LIN_0",
+    "desc": "Quantidade total de linhas do Bloco 0",
+    "spec_type": "N",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
     "register": "A001",
     "index": 2,
     "code": "IND_MOV",
@@ -1114,6 +1275,17 @@
     "length": "001",
     "spec_required": "S",
     "type": "char",
+    "required": true
+  },
+  {
+    "register": "A010",
+    "index": 2,
+    "code": "CNPJ",
+    "desc": "N\u00famero de inscri\u00e7\u00e3o do estabelecimento no CNPJ.",
+    "spec_type": "N",
+    "length": "014*",
+    "spec_required": "S",
+    "type": "int",
     "required": true
   },
   {
@@ -1214,6 +1386,148 @@
     "spec_required": "S",
     "type": "date",
     "required": true
+  },
+  {
+    "register": "A100",
+    "index": 11,
+    "code": "DT_EXE_SERV",
+    "desc": "Data de Execu\u00e7\u00e3o / Conclus\u00e3o do Servi\u00e7o",
+    "spec_type": "N",
+    "length": "008*",
+    "spec_required": "N",
+    "type": "date",
+    "required": false
+  },
+  {
+    "register": "A100",
+    "index": 12,
+    "code": "VL_DOC",
+    "desc": "Valor total do documento",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "A100",
+    "index": 13,
+    "code": "IND_PGTO",
+    "desc": "Indicador do tipo de pagamento: 0- \u00c0 vista; 1- A prazo; 9- Sem pagamento.",
+    "spec_type": "C",
+    "length": "001*",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "A100",
+    "index": 14,
+    "code": "VL_DESC",
+    "desc": "Valor total do desconto",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "A100",
+    "index": 15,
+    "code": "VL_BC_PIS",
+    "desc": "Valor da base de c\u00e1lculo do PIS/PASEP",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "A100",
+    "index": 16,
+    "code": "VL_PIS",
+    "desc": "Valor total do PIS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "A100",
+    "index": 17,
+    "code": "VL_BC_COFINS",
+    "desc": "Valor da base de c\u00e1lculo da COFINS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "A100",
+    "index": 18,
+    "code": "VL_COFINS",
+    "desc": "Valor total da COFINS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "A100",
+    "index": 19,
+    "code": "VL_PIS_RET",
+    "desc": "Valor total do PIS retido na fonte",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "A100",
+    "index": 20,
+    "code": "VL_COFINS_RET",
+    "desc": "Valor total da COFINS retido na fonte.",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "A100",
+    "index": 21,
+    "code": "VL_ISS",
+    "desc": "Valor do ISS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "A110",
+    "index": 2,
+    "code": "COD_INF",
+    "desc": "C\u00f3digo da informa\u00e7\u00e3o complementar do documento fiscal (Campo 02 do Registro 0450)",
+    "spec_type": "C",
+    "length": "006",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "A110",
+    "index": 3,
+    "code": "TXT_COMPL",
+    "desc": "Informa\u00e7\u00e3o Complementar do Documento Fiscal",
+    "spec_type": "C",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
   },
   {
     "register": "A111",
@@ -1511,6 +1825,16 @@
     "spec_required": "N",
     "type": "char",
     "required": false
+  },
+  {
+    "register": "A990",
+    "index": 2,
+    "code": "QTD_LIN_A",
+    "desc": "Quantidade total de linhas do Bloco A",
+    "spec_type": "N",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
   },
   {
     "register": "C001",
@@ -1952,6 +2276,406 @@
     "required": false
   },
   {
+    "register": "C170",
+    "index": 2,
+    "code": "NUM_ITEM",
+    "desc": "N\u00famero seq\u00fcencial do item no documento fiscal",
+    "spec_type": "N",
+    "length": "003",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "C170",
+    "index": 3,
+    "code": "COD_ITEM",
+    "desc": "C\u00f3digo do item (campo 02 do Registro 0200)",
+    "spec_type": "C",
+    "length": "060",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "C170",
+    "index": 4,
+    "code": "DESCR_COMPL",
+    "desc": "Descri\u00e7\u00e3o complementar do item como adotado no documento fiscal",
+    "spec_type": "C",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 5,
+    "code": "QTD",
+    "desc": "Quantidade do item",
+    "spec_type": "N",
+    "decimal": "05",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 6,
+    "code": "UNID",
+    "desc": "Unidade do item (Campo 02 do registro 0190)",
+    "spec_type": "C",
+    "length": "006",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 7,
+    "code": "VL_ITEM",
+    "desc": "Valor total do item (mercadorias ou servi\u00e7os)",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "C170",
+    "index": 8,
+    "code": "VL_DESC",
+    "desc": "Valor do desconto comercial / exclus\u00e3o da base de c\u00e1lculo do PIS/PASEP e da COFINS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 9,
+    "code": "IND_MOV",
+    "desc": "Movimenta\u00e7\u00e3o f\u00edsica do ITEM/PRODUTO: 0. SIM 1. N\u00c3O",
+    "spec_type": "C",
+    "length": "001",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 10,
+    "code": "CST_ICMS",
+    "desc": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente ao ICMS, conforme a Tabela indicada no item 4.3.1",
+    "spec_type": "N",
+    "length": "003*",
+    "spec_required": "N",
+    "type": "int",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 11,
+    "code": "CFOP",
+    "desc": "C\u00f3digo Fiscal de Opera\u00e7\u00e3o e Presta\u00e7\u00e3o",
+    "spec_type": "N",
+    "length": "004*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "C170",
+    "index": 12,
+    "code": "COD_NAT",
+    "desc": "C\u00f3digo da natureza da opera\u00e7\u00e3o (campo 02 do Registro 0400)",
+    "spec_type": "C",
+    "length": "010",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 13,
+    "code": "VL_BC_ICMS",
+    "desc": "Valor da base de c\u00e1lculo do ICMS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 14,
+    "code": "ALIQ_ICMS",
+    "desc": "Al\u00edquota do ICMS",
+    "spec_type": "N",
+    "length": "006",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 15,
+    "code": "VL_ICMS",
+    "desc": "Valor do ICMS creditado/debitado",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 16,
+    "code": "VL_BC_ICMS_ST",
+    "desc": "Valor da base de c\u00e1lculo referente \u00e0 substitui\u00e7\u00e3o tribut\u00e1ria",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 17,
+    "code": "ALIQ_ST",
+    "desc": "Al\u00edquota do ICMS da substitui\u00e7\u00e3o tribut\u00e1ria na unidade da federa\u00e7\u00e3o de destino",
+    "spec_type": "N",
+    "length": "006",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 18,
+    "code": "VL_ICMS_ST",
+    "desc": "Valor do ICMS referente \u00e0 substitui\u00e7\u00e3o tribut\u00e1ria",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 19,
+    "code": "IND_APUR",
+    "desc": "Indicador de per\u00edodo de apura\u00e7\u00e3o do IPI: 0 - Mensal; 1 Decendial",
+    "spec_type": "C",
+    "length": "001*",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 20,
+    "code": "CST_IPI",
+    "desc": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente ao IPI, conforme a Tabela indicada no item 4.3.2.",
+    "spec_type": "C",
+    "length": "002*",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 21,
+    "code": "COD_ENQ",
+    "desc": "C\u00f3digo de enquadramento legal do IPI, conforme tabela indicada no item 4.5.3.",
+    "spec_type": "C",
+    "length": "003*",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 22,
+    "code": "VL_BC_IPI",
+    "desc": "Valor da base de c\u00e1lculo do IPI",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 23,
+    "code": "ALIQ_IPI",
+    "desc": "Al\u00edquota do IPI",
+    "spec_type": "N",
+    "length": "006",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 24,
+    "code": "VL_IPI",
+    "desc": "Valor do IPI creditado/debitado",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 25,
+    "code": "CST_PIS",
+    "desc": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente ao PIS.",
+    "spec_type": "N",
+    "length": "002*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "C170",
+    "index": 26,
+    "code": "VL_BC_PIS",
+    "desc": "Valor da base de c\u00e1lculo do PIS/PASEP",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 27,
+    "code": "ALIQ_PIS",
+    "desc": "Al\u00edquota do PIS (em percentual)",
+    "spec_type": "N",
+    "length": "008",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 28,
+    "code": "QUANT_BC_PIS",
+    "desc": "Quantidade \u2013 Base de c\u00e1lculo PIS/PASEP",
+    "spec_type": "N",
+    "decimal": "03",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 29,
+    "code": "ALIQ_PIS_QUANT",
+    "desc": "Al\u00edquota do PIS/PASEP (em reais)",
+    "spec_type": "N",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 30,
+    "code": "VL_PIS",
+    "desc": "Valor do PIS/PASEP",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 31,
+    "code": "CST_COFINS",
+    "desc": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente ao COFINS.",
+    "spec_type": "N",
+    "length": "002*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "C170",
+    "index": 32,
+    "code": "VL_BC_COFINS",
+    "desc": "Valor da base de c\u00e1lculo da COFINS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 33,
+    "code": "ALIQ_COFINS",
+    "desc": "Al\u00edquota do COFINS (em percentual)",
+    "spec_type": "N",
+    "length": "008",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 34,
+    "code": "QUANT_BC_COFINS",
+    "desc": "Quantidade \u2013 Base de c\u00e1lculo COFINS",
+    "spec_type": "N",
+    "decimal": "03",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 35,
+    "code": "ALIQ_COFINS_QUANT",
+    "desc": "Al\u00edquota da COFINS (em reais)",
+    "spec_type": "N",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 36,
+    "code": "VL_COFINS",
+    "desc": "Valor da COFINS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C170",
+    "index": 37,
+    "code": "COD_CTA",
+    "desc": "C\u00f3digo da conta anal\u00edtica cont\u00e1bil debitada/creditada",
+    "spec_type": "C",
+    "length": "255",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
     "register": "C175",
     "index": 2,
     "code": "CFOP",
@@ -2140,6 +2864,83 @@
     "required": false
   },
   {
+    "register": "C180",
+    "index": 2,
+    "code": "COD_MOD",
+    "desc": "Texto fixo contendo \"55\" ou \u201c65\u201d(C\u00f3digo da NF-e ou da NFC-e, conforme a Tabela 4.1.1)",
+    "spec_type": "C",
+    "length": "002*",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "C180",
+    "index": 3,
+    "code": "DT_DOC_INI",
+    "desc": "Data de Emiss\u00e3o Inicial dos Documentos",
+    "spec_type": "N",
+    "length": "008*",
+    "spec_required": "S",
+    "type": "date",
+    "required": true
+  },
+  {
+    "register": "C180",
+    "index": 4,
+    "code": "DT_DOC_FIN",
+    "desc": "Data de Emiss\u00e3o Final dos Documentos",
+    "spec_type": "N",
+    "length": "008*",
+    "spec_required": "S",
+    "type": "date",
+    "required": true
+  },
+  {
+    "register": "C180",
+    "index": 5,
+    "code": "COD_ITEM",
+    "desc": "C\u00f3digo do Item (campo 02 do Registro 0200)",
+    "spec_type": "C",
+    "length": "060",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "C180",
+    "index": 6,
+    "code": "COD_NCM",
+    "desc": "C\u00f3digo da Nomenclatura Comum do Mercosul",
+    "spec_type": "C",
+    "length": "008*",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "C180",
+    "index": 7,
+    "code": "EX_IPI",
+    "desc": "C\u00f3digo EX, conforme a TIPI",
+    "spec_type": "C",
+    "length": "003",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "C180",
+    "index": 8,
+    "code": "VL_TOT_ITEM",
+    "desc": "Valor Total do Item",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
     "register": "C181",
     "index": 2,
     "code": "CST_PIS",
@@ -2218,6 +3019,39 @@
     "required": false
   },
   {
+    "register": "C181",
+    "index": 9,
+    "code": "ALIQ_PIS_QUANT",
+    "desc": "Al\u00edquota do PIS/PASEP (em reais)",
+    "spec_type": "N",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C181",
+    "index": 10,
+    "code": "VL_PIS",
+    "desc": "Valor do PIS/PASEP",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C181",
+    "index": 11,
+    "code": "COD_CTA",
+    "desc": "C\u00f3digo da conta anal\u00edtica cont\u00e1bil debitada/creditada",
+    "spec_type": "C",
+    "length": "255",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
     "register": "C185",
     "index": 2,
     "code": "CST_COFINS",
@@ -2282,6 +3116,50 @@
     "decimal": "04",
     "spec_required": "N",
     "type": "float",
+    "required": false
+  },
+  {
+    "register": "C185",
+    "index": 8,
+    "code": "QUANT_BC_COFINS",
+    "desc": "Quantidade \u2013 Base de c\u00e1lculo da COFINS",
+    "spec_type": "N",
+    "decimal": "03",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C185",
+    "index": 9,
+    "code": "ALIQ_COFINS_QUANT",
+    "desc": "Al\u00edquota da COFINS (em reais)",
+    "spec_type": "N",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C185",
+    "index": 10,
+    "code": "VL_COFINS",
+    "desc": "Valor da COFINS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C185",
+    "index": 11,
+    "code": "COD_CTA",
+    "desc": "C\u00f3digo da conta anal\u00edtica cont\u00e1bil debitada/creditada",
+    "spec_type": "C",
+    "length": "255",
+    "spec_required": "N",
+    "type": "char",
     "required": false
   },
   {
@@ -2473,6 +3351,39 @@
     "required": false
   },
   {
+    "register": "C191",
+    "index": 10,
+    "code": "ALIQ_PIS_QUANT",
+    "desc": "Al\u00edquota do PIS/PASEP (em reais)",
+    "spec_type": "N",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C191",
+    "index": 11,
+    "code": "VL_PIS",
+    "desc": "Valor do PIS/PASEP",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C191",
+    "index": 12,
+    "code": "COD_CTA",
+    "desc": "C\u00f3digo da conta anal\u00edtica cont\u00e1bil debitada/creditada",
+    "spec_type": "C",
+    "length": "255",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
     "register": "C195",
     "index": 2,
     "code": "CNPJ_CPF_PART",
@@ -2553,7 +3464,8 @@
   {
     "register": "C195",
     "index": 9,
-    "code": "COFINS",
+    "code": "QUANT_BC_COFINS",
+    "desc": "Quantidade \u2013 Base de c\u00e1lculo da COFINS",
     "spec_type": "N",
     "decimal": "03",
     "spec_required": "N",
@@ -2563,7 +3475,7 @@
   {
     "register": "C195",
     "index": 10,
-    "code": "NT",
+    "code": "ALIQ_COFINS_QUANT",
     "desc": "Al\u00edquota da COFINS (em reais)",
     "spec_type": "N",
     "decimal": "04",
@@ -2614,6 +3526,61 @@
     "spec_required": "S",
     "type": "char",
     "required": true
+  },
+  {
+    "register": "C199",
+    "index": 2,
+    "code": "COD_DOC_IMP",
+    "desc": "Documento de importa\u00e7\u00e3o: 0 \u2013 Declara\u00e7\u00e3o de Importa\u00e7\u00e3o; 1 \u2013 Declara\u00e7\u00e3o Simplificada de Importa\u00e7\u00e3o; A partir dos fatos geradores ocorridos em 01/2019: Documento de importa\u00e7\u00e3o: 0 \u2013 Declara\u00e7\u00e3o de Importa\u00e7\u00e3o; 1 \u2013 Declara\u00e7\u00e3o Simplificada de Importa\u00e7\u00e3o; 2 \u2013 Declara\u00e7\u00e3o \u00danica de Importa\u00e7\u00e3o",
+    "spec_type": "C",
+    "length": "001*",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "C199",
+    "index": 3,
+    "code": "NUM_DOC_IMP",
+    "desc": "N\u00famero do documento de Importa\u00e7\u00e3o.",
+    "spec_type": "C",
+    "length": "015",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "C199",
+    "index": 4,
+    "code": "VL_PIS_IMP",
+    "desc": "Valor pago de PIS na importa\u00e7\u00e3o",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C199",
+    "index": 5,
+    "code": "VL_COFINS_IMP",
+    "desc": "Valor pago de COFINS na importa\u00e7\u00e3o",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C199",
+    "index": 6,
+    "code": "NUM_ACDRAW",
+    "desc": "N\u00famero do Ato Concess\u00f3rio do regime Drawback",
+    "spec_type": "C",
+    "length": "020",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
   },
   {
     "register": "C380",
@@ -2757,6 +3724,39 @@
     "decimal": "03",
     "spec_required": "N",
     "type": "float",
+    "required": false
+  },
+  {
+    "register": "C381",
+    "index": 8,
+    "code": "ALIQ_PIS_QUANT",
+    "desc": "Al\u00edquota do PIS/PASEP (em reais)",
+    "spec_type": "N",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C381",
+    "index": 9,
+    "code": "VL_PIS",
+    "desc": "Valor do PIS/PASEP",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "C381",
+    "index": 10,
+    "code": "COD_CTA",
+    "desc": "C\u00f3digo da conta anal\u00edtica cont\u00e1bil debitada/creditada",
+    "spec_type": "C",
+    "length": "255",
+    "spec_required": "N",
+    "type": "char",
     "required": false
   },
   {
@@ -3082,6 +4082,50 @@
     "required": false
   },
   {
+    "register": "C400",
+    "index": 2,
+    "code": "COD_MOD",
+    "desc": "C\u00f3digo do modelo do documento fiscal, conforme a Tabela 4.1.1",
+    "spec_type": "C",
+    "length": "002*",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "C400",
+    "index": 3,
+    "code": "ECF_MOD",
+    "desc": "Modelo do equipamento",
+    "spec_type": "C",
+    "length": "020",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "C400",
+    "index": 4,
+    "code": "ECF_FAB",
+    "desc": "N\u00famero de s\u00e9rie de fabrica\u00e7\u00e3o do ECF",
+    "spec_type": "C",
+    "length": "021",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "C400",
+    "index": 5,
+    "code": "ECF_CX",
+    "desc": "N\u00famero do caixa atribu\u00eddo ao ECF",
+    "spec_type": "N",
+    "length": "003",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
     "register": "C405",
     "index": 2,
     "code": "DT_DOC",
@@ -3201,6 +4245,50 @@
     "decimal": "03",
     "spec_required": "N",
     "type": "float",
+    "required": false
+  },
+  {
+    "register": "C481",
+    "index": 7,
+    "code": "ALIQ_PIS_QUANT",
+    "desc": "Al\u00edquota do PIS/PASEP (em reais)",
+    "spec_type": "N",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C481",
+    "index": 8,
+    "code": "VL_PIS",
+    "desc": "Valor do PIS/PASEP",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C481",
+    "index": 9,
+    "code": "COD_ITEM",
+    "desc": "C\u00f3digo do item (campo 02 do Registro 0200)",
+    "spec_type": "C",
+    "length": "060",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "C481",
+    "index": 10,
+    "code": "COD_CTA",
+    "desc": "C\u00f3digo da conta anal\u00edtica cont\u00e1bil debitada/creditada",
+    "spec_type": "C",
+    "length": "255",
+    "spec_required": "N",
+    "type": "char",
     "required": false
   },
   {
@@ -3348,6 +4436,17 @@
     "required": true
   },
   {
+    "register": "C490",
+    "index": 4,
+    "code": "COD_MOD",
+    "desc": "C\u00f3digo do modelo do documento fiscal, conforme a Tabela 4.1.1",
+    "spec_type": "C",
+    "length": "002*",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
     "register": "C491",
     "index": 2,
     "code": "COD_ITEM",
@@ -3426,6 +4525,39 @@
     "required": false
   },
   {
+    "register": "C491",
+    "index": 9,
+    "code": "ALIQ_PIS_QUANT",
+    "desc": "Al\u00edquota do PIS/PASEP (em reais)",
+    "spec_type": "N",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C491",
+    "index": 10,
+    "code": "VL_PIS",
+    "desc": "Valor do PIS/PASEP",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C491",
+    "index": 11,
+    "code": "COD_CTA",
+    "desc": "C\u00f3digo da conta anal\u00edtica cont\u00e1bil debitada/creditada",
+    "spec_type": "C",
+    "length": "255",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
     "register": "C495",
     "index": 2,
     "code": "COD_ITEM",
@@ -3490,6 +4622,50 @@
     "decimal": "04",
     "spec_required": "N",
     "type": "float",
+    "required": false
+  },
+  {
+    "register": "C495",
+    "index": 8,
+    "code": "QUANT_BC_COFINS",
+    "desc": "Quantidade \u2013 Base de c\u00e1lculo da COFINS",
+    "spec_type": "N",
+    "decimal": "03",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C495",
+    "index": 9,
+    "code": "ALIQ_COFINS_QUANT",
+    "desc": "Al\u00edquota da COFINS (em reais)",
+    "spec_type": "N",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C495",
+    "index": 10,
+    "code": "VL_COFINS",
+    "desc": "Valor da COFINS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C495",
+    "index": 11,
+    "code": "COD_CTA",
+    "desc": "C\u00f3digo da conta anal\u00edtica cont\u00e1bil debitada/creditada",
+    "spec_type": "C",
+    "length": "255",
+    "spec_required": "N",
+    "type": "char",
     "required": false
   },
   {
@@ -3658,6 +4834,17 @@
     "required": false
   },
   {
+    "register": "C500",
+    "index": 15,
+    "code": "CHV_DOCe",
+    "desc": "Chave do Documento Fiscal Eletr\u00f4nico",
+    "spec_type": "N",
+    "length": "044*",
+    "spec_required": "N",
+    "type": "int",
+    "required": false
+  },
+  {
     "register": "C501",
     "index": 2,
     "code": "CST_PIS",
@@ -3764,6 +4951,51 @@
     "desc": "C\u00f3digo da Base de C\u00e1lculo do Cr\u00e9dito, conforme a Tabela indicada no item 4.3.7",
     "spec_type": "C",
     "length": "002*",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "C505",
+    "index": 5,
+    "code": "VL_BC_COFINS",
+    "desc": "Valor da base de c\u00e1lculo da COFINS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "C505",
+    "index": 6,
+    "code": "ALIQ_COFINS",
+    "desc": "Al\u00edquota da COFINS (em percentual)",
+    "spec_type": "N",
+    "length": "008",
+    "decimal": "04",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "C505",
+    "index": 7,
+    "code": "VL_COFINS",
+    "desc": "Valor da COFINS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "C505",
+    "index": 8,
+    "code": "COD_CTA",
+    "desc": "C\u00f3digo da conta anal\u00edtica cont\u00e1bil debitada/creditada",
+    "spec_type": "C",
+    "length": "255",
     "spec_required": "N",
     "type": "char",
     "required": false
@@ -4175,6 +5407,845 @@
     "required": true
   },
   {
+    "register": "C800",
+    "index": 2,
+    "code": "COD_MOD",
+    "desc": "C\u00f3digo do modelo do documento fiscal, conforme a Tabela 4.1.1",
+    "spec_type": "C",
+    "length": "002",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "C800",
+    "index": 3,
+    "code": "COD_SIT",
+    "desc": "C\u00f3digo da situa\u00e7\u00e3o do documento fiscal, conforme a Tabela 4.1.2",
+    "spec_type": "N",
+    "length": "002",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "C800",
+    "index": 4,
+    "code": "NUM_CFE",
+    "desc": "N\u00famero do Cupom Fiscal Eletr\u00f4nico",
+    "spec_type": "N",
+    "length": "009",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "C800",
+    "index": 5,
+    "code": "DT_DOC",
+    "desc": "Data da emiss\u00e3o do Cupom Fiscal Eletr\u00f4nico",
+    "spec_type": "N",
+    "length": "008",
+    "spec_required": "S",
+    "type": "date",
+    "required": true
+  },
+  {
+    "register": "C800",
+    "index": 6,
+    "code": "VL_CFE",
+    "desc": "Valor total do Cupom Fiscal Eletr\u00f4nico",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "C800",
+    "index": 7,
+    "code": "VL_PIS",
+    "desc": "Valor total do PIS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C800",
+    "index": 8,
+    "code": "VL_COFINS",
+    "desc": "Valor total da COFINS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C800",
+    "index": 9,
+    "code": "CNPJ_CPF",
+    "desc": "CNPJ ou CPF do destinat\u00e1rio",
+    "spec_type": "N",
+    "length": "14",
+    "spec_required": "N",
+    "type": "int",
+    "required": false
+  },
+  {
+    "register": "C800",
+    "index": 10,
+    "code": "NR_SAT",
+    "desc": "N\u00famero de S\u00e9rie do equipamento SAT",
+    "spec_type": "N",
+    "length": "009",
+    "spec_required": "N",
+    "type": "int",
+    "required": false
+  },
+  {
+    "register": "C800",
+    "index": 11,
+    "code": "CHV_CFE",
+    "desc": "Chave do Cupom Fiscal Eletr\u00f4nico",
+    "spec_type": "N",
+    "length": "044",
+    "spec_required": "N",
+    "type": "int",
+    "required": false
+  },
+  {
+    "register": "C800",
+    "index": 12,
+    "code": "VL_DESC",
+    "desc": "Valor total do desconto/exclus\u00e3o sobre item",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C800",
+    "index": 13,
+    "code": "VL_MERC",
+    "desc": "Valor total das mercadorias e servi\u00e7os",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C800",
+    "index": 14,
+    "code": "VL_OUT_DA",
+    "desc": "Valor de outras desp. Acess\u00f3rias (acr\u00e9scimo)",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C800",
+    "index": 15,
+    "code": "VL_ICMS",
+    "desc": "Valor do ICMS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C800",
+    "index": 16,
+    "code": "VL_PIS_ST",
+    "desc": "Valor total do PIS retido por subst. trib.",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C800",
+    "index": 17,
+    "code": "VL_COFINS_ST",
+    "desc": "Valor total da COFINS retido por subst. trib.",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C810",
+    "index": 2,
+    "code": "CFOP",
+    "desc": "C\u00f3digo fiscal de opera\u00e7\u00e3o e presta\u00e7\u00e3o",
+    "spec_type": "N",
+    "length": "004",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "C810",
+    "index": 3,
+    "code": "VL_ITEM",
+    "desc": "Valor total dos itens",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "C810",
+    "index": 4,
+    "code": "COD_ITEM",
+    "desc": "C\u00f3digo do item (campo 02 do Registro 0200)",
+    "spec_type": "C",
+    "length": "060",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "C810",
+    "index": 5,
+    "code": "CST_PIS",
+    "desc": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente ao PIS/PASEP",
+    "spec_type": "N",
+    "length": "002*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "C810",
+    "index": 6,
+    "code": "VL_BC_PIS",
+    "desc": "Valor da base de c\u00e1lculo do PIS/PASEP",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C810",
+    "index": 7,
+    "code": "ALIQ_PIS",
+    "desc": "Al\u00edquota do PIS/PASEP (em percentual)",
+    "spec_type": "N",
+    "length": "008",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C810",
+    "index": 8,
+    "code": "VL_PIS",
+    "desc": "Valor do PIS/PASEP",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C810",
+    "index": 9,
+    "code": "CST_COFINS",
+    "desc": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente a COFINS",
+    "spec_type": "N",
+    "length": "002*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "C810",
+    "index": 10,
+    "code": "VL_BC_COFINS",
+    "desc": "Valor da base de c\u00e1lculo da COFINS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C810",
+    "index": 11,
+    "code": "ALIQ_COFINS",
+    "desc": "Al\u00edquota da COFINS (em percentual)",
+    "spec_type": "N",
+    "length": "008",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C810",
+    "index": 12,
+    "code": "VL_COFINS",
+    "desc": "Valor da COFINS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C810",
+    "index": 13,
+    "code": "COD_CTA",
+    "desc": "C\u00f3digo da conta anal\u00edtica cont\u00e1bil debitada/creditada",
+    "spec_type": "C",
+    "length": "255",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "C820",
+    "index": 2,
+    "code": "CFOP",
+    "desc": "C\u00f3digo fiscal de opera\u00e7\u00e3o e presta\u00e7\u00e3o",
+    "spec_type": "N",
+    "length": "004*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "C820",
+    "index": 3,
+    "code": "VL_ITEM",
+    "desc": "Valor total dos itens",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "C820",
+    "index": 4,
+    "code": "COD_ITEM",
+    "desc": "C\u00f3digo do item (campo 02 do Registro 0200)",
+    "spec_type": "C",
+    "length": "060",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "C820",
+    "index": 5,
+    "code": "CST_PIS",
+    "desc": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente ao PIS/PASEP",
+    "spec_type": "N",
+    "length": "002*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "C820",
+    "index": 6,
+    "code": "QUANT_BC_PIS",
+    "desc": "Base de c\u00e1lculo em quantidade - PIS/PASEP",
+    "spec_type": "N",
+    "decimal": "03",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C820",
+    "index": 7,
+    "code": "ALIQ_PIS_QUANT",
+    "desc": "Al\u00edquota do PIS/PASEP (em reais)",
+    "spec_type": "N",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C820",
+    "index": 8,
+    "code": "VL_PIS",
+    "desc": "Valor do PIS/PASEP",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C820",
+    "index": 9,
+    "code": "CST_COFINS",
+    "desc": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente a COFINS",
+    "spec_type": "N",
+    "length": "002*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "C820",
+    "index": 10,
+    "code": "QUANT_BC_COFINS",
+    "desc": "Base de c\u00e1lculo em quantidade \u2013 COFINS",
+    "spec_type": "N",
+    "decimal": "03",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C820",
+    "index": 11,
+    "code": "ALIQ_COFINS_QUANT",
+    "desc": "Al\u00edquota da COFINS (em reais)",
+    "spec_type": "N",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C820",
+    "index": 12,
+    "code": "VL_COFINS",
+    "desc": "Valor da COFINS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C820",
+    "index": 13,
+    "code": "COD_CTA",
+    "desc": "C\u00f3digo da conta anal\u00edtica cont\u00e1bil debitada/creditada",
+    "spec_type": "C",
+    "length": "255",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "C830",
+    "index": 2,
+    "code": "NUM_PROC",
+    "desc": "Identifica\u00e7\u00e3o do processo ou ato concess\u00f3rio",
+    "spec_type": "C",
+    "length": "020",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "C830",
+    "index": 3,
+    "code": "IND_PROC",
+    "desc": "Indicador da origem do processo: 1 - Justi\u00e7a Federal; 3 \u2013 Secretaria da Receita Federal do Brasil 9 - Outros.",
+    "spec_type": "C",
+    "length": "001*",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "C860",
+    "index": 2,
+    "code": "COD_MOD",
+    "desc": "C\u00f3digo do modelo do documento fiscal, conforme a Tabela 4.1.1",
+    "spec_type": "C",
+    "length": "002",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "C860",
+    "index": 3,
+    "code": "NR_SAT",
+    "desc": "N\u00famero de S\u00e9rie do equipamento SAT",
+    "spec_type": "N",
+    "length": "009",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "C860",
+    "index": 4,
+    "code": "DT_DOC",
+    "desc": "Data de emiss\u00e3o dos documentos fiscais",
+    "spec_type": "N",
+    "length": "008",
+    "spec_required": "N",
+    "type": "date",
+    "required": false
+  },
+  {
+    "register": "C860",
+    "index": 5,
+    "code": "DOC_INI",
+    "desc": "N\u00famero do documento inicial",
+    "spec_type": "N",
+    "length": "009",
+    "spec_required": "N",
+    "type": "int",
+    "required": false
+  },
+  {
+    "register": "C860",
+    "index": 6,
+    "code": "DOC_FIM",
+    "desc": "N\u00famero do documento final",
+    "spec_type": "N",
+    "length": "009",
+    "spec_required": "N",
+    "type": "int",
+    "required": false
+  },
+  {
+    "register": "C870",
+    "index": 2,
+    "code": "COD_ITEM",
+    "desc": "C\u00f3digo do item (campo 02 do Registro 0200)",
+    "spec_type": "C",
+    "length": "060",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "C870",
+    "index": 3,
+    "code": "CFOP",
+    "desc": "C\u00f3digo fiscal de opera\u00e7\u00e3o e presta\u00e7\u00e3o",
+    "spec_type": "N",
+    "length": "004*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "C870",
+    "index": 4,
+    "code": "VL_ITEM",
+    "desc": "Valor total dos itens",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "C870",
+    "index": 5,
+    "code": "VL_DESC",
+    "desc": "Valor da exclus\u00e3o/desconto comercial dos itens",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C870",
+    "index": 6,
+    "code": "CST_PIS",
+    "desc": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente ao PIS/PASEP",
+    "spec_type": "N",
+    "length": "002*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "C870",
+    "index": 7,
+    "code": "VL_BC_PIS",
+    "desc": "Valor da base de c\u00e1lculo do PIS/PASEP",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C870",
+    "index": 8,
+    "code": "ALIQ_PIS",
+    "desc": "Al\u00edquota do PIS/PASEP (em percentual)",
+    "spec_type": "N",
+    "length": "008",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C870",
+    "index": 9,
+    "code": "VL_PIS",
+    "desc": "Valor do PIS/PASEP",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C870",
+    "index": 10,
+    "code": "CST_COFINS",
+    "desc": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente a COFINS",
+    "spec_type": "N",
+    "length": "002*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "C870",
+    "index": 11,
+    "code": "VL_BC_COFINS",
+    "desc": "Valor da base de c\u00e1lculo da COFINS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C870",
+    "index": 12,
+    "code": "ALIQ_COFINS",
+    "desc": "Al\u00edquota da COFINS (em percentual)",
+    "spec_type": "N",
+    "length": "008",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C870",
+    "index": 13,
+    "code": "VL_COFINS",
+    "desc": "Valor da COFINS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C870",
+    "index": 14,
+    "code": "COD_CTA",
+    "desc": "C\u00f3digo da conta anal\u00edtica cont\u00e1bil debitada/creditada",
+    "spec_type": "C",
+    "length": "255",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "C880",
+    "index": 2,
+    "code": "COD_ITEM",
+    "desc": "C\u00f3digo do item (campo 02 do Registro 0200)",
+    "spec_type": "C",
+    "length": "060",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "C880",
+    "index": 3,
+    "code": "CFOP",
+    "desc": "C\u00f3digo fiscal de opera\u00e7\u00e3o e presta\u00e7\u00e3o",
+    "spec_type": "N",
+    "length": "004*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "C880",
+    "index": 4,
+    "code": "VL_ITEM",
+    "desc": "Valor total dos itens",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "C880",
+    "index": 5,
+    "code": "VL_DESC",
+    "desc": "Valor da exclus\u00e3o/desconto comercial dos itens",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C880",
+    "index": 6,
+    "code": "CST_PIS",
+    "desc": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente ao PIS/PASEP",
+    "spec_type": "N",
+    "length": "002*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "C880",
+    "index": 7,
+    "code": "QUANT_BC_PIS",
+    "desc": "Base de c\u00e1lculo em quantidade - PIS/PASEP",
+    "spec_type": "N",
+    "decimal": "03",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C880",
+    "index": 8,
+    "code": "ALIQ_PIS_QUANT",
+    "desc": "Al\u00edquota do PIS/PASEP (em reais)",
+    "spec_type": "N",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C880",
+    "index": 9,
+    "code": "VL_PIS",
+    "desc": "Valor do PIS/PASEP",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C880",
+    "index": 10,
+    "code": "CST_COFINS",
+    "desc": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente a COFINS",
+    "spec_type": "N",
+    "length": "002*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "C880",
+    "index": 11,
+    "code": "QUANT_BC_COFINS",
+    "desc": "Base de c\u00e1lculo em quantidade \u2013 COFINS",
+    "spec_type": "N",
+    "decimal": "03",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C880",
+    "index": 12,
+    "code": "ALIQ_COFINS_QUANT",
+    "desc": "Al\u00edquota da COFINS (em reais)",
+    "spec_type": "N",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C880",
+    "index": 13,
+    "code": "VL_COFINS",
+    "desc": "Valor da COFINS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "C880",
+    "index": 14,
+    "code": "COD_CTA",
+    "desc": "C\u00f3digo da conta anal\u00edtica cont\u00e1bil debitada/creditada",
+    "spec_type": "C",
+    "length": "255",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "C890",
+    "index": 2,
+    "code": "NUM_PROC",
+    "desc": "Identifica\u00e7\u00e3o do processo ou ato concess\u00f3rio",
+    "spec_type": "C",
+    "length": "020",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "C890",
+    "index": 3,
+    "code": "IND_PROC",
+    "desc": "Indicador da origem do processo: 1 - Justi\u00e7a Federal; 3 \u2013 Secretaria da Receita Federal do Brasil 9 - Outros.",
+    "spec_type": "C",
+    "length": "001*",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "C990",
+    "index": 2,
+    "code": "QTD_LIN_C",
+    "desc": "Quantidade total de linhas do Bloco C",
+    "spec_type": "N",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
     "register": "D001",
     "index": 2,
     "code": "IND_MOV",
@@ -4183,6 +6254,17 @@
     "length": "001",
     "spec_required": "S",
     "type": "char",
+    "required": true
+  },
+  {
+    "register": "D010",
+    "index": 2,
+    "code": "CNPJ",
+    "desc": "N\u00famero de inscri\u00e7\u00e3o do estabelecimento no CNPJ.",
+    "spec_type": "N",
+    "length": "014*",
+    "spec_required": "S",
+    "type": "int",
     "required": true
   },
   {
@@ -4304,6 +6386,127 @@
     "length": "008*",
     "spec_required": "N",
     "type": "date",
+    "required": false
+  },
+  {
+    "register": "D100",
+    "index": 13,
+    "code": "TP_CT-e",
+    "desc": "Tipo de Conhecimento de Transporte Eletr\u00f4nico conforme definido no Manual de Integra\u00e7\u00e3o do CT-e",
+    "spec_type": "N",
+    "length": "001*",
+    "spec_required": "N",
+    "type": "int",
+    "required": false
+  },
+  {
+    "register": "D100",
+    "index": 14,
+    "code": "CHV_CTE_REF",
+    "desc": "Chave do CT-e de refer\u00eancia cujos valores foram complementados (op\u00e7\u00e3o \u201c1\u201d do campo anterior) ou cujo d\u00e9bito foi anulado (op\u00e7\u00e3o \u201c2\u201d do campo anterior).",
+    "spec_type": "N",
+    "length": "044*",
+    "spec_required": "N",
+    "type": "int",
+    "required": false
+  },
+  {
+    "register": "D100",
+    "index": 15,
+    "code": "VL_DOC",
+    "desc": "Valor total do documento fiscal",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "D100",
+    "index": 16,
+    "code": "VL_DESC",
+    "desc": "Valor total do desconto",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "D100",
+    "index": 17,
+    "code": "IND_FRT",
+    "desc": "Indicador do tipo do frete: 0- Por conta de terceiros; 1- Por conta do emitente; 2- Por conta do destinat\u00e1rio; 9- Sem cobran\u00e7a de frete.",
+    "spec_type": "C",
+    "length": "001*",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "D100",
+    "index": 18,
+    "code": "VL_SERV",
+    "desc": "Valor total da presta\u00e7\u00e3o de servi\u00e7o",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "D100",
+    "index": 19,
+    "code": "VL_BC_ICMS",
+    "desc": "Valor da base de c\u00e1lculo do ICMS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "D100",
+    "index": 20,
+    "code": "VL_ICMS",
+    "desc": "Valor do ICMS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "D100",
+    "index": 21,
+    "code": "VL_NT",
+    "desc": "Valor n\u00e3o-tributado do ICMS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "D100",
+    "index": 22,
+    "code": "COD_INF",
+    "desc": "C\u00f3digo da informa\u00e7\u00e3o complementar do documento fiscal (campo 02 do Registro 0450)",
+    "spec_type": "C",
+    "length": "006",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "D100",
+    "index": 23,
+    "code": "COD_CTA",
+    "desc": "C\u00f3digo da conta anal\u00edtica cont\u00e1bil debitada/creditada",
+    "spec_type": "C",
+    "length": "255",
+    "spec_required": "N",
+    "type": "char",
     "required": false
   },
   {
@@ -4617,6 +6820,73 @@
     "required": false
   },
   {
+    "register": "D201",
+    "index": 2,
+    "code": "CST_PIS",
+    "desc": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente ao PIS/PASEP",
+    "spec_type": "N",
+    "length": "002*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "D201",
+    "index": 3,
+    "code": "VL_ITEM",
+    "desc": "Valor total dos itens",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "D201",
+    "index": 4,
+    "code": "VL_BC_PIS",
+    "desc": "Valor da base de c\u00e1lculo do PIS/PASEP",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "D201",
+    "index": 5,
+    "code": "ALIQ_PIS",
+    "desc": "Al\u00edquota do PIS/PASEP (em percentual)",
+    "spec_type": "N",
+    "length": "008",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "D201",
+    "index": 6,
+    "code": "VL_PIS",
+    "desc": "Valor do PIS/PASEP",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "D201",
+    "index": 7,
+    "code": "COD_CTA",
+    "desc": "C\u00f3digo da conta anal\u00edtica cont\u00e1bil debitada/creditada",
+    "spec_type": "C",
+    "length": "255",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
     "register": "D205",
     "index": 2,
     "code": "CST_COFINS",
@@ -4734,6 +7004,173 @@
     "length": "003",
     "spec_required": "N",
     "type": "int",
+    "required": false
+  },
+  {
+    "register": "D300",
+    "index": 5,
+    "code": "NUM_DOC_INI",
+    "desc": "N\u00famero do primeiro documento fiscal emitido no per\u00edodo (mesmo modelo, s\u00e9rie e subs\u00e9rie)",
+    "spec_type": "N",
+    "length": "006",
+    "spec_required": "N",
+    "type": "int",
+    "required": false
+  },
+  {
+    "register": "D300",
+    "index": 6,
+    "code": "NUM_DOC_FIN",
+    "desc": "N\u00famero do \u00faltimo documento fiscal emitido no per\u00edodo (mesmo modelo, s\u00e9rie e subs\u00e9rie)",
+    "spec_type": "N",
+    "length": "006",
+    "spec_required": "N",
+    "type": "int",
+    "required": false
+  },
+  {
+    "register": "D300",
+    "index": 7,
+    "code": "CFOP",
+    "desc": "C\u00f3digo Fiscal de Opera\u00e7\u00e3o e Presta\u00e7\u00e3o conforme tabela indicada no item 4.2.2",
+    "spec_type": "N",
+    "length": "004*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "D300",
+    "index": 8,
+    "code": "DT_REF",
+    "desc": "Data do dia de refer\u00eancia do resumo di\u00e1rio",
+    "spec_type": "N",
+    "length": "008*",
+    "spec_required": "S",
+    "type": "date",
+    "required": true
+  },
+  {
+    "register": "D300",
+    "index": 9,
+    "code": "VL_DOC",
+    "desc": "Valor total dos documentos fiscais emitidos",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "D300",
+    "index": 10,
+    "code": "VL_DESC",
+    "desc": "Valor total dos descontos",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "D300",
+    "index": 11,
+    "code": "CST_PIS",
+    "desc": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente ao PIS/PASEP",
+    "spec_type": "N",
+    "length": "002*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "D300",
+    "index": 12,
+    "code": "VL_BC_PIS",
+    "desc": "Valor da base de c\u00e1lculo do PIS/PASEP",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "D300",
+    "index": 13,
+    "code": "ALIQ_PIS",
+    "desc": "Al\u00edquota do PIS/PASEP (em percentual)",
+    "spec_type": "N",
+    "length": "008",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "D300",
+    "index": 14,
+    "code": "VL_PIS",
+    "desc": "Valor do PIS/PASEP",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "D300",
+    "index": 15,
+    "code": "CST_COFINS",
+    "desc": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente a COFINS",
+    "spec_type": "N",
+    "length": "002*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "D300",
+    "index": 16,
+    "code": "VL_BC_COFINS",
+    "desc": "Valor da base de c\u00e1lculo da COFINS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "D300",
+    "index": 17,
+    "code": "ALIQ_COFINS",
+    "desc": "Al\u00edquota da COFINS (em percentual)",
+    "spec_type": "N",
+    "length": "008",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "D300",
+    "index": 18,
+    "code": "VL_COFINS",
+    "desc": "Valor da COFINS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "D300",
+    "index": 19,
+    "code": "COD_CTA",
+    "desc": "C\u00f3digo da conta anal\u00edtica cont\u00e1bil debitada/creditada",
+    "spec_type": "C",
+    "length": "255",
+    "spec_required": "N",
+    "type": "char",
     "required": false
   },
   {
@@ -5401,6 +7838,28 @@
     "required": false
   },
   {
+    "register": "D509",
+    "index": 2,
+    "code": "NUM_PROC",
+    "desc": "Identifica\u00e7\u00e3o do processo ou ato concess\u00f3rio",
+    "spec_type": "C",
+    "length": "020",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "D509",
+    "index": 3,
+    "code": "IND_PROC",
+    "desc": "Indicador da origem do processo: 1 - Justi\u00e7a Federal; 3 \u2013 Secretaria da Receita Federal do Brasil 9 \u2013 Outros.",
+    "spec_type": "C",
+    "length": "001*",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
     "register": "D600",
     "index": 2,
     "code": "COD_MOD",
@@ -5475,6 +7934,127 @@
     "spec_required": "S",
     "type": "date",
     "required": true
+  },
+  {
+    "register": "D600",
+    "index": 9,
+    "code": "DT_DOC_FIN",
+    "desc": "Data Final dos documentos consolidados no per\u00edodo",
+    "spec_type": "N",
+    "length": "008*",
+    "spec_required": "S",
+    "type": "date",
+    "required": true
+  },
+  {
+    "register": "D600",
+    "index": 10,
+    "code": "VL_DOC",
+    "desc": "Valor total acumulado dos documentos fiscais",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "D600",
+    "index": 11,
+    "code": "VL_DESC",
+    "desc": "Valor acumulado dos descontos",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "D600",
+    "index": 12,
+    "code": "VL_SERV",
+    "desc": "Valor acumulado das presta\u00e7\u00f5es de servi\u00e7os tributados pelo ICMS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "D600",
+    "index": 13,
+    "code": "VL_SERV_NT",
+    "desc": "Valor acumulado dos servi\u00e7os n\u00e3o-tributados pelo ICMS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "D600",
+    "index": 14,
+    "code": "VL_TERC",
+    "desc": "Valores cobrados em nome de terceiros",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "D600",
+    "index": 15,
+    "code": "VL_DA",
+    "desc": "Valor acumulado das despesas acess\u00f3rias",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "D600",
+    "index": 16,
+    "code": "VL_BC_ICMS",
+    "desc": "Valor acumulado da base de c\u00e1lculo do ICMS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "D600",
+    "index": 17,
+    "code": "VL_ICMS",
+    "desc": "Valor acumulado do ICMS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "D600",
+    "index": 18,
+    "code": "VL_PIS",
+    "desc": "Valor do PIS/PASEP",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "D600",
+    "index": 19,
+    "code": "VL_COFINS",
+    "desc": "Valor da COFINS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
   },
   {
     "register": "D601",
@@ -5621,6 +8201,40 @@
     "required": false
   },
   {
+    "register": "D605",
+    "index": 7,
+    "code": "ALIQ_COFINS",
+    "desc": "Al\u00edquota da COFINS (em percentual)",
+    "spec_type": "N",
+    "length": "008-",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "D605",
+    "index": 8,
+    "code": "VL_COFINS",
+    "desc": "Valor da COFINS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "D605",
+    "index": 9,
+    "code": "COD_CTA",
+    "desc": "C\u00f3digo da conta cont\u00e1bil debitada/creditada",
+    "spec_type": "C",
+    "length": "255",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
     "register": "D609",
     "index": 2,
     "code": "NUM_PROC",
@@ -5643,6 +8257,16 @@
     "required": true
   },
   {
+    "register": "D990",
+    "index": 2,
+    "code": "QTD_LIN_D",
+    "desc": "Quantidade total de linhas do Bloco D",
+    "spec_type": "N",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
     "register": "F001",
     "index": 2,
     "code": "IND_MOV",
@@ -5651,6 +8275,17 @@
     "length": "001",
     "spec_required": "S",
     "type": "char",
+    "required": true
+  },
+  {
+    "register": "F010",
+    "index": 2,
+    "code": "CNPJ",
+    "desc": "N\u00famero de inscri\u00e7\u00e3o do estabelecimento no CNPJ.",
+    "spec_type": "N",
+    "length": "014*",
+    "spec_required": "S",
+    "type": "int",
     "required": true
   },
   {
@@ -6372,6 +9007,107 @@
     "required": true
   },
   {
+    "register": "F150",
+    "index": 6,
+    "code": "VL_BC_MEN_EST",
+    "desc": "Valor da Base de C\u00e1lculo Mensal do Cr\u00e9dito sobre o Estoque de Abertura (1/12 avos do campo 05)",
+    "spec_type": "N",
+    "decimal": "2",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "F150",
+    "index": 7,
+    "code": "CST_PIS",
+    "desc": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente ao PIS/PASEP, conforme a Tabela indicada no item 4.3.3.",
+    "spec_type": "N",
+    "length": "002*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "F150",
+    "index": 8,
+    "code": "ALIQ_PIS",
+    "desc": "Al\u00edquota do PIS/PASEP (em percentual)",
+    "spec_type": "N",
+    "length": "008",
+    "decimal": "04",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "F150",
+    "index": 9,
+    "code": "VL_CRED_PIS",
+    "desc": "Valor Mensal do Cr\u00e9dito Presumido Apurado para o Per\u00edodo - PIS/PASEP (06 x 08)",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "F150",
+    "index": 10,
+    "code": "CST_COFINS",
+    "desc": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente ao COFINS, conforme a Tabela indicada no item 4.3.4",
+    "spec_type": "N",
+    "length": "002*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "F150",
+    "index": 11,
+    "code": "ALIQ_COFINS",
+    "desc": "Al\u00edquota do COFINS (em percentual)",
+    "spec_type": "N",
+    "length": "008",
+    "decimal": "04",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "F150",
+    "index": 12,
+    "code": "VL_CRED_COFINS",
+    "desc": "Valor Mensal do Cr\u00e9dito Presumido Apurado para o Per\u00edodo - COFINS (06 x 11)",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "F150",
+    "index": 13,
+    "code": "DESC_EST",
+    "desc": "Descri\u00e7\u00e3o do estoque",
+    "spec_type": "C",
+    "length": "100",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "F150",
+    "index": 14,
+    "code": "COD_CTA",
+    "desc": "C\u00f3digo da conta anal\u00edtica cont\u00e1bil debitada/creditada",
+    "spec_type": "C",
+    "length": "255",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
     "register": "F200",
     "index": 2,
     "code": "IND_OPER",
@@ -6406,7 +9142,7 @@
   {
     "register": "F200",
     "index": 5,
-    "code": "OB",
+    "code": "DESC_UNID_IMOB",
     "desc": "Descri\u00e7\u00e3o resumida da unidade imobili\u00e1ria vendida",
     "spec_type": "C",
     "length": "090",
@@ -6446,6 +9182,163 @@
     "spec_required": "S",
     "type": "date",
     "required": true
+  },
+  {
+    "register": "F200",
+    "index": 9,
+    "code": "VL_TOT_VEND",
+    "desc": "Valor total da unidade imobili\u00e1ria vendida atualizado at\u00e9 o per\u00edodo da escritura\u00e7\u00e3o",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "F200",
+    "index": 10,
+    "code": "VL_REC_ACUM",
+    "desc": "Valor recebido acumulado at\u00e9 o m\u00eas anterior ao da escritura\u00e7\u00e3o.",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "F200",
+    "index": 11,
+    "code": "VL_TOT_REC",
+    "desc": "Valor total recebido no m\u00eas da escritura\u00e7\u00e3o",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "F200",
+    "index": 12,
+    "code": "CST_PIS",
+    "desc": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente ao PIS/PASEP, conforme a Tabela indicada no item 4.3.3.",
+    "spec_type": "N",
+    "length": "002*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "F200",
+    "index": 13,
+    "code": "VL_BC_PIS",
+    "desc": "Base de C\u00e1lculo do PIS/PASEP",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "F200",
+    "index": 14,
+    "code": "ALIQ_PIS",
+    "desc": "Al\u00edquota do PIS/PASEP (em percentual)",
+    "spec_type": "N",
+    "length": "008",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "F200",
+    "index": 15,
+    "code": "VL_PIS",
+    "desc": "Valor do PIS/PASEP",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "F200",
+    "index": 16,
+    "code": "CST_COFINS",
+    "desc": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente a COFINS, conforme a Tabela indicada no item 4.3.4.",
+    "spec_type": "N",
+    "length": "002*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "F200",
+    "index": 17,
+    "code": "VL_BC_COFINS",
+    "desc": "Base de C\u00e1lculo da COFINS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "F200",
+    "index": 18,
+    "code": "ALIQ_COFINS",
+    "desc": "Al\u00edquota da COFINS (em percentual)",
+    "spec_type": "N",
+    "length": "008",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "F200",
+    "index": 19,
+    "code": "VL_COFINS",
+    "desc": "Valor da COFINS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "F200",
+    "index": 20,
+    "code": "PERC_REC_RECEB",
+    "desc": "Percentual da receita total recebida at\u00e9 o m\u00eas, da unidade imobili\u00e1ria vendida ((Campo 10 + Campo 11) / Campo 09)",
+    "spec_type": "N",
+    "length": "006",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "F200",
+    "index": 21,
+    "code": "IND_NAT_EMP",
+    "desc": "Indicador da Natureza Espec\u00edfica do Empreendimento: 1 - Cons\u00f3rcio 2 - SCP 3 \u2013 Incorpora\u00e7\u00e3o em Condom\u00ednio 4 - Outras",
+    "spec_type": "N",
+    "length": "001*",
+    "spec_required": "N",
+    "type": "int",
+    "required": false
+  },
+  {
+    "register": "F200",
+    "index": 22,
+    "code": "INF_COMP",
+    "desc": "Informa\u00e7\u00f5es Complementares",
+    "spec_type": "C",
+    "length": "090",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
   },
   {
     "register": "F205",
@@ -6981,6 +9874,150 @@
     "required": true
   },
   {
+    "register": "F510",
+    "index": 4,
+    "code": "VL_DESC_PIS",
+    "desc": "Valor do desconto / exclus\u00e3o",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "F510",
+    "index": 5,
+    "code": "QUANT_BC_PIS",
+    "desc": "Base de c\u00e1lculo em quantidade - PIS/PASEP",
+    "spec_type": "N",
+    "decimal": "03",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "F510",
+    "index": 6,
+    "code": "ALIQ_PIS_QUANT",
+    "desc": "Al\u00edquota do PIS/PASEP (em reais)",
+    "spec_type": "N",
+    "length": "008",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "F510",
+    "index": 7,
+    "code": "VL_PIS",
+    "desc": "Valor do PIS/PASEP",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "F510",
+    "index": 8,
+    "code": "CST_COFINS",
+    "desc": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente a COFINS",
+    "spec_type": "N",
+    "length": "002*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "F510",
+    "index": 9,
+    "code": "VL_DESC_COFINS",
+    "desc": "Valor do desconto / exclus\u00e3o",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "F510",
+    "index": 10,
+    "code": "QUANT_BC_COFINS",
+    "desc": "Base de c\u00e1lculo em quantidade - COFINS",
+    "spec_type": "N",
+    "decimal": "03",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "F510",
+    "index": 11,
+    "code": "ALIQ_COFINS_QUANT",
+    "desc": "Al\u00edquota da COFINS (em reais)",
+    "spec_type": "N",
+    "length": "008",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "F510",
+    "index": 12,
+    "code": "VL_COFINS",
+    "desc": "Valor da COFINS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "F510",
+    "index": 13,
+    "code": "COD_MOD",
+    "desc": "C\u00f3digo do modelo do documento fiscal conforme a Tabela 4.1.1",
+    "spec_type": "C",
+    "length": "002*",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "F510",
+    "index": 14,
+    "code": "CFOP",
+    "desc": "C\u00f3digo fiscal de opera\u00e7\u00e3o e presta\u00e7\u00e3o",
+    "spec_type": "N",
+    "length": "004*",
+    "spec_required": "N",
+    "type": "int",
+    "required": false
+  },
+  {
+    "register": "F510",
+    "index": 15,
+    "code": "COD_CTA",
+    "desc": "C\u00f3digo da conta anal\u00edtica cont\u00e1bil debitada/creditada",
+    "spec_type": "C",
+    "length": "255",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "F510",
+    "index": 16,
+    "code": "INFO_COMPL",
+    "desc": "Informa\u00e7\u00e3o complementar",
+    "spec_type": "C",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
     "register": "F519",
     "index": 2,
     "code": "NUM_PROC",
@@ -7077,6 +10114,38 @@
     "length": "002*",
     "spec_required": "N",
     "type": "int",
+    "required": false
+  },
+  {
+    "register": "F525",
+    "index": 9,
+    "code": "CST_COFINS",
+    "desc": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria da Cofins",
+    "spec_type": "N",
+    "length": "002*",
+    "spec_required": "N",
+    "type": "int",
+    "required": false
+  },
+  {
+    "register": "F525",
+    "index": 10,
+    "code": "INFO_COMPL",
+    "desc": "Informa\u00e7\u00e3o complementar",
+    "spec_type": "C",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "F525",
+    "index": 11,
+    "code": "COD_CTA",
+    "desc": "C\u00f3digo da conta anal\u00edtica cont\u00e1bil representativa da receita recebida",
+    "spec_type": "C",
+    "length": "255",
+    "spec_required": "N",
+    "type": "char",
     "required": false
   },
   {
@@ -7544,6 +10613,28 @@
     "required": true
   },
   {
+    "register": "F600",
+    "index": 10,
+    "code": "VL_RET_COFINS",
+    "desc": "Valor Retido na Fonte \u2013 Parcela Referente a COFINS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "F600",
+    "index": 11,
+    "code": "IND_DEC",
+    "desc": "Indicador da condi\u00e7\u00e3o da pessoa jur\u00eddica declarante: 0 \u2013 Benefici\u00e1ria da Reten\u00e7\u00e3o / Recolhimento 1- Respons\u00e1vel pelo Recolhimento",
+    "spec_type": "N",
+    "length": "001*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
     "register": "F700",
     "index": 2,
     "code": "IND_ORI_DED",
@@ -7575,6 +10666,50 @@
     "spec_required": "S",
     "type": "float",
     "required": true
+  },
+  {
+    "register": "F700",
+    "index": 5,
+    "code": "VL_DED_COFINS",
+    "desc": "Valor a Deduzir \u2013 Cofins",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "F700",
+    "index": 6,
+    "code": "VL_BC_OPER",
+    "desc": "Valor da Base de C\u00e1lculo da Opera\u00e7\u00e3o que ensejou o Valor a Deduzir informado nos Campos 04 e 05",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "F700",
+    "index": 7,
+    "code": "CNPJ",
+    "desc": "CNPJ da Pessoa Jur\u00eddica relacionada \u00e0 Opera\u00e7\u00e3o que ensejou o Valor a Deduzir informado nos Campos 04 e 05.",
+    "spec_type": "N",
+    "length": "014*",
+    "spec_required": "N",
+    "type": "int",
+    "required": false
+  },
+  {
+    "register": "F700",
+    "index": 8,
+    "code": "INF_COMP",
+    "desc": "Informa\u00e7\u00f5es Complementares do Documento/Opera\u00e7\u00e3o que ensejou o Valor a Deduzir informado nos Campos 04 e 05.",
+    "spec_type": "C",
+    "length": "090",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
   },
   {
     "register": "F800",
@@ -7651,6 +10786,28 @@
     "decimal": "02",
     "spec_required": "S",
     "type": "float",
+    "required": true
+  },
+  {
+    "register": "F800",
+    "index": 9,
+    "code": "PER_CRED_CIS",
+    "desc": "Percentual do cr\u00e9dito original transferido, no caso de evento de Cis\u00e3o.",
+    "spec_type": "N",
+    "length": "006",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "F990",
+    "index": 2,
+    "code": "QTD_LIN_F",
+    "desc": "Quantidade total de linhas do Bloco F",
+    "spec_type": "N",
+    "spec_required": "S",
+    "type": "int",
     "required": true
   },
   {
@@ -7851,6 +11008,24 @@
     "type": "char"
   },
   {
+    "register": "I299",
+    "index": 2,
+    "code": "NUM_PROC",
+    "desc": "Identifica\u00e7\u00e3o do processo ou ato concess\u00f3rio",
+    "spec_type": "C",
+    "length": "020",
+    "type": "char"
+  },
+  {
+    "register": "I299",
+    "index": 3,
+    "code": "IND_PROC",
+    "desc": "Indicador da origem do processo: 1 - Justi\u00e7a Federal; 3 \u2013 Secretaria da Receita Federal do Brasil 9 \u2013 Outros.",
+    "spec_type": "C",
+    "length": "001*",
+    "type": "char"
+  },
+  {
     "register": "I300",
     "index": 2,
     "code": "COD_COMP",
@@ -7902,6 +11077,14 @@
     "spec_type": "C",
     "length": "001*",
     "type": "char"
+  },
+  {
+    "register": "I990",
+    "index": 2,
+    "code": "QTD_LIN_I",
+    "desc": "Quantidade total de linhas do Bloco I",
+    "spec_type": "N",
+    "type": "int"
   },
   {
     "register": "M001",
@@ -7960,6 +11143,116 @@
     "required": false
   },
   {
+    "register": "M100",
+    "index": 6,
+    "code": "QUANT_BC_PIS",
+    "desc": "Quantidade \u2013 Base de c\u00e1lculo PIS",
+    "spec_type": "N",
+    "decimal": "03",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "M100",
+    "index": 7,
+    "code": "ALIQ_PIS_QUANT",
+    "desc": "Al\u00edquota do PIS (em reais)",
+    "spec_type": "N",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "M100",
+    "index": 8,
+    "code": "VL_CRED",
+    "desc": "Valor total do cr\u00e9dito apurado no per\u00edodo",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "M100",
+    "index": 9,
+    "code": "VL_AJUS_ACRES",
+    "desc": "Valor total dos ajustes de acr\u00e9scimo",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "M100",
+    "index": 10,
+    "code": "VL_AJUS_REDUC",
+    "desc": "Valor total dos ajustes de redu\u00e7\u00e3o",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "M100",
+    "index": 11,
+    "code": "VL_CRED_DIF",
+    "desc": "Valor total do cr\u00e9dito diferido no per\u00edodo",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "M100",
+    "index": 12,
+    "code": "VL_CRED_DISP",
+    "desc": "Valor Total do Cr\u00e9dito Dispon\u00edvel relativo ao Per\u00edodo (08 + 09 \u2013 10 \u2013 11)",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "M100",
+    "index": 13,
+    "code": "IND_DESC_CRED",
+    "desc": "Indicador de op\u00e7\u00e3o de utiliza\u00e7\u00e3o do cr\u00e9dito dispon\u00edvel no per\u00edodo: 0 \u2013 Utiliza\u00e7\u00e3o do valor total para desconto da contribui\u00e7\u00e3o apurada no per\u00edodo, no Registro M200; 1 \u2013 Utiliza\u00e7\u00e3o de valor parcial para desconto da contribui\u00e7\u00e3o apurada no per\u00edodo, no Registro M200.",
+    "spec_type": "C",
+    "length": "001*",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "M100",
+    "index": 14,
+    "code": "VL_CRED_DESC",
+    "desc": "Valor do Cr\u00e9dito dispon\u00edvel, descontado da contribui\u00e7\u00e3o apurada no pr\u00f3prio per\u00edodo. Se IND_DESC_CRED=0, informar o valor total do Campo 12; Se IND_DESC_CRED=1, informar o valor parcial do Campo 12.",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "M100",
+    "index": 15,
+    "code": "SLD_CRED",
+    "desc": "Saldo de cr\u00e9ditos a utilizar em per\u00edodos futuros (12 \u2013 14)",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
     "register": "M105",
     "index": 2,
     "code": "NAT_BC_CRED",
@@ -7995,6 +11288,105 @@
   {
     "register": "M105",
     "index": 5,
+    "code": "VL_BC_PIS_CUM",
+    "desc": "Parcela do Valor Total da Base de C\u00e1lculo informada no Campo 04, vinculada a receitas com incid\u00eancia cumulativa. Campo de preenchimento espec\u00edfico para a pessoa jur\u00eddica sujeita ao regime cumulativo e n\u00e3o- cumulativo da contribui\u00e7\u00e3o (COD_INC_TRIB = 3 do Registro 0110)",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "M105",
+    "index": 6,
+    "code": "VL_BC_PIS_NC",
+    "desc": "Valor Total da Base de C\u00e1lculo do Cr\u00e9dito, vinculada a receitas com incid\u00eancia n\u00e3o-cumulativa (Campo 04 \u2013 Campo 05).",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "M105",
+    "index": 7,
+    "code": "VL_BC_PIS",
+    "desc": "O Valor da Base de C\u00e1lculo do Cr\u00e9dito, vinculada ao tipo de Cr\u00e9dito escriturado em M100. - Para os CST_PIS = \u201c50\u201d, \u201c51\u201d, \u201c52\u201d, \u201c60\u201d, \u201c61\u201d e \u201c62\u201d: Informar o valor do Campo 06 (VL_BC_PIS_NC); - Para os CST_PIS = \u201c53\u201d, \u201c54\u201d, \u201c55\u201d, \u201c56\u201d, \u201c63\u201d, \u201c64\u201d \u201c65\u201d e \u201c66\u201d (Cr\u00e9dito sobre opera\u00e7\u00f5es vinculadas a mais de um tipo de receita): Informar a parcela do valor do Campo 06 (VL_BC_PIS_NC) vinculada especificamente ao tipo de cr\u00e9dito escriturado em M100. valor deste campo ser\u00e1 transportado para o Campo 04 (VL_BC_PIS) do registro M100.",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "M105",
+    "index": 8,
+    "code": "QUANT_BC_PIS_TOT",
+    "desc": "Quantidade Total da Base de C\u00e1lculo do Cr\u00e9dito apurado em Unidade de Medida de Produto, escriturada nos documentos e opera\u00e7\u00f5es (Blocos \u201cA\u201d, \u201cC\u201d, \u201cD\u201d e \u201cF\u201d), referente ao CST_PIS informado no Campo 03",
+    "spec_type": "N",
+    "decimal": "03",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "M105",
+    "index": 9,
+    "code": "QUANT_BC_PIS",
+    "desc": "O Parcela da base de c\u00e1lculo do cr\u00e9dito em quantidade (campo 08) vinculada ao tipo de cr\u00e9dito escriturado em M100. - Para os CST_PIS = \u201c50\u201d, \u201c51\u201d e \u201c52\u201d: Informar o valor do Campo 08 (QUANT_BC_PIS); - Para os CST_PIS = \u201c53\u201d, \u201c54\u201d, \u201c55\u201d e \u201c56\u201d (cr\u00e9dito vinculado a mais de um tipo de receita): Informar a parcela do valor do Campo 08 (QUANT_BC_PIS) vinculada ao tipo de cr\u00e9dito escriturado em M100. valor deste campo ser\u00e1 transportado para o Campo 06 (QUANT_BC_PIS) do registro M100.",
+    "spec_type": "N",
+    "decimal": "03",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "M105",
+    "index": 10,
+    "code": "DESC_CRED",
+    "desc": "Descri\u00e7\u00e3o do cr\u00e9dito",
+    "spec_type": "C",
+    "length": "060",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "M110",
+    "index": 2,
+    "code": "IND_AJ",
+    "desc": "Indicador do tipo de ajuste: 0- Ajuste de redu\u00e7\u00e3o;",
+    "spec_type": "C",
+    "length": "001*",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "M110",
+    "index": 3,
+    "code": "VL_AJ",
+    "desc": "Valor do ajuste",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "M110",
+    "index": 4,
+    "code": "COD_AJ",
+    "desc": "C\u00f3digo do ajuste, conforme a Tabela indicada no item 4.3.8.",
+    "spec_type": "C",
+    "length": "002*",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "M110",
+    "index": 5,
     "code": "NUM_DOC",
     "desc": "N\u00famero do processo, documento ou ato concess\u00f3rio ao qual o ajuste est\u00e1 vinculado, se houver.",
     "spec_type": "C",
@@ -8003,7 +11395,7 @@
     "required": false
   },
   {
-    "register": "M105",
+    "register": "M110",
     "index": 6,
     "code": "DESCR_AJ",
     "desc": "Descri\u00e7\u00e3o resumida do ajuste.",
@@ -8013,7 +11405,7 @@
     "required": false
   },
   {
-    "register": "M105",
+    "register": "M110",
     "index": 7,
     "code": "DT_REF",
     "desc": "Data de refer\u00eancia do ajuste (ddmmaaaa)",
@@ -8334,8 +11726,19 @@
   {
     "register": "M210",
     "index": 7,
-    "code": "VL_BC_CONT_AJUS",
-    "desc": "Valor da Base de C\u00e1lculo da Contribui\u00e7\u00e3o, ap\u00f3s os ajustes. (Campo 07 = Campo 04 + Campo 05 - Campo 06)",
+    "code": "ALIQ_PIS_QUANT",
+    "desc": "Al\u00edquota do PIS (em reais)",
+    "spec_type": "N",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "M210",
+    "index": 8,
+    "code": "VL_CONT_APUR",
+    "desc": "Valor total da contribui\u00e7\u00e3o social apurada",
     "spec_type": "N",
     "decimal": "02",
     "spec_required": "S",
@@ -8344,37 +11747,91 @@
   },
   {
     "register": "M210",
-    "index": 8,
-    "code": "ALIQ_PIS",
-    "desc": "Al\u00edquota do PIS/PASEP (em percentual)",
-    "spec_type": "N",
-    "length": "008",
-    "decimal": "04",
-    "spec_required": "N",
-    "type": "float",
-    "required": false
-  },
-  {
-    "register": "M210",
     "index": 9,
-    "code": "QUANT_BC_PIS",
-    "desc": "Quantidade \u2013 Base de c\u00e1lculo PIS",
+    "code": "VL_AJUS_ACRES",
+    "desc": "Valor total dos ajustes de acr\u00e9scimo",
     "spec_type": "N",
-    "decimal": "03",
-    "spec_required": "N",
+    "decimal": "02",
+    "spec_required": "S",
     "type": "float",
-    "required": false
+    "required": true
   },
   {
     "register": "M210",
     "index": 10,
-    "code": "ALIQ_PIS_QUANT",
-    "desc": "Al\u00edquota do PIS (em reais)",
+    "code": "VL_AJUS_REDUC",
+    "desc": "Valor total dos ajustes de redu\u00e7\u00e3o",
     "spec_type": "N",
-    "decimal": "04",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "M210",
+    "index": 11,
+    "code": "VL_CONT_DIFER",
+    "desc": "Valor da contribui\u00e7\u00e3o a diferir no per\u00edodo",
+    "spec_type": "N",
+    "decimal": "02",
     "spec_required": "N",
     "type": "float",
     "required": false
+  },
+  {
+    "register": "M210",
+    "index": 12,
+    "code": "VL_CONT_DIFER_ANT",
+    "desc": "Valor da contribui\u00e7\u00e3o diferida em per\u00edodos anteriores",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "M210",
+    "index": 13,
+    "code": "VL_CONT_PER",
+    "desc": "Valor Total da Contribui\u00e7\u00e3o do Per\u00edodo (08 + 09 \u2013 10 \u2013 11+12)",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "M210",
+    "index": 14,
+    "code": "VL_CONT_DIFER",
+    "desc": "Valor da contribui\u00e7\u00e3o a diferir no per\u00edodo",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "M210",
+    "index": 15,
+    "code": "VL_CONT_DIFER_ANT",
+    "desc": "Valor da contribui\u00e7\u00e3o diferida em per\u00edodos anteriores",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "M210",
+    "index": 16,
+    "code": "VL_CONT_PER",
+    "desc": "Valor Total da Contribui\u00e7\u00e3o do Per\u00edodo (11 + 12 \u2013 13 \u2013 14+15)",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
   },
   {
     "register": "M211",
@@ -8699,6 +12156,50 @@
     "spec_required": "S",
     "type": "float",
     "required": true
+  },
+  {
+    "register": "M230",
+    "index": 4,
+    "code": "VL_NAO_RECEB",
+    "desc": "Valor Total n\u00e3o recebido no per\u00edodo",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "M230",
+    "index": 5,
+    "code": "VL_CONT_DIF",
+    "desc": "Valor da Contribui\u00e7\u00e3o diferida no per\u00edodo",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "M230",
+    "index": 6,
+    "code": "VL_CRED_DIF",
+    "desc": "Valor do Cr\u00e9dito diferido no per\u00edodo",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "M230",
+    "index": 7,
+    "code": "COD_CRED",
+    "desc": "C\u00f3digo de Tipo de Cr\u00e9dito diferido no per\u00edodo, conforme a Tabela 4.3.6.",
+    "spec_type": "C",
+    "length": "003*",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
   },
   {
     "register": "M300",
@@ -9163,6 +12664,17 @@
     "required": false
   },
   {
+    "register": "M505",
+    "index": 10,
+    "code": "DESC_CRED",
+    "desc": "Descri\u00e7\u00e3o do cr\u00e9dito",
+    "spec_type": "C",
+    "length": "060",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
     "register": "M510",
     "index": 2,
     "code": "IND_AJ",
@@ -9612,6 +13124,39 @@
     "required": true
   },
   {
+    "register": "M610",
+    "index": 14,
+    "code": "VL_CONT_DIFER",
+    "desc": "Valor da contribui\u00e7\u00e3o a diferir no per\u00edodo",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "M610",
+    "index": 15,
+    "code": "VL_CONT_DIFER_ANT",
+    "desc": "Valor da contribui\u00e7\u00e3o diferida em per\u00edodos anteriores",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "M610",
+    "index": 16,
+    "code": "VL_CONT_PER",
+    "desc": "Valor Total da Contribui\u00e7\u00e3o do Per\u00edodo (11 + 12 \u2013 13 \u2013 14+15)",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
     "register": "M611",
     "index": 2,
     "code": "IND_TIP_COOP",
@@ -9763,6 +13308,70 @@
     "required": false
   },
   {
+    "register": "M620",
+    "index": 2,
+    "code": "IND_AJ",
+    "desc": "Indicador do tipo de ajuste:",
+    "spec_type": "C",
+    "length": "001*",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "M620",
+    "index": 3,
+    "code": "VL_AJ",
+    "desc": "Valor do ajuste",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "M620",
+    "index": 4,
+    "code": "COD_AJ",
+    "desc": "C\u00f3digo do ajuste, conforme a Tabela indicada no item 4.3.8.",
+    "spec_type": "C",
+    "length": "002*",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "M620",
+    "index": 5,
+    "code": "NUM_DOC",
+    "desc": "N\u00famero do processo, documento ou ato concess\u00f3rio ao qual o ajuste est\u00e1 vinculado, se houver.",
+    "spec_type": "C",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "M620",
+    "index": 6,
+    "code": "DESCR_AJ",
+    "desc": "Descri\u00e7\u00e3o resumida do ajuste.",
+    "spec_type": "C",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "M620",
+    "index": 7,
+    "code": "DT_REF",
+    "desc": "Data de refer\u00eancia do ajuste (ddmmaaaa)",
+    "spec_type": "N",
+    "length": "008*",
+    "spec_required": "N",
+    "type": "date",
+    "required": false
+  },
+  {
     "register": "M625",
     "index": 2,
     "code": "DET_VALOR_AJ",
@@ -9870,6 +13479,50 @@
     "spec_required": "S",
     "type": "float",
     "required": true
+  },
+  {
+    "register": "M630",
+    "index": 4,
+    "code": "VL_NAO_RECEB",
+    "desc": "Valor Total n\u00e3o recebido no per\u00edodo",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "M630",
+    "index": 5,
+    "code": "VL_CONT_DIF",
+    "desc": "Valor da Contribui\u00e7\u00e3o diferida no per\u00edodo",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "M630",
+    "index": 6,
+    "code": "VL_CRED_DIF",
+    "desc": "Valor do Cr\u00e9dito diferido no per\u00edodo",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "M630",
+    "index": 7,
+    "code": "COD_CRED",
+    "desc": "C\u00f3digo de Tipo de Cr\u00e9dito diferido no per\u00edodo, conforme a Tabela 4.3.6.",
+    "spec_type": "C",
+    "length": "003*",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
   },
   {
     "register": "M700",
@@ -10046,6 +13699,17 @@
     "required": true
   },
   {
+    "register": "P010",
+    "index": 2,
+    "code": "CNPJ",
+    "desc": "N\u00famero de inscri\u00e7\u00e3o do estabelecimento no CNPJ.",
+    "spec_type": "N",
+    "length": "014*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
     "register": "P100",
     "index": 2,
     "code": "DT_INI",
@@ -10189,6 +13853,27 @@
     "required": false
   },
   {
+    "register": "P110",
+    "index": 4,
+    "code": "DET_VALOR",
+    "desc": "Valor detalhado referente ao campo 02 deste registro",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "P110",
+    "index": 5,
+    "code": "INF_COMPL",
+    "desc": "Informa\u00e7\u00e3o complementar do detalhamento.",
+    "spec_type": "C",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
     "register": "P199",
     "index": 2,
     "code": "NUM_PROC",
@@ -10307,6 +13992,47 @@
     "length": "002*",
     "spec_required": "S",
     "type": "char",
+    "required": true
+  },
+  {
+    "register": "P210",
+    "index": 5,
+    "code": "NUM_DOC",
+    "desc": "N\u00famero do processo, documento ou ato concess\u00f3rio ao qual o ajuste est\u00e1 vinculado, se houver.",
+    "spec_type": "C",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "P210",
+    "index": 6,
+    "code": "DESCR_AJ",
+    "desc": "Descri\u00e7\u00e3o resumida do ajuste.",
+    "spec_type": "C",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "P210",
+    "index": 7,
+    "code": "DT_REF",
+    "desc": "Data de refer\u00eancia do ajuste (ddmmaaaa)",
+    "spec_type": "N",
+    "length": "008*",
+    "spec_required": "N",
+    "type": "date",
+    "required": false
+  },
+  {
+    "register": "P990",
+    "index": 2,
+    "code": "QTD_LIN_P",
+    "desc": "Quantidade total de linhas do Bloco P",
+    "spec_type": "N",
+    "spec_required": "S",
+    "type": "int",
     "required": true
   },
   {
@@ -10598,6 +14324,72 @@
     "required": true
   },
   {
+    "register": "1011",
+    "index": 21,
+    "code": "VL_BC_COFINS_SUSP",
+    "desc": "Base de c\u00e1lculo da COFINS, conforme decis\u00e3o judicial",
+    "spec_type": "N",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "1011",
+    "index": 22,
+    "code": "ALIQ_COFINS_SUSP",
+    "desc": "Al\u00edquota da COFINS, conforme decis\u00e3o judicial",
+    "spec_type": "N",
+    "length": "008",
+    "decimal": "04",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "1011",
+    "index": 23,
+    "code": "VL_COFINS_SUSP",
+    "desc": "Valor da COFINS, conforme decis\u00e3o judicial",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "1011",
+    "index": 24,
+    "code": "COD_CTA",
+    "desc": "C\u00f3digo da conta anal\u00edtica cont\u00e1bil debitada/creditada",
+    "spec_type": "C",
+    "length": "255",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "1011",
+    "index": 25,
+    "code": "COD_CCUS",
+    "desc": "C\u00f3digo do Centro de Custos",
+    "spec_type": "C",
+    "length": "255",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "1011",
+    "index": 26,
+    "code": "DESC_DOC_OPER",
+    "desc": "Descri\u00e7\u00e3o do Documento/Opera\u00e7\u00e3o",
+    "spec_type": "C",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
     "register": "1020",
     "index": 2,
     "code": "NUM_PROC",
@@ -10617,6 +14409,17 @@
     "length": "002*",
     "spec_required": "S",
     "type": "char",
+    "required": true
+  },
+  {
+    "register": "1020",
+    "index": 4,
+    "code": "DT_DEC_ADM",
+    "desc": "Data do Despacho/Decis\u00e3o Administrativa",
+    "spec_type": "N",
+    "length": "008*",
+    "spec_required": "S",
+    "type": "date",
     "required": true
   },
   {
@@ -10662,6 +14465,159 @@
     "spec_required": "S",
     "type": "float",
     "required": true
+  },
+  {
+    "register": "1050",
+    "index": 6,
+    "code": "VL_AJ_CST01",
+    "desc": "Parcela do ajuste a apropriar na base de c\u00e1lculo referente ao CST 01",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "1050",
+    "index": 7,
+    "code": "VL_AJ_CST02",
+    "desc": "Parcela do ajuste a apropriar na base de c\u00e1lculo referente ao CST 02",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "1050",
+    "index": 8,
+    "code": "VL_AJ_CST03",
+    "desc": "Parcela do ajuste a apropriar na base de c\u00e1lculo referente ao CST 03",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "1050",
+    "index": 9,
+    "code": "VL_AJ_CST04",
+    "desc": "Parcela do ajuste a apropriar na base de c\u00e1lculo referente ao CST 04",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "1050",
+    "index": 10,
+    "code": "VL_AJ_CST05",
+    "desc": "Parcela do ajuste a apropriar na base de c\u00e1lculo referente ao CST 05",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "1050",
+    "index": 11,
+    "code": "VL_AJ_CST06",
+    "desc": "Parcela do ajuste a apropriar na base de c\u00e1lculo referente ao CST 06",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "1050",
+    "index": 12,
+    "code": "VL_AJ_CST07",
+    "desc": "Parcela do ajuste a apropriar na base de c\u00e1lculo referente ao CST 07",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "1050",
+    "index": 13,
+    "code": "VL_AJ_CST08",
+    "desc": "Parcela do ajuste a apropriar na base de c\u00e1lculo referente ao CST 08",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "1050",
+    "index": 14,
+    "code": "VL_AJ_CST09",
+    "desc": "Parcela do ajuste a apropriar na base de c\u00e1lculo referente ao CST 09",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "1050",
+    "index": 15,
+    "code": "VL_AJ_CST49",
+    "desc": "Parcela do ajuste a apropriar na base de c\u00e1lculo referente ao CST 49",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "1050",
+    "index": 16,
+    "code": "VL_AJ_CST99",
+    "desc": "Parcela do ajuste a apropriar na base de c\u00e1lculo referente ao CST 99",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "1050",
+    "index": 17,
+    "code": "IND_APROP",
+    "desc": "Indicador de apropria\u00e7\u00e3o do ajuste: 01 \u2013 Referente ao PIS/Pasep e a Cofins 02 \u2013 Referente unicamente ao PIS/Pasep 03 \u2013 Referente unicamente \u00e0 Cofins",
+    "spec_type": "C",
+    "length": "002*",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "1050",
+    "index": 18,
+    "code": "NUM_REC",
+    "desc": "N\u00famero do recibo da escritura\u00e7\u00e3o a que se refere o ajuste",
+    "spec_type": "C",
+    "length": "80",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "1050",
+    "index": 19,
+    "code": "INFO_COMPL",
+    "desc": "Informa\u00e7\u00e3o complementar do registro",
+    "spec_type": "C",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
   },
   {
     "register": "1100",
@@ -11057,6 +15013,28 @@
     "spec_required": "N",
     "type": "char",
     "required": false
+  },
+  {
+    "register": "1101",
+    "index": 21,
+    "code": "PER_ESCRIT",
+    "desc": "M\u00eas/Ano da Escritura\u00e7\u00e3o em que foi registrado o documento/opera\u00e7\u00e3o (Cr\u00e9dito pelo m\u00e9todo da Apropria\u00e7\u00e3o Direta).",
+    "spec_type": "N",
+    "length": "006*",
+    "spec_required": "N",
+    "type": "int",
+    "required": false
+  },
+  {
+    "register": "1101",
+    "index": 22,
+    "code": "CNPJ",
+    "desc": "CNPJ do estabelecimento gerador do cr\u00e9dito extempor\u00e2neo (Campo 04 do Registro 0140)",
+    "spec_type": "N",
+    "length": "014*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
   },
   {
     "register": "1102",
@@ -11487,6 +15465,138 @@
     "required": true
   },
   {
+    "register": "1500",
+    "index": 7,
+    "code": "VL_CRED_EXT_APU",
+    "desc": "Valor de Cr\u00e9dito Extempor\u00e2neo Apurado (Registro 1501), referente a Per\u00edodo Anterior, Informado no Campo 02 \u2013 PER_APU_CRED",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "1500",
+    "index": 8,
+    "code": "VL_TOT_CRED_APU",
+    "desc": "Valor Total do Cr\u00e9dito Apurado (06 + 07)",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "1500",
+    "index": 9,
+    "code": "VL_CRED_DESC_PA_ANT",
+    "desc": "Valor do Cr\u00e9dito utilizado mediante Desconto, em Per\u00edodo(s) Anterior(es)",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "1500",
+    "index": 10,
+    "code": "VL_CRED_PER_PA_ANT",
+    "desc": "Valor do Cr\u00e9dito utilizado mediante Pedido de Ressarcimento, em Per\u00edodo(s) Anterior(es).",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "1500",
+    "index": 11,
+    "code": "VL_CRED_DCOMP_PA_ANT",
+    "desc": "Valor do Cr\u00e9dito utilizado mediante Declara\u00e7\u00e3o de Compensa\u00e7\u00e3o Intermedi\u00e1ria (Cr\u00e9dito de Exporta\u00e7\u00e3o), em Per\u00edodo(s) Anterior(es)",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "1500",
+    "index": 12,
+    "code": "SD_CRED_DISP_EFD",
+    "desc": "Saldo do Cr\u00e9dito Dispon\u00edvel para Utiliza\u00e7\u00e3o neste Per\u00edodo de Escritura\u00e7\u00e3o (08-09-10-11)",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "1500",
+    "index": 13,
+    "code": "VL_CRED_DESC_EFD",
+    "desc": "Valor do Cr\u00e9dito descontado neste per\u00edodo de escritura\u00e7\u00e3o",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "1500",
+    "index": 14,
+    "code": "VL_CRED_PER_EFD",
+    "desc": "Valor do Cr\u00e9dito objeto de Pedido de Ressarcimento (PER) neste per\u00edodo de escritura\u00e7\u00e3o",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "1500",
+    "index": 15,
+    "code": "VL_CRED_DCOMP_EFD",
+    "desc": "Valor do Cr\u00e9dito utilizado mediante Declara\u00e7\u00e3o de Compensa\u00e7\u00e3o Intermedi\u00e1ria neste per\u00edodo de escritura\u00e7\u00e3o",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "1500",
+    "index": 16,
+    "code": "VL_CRED_TRANS",
+    "desc": "Valor do cr\u00e9dito transferido em evento de cis\u00e3o, fus\u00e3o ou incorpora\u00e7\u00e3o",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "1500",
+    "index": 17,
+    "code": "VL_CRED_OUT",
+    "desc": "Valor do cr\u00e9dito utilizado por outras formas",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "1500",
+    "index": 18,
+    "code": "SLD_CRED_FIM",
+    "desc": "Saldo de cr\u00e9ditos a utilizar em per\u00edodo de apura\u00e7\u00e3o futuro (12-13-14-15-16-17).",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
     "register": "1501",
     "index": 2,
     "code": "COD_PART",
@@ -11597,6 +15707,126 @@
     "required": false
   },
   {
+    "register": "1501",
+    "index": 12,
+    "code": "NAT_BC_CRED",
+    "desc": "C\u00f3digo da Base de C\u00e1lculo do Cr\u00e9dito, conforme a Tabela indicada no item 4.3.7.",
+    "spec_type": "C",
+    "length": "002*",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "1501",
+    "index": 13,
+    "code": "IND_ORIG_CRED",
+    "desc": "Indicador da origem do cr\u00e9dito: 0 \u2013 Opera\u00e7\u00e3o no Mercado Interno 1 \u2013 Opera\u00e7\u00e3o de Importa\u00e7\u00e3o",
+    "spec_type": "C",
+    "length": "001*",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "1501",
+    "index": 14,
+    "code": "CST_COFINS",
+    "desc": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente ao COFINS, conforme a Tabela indicada no item 4.3.4.",
+    "spec_type": "N",
+    "length": "002*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "1501",
+    "index": 15,
+    "code": "VL_BC_COFINS",
+    "desc": "Base de C\u00e1lculo do Cr\u00e9dito de COFINS (em valor ou em quantidade)",
+    "spec_type": "N",
+    "decimal": "03",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "1501",
+    "index": 16,
+    "code": "ALIQ_COFINS",
+    "desc": "Al\u00edquota do COFINS (em percentual ou em reais)",
+    "spec_type": "N",
+    "decimal": "04",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "1501",
+    "index": 17,
+    "code": "VL_COFINS",
+    "desc": "Valor do Cr\u00e9dito de COFINS",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "1501",
+    "index": 18,
+    "code": "COD_CTA",
+    "desc": "C\u00f3digo da conta anal\u00edtica cont\u00e1bil debitada/creditada",
+    "spec_type": "C",
+    "length": "255",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "1501",
+    "index": 19,
+    "code": "COD_CCUS",
+    "desc": "C\u00f3digo do Centro de Custos",
+    "spec_type": "C",
+    "length": "255",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "1501",
+    "index": 20,
+    "code": "DESC_COMPL",
+    "desc": "Descri\u00e7\u00e3o complementar do Documento/Opera\u00e7\u00e3o",
+    "spec_type": "C",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "1501",
+    "index": 21,
+    "code": "PER_ESCRIT",
+    "desc": "M\u00eas/Ano da Escritura\u00e7\u00e3o em que foi registrado o documento/opera\u00e7\u00e3o (Cr\u00e9dito pelo m\u00e9todo da Apropria\u00e7\u00e3o Direta).",
+    "spec_type": "N",
+    "length": "006*",
+    "spec_required": "N",
+    "type": "int",
+    "required": false
+  },
+  {
+    "register": "1501",
+    "index": 22,
+    "code": "CNPJ",
+    "desc": "CNPJ do estabelecimento gerador do cr\u00e9dito extempor\u00e2neo (Campo 04 do Registro 0140)",
+    "spec_type": "N",
+    "length": "014*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
     "register": "1502",
     "index": 2,
     "code": "VL_CRED_COFINS_TRIB_MI",
@@ -11621,7 +15851,7 @@
   {
     "register": "1502",
     "index": 4,
-    "code": "EXP",
+    "code": "VL_CRED_COFINS_EXP",
     "desc": "Parcela do Cr\u00e9dito de COFINS, vinculada a Receita de Exporta\u00e7\u00e3o",
     "spec_type": "N",
     "decimal": "02",
@@ -11948,6 +16178,28 @@
     "required": true
   },
   {
+    "register": "1700",
+    "index": 7,
+    "code": "VL_RET_DCOMP",
+    "desc": "Valor da Reten\u00e7\u00e3o utilizada mediante Declara\u00e7\u00e3o de Compensa\u00e7\u00e3o.",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "1700",
+    "index": 8,
+    "code": "SLD_RET",
+    "desc": "Saldo de Reten\u00e7\u00e3o a utilizar em per\u00edodos de apura\u00e7\u00e3o futuros (04 - 05 - 06 - 07).",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
     "register": "1800",
     "index": 2,
     "code": "INC_IMOB",
@@ -11961,13 +16213,80 @@
   {
     "register": "1800",
     "index": 3,
-    "code": "ET",
+    "code": "REC_RECEB_RET",
     "desc": "Receitas recebidas pela incorporadora na venda das unidades imobili\u00e1rias que comp\u00f5em a incorpora\u00e7\u00e3o.",
     "spec_type": "N",
     "decimal": "02",
     "spec_required": "S",
     "type": "float",
     "required": true
+  },
+  {
+    "register": "1800",
+    "index": 4,
+    "code": "REC_FIN_RET",
+    "desc": "Receitas Financeiras e Varia\u00e7\u00f5es Monet\u00e1rias decorrentes das vendas submetidas ao RET.",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "N",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "1800",
+    "index": 5,
+    "code": "BC_RET",
+    "desc": "Base de C\u00e1lculo do Recolhimento Unificado",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "1800",
+    "index": 6,
+    "code": "ALIQ_RET",
+    "desc": "Al\u00edquota do Recolhimento Unificado.",
+    "spec_type": "N",
+    "length": "006",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "1800",
+    "index": 7,
+    "code": "VL_REC_UNI",
+    "desc": "Valor do Recolhimento Unificado.",
+    "spec_type": "N",
+    "decimal": "02",
+    "spec_required": "S",
+    "type": "float",
+    "required": true
+  },
+  {
+    "register": "1800",
+    "index": 8,
+    "code": "DT_REC_UNI",
+    "desc": "Data do recolhimento unificado",
+    "spec_type": "N",
+    "length": "008*",
+    "spec_required": "N",
+    "type": "date",
+    "required": false
+  },
+  {
+    "register": "1800",
+    "index": 9,
+    "code": "COD_REC",
+    "desc": "C\u00f3digo da Receita",
+    "spec_type": "C",
+    "length": "004",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
   },
   {
     "register": "1809",
@@ -12058,12 +16377,127 @@
     "required": true
   },
   {
+    "register": "1900",
+    "index": 8,
+    "code": "QUANT_DOC",
+    "desc": "Quantidade total de documentos emitidos no per\u00edodo",
+    "spec_type": "N",
+    "spec_required": "N",
+    "type": "int",
+    "required": false
+  },
+  {
+    "register": "1900",
+    "index": 9,
+    "code": "CST_PIS",
+    "desc": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria do PIS/Pasep",
+    "spec_type": "N",
+    "length": "002*",
+    "spec_required": "N",
+    "type": "int",
+    "required": false
+  },
+  {
+    "register": "1900",
+    "index": 10,
+    "code": "CST_COFINS",
+    "desc": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria da Cofins",
+    "spec_type": "N",
+    "length": "002*",
+    "spec_required": "N",
+    "type": "int",
+    "required": false
+  },
+  {
+    "register": "1900",
+    "index": 11,
+    "code": "CFOP",
+    "desc": "C\u00f3digo fiscal de opera\u00e7\u00e3o e presta\u00e7\u00e3o",
+    "spec_type": "N",
+    "length": "004*",
+    "spec_required": "N",
+    "type": "int",
+    "required": false
+  },
+  {
+    "register": "1900",
+    "index": 12,
+    "code": "INF_COMPL",
+    "desc": "Informa\u00e7\u00f5es complementares",
+    "spec_type": "C",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "1900",
+    "index": 13,
+    "code": "COD_CTA",
+    "desc": "C\u00f3digo da conta anal\u00edtica cont\u00e1bil representativa da receita",
+    "spec_type": "C",
+    "length": "255",
+    "spec_required": "N",
+    "type": "char",
+    "required": false
+  },
+  {
+    "register": "1990",
+    "index": 2,
+    "code": "QTD_LIN_1",
+    "desc": "Quantidade total de linhas do Bloco 1",
+    "spec_type": "N",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
     "register": "9001",
     "index": 2,
     "code": "IND_MOV",
     "desc": "Indicador de movimento: 0- Bloco com dados informados; 1- Bloco sem dados informados.",
     "spec_type": "N",
     "length": "001*",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "9900",
+    "index": 2,
+    "code": "REG_BLC",
+    "desc": "Registro que ser\u00e1 totalizado no pr\u00f3ximo campo.",
+    "spec_type": "C",
+    "length": "004",
+    "spec_required": "S",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "9900",
+    "index": 3,
+    "code": "QTD_REG_BLC",
+    "desc": "Total de registros do tipo informado no campo anterior.",
+    "spec_type": "N",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "9990",
+    "index": 2,
+    "code": "QTD_LIN_9",
+    "desc": "Quantidade total de linhas do Bloco 9.",
+    "spec_type": "N",
+    "spec_required": "S",
+    "type": "int",
+    "required": true
+  },
+  {
+    "register": "9999",
+    "index": 2,
+    "code": "QTD_LIN",
+    "desc": "Quantidade total de linhas do arquivo digital.",
+    "spec_type": "N",
     "spec_required": "S",
     "type": "int",
     "required": true

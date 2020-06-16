@@ -3,7 +3,7 @@
 import logging
 
 import click
-from build_csv import extract_fields, extract_registers
+from build_csv import get_fields, get_registers
 from sped.efd.icms_ipi import registros as efd_icms_ipi_registers
 from sped.efd.pis_cofins import registros as efd_pis_cofins_registers
 from sped.escrituracao import Escrituracao
@@ -65,7 +65,7 @@ def _get_python_sped_reg_and_fields(mod):
 
 
 def _compare_registers(mod, pysped_registers):
-    ext_registers = extract_registers(mod)
+    ext_registers = get_registers(mod)
     ext_reg_codes = [reg["code"] for reg in ext_registers]
 
     not_in_pysped = [c for c in ext_reg_codes if c not in pysped_registers]
@@ -79,7 +79,7 @@ def _compare_registers(mod, pysped_registers):
 
 
 def _compare_fields(mod, common_reg, pysped_fields):
-    ext_fields = extract_fields(mod)
+    ext_fields = get_fields(mod)
     not_in_pysped = {}
     not_in_extractor = {}
 

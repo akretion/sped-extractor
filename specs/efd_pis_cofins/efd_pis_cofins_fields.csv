@@ -1502,5 +1502,7 @@
 "1900","13","COD_CTA","char","False","255","","C","N","Código da conta analítica contábil representativa da receita"
 "1990","2","QTD_LIN_1","int","True","","","N","S","Quantidade total de linhas do Bloco 1"
 "9001","2","IND_MOV","int","True","001*","","N","S","Indicador de movimento: 0- Bloco com dados informados; 1- Bloco sem dados informados."
+"9900","2","REG_BLC","char","True","004","","C","S","Registro que será totalizado no próximo campo."
+"9900","3","QTD_REG_BLC","int","True","","","N","S","Total de registros do tipo informado no campo anterior."
 "9990","2","QTD_LIN_9","int","True","","","N","S","Quantidade total de linhas do Bloco 9."
 "9999","2","QTD_LIN","int","True","","","N","S","Quantidade total de linhas do arquivo digital."

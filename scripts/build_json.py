@@ -4,7 +4,7 @@ import json
 import logging
 
 import click
-from build_csv import extract_fields
+from build_csv import get_fields
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
@@ -15,7 +15,7 @@ def _build_json(mod):
     # TODO : Build module's JSON with a real nested structure : Block > Register > Field
     # (with nested Registers following their own level)
     path = "../specs/{}/".format(mod)
-    fields = extract_fields(mod)
+    fields = get_fields(mod)
     with open(path + "{}_fields.json".format(mod), "w") as json_file:
         # Delete actual json_file's datas before writing
         json_file.seek(0)

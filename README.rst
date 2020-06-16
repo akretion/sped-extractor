@@ -178,7 +178,6 @@ Roadmap
 
 - Detalhar a Instalação no README.
 - Criar o arquivo JSON para os registros de cada módulo.
-- Adicionar o atributo interpretado ``required`` aos registros.
 - Work on ``./build_json.py`` in order to render JSON with a real nested structure : *Block > Register > Field* (with nested Registers following their own level, following *python-sped* structure)
 
 Créditos

@@ -320,3 +320,5 @@
 "9900","3","QTD_REG_BLC","int","True","","['REGRA_QTD_REG_BLC']","","","N","","Sim","Total de registros do tipo informado no campo anterior."
 "9990","2","QTD_LIN_9","int","True","","['REGRA_QRD_LIN_BLOCO9']","","","N","","Sim","Quantidade total de linhas do Bloco 9."
 "9999","2","QTD_LIN","int","True","","['REGRA_QTD_LIN_ARQUIVO']","","","N","","Sim","Quantidade total de linhas do arquivo digital."
+"9999","3","REGRA_REGISTRO_OBRIGATORIO","","","","","","","","","","Verifica se o tipo de registro é obrigatório, conforme obrigatoriedade definida em cada registro. Erro"
+"9999","4","REGRA_REGISTRO_NAO_SE_APLICA","","","","","","","","","","Verifica se o tipo de registro se aplica à escrituração, conforme definições do leiaute do arquivo. Erro"

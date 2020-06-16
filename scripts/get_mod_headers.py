@@ -25,7 +25,7 @@ def _get_mod_headers(mod):
             reader = csv.reader(csvfile, delimiter=",", quotechar='"')
             for row in reader:
                 row = clean_row(row)
-                if _is_reg_row(row) and previous_row not in headers:
+                if len(row) > 2 and _is_reg_row(row) and previous_row not in headers:
                     headers.append(previous_row)
                 previous_row = row
     return headers

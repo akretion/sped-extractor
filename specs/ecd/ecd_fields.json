@@ -546,6 +546,18 @@
     "required": false
   },
   {
+    "register": "0150",
+    "index": 13,
+    "code": "SUFRAMA",
+    "desc": "N\u00famero de inscri\u00e7\u00e3o do participante na Suframa.",
+    "spec_type": "C",
+    "length": "009",
+    "spec_required": "N\u00e3o",
+    "rules": ["REGRA_CAMPO_CARACTERE_INVALIDO"],
+    "type": "char",
+    "required": false
+  },
+  {
     "register": "0180",
     "index": 2,
     "code": "COD_REL",
@@ -1878,6 +1890,16 @@
     ],
     "type": "date",
     "required": false
+  },
+  {
+    "register": "I200",
+    "index": 7,
+    "code": "VL_LCTO_MF",
+    "desc": "Valor do lan\u00e7amento em moeda funcional, convertido para reais.",
+    "spec_type": "N",
+    "length": "019",
+    "decimal": "02",
+    "type": "float"
   },
   {
     "register": "I250",
@@ -3781,5 +3803,17 @@
     "rules": ["REGRA_QTD_LIN_ARQUIVO"],
     "type": "int",
     "required": true
+  },
+  {
+    "register": "9999",
+    "index": 3,
+    "code": "REGRA_REGISTRO_OBRIGATORIO",
+    "desc": "Verifica se o tipo de registro \u00e9 obrigat\u00f3rio, conforme obrigatoriedade definida em cada registro. Erro"
+  },
+  {
+    "register": "9999",
+    "index": 4,
+    "code": "REGRA_REGISTRO_NAO_SE_APLICA",
+    "desc": "Verifica se o tipo de registro se aplica \u00e0 escritura\u00e7\u00e3o, conforme defini\u00e7\u00f5es do leiaute do arquivo. Erro"
   }
 ]

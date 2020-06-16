@@ -5829,6 +5829,39 @@
     "values": ["0", "1"]
   },
   {
+    "register": "V010",
+    "index": 2,
+    "code": "NOME_INSTITUICAO",
+    "desc": "Nome da Institui\u00e7\u00e3o",
+    "spec_type": "C",
+    "spec_required": "Sim",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "V010",
+    "index": 3,
+    "code": "PAIS",
+    "desc": "C\u00f3digo do Pa\u00eds da Institui\u00e7\u00e3o",
+    "spec_type": "C",
+    "length": "2",
+    "spec_values": "Conforme tabela EFDFINANCEIRA_PAISES",
+    "spec_required": "Sim",
+    "type": "char",
+    "required": true
+  },
+  {
+    "register": "V010",
+    "index": 4,
+    "code": "TIP_MOEDA",
+    "desc": "Deve ser selecionada a moeda utilizada na Declara\u00e7\u00e3o",
+    "spec_type": "C",
+    "spec_values": "Conforme tabela SPEDECF_CBC_MOEDA",
+    "spec_required": "Sim",
+    "type": "char",
+    "required": true
+  },
+  {
     "register": "V020",
     "index": 2,
     "code": "NOME",
@@ -7998,6 +8031,42 @@
     "required": false
   },
   {
+    "register": "X353",
+    "index": 5,
+    "code": "SALDO_RES_NEG_NAO_UTIL_REAL",
+    "desc": "Saldo do Resultado Negativo N\u00e3o Utilizado em Reais.",
+    "spec_type": "N",
+    "length": "19",
+    "decimal": "2",
+    "spec_required": "N\u00e3o",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "X353",
+    "index": 6,
+    "code": "RES_PROP",
+    "desc": "Resultado (positivo ou negativo) Pr\u00f3prio da Controlada no Per\u00edodo na Moeda do Pa\u00eds de Domic\u00edlio.",
+    "spec_type": "N",
+    "length": "19",
+    "decimal": "2",
+    "spec_required": "N\u00e3o",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "X353",
+    "index": 7,
+    "code": "RES_PROP_REAL",
+    "desc": "Resultado (positivo ou negativo) Pr\u00f3prio da Controlada no Per\u00edodo em Reais.",
+    "spec_type": "N",
+    "length": "19",
+    "decimal": "2",
+    "spec_required": "N\u00e3o",
+    "type": "float",
+    "required": false
+  },
+  {
     "register": "X354",
     "index": 2,
     "code": "RES_NEG",
@@ -8041,6 +8110,78 @@
     "spec_type": "N",
     "length": "19",
     "decimal": "2",
+    "spec_required": "N\u00e3o",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "X355",
+    "index": 3,
+    "code": "REND_PASS_PROP_REAL",
+    "desc": "Renda Passiva Pr\u00f3pria do Ano-Calend\u00e1rio em Reais (R$).",
+    "spec_type": "N",
+    "length": "19",
+    "decimal": "2",
+    "spec_required": "N\u00e3o",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "X355",
+    "index": 4,
+    "code": "REND_TOTAL",
+    "desc": "Renda Total: Renda total conforme defini\u00e7\u00e3o do inciso II do art. 21 da Instru\u00e7\u00e3o Normativa RFB no 1.520/2014, do ano-calend\u00e1rio em moeda do pa\u00eds de domic\u00edlio.",
+    "spec_type": "N",
+    "length": "19",
+    "decimal": "2",
+    "spec_required": "N\u00e3o",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "X355",
+    "index": 5,
+    "code": "REND_TOTAL_REAL",
+    "desc": "Renda Total em Reais: Renda total conforme defini\u00e7\u00e3o do inciso II do art. 21 da Instru\u00e7\u00e3o Normativa RFB no 1.520/2014, do ano-calend\u00e1rio em Reais (R$).",
+    "spec_type": "N",
+    "length": "19",
+    "decimal": "2",
+    "spec_required": "N\u00e3o",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "X355",
+    "index": 6,
+    "code": "REND_ATIV_PROP",
+    "desc": "Renda Ativa Pr\u00f3pria em Moeda do Pa\u00eds de Domic\u00edlio (corresponde ao resultado da subtra\u00e7\u00e3o do X355.REND_TOTAL pelo X355.REND_PASS_PROP).",
+    "spec_type": "N",
+    "length": "19",
+    "decimal": "2",
+    "spec_required": "N\u00e3o",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "X355",
+    "index": 7,
+    "code": "REND_ATIV_PROP_REAL",
+    "desc": "Renda Ativa Pr\u00f3pria em Reais (corresponde ao resultado da subtra\u00e7\u00e3o do X355. REND_TOTAL_REAL pelo X355.REND_PASS_PROP_REAL).",
+    "spec_type": "N",
+    "length": "19",
+    "decimal": "2",
+    "spec_required": "N\u00e3o",
+    "type": "float",
+    "required": false
+  },
+  {
+    "register": "X355",
+    "index": 8,
+    "code": "PERCENTUAL",
+    "desc": "Percentual: Valor do percentual obtido mediante a raz\u00e3o entre o valor do X355. REND_ATIV_PROP e do X355.REND_TOTAL.",
+    "spec_type": "N",
+    "length": "8",
+    "decimal": "4",
     "spec_required": "N\u00e3o",
     "type": "float",
     "required": false
