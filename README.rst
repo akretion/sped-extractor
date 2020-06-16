@@ -40,13 +40,26 @@ EFD_PIS_COFINS_registers.csv_  EFD_PIS_COFINS_accurate_fields.csv_  EFD_PIS_COFI
 Instalação
 ============
 
-*TODO*
+Os scripts precisam da última versão de `camelot`_ para funcionar. Para isso precisa primeiro `instalar as dependências de camelot <https://camelot-py.readthedocs.io/en/master/user/install-deps.html>`_ ::
 
+  $ apt install python3-tk ghostscript
+
+E depois instalar camelot a partir do repositório github ::
+
+  $ git clone https://www.github.com/camelot-dev/camelot
+  $ cd camelot
+  $ pip install ".[cv]"
+
+Uma vez `camelot`_ instalado, é só baixar esse repositório ::
+
+  $ git clone https://github.com/akretion/sped_extractor/
+
+E ir na pasta *scripts/* para lançar os scripts desejados.
 
 Utilização
 ==========
 
-Depois de ter baixado esse repositório, todos os arquivos da pasta *scripts/* podem ser usados como Interface de linha de comando no seu terminal.
+Depois de ter baixado esse repositório, todos os arquivos da pasta *scripts/* podem ser usados como Interface de linha de comando no terminal.
 
 1. 📥 ``./download.sh`` : **Baixe os arquivos pdf** originais contendo as especificações da SPED :
 
@@ -54,15 +67,11 @@ Depois de ter baixado esse repositório, todos os arquivos da pasta *scripts/* p
 
 ::
 
-  PATH_TO/sped_extractor/scripts$ ./download.sh --year=2019
-  downloading ECD pdf Dezembro 2019
+  PATH_TO/sped_extractor/scripts$ ./download.py
+  Downloading ECD pdf from 2020...
+  Downloading ECF pdf from 2020...
   [...]
-  downloading ECF pdf Dezembro 2019
-  [...]
-  downloading EFD Contribuições pdf Dezembro 2019
-  [...]
-  downloading EFD ICMS IPI pdf Outubro 2019
-  [...]
+
 
 2. ⛏️ ``./extract_csv.py`` : Use `camelot`_ para **extrair as tabelas dos pdf** e coloque os arquivos CSV extraidos na pasta */specs/MODULE/raw_camelot_csv/* :
 
@@ -76,10 +85,7 @@ Depois de ter baixado esse repositório, todos os arquivos da pasta *scripts/* p
       extracting pages 0 to 5...
   > ECF - 5 pages
       extracting pages 0 to 5...
-  > EFD_ICMS_IPI - 5 pages
-      extracting pages 0 to 5...
-  > EFD_PIS_COFINS - 5 pages
-      extracting pages 0 to 5...
+  [...]
 
 3. 🏗️ ``./build_csv.py`` : Percorre os CSV da pasta */specs/MODULE/raw_camelot_csv/* e **cria 3 arquivos CSV** por módulo :
 
@@ -90,25 +96,15 @@ Depois de ter baixado esse repositório, todos os arquivos da pasta *scripts/* p
   PATH_TO/sped_extractor/scripts$ ./build_csv.py
 
   Building CSV files for ECD...
-  > ecd_registers.csv
   > ecd_accurate_fields.csv
+  > ecd_registers.csv
   > ecd_fields.csv
 
   Building CSV files for ECF...
-  > ecf_registers.csv
   > ecf_accurate_fields.csv
+  > ecf_registers.csv
   > ecf_fields.csv
-
-  Building CSV files for EFD_ICMS_IPI...
-  > efd_icms_ipi_registers.csv
-  > efd_icms_ipi_accurate_fields.csv
-  > efd_icms_ipi_fields.csv
-
-  Building CSV files for EFD_PIS_COFINS...
-  > efd_pis_cofins_registers.csv
-  > efd_pis_cofins_accurate_fields.csv
-  > efd_pis_cofins_fields.csv
-
+  [...]
 
 
 -------
@@ -123,8 +119,7 @@ Além desses scripts básicos, existe também o ``./build_json.py`` para **criar
   Building JSON files for each modules...
   > ecd_fields.json
   > ecf_fields.json
-  > efd_icms_ipi_fields.json
-  > efd_pis_cofins_fields.json
+  [...]
 
 Configuração
 ============
@@ -176,7 +171,7 @@ Um exemple de comparação com python-sped_ pode ser encontrada `aqui <https://g
 Roadmap
 ========
 
-- Detalhar a Instalação no README.
+- Criar pacote python instalável com pip.
 - Criar o arquivo JSON para os registros de cada módulo.
 - Work on ``./build_json.py`` in order to render JSON with a real nested structure : *Block > Register > Field* (with nested Registers following their own level, following *python-sped* structure)
 

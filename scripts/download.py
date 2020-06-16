@@ -114,7 +114,7 @@ def main(year):
             )
             break
         else:
-            logger.info("Downloading {} pdf from {}...".format(module, year))
+            logger.info("Downloading {} pdf from {}...".format(module.upper(), year))
             _download(module, year)
 
 
