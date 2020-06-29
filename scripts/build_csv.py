@@ -8,7 +8,7 @@ extracted by extract_csv.py :
 2.  `extract_register_fields` extracts a register's fields rows as they appear in the
     raw CSV.
 3.  Using this method and the module's registers list, `build_accurate_fields_csv`
-    creates a CSV file named 'MODULE_accurate_fields.csv' and listing the fields rows
+    creates a CSV file named 'MODULE_accurate_fields.csv' listing the fields rows
     for each module as they appear in the original pdf.
 4.  From these 'accurate CSV files', two methods `get_fields` and `get_registers` are
     defined and return lists of the module's fields and registers made as usable python

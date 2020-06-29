@@ -2,6 +2,7 @@
 
 import logging
 import os
+import csv
 
 import click
 import requests
@@ -11,66 +12,44 @@ logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
 logger.setLevel(logging.INFO)
 
-URL = {
-    2020: {
-        # Leiaute 8 - Novembro de 2019
-        "ecd": "http://sped.rfb.gov.br/arquivo/download/4210",
-        # Leiaute 6 - Dezembro de 2019
-        "ecf": "http://sped.rfb.gov.br/arquivo/download/4272",
-        # Leiaute 14 - Versão 3.0.3 - Outubro de 2019
-        "efd_icms_ipi": "http://sped.rfb.gov.br/arquivo/download/4202",
-        # Versão 1.33 - Dezembro de 2019
-        "efd_pis_cofins": "http://sped.rfb.gov.br/arquivo/download/4263",
-    },
-    2019: {
-        #  Leiaute 7 - Dezembro de 2018
-        "ecd": "http://sped.rfb.gov.br/arquivo/download/2911",
-        # Leiaute 5 - Fevereiro de 2019
-        "ecf": "http://sped.rfb.gov.br/arquivo/download/2908",
-        # Versão 3.0.1 - Janeiro de 2019
-        "efd_icms_ipi": "http://sped.rfb.gov.br/arquivo/download/4222",
-        # Versão 1.31 - Abril de 2019
-        "efd_pis_cofins": "http://sped.rfb.gov.br/estatico/20/6E34811D4F98083196E2A09880F048189788FC/Guia_Pratico_EFD_Contribuicoes_Versao_1_31%20-%2029_04_2019.pdf",
-    },
-    2018: {
-        # Leiaute 6 - Agosto de 2018
-        "ecd": "http://sped.rfb.gov.br/arquivo/download/2417",
-        # Leiaute 4 - Agosto de 2018
-        "ecf": "http://sped.rfb.gov.br/arquivo/download/2422",
-        # Versão 2.0.22 - Novembro de 2017
-        "efd_icms_ipi": "http://sped.rfb.gov.br/arquivo/download/3057",
-        # Versão 1.27 - Julho de 2018
-        "efd_pis_cofins": "http://sped.rfb.gov.br/estatico/43/2F5A22D2A58F51DB2F40AF5501DAC4A45F74AE/Guia_Pratico_EFD_Contribuicoes_Versao_1_27.pdf",
-    },
-    2017: {
-        # Leiaute 5 - Maio de 2017
-        "ecd": "http://sped.rfb.gov.br/arquivo/download/2078",
-        # Leiaute 3 - Maio de 2017
-        "ecf": "http://sped.rfb.gov.br/arquivo/download/2102",
-        # Versão 2.0.20 - Dezembro de 2016
-        "efd_icms_ipi": "http://sped.rfb.gov.br/arquivo/download/3056",
-        # Versão 1.23 - Setembro de 2017
-        "efd_pis_cofins": "http://sped.rfb.gov.br/estatico/1D/5B40578A64FD1B6DE7BC9705D82AC59D4EC0BD/Guia_Pratico_EFD_Contribuicoes_Versao_1_23.pdf",
-    },
-    2016: {
-        # Leiaute 4 - Maio de 2016
-        "ecd": "http://sped.rfb.gov.br/arquivo/download/1640",
-        # Leiaute 2 - Junho de 2016
-        "ecf": "http://sped.rfb.gov.br/arquivo/download/1654",
-        # Versão 2.0.19 - Maio de 2016
-        "efd_icms_ipi": "http://sped.rfb.gov.br/arquivo/download/3055",
-        # Versão 1.21 - Outubro de 2015
-        "efd_pis_cofins": "http://sped.rfb.gov.br/estatico/C3/A5008A6AEC8AA7BF117AFDDCDDB8569D4B5B9D/Guia_Pratico_EFD_Contribuicoes_Versao_1.21-%20De%2015.10.2015.pdf",
-    },
-}
 
-MOST_RECENT_YEAR = max(URL, key=int)
-OLDEST_YEAR = min(URL, key=int)
+def _get_max_min_year():
+    """Return a tuplet with most recent and oldest year version available in
+    '../specs/download_url.csv' """
+    max_year = 2020
+    min_year = 2016
+    with open("../specs/download_url.csv", "r") as csvfile:
+        reader = csv.reader(csvfile, delimiter=",", quotechar='"')
+        header = next(reader)
+        col_year = header.index("year_version")
+        for row in reader:
+            year = int(row[col_year])
+            if year > max_year:
+                max_year = year
+            if year < min_year:
+                min_year = year
+    return (max_year, min_year)
 
 
-def _download(mod, year):
+MOST_RECENT_YEAR = _get_max_min_year()[0]
+OLDEST_YEAR = _get_max_min_year()[1]
+
+
+def _get_url(mod, year_version):
+    """Return the first URL found for a module's year version"""
+    with open("../specs/download_url.csv", "r") as csvfile:
+        reader = csv.reader(csvfile, delimiter=",", quotechar='"')
+        header = next(reader)
+        col_url = header.index("url")
+        col_mod = header.index("module")
+        col_year = header.index("year_version")
+        for row in reader:
+            if row[col_mod] == mod and row[col_year] == str(year_version):
+                return row[col_url]
+
+def _download(mod, year_version):
     pdf = "../specs/{}.pdf".format(mod)
-    url = URL[year].get(mod)
+    url = _get_url(mod, year_version)
     try:
         r = requests.get(url)
     except requests.exceptions.MissingSchema:
@@ -81,13 +60,15 @@ def _download(mod, year):
         )
         pass
     else:
-        if not r or r.headers.get('content-type') != "application/pdf":
+        if not r or r.headers.get("content-type") != "application/pdf":
             logger.warning("  No pdf found at '{}' for {}.".format(url, mod.upper()))
         else:
+            # Remove existing pdf if any
             try:
                 os.remove(pdf)
             except OSError:
                 pass
+            # Create a new one
             with open(pdf, "wb") as f:
                 f.write(r.content)
 
@@ -105,7 +86,7 @@ def _download(mod, year):
 def main(year):
     """Download SPED specifications pdf from http://sped.rfb.gov.br/"""
     for module in ["ecd", "ecf", "efd_icms_ipi", "efd_pis_cofins"]:
-        if not URL.get(year):
+        if year < OLDEST_YEAR or year > MOST_RECENT_YEAR :
             logger.warning(
                 "An integer between {} and {} is required for year's option, not '{}'.\
                 ".format(
