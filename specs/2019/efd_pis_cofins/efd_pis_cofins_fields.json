@@ -1,7 +1,7 @@
 {
   "tipo": "efd_pis_cofins",
-  "versao": "1.33",
-  "data_inicio": "2019-01-01",
+  "versao": "1.31",
+  "data_inicio": "2018-01-01",
   "registros": [
     {
       "codigo": "0000",
@@ -417,7 +417,7 @@
         {
           "indice": 5,
           "nome": "IND_REG_CUM",
-          "descricao": "C\u00f3digo indicador do crit\u00e9rio de escritura\u00e7\u00e3o e apura\u00e7\u00e3o adotado, no caso de incid\u00eancia exclusivamente no regime cumulativo (COD_INC_TRIB = 2), pela pessoa jur\u00eddica submetida ao regime de tributa\u00e7\u00e3o com base no lucro presumido: 1 \u2013 Regime de Caixa \u2013 Escritura\u00e7\u00e3o consolidada (Registro F500); 2 \u2013 Regime de Compet\u00eancia - Escritura\u00e7\u00e3o consolidada (Registro F550); 9 \u2013 Regime de Compet\u00eancia - Escritura\u00e7\u00e3o detalhada, com base nos registros dos Blocos \u201cA\u201d, \u201cC\u201d, \u201cD\u201d e \u201cF\u201d.",
+          "descricao": "C\u00f3digo indicador do crit\u00e9rio de escritura\u00e7\u00e3o e apura\u00e7\u00e3o adotado, no caso de incid\u00eancia exclusivamente no regime cumulativo (COD_INC_TRIB = 2), pela pessoa jur\u00eddica submetida ao regime de tributa\u00e7\u00e3o com base no lucro presumido: 1 \u2013 Regime de Caixa \u2013 Escritura\u00e7\u00e3o consolidada (Registro F500); 2 \u2013 Regime de Compet\u00eancia - Escritura\u00e7\u00e3o consolidada (Registro F550); 9 \u2013 Regime de Compet\u00eancia - Escritura\u00e7\u00e3o detalhada, com base nos registros dos Blocos \u201cA\u201d,",
           "tipo": "N",
           "tamanho": "001 *",
           "decimal": null,
@@ -449,7 +449,7 @@
         {
           "indice": 3,
           "nome": "REC_BRU_NCUM_NT_MI",
-          "descricao": "Receita Bruta N\u00e3o-Cumulativa \u2013 N\u00e3o Tributada no Mercado Interno (Vendas com",
+          "descricao": "Receita Bruta N\u00e3o-Cumulativa \u2013 N\u00e3o Tributada no Mercado Interno (Vendas com suspens\u00e3o, al\u00edquota zero, isen\u00e7\u00e3o e sem incid\u00eancia das contribui\u00e7\u00f5es)",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -503,7 +503,7 @@
         {
           "indice": 2,
           "nome": "MES_REFER",
-          "descricao": "M\u00eas de refer\u00eancia do ano-calend\u00e1rio da escritura\u00e7\u00e3o  sem dados, dispensada da entrega. Campo a ser preenchido no formato \u201cmmaaaa\u201d",
+          "descricao": "M\u00eas de refer\u00eancia do ano-calend\u00e1rio da escritura\u00e7\u00e3o sem dados, dispensada da entrega. Campo a ser preenchido no formato \u201cmmaaaa\u201d",
           "tipo": "C",
           "tamanho": "006*",
           "decimal": null,
@@ -927,7 +927,7 @@
         {
           "indice": 7,
           "nome": "TIPO_ITEM",
-          "descricao": "Tipo do item \u2013 Atividades Industriais, Comerciais e Servi\u00e7os: 00 \u2013 Mercadoria para Revenda; 01 \u2013 Mat\u00e9ria-Prima; 02 \u2013 Embalagem; 03 \u2013 Produto em Processo; 04 \u2013 Produto Acabado; 05 \u2013 Subproduto; 06 \u2013 Produto Intermedi\u00e1rio; 07 \u2013 Material de Uso e Consumo; 08 \u2013 Ativo Imobilizado; 09 \u2013 Servi\u00e7os; 10 \u2013 Outros insumos; 99 \u2013 Outras",
+          "descricao": "Tipo do item \u2013 Atividades Industriais, Comerciais e Servi\u00e7os: 00 \u2013 Mercadoria para Revenda;",
           "tipo": "N",
           "tamanho": "002*",
           "decimal": null,
@@ -1311,170 +1311,6 @@
           "decimal": null,
           "valores": "-",
           "obrigatorio": true,
-          "regras": []
-        }
-      ]
-    },
-    {
-      "codigo": "0900",
-      "nome": "Composi\u00e7\u00e3o das Receitas do Per\u00edodo \u2013 Receita Bruta e Demais Receitas",
-      "regras": [],
-      "nivel": 2,
-      "ocorrencia": "1:1",
-      "campos_chave": [],
-      "campos": [
-        {
-          "indice": 2,
-          "nome": "REC_TOTAL_BLOCO_A",
-          "descricao": "Receita total referente aos registros escriturados no Bloco A",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 3,
-          "nome": "REC_NRB_BLOCO_A",
-          "descricao": "Parcela da receita total escriturada no Bloco A (Campo 02), n\u00e3o classificada como receita bruta",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 4,
-          "nome": "REC_TOTAL_BLOCO_C",
-          "descricao": "Receita total referente aos registros escriturados no Bloco C",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 5,
-          "nome": "REC_NRB_BLOCO_C",
-          "descricao": "Parcela da receita total escriturada no Bloco C (Campo 04), n\u00e3o classificada como receita bruta",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 6,
-          "nome": "REC_TOTAL_BLOCO_D",
-          "descricao": "Receita total referente aos registros escriturados no Bloco D",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 7,
-          "nome": "REC_NRB_BLOCO_D",
-          "descricao": "Parcela da receita total escriturada no Bloco D (Campo 06), n\u00e3o classificada como receita bruta",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 8,
-          "nome": "REC_TOTAL_BLOCO_F",
-          "descricao": "Receita total referente aos registros escriturados no Bloco F",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 9,
-          "nome": "REC_NRB_BLOCO_F",
-          "descricao": "Parcela da receita total escriturada no Bloco F (Campo 08), n\u00e3o classificada como receita bruta",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 10,
-          "nome": "REC_TOTAL_BLOCO_I",
-          "descricao": "Receita total referente aos registros escriturados no Bloco I",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 11,
-          "nome": "REC_NRB_BLOCO_I",
-          "descricao": "Parcela da receita total escriturada no Bloco I (Campo 10) n\u00e3o classificada como receita bruta",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 12,
-          "nome": "REC_TOTAL_BLOCO_1",
-          "descricao": "Receita total referente aos registros escriturados no Bloco 1 (RET)",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 13,
-          "nome": "REC_NRB_BLOCO_1",
-          "descricao": "Parcela da receita total escriturada no Bloco 1 (Campo 12), n\u00e3o classificada como receita bruta",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 14,
-          "nome": "REC_TOTAL_PERIODO",
-          "descricao": "Receita bruta total (Soma dos Campos 02, 04, 06, 08, 10 e 12)",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 15,
-          "nome": "REC_TOTAL_NRB_PER\u00cdODO",
-          "descricao": "Parcela da receita total escriturada (Campo 14), n\u00e3o classificada como receita bruta (Soma dos Campos 03, 05, 07, 09, 11 e 13)",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": false,
           "regras": []
         }
       ]
@@ -2000,7 +1836,7 @@
         {
           "indice": 7,
           "nome": "NAT_BC_CRED",
-          "descricao": "C\u00f3digo da base de c\u00e1lculo do cr\u00e9dito, conforme a Tabela indicada no item 4.3.7, caso seja informado",
+          "descricao": "C\u00f3digo da base de c\u00e1lculo do cr\u00e9dito, conforme a Tabela indicada no item 4.3.7, caso seja informado c\u00f3digo representativo de cr\u00e9dito no Campo 09 (CST_PIS) ou no Campo 13 (CST_COFINS).",
           "tipo": "C",
           "tamanho": "002*",
           "decimal": null,
@@ -2598,7 +2434,7 @@
         {
           "indice": 2,
           "nome": "COD_DOC_IMP",
-          "descricao": "Documento de importa\u00e7\u00e3o: 0 \u2013 Declara\u00e7\u00e3o de Importa\u00e7\u00e3o; 1 \u2013 Declara\u00e7\u00e3o Simplificada de Importa\u00e7\u00e3o;",
+          "descricao": "Documento de importa\u00e7\u00e3o: 0 \u2013 Declara\u00e7\u00e3o de Importa\u00e7\u00e3o; 1 \u2013 Declara\u00e7\u00e3o Simplificada de Importa\u00e7\u00e3o; A partir dos fatos geradores ocorridos em 01/2019: Documento de importa\u00e7\u00e3o: 0 \u2013 Declara\u00e7\u00e3o de Importa\u00e7\u00e3o; 1 \u2013 Declara\u00e7\u00e3o Simplificada de Importa\u00e7\u00e3o; 2 \u2013 Declara\u00e7\u00e3o \u00danica de Importa\u00e7\u00e3o",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -3168,7 +3004,7 @@
         {
           "indice": 11,
           "nome": "CST_COFINS",
-          "descricao": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente a Cofins, conforme a Tabela indicada no item 4.3.4.",
+          "descricao": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente a Cofins, conforme",
           "tipo": "N",
           "tamanho": "002*",
           "decimal": null,
@@ -3834,7 +3670,7 @@
     },
     {
       "codigo": "C195",
-      "nome": "Detalhamento da Consolida\u00e7\u00e3o - Opera\u00e7\u00f5es de Aquisi\u00e7\u00e3o com Direito a Cr\u00e9dito, e Opera\u00e7\u00f5es de Devolu\u00e7\u00e3o de Compras e Vendas \u2013 COFINS",
+      "nome": "Detalhamento da Consolida\u00e7\u00e3o - Opera\u00e7\u00f5es de Aquisi\u00e7\u00e3o com",
       "regras": [],
       "nivel": 4,
       "ocorrencia": "1:N",
@@ -5302,7 +5138,7 @@
     },
     {
       "codigo": "C500",
-      "nome": "Nota Fiscal/Conta de Energia El\u00e9trica (C\u00f3digo 06), Nota Fiscal de Energia El\u00e9trica Eletr\u00f4nica \u2013 NF3e (C\u00f3digo 66), Nota Fiscal/Conta de fornecimento D\u2019\u00e1gua Canalizada (C\u00f3digo 29), Nota Fiscal/Consumo Fornecimento de G\u00e1s (C\u00f3digo 28) e NF-e (C\u00f3digo 55) \u2013 Documentos de Entrada / Aquisi\u00e7\u00e3o com Cr\u00e9dito",
+      "nome": "Nota Fiscal/Conta de Energia El\u00e9trica (C\u00f3digo 06), Nota Fiscal/Conta de fornecimento",
       "regras": [],
       "nivel": 3,
       "ocorrencia": "1:N",
@@ -5447,17 +5283,6 @@
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 15,
-          "nome": "CHV_DOCe",
-          "descricao": "Chave do Documento Fiscal Eletr\u00f4nico",
-          "tipo": "N",
-          "tamanho": "044*",
-          "decimal": null,
           "valores": "-",
           "obrigatorio": false,
           "regras": []
@@ -5660,7 +5485,7 @@
         {
           "indice": 3,
           "nome": "IND_PROC",
-          "descricao": "Indicador da origem do processo: 1 - Justi\u00e7a Federal;",
+          "descricao": "Indicador da origem do processo: 1 - Justi\u00e7a Federal; 3 \u2013 Secretaria da Receita Federal do Brasil 9 \u2013 Outros.",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -6817,7 +6642,7 @@
     },
     {
       "codigo": "C880",
-      "nome": "Detalhamento do Cupom Fiscal Eletr\u00f4nico (C\u00f3digo 59) \u2013 PIS/PASEP",
+      "nome": "Detalhamento do Cupom Fiscal Eletr\u00f4nico (C\u00f3digo 59) \u2013 PIS/PASEP e COFINS Apurado por Unidade de Medida de Produto",
       "regras": [],
       "nivel": 4,
       "ocorrencia": "1:N",
@@ -7326,7 +7151,7 @@
         {
           "indice": 2,
           "nome": "IND_NAT_FRT",
-          "descricao": "Indicador da Natureza do Frete Contratado, referente a: 0 \u2013 Opera\u00e7\u00f5es de vendas, com \u00f4nus suportado pelo estabelecimento vendedor; 1 \u2013 Opera\u00e7\u00f5es de vendas, com \u00f4nus suportado pelo adquirente; 2 \u2013 Opera\u00e7\u00f5es de compras (bens para revenda, mat\u00e9rias- prima e outros produtos, geradores de cr\u00e9dito); 3 \u2013 Opera\u00e7\u00f5es de compras (bens para revenda, mat\u00e9rias- prima e outros produtos, n\u00e3o geradores de cr\u00e9dito); 4 \u2013 Transfer\u00eancia de produtos acabados entre estabelecimentos da pessoa jur\u00eddica; 5 \u2013 Transfer\u00eancia de produtos em elabora\u00e7\u00e3o entre estabelecimentos da pessoa jur\u00eddica 9 \u2013 Outras.",
+          "descricao": "Indicador da Natureza do Frete Contratado, referente a: 0 \u2013 Opera\u00e7\u00f5es de vendas, com \u00f4nus suportado pelo estabelecimento vendedor; 1 \u2013 Opera\u00e7\u00f5es de vendas, com \u00f4nus suportado pelo adquirente; 2 \u2013 Opera\u00e7\u00f5es de compras (bens para revenda, mat\u00e9rias-prima e outros produtos, geradores de cr\u00e9dito); 3 \u2013 Opera\u00e7\u00f5es de compras (bens para revenda,",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -7750,8 +7575,8 @@
         {
           "indice": 2,
           "nome": "CST_COFINS",
-          "descricao": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente a COFINS. N",
-          "tipo": "C",
+          "descricao": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente a COFINS.",
+          "tipo": "N",
           "tamanho": "002*",
           "decimal": null,
           "valores": "-",
@@ -8598,6 +8423,17 @@
           "valores": "-",
           "obrigatorio": false,
           "regras": []
+        },
+        {
+          "indice": 22,
+          "nome": "VL_COFINS",
+          "descricao": "Valor da COFINS",
+          "tipo": "N",
+          "tamanho": null,
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": []
         }
       ]
     },
@@ -9146,7 +8982,7 @@
         {
           "indice": 4,
           "nome": "VL_DESC",
-          "descricao": "Valor acumulado dos descontos/exclus\u00f5es da base de c\u00e1lculo",
+          "descricao": "Valor acumulado dos descontos/exclus\u00f5es da base de",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -9557,7 +9393,7 @@
         {
           "indice": 2,
           "nome": "NAT_BC_CRED",
-          "descricao": "C\u00f3digo da Base de C\u00e1lculo do Cr\u00e9dito sobre Bens Incorporados ao Ativo Imobilizado, conforme a Tabela indicada no item 4.3.7: 09 = Cr\u00e9dito com Base nos Encargos de Deprecia\u00e7\u00e3o; 11 = Cr\u00e9dito com Base nos Encargos de Amortiza\u00e7\u00e3o",
+          "descricao": "C\u00f3digo da Base de C\u00e1lculo do Cr\u00e9dito sobre",
           "tipo": "C",
           "tamanho": "002*",
           "decimal": null,
@@ -10192,7 +10028,7 @@
     },
     {
       "codigo": "F200",
-      "nome": "Opera\u00e7\u00f5es da Atividade Imobili\u00e1ria \u2013 Unidade Imobili\u00e1ria Vendida",
+      "nome": "Opera\u00e7\u00f5es da Atividade",
       "regras": [],
       "nivel": 3,
       "ocorrencia": "1:N",
@@ -10212,7 +10048,7 @@
         {
           "indice": 3,
           "nome": "UNID_IMOB",
-          "descricao": "Indicador do tipo de unidade imobili\u00e1ria Vendida: 01 \u2013 Terreno adquirido para venda;",
+          "descricao": "Indicador do tipo de unidade imobili\u00e1ria Vendida: 01 \u2013 Terreno adquirido para venda; 02 \u2013 Terreno decorrente de loteamento; 03 \u2013 Lote oriundo de desmembramento de terreno; 04 \u2013 Unidade resultante de incorpora\u00e7\u00e3o imobili\u00e1ria; 05 \u2013 Pr\u00e9dio constru\u00eddo/em constru\u00e7\u00e3o para venda; 06 \u2013 Outras.",
           "tipo": "N",
           "tamanho": "002*",
           "decimal": null,
@@ -10530,7 +10366,7 @@
         {
           "indice": 10,
           "nome": "VL_CRED_PIS_DESC_ANT",
-          "descricao": "Parcela do cr\u00e9dito descontada at\u00e9 o per\u00edodo anterior da escritura\u00e7\u00e3o \u2013 PIS/PASEP (proporcional \u00e0 receita recebida at\u00e9 o m\u00eas anterior).",
+          "descricao": "Parcela do cr\u00e9dito descontada at\u00e9 o per\u00edodo anterior da escritura\u00e7\u00e3o \u2013 PIS/PASEP (proporcional \u00e0",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -11805,7 +11641,7 @@
         {
           "indice": 8,
           "nome": "CNPJ",
-          "descricao": "CNPJ referente a:",
+          "descricao": "CNPJ referente a: - Fonte Pagadora Respons\u00e1vel pela Reten\u00e7\u00e3o / Recolhimento (no caso de o registro ser escriturado pela pessoa jur\u00eddica benefici\u00e1ria da reten\u00e7\u00e3o); ou - Pessoa Jur\u00eddica Benefici\u00e1ria da Reten\u00e7\u00e3o / Recolhimento (no caso de o registro ser escriturado pela pessoa jur\u00eddica respons\u00e1vel pela reten\u00e7\u00e3o).",
           "tipo": "N",
           "tamanho": "014*",
           "decimal": null,
@@ -11870,7 +11706,7 @@
         {
           "indice": 3,
           "nome": "IND_NAT_DED",
-          "descricao": "Indicador da Natureza da Dedu\u00e7\u00e3o:",
+          "descricao": "Indicador da Natureza da Dedu\u00e7\u00e3o: 0 \u2013 Dedu\u00e7\u00e3o de Natureza N\u00e3o Cumulativa 1 \u2013 Dedu\u00e7\u00e3o de Natureza Cumulativa",
           "tipo": "N",
           "tamanho": "001*",
           "decimal": null,
@@ -12649,7 +12485,7 @@
         {
           "indice": 14,
           "nome": "VL_CRED_DESC",
-          "descricao": "Valor do Cr\u00e9dito dispon\u00edvel, descontado da contribui\u00e7\u00e3o apurada no pr\u00f3prio per\u00edodo. Se IND_DESC_CRED=0, informar o valor total do Campo 12; Se IND_DESC_CRED=1, informar o valor parcial do Campo 12.",
+          "descricao": "Valor do Cr\u00e9dito dispon\u00edvel, descontado da contribui\u00e7\u00e3o apurada no pr\u00f3prio per\u00edodo. Se IND_DESC_CRED=0, informar o valor total do Campo 12;",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -12758,7 +12594,7 @@
         {
           "indice": 9,
           "nome": "QUANT_BC_PIS",
-          "descricao": "O Parcela da base de c\u00e1lculo do cr\u00e9dito em quantidade (campo 08) vinculada ao tipo de cr\u00e9dito escriturado em M100. - Para os CST_PIS = \u201c50\u201d, \u201c51\u201d e \u201c52\u201d: Informar o valor do Campo 08 (QUANT_BC_PIS); - Para os CST_PIS = \u201c53\u201d, \u201c54\u201d, \u201c55\u201d e \u201c56\u201d (cr\u00e9dito vinculado a mais de um tipo de receita): Informar a parcela do valor do Campo 08 (QUANT_BC_PIS) vinculada ao tipo de cr\u00e9dito escriturado em M100. valor deste campo ser\u00e1 transportado para o Campo 06 (QUANT_BC_PIS) do registro M100.",
+          "descricao": "Parcela da base de c\u00e1lculo do cr\u00e9dito em quantidade (campo 08) vinculada ao tipo de cr\u00e9dito escriturado em M100. - Para os CST_PIS = \u201c50\u201d, \u201c51\u201d e \u201c52\u201d: Informar o valor do Campo 08 (QUANT_BC_PIS); - Para os CST_PIS = \u201c53\u201d, \u201c54\u201d, \u201c55\u201d e \u201c56\u201d (cr\u00e9dito vinculado a mais de um tipo de receita): Informar a parcela do valor do Campo 08",
           "tipo": "N",
           "tamanho": null,
           "decimal": "03",
@@ -12790,7 +12626,7 @@
         {
           "indice": 2,
           "nome": "IND_AJ",
-          "descricao": "Indicador do tipo de ajuste: 0- Ajuste de redu\u00e7\u00e3o;",
+          "descricao": "Indicador do tipo de ajuste: 0- Ajuste de redu\u00e7\u00e3o; 1- Ajuste de acr\u00e9scimo.",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -13954,7 +13790,7 @@
         {
           "indice": 2,
           "nome": "NAT_REC",
-          "descricao": "Natureza da Receita, conforme rela\u00e7\u00e3o constante nas Tabelas de Detalhamento da Natureza da Receita por Situa\u00e7\u00e3o Tribut\u00e1ria abaixo: - Tabela 4.3.10: Produtos Sujeitos \u00e0 Incid\u00eancia Monof\u00e1sica da Contribui\u00e7\u00e3o Social \u2013 Al\u00edquotas Diferenciadas (CST 04 - Revenda); - Tabela 4.3.11: Produtos Sujeitos \u00e0 Incid\u00eancia Monof\u00e1sica da Contribui\u00e7\u00e3o Social \u2013 Al\u00edquotas por Unidade de Medida de Produto (CST 04 - Revenda); - Tabela 4.3.12: Produtos Sujeitos \u00e0 Substitui\u00e7\u00e3o Tribut\u00e1ria da Contribui\u00e7\u00e3o Social (CST 05 - Revenda); - Tabela 4.3.13: Produtos Sujeitos \u00e0 Al\u00edquota Zero da Contribui\u00e7\u00e3o Social (CST 06); - Tabela 4.3.14: Opera\u00e7\u00f5es com Isen\u00e7\u00e3o da Contribui\u00e7\u00e3o Social (CST 07); - Tabela 4.3.15: Opera\u00e7\u00f5es sem Incid\u00eancia da Contribui\u00e7\u00e3o Social (CST 08); - Tabela 4.3.16: Opera\u00e7\u00f5es com Suspens\u00e3o da Contribui\u00e7\u00e3o Social (CST 09).",
+          "descricao": "Natureza da Receita, conforme rela\u00e7\u00e3o constante nas Tabelas de Detalhamento da Natureza da Receita por Situa\u00e7\u00e3o Tribut\u00e1ria abaixo: - Tabela 4.3.10: Produtos Sujeitos \u00e0 Incid\u00eancia Monof\u00e1sica da Contribui\u00e7\u00e3o Social \u2013 Al\u00edquotas Diferenciadas (CST 04 - Revenda); - Tabela 4.3.11: Produtos Sujeitos \u00e0 Incid\u00eancia Monof\u00e1sica da Contribui\u00e7\u00e3o Social \u2013 Al\u00edquotas por Unidade de Medida de Produto (CST 04 - Revenda); - Tabela 4.3.12: Produtos Sujeitos \u00e0 Substitui\u00e7\u00e3o Tribut\u00e1ria da Contribui\u00e7\u00e3o Social (CST 05 - Revenda); - Tabela 4.3.13: Produtos Sujeitos \u00e0 Al\u00edquota Zero da Contribui\u00e7\u00e3o Social (CST 06);",
           "tipo": "C",
           "tamanho": "003*",
           "decimal": null,
@@ -14019,7 +13855,7 @@
         {
           "indice": 3,
           "nome": "IND_CRED_ORI",
-          "descricao": "Indicador de Cr\u00e9dito Oriundo de: 0 \u2013 Opera\u00e7\u00f5es pr\u00f3prias 1 \u2013 Evento de incorpora\u00e7\u00e3o, cis\u00e3o ou fus\u00e3o",
+          "descricao": "Indicador de Cr\u00e9dito Oriundo de: 0 \u2013 Opera\u00e7\u00f5es pr\u00f3prias",
           "tipo": "N",
           "tamanho": "001*",
           "decimal": null,
@@ -14227,7 +14063,7 @@
         {
           "indice": 7,
           "nome": "VL_BC_COFINS",
-          "descricao": "O Valor da Base de C\u00e1lculo do Cr\u00e9dito, vinculada ao tipo de Cr\u00e9dito escriturado em M500. - Para os CST_COFINS = \u201c50\u201d, \u201c51\u201d, \u201c52\u201d, \u201c60\u201d, \u201c61\u201d e \u201c62\u201d: Informar o valor do Campo 06 (VL_BC_COFINS_NC); - Para os CST_COFINS = \u201c53\u201d, \u201c54\u201d, \u201c55\u201d, \u201c56\u201d, \u201c63\u201d, \u201c64\u201d \u201c65\u201d e \u201c66\u201d (Cr\u00e9dito sobre opera\u00e7\u00f5es vinculadas a mais de um tipo de receita): Informar a parcela do valor do Campo 06 (VL_BC_COFINS_NC) vinculada especificamente ao tipo de cr\u00e9dito escriturado em M500. valor deste campo ser\u00e1 transportado para o Campo 04 (VL_BC_COFINS) do registro M500.",
+          "descricao": "Valor da Base de C\u00e1lculo do Cr\u00e9dito, vinculada ao tipo de Cr\u00e9dito escriturado em M500. - Para os CST_COFINS = \u201c50\u201d, \u201c51\u201d, \u201c52\u201d, \u201c60\u201d, \u201c61\u201d e \u201c62\u201d: Informar o valor do Campo 06",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -14249,7 +14085,7 @@
         {
           "indice": 9,
           "nome": "QUANT_BC_COFINS",
-          "descricao": "Parcela da base de c\u00e1lculo do cr\u00e9dito em quantidade (campo 08) vinculada ao tipo de cr\u00e9dito escriturado em M500. - Para os CST_COFINS = \u201c50\u201d, \u201c51\u201d e \u201c52\u201d: Informar o valor do Campo 08 (QUANT_BC_COFINS); - Para os CST_COFINS = \u201c53\u201d, \u201c54\u201d, \u201c55\u201d e \u201c56\u201d (cr\u00e9dito vinculado a mais de um tipo de receita): Informar a parcela do valor do Campo 08 (QUANT_BC_COFINS) vinculada ao tipo de cr\u00e9dito escriturado em M500.",
+          "descricao": "O Parcela da base de c\u00e1lculo do cr\u00e9dito em quantidade (campo 08) vinculada ao tipo de cr\u00e9dito escriturado em M500. - Para os CST_COFINS = \u201c50\u201d, \u201c51\u201d e \u201c52\u201d: Informar o valor do Campo 08 (QUANT_BC_COFINS); - Para os CST_COFINS = \u201c53\u201d, \u201c54\u201d, \u201c55\u201d e \u201c56\u201d (cr\u00e9dito vinculado a mais de um tipo de receita): Informar a parcela do valor do Campo 08 (QUANT_BC_COFINS) vinculada ao tipo de cr\u00e9dito escriturado em M500. valor deste campo ser\u00e1 transportado para o Campo 06 (QUANT_BC_COFINS) do registro M500.",
           "tipo": "N",
           "tamanho": null,
           "decimal": "03",
@@ -14588,7 +14424,7 @@
     },
     {
       "codigo": "M605",
-      "nome": "Contribui\u00e7\u00e3o para a Seguridade Social - COFINS a Recolher \u2013 Detalhamento por C\u00f3digo de Receita (Vis\u00e3o D\u00e9bito DCTF)",
+      "nome": "Contribui\u00e7\u00e3o para a Seguridade Social - COFINS a Recolher \u2013 Detalhamento por",
       "regras": [],
       "nivel": 3,
       "ocorrencia": "1:N",
@@ -14989,7 +14825,7 @@
         {
           "indice": 2,
           "nome": "IND_AJ",
-          "descricao": "Indicador do tipo de ajuste:",
+          "descricao": "Indicador do tipo de ajuste: 0- Ajuste de redu\u00e7\u00e3o; 1- Ajuste de acr\u00e9scimo.",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -15261,7 +15097,7 @@
         {
           "indice": 4,
           "nome": "NAT_CRED_DESC",
-          "descricao": "Natureza do Cr\u00e9dito Diferido, vinculado \u00e0 receita tributada no mercado interno, a descontar: 01 \u2013 Cr\u00e9dito a Al\u00edquota B\u00e1sica; 02 \u2013 Cr\u00e9dito a Al\u00edquota Diferenciada; 03 \u2013 Cr\u00e9dito a Al\u00edquota por Unidade de Produto; 04 \u2013 Cr\u00e9dito Presumido da Agroind\u00fastria.",
+          "descricao": "Natureza do Cr\u00e9dito Diferido, vinculado \u00e0 receita tributada no mercado interno, a descontar: 01 \u2013 Cr\u00e9dito a Al\u00edquota B\u00e1sica; 02 \u2013 Cr\u00e9dito a Al\u00edquota Diferenciada; 03 \u2013 Cr\u00e9dito a Al\u00edquota por Unidade de Produto;",
           "tipo": "C",
           "tamanho": "002",
           "decimal": null,
@@ -15371,7 +15207,7 @@
     },
     {
       "codigo": "M810",
-      "nome": "Detalhamento das Receitas Isentas, N\u00e3o Alcan\u00e7adas pela Incid\u00eancia da Contribui\u00e7\u00e3o,",
+      "nome": "Detalhamento das Receitas Isentas, N\u00e3o Alcan\u00e7adas pela Incid\u00eancia da Contribui\u00e7\u00e3o, Sujeitas \u00e0 Al\u00edquota Zero ou de Vendas com Suspens\u00e3o \u2013 COFINS",
       "regras": [],
       "nivel": 3,
       "ocorrencia": "1:N",
@@ -15380,7 +15216,7 @@
         {
           "indice": 2,
           "nome": "NAT_REC",
-          "descricao": "Natureza da Receita, conforme rela\u00e7\u00e3o constante nas Tabelas de Detalhamento da Natureza da Receita por Situa\u00e7\u00e3o Tribut\u00e1ria abaixo: - Tabela 4.3.10: Produtos Sujeitos \u00e0 Incid\u00eancia Monof\u00e1sica da Contribui\u00e7\u00e3o Social \u2013 Al\u00edquotas Diferenciadas (CST 04 - Revenda); - Tabela 4.3.11: Produtos Sujeitos \u00e0 Incid\u00eancia Monof\u00e1sica da Contribui\u00e7\u00e3o Social \u2013 Al\u00edquotas por Unidade de Medida de Produto (CST 04 - Revenda); - Tabela 4.3.12: Produtos Sujeitos \u00e0 Substitui\u00e7\u00e3o Tribut\u00e1ria da Contribui\u00e7\u00e3o Social (CST 05 - Revenda); - Tabela 4.3.13: Produtos Sujeitos \u00e0 Al\u00edquota Zero da Contribui\u00e7\u00e3o Social (CST 06); - Tabela 4.3.14: Opera\u00e7\u00f5es com Isen\u00e7\u00e3o da Contribui\u00e7\u00e3o Social (CST 07); - Tabela 4.3.15: Opera\u00e7\u00f5es sem Incid\u00eancia da Contribui\u00e7\u00e3o Social (CST 08);",
+          "descricao": "Natureza da Receita, conforme rela\u00e7\u00e3o constante nas Tabelas de Detalhamento da Natureza da Receita por Situa\u00e7\u00e3o Tribut\u00e1ria abaixo: - Tabela 4.3.10: Produtos Sujeitos \u00e0 Incid\u00eancia Monof\u00e1sica da Contribui\u00e7\u00e3o Social \u2013 Al\u00edquotas Diferenciadas (CST 04 - Revenda); - Tabela 4.3.11: Produtos Sujeitos \u00e0 Incid\u00eancia Monof\u00e1sica da Contribui\u00e7\u00e3o Social \u2013 Al\u00edquotas por Unidade de Medida de Produto (CST 04 - Revenda); - Tabela 4.3.12: Produtos Sujeitos \u00e0 Substitui\u00e7\u00e3o Tribut\u00e1ria da Contribui\u00e7\u00e3o Social (CST 05 - Revenda); - Tabela 4.3.13: Produtos Sujeitos \u00e0 Al\u00edquota Zero da Contribui\u00e7\u00e3o Social (CST 06); - Tabela 4.3.14: Opera\u00e7\u00f5es com Isen\u00e7\u00e3o da Contribui\u00e7\u00e3o Social (CST 07); - Tabela 4.3.15: Opera\u00e7\u00f5es sem Incid\u00eancia da Contribui\u00e7\u00e3o Social (CST 08); - Tabela 4.3.16: Opera\u00e7\u00f5es com Suspens\u00e3o da Contribui\u00e7\u00e3o Social (CST 09).",
           "tipo": "C",
           "tamanho": "003*",
           "decimal": null,
@@ -15430,7 +15266,19 @@
       "nivel": 1,
       "ocorrencia": "1:1",
       "campos_chave": [],
-      "campos": []
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "QTD_LIN_M",
+          "descricao": "Quantidade total de linhas do Bloco M",
+          "tipo": "N",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        }
+      ]
     },
     {
       "codigo": "P001",
@@ -15615,8 +15463,8 @@
       "campos": [
         {
           "indice": 2,
-          "nome": "NUM_CAMPO",
-          "descricao": "Informar o n\u00famero do campo do registro \u201cP100\u201d, objeto de detalhamento neste registro.",
+          "nome": "NUM_CAMP",
+          "descricao": "Informar o n\u00famero do campo do registro",
           "tipo": "C",
           "tamanho": "002*",
           "decimal": null,
@@ -15757,7 +15605,7 @@
         {
           "indice": 7,
           "nome": "COD_REC",
-          "descricao": "C\u00f3digo de Receita referente \u00e0 Contribui\u00e7\u00e3o Previdenci\u00e1ria, conforme informado em DCTF",
+          "descricao": "C\u00f3digo de Receita referente \u00e0",
           "tipo": "C",
           "tamanho": "006*",
           "decimal": null,
@@ -15929,7 +15777,7 @@
         {
           "indice": 5,
           "nome": "IND_NAT_ACAO",
-          "descricao": "Indicador da Natureza da A\u00e7\u00e3o Judicial, impetrada na Justi\u00e7a Federal: 01 \u2013 Decis\u00e3o judicial transitada em julgado, a favor da pessoa jur\u00eddica. 02 \u2013 Decis\u00e3o judicial n\u00e3o transitada em julgado, a favor da pessoa jur\u00eddica. 03 \u2013 Decis\u00e3o judicial oriunda de liminar em mandado de seguran\u00e7a. 04 \u2013 Decis\u00e3o judicial oriunda de liminar em medida cautelar. 05 \u2013 Decis\u00e3o judicial oriunda de antecipa\u00e7\u00e3o de tutela. 06 - Decis\u00e3o judicial vinculada a dep\u00f3sito administrativo ou judicial em montante integral.",
+          "descricao": "Indicador da Natureza da A\u00e7\u00e3o Judicial, impetrada na Justi\u00e7a Federal: 01 \u2013 Decis\u00e3o judicial transitada em julgado, a favor da pessoa jur\u00eddica. 02 \u2013 Decis\u00e3o judicial n\u00e3o transitada em julgado, a favor da pessoa jur\u00eddica. 03 \u2013 Decis\u00e3o judicial oriunda de liminar em mandado de seguran\u00e7a. 04 \u2013 Decis\u00e3o judicial oriunda de liminar em medida cautelar. 05 \u2013 Decis\u00e3o judicial oriunda de antecipa\u00e7\u00e3o de tutela. 06 - Decis\u00e3o judicial vinculada a dep\u00f3sito",
           "tipo": "C",
           "tamanho": "002*",
           "decimal": null,
@@ -15954,291 +15802,6 @@
           "descricao": "Data da Senten\u00e7a/Decis\u00e3o Judicial",
           "tipo": "N",
           "tamanho": "008*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        }
-      ]
-    },
-    {
-      "codigo": "1011",
-      "nome": "Detalhamento das Contribui\u00e7\u00f5es com Exigibilidade Suspensa",
-      "regras": [],
-      "nivel": 3,
-      "ocorrencia": "1:N",
-      "campos_chave": [],
-      "campos": [
-        {
-          "indice": 2,
-          "nome": "REG_REF",
-          "descricao": "Registro da escritura\u00e7\u00e3o que ter\u00e1 o detalhamento das contribui\u00e7\u00f5es sociais com exigibilidade suspensa (Blocos A, C, D, F e I, 1800)",
-          "tipo": "C",
-          "tamanho": "004*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 3,
-          "nome": "CHAVE_DOC",
-          "descricao": "Chave do documento eletr\u00f4nico",
-          "tipo": "C",
-          "tamanho": "090",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 4,
-          "nome": "COD_PART",
-          "descricao": "C\u00f3digo do participante (Campo 02 do Registro 0150)",
-          "tipo": "C",
-          "tamanho": "060",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 5,
-          "nome": "COD_ITEM",
-          "descricao": "C\u00f3digo do item (campo 02 do Registro 0200)",
-          "tipo": "C",
-          "tamanho": "060",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 6,
-          "nome": "DT_OPER",
-          "descricao": "Data da Opera\u00e7\u00e3o (ddmmaaaa)",
-          "tipo": "N",
-          "tamanho": "008*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 7,
-          "nome": "VL_OPER",
-          "descricao": "Valor da Opera\u00e7\u00e3o/Item",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 8,
-          "nome": "CST_PIS",
-          "descricao": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria conforme escritura\u00e7\u00e3o, referente ao PIS/PASEP, conforme a Tabela indicada no item 4.3.3.",
-          "tipo": "N",
-          "tamanho": "002*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 9,
-          "nome": "VL_BC_PIS",
-          "descricao": "Base de c\u00e1lculo do PIS/PASEP, conforme escritura\u00e7\u00e3o",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "04",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 10,
-          "nome": "ALIQ_PIS",
-          "descricao": "Al\u00edquota do PIS/PASEP, conforme escritura\u00e7\u00e3o",
-          "tipo": "N",
-          "tamanho": "008",
-          "decimal": "04",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 11,
-          "nome": "VL_PIS",
-          "descricao": "Valor do PIS/PASEP, conforme escritura\u00e7\u00e3o",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 12,
-          "nome": "CST_COFINS",
-          "descricao": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria conforme escritura\u00e7\u00e3o, referente a COFINS, conforme a Tabela indicada no item 4.3.4.",
-          "tipo": "N",
-          "tamanho": "002*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 13,
-          "nome": "VL_BC_COFINS",
-          "descricao": "Base de c\u00e1lculo da COFINS, conforme escritura\u00e7\u00e3o",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "04",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 14,
-          "nome": "ALIQ_COFINS",
-          "descricao": "Al\u00edquota da COFINS, conforme escritura\u00e7\u00e3o",
-          "tipo": "N",
-          "tamanho": "008",
-          "decimal": "04",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 15,
-          "nome": "VL_COFINS",
-          "descricao": "Valor da COFINS, conforme escritura\u00e7\u00e3o",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 16,
-          "nome": "CST_PIS_SUSP",
-          "descricao": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria conforme decis\u00e3o judicial, referente ao PIS/PASEP, conforme a Tabela indicada no item 4.3.3.",
-          "tipo": "N",
-          "tamanho": "002*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 17,
-          "nome": "VL_BC_PIS_SUSP",
-          "descricao": "Base de c\u00e1lculo do PIS/PASEP, conforme decis\u00e3o judicial",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "04",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 18,
-          "nome": "ALIQ_PIS_SUSP",
-          "descricao": "Al\u00edquota do PIS/PASEP, conforme decis\u00e3o judicial",
-          "tipo": "N",
-          "tamanho": "008",
-          "decimal": "04",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 19,
-          "nome": "VL_PIS_SUSP",
-          "descricao": "Valor do PIS/PASEP, conforme decis\u00e3o judicial",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 20,
-          "nome": "CST_COFINS_SUSP",
-          "descricao": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria conforme decis\u00e3o judicial, referente a COFINS, conforme a Tabela indicada no item 4.3.4.",
-          "tipo": "N",
-          "tamanho": "002*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 21,
-          "nome": "VL_BC_COFINS_SUSP",
-          "descricao": "Base de c\u00e1lculo da COFINS, conforme decis\u00e3o judicial",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "04",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 22,
-          "nome": "ALIQ_COFINS_SUSP",
-          "descricao": "Al\u00edquota da COFINS, conforme decis\u00e3o judicial",
-          "tipo": "N",
-          "tamanho": "008",
-          "decimal": "04",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 23,
-          "nome": "VL_COFINS_SUSP",
-          "descricao": "Valor da COFINS, conforme decis\u00e3o judicial",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 24,
-          "nome": "COD_CTA",
-          "descricao": "C\u00f3digo da conta anal\u00edtica cont\u00e1bil debitada/creditada",
-          "tipo": "C",
-          "tamanho": "255",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 25,
-          "nome": "COD_CCUS",
-          "descricao": "C\u00f3digo do Centro de Custos",
-          "tipo": "C",
-          "tamanho": "255",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 26,
-          "nome": "DESC_DOC_OPER",
-          "descricao": "Descri\u00e7\u00e3o do Documento/Opera\u00e7\u00e3o",
-          "tipo": "C",
-          "tamanho": null,
           "decimal": null,
           "valores": "-",
           "obrigatorio": false,
@@ -16311,7 +15874,7 @@
         {
           "indice": 3,
           "nome": "IND_AJ_BC",
-          "descricao": "Indicador da natureza do ajuste da base de c\u00e1lculo, conforme Tabela Externa 4.3.18",
+          "descricao": "Indicador da natureza do ajuste da base de c\u00e1lculo, conforme",
           "tipo": "C",
           "tamanho": "002*",
           "decimal": null,
@@ -16552,7 +16115,7 @@
         {
           "indice": 6,
           "nome": "VL_CRED_APU",
-          "descricao": "Valor total do cr\u00e9dito apurado na Escritura\u00e7\u00e3o Fiscal Digital (Registro M100) ou em demonstrativo DACON (Fichas 06A e 06B) de per\u00edodo anterior.",
+          "descricao": "Valor total do cr\u00e9dito apurado na Escritura\u00e7\u00e3o Fiscal Digital (Registro M100) ou em demonstrativo DACON (Fichas 06A e 06B) de",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -16937,7 +16500,7 @@
     },
     {
       "codigo": "1102",
-      "nome": "Detalhamento do Cr\u00e9dito Extempor\u00e2neo, Vinculado a mais de um Tipo de Receita \u2013",
+      "nome": "Detalhamento do Cr\u00e9dito Extempor\u00e2neo, Vinculado a mais de um Tipo de Receita \u2013 PIS/PASEP (Para per\u00edodos de apura\u00e7\u00e3o at\u00e9 Julho de 2013)",
       "regras": [],
       "nivel": 4,
       "ocorrencia": "1:1",
@@ -17381,7 +16944,7 @@
         {
           "indice": 3,
           "nome": "ORIG_CRED",
-          "descricao": "Indicador da origem do cr\u00e9dito: 01 \u2013 Cr\u00e9dito decorrente de opera\u00e7\u00f5es pr\u00f3prias; 02 \u2013 Cr\u00e9dito transferido por pessoa jur\u00eddica sucedida.",
+          "descricao": "Indicador da origem do cr\u00e9dito: 01 \u2013 Cr\u00e9dito decorrente de opera\u00e7\u00f5es pr\u00f3prias;",
           "tipo": "N",
           "tamanho": "002*",
           "decimal": null,
@@ -17776,7 +17339,7 @@
         {
           "indice": 21,
           "nome": "PER_ESCRIT",
-          "descricao": "M\u00eas/Ano da Escritura\u00e7\u00e3o em que foi registrado o documento/opera\u00e7\u00e3o (Cr\u00e9dito pelo m\u00e9todo da Apropria\u00e7\u00e3o Direta).",
+          "descricao": "M\u00eas/Ano da Escritura\u00e7\u00e3o em que foi registrado o documento/opera\u00e7\u00e3o (Cr\u00e9dito pelo m\u00e9todo da",
           "tipo": "N",
           "tamanho": "006*",
           "decimal": null,
@@ -18178,7 +17741,7 @@
         {
           "indice": 5,
           "nome": "VL_RET_DED",
-          "descricao": "Valor da Reten\u00e7\u00e3o deduzida da Contribui\u00e7\u00e3o devida no per\u00edodo da escritura\u00e7\u00e3o e em per\u00edodos anteriores",
+          "descricao": "Valor da Reten\u00e7\u00e3o deduzida da Contribui\u00e7\u00e3o devida no per\u00edodo da escritura\u00e7\u00e3o e em per\u00edodos anteriores.",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -18406,7 +17969,7 @@
         {
           "indice": 6,
           "nome": "COD_SIT",
-          "descricao": "C\u00f3digo da situa\u00e7\u00e3o do documento fiscal: 00 \u2013 Documento regular 02 \u2013 Documento cancelado",
+          "descricao": "C\u00f3digo da situa\u00e7\u00e3o do documento fiscal: 00 \u2013 Documento regular 02 \u2013 Documento cancelado 99 \u2013 Outros",
           "tipo": "N",
           "tamanho": "02*",
           "decimal": null,

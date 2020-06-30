@@ -1,7 +1,7 @@
 {
   "tipo": "ecf",
-  "versao": "6",
-  "data_inicio": "2019-01-01",
+  "versao": "5",
+  "data_inicio": "2018-01-01",
   "registros": [
     {
       "codigo": "0000",
@@ -25,7 +25,7 @@
         {
           "indice": 3,
           "nome": "COD_VER",
-          "descricao": "C\u00f3digo da vers\u00e3o do leiaute. Observa\u00e7\u00e3o: Para o ano-calend\u00e1rio 2019 e situa\u00e7\u00f5es especiais de 2020, o leiaute \u00e9 o 0006.",
+          "descricao": "C\u00f3digo da vers\u00e3o do leiaute. Observa\u00e7\u00e3o: Para o ano-calend\u00e1rio 2017 e situa\u00e7\u00f5es especiais de 2018, o leiaute \u00e9 o 0004.",
           "tipo": "C",
           "tamanho": "4",
           "decimal": null,
@@ -124,7 +124,7 @@
         {
           "indice": 12,
           "nome": "RETIFICADORA",
-          "descricao": "A pessoa jur\u00eddica deve assinalar este campo no caso de escritura\u00e7\u00e3o retificadora ou escritura\u00e7\u00e3o com mudan\u00e7a de forma de tributa\u00e7\u00e3o: S \u2013 ECF retificadora N \u2013 ECF original F \u2013 ECF original com mudan\u00e7a de forma de tributa\u00e7\u00e3o (Art. 6\u00ba-A, \u00a7 2\u00ba, da Instru\u00e7\u00e3o Normativa RFB n\u00ba 1.422/2013). A pessoa jur\u00eddica poder\u00e1 efetuar a remessa de arquivo em retifica\u00e7\u00e3o ao arquivo anteriormente remetido, observando-se a permiss\u00e3o, as regras e prazos estabelecidos pela Secretaria da Receita Federal do Brasil (RFB). Aten\u00e7\u00e3o: A substitui\u00e7\u00e3o das ECF j\u00e1 transmitidas dever\u00e1 ser feita na sua \u00edntegra, pois a ECF n\u00e3o aceita arquivos complementares para o mesmo per\u00edodo informado. Como h\u00e1 controle de saldos, se houver substitui\u00e7\u00e3o de uma ECF, pode haver a necessidade de substitui\u00e7\u00e3o de ECF j\u00e1 transmitidas de anos posteriores.",
+          "descricao": "A pessoa jur\u00eddica deve assinalar este campo no caso de escritura\u00e7\u00e3o retificadora ou escritura\u00e7\u00e3o com mudan\u00e7a de forma de tributa\u00e7\u00e3o: S \u2013 ECF retificadora N \u2013 ECF original F \u2013 ECF original com mudan\u00e7a de forma de tributa\u00e7\u00e3o (Art. 6\u00ba, \u00a7 2\u00ba, da Instru\u00e7\u00e3o Normativa RFB n\u00ba 1.422/2013). A pessoa jur\u00eddica poder\u00e1 efetuar a remessa de arquivo em retifica\u00e7\u00e3o ao arquivo anteriormente remetido, observando-se a permiss\u00e3o, as regras e prazos estabelecidos pela Secretaria da Receita Federal do Brasil (RFB). Aten\u00e7\u00e3o: A substitui\u00e7\u00e3o das ECF j\u00e1 transmitidas dever\u00e1 ser feita na sua \u00edntegra, pois a ECF n\u00e3o aceita arquivos complementares para o mesmo per\u00edodo informado. Como h\u00e1 controle de saldos, se houver substitui\u00e7\u00e3o de uma ECF, pode haver a necessidade de substitui\u00e7\u00e3o de ECF j\u00e1 transmitidas de anos posteriores.",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -298,11 +298,11 @@
         {
           "indice": 11,
           "nome": "TIP_ENT",
-          "descricao": "Tipo de Pessoa Jur\u00eddica Imune ou Isenta: 01 \u2013 Assist\u00eancia Social; 02 \u2013 Educacional; 03 \u2013 Sindicato de Trabalhadores; 04 \u2013 Associa\u00e7\u00e3o Civil; 05 \u2013 Cultural; 06 \u2013 Entidade Fechada de Previd\u00eancia Complementar; 07 \u2013 Filantr\u00f3pica; 08 \u2013 Sindicato; 09 \u2013 Recreativa; 10 \u2013 Cient\u00edfica; 11 \u2013 Associa\u00e7\u00e3o de Poupan\u00e7a e Empr\u00e9stimo; 12 \u2013 Entidade Aberta de Previd\u00eancia Complementar (Sem Fins Lucrativos); 13 \u2013 Fifa e Entidades Relacionadas; 14 \u2013 CIO e Entidades Relacionadas; 15 \u2013 Partidos Pol\u00edticos; 99 \u2013 Outras. Observa\u00e7\u00e3o: Este campo \u00e9 obrigat\u00f3rio para 0010.FORMA_TRIB igual a \u201c8\u201d (Imune do IRPJ) ou \u201c9\u201d (Isenta do IRPJ). Caso 0010.TIP_ENT = \u201c01\u201d, \u201c02\u201d, \u201c03\u201d, \u201c04\u201d, \u201c05\u201d, \u201c07\u201d, \u201c08\u201d, \u201c09\u201d, \u201c10\u201d, \u201c13\u201d, \u201c14\u201d ou \u201c99\u201d, os planos referenciais ser\u00e3o U100A e U150A. Caso 0010.TIP_ENT = \u201c11\u201d, os planos referenciais ser\u00e3o U100B e U150B. Caso 0010.TIP_ENT = \u201c12\u201d, os planos referenciais ser\u00e3o U100C e U150C. Caso 0010.TIP_ENT = \u201c06\u201d, os planos referenciais ser\u00e3o U100D e U150D. Caso 0010.TIP_ENT = \u201c15\u201d, os planos referenciais ser\u00e3o U100E e U150E.",
+          "descricao": "Tipo de Pessoa Jur\u00eddica Imune ou Isenta: 01 \u2013 Assist\u00eancia Social 02 \u2013 Educacional 03 \u2013 Sindicato de Trabalhadores 04 \u2013 Associa\u00e7\u00e3o Civil 05 \u2013 Cultural 06 \u2013 Entidade Fechada de Previd\u00eancia Complementar 07 \u2013 Filantr\u00f3pica 08 \u2013 Sindicato 09 \u2013 Recreativa 10 \u2013 Cient\u00edfica 11 \u2013 Associa\u00e7\u00e3o de Poupan\u00e7a e Empr\u00e9stimo 12 \u2013 Entidade Aberta de Previd\u00eancia Complementar (Sem Fins Lucrativos) 13 \u2013 Fifa e Entidades Relacionadas 14 \u2013 CIO e Entidades Relacionadas 15 \u2013 Partidos Pol\u00edticos 99 \u2013 Outras. Observa\u00e7\u00e3o: Este campo \u00e9 obrigat\u00f3rio para 0010.FORMA_TRIB igual a \u201c8\u201d (Imune do IRPJ) ou \u201c9\u201d (Isenta do IRPJ).",
           "tipo": "N",
           "tamanho": "2",
           "decimal": null,
-          "valores": "[01;02;03;04;05;06;07;08;09;10;11;12;13;14;15;99]",
+          "valores": "[01;02;03;04;05;06 ;07;08;09;10;11;12 ; 13;14;15;99]",
           "obrigatorio": false,
           "regras": []
         },
@@ -352,11 +352,11 @@
         {
           "indice": 2,
           "nome": "IND_ALIQ_CSLL",
-          "descricao": "PJ Sujeita \u00e0 Al\u00edquota da CSLL de 9% ou 15% ou 20%: 1 \u2013 9% 3 \u2013 20% 4 \u2013 15%",
+          "descricao": "D A PJ Sujeita \u00e0 Al\u00edquota da CSLL de 9% ou 17% ou 20% em 31/12/2015: 1 \u2013 9% 2 \u2013 17% 3 \u2013 20% e acordo com o art. 1\u00ba da Lei n\u00ba 13.169, de 6 de outubro de 2015: Lei n\u00ba 7.689, de 15 de dezembro de 1988, passa a vigorar com as seguintes altera\u00e7\u00f5es: \u201cArt. 3\u00ba ........................................................................ I - 20% (vinte por cento), no per\u00edodo compreendido entre 1\u00ba de setembro de 2015 e 31 de dezembro de 2018, e 15% (quinze por cento) a partir de 1\u00ba de janeiro de 2019, no caso das pessoas jur\u00eddicas de seguros privados, das de capitaliza\u00e7\u00e3o e das referidas nos incisos I a VII e X do \u00a7 1\u00ba do art. 1\u00ba da Lei Complementar no 105, de 10 de janeiro de 2001; II - 17% (dezessete por cento), no per\u00edodo compreendido entre 1\u00ba de outubro de 2015 e 31 de dezembro de 2018, e 15% (quinze por cento) a partir de 1\u00ba de janeiro de 2019, no caso das pessoas jur\u00eddicas referidas no inciso IX do \u00a7 1\u00ba do art. 1\u00ba da Lei Complementar n\u00ba 105, de 10 de janeiro de 2001; III - 9% (nove por cento), no caso das demais pessoas jur\u00eddicas.",
           "tipo": "N",
           "tamanho": "1",
           "decimal": null,
-          "valores": "[1;3;4]",
+          "valores": "[1;2;3]",
           "obrigatorio": true,
           "regras": []
         },
@@ -682,7 +682,7 @@
         {
           "indice": 32,
           "nome": "IND_PAIS_A_PAIS",
-          "descricao": "Enditdade Integrante de Grupo Multinacional: A pessoa jur\u00eddica \u00e9 entidade integrante de grupo multinacional, nos termos da Instru\u00e7\u00e3o Normativa RFB n\u00ba 1.681/2016? S - Sim N - N\u00e3o",
+          "descricao": "A pessoa jur\u00eddica \u00e9 entidade integrante de grupo multinacional, nos termos da Instru\u00e7\u00e3o Normativa RFB n\u00ba 1.681/2016? S - Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -714,7 +714,7 @@
         {
           "indice": 2,
           "nome": "IND_REPES",
-          "descricao": "Regime Especial de Tributa\u00e7\u00e3o para a Plataforma de Exporta\u00e7\u00e3o de Servi\u00e7os de Tecnologia da Informa\u00e7\u00e3o (Repes): S - Sim N \u2013 N\u00e3o",
+          "descricao": "Regime Especial de Tributa\u00e7\u00e3o para a Plataforma de Exporta\u00e7\u00e3o de Servi\u00e7os de Tecnologia da Informa\u00e7\u00e3o (Repes): S - Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -725,7 +725,7 @@
         {
           "indice": 3,
           "nome": "IND_RECAP",
-          "descricao": "Regime Especial de Aquisi\u00e7\u00e3o de Bens de Capital para Empresas Exportadoras (Recap): S - Sim N \u2013 N\u00e3o",
+          "descricao": "Regime Especial de Aquisi\u00e7\u00e3o de Bens de Capital para Empresas Exportadoras (Recap): S - Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -736,7 +736,7 @@
         {
           "indice": 4,
           "nome": "IND_PADIS",
-          "descricao": "Programa de Apoio ao Desenvolvimento Tecnol\u00f3gico da Ind\u00fastria de Semicondutores (Padis): S - Sim N \u2013 N\u00e3o",
+          "descricao": "Programa de Apoio ao Desenvolvimento Tecnol\u00f3gico da Ind\u00fastria de Semicondutores (Padis): S - Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -747,7 +747,7 @@
         {
           "indice": 5,
           "nome": "IND_PATVD",
-          "descricao": "Programa de Apoio ao Desenvolvimento Tecnol\u00f3gico da Ind\u00fastria de Equipamentos para TV Digital (PATVD): S - Sim N \u2013 N\u00e3o",
+          "descricao": "Programa de Apoio ao Desenvolvimento Tecnol\u00f3gico da Ind\u00fastria de Equipamentos para TV Digital (PATVD): S - Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -758,7 +758,7 @@
         {
           "indice": 6,
           "nome": "IND_REIDI",
-          "descricao": "Regime Especial de Incentivos para o Desenvolvimento da Infraestrutura (Reidi): S - Sim N \u2013 N\u00e3o",
+          "descricao": "Regime Especial de Incentivos para o Desenvolvimento da Infraestrutura (Reidi): S - Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -769,7 +769,7 @@
         {
           "indice": 7,
           "nome": "IND_REPENEC",
-          "descricao": "Regime Especial de Incentivos para o Desenvolvimento da Infraestrutura da Ind\u00fastria Petrol\u00edfera das Regi\u00f5es Norte, Nordeste e Centro-Oeste (Repenec): S - Sim N \u2013 N\u00e3o",
+          "descricao": "Regime Especial de Incentivos para o Desenvolvimento da Infraestrutura da Ind\u00fastria Petrol\u00edfera das Regi\u00f5es Norte, Nordeste e Centro-Oeste (Repenec): S - Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -780,7 +780,7 @@
         {
           "indice": 8,
           "nome": "IND_REICOMP",
-          "descricao": "Regime Especial de Incentivo a Computadores para Uso Educacional (Reicomp): S - Sim N \u2013 N\u00e3o",
+          "descricao": "Regime Especial de Incentivo a Computadores para Uso Educacional (Reicomp): S - Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -791,7 +791,7 @@
         {
           "indice": 9,
           "nome": "IND_RETAERO",
-          "descricao": "Regime Especial para a Ind\u00fastria Aeron\u00e1utica Brasileira (Retaero): S - Sim N \u2013 N\u00e3o",
+          "descricao": "Regime Especial para a Ind\u00fastria Aeron\u00e1utica Brasileira (Retaero): S - Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -802,7 +802,7 @@
         {
           "indice": 10,
           "nome": "IND_RECINE",
-          "descricao": "Regime Especial de Tributa\u00e7\u00e3o para Desenvolvimento da Atividade de Exibi\u00e7\u00e3o Cinematogr\u00e1fica (Recine): S - Sim N \u2013 N\u00e3o",
+          "descricao": "Regime Especial de Tributa\u00e7\u00e3o para Desenvolvimento da Atividade de Exibi\u00e7\u00e3o Cinematogr\u00e1fica (Recine): S - Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -813,7 +813,7 @@
         {
           "indice": 11,
           "nome": "IND_RESIDUOS_SOLIDOS",
-          "descricao": "Estabelecimentos industriais fa\u00e7am jus a cr\u00e9dito presumido do IPI na aquisi\u00e7\u00e3o de res\u00edduos s\u00f3lidos, de que trata a Lei n\u00ba 12.375, de 30 de dezembro de 2010: S - Sim N \u2013 N\u00e3o",
+          "descricao": "Estabelecimentos industriais fa\u00e7am jus a cr\u00e9dito presumido do IPI na aquisi\u00e7\u00e3o de res\u00edduos s\u00f3lidos, de que trata a Lei n\u00ba 12.375, de 30 de dezembro de 2010: S - Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -824,7 +824,7 @@
         {
           "indice": 12,
           "nome": "IND_RECOPA",
-          "descricao": "Regime Especial de Tributa\u00e7\u00e3o para constru\u00e7\u00e3o, amplia\u00e7\u00e3o, reforma ou moderniza\u00e7\u00e3o de est\u00e1dios de futebol (Recopa): S - Sim N \u2013 N\u00e3o",
+          "descricao": "Regime Especial de Tributa\u00e7\u00e3o para constru\u00e7\u00e3o, amplia\u00e7\u00e3o, reforma ou moderniza\u00e7\u00e3o de est\u00e1dios de futebol (Recopa): S - Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -2013,6 +2013,28 @@
         },
         {
           "indice": 5,
+          "nome": "COD_LAN_ORIG",
+          "descricao": "C\u00f3digo do Tipo de Lan\u00e7amento no e-Lalur que Deu Origem \u00e0 Conta.",
+          "tipo": "C",
+          "tamanho": "6",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 6,
+          "nome": "DESC_LAN_ORIG",
+          "descricao": "Descri\u00e7\u00e3o do Tipo de Lan\u00e7amento no e-Lalur que Deu Origem \u00e0 Conta.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": []
+        },
+        {
+          "indice": 7,
           "nome": "DT_LIM_LAL",
           "descricao": "Data Limite para a Exclus\u00e3o, Adi\u00e7\u00e3o ou Compensa\u00e7\u00e3o do Valor Controlado, se houver.",
           "tipo": "C",
@@ -2023,7 +2045,7 @@
           "regras": []
         },
         {
-          "indice": 6,
+          "indice": 8,
           "nome": "TRIBUTO",
           "descricao": "Indicador de Tributo da Adi\u00e7\u00e3o/Exclus\u00e3o: I \u2013 Imposto de Renda Pessoa Jur\u00eddica C \u2013 Contribui\u00e7\u00e3o Social sobre o Lucro L\u00edquido A \u2013 Ambos (IRPJ e CSLL)",
           "tipo": "C",
@@ -2034,7 +2056,7 @@
           "regras": []
         },
         {
-          "indice": 7,
+          "indice": 9,
           "nome": "VL_SALDO_FIN",
           "descricao": "Saldo Final do Per\u00edodo Anterior.",
           "tipo": "N",
@@ -2045,7 +2067,7 @@
           "regras": []
         },
         {
-          "indice": 8,
+          "indice": 10,
           "nome": "IND_VL_SALDO_FIN",
           "descricao": "Indicador de Saldo Final do Per\u00edodo Anterior: D \u2013 Para preju\u00edzos ou valores que reduzam o lucro real ou a base de c\u00e1lculo da contribui\u00e7\u00e3o social em per\u00edodos subsequentes. C \u2013 Para valores que aumentam o lucro real ou a base de c\u00e1lculo na contribui\u00e7\u00e3o social em per\u00edodos subsequentes.",
           "tipo": "C",
@@ -2056,7 +2078,7 @@
           "regras": []
         },
         {
-          "indice": 9,
+          "indice": 11,
           "nome": "COD_PB_RFB",
           "descricao": "C\u00f3digo da tabela padr\u00e3o da Parte B.",
           "tipo": "C",
@@ -2695,7 +2717,7 @@
     },
     {
       "codigo": "K156",
-      "nome": "Mapeamento Referencial do Saldo",
+      "nome": "Mapeamento Referencial do Saldo Final",
       "regras": [],
       "nivel": 4,
       "ocorrencia": "[0;N]",
@@ -2888,7 +2910,7 @@
         {
           "indice": 2,
           "nome": "PER_APUR",
-          "descricao": "Per\u00edodo de Apura\u00e7\u00e3o [para 0010.FORMA_APUR = \u201cA\u201d ou (0010.FORMA_APUR_I = \u201cA\u201d OU 0010.APUR_CSLL = \u201cA\u201d E 0010.TIP_ESC_PRE = \u201cC\u201d)]: A00 \u2013 Anual A01 \u2013 Rec. Bruta de janeiro /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 janeiro A02 \u2013 Rec. Bruta de fevereiro /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 fevereiro A03 \u2013 Rec. Bruta de mar\u00e7o /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 mar\u00e7o A04 \u2013 Rec. Bruta de abril /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 abril A05 \u2013 Rec. Bruta de maio /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 maio A06 \u2013 Rec. Bruta de junho /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 junho A07 \u2013 Rec. Bruta de julho /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 julho A08 \u2013 Rec. Bruta de agosto /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 agosto A09 \u2013 Rec. Bruta de setembro /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 setembro A10 \u2013 Rec. Bruta de outubro/Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 outubro A11 \u2013 Rec. Bruta de novembro /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 novembro A12 \u2013 Rec. Bruta de dezembro/Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 dezembro",
+          "descricao": "I Per\u00edodo de Apura\u00e7\u00e3o [para 0010.FORMA_APUR = \u201cA\u201d ou (0010.FORMA_APUR_I = \u201cA\u201d OU 0010.APUR_CSLL = \u201cA\u201d E 0010.TIP_ESC_PRE = \u201cC\u201d)]: A00 \u2013 Anual A01 \u2013 Rec. Bruta de janeiro /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 janeiro A02 \u2013 Rec. Bruta de fevereiro /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 fevereiro A03 \u2013 Rec. Bruta de mar\u00e7o /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 mar\u00e7o A04 \u2013 Rec. Bruta de abril /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 abril A05 \u2013 Rec. Bruta de maio /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 maio A06 \u2013 Rec. Bruta de junho /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 junho A07 \u2013 Rec. Bruta de julho /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 julho A08 \u2013 Rec. Bruta de agosto /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 agosto A09 \u2013 Rec. Bruta de setembro /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 setembro A10 \u2013 Rec. Bruta de outubro/Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 outubro A11 \u2013 Rec. Bruta de novembro /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 novembro A12 \u2013 Rec. Bruta de dezembro/Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 dezembro ndicador do per\u00edodo de refer\u00eancia [para 0010.FORMA_APUR = \u201cT\u201d OU (0010.FORMA_APUR = \u201cA\u201d E 0010.FORMA_TRIB = \u201c2\u201d) ou",
           "tipo": "C",
           "tamanho": "3",
           "decimal": null,
@@ -2965,7 +2987,7 @@
         {
           "indice": 9,
           "nome": "VL_CRED_ESP",
-          "descricao": "Valor total de cr\u00e9ditos recuperado da ECD para o per\u00edodo fiscal. Este campo ser\u00e1 calculado automaticamente pelo PGE da ECF durante a valida\u00e7\u00e3o do arquivo da ECF.",
+          "descricao": "Valor total de cr\u00e9ditos recuperado da ECD para o per\u00edodo fiscal.",
           "tipo": "N",
           "tamanho": "19",
           "decimal": "2",
@@ -3658,7 +3680,7 @@
         {
           "indice": 5,
           "nome": "COD_PB_RFB",
-          "descricao": "O C\u00f3digo da tabela padr\u00e3o da Parte B. Vide planilha PARTEB_PADRAO do arquivo \u201cTabelas_Dinamicas_ECF_Leiaute_6_AC2019_SIT_ESP_2020.xlsx\u201d a partir do linkhttp://sped.rfb.gov.br/pasta/show/1644. s relacionamentos poss\u00edveis das contas padr\u00e3o da Parte B do e-Lalur e do e-Lacs com as linhas da Parte A constam da planilha PARTEB_PARTEA do mesmo arquivo.",
+          "descricao": "C\u00f3digo da tabela padr\u00e3o da Parte B.",
           "tipo": "C",
           "tamanho": "6",
           "decimal": null,
@@ -4070,7 +4092,7 @@
     },
     {
       "codigo": "M355",
-      "nome": "Contas da Parte B Relacionadas ao Lan\u00e7amento da Parte A do e-Lacs",
+      "nome": "Contas da Parte B Relacionadas ao ao Lan\u00e7amento da Parte A do e-Lacs",
       "regras": [],
       "nivel": 4,
       "ocorrencia": "[0;N]",
@@ -4458,131 +4480,21 @@
       ]
     },
     {
-      "codigo": "M510",
-      "nome": "Controle de Saldos das Contas Padr\u00e3o da Parte B do e- Lalur e do e-Lacs",
+      "codigo": "M990",
+      "nome": "Encerramento do Bloco M",
       "regras": [],
-      "nivel": 3,
-      "ocorrencia": "[0;N]",
+      "nivel": 1,
+      "ocorrencia": "[1;1]",
       "campos_chave": [],
       "campos": [
         {
           "indice": 2,
-          "nome": "COD_PB_RFB",
-          "descricao": "C\u00f3digo da Conta Padr\u00e3o da Parte B (deve existir no M010.COD_PB_RFB).",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "[M010.COD_CTA_B]",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 3,
-          "nome": "DESCRICAO_PB_RFB",
-          "descricao": "Descri\u00e7\u00e3o da Conta Padr\u00e3o da Parte B",
-          "tipo": "C",
+          "nome": "QTD_LIN",
+          "descricao": "Quantidade total de registros do Bloco M.",
+          "tipo": "N",
           "tamanho": null,
           "decimal": null,
           "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 4,
-          "nome": "COD_TRIBUTO",
-          "descricao": "C\u00f3digo do Tributo: I \u2013 Imposto de Renda C \u2013 Contribui\u00e7\u00e3o Social Sobre o Lucro L\u00edquido",
-          "tipo": "C",
-          "tamanho": "1",
-          "decimal": null,
-          "valores": "[I; C]",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 5,
-          "nome": "SD_INI_LAL",
-          "descricao": "Saldo Inicial da Conta no Per\u00edodo de Apura\u00e7\u00e3o.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 6,
-          "nome": "IND_SD_INI_LAL",
-          "descricao": "Indicador de Saldo Inicial: D \u2013 Para preju\u00edzos ou valores que ser\u00e3o exclu\u00eddos do lucro real ou da base de c\u00e1lculo da contribui\u00e7\u00e3o social em per\u00edodos subsequentes. C \u2013 Para valores que ser\u00e3o adicionados ao lucro real ou \u00e0 base de c\u00e1lculo da contribui\u00e7\u00e3o social em per\u00edodos subsequentes.",
-          "tipo": "C",
-          "tamanho": "1",
-          "decimal": null,
-          "valores": "[C; D]",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 7,
-          "nome": "VL_LCTO_PARTE_A",
-          "descricao": "Somat\u00f3rio dos Lan\u00e7amentos da Parte B com Reflexo na Parte A no Per\u00edodo.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 8,
-          "nome": "IND_VL_LCTO_PARTE_A",
-          "descricao": "Indicador do Somat\u00f3rio dos Lan\u00e7amentos da Parte B com Reflexo na Parte A no per\u00edodo: C \u2013 Para preju\u00edzos ou valores que ser\u00e3o exclu\u00eddos do lucro real ou da base de c\u00e1lculo da contribui\u00e7\u00e3o social em per\u00edodos subsequentes. D \u2013 Para valores que ser\u00e3o adicionados ao lucro real ou \u00e0 base de c\u00e1lculo da contribui\u00e7\u00e3o social em per\u00edodos subsequentes.",
-          "tipo": "C",
-          "tamanho": "1",
-          "decimal": null,
-          "valores": "[C; D]",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 9,
-          "nome": "VL_LCTO_PARTEB",
-          "descricao": "Somat\u00f3rio dos Lan\u00e7amentos da Parte B Sem Reflexo na Parte A no Per\u00edodo (entre contas da parte B).",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 10,
-          "nome": "IND_VL_LCTO_PARTEB",
-          "descricao": "Indicador Somat\u00f3rio dos Lan\u00e7amentos da Parte B Sem Reflexo na Parte A no Per\u00edodo (entre contas da parte B): C \u2013 Para preju\u00edzos ou valores que ser\u00e3o exclu\u00eddos do lucro real ou da base de c\u00e1lculo da contribui\u00e7\u00e3o social em per\u00edodos subsequentes. D \u2013 Para valores que ser\u00e3o adicionados ao lucro real ou \u00e0 base de c\u00e1lculo da contribui\u00e7\u00e3o social em per\u00edodos subsequentes.",
-          "tipo": "C",
-          "tamanho": "1",
-          "decimal": null,
-          "valores": "[C; D]",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 11,
-          "nome": "SD_FIM_LAL",
-          "descricao": "Saldo Final da Conta no Per\u00edodo de Apura\u00e7\u00e3o.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 12,
-          "nome": "IND_SD_FIM_LAL",
-          "descricao": "Indicador de Saldo Final: D \u2013 Para preju\u00edzos ou valores que ser\u00e3o exclu\u00eddos do lucro real ou da base de c\u00e1lculo da contribui\u00e7\u00e3o social em per\u00edodos subsequentes. C \u2013 Para valores que ser\u00e3o adicionados ao lucro real ou \u00e0 base de c\u00e1lculo da contribui\u00e7\u00e3o social em per\u00edodos subsequentes.",
-          "tipo": "C",
-          "tamanho": "1",
-          "decimal": null,
-          "valores": "[C; D]",
           "obrigatorio": true,
           "regras": []
         }
@@ -6464,7 +6376,7 @@
     },
     {
       "codigo": "V001",
-      "nome": "Abertura do Bloco V \u2013 DEREX",
+      "nome": "Abertura do Bloco V - DEREX",
       "regras": [],
       "nivel": 1,
       "ocorrencia": "[1;1]",
@@ -6485,7 +6397,7 @@
     },
     {
       "codigo": "V010",
-      "nome": "DEREX \u2013 Institui\u00e7\u00e3o",
+      "nome": "DEREX - Institui\u00e7\u00e3o",
       "regras": [],
       "nivel": 2,
       "ocorrencia": "[0;N]",
@@ -6593,7 +6505,7 @@
     },
     {
       "codigo": "V030",
-      "nome": "DEREX - Per\u00edodo \u2013 M\u00eas",
+      "nome": "DEREX - Per\u00edodo - M\u00eas",
       "regras": [],
       "nivel": 3,
       "ocorrencia": "[1;12]",
@@ -8563,7 +8475,7 @@
         {
           "indice": 7,
           "nome": "RES_POS_TRIB",
-          "descricao": "Resultado Positivo a Tributar: Resultado positivo a tributar na moeda do pa\u00eds de domic\u00edlio (deve ser informado o valor de (X351. RES_INV_PER \u2013 X351.RES_ISEN_PETR_PER), caso seja resultado positivo e maior que o valor do campo do campo X351.RES_NEG_ACUM).",
+          "descricao": "Resultado Positivo a Tributar: Resultado positivo a tributar na moeda do pa\u00eds de domic\u00edlio (deve ser informado o valor de X351. RES_INV_PER, caso seja resultado positivo, menos o valor do campo X351. RES_ISEN_PETR_PER).",
           "tipo": "N",
           "tamanho": "19",
           "decimal": "2",
@@ -8997,7 +8909,7 @@
         {
           "indice": 4,
           "nome": "RAZAO_SOCIAL",
-          "descricao": "Raz\u00e3o Social: Raz\u00e3o social da investidora direta.",
+          "descricao": "Raz\u00e3o Social: Raz\u00e3o social de cada controlada, direta ou indireta, equiparada ou coligada em regime de compet\u00eancia.",
           "tipo": "C",
           "tamanho": null,
           "decimal": null,
@@ -9583,7 +9495,7 @@
     },
     {
       "codigo": "X490",
-      "nome": "Polo Industrial de Manaus e Amaz\u00f4nia Ocidental",
+      "nome": "P\u00f3lo Industrial de Manaus e Amaz\u00f4nia Ocidental",
       "regras": [],
       "nivel": 2,
       "ocorrencia": "[0;N]",
@@ -10240,11 +10152,11 @@
         {
           "indice": 8,
           "nome": "QUALIF",
-          "descricao": "S S S O Qualifica\u00e7\u00e3o do S\u00f3cio, Titular, Dirigente ou Conselheiro. Se PAIS = \u201c105\u201d (Brasil) E IND_QUALIF_SOCIO = \u201cPF\u201d: 01 \u2013 Acionista Pessoa F\u00edsica Domiciliado no Brasil 02 \u2013 S\u00f3cio Pessoa F\u00edsica Domiciliado no Brasil 09 \u2013 Titular 10 \u2013 Administrador sem V\u00ednculo Empregat\u00edcio 11 \u2013 Diretor sem V\u00ednculo Empregat\u00edcio 12 \u2013 Presidente sem V\u00ednculo Empregat\u00edcio 13 \u2013 Administrador com V\u00ednculo Empregat\u00edcio 14 \u2013 Conselheiro de Administra\u00e7\u00e3o ou Fiscal 15 \u2013 Diretor com V\u00ednculo Empregat\u00edcio 16 \u2013 Fundador 17 \u2013 Presidente com V\u00ednculo Empregat\u00edcio 18 \u2013 Usufrutu\u00e1rio de Quotas ou A\u00e7\u00f5es e PAIS = \u201c105\u201d (Brasil) E IND_QUALIF_SOCIO = \"PJ\": 03 - Acionista Pessoa Jur\u00eddica Domiciliado no Brasil 04 - S\u00f3cio Pessoa Jur\u00eddica Domiciliado no Brasil 18 \u2013 Usufrutu\u00e1rio de Quotas ou A\u00e7\u00f5es e PAIS diferente de \u201c105\u201d (Brasil) E IND_QUALIF_SOCIO = \"PF\": 05 - Acionista Pessoa F\u00edsica Residente ou Domiciliado no Exterior 06 - S\u00f3cio Pessoa F\u00edsica Residente ou Domiciliado no Exterior 14 \u2013 Conselheiro de Administra\u00e7\u00e3o ou Fiscal 18 \u2013 Usufrutu\u00e1rio de Quotas ou A\u00e7\u00f5es e PAIS diferente de \u201c105\u201d (Brasil) E IND_QUALIF_SOCIO = \"PJ\": 07 - Acionista Pessoa Jur\u00eddica Residente ou Domiciliado no Exterior 08 - S\u00f3cio Pessoa Jur\u00eddica Residente ou Domiciliado no Exterior 18 \u2013 Usufrutu\u00e1rio de Quotas ou A\u00e7\u00f5es bserva\u00e7\u00e3o: Caso o s\u00f3cio seja tamb\u00e9m administrador ou diretor, deve selecionar a op\u00e7\u00e3o 02 \u2013 S\u00f3cio Pessoa F\u00edsica Domiciliado no Brasil ou 06 \u2013 S\u00f3cio Pessoa F\u00edsica Domiciliado no Exterior.",
+          "descricao": "S S S O Qualifica\u00e7\u00e3o do S\u00f3cio, Titular, Dirigente ou Conselheiro. Se PAIS = \u201c105\u201d (Brasil) E IND_QUALIF_SOCIO = \u201cPF\u201d: 01 \u2013 Acionista Pessoa F\u00edsica Domiciliado no Brasil 02 \u2013 S\u00f3cio Pessoa F\u00edsica Domiciliado no Brasil 09 \u2013 Titular 10 \u2013 Administrador sem V\u00ednculo Empregat\u00edcio 11 \u2013 Diretor sem V\u00ednculo Empregat\u00edcio 12 \u2013 Presidente sem V\u00ednculo Empregat\u00edcio 13 \u2013 Administrador com V\u00ednculo Empregat\u00edcio 14 \u2013 Conselheiro de Administra\u00e7\u00e3o ou Fiscal 15 \u2013 Diretor com V\u00ednculo Empregat\u00edcio 16 \u2013 Fundador 17 \u2013 Presidente com V\u00ednculo Empregat\u00edcio e PAIS = \u201c105\u201d (Brasil) E IND_QUALIF_SOCIO = \"PJ\": 03 - Acionista Pessoa Jur\u00eddica Domiciliado no Brasil 04 - S\u00f3cio Pessoa Jur\u00eddica Domiciliado no Brasil e PAIS diferente de \u201c105\u201d (Brasil) E IND_QUALIF_SOCIO = \"PF\": 05 - Acionista Pessoa F\u00edsica Residente ou Domiciliado no Exterior 06 - S\u00f3cio Pessoa F\u00edsica Residente ou Domiciliado no Exterior 14 \u2013 Conselheiro de Administra\u00e7\u00e3o ou Fiscal e PAIS diferente de \u201c105\u201d (Brasil) E IND_QUALIF_SOCIO = \"PJ\": 07 - Acionista Pessoa Jur\u00eddica Residente ou Domiciliado no Exterior 08 - S\u00f3cio Pessoa Jur\u00eddica Residente ou Domiciliado no Exterior bserva\u00e7\u00e3o: Caso o s\u00f3cio seja tamb\u00e9m administrador ou diretor, deve selecionar a op\u00e7\u00e3o 02 \u2013 S\u00f3cio Pessoa F\u00edsica Domiciliado no Brasil ou 06 \u2013 S\u00f3cio Pessoa F\u00edsica Domiciliado no Exterior.",
           "tipo": "C",
           "tamanho": "2",
           "decimal": null,
-          "valores": "[01; 02; 03; 04; 05; 06; 07; 08; 09; 10; 11; 12; 13; 14; 15; 16; 17; 18]",
+          "valores": "[01; 02; 03; 04; 05; 06; 07; 08; 09; 10; 11; 12; 13; 14; 15; 16; 17]",
           "obrigatorio": true,
           "regras": []
         },
@@ -10436,7 +10348,7 @@
         {
           "indice": 2,
           "nome": "DT_EVENTO",
-          "descricao": "Data do Evento: Data do evento societ\u00e1rio que deu causa \u00e0 classifica\u00e7\u00e3o conforme o indicador do tipo de relacionamento (Y620.IND_RELAC) no formato DDMMYYYY.",
+          "descricao": "Data do Evento: Data do evento societ\u00e1rio que deu causa \u00e0 classifica\u00e7\u00e3o conforme o indicador do tipo de relacionamento (Y600.IND_RELAC) no formato DDMMYYYY.",
           "tipo": "N",
           "tamanho": "8",
           "decimal": null,

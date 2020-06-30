@@ -1,7 +1,7 @@
 {
   "tipo": "ecf",
-  "versao": "6",
-  "data_inicio": "2019-01-01",
+  "versao": "4",
+  "data_inicio": "2017-01-01",
   "registros": [
     {
       "codigo": "0000",
@@ -25,7 +25,7 @@
         {
           "indice": 3,
           "nome": "COD_VER",
-          "descricao": "C\u00f3digo da vers\u00e3o do leiaute. Observa\u00e7\u00e3o: Para o ano-calend\u00e1rio 2019 e situa\u00e7\u00f5es especiais de 2020, o leiaute \u00e9 o 0006.",
+          "descricao": "C\u00f3digo da vers\u00e3o do leiaute. Observa\u00e7\u00e3o: Para o ano-calend\u00e1rio 2017 e situa\u00e7\u00f5es especiais de 2018, o leiaute \u00e9 o 0004.",
           "tipo": "C",
           "tamanho": "4",
           "decimal": null,
@@ -124,7 +124,7 @@
         {
           "indice": 12,
           "nome": "RETIFICADORA",
-          "descricao": "A pessoa jur\u00eddica deve assinalar este campo no caso de escritura\u00e7\u00e3o retificadora ou escritura\u00e7\u00e3o com mudan\u00e7a de forma de tributa\u00e7\u00e3o: S \u2013 ECF retificadora N \u2013 ECF original F \u2013 ECF original com mudan\u00e7a de forma de tributa\u00e7\u00e3o (Art. 6\u00ba-A, \u00a7 2\u00ba, da Instru\u00e7\u00e3o Normativa RFB n\u00ba 1.422/2013). A pessoa jur\u00eddica poder\u00e1 efetuar a remessa de arquivo em retifica\u00e7\u00e3o ao arquivo anteriormente remetido, observando-se a permiss\u00e3o, as regras e prazos estabelecidos pela Secretaria da Receita Federal do Brasil (RFB). Aten\u00e7\u00e3o: A substitui\u00e7\u00e3o das ECF j\u00e1 transmitidas dever\u00e1 ser feita na sua \u00edntegra, pois a ECF n\u00e3o aceita arquivos complementares para o mesmo per\u00edodo informado. Como h\u00e1 controle de saldos, se houver substitui\u00e7\u00e3o de uma ECF, pode haver a necessidade de substitui\u00e7\u00e3o de ECF j\u00e1 transmitidas de anos posteriores.",
+          "descricao": "A pessoa jur\u00eddica deve assinalar este campo no caso de escritura\u00e7\u00e3o retificadora ou escritura\u00e7\u00e3o com mudan\u00e7a de forma de tributa\u00e7\u00e3o: S \u2013 ECF retificadora N \u2013 ECF original F \u2013 ECF original com mudan\u00e7a de forma de tributa\u00e7\u00e3o (Art. 6\u00ba, \u00a7 2\u00ba, da Instru\u00e7\u00e3o Normativa RFB n\u00ba 1.422/2013). A pessoa jur\u00eddica poder\u00e1 efetuar a remessa de arquivo em retifica\u00e7\u00e3o ao arquivo anteriormente remetido, observando-se a permiss\u00e3o, as regras e prazos estabelecidos pela Secretaria da Receita Federal do Brasil (RFB). Aten\u00e7\u00e3o: A substitui\u00e7\u00e3o das ECF j\u00e1 transmitidas dever\u00e1 ser feita na sua \u00edntegra, pois a ECF n\u00e3o aceita arquivos complementares para o mesmo per\u00edodo informado. Como h\u00e1 controle de saldos, se houver substitui\u00e7\u00e3o de uma ECF, pode haver a necessidade de substitui\u00e7\u00e3o de ECF j\u00e1 transmitidas de anos posteriores.",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -298,11 +298,11 @@
         {
           "indice": 11,
           "nome": "TIP_ENT",
-          "descricao": "Tipo de Pessoa Jur\u00eddica Imune ou Isenta: 01 \u2013 Assist\u00eancia Social; 02 \u2013 Educacional; 03 \u2013 Sindicato de Trabalhadores; 04 \u2013 Associa\u00e7\u00e3o Civil; 05 \u2013 Cultural; 06 \u2013 Entidade Fechada de Previd\u00eancia Complementar; 07 \u2013 Filantr\u00f3pica; 08 \u2013 Sindicato; 09 \u2013 Recreativa; 10 \u2013 Cient\u00edfica; 11 \u2013 Associa\u00e7\u00e3o de Poupan\u00e7a e Empr\u00e9stimo; 12 \u2013 Entidade Aberta de Previd\u00eancia Complementar (Sem Fins Lucrativos); 13 \u2013 Fifa e Entidades Relacionadas; 14 \u2013 CIO e Entidades Relacionadas; 15 \u2013 Partidos Pol\u00edticos; 99 \u2013 Outras. Observa\u00e7\u00e3o: Este campo \u00e9 obrigat\u00f3rio para 0010.FORMA_TRIB igual a \u201c8\u201d (Imune do IRPJ) ou \u201c9\u201d (Isenta do IRPJ). Caso 0010.TIP_ENT = \u201c01\u201d, \u201c02\u201d, \u201c03\u201d, \u201c04\u201d, \u201c05\u201d, \u201c07\u201d, \u201c08\u201d, \u201c09\u201d, \u201c10\u201d, \u201c13\u201d, \u201c14\u201d ou \u201c99\u201d, os planos referenciais ser\u00e3o U100A e U150A. Caso 0010.TIP_ENT = \u201c11\u201d, os planos referenciais ser\u00e3o U100B e U150B. Caso 0010.TIP_ENT = \u201c12\u201d, os planos referenciais ser\u00e3o U100C e U150C. Caso 0010.TIP_ENT = \u201c06\u201d, os planos referenciais ser\u00e3o U100D e U150D. Caso 0010.TIP_ENT = \u201c15\u201d, os planos referenciais ser\u00e3o U100E e U150E.",
+          "descricao": "Tipo de Pessoa Jur\u00eddica Imune ou Isenta: 01 \u2013 Assist\u00eancia Social 02 \u2013 Educacional 03 \u2013 Sindicato de Trabalhadores 04 \u2013 Associa\u00e7\u00e3o Civil 05 \u2013 Cultural 06 \u2013 Entidade Fechada de Previd\u00eancia Complementar 07 \u2013 Filantr\u00f3pica 08 \u2013 Sindicato 09 \u2013 Recreativa 10 \u2013 Cient\u00edfica 11 \u2013 Associa\u00e7\u00e3o de Poupan\u00e7a e Empr\u00e9stimo 12 \u2013 Entidade Aberta de Previd\u00eancia Complementar (Sem Fins Lucrativos) 13 \u2013 Fifa e Entidades Relacionadas 14 \u2013 CIO e Entidades Relacionadas 15 \u2013 Partidos Pol\u00edticos 99 \u2013 Outras. Observa\u00e7\u00e3o: Este campo \u00e9 obrigat\u00f3rio para 0010.FORMA_TRIB igual a \u201c8\u201d (Imune do IRPJ) ou \u201c9\u201d (Isenta do IRPJ).",
           "tipo": "N",
           "tamanho": "2",
           "decimal": null,
-          "valores": "[01;02;03;04;05;06;07;08;09;10;11;12;13;14;15;99]",
+          "valores": "[01;02;03;04;05;06 ;07;08;09;10;11;12 ; 13;14;15;99]",
           "obrigatorio": false,
           "regras": []
         },
@@ -352,11 +352,11 @@
         {
           "indice": 2,
           "nome": "IND_ALIQ_CSLL",
-          "descricao": "PJ Sujeita \u00e0 Al\u00edquota da CSLL de 9% ou 15% ou 20%: 1 \u2013 9% 3 \u2013 20% 4 \u2013 15%",
+          "descricao": "D A PJ Sujeita \u00e0 Al\u00edquota da CSLL de 9% ou 17% ou 20% em 31/12/2015: 1 \u2013 9% 2 \u2013 17% 3 \u2013 20% e acordo com o art. 1\u00ba da Lei n\u00ba 13.169, de 6 de outubro de 2015: Lei n\u00ba 7.689, de 15 de dezembro de 1988, passa a vigorar com as seguintes altera\u00e7\u00f5es: \u201cArt. 3\u00ba ........................................................................ I - 20% (vinte por cento), no per\u00edodo compreendido entre 1\u00ba de setembro de 2015 e 31 de dezembro de 2018, e 15% (quinze por cento) a partir de 1\u00ba de janeiro de 2019, no caso das pessoas jur\u00eddicas de seguros privados, das de capitaliza\u00e7\u00e3o e das referidas nos incisos I a VII e X do \u00a7 1\u00ba do art. 1\u00ba da Lei Complementar no 105, de 10 de janeiro de 2001; II - 17% (dezessete por cento), no per\u00edodo compreendido entre 1\u00ba de outubro de 2015 e 31 de dezembro de 2018, e 15% (quinze por cento) a partir de 1\u00ba de janeiro de 2019, no caso das pessoas jur\u00eddicas referidas no inciso IX do \u00a7 1\u00ba do art. 1\u00ba da Lei Complementar n\u00ba 105, de 10 de janeiro de 2001; III - 9% (nove por cento), no caso das demais pessoas jur\u00eddicas.",
           "tipo": "N",
           "tamanho": "1",
           "decimal": null,
-          "valores": "[1;3;4]",
+          "valores": "[1;2;3]",
           "obrigatorio": true,
           "regras": []
         },
@@ -682,7 +682,7 @@
         {
           "indice": 32,
           "nome": "IND_PAIS_A_PAIS",
-          "descricao": "Enditdade Integrante de Grupo Multinacional: A pessoa jur\u00eddica \u00e9 entidade integrante de grupo multinacional, nos termos da Instru\u00e7\u00e3o Normativa RFB n\u00ba 1.681/2016? S - Sim N - N\u00e3o",
+          "descricao": "A pessoa jur\u00eddica \u00e9 entidade integrante de grupo multinacional, nos termos da Instru\u00e7\u00e3o Normativa RFB n\u00ba 1.681/2016? S - Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -714,7 +714,7 @@
         {
           "indice": 2,
           "nome": "IND_REPES",
-          "descricao": "Regime Especial de Tributa\u00e7\u00e3o para a Plataforma de Exporta\u00e7\u00e3o de Servi\u00e7os de Tecnologia da Informa\u00e7\u00e3o (Repes): S - Sim N \u2013 N\u00e3o",
+          "descricao": "Regime Especial de Tributa\u00e7\u00e3o para a Plataforma de Exporta\u00e7\u00e3o de Servi\u00e7os de Tecnologia da Informa\u00e7\u00e3o (Repes): S - Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -725,7 +725,7 @@
         {
           "indice": 3,
           "nome": "IND_RECAP",
-          "descricao": "Regime Especial de Aquisi\u00e7\u00e3o de Bens de Capital para Empresas Exportadoras (Recap): S - Sim N \u2013 N\u00e3o",
+          "descricao": "Regime Especial de Aquisi\u00e7\u00e3o de Bens de Capital para Empresas Exportadoras (Recap): S - Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -736,7 +736,7 @@
         {
           "indice": 4,
           "nome": "IND_PADIS",
-          "descricao": "Programa de Apoio ao Desenvolvimento Tecnol\u00f3gico da Ind\u00fastria de Semicondutores (Padis): S - Sim N \u2013 N\u00e3o",
+          "descricao": "Programa de Apoio ao Desenvolvimento Tecnol\u00f3gico da Ind\u00fastria de Semicondutores (Padis): S - Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -747,7 +747,7 @@
         {
           "indice": 5,
           "nome": "IND_PATVD",
-          "descricao": "Programa de Apoio ao Desenvolvimento Tecnol\u00f3gico da Ind\u00fastria de Equipamentos para TV Digital (PATVD): S - Sim N \u2013 N\u00e3o",
+          "descricao": "Programa de Apoio ao Desenvolvimento Tecnol\u00f3gico da Ind\u00fastria de Equipamentos para TV Digital (PATVD): S - Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -758,7 +758,7 @@
         {
           "indice": 6,
           "nome": "IND_REIDI",
-          "descricao": "Regime Especial de Incentivos para o Desenvolvimento da Infraestrutura (Reidi): S - Sim N \u2013 N\u00e3o",
+          "descricao": "Regime Especial de Incentivos para o Desenvolvimento da Infraestrutura (Reidi): S - Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -769,7 +769,7 @@
         {
           "indice": 7,
           "nome": "IND_REPENEC",
-          "descricao": "Regime Especial de Incentivos para o Desenvolvimento da Infraestrutura da Ind\u00fastria Petrol\u00edfera das Regi\u00f5es Norte, Nordeste e Centro-Oeste (Repenec): S - Sim N \u2013 N\u00e3o",
+          "descricao": "Regime Especial de Incentivos para o Desenvolvimento da Infraestrutura da Ind\u00fastria Petrol\u00edfera das Regi\u00f5es Norte, Nordeste e Centro-Oeste (Repenec): S - Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -780,7 +780,7 @@
         {
           "indice": 8,
           "nome": "IND_REICOMP",
-          "descricao": "Regime Especial de Incentivo a Computadores para Uso Educacional (Reicomp): S - Sim N \u2013 N\u00e3o",
+          "descricao": "Regime Especial de Incentivo a Computadores para Uso Educacional (Reicomp): S - Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -791,7 +791,7 @@
         {
           "indice": 9,
           "nome": "IND_RETAERO",
-          "descricao": "Regime Especial para a Ind\u00fastria Aeron\u00e1utica Brasileira (Retaero): S - Sim N \u2013 N\u00e3o",
+          "descricao": "Regime Especial para a Ind\u00fastria Aeron\u00e1utica Brasileira (Retaero): S - Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -802,7 +802,7 @@
         {
           "indice": 10,
           "nome": "IND_RECINE",
-          "descricao": "Regime Especial de Tributa\u00e7\u00e3o para Desenvolvimento da Atividade de Exibi\u00e7\u00e3o Cinematogr\u00e1fica (Recine): S - Sim N \u2013 N\u00e3o",
+          "descricao": "Regime Especial de Tributa\u00e7\u00e3o para Desenvolvimento da Atividade de Exibi\u00e7\u00e3o Cinematogr\u00e1fica (Recine): S - Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -813,7 +813,7 @@
         {
           "indice": 11,
           "nome": "IND_RESIDUOS_SOLIDOS",
-          "descricao": "Estabelecimentos industriais fa\u00e7am jus a cr\u00e9dito presumido do IPI na aquisi\u00e7\u00e3o de res\u00edduos s\u00f3lidos, de que trata a Lei n\u00ba 12.375, de 30 de dezembro de 2010: S - Sim N \u2013 N\u00e3o",
+          "descricao": "Estabelecimentos industriais fa\u00e7am jus a cr\u00e9dito presumido do IPI na aquisi\u00e7\u00e3o de res\u00edduos s\u00f3lidos, de que trata a Lei n\u00ba 12.375, de 30 de dezembro de 2010: S - Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -824,7 +824,7 @@
         {
           "indice": 12,
           "nome": "IND_RECOPA",
-          "descricao": "Regime Especial de Tributa\u00e7\u00e3o para constru\u00e7\u00e3o, amplia\u00e7\u00e3o, reforma ou moderniza\u00e7\u00e3o de est\u00e1dios de futebol (Recopa): S - Sim N \u2013 N\u00e3o",
+          "descricao": "Regime Especial de Tributa\u00e7\u00e3o para constru\u00e7\u00e3o, amplia\u00e7\u00e3o, reforma ou moderniza\u00e7\u00e3o de est\u00e1dios de futebol (Recopa): S - Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -2013,6 +2013,28 @@
         },
         {
           "indice": 5,
+          "nome": "COD_LAN_ORIG",
+          "descricao": "Tipo de Lan\u00e7amento: Tipo de lan\u00e7amento no e-Lalur que deu origem \u00e0 conta. (conforme tabela de adi\u00e7\u00f5es, exclus\u00f5es e compensa\u00e7\u00f5es).",
+          "tipo": "N",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": []
+        },
+        {
+          "indice": 6,
+          "nome": "DESC_LAN_ORIG",
+          "descricao": "Descri\u00e7\u00e3o do Tipo de Lan\u00e7amento no e-Lalur que Deu Origem \u00e0 Conta.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": []
+        },
+        {
+          "indice": 7,
           "nome": "DT_LIM_LAL",
           "descricao": "Data Limite para a Exclus\u00e3o, Adi\u00e7\u00e3o ou Compensa\u00e7\u00e3o do Valor Controlado, se houver.",
           "tipo": "C",
@@ -2023,7 +2045,7 @@
           "regras": []
         },
         {
-          "indice": 6,
+          "indice": 8,
           "nome": "TRIBUTO",
           "descricao": "Indicador de Tributo da Adi\u00e7\u00e3o/Exclus\u00e3o: I \u2013 Imposto de Renda Pessoa Jur\u00eddica C \u2013 Contribui\u00e7\u00e3o Social sobre o Lucro L\u00edquido A \u2013 Ambos (IRPJ e CSLL)",
           "tipo": "C",
@@ -2034,7 +2056,7 @@
           "regras": []
         },
         {
-          "indice": 7,
+          "indice": 9,
           "nome": "VL_SALDO_FIN",
           "descricao": "Saldo Final do Per\u00edodo Anterior.",
           "tipo": "N",
@@ -2045,7 +2067,7 @@
           "regras": []
         },
         {
-          "indice": 8,
+          "indice": 10,
           "nome": "IND_VL_SALDO_FIN",
           "descricao": "Indicador de Saldo Final do Per\u00edodo Anterior: D \u2013 Para preju\u00edzos ou valores que reduzam o lucro real ou a base de c\u00e1lculo da contribui\u00e7\u00e3o social em per\u00edodos subsequentes. C \u2013 Para valores que aumentam o lucro real ou a base de c\u00e1lculo na contribui\u00e7\u00e3o social em per\u00edodos subsequentes.",
           "tipo": "C",
@@ -2053,17 +2075,6 @@
           "decimal": null,
           "valores": "[D; C]",
           "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 9,
-          "nome": "COD_PB_RFB",
-          "descricao": "C\u00f3digo da tabela padr\u00e3o da Parte B.",
-          "tipo": "C",
-          "tamanho": "6",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": true,
           "regras": []
         }
       ]
@@ -2695,7 +2706,7 @@
     },
     {
       "codigo": "K156",
-      "nome": "Mapeamento Referencial do Saldo",
+      "nome": "Mapeamento Referencial do Saldo Final",
       "regras": [],
       "nivel": 4,
       "ocorrencia": "[0;N]",
@@ -2714,8 +2725,8 @@
         },
         {
           "indice": 3,
-          "nome": "VL_SLD_INI",
-          "descricao": "Valor do Saldo Inicial do Per\u00edodo.",
+          "nome": "VL_SLD_FIN",
+          "descricao": "Valor do Saldo Final Mapeado.",
           "tipo": "N",
           "tamanho": "19",
           "decimal": "2",
@@ -2725,56 +2736,12 @@
         },
         {
           "indice": 4,
-          "nome": "IND_VL_SLD_INI",
-          "descricao": "Indicador da Situa\u00e7\u00e3o do Saldo Inicial: D \u2013 Devedor C \u2013 Credor",
-          "tipo": "C",
-          "tamanho": "1",
-          "decimal": null,
-          "valores": "[D; C]",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 5,
-          "nome": "VL_DEB",
-          "descricao": "Valor Total dos D\u00e9bitos no Per\u00edodo.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 6,
-          "nome": "VL_CRED",
-          "descricao": "Valor Total dos Cr\u00e9ditos no Per\u00edodo.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 7,
-          "nome": "VL_SLD_FIN",
-          "descricao": "Valor do Saldo Final do Per\u00edodo.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 8,
           "nome": "IND_VL_SLD_FIN",
           "descricao": "Indicador da Situa\u00e7\u00e3o do Saldo Final: D \u2013 Devedor C \u2013 Credor",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
-          "valores": "[D; C]",
+          "valores": "-",
           "obrigatorio": true,
           "regras": []
         }
@@ -2870,312 +2837,6 @@
           "descricao": "Indicador da Situa\u00e7\u00e3o do Saldo Final: D \u2013 Devedor C \u2013 Credor",
           "tipo": "C",
           "tamanho": "1",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        }
-      ]
-    },
-    {
-      "codigo": "K915",
-      "nome": "Justificativa para Diverg\u00eancia nas Contas Patrimoniais",
-      "regras": [],
-      "nivel": 2,
-      "ocorrencia": "[0;N]",
-      "campos_chave": [],
-      "campos": [
-        {
-          "indice": 2,
-          "nome": "PER_APUR",
-          "descricao": "Per\u00edodo de Apura\u00e7\u00e3o [para 0010.FORMA_APUR = \u201cA\u201d ou (0010.FORMA_APUR_I = \u201cA\u201d OU 0010.APUR_CSLL = \u201cA\u201d E 0010.TIP_ESC_PRE = \u201cC\u201d)]: A00 \u2013 Anual A01 \u2013 Rec. Bruta de janeiro /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 janeiro A02 \u2013 Rec. Bruta de fevereiro /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 fevereiro A03 \u2013 Rec. Bruta de mar\u00e7o /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 mar\u00e7o A04 \u2013 Rec. Bruta de abril /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 abril A05 \u2013 Rec. Bruta de maio /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 maio A06 \u2013 Rec. Bruta de junho /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 junho A07 \u2013 Rec. Bruta de julho /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 julho A08 \u2013 Rec. Bruta de agosto /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 agosto A09 \u2013 Rec. Bruta de setembro /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 setembro A10 \u2013 Rec. Bruta de outubro/Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 outubro A11 \u2013 Rec. Bruta de novembro /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 novembro A12 \u2013 Rec. Bruta de dezembro/Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 dezembro",
-          "tipo": "C",
-          "tamanho": "3",
-          "decimal": null,
-          "valores": "[A00; A01; A02; A03; A04; A05; A06; A07; A08; A09; A10; A11; A12; T01; T02; T03; T04]",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 3,
-          "nome": "COD_CTA",
-          "descricao": "C\u00f3digo da conta cont\u00e1bil.",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 4,
-          "nome": "COD_CCUS",
-          "descricao": "C\u00f3digo do centro de custos.",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 5,
-          "nome": "ID_REGRA",
-          "descricao": "Identifica\u00e7\u00e3o da regra que foi descumprida. O sistema dever\u00e1 preencher com as seguintes regras: REGRA_COMPATIBILIDADE_K155_E155: (Verifica se os valores utilizados no registro K155 s\u00e3o iguais aos valores calculados do registro E155.) ou REGRA_COMPATIBILIDADE_E155_K155: Verifica se os campos do registro E155 com algum valor maior que zero, s\u00e3o referenciados no registro K155 para o mesmo per\u00edodo de apura\u00e7\u00e3o.",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 6,
-          "nome": "VL_SLD_INI_ESP",
-          "descricao": "Valor do saldo inicial recuperado da ECD para o per\u00edodo fiscal. Este campo ser\u00e1 calculado automaticamente pelo PGE da ECF durante a valida\u00e7\u00e3o do arquivo da ECF.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 7,
-          "nome": "IND_VL_SLD_INI_ESP",
-          "descricao": "Indicador de situa\u00e7\u00e3o do saldo inicial esperado: D \u2013 Devedor; e C \u2013 Credor. Este campo ser\u00e1 calculado automaticamente pelo PGE da ECF durante a valida\u00e7\u00e3o do arquivo da ECF.",
-          "tipo": "C",
-          "tamanho": "1",
-          "decimal": null,
-          "valores": "[\u201cD\u201d; \u201cC\u201d]",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 8,
-          "nome": "VL_DEB_ESP",
-          "descricao": "Valor total de d\u00e9bitos recuperado da ECD para o per\u00edodo fiscal. Este campo ser\u00e1 calculado automaticamente pelo PGE da ECF durante a valida\u00e7\u00e3o do arquivo da ECF.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 9,
-          "nome": "VL_CRED_ESP",
-          "descricao": "Valor total de cr\u00e9ditos recuperado da ECD para o per\u00edodo fiscal. Este campo ser\u00e1 calculado automaticamente pelo PGE da ECF durante a valida\u00e7\u00e3o do arquivo da ECF.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 10,
-          "nome": "VL_SLD_FIN_ESP",
-          "descricao": "Valor do saldo final recuperado da ECD para o per\u00edodo fiscal. Este campo ser\u00e1 calculado automaticamente pelo PGE da ECF durante a valida\u00e7\u00e3o do arquivo da ECF.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 11,
-          "nome": "IND_VL_SLD_FIN_ESP",
-          "descricao": "Indicador de situa\u00e7\u00e3o do saldo final esperado: D \u2013 Devedor; e C \u2013 Credor. Este campo ser\u00e1 calculado automaticamente pelo PGE da ECF durante a valida\u00e7\u00e3o do arquivo da ECF.",
-          "tipo": "C",
-          "tamanho": "1",
-          "decimal": null,
-          "valores": "[\u201cD\u201d; \u201cC\u201d]",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 12,
-          "nome": "SLD_INI_PRE",
-          "descricao": "Saldo inicial preenchido no registro K155.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 13,
-          "nome": "IND_SLD_INI_PRE",
-          "descricao": "Indicador de situa\u00e7\u00e3o do saldo inicial preenchido no registro K155: D \u2013 Devedor; e C \u2013 Credor.",
-          "tipo": "C",
-          "tamanho": "1",
-          "decimal": null,
-          "valores": "[\u201cD\u201d; \u201cC\u201d]",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 14,
-          "nome": "VL_DEB_PRE",
-          "descricao": "Valor total dos d\u00e9bitos preenchido no registro K155.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 15,
-          "nome": "VL_CRED_PRE",
-          "descricao": "Valor total dos cr\u00e9ditos preenchido no registro K155.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 16,
-          "nome": "SLD_FIN_PRE",
-          "descricao": "Saldo final preenchido no registro K155.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 17,
-          "nome": "IND_SLD_FIN_PRE",
-          "descricao": "Indicador de situa\u00e7\u00e3o do saldo final preenchido no registro K155: D \u2013 Devedor; e C \u2013 Credor.",
-          "tipo": "C",
-          "tamanho": "1",
-          "decimal": null,
-          "valores": "[\u201cD\u201d; \u201cC\u201d]",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 18,
-          "nome": "JUSTIFICATIVA",
-          "descricao": "Justificativa da diverg\u00eancia entre o(s) valor(es) calculado(s) pelo PGE da ECF e o(s) valor(es) preenchido(s).",
-          "tipo": "C",
-          "tamanho": "500",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        }
-      ]
-    },
-    {
-      "codigo": "K935",
-      "nome": "Justificativa para Diverg\u00eancia nas Contas de Resultado",
-      "regras": [],
-      "nivel": 2,
-      "ocorrencia": "[0;N]",
-      "campos_chave": [],
-      "campos": [
-        {
-          "indice": 2,
-          "nome": "PER_APUR",
-          "descricao": "Per\u00edodo de Apura\u00e7\u00e3o [para 0010.FORMA_APUR = \u201cA\u201d ou (0010.FORMA_APUR_I = \u201cA\u201d OU 0010.APUR_CSLL = \u201cA\u201d E 0010.TIP_ESC_PRE = \u201cC\u201d)]: A00 \u2013 Anual A01 \u2013 Rec. Bruta de janeiro /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 janeiro A02 \u2013 Rec. Bruta de fevereiro /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 fevereiro A03 \u2013 Rec. Bruta de mar\u00e7o /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 mar\u00e7o A04 \u2013 Rec. Bruta de abril /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 abril A05 \u2013 Rec. Bruta de maio /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 maio A06 \u2013 Rec. Bruta de junho /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 junho A07 \u2013 Rec. Bruta de julho /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 julho A08 \u2013 Rec. Bruta de agosto /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 agosto A09 \u2013 Rec. Bruta de setembro /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 setembro A10 \u2013 Rec. Bruta de outubro/Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 outubro A11 \u2013 Rec. Bruta de novembro /Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 novembro A12 \u2013 Rec. Bruta de dezembro/Balan\u00e7o suspens\u00e3o redu\u00e7\u00e3o at\u00e9 dezembro",
-          "tipo": "C",
-          "tamanho": "3",
-          "decimal": null,
-          "valores": "[A00; A01; A02; A03; A04; A05; A06; A07; A08; A09; A10; A11; A12; T01; T02; T03; T04]",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 3,
-          "nome": "COD_CTA",
-          "descricao": "C\u00f3digo da conta cont\u00e1bil.",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 4,
-          "nome": "COD_CCUS",
-          "descricao": "C\u00f3digo do centro de custos.",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 5,
-          "nome": "ID_REGRA",
-          "descricao": "R Identifica\u00e7\u00e3o da regra que foi descumprida. O sistema dever\u00e1 preencher com as seguintes regras: EGRA_COMPATIBILIDADE_K355_E355: Verifica se os valores utilizados no registro K355 s\u00e3o iguais aos valores calculados do registro E355. ou REGRA_COMPATIBILIDADE_E355_K355: Verifica se os campos do registro E355 com algum valor maior que zero, s\u00e3o referenciados no registro K355 para o mesmo per\u00edodo de apura\u00e7\u00e3o.",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 6,
-          "nome": "VL_SLD_FIN_ESP",
-          "descricao": "Valor do saldo final recuperado da ECD para o per\u00edodo fiscal. Este campo ser\u00e1 calculado automaticamente pelo PGE da ECF durante a valida\u00e7\u00e3o do arquivo da ECF.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 7,
-          "nome": "IND_VL_SLD_FIN_ESP",
-          "descricao": "Indicador de situa\u00e7\u00e3o do saldo final esperado: D \u2013 Devedor; e C \u2013 Credor. Este campo ser\u00e1 calculado automaticamente pelo PGE da ECF durante a valida\u00e7\u00e3o do arquivo da ECF.",
-          "tipo": "C",
-          "tamanho": "1",
-          "decimal": null,
-          "valores": "[\u201cD\u201d; \u201cC\u201d]",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 8,
-          "nome": "SLD_FIN_PRE",
-          "descricao": "Saldo final preenchido no registro K355.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 9,
-          "nome": "IND_SLD_FIN_PRE",
-          "descricao": "Indicador de situa\u00e7\u00e3o do saldo final preenchido no registro K355: D \u2013 Devedor; e C \u2013 Credor.",
-          "tipo": "C",
-          "tamanho": "1",
-          "decimal": null,
-          "valores": "[\u201cD\u201d; \u201cC\u201d]",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 10,
-          "nome": "JUSTIFICATIVA",
-          "descricao": "Justificativa da diverg\u00eancia entre o(s) valor(es) calculado(s) pelo PGE da ECF e o(s) valor(es) preenchido(s).",
-          "tipo": "C",
-          "tamanho": "500",
           "decimal": null,
           "valores": "-",
           "obrigatorio": true,
@@ -3366,28 +3027,6 @@
         },
         {
           "indice": 10,
-          "nome": "VAL_CTA_REF_DEB",
-          "descricao": "Valor Total dos D\u00e9bitos: Somat\u00f3rio dos valores mapeados.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 11,
-          "nome": "VAL_CTA_REF_CRED",
-          "descricao": "Valor Total dos Cr\u00e9ditos: Somat\u00f3rio dos valores mapeados.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 12,
           "nome": "VAL_CTA_REF_FIN",
           "descricao": "Saldo Final da Conta Referencial",
           "tipo": "C",
@@ -3398,7 +3037,7 @@
           "regras": []
         },
         {
-          "indice": 13,
+          "indice": 11,
           "nome": "IND_VAL_CTA_REF_FIN",
           "descricao": "Indicador da Situa\u00e7\u00e3o do Saldo Final: D \u2013 Devedor C \u2013 Credor",
           "tipo": "C",
@@ -3657,17 +3296,28 @@
         },
         {
           "indice": 5,
-          "nome": "COD_PB_RFB",
-          "descricao": "O C\u00f3digo da tabela padr\u00e3o da Parte B. Vide planilha PARTEB_PADRAO do arquivo \u201cTabelas_Dinamicas_ECF_Leiaute_6_AC2019_SIT_ESP_2020.xlsx\u201d a partir do linkhttp://sped.rfb.gov.br/pasta/show/1644. s relacionamentos poss\u00edveis das contas padr\u00e3o da Parte B do e-Lalur e do e-Lacs com as linhas da Parte A constam da planilha PARTEB_PARTEA do mesmo arquivo.",
+          "nome": "COD_LAN_ORIG",
+          "descricao": "C\u00f3digo do Lan\u00e7amento: C\u00f3digo do lan\u00e7amento na parte A do e-Lalur e/ou do e-Lacs que deu origem \u00e0 conta.",
           "tipo": "C",
           "tamanho": "6",
           "decimal": null,
           "valores": "-",
-          "obrigatorio": true,
+          "obrigatorio": false,
           "regras": []
         },
         {
           "indice": 6,
+          "nome": "DESC_LAN_ORIG",
+          "descricao": "Descri\u00e7\u00e3o: Descri\u00e7\u00e3o do tipo de lan\u00e7amento na parte A do e-Lalur e/ou do e-Lacs que deu origem \u00e0 conta.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": []
+        },
+        {
+          "indice": 7,
           "nome": "DT_LIM_LAL",
           "descricao": "Data Limite: Data limite para a exclus\u00e3o, adi\u00e7\u00e3o ou compensa\u00e7\u00e3o do valor controlado, se houver.",
           "tipo": "C",
@@ -3678,7 +3328,7 @@
           "regras": []
         },
         {
-          "indice": 7,
+          "indice": 8,
           "nome": "COD_TRIBUTO",
           "descricao": "Indicador do Tributo da Adi\u00e7\u00e3o/Exclus\u00e3o: I \u2013 Imposto de Renda Pessoa Jur\u00eddica C \u2013 Contribui\u00e7\u00e3o Social sobre o Lucro L\u00edquido;",
           "tipo": "C",
@@ -3689,7 +3339,7 @@
           "regras": []
         },
         {
-          "indice": 8,
+          "indice": 9,
           "nome": "VL_SALDO_INI",
           "descricao": "Saldo Inicial: Saldo no per\u00edodo inicial desta escritura\u00e7\u00e3o. Se M010.DT_AP_LAL for no per\u00edodo da escritura\u00e7\u00e3o, ent\u00e3o o valor deve ser zero",
           "tipo": "N",
@@ -3700,7 +3350,7 @@
           "regras": []
         },
         {
-          "indice": 9,
+          "indice": 10,
           "nome": "IND_VL_SALDO_INI",
           "descricao": "Indicador do Saldo Inicial: D \u2013 Para preju\u00edzos ou valores que reduzam o lucro real ou a base de c\u00e1lculo da contribui\u00e7\u00e3o social em per\u00edodos subsequentes. C \u2013 Para valores que aumentem o lucro real ou a base de c\u00e1lculo da contribui\u00e7\u00e3o social em per\u00edodos subsequentes.",
           "tipo": "C",
@@ -3711,7 +3361,7 @@
           "regras": []
         },
         {
-          "indice": 10,
+          "indice": 11,
           "nome": "CNPJ_SIT_ESP",
           "descricao": "E CNPJ da outra pessoa jur\u00eddica relacionada com evento origin\u00e1rio da conta. xemplos: 1- Identificar a investida no caso de valores (ganhos/perdas no novo AVJ) da participa\u00e7\u00e3o societ\u00e1ria anterior, nos caso de aquisi\u00e7\u00f5es em est\u00e1gios. 2- Identificar a investida no caso de amortiza\u00e7\u00e3o de mais-valia e menos-valia. 3- Identificar a investida no caso de impairment de goodwill, mais-valia e menos-valia. 4- Identificar a investida no caso de ganho por compra vantajosa. 5- Identificar a investida no caso registro do \u00e1gio gerado na aquisi\u00e7\u00e3o de participa\u00e7\u00e3o societ\u00e1ria ocorrida at\u00e9 31/12/2009. 6 - Identificar a investida no caso de \u00e1gio gerado pela sistem\u00e1tica de transi\u00e7\u00e3o disciplinada no art. 65, Lei N\u00ba 12.973/14. 7 - Identificar a pessoa jur\u00eddica antecessora no caso de conta incorporada devido a evento societ\u00e1rio.",
           "tipo": "N",
@@ -4070,7 +3720,7 @@
     },
     {
       "codigo": "M355",
-      "nome": "Contas da Parte B Relacionadas ao Lan\u00e7amento da Parte A do e-Lacs",
+      "nome": "Contas da Parte B Relacionadas ao ao Lan\u00e7amento da Parte A do e-Lacs",
       "regras": [],
       "nivel": 4,
       "ocorrencia": "[0;N]",
@@ -4458,131 +4108,21 @@
       ]
     },
     {
-      "codigo": "M510",
-      "nome": "Controle de Saldos das Contas Padr\u00e3o da Parte B do e- Lalur e do e-Lacs",
+      "codigo": "M990",
+      "nome": "Encerramento do Bloco M",
       "regras": [],
-      "nivel": 3,
-      "ocorrencia": "[0;N]",
+      "nivel": 1,
+      "ocorrencia": "[1;1]",
       "campos_chave": [],
       "campos": [
         {
           "indice": 2,
-          "nome": "COD_PB_RFB",
-          "descricao": "C\u00f3digo da Conta Padr\u00e3o da Parte B (deve existir no M010.COD_PB_RFB).",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "[M010.COD_CTA_B]",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 3,
-          "nome": "DESCRICAO_PB_RFB",
-          "descricao": "Descri\u00e7\u00e3o da Conta Padr\u00e3o da Parte B",
-          "tipo": "C",
+          "nome": "QTD_LIN",
+          "descricao": "Quantidade total de registros do Bloco M.",
+          "tipo": "N",
           "tamanho": null,
           "decimal": null,
           "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 4,
-          "nome": "COD_TRIBUTO",
-          "descricao": "C\u00f3digo do Tributo: I \u2013 Imposto de Renda C \u2013 Contribui\u00e7\u00e3o Social Sobre o Lucro L\u00edquido",
-          "tipo": "C",
-          "tamanho": "1",
-          "decimal": null,
-          "valores": "[I; C]",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 5,
-          "nome": "SD_INI_LAL",
-          "descricao": "Saldo Inicial da Conta no Per\u00edodo de Apura\u00e7\u00e3o.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 6,
-          "nome": "IND_SD_INI_LAL",
-          "descricao": "Indicador de Saldo Inicial: D \u2013 Para preju\u00edzos ou valores que ser\u00e3o exclu\u00eddos do lucro real ou da base de c\u00e1lculo da contribui\u00e7\u00e3o social em per\u00edodos subsequentes. C \u2013 Para valores que ser\u00e3o adicionados ao lucro real ou \u00e0 base de c\u00e1lculo da contribui\u00e7\u00e3o social em per\u00edodos subsequentes.",
-          "tipo": "C",
-          "tamanho": "1",
-          "decimal": null,
-          "valores": "[C; D]",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 7,
-          "nome": "VL_LCTO_PARTE_A",
-          "descricao": "Somat\u00f3rio dos Lan\u00e7amentos da Parte B com Reflexo na Parte A no Per\u00edodo.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 8,
-          "nome": "IND_VL_LCTO_PARTE_A",
-          "descricao": "Indicador do Somat\u00f3rio dos Lan\u00e7amentos da Parte B com Reflexo na Parte A no per\u00edodo: C \u2013 Para preju\u00edzos ou valores que ser\u00e3o exclu\u00eddos do lucro real ou da base de c\u00e1lculo da contribui\u00e7\u00e3o social em per\u00edodos subsequentes. D \u2013 Para valores que ser\u00e3o adicionados ao lucro real ou \u00e0 base de c\u00e1lculo da contribui\u00e7\u00e3o social em per\u00edodos subsequentes.",
-          "tipo": "C",
-          "tamanho": "1",
-          "decimal": null,
-          "valores": "[C; D]",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 9,
-          "nome": "VL_LCTO_PARTEB",
-          "descricao": "Somat\u00f3rio dos Lan\u00e7amentos da Parte B Sem Reflexo na Parte A no Per\u00edodo (entre contas da parte B).",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 10,
-          "nome": "IND_VL_LCTO_PARTEB",
-          "descricao": "Indicador Somat\u00f3rio dos Lan\u00e7amentos da Parte B Sem Reflexo na Parte A no Per\u00edodo (entre contas da parte B): C \u2013 Para preju\u00edzos ou valores que ser\u00e3o exclu\u00eddos do lucro real ou da base de c\u00e1lculo da contribui\u00e7\u00e3o social em per\u00edodos subsequentes. D \u2013 Para valores que ser\u00e3o adicionados ao lucro real ou \u00e0 base de c\u00e1lculo da contribui\u00e7\u00e3o social em per\u00edodos subsequentes.",
-          "tipo": "C",
-          "tamanho": "1",
-          "decimal": null,
-          "valores": "[C; D]",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 11,
-          "nome": "SD_FIM_LAL",
-          "descricao": "Saldo Final da Conta no Per\u00edodo de Apura\u00e7\u00e3o.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 12,
-          "nome": "IND_SD_FIM_LAL",
-          "descricao": "Indicador de Saldo Final: D \u2013 Para preju\u00edzos ou valores que ser\u00e3o exclu\u00eddos do lucro real ou da base de c\u00e1lculo da contribui\u00e7\u00e3o social em per\u00edodos subsequentes. C \u2013 Para valores que ser\u00e3o adicionados ao lucro real ou \u00e0 base de c\u00e1lculo da contribui\u00e7\u00e3o social em per\u00edodos subsequentes.",
-          "tipo": "C",
-          "tamanho": "1",
-          "decimal": null,
-          "valores": "[C; D]",
           "obrigatorio": true,
           "regras": []
         }
@@ -5255,28 +4795,6 @@
         },
         {
           "indice": 10,
-          "nome": "VAL_CTA_REF_DEB",
-          "descricao": "Valor Total dos D\u00e9bitos: Somat\u00f3rio dos valores mapeados.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 11,
-          "nome": "VAL_CTA_REF_CRED",
-          "descricao": "Valor Total dos Cr\u00e9ditos: Somat\u00f3rio dos valores mapeados.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 12,
           "nome": "VAL_CTA_REF_FIN",
           "descricao": "Saldo Final da Conta Referencial",
           "tipo": "C",
@@ -5287,7 +4805,7 @@
           "regras": []
         },
         {
-          "indice": 13,
+          "indice": 11,
           "nome": "IND_VAL_CTA_REF_FIN",
           "descricao": "Indicador da Situa\u00e7\u00e3o do Saldo Final: D \u2013 Devedor C \u2013 Credor",
           "tipo": "C",
@@ -6213,28 +5731,6 @@
         },
         {
           "indice": 10,
-          "nome": "VAL_CTA_REF_DEB",
-          "descricao": "Valor Total dos D\u00e9bitos: Somat\u00f3rio dos valores mapeados.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 11,
-          "nome": "VAL_CTA_REF_CRED",
-          "descricao": "Valor Total dos Cr\u00e9ditos: Somat\u00f3rio dos valores mapeados.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 12,
           "nome": "VAL_CTA_REF_FIN",
           "descricao": "Saldo Final da Conta Referencial",
           "tipo": "C",
@@ -6245,7 +5741,7 @@
           "regras": []
         },
         {
-          "indice": 13,
+          "indice": 11,
           "nome": "IND_VAL_CTA_REF_FIN",
           "descricao": "Indicador da Situa\u00e7\u00e3o do Saldo Final: D \u2013 Devedor C \u2013 Credor",
           "tipo": "C",
@@ -6464,7 +5960,7 @@
     },
     {
       "codigo": "V001",
-      "nome": "Abertura do Bloco V \u2013 DEREX",
+      "nome": "Abertura do Bloco V - DEREX",
       "regras": [],
       "nivel": 1,
       "ocorrencia": "[1;1]",
@@ -6485,7 +5981,7 @@
     },
     {
       "codigo": "V010",
-      "nome": "DEREX \u2013 Institui\u00e7\u00e3o",
+      "nome": "DEREX - Institui\u00e7\u00e3o",
       "regras": [],
       "nivel": 2,
       "ocorrencia": "[0;N]",
@@ -6593,7 +6089,7 @@
     },
     {
       "codigo": "V030",
-      "nome": "DEREX - Per\u00edodo \u2013 M\u00eas",
+      "nome": "DEREX - Per\u00edodo - M\u00eas",
       "regras": [],
       "nivel": 3,
       "ocorrencia": "[1;12]",
@@ -7766,7 +7262,7 @@
         {
           "indice": 4,
           "nome": "DESC_EXP",
-          "descricao": "Descri\u00e7\u00e3o das Exporta\u00e7\u00f5es: Agrupar os bens, servi\u00e7os ou direitos de mesma natureza, descrevendo cada grupo de modo a permitir a sua perfeita identifica\u00e7\u00e3o e informando elementos como marca, tipo, modelo, esp\u00e9cie, etc. Aten\u00e7\u00e3o: no caso de bens considerados commodities, sujeitos \u00e0 aplica\u00e7\u00e3o do m\u00e9todo PECEX, dever\u00e1 ser efetuado um Registro X300 para cada transa\u00e7\u00e3o realizada, mesmo quando houver mais de uma transa\u00e7\u00e3o envolvendo o mesmo bem. Obrigat\u00f3rio somente quando TIP_EXP = Bens, Servi\u00e7os ou Direitos",
+          "descricao": "Descri\u00e7\u00e3o das Exporta\u00e7\u00f5es: Agrupar os bens, servi\u00e7os ou direitos id\u00eanticos, descrevendo cada grupo de modo a permitir a sua perfeita identifica\u00e7\u00e3o, informando elementos, tais como: marca, tipo, modelo, esp\u00e9cie, etc. Obrigat\u00f3rio somente quando TIP_EXP = Bens, Servi\u00e7os ou Direitos",
           "tipo": "C",
           "tamanho": null,
           "decimal": null,
@@ -7777,7 +7273,7 @@
         {
           "indice": 5,
           "nome": "TOT_OPER",
-          "descricao": "Total das Opera\u00e7\u00f5es: EXPORTA\u00c7\u00d5ES \u2013 Bens, Servi\u00e7os ou Direito Informar, em reais, para cada opera\u00e7\u00e3o inclu\u00edda o valor correspondente ao total de transa\u00e7\u00f5es da mesma natureza realizadas durante o ano-calend\u00e1rio. S\u00e3o consideradas transa\u00e7\u00f5es de mesma natureza aquelas cujos bens, servi\u00e7os ou direitos negociados apresentem as mesmas especifica\u00e7\u00f5es no campo \"Descri\u00e7\u00e3o\". Aten\u00e7\u00e3o: no caso de bens considerados commodities, sujeitos \u00e0 aplica\u00e7\u00e3o do m\u00e9todo PECEX, deve ser informado o valor de cada transa\u00e7\u00e3o realizada, mesmo quando houver mais de uma transa\u00e7\u00e3o envolvendo o mesmo bem. EXPORTA\u00c7\u00d5ES \u2013 N\u00e3o Especificadas Informar neste campo o somat\u00f3rio das opera\u00e7\u00f5es n\u00e3o informadas nos campos referentes \u00e0s maiores opera\u00e7\u00f5es ou, se for o caso, a soma do valor excedente a pelo menos 80% do total das exporta\u00e7\u00f5es, especificadas em X300.TIP_EXP como \u201c01\u201d, \u201c02\u201d, \u201c03\u201d ou \u201c04\u201d, efetuadas no ano-calend\u00e1rio. Obrigat\u00f3rio quando TIP_EXP = Bens, Servi\u00e7os, Direitos ou N\u00e3o Especificadas.",
+          "descricao": "E Total das Opera\u00e7\u00f5es: EXPORTA\u00c7\u00d5ES \u2013 Bens, Servi\u00e7os ou Direito Informar, em reais, para cada opera\u00e7\u00e3o inclu\u00edda o valor correspondente ao total de transa\u00e7\u00f5es da mesma natureza realizadas durante o ano-calend\u00e1rio. Aten\u00e7\u00e3o: S\u00e3o consideradas transa\u00e7\u00f5es de mesma natureza aquelas cujos bens, servi\u00e7os ou direitos negociados apresentem as mesmas especifica\u00e7\u00f5es no campo \"Descri\u00e7\u00e3o\". XPORTA\u00c7\u00d5ES \u2013 N\u00e3o Especificadas Informar neste campo o somat\u00f3rio das opera\u00e7\u00f5es n\u00e3o informadas nos campos referentes \u00e0s maiores opera\u00e7\u00f5es, ou se for o caso, a soma do valor excedente a pelo menos 80% do total das exporta\u00e7\u00f5es, especificadas em X320.TIP_IMP como \u201c01\u201d, \u201c02\u201d, \u201c03\u201d ou \u201c04\u201d, efetuadas no ano-calend\u00e1rio. Obrigat\u00f3rio somente quando TIP_EXP = Bens, Servi\u00e7os, Direitos ou N\u00e3o Especificadas.",
           "tipo": "N",
           "tamanho": "19",
           "decimal": "2",
@@ -7799,7 +7295,7 @@
         {
           "indice": 7,
           "nome": "QTDE",
-          "descricao": "Quantidade: Informar neste campo a quantidade total dos bens da mesma natureza exportados (no caso de transa\u00e7\u00f5es envolvendo commodities, o total de bens exportados em cada transa\u00e7\u00e3o realizada). Obrigat\u00f3rio somente quando TIP_EXP = Bens",
+          "descricao": "Quantidade: Informar neste campo a quantidade total dos bens da mesma natureza exportados. Obrigat\u00f3rio somente quando TIP_EXP = Bens",
           "tipo": "N",
           "tamanho": "19",
           "decimal": "2",
@@ -7821,7 +7317,7 @@
         {
           "indice": 9,
           "nome": "IND_OPER",
-          "descricao": "Indicador de Opera\u00e7\u00e3o Sujeita a Arbitramento S - Sim N - N\u00e3o Obrigat\u00f3rio somente quando TIP_EXP = Bens, Servi\u00e7os ou Direitos O campo deve ser assinalado caso o pre\u00e7o m\u00e9dio de venda do bem, servi\u00e7o ou direito das exporta\u00e7\u00f5es efetuadas durante o respectivo per\u00edodo de apura\u00e7\u00e3o da base de c\u00e1lculo do imposto de renda seja inferior a noventa por cento do pre\u00e7o m\u00e9dio praticado na venda dos bens, servi\u00e7os ou direitos, id\u00eanticos ou similares, no mercado brasileiro, durante o mesmo per\u00edodo, em condi\u00e7\u00f5es de pagamento semelhantes (art. 20 da Instru\u00e7\u00e3o Normativa RFB n\u00ba 1.312, de 28 de dezembro de 2012). Aten\u00e7\u00e3o: Caso a pessoa jur\u00eddica n\u00e3o efetue opera\u00e7\u00f5es de venda no mercado interno, a determina\u00e7\u00e3o dos pre\u00e7os m\u00e9dios \u00e9 efetuada com dados de outras empresas que pratiquem a venda de bens, servi\u00e7os ou direitos, id\u00eanticos ou similares, no mercado brasileiro (\u00a7 2\u00ba, art. 20 da Instru\u00e7\u00e3o Normativa RFB n\u00ba 1.312, de 28 de dezembro de 2012).",
+          "descricao": "Indicador de Opera\u00e7\u00e3o Sujeita a Arbitramento S - Sim N - N\u00e3o Obrigat\u00f3rio somente quando TIP_EXP = Bens, Servi\u00e7os ou Direitos O campo deve ser assinalado, caso o pre\u00e7o m\u00e9dio de venda do bem, servi\u00e7o ou direito das exporta\u00e7\u00f5es efetuadas durante o respectivo per\u00edodo de apura\u00e7\u00e3o da base de c\u00e1lculo do imposto de renda, for inferior a noventa por cento do pre\u00e7o m\u00e9dio praticado na venda do mesmo bem, servi\u00e7o ou direito no mercado brasileiro, durante o mesmo per\u00edodo, em condi\u00e7\u00f5es de pagamento semelhantes Aten\u00e7\u00e3o: Caso a pessoa jur\u00eddica n\u00e3o efetue opera\u00e7\u00f5es de venda no mercado interno, a determina\u00e7\u00e3o dos pre\u00e7os m\u00e9dios \u00e9 efetuada com dados de outras empresas que pratiquem a venda de bens, servi\u00e7os ou direitos, id\u00eanticos ou similares, no mercado interno (\u00a7 2\u00ba, art. 20 da Instru\u00e7\u00e3o Normativa RFB n\u00ba 1.312, de 28 de dezembro de 2012).",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
@@ -7832,18 +7328,18 @@
         {
           "indice": 10,
           "nome": "TIP_MET",
-          "descricao": "A pessoa jur\u00eddica deve assinalar o m\u00e9todo utilizado na determina\u00e7\u00e3o do \"Pre\u00e7o Par\u00e2metro\": PVEX - M\u00e9todo do Pre\u00e7o de Venda nas Exporta\u00e7\u00f5es (inciso I do \u00a7 3\u00ba do art. 19 da Lei n\u00ba 9.430, de 1996); PVA - M\u00e9todo do Pre\u00e7o de Venda por Atacado no Pa\u00eds de Destino, Diminu\u00eddo do Lucro (inciso II do \u00a7 3\u00ba do art. 19 da Lei n\u00ba 9.430, de 1996); PVV - M\u00e9todo do Pre\u00e7o de Venda a Varejo no Pa\u00eds de Destino, Diminu\u00eddo do Lucro (inciso III do \u00a7 3\u00ba do art. 19 da Lei n\u00ba 9.430, de 1996); CAP - M\u00e9todo do Custo de Aquisi\u00e7\u00e3o ou de Produ\u00e7\u00e3o mais Tributos e Lucro (inciso IV do \u00a7 3\u00ba da Lei n\u00ba 9.430, de 1996). PECEX - Pre\u00e7o sob Cota\u00e7\u00e3o na Exporta\u00e7\u00e3o (Art. 19-A da Lei n\u00ba 9.430, de 1996, e art. 34 da IN RFB n\u00ba 1.312, de 28 de dezembro de 2012).",
+          "descricao": "M\u00e9todo: PVE - Pre\u00e7o de Venda nas Exporta\u00e7\u00f5es PGE - Pre\u00e7o de Venda por Atacado menos Lucro PVV - Pre\u00e7o de Venda a Varejo menos Lucro CAP - Custo de Aquisi\u00e7\u00e3o/Produ\u00e7\u00e3o mais Tributos e Lucro PECEX - Pre\u00e7o sob Cota\u00e7\u00e3o na Exporta\u00e7\u00e3o A pessoa jur\u00eddica deve assinalar o m\u00e9todo utilizado na determina\u00e7\u00e3o do \"Pre\u00e7o Par\u00e2metro\": PVEX M\u00e9todo do Pre\u00e7o de Venda nas Exporta\u00e7\u00f5es (inciso I do \u00a7 3\u00ba do art. 19 da Lei n\u00ba 9.430, de 1996); PGE M\u00e9todo do Pre\u00e7o de Venda por Atacado no Pa\u00eds de Destino Diminu\u00eddo do Lucro (inciso II do \u00a7 3\u00ba do art. 19 da Lei n\u00ba 9.430, de 1996); PVV M\u00e9todo do Pre\u00e7o de Venda a Varejo no Pa\u00eds de Destino Diminu\u00eddo do Lucro (inciso III do \u00a7 3\u00ba do art. 19 da Lei n\u00ba 9.430, de 1996); CAP M\u00e9todo do Custo de Aquisi\u00e7\u00e3o ou de Produ\u00e7\u00e3o mais Tributos e Lucro (inciso IV do \u00a7 3\u00ba da Lei n\u00ba 9.430, de 1996). PECEX Pre\u00e7o sob Cota\u00e7\u00e3o na Exporta\u00e7\u00e3o (Art. 19-A da Lei n\u00ba 9.430, de 1996, e art. 34, da IN RFB n\u00ba 1.312, de 28 de dezembro de 2012).",
           "tipo": "C",
           "tamanho": "5",
           "decimal": null,
-          "valores": "[PVEX; PVA; PVV; CAP; PECEx]",
+          "valores": "[PVE; PGE; PVV; CAP; PECEx]",
           "obrigatorio": false,
           "regras": []
         },
         {
           "indice": 11,
           "nome": "VL_PAR",
-          "descricao": "Pre\u00e7o Par\u00e2metro: A pessoa jur\u00eddica deve informar neste campo o pre\u00e7o par\u00e2metro m\u00e9dio ponderado de vendas nas exporta\u00e7\u00f5es dos bens, servi\u00e7os ou direitos, apurado no ano- calend\u00e1rio conforme os m\u00e9todos estabelecidos nos arts. 30 a 34 da Instru\u00e7\u00e3o Normativa RFB n\u00ba 1.312, de 28 de dezembro de 2012. Aten\u00e7\u00e3o: nos casos de utiliza\u00e7\u00e3o do m\u00e9todo PECEX, o valor a ser informado \u00e9 o pre\u00e7o par\u00e2metro apurado para cada transa\u00e7\u00e3o realizada. Obrigat\u00f3rio somente quando TIP_EXP = Bens, Servi\u00e7os ou Direitos",
+          "descricao": "Pre\u00e7o Par\u00e2metro: A pessoa jur\u00eddica deve informar, neste campo o pre\u00e7o m\u00e9dio ponderado de vendas nas exporta\u00e7\u00f5es dos bens, servi\u00e7os ou direitos, apurado no ano-calend\u00e1rio, conforme os m\u00e9todos estabelecidos nos arts.30 a 34 da Instru\u00e7\u00e3o Normativa RFB n\u00ba 1.312, de 28 de dezembro de 2012. Obrigat\u00f3rio somente quando TIP_EXP = Bens, Servi\u00e7os ou Direitos",
           "tipo": "N",
           "tamanho": "19",
           "decimal": "2",
@@ -7854,7 +7350,7 @@
         {
           "indice": 12,
           "nome": "VL_PRAT",
-          "descricao": "Pre\u00e7o Praticado: A pessoa jur\u00eddica deve informar neste campo o pre\u00e7o praticado m\u00e9dio ponderado de venda nas exporta\u00e7\u00f5es dos bens, servi\u00e7os ou direitos, praticado no ano- calend\u00e1rio. Aten\u00e7\u00e3o: nos casos de utiliza\u00e7\u00e3o do m\u00e9todo PECEX, o valor a ser informado \u00e9 o pre\u00e7o praticado em cada transa\u00e7\u00e3o realizada. Obrigat\u00f3rio somente quando TIP_EXP = Bens, Servi\u00e7os ou Direitos",
+          "descricao": "Pre\u00e7o Patricado: A pessoa jur\u00eddica deve informar, neste campo, o pre\u00e7o m\u00e9dio ponderado de venda nas exporta\u00e7\u00f5es dos bens, servi\u00e7os ou direitos, praticado no ano-calend\u00e1rio. Obrigat\u00f3rio somente quando TIP_EXP = Bens, Servi\u00e7os ou Direitos",
           "tipo": "N",
           "tamanho": "19",
           "decimal": "2",
@@ -7865,7 +7361,7 @@
         {
           "indice": 13,
           "nome": "VL_AJ",
-          "descricao": "E O E Valor do Ajuste: EXPORTA\u00c7\u00d5ES \u2013 Bens, Servi\u00e7os ou Direitos A pessoa jur\u00eddica dever\u00e1 indicar o valor do ajuste, determinado em conformidade com os arts. 26 a 29 da Instru\u00e7\u00e3o Normativa RFB n\u00ba 1.312, de 28 de dezembro de 2012. A parcela das receitas de exporta\u00e7\u00f5es provenientes de pessoas vinculadas, calculada com base nos m\u00e9todos dispostos da IN 1.312/12, que exceder os valores j\u00e1 apropriados na escritura\u00e7\u00e3o da empresa deve ser adicionada ao lucro l\u00edquido, para determina\u00e7\u00e3o do lucro real e da base de c\u00e1lculo da contribui\u00e7\u00e3o social sobre o lucro l\u00edquido, bem como ser computada na determina\u00e7\u00e3o do lucro presumido ou arbitrado. XPORTA\u00c7\u00d5ES \u2013 Financeiras A pessoa jur\u00eddica deve indicar o valor do ajuste, determinado em conformidade com o art. 38-A da Instru\u00e7\u00e3o Normativa RFB n\u00ba 1.312, de 28 de dezembro de 2012. s ajustes devem ser oferecidos \u00e0 tributa\u00e7\u00e3o de acordo com o regime fiscal a que se submete cada pessoa jur\u00eddica. XPORTA\u00c7\u00d5ES \u2013 N\u00e3o Especificadas A pessoa jur\u00eddica deve indicar o somat\u00f3rio dos ajustes efetuados, referente ao total das transa\u00e7\u00f5es consolidadas no campo \"Total da Opera\u00e7\u00e3o\", agrupadas e informadas como \u201cN\u00e3o Especificadas\u201d no campo \u201dTipo das Exporta\u00e7\u00f5es\" .",
+          "descricao": "E E Valor do Ajuste: EXPORTA\u00c7\u00d5ES \u2013 Bens, Servi\u00e7os ou Direitos A pessoa jur\u00eddica dever\u00e1 indicar o valor do ajuste, determinado em conformidade com os arts. 26 a 29 da Instru\u00e7\u00e3o Normativa RFB n\u00ba 1.312, de 28 de dezembro de 2012, de 2002. A parcela das receitas de exporta\u00e7\u00f5es para pessoas vinculadas (subitem 20.1), calculada com base nos m\u00e9todos, que exceder aos valores j\u00e1 apropriados na escritura\u00e7\u00e3o da empresa deve ser adicionada ao lucro l\u00edquido, para determina\u00e7\u00e3o do lucro real e da base de c\u00e1lculo da contribui\u00e7\u00e3o social sobre o lucro l\u00edquido. XPORTA\u00c7\u00d5ES \u2013 Financeiras A pessoa jur\u00eddica deve indicar o valor do ajuste, determinado em conformidade com o art.38 da Instru\u00e7\u00e3o Normativa RFB n\u00ba 1.312, de 28 de dezembro de 2012. Se a receita financeira for inferior ao valor calculado com base na taxa Libor, para dep\u00f3sito em d\u00f3lares pelo prazo de seis meses, acrescida de 3% anuais, a t\u00edtulo de spread, proporcionalizadas em fun\u00e7\u00e3o do per\u00edodo a que se referirem os juros, a diferen\u00e7a deve ser adicionada ao lucro real e \u00e0 base de c\u00e1lculo da CSLL. Os ajustes devem ser oferecidos \u00e0 tributa\u00e7\u00e3o de acordo com o regime fiscal a que se submete cada pessoa jur\u00eddica. XPORTA\u00c7\u00d5ES \u2013 N\u00e3o Especificadas A pessoa jur\u00eddica deve indicar o somat\u00f3rio dos ajustes efetuados, referentes ao total das opera\u00e7\u00f5es consolidadas no campo \"Total da Opera\u00e7\u00e3o\".",
           "tipo": "N",
           "tamanho": "19",
           "decimal": "2",
@@ -7876,7 +7372,7 @@
         {
           "indice": 14,
           "nome": "VL_JUR",
-          "descricao": "Juros: Informar em reais o valor total dos juros auferidos em opera\u00e7\u00f5es financeiras durante o ano-calend\u00e1rio. Esse valor total deve ser consolidado consoante os c\u00f3digos de natureza- fato de opera\u00e7\u00e3o constantes da Consolida\u00e7\u00e3o das Normas Cambiais (CNC), editada pelo Banco Central do Brasil. Aten\u00e7\u00e3o: A pessoa jur\u00eddica financeira e seguradora deve informar neste campo o montante total dos juros auferidos em opera\u00e7\u00f5es financeiras com pessoas vinculadas, inclusive por interm\u00e9dio de interposta pessoa ou de pessoas residentes ou domiciliadas em pa\u00edses com tributa\u00e7\u00e3o favorecida ou cuja legisla\u00e7\u00e3o interna oponha sigilo, ou, a partir de 1\u00ba de janeiro de 2009, que gozem, nos termos da legisla\u00e7\u00e3o, de regime fiscal privilegiado. Obrigat\u00f3rio apenas para TIP_EXP=Opera\u00e7\u00f5es Financeiras",
+          "descricao": "Juros: Informar em reais o valor total dos juros auferidos em opera\u00e7\u00f5es financeiras n\u00e3o sujeitas ao registro no Banco Central do Brasil, durante o ano-calend\u00e1rio. Esse valor total deve ser consolidado consoante os c\u00f3digos de natureza-fato de opera\u00e7\u00e3o constantes da Consolida\u00e7\u00e3o das Normas Cambiais (CNC), editada pelo Banco Central do Brasil. Aten\u00e7\u00e3o: A pessoa jur\u00eddica financeira e seguradora, deve informar, neste campo, o montante total dos juros auferidos em opera\u00e7\u00f5es financeiras n\u00e3o sujeitas ao registro no Banco Central do Brasil de pessoas vinculadas, inclusive por interm\u00e9dio de interposta pessoa ou de pessoas residentes ou domiciliadas em pa\u00edses com tributa\u00e7\u00e3o favorecida ou cuja legisla\u00e7\u00e3o interna oponha sigilo, ou, a partir de 1\u00ba de janeiro de 2009, que gozem, nos termos da legisla\u00e7\u00e3o, de regime fiscal privilegiado. Obrigat\u00f3rio apenas para TIP_EXP=Opera\u00e7\u00f5es Financeiras",
           "tipo": "N",
           "tamanho": "19",
           "decimal": "2",
@@ -7909,7 +7405,7 @@
         {
           "indice": 17,
           "nome": "COD_CNC",
-          "descricao": "C\u00f3digo CNC, conforme tabela do Sped (Disponibilizada no programa da ECF no diret\u00f3rio Arquivos de Programas/Programas Sped/ECf/SpedEcf/Recursos/Tabelas). A pessoa jur\u00eddica deve informar, dentre os c\u00f3digos de natureza-fato transcritos da rubrica Rendas de Capitais do Cap\u00edtulo 1, T\u00edtulo 14 ou Cap\u00edtulo 2, T\u00edtulo 22 da Consolida\u00e7\u00e3o das Normas Cambiais (CNC), aquele sob o qual se classificariam os juros auferidos para fins da legisla\u00e7\u00e3o cambial - na hip\u00f3tese de ingresso no Pa\u00eds. Aten\u00e7\u00e3o: No caso de recursos n\u00e3o ingressados no Pa\u00eds, o enquadramento se faz, consoante apura\u00e7\u00e3o cont\u00e1bil, como se ingressados fossem. Tendo ocorrido a efetiva entrada, esses valores s\u00e3o de igual modo classificados, independentemente do instrumento de formaliza\u00e7\u00e3o cambial utilizado no Banco Central do Brasil: contrato de c\u00e2mbio (moeda estrangeira) e/ou transfer\u00eancia internacional em moeda nacional.",
+          "descricao": "C\u00f3digo CNC, conforme tabela do Sped (Disponibilizada no programa da ECF no diret\u00f3rio Arquivos de Programas/Programas Sped/ECf/SpedEcf/Recursos/Tabelas). A pessoa jur\u00eddica deve informar dentre os c\u00f3digos de natureza-fato, transcritos da rubrica Rendas de Capitais do Cap\u00edtulo 1, T\u00edtulo 14 ou Cap\u00edtulo 2, T\u00edtulo 22 da Consolida\u00e7\u00e3o das Normas Cambiais (CNC), aquele sob o qual se classificariam os juros auferidos para fins da legisla\u00e7\u00e3o cambial - na hip\u00f3tese de ingresso no Pa\u00eds. Aten\u00e7\u00e3o: No caso de recursos n\u00e3o ingressados no Pa\u00eds, o enquadramento se faz, consoante apura\u00e7\u00e3o cont\u00e1bil, como se ingressados fossem. Tendo ocorrido a efetiva entrada, esses valores s\u00e3o de igual modo classificados, independentemente do instrumento de formaliza\u00e7\u00e3o cambial utilizado no Banco Central do Brasil: contrato de c\u00e2mbio (moeda estrangeira) e/ou transfer\u00eancia internacional em moeda nacional.",
           "tipo": "N",
           "tamanho": "5",
           "decimal": null,
@@ -7963,7 +7459,7 @@
         {
           "indice": 4,
           "nome": "VL_OPER",
-          "descricao": "Valor da Opera\u00e7\u00e3o: Valores das transa\u00e7\u00f5es que comp\u00f5em cada opera\u00e7\u00e3o inserida no Registro X300, agrupados por pessoa f\u00edsica ou jur\u00eddica contratante, desde que destinadas ao mesmo pa\u00eds.",
+          "descricao": "Valor da Opera\u00e7\u00e3o: Valores das transa\u00e7\u00f5es que comp\u00f5em cada opera\u00e7\u00e3o inserida no registro X300, agrupados por pessoa f\u00edsica ou jur\u00eddica contratante, desde que destinadas ao mesmo pa\u00eds.",
           "tipo": "N",
           "tamanho": "19",
           "decimal": "2",
@@ -8017,7 +7513,7 @@
         {
           "indice": 4,
           "nome": "DESC_IMP",
-          "descricao": "O Descri\u00e7\u00e3o: Agrupar os bens, servi\u00e7os ou direitos de mesma natureza, descrevendo cada grupo de modo a permitir a sua perfeita identifica\u00e7\u00e3o, informando elementos como marca, tipo, modelo, esp\u00e9cie, etc. Aten\u00e7\u00e3o: no caso de bens considerados commodities, sujeitos \u00e0 aplica\u00e7\u00e3o do m\u00e9todo PCI, dever\u00e1 ser efetuado um registro X320 para cada transa\u00e7\u00e3o realizada, mesmo quando houver mais de uma transa\u00e7\u00e3o envolvendo o mesmo bem. brigat\u00f3rio somente quando TIP_IMP = Bens, Servi\u00e7os ou Direitos",
+          "descricao": "Descri\u00e7\u00e3o: Agrupar os bens, servi\u00e7os ou direitos id\u00eanticos, descrevendo cada grupo de modo a permitir a sua perfeita identifica\u00e7\u00e3o, informando elementos, tais como: marca, tipo, modelo, esp\u00e9cie, etc. Obrigat\u00f3rio somente quando TIP_EXP = Bens, Servi\u00e7os ou Direitos",
           "tipo": "C",
           "tamanho": null,
           "decimal": null,
@@ -8028,7 +7524,7 @@
         {
           "indice": 5,
           "nome": "TOT_OPER",
-          "descricao": "O Total da Opera\u00e7\u00e3o: IMPORTA\u00c7\u00d5ES \u2013 Bens, Servi\u00e7os ou Direitos: Informar, para cada opera\u00e7\u00e3o inclu\u00edda, o valor em reais correspondente ao total de transa\u00e7\u00f5es de mesma natureza realizadas durante o ano-calend\u00e1rio. S\u00e3o consideradas transa\u00e7\u00f5es de mesma natureza aquelas cujos bens, servi\u00e7os ou direitos negociados apresentam as mesmas especifica\u00e7\u00f5es no campo \"Descri\u00e7\u00e3o\". Aten\u00e7\u00e3o: no caso de bens considerados commodities, sujeitos \u00e0 aplica\u00e7\u00e3o do m\u00e9todo PCI, deve ser informado o valor de cada transa\u00e7\u00e3o realizada, mesmo quando houver mais de uma transa\u00e7\u00e3o envolvendo o mesmo bem. IMPORTA\u00c7\u00d5ES \u2013 N\u00e3o Especificadas: Informar neste campo o somat\u00f3rio das opera\u00e7\u00f5es n\u00e3o informadas nos campos referentes \u00e0s maiores opera\u00e7\u00f5es ou, se for o caso, a soma do valor excedente a pelo menos 80% do total das importa\u00e7\u00f5es, especificadas em X320.TIP_IMP como \u201c01\u201d, \u201c02\u201d, \u201c03\u201d ou \u201c04\u201d, efetuadas no ano-calend\u00e1rio. brigat\u00f3rio quando TIP_IMP = Bens, Servi\u00e7os, Direitos ou N\u00e3o Especificadas.",
+          "descricao": "B Total da Opera\u00e7\u00e3o: A) Importa\u00e7\u00f5es \u2013 Bens, Servi\u00e7os ou Direitos: Informar em reais para cada opera\u00e7\u00e3o inclu\u00edda o valor correspondente ao total de transa\u00e7\u00f5es de mesma natureza realizadas durante o ano-calend\u00e1rio. Aten\u00e7\u00e3o: S\u00e3o consideradas transa\u00e7\u00f5es de mesma natureza aquelas cujos bens, servi\u00e7os ou direitos negociados apresentarem as mesmas especifica\u00e7\u00f5es no campo \"Descri\u00e7\u00e3o\". ) Importa\u00e7\u00f5es \u2013 N\u00e3o Especificadas: Informar, neste campo, o somat\u00f3rio das opera\u00e7\u00f5es n\u00e3o informadas nos campos referentes as maiores opera\u00e7\u00f5es, ou se for o caso, a soma do valor excedente a pelo menos 80% do total das importa\u00e7\u00f5es, especificadas em X320.TIP_IMP como \u201c01\u201d, \u201c02\u201d, \u201c03\u201d ou \u201c04\u201d, efetuadas no ano-calend\u00e1rio. Obrigat\u00f3rio somente quando TIP_EXP = Bens, Servi\u00e7os, Direitos ou N\u00e3o Especificadas.",
           "tipo": "N",
           "tamanho": "19",
           "decimal": "2",
@@ -8039,7 +7535,7 @@
         {
           "indice": 6,
           "nome": "COD_NCM",
-          "descricao": "C\u00f3digo NCM: Informar o c\u00f3digo NCM constante do respectivo registro de importa\u00e7\u00e3o, quando o tipo de opera\u00e7\u00e3o for \"Bens\". Obrigat\u00f3rio somente quando TIP_IMP = Bens",
+          "descricao": "C\u00f3digo NCM: Informar o c\u00f3digo NCM constante do respectivo registro de importa\u00e7\u00e3o, quando o tipo de opera\u00e7\u00e3o for \"Bens\". Obrigat\u00f3rio somente quando TIP_EXP = Bens",
           "tipo": "N",
           "tamanho": "8",
           "decimal": null,
@@ -8050,7 +7546,7 @@
         {
           "indice": 7,
           "nome": "QTDE",
-          "descricao": "Quantidade: Informar neste campo a quantidade total dos bens da mesma natureza importados (no caso de transa\u00e7\u00f5es envolvendo commodities, o total de bens importados em cada transa\u00e7\u00e3o realizada). Obrigat\u00f3rio somente quando TIP_IMP = Bens",
+          "descricao": "Quantidade: Informar neste campo a quantidade total dos bens da mesma natureza importados. Obrigat\u00f3rio somente quando TIP_EXP = Bens",
           "tipo": "N",
           "tamanho": "19",
           "decimal": "2",
@@ -8061,7 +7557,7 @@
         {
           "indice": 8,
           "nome": "UNI_MED",
-          "descricao": "Unidade de Medida: Obrigat\u00f3rio somente quando TIP_IMP = Bens 01 \u2013 Bilh\u00e3o de Unidade Internacional 02 \u2013 D\u00fazia 03 \u2013 Grama 04 \u2013 Litro 05 \u2013 Megawatt Hora 06 \u2013 Metro 07 \u2013 Metro C\u00fabico 08 \u2013 Metro Quadrado 09 \u2013 Mil Unidades 10 \u2013 Pares 11 \u2013 Quilate 12 \u2013 Quilograma Bruto 13 \u2013 Quilograma L\u00edquido 14 \u2013 Tonelada M\u00e9trica L\u00edquida 15 \u2013 Unidade 16 \u2013 Outras Selecionar dentre as op\u00e7\u00f5es aquela que corresponde \u00e0 unidade de medida comercial dos bens importados.",
+          "descricao": "Unidade de Medida: Obrigat\u00f3rio somente quando TIP_EXP = Bens 01 \u2013 Bilh\u00e3o de Unidade Internacional 02 \u2013 D\u00fazia 03 \u2013 Grama 04 \u2013 Litro 05 \u2013 Megawatt Hora 06 \u2013 Metro 07 \u2013 Metro C\u00fabico 08 \u2013 Metro Quadrado 09 \u2013 Mil Unidades 10 \u2013 Pares 11 \u2013 Quilate 12 \u2013 Quilograma Bruto 13 \u2013 Quilograma L\u00edquido 14 \u2013 Tonelada M\u00e9trica L\u00edquida 15 \u2013 Unidade 16 \u2013 Outras Selecionar dentre as op\u00e7\u00f5es aquela que corresponde \u00e0 unidade de medida comercial dos bens importados, tais como: d\u00fazia, grama, litro, metro etc.",
           "tipo": "C",
           "tamanho": "2",
           "decimal": null,
@@ -8072,18 +7568,18 @@
         {
           "indice": 9,
           "nome": "TIP_MET",
-          "descricao": "A M\u00e9todo: PIC00 \u2013 Pre\u00e7os Independentes Comparados PRL20 - Pre\u00e7o de Revenda Menos Lucro 20% PRL30 - Pre\u00e7o de Revenda Menos Lucro 30% PRL40 - Pre\u00e7o de Revenda Menos Lucro 40% CPL00 \u2013 Custo de Produ\u00e7\u00e3o Mais Lucro PCI00 \u2013 Pre\u00e7o sob Cota\u00e7\u00e3o na Importa\u00e7\u00e3o pessoa jur\u00eddica deve assinalar o m\u00e9todo utilizado na determina\u00e7\u00e3o do \"Pre\u00e7o Par\u00e2metro\": PIC - M\u00e9todo dos Pre\u00e7os Independentes Comparados (inciso I do art. 18 da Lei n\u00ba 9.430, de 1996 e IN RFB n\u00ba 1.312, de 28 de dezembro de 2012, arts. 8 a 11); PRL 20% M\u00e9todo do Pre\u00e7o de Revenda menos Lucro (inciso III do \u00a7 12 do art. 18 da Lei n\u00ba 9.430, de 1996, e IN RFB n\u00ba 1.312, de 28 de dezembro de 2012, art. 12, \u00a7 10) PRL 30% M\u00e9todo do Pre\u00e7o de Revenda menos Lucro Revenda (inciso II do \u00a7 12 do art. 18 da Lei n\u00ba 9.430, de 1996 e IN RFB n\u00ba 1.312, de 28 de dezembro de 2012, art. 12, \u00a7 10); PRL 40% M\u00e9todo do Pre\u00e7o de Revenda menos Lucro Revenda (inciso I do \u00a7 12 do art. 18 da Lei n\u00ba 9.430, de 1996 e IN RFB n\u00ba 1.312, de 28 de dezembro de 2012, art. 12, \u00a7 10); CPL - M\u00e9todo do Custo de Produ\u00e7\u00e3o mais Lucro (inciso III do art. 18 da Lei n\u00ba 9.430, de 1996, e IN RFB n\u00ba 1.312, de 28 de dezembro de 2012, art. 15). PCI - Pre\u00e7o sob Cota\u00e7\u00e3o na Importa\u00e7\u00e3o (art. 18-A da Lei n\u00ba 9.430, de 1996, e art. 16 da IN RFB n\u00ba 1.312, de 2012, alterado pelo art. 1\u00ba da IN RFB n\u00ba 1.395, de 2013).",
+          "descricao": "M\u00e9todo: PIC00 \u2013 Pre\u00e7os Independentes Comparados PRL20 - Pre\u00e7o de Revenda Menos Lucro 20% PRL30 - Pre\u00e7o de Revenda Menos Lucro 30% PRL40 - Pre\u00e7o de Revenda Menos Lucro 40% CPL00 \u2013 Custo de Produ\u00e7\u00e3o Mais Lucro PCI00 \u2013 Pre\u00e7o sob Cota\u00e7\u00e3o na Importa\u00e7\u00e3o Assinalar o m\u00e9todo utilizado na determina\u00e7\u00e3o do \"Pre\u00e7o Par\u00e2metro\", a saber: PIC M\u00e9todo dos Pre\u00e7os Independentes Comparados (inciso I do art. 18 da Lei n\u00ba 9.430, de 1996 e IN RFB n\u00ba 1.312, de 28 de dezembro de 2012, arts. 8 a 11); PRL 20% M\u00e9todo do Pre\u00e7o de Revenda menos Lucro (Inciso III do \u00a7 12 do art. 18 da Lei n\u00ba 9.430, de 1996, e IN RFB n\u00ba 1.312, de 28 de dezembro de 2012, art. 12, \u00a7 10) PRL 30% M\u00e9todo do Pre\u00e7o de Revenda menos Lucro Revenda (Inciso II do \u00a7 12 do art. 18 da Lei n\u00ba 9.430, de 1996 e IN RFB n\u00ba 1.312, de 28 de dezembro de 2012, art. 12, \u00a7 10); PRL 40% M\u00e9todo do Pre\u00e7o de Revenda menos Lucro Revenda (Inciso I do \u00a7 12 do art. 18 da Lei n\u00ba 9.430, de 1996 e IN RFB n\u00ba 1.312, de 28 de dezembro de 2012, art. 12, \u00a7 10); CPL M\u00e9todo do Custo de Produ\u00e7\u00e3o mais Lucro (inciso III do art. 18 da Lei n\u00ba 9.430, de 1996, e IN RFB n\u00ba 1.312, de 28 de dezembro de 2012, art. 15). PCI Pre\u00e7o sob Cota\u00e7\u00e3o na Importa\u00e7\u00e3o (art. 18-A da Lei n\u00ba 9.430, de 1996, e art. 16 da IN RFB n\u00ba 1.312, de 2012, alterado pelo art. 1\u00ba da IN RFB n\u00ba 1.395, de 2013). Aten\u00e7\u00e3o: O m\u00e9todo do Pre\u00e7o de Revenda menos Lucro mediante a utiliza\u00e7\u00e3o da margem de lucro de 20% somente \u00e9 aplicado nas hip\u00f3teses em que n\u00e3o haja agrega\u00e7\u00e3o de valor no Pa\u00eds ao custo dos bens, servi\u00e7os ou direitos importados, configurando, assim, simples processo de revenda dos mesmos bens, servi\u00e7os ou direitos importados.",
           "tipo": "C",
           "tamanho": "5",
           "decimal": null,
-          "valores": "[PIC00; PRL20; PRL30; PRL40; CPL00; PCI00]",
+          "valores": "[PIC00; PRL20; PRL30; PRL40; PRL60; CPL00; PCI00]",
           "obrigatorio": false,
           "regras": []
         },
         {
           "indice": 10,
           "nome": "VL_PAR",
-          "descricao": "Pre\u00e7o Par\u00e2metro: A pessoa jur\u00eddica deve informar neste campo o pre\u00e7o par\u00e2metro m\u00e9dio ponderado de aquisi\u00e7\u00e3o nas importa\u00e7\u00f5es dos bens, servi\u00e7os ou direitos, apurado no ano-calend\u00e1rio conforme um os m\u00e9todos estabelecidos nos arts. 8\u00ba a 19 da Instru\u00e7\u00e3o Normativa RFB n\u00ba 1.312, de 28 de dezembro de 2012. Aten\u00e7\u00e3o: nos casos de utiliza\u00e7\u00e3o do m\u00e9todo PCI, o valor a ser informado \u00e9 o pre\u00e7o par\u00e2metro apurado para cada transa\u00e7\u00e3o realizada. Obrigat\u00f3rio somente quando TIP_IMP = Bens, Servi\u00e7os ou Direitos",
+          "descricao": "Pre\u00e7o Par\u00e2metro: A pessoa jur\u00eddica deve informar, neste campo o pre\u00e7o m\u00e9dio ponderado de aquisi\u00e7\u00e3o nas importa\u00e7\u00f5es dos bens, servi\u00e7os ou direitos, apurado no ano-calend\u00e1rio, conforme um os m\u00e9todos (subitem 20.7) estabelecidos nos arts. 8\u00ba a 19 da Instru\u00e7\u00e3o Normativa RFB n\u00ba 1.312, de 28 de dezembro de 2012. Obrigat\u00f3rio somente quando TIP_EXP = Bens, Servi\u00e7os ou Direitos",
           "tipo": "N",
           "tamanho": "19",
           "decimal": "2",
@@ -8094,7 +7590,7 @@
         {
           "indice": 11,
           "nome": "VL_PRAT",
-          "descricao": "Pre\u00e7o Praticado: A pessoa jur\u00eddica deve informar neste campo o pre\u00e7o praticado m\u00e9dio ponderado de aquisi\u00e7\u00e3o nas importa\u00e7\u00f5es dos bens, servi\u00e7os ou direitos, praticado no ano-calend\u00e1rio. Aten\u00e7\u00e3o: nos casos de utiliza\u00e7\u00e3o do m\u00e9todo PCI, o valor a ser informado \u00e9 o pre\u00e7o praticado apurado para cada transa\u00e7\u00e3o realizada. Obrigat\u00f3rio somente quando TIP_IMP = Bens, Servi\u00e7os ou Direitos",
+          "descricao": "Pre\u00e7o Praticado: A pessoa jur\u00eddica deve informar, neste campo, o pre\u00e7o m\u00e9dio ponderado de aquisi\u00e7\u00e3o nas importa\u00e7\u00f5es dos bens, servi\u00e7os ou direitos, praticado no ano-calend\u00e1rio. Obrigat\u00f3rio somente quando TIP_EXP = Bens, Servi\u00e7os ou Direitos",
           "tipo": "N",
           "tamanho": "19",
           "decimal": "2",
@@ -8105,7 +7601,7 @@
         {
           "indice": 12,
           "nome": "VL_AJ",
-          "descricao": "Valor do Ajuste A) IMPORTA\u00c7\u00d5ES \u2013 Bens, Servi\u00e7os ou Direitos",
+          "descricao": "Valor do Ajuste A) Importa\u00e7\u00f5es \u2013 Bens, Servi\u00e7os ou Direitos A pessoa jur\u00eddica deve indicar o valor do ajuste, determinado em conformidade com os arts. 4\u00ba a 7\u00ba da Instru\u00e7\u00e3o Normativa RFB n\u00ba 1.312, de 28 de dezembro de 2012. (Subitem 20.11 e subitem 20.4) Quando se tratar de encargos de deprecia\u00e7\u00e3o ou amortiza\u00e7\u00e3o dos bens e direitos a dedutibilidade do encargo, para fins de apura\u00e7\u00e3o do lucro real e da CSLL, fica limitada, em cada per\u00edodo de apura\u00e7\u00e3o, ao montante calculado com base no pre\u00e7o determinado por um dos m\u00e9todos. A partir do ano calend\u00e1rio de 2002, com a edi\u00e7\u00e3o do art. 46 da Medida Provis\u00f3ria n\u00ba 66, de 29 de agosto de 2002 e par\u00e1grafos 1\u00ba a 4\u00ba do art. 5\u00ba Instru\u00e7\u00e3o Normativa RFB n\u00ba 1.312, de 28 de dezembro de 2012, nos casos de apura\u00e7\u00e3o de excesso de custo de aquisi\u00e7\u00e3o de bens, direitos e servi\u00e7os, importados de empresas vinculadas e que seja considerado indedut\u00edvel na determina\u00e7\u00e3o do lucro real e da base de c\u00e1lculo da contribui\u00e7\u00e3o social sobre o lucro l\u00edquido, apurado na forma do art. 18 da Lei n\u00ba 9.430, de 1996, a pessoa jur\u00eddica deve ajustar o excesso de custo, determinado por um dos m\u00e9todos previstos na legisla\u00e7\u00e3o, no encerramento do per\u00edodo de apura\u00e7\u00e3o, contabilmente, por meio de lan\u00e7amento a d\u00e9bito de conta de resultados acumulados e a cr\u00e9dito de: I - conta do ativo onde foi contabilizada a aquisi\u00e7\u00e3o dos bens, direitos ou servi\u00e7os e que permanecerem ali registrados ao final do per\u00edodo de apura\u00e7\u00e3o; ou II - conta pr\u00f3pria de custo ou de despesa do per\u00edodo de apura\u00e7\u00e3o, que registre o valor dos bens, direitos ou servi\u00e7os, no caso desses ativos j\u00e1 terem sido baixados da conta de ativo que tenha registrado a sua aquisi\u00e7\u00e3o. No caso de bens classific\u00e1veis no ativo n\u00e3o-circulante, exceto realiz\u00e1vel a longo prazo, e que tenham gerado quotas de deprecia\u00e7\u00e3o, amortiza\u00e7\u00e3o ou exaust\u00e3o, no ano calend\u00e1rio da importa\u00e7\u00e3o, o valor do excesso de pre\u00e7o de aquisi\u00e7\u00e3o na importa\u00e7\u00e3o deve ser creditado na conta de ativo em cujas quotas tenham sido debitadas, em contrapartida \u00e0 conta de resultados acumulados. Os ajustes devem ser oferecidos \u00e0 tributa\u00e7\u00e3o de acordo com o regime fiscal a que se submete cada pessoa jur\u00eddica.",
           "tipo": "N",
           "tamanho": "19",
           "decimal": "2",
@@ -8116,7 +7612,7 @@
         {
           "indice": 13,
           "nome": "VL_JUR",
-          "descricao": "Juros: Informar em reais o valor total dos juros pagos ou creditados em opera\u00e7\u00f5es financeiras durante o ano-calend\u00e1rio. Esse valor total deve ser consolidado consoante os c\u00f3digos de natureza-fato de opera\u00e7\u00e3o constantes da Consolida\u00e7\u00e3o das Normas Cambiais (CNC), editada pelo Banco Central do Brasil. Aten\u00e7\u00e3o: A pessoa jur\u00eddica financeira e seguradora deve informar neste campo o montante total dos juros pagos ou creditados em opera\u00e7\u00f5es financeiras com pessoas vinculadas, inclusive por interm\u00e9dio de interposta pessoa, ou de pessoas residentes ou domiciliadas em pa\u00edses com tributa\u00e7\u00e3o favorecida ou cuja legisla\u00e7\u00e3o interna oponha sigilo, ou, ainda, a partir de 1\u00ba de janeiro de 2009, que gozem, nos termos da legisla\u00e7\u00e3o, de regime fiscal privilegiado. Obrigat\u00f3rio apenas para TIP_IMP = Opera\u00e7\u00f5es Financeiras",
+          "descricao": "Juros: Informar em reais o valor total dos juros pagos ou creditados em opera\u00e7\u00f5es financeiras n\u00e3o sujeitas ao registro no Banco Central do Brasil, durante o ano-calend\u00e1rio. Esse valor total deve ser consolidado consoante os c\u00f3digos de natureza-fato de opera\u00e7\u00e3o constantes da Consolida\u00e7\u00e3o das Normas Cambiais (CNC), editada pelo Banco Central do Brasil. Aten\u00e7\u00e3o: A pessoa jur\u00eddica financeira e seguradora, deve informar, neste campo, o montante total dos juros pagos ou creditados em opera\u00e7\u00f5es financeiras n\u00e3o sujeitas ao registro no Banco Central do Brasil de pessoas vinculadas, inclusive por interm\u00e9dio de interposta pessoa, ou de pessoas residentes ou domiciliadas em pa\u00edses com tributa\u00e7\u00e3o favorecida ou cuja legisla\u00e7\u00e3o interna oponha sigilo, ou, ainda, a partir de 1\u00ba de janeiro de 2009, que gozem, nos termos da legisla\u00e7\u00e3o, de regime fiscal privilegiado. Obrigat\u00f3rio apenas para TIP_EXP = Opera\u00e7\u00f5es Financeiras",
           "tipo": "N",
           "tamanho": "19",
           "decimal": "2",
@@ -8127,7 +7623,7 @@
         {
           "indice": 14,
           "nome": "VL_JUR_MIN",
-          "descricao": "Taxa de Juros M\u00ednima: Informar neste campo a menor taxa praticada em opera\u00e7\u00e3o financeira realizada no ano-calend\u00e1rio. Obrigat\u00f3rio apenas para TIP_IMP = Opera\u00e7\u00f5es Financeiras",
+          "descricao": "Taxa de Juros M\u00ednima: Informar, neste campo, a menor taxa praticada em opera\u00e7\u00e3o financeira, realizada no ano-calend\u00e1rio. Obrigat\u00f3rio apenas para TIP_EXP = Opera\u00e7\u00f5es Financeiras",
           "tipo": "N",
           "tamanho": "7",
           "decimal": "4",
@@ -8138,7 +7634,7 @@
         {
           "indice": 15,
           "nome": "VL_JUR_MAX",
-          "descricao": "Taxa de Juros M\u00e1xima: Informar neste campo a maior taxa praticada em opera\u00e7\u00e3o financeira realizada no ano-calend\u00e1rio. Obrigat\u00f3rio apenas para TIP_IMP = Opera\u00e7\u00f5es Financeiras",
+          "descricao": "Taxa de Juros M\u00e1xima: Informar, neste campo, a maior taxa praticada em opera\u00e7\u00e3o financeira, realizada no ano-calend\u00e1rio. Obrigat\u00f3rio apenas para TIP_EXP = Opera\u00e7\u00f5es Financeiras",
           "tipo": "N",
           "tamanho": "7",
           "decimal": "4",
@@ -8149,7 +7645,7 @@
         {
           "indice": 16,
           "nome": "COD_CNC",
-          "descricao": "C C\u00f3digo CNC, conforme tabela do Sped (Disponibilizada no programa da ECF no diret\u00f3rio Arquivos de Programas/Programas Sped/ECf/SpedEcf/Recursos/Tabelas). \u00f3digo CNC: C\u00f3digo da natureza-fato espec\u00edfico correspondente \u00e0 motiva\u00e7\u00e3o do recebimento/pagamento, conforme \u00a7 1o do artigo 23 da Lei no 4.131, de 03 de setembro de 1962, e que consta na Circular no 3.690, de 16 de dezembro de 2013, do Banco Central do Brasil. Aten\u00e7\u00e3o: No caso dos recursos n\u00e3o terem sido enviados ao exterior, o enquadramento se faz, consoante apura\u00e7\u00e3o cont\u00e1bil, como se remetidos fossem. Tendo ocorrido a efetiva remessa, esses valores s\u00e3o de igual modo classificados, independentemente do instrumento de formaliza\u00e7\u00e3o cambial utilizado no Banco Central do Brasil - contrato de c\u00e2mbio e/ou transfer\u00eancia internacional em moeda nacional. Obrigat\u00f3rio apenas para TIP_IMP = Opera\u00e7\u00f5es Financeiras Observa\u00e7\u00e3o: O registro X320 n\u00e3o possui informa\u00e7\u00e3o de data em seus campos. Portanto, os c\u00f3digos utilizados no campo X320.COD_CNC devem ser os vigentes na data final da ECF, para todas as opera\u00e7\u00f5es ocorridas durante o ano da escritura\u00e7\u00e3o.",
+          "descricao": "C\u00f3digo CNC: C\u00f3digo da natureza-fato espec\u00edfico correspondente \u00e0 motiva\u00e7\u00e3o do recebimento/pagamento, conforme \u00a7 1o do artigo 23 da Lei no 4.131, de 03 de setembro de 1962, e que consta na Circular no 3.690, de 16 de dezembro de 2013, do Banco Central do Brasil. Aten\u00e7\u00e3o: No caso dos recursos n\u00e3o terem sido enviados ao exterior, o enquadramento se faz, consoante apura\u00e7\u00e3o cont\u00e1bil, como se remetidos fossem. Tendo ocorrido a efetiva remessa, esses valores s\u00e3o de igual modo classificados, independentemente do instrumento de formaliza\u00e7\u00e3o cambial utilizado no Banco Central do Brasil: contrato de c\u00e2mbio e/ou transfer\u00eancia internacional em moeda nacional. Obrigat\u00f3rio apenas para TIP_EXP = Opera\u00e7\u00f5es Financeiras Observa\u00e7\u00e3o: O registro X320 n\u00e3o possui informa\u00e7\u00e3o de data em seus campos. Portanto, os c\u00f3digos utilizados no campo X320.COD_CNC devem ser os vigentes na data final da ECF, para todas as opera\u00e7\u00f5es ocorridas durante o ano da escritura\u00e7\u00e3o.",
           "tipo": "C",
           "tamanho": "5",
           "decimal": null,
@@ -8160,7 +7656,7 @@
         {
           "indice": 17,
           "nome": "TIP_MOEDA",
-          "descricao": "Moeda: a pessoa jur\u00eddica deve selecionar, dentre as op\u00e7\u00f5es, a moeda de negocia\u00e7\u00e3o. Obrigat\u00f3rio apenas para TIP_IMP=Opera\u00e7\u00f5es Financeiras",
+          "descricao": "Moeda: Pessoa jur\u00eddica deve selecionar dentre as op\u00e7\u00f5es a moeda de negocia\u00e7\u00e3o. Obrigat\u00f3rio apenas para TIP_EXP=Opera\u00e7\u00f5es Financeiras",
           "tipo": "C",
           "tamanho": "3",
           "decimal": null,
@@ -8246,7 +7742,7 @@
         {
           "indice": 3,
           "nome": "NIF",
-          "descricao": "NIF: N\u00famero de identifica\u00e7\u00e3o fiscal de cada investida (\u201cCNPJ\u201d da investida no exterior). Observa\u00e7\u00e3o: 1 \u2013 Caso a investida n\u00e3o possua NIF, utilize \u201c0000\u201d 2 \u2013 Para investidas de um mesmo pa\u00eds diferente do Brasil que n\u00e3o possuam NIF, utilizar \u201c0000\u201d, \u201c0001\u201d, \u201c0002\u201d, e assim por diante, conforme a quantidade de investidas.",
+          "descricao": "NIF: N\u00famero de identifica\u00e7\u00e3o fiscal de cada investida (\u201cCNPJ\u201d da investida no exterior). Observa\u00e7\u00e3o: 1 \u2013 Caso a investida n\u00e3o possua NIF, utilize \u201c0000\u201d 2 \u2013 Para investidas de um mesmo pa\u00eds diferente do Braisl que n\u00e3o possuam NIF, utilizar \u201c0000\u201d, \u201c0001\u201d, \u201c0002\u201d, e assim por diante, conforme a quantidade de investidas.",
           "tipo": "C",
           "tamanho": null,
           "decimal": null,
@@ -8563,7 +8059,7 @@
         {
           "indice": 7,
           "nome": "RES_POS_TRIB",
-          "descricao": "Resultado Positivo a Tributar: Resultado positivo a tributar na moeda do pa\u00eds de domic\u00edlio (deve ser informado o valor de (X351. RES_INV_PER \u2013 X351.RES_ISEN_PETR_PER), caso seja resultado positivo e maior que o valor do campo do campo X351.RES_NEG_ACUM).",
+          "descricao": "Resultado Positivo a Tributar: Resultado positivo a tributar na moeda do pa\u00eds de domic\u00edlio (deve ser informado o valor de X351. RES_INV_PER, caso seja resultado positivo, menos o valor do campo X351. RES_ISEN_PETR_PER).",
           "tipo": "N",
           "tamanho": "19",
           "decimal": "2",
@@ -8766,28 +8262,6 @@
           "valores": "-",
           "obrigatorio": false,
           "regras": []
-        },
-        {
-          "indice": 6,
-          "nome": "RES_PROP",
-          "descricao": "Resultado (positivo ou negativo) Pr\u00f3prio da Controlada no Per\u00edodo na Moeda do Pa\u00eds de Domic\u00edlio.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 7,
-          "nome": "RES_PROP_REAL",
-          "descricao": "Resultado (positivo ou negativo) Pr\u00f3prio da Controlada no Per\u00edodo em Reais.",
-          "tipo": "N",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
         }
       ]
     },
@@ -8960,60 +8434,6 @@
           "decimal": "2",
           "valores": "-",
           "obrigatorio": false,
-          "regras": []
-        }
-      ]
-    },
-    {
-      "codigo": "X357",
-      "nome": "Investidoras Diretas",
-      "regras": [],
-      "nivel": 3,
-      "ocorrencia": "[0;N]",
-      "campos_chave": [],
-      "campos": [
-        {
-          "indice": 2,
-          "nome": "PAIS",
-          "descricao": "Pa\u00eds: Pa\u00eds de cada investidora direta. C\u00f3digo do pa\u00eds, conforme tabela do Sped (Disponibilizada no programa da ECF no diret\u00f3rio Arquivos de Programas/Programas Sped/ECf/SpedEcf/Recursos/Tabelas).",
-          "tipo": "N",
-          "tamanho": "3",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 3,
-          "nome": "NIF/CNPJ",
-          "descricao": "NIF: N\u00famero de identifica\u00e7\u00e3o fiscal de cada investidora direta (\u201cCNPJ\u201d da investida no exterior) ou CNPJ. Observa\u00e7\u00e3o: 1 \u2013 Caso a investidora direta n\u00e3o possua NIF, utilize \u201c0000\u201d 2 \u2013 Para investidoras diretas de um mesmo pa\u00eds diferente do Brasil que n\u00e3o possuam NIF, utilizar \u201c0000\u201d, \u201c0001\u201d, \u201c0002\u201d, e assim por diante, conforme a quantidade de investidoras diretas.",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 4,
-          "nome": "RAZAO_SOCIAL",
-          "descricao": "Raz\u00e3o Social: Raz\u00e3o social da investidora direta.",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 5,
-          "nome": "PERCENTUAL",
-          "descricao": "Percentual: Valor do percentual de participa\u00e7\u00e3o da investidora direta na investida informada no registro X340.",
-          "tipo": "N",
-          "tamanho": "8",
-          "decimal": "4",
-          "valores": "-",
-          "obrigatorio": true,
           "regras": []
         }
       ]
@@ -9311,7 +8731,7 @@
         {
           "indice": 6,
           "nome": "VL_JURO",
-          "descricao": "Valor dos Juros sobre o Capital Pr\u00f3prio: Valor recebido a t\u00edtulo de remunera\u00e7\u00e3o dos recursos investidos pela pessoa jur\u00eddica em outra pessoa jur\u00eddica domiciliada no Brasil, de que trata o art. 9\u00ba da Lei n\u00ba 9.249, de 26 de dezembro de 1995. Informar, tamb\u00e9m, neste campo o valor recebido a t\u00edtulo de juros sobre o capital pr\u00f3prio correspondente \u00e0 participa\u00e7\u00e3o da pessoa jur\u00eddica em empresas residentes ou domiciliadas no exterior. Aten\u00e7\u00e3o: 1) N\u00e3o informar neste campo o valor correspondente aos juros recebidos durante o per\u00edodo que anteceder o in\u00edcio das opera\u00e7\u00f5es sociais ou de implanta\u00e7\u00e3o do empreendimento inicial de que trata a al\u00ednea \u201cb\u201d do par\u00e1grafo 1\u00ba do art. 15 do Decreto-Lei n\u00ba 1.598, de 26 de dezembro de 2012. 2) N\u00e3o informar neste campo o valor relativo aos juros recebidos de cooperativa da qual a pessoa jur\u00eddica seja associada correspondentes \u00e0 remunera\u00e7\u00e3o de at\u00e9 12% sobre o capital integralizado, de que trata o par\u00e1grafo \u00fanico do art. 49 da Lei n\u00ba 4.506, de 30 de novembro de 1964, c/c par\u00e1grafo 3\u00ba do art. 24 da Lei n\u00ba 5.764, de 16 de dezembro de 1971, e o 357 do Decreto n\u00ba 9.580/2018.",
+          "descricao": "Valor dos Juros sobre o Capital Pr\u00f3prio: Valor recebido a t\u00edtulo de remunera\u00e7\u00e3o dos recursos investidos pela pessoa jur\u00eddica em outra pessoa jur\u00eddica domiciliada no Brasil, de que trata o art. 9\u00ba da Lei n\u00ba 9.249, de 26 de dezembro de 1995. Informar, tamb\u00e9m, neste campo o valor recebido a t\u00edtulo de juros sobre o capital pr\u00f3prio correspondente \u00e0 participa\u00e7\u00e3o da pessoa jur\u00eddica em empresas residentes ou domiciliadas no exterior. Aten\u00e7\u00e3o: 1) N\u00e3o informar neste campo o valor correspondente aos juros recebidos durante o per\u00edodo que anteceder o in\u00edcio das opera\u00e7\u00f5es sociais ou de implanta\u00e7\u00e3o do empreendimento inicial de que trata a al\u00ednea \u201cb\u201d do par\u00e1grafo 1\u00ba do art. 15 do Decreto-Lei n\u00ba 1.598, de 26 de dezembro de 2012, e a al\u00ednea \u201cg\u201d do inciso II do art. 325 do Decreto n\u00ba 3.000, de 1999. 2) N\u00e3o informar neste campo o valor relativo aos juros recebidos de cooperativa da qual a pessoa jur\u00eddica seja associada correspondentes \u00e0 remunera\u00e7\u00e3o de at\u00e9 12% sobre o capital integralizado, de que trata o par\u00e1grafo \u00fanico do art. 49 da Lei n\u00ba 4.506, de 30 de novembro de 1964, c/c par\u00e1grafo 3\u00ba do art. 24 da Lei n\u00ba 5.764, de 16 de dezembro de 1971, e o inciso II do art. 348 do Decreto n\u00ba 3.000, de 1999.",
           "tipo": "N",
           "tamanho": "19",
           "decimal": "2",
@@ -9322,7 +8742,7 @@
         {
           "indice": 7,
           "nome": "VL_DEMAIS_JUROS",
-          "descricao": "Valor dos Demais Juros: Valor recebido a t\u00edtulo de juros decorrentes da remunera\u00e7\u00e3o de recursos emprestados pela pessoa jur\u00eddica a outras pessoas f\u00edsicas ou jur\u00eddicas, residentes ou domiciliadas no Brasil ou no exterior por meio de contratos de financiamento ou de m\u00fatuo registrados ou n\u00e3o no Banco Central do Brasil. Tamb\u00e9m deve ser informado neste campo o valor correspondente aos: - juros recebidos durante o per\u00edodo que anteceder o in\u00edcio das opera\u00e7\u00f5es sociais ou de implanta\u00e7\u00e3o do empreendimento inicial de que trata al\u00ednea \u201cb\u201d do par\u00e1grafo 1\u00ba do art. 15 do Decreto-Lei n\u00ba 1.598, de 26 de dezembro de 2012; - juros recebidos de cooperativa da qual a pessoa jur\u00eddica seja associada correspondentes \u00e0 remunera\u00e7\u00e3o de at\u00e9 12% sobre o capital integralizado, de que trata o par\u00e1grafo \u00fanico do art. 49 da Lei n\u00ba 4.506, de 30 de novembro de 1964, c/c par\u00e1grafo 3\u00ba do art. 24 da Lei n\u00ba 5.764, de 16 de dezembro de 1971, e art. 357 do Decreto n\u00ba 9.580/2018; - juros recebidos correspondentes a quaisquer transa\u00e7\u00f5es realizadas pela pessoa jur\u00eddica.",
+          "descricao": "Valor dos Demais Juros: Valor recebido a t\u00edtulo de juros decorrentes da remunera\u00e7\u00e3o de recursos emprestados pela pessoa jur\u00eddica a outras pessoas f\u00edsicas ou jur\u00eddicas, residentes ou domiciliadas no Brasil ou no exterior por meio de contratos de financiamento ou de m\u00fatuo registrados ou n\u00e3o no Banco Central do Brasil. Tamb\u00e9m deve ser informado neste campo o valor correspondente aos: - juros recebidos durante o per\u00edodo que anteceder o in\u00edcio das opera\u00e7\u00f5es sociais ou de implanta\u00e7\u00e3o do empreendimento inicial de que trata al\u00ednea \u201cb\u201d do par\u00e1grafo 1\u00ba do art. 15 do Decreto-Lei n\u00ba 1.598, de 26 de dezembro de 2012, e a al\u00ednea \u201cg\u201d do inciso II do art. 325 do Decreto n\u00ba 3.000, de 1999; - juros recebidos de cooperativa da qual a pessoa jur\u00eddica seja associada correspondentes \u00e0 remunera\u00e7\u00e3o de at\u00e9 12% sobre o capital integralizado, de que trata o par\u00e1grafo \u00fanico do art. 49 da Lei n\u00ba 4.506, de 30 de novembro de 1964, c/c par\u00e1grafo 3\u00ba do art. 24 da Lei n\u00ba 5.764, de 16 de dezembro de 1971, e o inciso II do art. 348 do Decreto n\u00ba 3.000, de 1999; - juros recebidos correspondentes a quaisquer transa\u00e7\u00f5es realizadas pela pessoa jur\u00eddica.",
           "tipo": "N",
           "tamanho": "19",
           "decimal": "2",
@@ -9398,7 +8818,7 @@
         {
           "indice": 6,
           "nome": "VL_JURO_PF",
-          "descricao": "Valor dos Juros sobre o Capital Pr\u00f3prio Pagos a Pessoa F\u00edsica: Valor pago ou remetido \u00e0 pessoa f\u00edsica residente ou domiciliada no Brasil ou no exterior a t\u00edtulo de remunera\u00e7\u00e3o dos recursos investidos na pessoa jur\u00eddica declarante, de que trata o art. 9\u00ba da Lei n\u00ba 9.249, de 26 de dezembro de 1995. Aten\u00e7\u00e3o: 1) N\u00e3o informar neste campo o valor correspondente aos juros pagos ou remetidos durante o per\u00edodo que anteceder o in\u00edcio das opera\u00e7\u00f5es sociais ou de implanta\u00e7\u00e3o do empreendimento inicial de que trata a al\u00ednea \u201cb\u201d do par\u00e1grafo 1\u00ba do art. 15 do Decreto-Lei n\u00ba 1.598, de 26 de dezembro de 2012. 2) As cooperativas n\u00e3o devem informar neste campo o valor relativo aos juros pagos aos associados correspondente \u00e0 remunera\u00e7\u00e3o de at\u00e9 12% sobre o capital integralizado de que trata o par\u00e1grafo \u00fanico do art. 49 da Lei n\u00ba 4.506, de 30 de novembro de 1964, c/c par\u00e1grafo 3\u00ba do art. 24 da Lei n\u00ba 5.764, de 16 de dezembro de 1971, e o art. 357 do Decreto n\u00ba 9.580/2018.",
+          "descricao": "Valor dos Juros sobre o Capital Pr\u00f3prio Pagos a Pessoa F\u00edsica: Valor pago ou remetido \u00e0 pessoa f\u00edsica residente ou domiciliada no Brasil ou no exterior a t\u00edtulo de remunera\u00e7\u00e3o dos recursos investidos na pessoa jur\u00eddica declarante, de que trata o art. 9\u00ba da Lei n\u00ba 9.249, de 26 de dezembro de 1995. Aten\u00e7\u00e3o: 1) N\u00e3o informar neste campo o valor correspondente aos juros pagos ou remetidos durante o per\u00edodo que anteceder o in\u00edcio das opera\u00e7\u00f5es sociais ou de implanta\u00e7\u00e3o do empreendimento inicial de que trata a al\u00ednea \u201cb\u201d do par\u00e1grafo 1\u00ba do art. 15 do Decreto-Lei n\u00ba 1.598, de 26 de dezembro de 2012, e a al\u00ednea \u201cg\u201d do inciso II do art. 325 do Decreto n\u00ba 3.000, de 1999. 2) As cooperativas n\u00e3o devem informar neste campo o valor relativo aos juros pagos aos associados correspondente \u00e0 remunera\u00e7\u00e3o de at\u00e9 12% sobre o capital integralizado de que trata o par\u00e1grafo \u00fanico do art. 49 da Lei n\u00ba 4.506, de 30 de novembro de 1964, c/c par\u00e1grafo 3\u00ba do art. 24 da Lei n\u00ba 5.764, de 16 de dezembro de 1971, e o inciso II do art. 348 do Decreto n\u00ba 3.000, de 1999.",
           "tipo": "N",
           "tamanho": "19",
           "decimal": "2",
@@ -9420,7 +8840,7 @@
         {
           "indice": 8,
           "nome": "VL_DEMAIS_JUROS",
-          "descricao": "Valor dos Demais Juros: Valor pago ou remetido a t\u00edtulo de juros decorrentes da remunera\u00e7\u00e3o de empr\u00e9stimos tomados pela pessoa jur\u00eddica no Brasil ou no exterior por meio de contratos de financiamento e de m\u00fatuo registrados ou n\u00e3o no Banco Central do Brasil. Tamb\u00e9m deve ser informado neste campo o valor correspondente aos: - juros pagos ou remetidos durante o per\u00edodo que anteceder o in\u00edcio das opera\u00e7\u00f5es sociais ou de implanta\u00e7\u00e3o do empreendimento inicial de que trata a al\u00ednea \u201cb\u201d do par\u00e1grafo 1\u00ba do art. 15 do Decreto-Lei n\u00ba 1.598, de 26 de dezembro de 2012; - juros pagos ou remetidos por cooperativa \u00e0 pessoa jur\u00eddica associada correspondentes \u00e0 remunera\u00e7\u00e3o de at\u00e9 12% sobre o capital integralizado, de que trata o par\u00e1grafo \u00fanico do art. 49 da Lei n\u00ba 4.506, de 30 de novembro de 1964, c/c par\u00e1grafo 3\u00ba do art. 24 da Lei n\u00ba 5.764, de 16 de dezembro de 1971, e o art. 357 do Decreto n\u00ba 9.580/2018; - juros pagos ou remetidos correspondentes a quaisquer transa\u00e7\u00f5es realizadas pela pessoa jur\u00eddica. Aten\u00e7\u00e3o: O valor de juros pago ou remetido em decorr\u00eancia da Resolu\u00e7\u00e3o Bacen n\u00ba 3.844, de 23 de mar\u00e7o de 2010, tamb\u00e9m deve ser informado neste campo, exceto se referir-se ao pagamento ou remessa de juros de capital pr\u00f3prio de que trata o art. 9\u00ba da Lei n\u00ba 9.249, de 1995.",
+          "descricao": "Valor dos Demais Juros: Valor pago ou remetido a t\u00edtulo de juros decorrentes da remunera\u00e7\u00e3o de empr\u00e9stimos tomados pela pessoa jur\u00eddica no Brasil ou no exterior por meio de contratos de financiamento e de m\u00fatuo registrados ou n\u00e3o no Banco Central do Brasil. Tamb\u00e9m deve ser informado neste campo o valor correspondente aos: - juros pagos ou remetidos durante o per\u00edodo que anteceder o in\u00edcio das opera\u00e7\u00f5es sociais ou de implanta\u00e7\u00e3o do empreendimento inicial de que trata a al\u00ednea \u201cb\u201d do par\u00e1grafo 1\u00ba do art. 15 do Decreto-Lei n\u00ba 1.598, de 26 de dezembro de 2012, e a al\u00ednea \u201cg\u201d do inciso II do art. 325 do Decreto n\u00ba 3.000, de 1999; - juros pagos ou remetidos por cooperativa \u00e0 pessoa jur\u00eddica associada correspondentes \u00e0 remunera\u00e7\u00e3o de at\u00e9 12% sobre o capital integralizado, de que trata o par\u00e1grafo \u00fanico do art. 49 da Lei n\u00ba 4.506, de 30 de novembro de 1964, c/c par\u00e1grafo 3\u00ba do art. 24 da Lei n\u00ba 5.764, de 16 de dezembro de 1971, e o inciso II do art. 348 do Decreto n\u00ba 3.000, de 1999; - juros pagos ou remetidos correspondentes a quaisquer transa\u00e7\u00f5es realizadas pela pessoa jur\u00eddica. Aten\u00e7\u00e3o: O valor de juros pago ou remetido em decorr\u00eancia da Resolu\u00e7\u00e3o Bacen n\u00ba 3.844, de 23 de mar\u00e7o de 2010, tamb\u00e9m deve ser informado neste campo, exceto se referir-se ao pagamento ou remessa de juros de capital pr\u00f3prio de que trata o art. 9\u00ba da Lei n\u00ba 9.249, de 1995.",
           "tipo": "N",
           "tamanho": "19",
           "decimal": "2",
@@ -9583,7 +9003,7 @@
     },
     {
       "codigo": "X490",
-      "nome": "Polo Industrial de Manaus e Amaz\u00f4nia Ocidental",
+      "nome": "P\u00f3lo Industrial de Manaus e Amaz\u00f4nia Ocidental",
       "regras": [],
       "nivel": 2,
       "ocorrencia": "[0;N]",
@@ -10240,11 +9660,11 @@
         {
           "indice": 8,
           "nome": "QUALIF",
-          "descricao": "S S S O Qualifica\u00e7\u00e3o do S\u00f3cio, Titular, Dirigente ou Conselheiro. Se PAIS = \u201c105\u201d (Brasil) E IND_QUALIF_SOCIO = \u201cPF\u201d: 01 \u2013 Acionista Pessoa F\u00edsica Domiciliado no Brasil 02 \u2013 S\u00f3cio Pessoa F\u00edsica Domiciliado no Brasil 09 \u2013 Titular 10 \u2013 Administrador sem V\u00ednculo Empregat\u00edcio 11 \u2013 Diretor sem V\u00ednculo Empregat\u00edcio 12 \u2013 Presidente sem V\u00ednculo Empregat\u00edcio 13 \u2013 Administrador com V\u00ednculo Empregat\u00edcio 14 \u2013 Conselheiro de Administra\u00e7\u00e3o ou Fiscal 15 \u2013 Diretor com V\u00ednculo Empregat\u00edcio 16 \u2013 Fundador 17 \u2013 Presidente com V\u00ednculo Empregat\u00edcio 18 \u2013 Usufrutu\u00e1rio de Quotas ou A\u00e7\u00f5es e PAIS = \u201c105\u201d (Brasil) E IND_QUALIF_SOCIO = \"PJ\": 03 - Acionista Pessoa Jur\u00eddica Domiciliado no Brasil 04 - S\u00f3cio Pessoa Jur\u00eddica Domiciliado no Brasil 18 \u2013 Usufrutu\u00e1rio de Quotas ou A\u00e7\u00f5es e PAIS diferente de \u201c105\u201d (Brasil) E IND_QUALIF_SOCIO = \"PF\": 05 - Acionista Pessoa F\u00edsica Residente ou Domiciliado no Exterior 06 - S\u00f3cio Pessoa F\u00edsica Residente ou Domiciliado no Exterior 14 \u2013 Conselheiro de Administra\u00e7\u00e3o ou Fiscal 18 \u2013 Usufrutu\u00e1rio de Quotas ou A\u00e7\u00f5es e PAIS diferente de \u201c105\u201d (Brasil) E IND_QUALIF_SOCIO = \"PJ\": 07 - Acionista Pessoa Jur\u00eddica Residente ou Domiciliado no Exterior 08 - S\u00f3cio Pessoa Jur\u00eddica Residente ou Domiciliado no Exterior 18 \u2013 Usufrutu\u00e1rio de Quotas ou A\u00e7\u00f5es bserva\u00e7\u00e3o: Caso o s\u00f3cio seja tamb\u00e9m administrador ou diretor, deve selecionar a op\u00e7\u00e3o 02 \u2013 S\u00f3cio Pessoa F\u00edsica Domiciliado no Brasil ou 06 \u2013 S\u00f3cio Pessoa F\u00edsica Domiciliado no Exterior.",
+          "descricao": "S S S O Qualifica\u00e7\u00e3o do S\u00f3cio, Titular, Dirigente ou Conselheiro. Se PAIS = \u201c105\u201d (Brasil) E IND_QUALIF_SOCIO = \u201cPF\u201d: 01 \u2013 Acionista Pessoa F\u00edsica Domiciliado no Brasil 02 \u2013 S\u00f3cio Pessoa F\u00edsica Domiciliado no Brasil 09 \u2013 Titular 10 \u2013 Administrador sem V\u00ednculo Empregat\u00edcio 11 \u2013 Diretor sem V\u00ednculo Empregat\u00edcio 12 \u2013 Presidente sem V\u00ednculo Empregat\u00edcio 13 \u2013 Administrador com V\u00ednculo Empregat\u00edcio 14 \u2013 Conselheiro de Administra\u00e7\u00e3o ou Fiscal 15 \u2013 Diretor com V\u00ednculo Empregat\u00edcio 16 \u2013 Fundador 17 \u2013 Presidente com V\u00ednculo Empregat\u00edcio e PAIS = \u201c105\u201d (Brasil) E IND_QUALIF_SOCIO = \"PJ\": 03 - Acionista Pessoa Jur\u00eddica Domiciliado no Brasil 04 - S\u00f3cio Pessoa Jur\u00eddica Domiciliado no Brasil e PAIS diferente de \u201c105\u201d (Brasil) E IND_QUALIF_SOCIO = \"PF\": 05 - Acionista Pessoa F\u00edsica Residente ou Domiciliado no Exterior 06 - S\u00f3cio Pessoa F\u00edsica Residente ou Domiciliado no Exterior 14 \u2013 Conselheiro de Administra\u00e7\u00e3o ou Fiscal e PAIS diferente de \u201c105\u201d (Brasil) E IND_QUALIF_SOCIO = \"PJ\": 07 - Acionista Pessoa Jur\u00eddica Residente ou Domiciliado no Exterior 08 - S\u00f3cio Pessoa Jur\u00eddica Residente ou Domiciliado no Exterior bserva\u00e7\u00e3o: Caso o s\u00f3cio seja tamb\u00e9m administrador ou diretor, deve selecionar a op\u00e7\u00e3o 02 \u2013 S\u00f3cio Pessoa F\u00edsica Domiciliado no Brasil ou 06 \u2013 S\u00f3cio Pessoa F\u00edsica Domiciliado no Exterior.",
           "tipo": "C",
           "tamanho": "2",
           "decimal": null,
-          "valores": "[01; 02; 03; 04; 05; 06; 07; 08; 09; 10; 11; 12; 13; 14; 15; 16; 17; 18]",
+          "valores": "[01; 02; 03; 04; 05; 06; 07; 08; 09; 10; 11; 12; 13; 14; 15; 16; 17]",
           "obrigatorio": true,
           "regras": []
         },
@@ -10436,7 +9856,7 @@
         {
           "indice": 2,
           "nome": "DT_EVENTO",
-          "descricao": "Data do Evento: Data do evento societ\u00e1rio que deu causa \u00e0 classifica\u00e7\u00e3o conforme o indicador do tipo de relacionamento (Y620.IND_RELAC) no formato DDMMYYYY.",
+          "descricao": "Data do Evento: Data do evento societ\u00e1rio que deu causa \u00e0 classifica\u00e7\u00e3o conforme o indicador do tipo de relacionamento (Y600.IND_RELAC) no formato DDMMYYYY.",
           "tipo": "N",
           "tamanho": "8",
           "decimal": null,
@@ -11166,13 +10586,46 @@
         },
         {
           "indice": 18,
+          "nome": "VL_FOLHA",
+          "descricao": "Valor Total da Folha Sujeita \u00e0 Al\u00edquota Reduzida de que Trata a Lei no 11.774/2008: Valor total da Folha de Pagamento, em rela\u00e7\u00e3o aos segurados empregados, trabalhadores avulsos e contribuintes individuais, sujeita \u00e0 al\u00edquota reduzida de que trata o art. 14 da Lei n\u00ba 11.774/2008.",
+          "tipo": "N",
+          "tamanho": "19",
+          "decimal": "2",
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": []
+        },
+        {
+          "indice": 19,
+          "nome": "VL_ALIQ_RED",
+          "descricao": "Al\u00edquota Reduzida de que Trata a Lei no 11.774/2008: Valor da al\u00edquota reduzida de que trata o art. 14 da Lei n\u00ba 11.774/2008, em rela\u00e7\u00e3o \u00e0s empresas que prestam servi\u00e7os de tecnologia da informa\u00e7\u00e3o - TI e de tecnologia da informa\u00e7\u00e3o e comunica\u00e7\u00e3o - TIC.",
+          "tipo": "N",
+          "tamanho": "8",
+          "decimal": "4",
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": []
+        },
+        {
+          "indice": 20,
           "nome": "IND_AVAL_ESTOQ",
           "descricao": "M\u00e9todo de Avalia\u00e7\u00e3o de Estoques: 1 \u2013 Custo M\u00e9dio Ponderado 2 \u2013 PEPS (Primeiro que entra, primeiro que sai) 3 \u2013 Arbitramento - art. 296, Inc. I e II, do RIR/99 4 \u2013 Custo Espec\u00edfico 5 \u2013 Valor Realiz\u00e1vel L\u00edquido 6 \u2013 Invent\u00e1rio Peri\u00f3dico 7 \u2013 Outros 8 \u2013 N\u00e3o h\u00e1 (Exemplo: Empresas Prestadoras de Servi\u00e7os)",
           "tipo": "C",
           "tamanho": "1",
           "decimal": null,
-          "valores": "[1; 2; 3; 4; 5; 6; 7; 8]",
+          "valores": "[1; 2; 3; 4; 5; 6; 7;8]",
           "obrigatorio": false,
+          "regras": []
+        },
+        {
+          "indice": 21,
+          "nome": "IND_AVAL_ESTOQ",
+          "descricao": "R REGRA_Y672_METODO: Verifica se Y672.IND_AVAL_ESTOQ n\u00e3o est\u00e1 preenchido, quando Y672.VL_ESTOQUES for maior que zero, 0010.FORMA_TRIB for igual a \u201c5\u201d (Lucro Presumido) ou \u201c7\u201d (Lucro Presumido/Arbitrado) e 0010TIPO_ESC_PRE for igual a \u201cL\u201d (Livro Caixa). EGRA_Y672_METODO_P100: Verifica se Y672.IND_AVAL_ESTOQ n\u00e3o est\u00e1 preenchido, quando 0010.FORMA_TRIB for igual a \u201c5\u201d (Lucro Presumido) ou \u201c7\u201d (Lucro Presumido/Arbitrado), 0010.TIPO_ESC_PRE for igual a \u201cC\u201d (Cont\u00e1bil) e P100(\u201c1.01.03.01.21\u201d) diferente de zero para qualquer per\u00edodo informado no registro P030. E Erro rro",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": null,
           "regras": []
         }
       ]
@@ -11509,17 +10962,6 @@
         },
         {
           "indice": 6,
-          "nome": "CONTE\u00daDO",
-          "descricao": "Conte\u00fado: Conte\u00fado do campo \u2013 Valor preenchido pelo usu\u00e1rio.",
-          "tipo": "NS",
-          "tamanho": "19",
-          "decimal": "2",
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 7,
           "nome": "VALOR_ESPERADO",
           "descricao": "Valor Original ou Calculado: Valor original ou calculado que era esperado como conte\u00fado do campo.",
           "tipo": "NS",
@@ -11530,111 +10972,12 @@
           "regras": []
         },
         {
-          "indice": 8,
-          "nome": "PER_APUR",
-          "descricao": "Per\u00edodo de Apura\u00e7\u00e3o Fiscal.",
-          "tipo": "C",
-          "tamanho": "3",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 9,
-          "nome": "COD_CTA",
-          "descricao": "C\u00f3digo da Conta.",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 10,
-          "nome": "COD_CCUS",
-          "descricao": "Centro de Custos.",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 11,
-          "nome": "COD_CTA_REF",
-          "descricao": "C\u00f3digo da Conta Referencial.",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 12,
-          "nome": "CODIGO",
-          "descricao": "C\u00f3digo da linha na tabela din\u00e2mica.",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 13,
-          "nome": "NUM_ORDEM",
-          "descricao": "N\u00famero de Ordem (X300)",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 14,
-          "nome": "CNPJ_ESTAB",
-          "descricao": "CNPJ do Estabelecimento (Y540).",
-          "tipo": "C",
-          "tamanho": "14",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 15,
-          "nome": "CNAE",
-          "descricao": "CNAE (Y540)",
-          "tipo": "N",
-          "tamanho": "7",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 16,
-          "nome": "COD_CTA_B",
-          "descricao": "C\u00f3digo da Conta da Parte B.",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": false,
-          "regras": []
-        },
-        {
-          "indice": 17,
-          "nome": "COD_TRIBUTO",
-          "descricao": "Tributo Relacionado \u00e0 Conta da Parte B.",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
+          "indice": 7,
+          "nome": "CONTE\u00daDO",
+          "descricao": "Conte\u00fado: Conte\u00fado do campo \u2013 Valor preenchido pelo usu\u00e1rio.",
+          "tipo": "NS",
+          "tamanho": "19",
+          "decimal": "2",
           "valores": "-",
           "obrigatorio": false,
           "regras": []

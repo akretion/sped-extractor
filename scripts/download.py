@@ -27,7 +27,7 @@ OLDEST_YEAR = _get_max_min_year()[1]
 
 def _get_url(mod, year):
     """Return the first URL found for a module's year version"""
-    with open("../specs/{}/download_info.csv".format(year), "r") as csvfile:
+    with open(f"../specs/{year}/download_info.csv", "r") as csvfile:
         reader = csv.reader(csvfile, delimiter=",", quotechar='"')
         header = next(reader)
         col_url = header.index("url")

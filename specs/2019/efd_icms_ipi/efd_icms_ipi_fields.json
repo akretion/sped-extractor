@@ -1,7 +1,7 @@
 {
   "tipo": "efd_icms_ipi",
-  "versao": "3.0.3",
-  "data_inicio": "2019-01-01",
+  "versao": "3.0.1",
+  "data_inicio": "2018-01-01",
   "registros": [
     {
       "codigo": "0300",
@@ -14,7 +14,7 @@
         {
           "indice": 2,
           "nome": "COD_IND_BEM",
-          "descricao": "C\u00f3digo individualizado do bem ou componente adotado no controle patrimonial do estabelecimento informante",
+          "descricao": "C\u00f3digo individualizado do bem ou componente",
           "tipo": "C",
           "tamanho": "060",
           "decimal": null,
@@ -155,7 +155,7 @@
         {
           "indice": 4,
           "nome": "IND_CTA",
-          "descricao": "Indicador do tipo de conta: S - Sint\u00e9tica (grupo de contas); A - Anal\u00edtica (conta).",
+          "descricao": "Indicador do tipo de conta: S - Sint\u00e9tica (grupo de contas);",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -404,7 +404,7 @@
         {
           "indice": 4,
           "nome": "TIPO_MOV",
-          "descricao": "Tipo de movimenta\u00e7\u00e3o do bem ou componente: SI = Saldo inicial de bens imobilizados; IM = Imobiliza\u00e7\u00e3o de bem individual; IA = Imobiliza\u00e7\u00e3o em Andamento - Componente; CI = Conclus\u00e3o de Imobiliza\u00e7\u00e3o em Andamento \u2013 Bem Resultante; MC = Imobiliza\u00e7\u00e3o oriunda do Ativo Circulante; BA = Baixa do bem - Fim do per\u00edodo de apropria\u00e7\u00e3o; AT = Aliena\u00e7\u00e3o ou Transfer\u00eancia;",
+          "descricao": "Tipo de movimenta\u00e7\u00e3o do bem ou componente: SI = Saldo inicial de bens imobilizados; IM = Imobiliza\u00e7\u00e3o de bem individual; IA = Imobiliza\u00e7\u00e3o em Andamento - Componente; CI = Conclus\u00e3o de Imobiliza\u00e7\u00e3o em Andamento \u2013 Bem Resultante; MC = Imobiliza\u00e7\u00e3o oriunda do Ativo Circulante; BA = Baixa do bem - Fim do per\u00edodo de apropria\u00e7\u00e3o; AT = Aliena\u00e7\u00e3o ou Transfer\u00eancia; PE = Perecimento, Extravio ou Deteriora\u00e7\u00e3o; OT = Outras Sa\u00eddas do Imobilizado",
           "tipo": "C",
           "tamanho": "002*",
           "decimal": null,
@@ -662,17 +662,6 @@
           "valores": "-",
           "obrigatorio": true,
           "regras": []
-        },
-        {
-          "indice": 9,
-          "nome": "NUM_DA",
-          "descricao": "N\u00famero do documento de arrecada\u00e7\u00e3o estadual, se houver",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
         }
       ]
     },
@@ -702,72 +691,6 @@
           "tipo": "C",
           "tamanho": "060",
           "decimal": null,
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 4,
-          "nome": "QTDE",
-          "descricao": "Quantidade, deste item da nota fiscal, que foi aplicada neste bem, expressa na mesma unidade constante no documento fiscal de entrada",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "05",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 5,
-          "nome": "UNID",
-          "descricao": "Unidade do item constante no documento fiscal de entrada",
-          "tipo": "C",
-          "tamanho": "6",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 6,
-          "nome": "VL_ICMS_OP_APLICADO",
-          "descricao": "Valor do ICMS da Opera\u00e7\u00e3o Pr\u00f3pria na entrada do item, proporcional \u00e0 quantidade aplicada no bem ou componente.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 7,
-          "nome": "VL_ICMS_ST_APLICADO",
-          "descricao": "Valor do ICMS ST na entrada do item, proporcional \u00e0 quantidade aplicada no bem ou componente.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 8,
-          "nome": "VL_ICMS_FRT_APLICADO",
-          "descricao": "Valor do ICMS sobre Frete do Conhecimento de Transporte na entrada do item, proporcional \u00e0 quantidade aplicada no bem ou componente.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 9,
-          "nome": "VL_ICMS_DIF_APLICADO",
-          "descricao": "Valor do ICMS Diferencial de Al\u00edquota, na entrada do item, proporcional \u00e0 quantidade aplicada no bem ou componente.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
           "valores": "-",
           "obrigatorio": true,
           "regras": []
@@ -936,7 +859,7 @@
         {
           "indice": 8,
           "nome": "VL_SLD_CREDOR_ANT_OA",
-          "descricao": "Valor total de \u201cSaldo credor do per\u00edodo",
+          "descricao": "Valor total de \u201cSaldo credor do per\u00edodo anterior\u201d",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -1553,7 +1476,7 @@
         {
           "indice": 3,
           "nome": "COD_ITEM_ORI",
-          "descricao": "C\u00f3digo do item de origem (campo 02 do Registro 0200)",
+          "descricao": "C\u00f3digo do item de origem (campo 02 do Registro",
           "tipo": "C",
           "tamanho": "60",
           "decimal": null,
@@ -1865,8 +1788,8 @@
         },
         {
           "indice": 4,
-          "nome": "VL_ICMS_UF_REM",
-          "descricao": "Valor total do ICMS Interestadual para a UF do remetente",
+          "nome": "VL_ICMS_UF",
+          "descricao": "Valor total do ICMS Interestadual para a UF do",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -1984,7 +1907,7 @@
         {
           "indice": 3,
           "nome": "VL_SLD_CRED_ANT_DIFAL",
-          "descricao": "Valor do \"Saldo credor de per\u00edodo anterior \u2013 ICMS Diferencial de Al\u00edquota da UF de Origem/Destino\"",
+          "descricao": "Valor do \"Saldo credor de per\u00edodo anterior \u2013 ICMS Diferencial de Al\u00edquota da UF de",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -2050,7 +1973,7 @@
         {
           "indice": 9,
           "nome": "VL_OUT_CRED_DIFAL",
-          "descricao": "Valor total de Ajustes \"Outros cr\u00e9ditos ICMS",
+          "descricao": "Valor total de Ajustes \"Outros cr\u00e9ditos ICMS Diferencial de Al\u00edquota da UF de Origem/Destino\" e \u201cEstorno de d\u00e9bitos ICMS Diferencial de Al\u00edquota da UF de Origem/Destino\u201d",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -2105,7 +2028,7 @@
         {
           "indice": 14,
           "nome": "DEB_ESP_DIFAL",
-          "descricao": "Valores recolhidos ou a recolher, extra-apura\u00e7\u00e3o.",
+          "descricao": "Valores recolhidos ou a recolher, extra- apura\u00e7\u00e3o.",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -2171,7 +2094,7 @@
         {
           "indice": 20,
           "nome": "VL_RECOL_FCP",
-          "descricao": "Valor recolhido ou a recolher referente ao FCP (18\u2013 19)",
+          "descricao": "Valor recolhido ou a recolher referente ao FCP (18\u201319)",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -2193,7 +2116,7 @@
         {
           "indice": 22,
           "nome": "DEB_ESP_FCP",
-          "descricao": "Valores recolhidos ou a recolher, extra-apura\u00e7\u00e3o - FCP.",
+          "descricao": "Valores recolhidos ou a recolher, extra- apura\u00e7\u00e3o - FCP.",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -3114,7 +3037,7 @@
         {
           "indice": 3,
           "nome": "IND_EMIT",
-          "descricao": "Indicador do emitente do documento fiscal: 0 - Emiss\u00e3o pr\u00f3pria;",
+          "descricao": "Indicador do emitente do documento fiscal: 0 - Emiss\u00e3o pr\u00f3pria; 1 - Terceiros",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -3246,7 +3169,7 @@
         {
           "indice": 15,
           "nome": "VL_ISNT_ISS",
-          "descricao": "Valor das opera\u00e7\u00f5es isentas ou n\u00e3o- tributadas pelo ISS",
+          "descricao": "Valor das opera\u00e7\u00f5es isentas ou n\u00e3o-tributadas pelo ISS",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -3333,7 +3256,7 @@
         {
           "indice": 2,
           "nome": "VL_CONT_P",
-          "descricao": "Parcela correspondente ao \u201cValor Cont\u00e1bil\u201d referente \u00e0 combina\u00e7\u00e3o da al\u00edquota e item da lista",
+          "descricao": "Parcela correspondente ao \"Valor Cont\u00e1bil\" referente \u00e0 combina\u00e7\u00e3o da al\u00edquota e item da lista",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -3344,7 +3267,7 @@
         {
           "indice": 3,
           "nome": "VL_BC_ISS_P",
-          "descricao": "Parcela correspondente ao \u201cValor da base de c\u00e1lculo do ISS\u201d referente \u00e0 combina\u00e7\u00e3o da al\u00edquota e item da lista",
+          "descricao": "Parcela correspondente ao \"Valor da base de c\u00e1lculo do ISS\" referente \u00e0 combina\u00e7\u00e3o da al\u00edquota e item da lista",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -3366,7 +3289,7 @@
         {
           "indice": 5,
           "nome": "VL_ISS_P",
-          "descricao": "Parcela correspondente ao \u201cValor do ISS\u201d referente \u00e0 combina\u00e7\u00e3o da al\u00edquota e item da lista",
+          "descricao": "Parcela correspondente ao \"Valor do ISS\" referente \u00e0 combina\u00e7\u00e3o da al\u00edquota e item da lista",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -3377,7 +3300,7 @@
         {
           "indice": 6,
           "nome": "VL_ISNT_ISS_P",
-          "descricao": "Parcela correspondente ao \u201cValor das opera\u00e7\u00f5es isentas ou n\u00e3o- tributadas pelo ISS\u201d referente \u00e0 combina\u00e7\u00e3o da al\u00edquota e item da lista",
+          "descricao": "Parcela correspondente ao \"Valor das opera\u00e7\u00f5es isentas ou n\u00e3o- tributadas pelo ISS\" referente \u00e0 combina\u00e7\u00e3o da al\u00edquota e item da lista",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -3693,7 +3616,7 @@
         {
           "indice": 5,
           "nome": "VL_ISNT_ISS",
-          "descricao": "Totaliza\u00e7\u00e3o do valor das opera\u00e7\u00f5es isentas ou n\u00e3o- tributadas pelo ISS referente \u00e0 combina\u00e7\u00e3o da al\u00edquota e item da lista",
+          "descricao": "Totaliza\u00e7\u00e3o do valor das opera\u00e7\u00f5es isentas ou n\u00e3o-tributadas pelo ISS referente \u00e0 combina\u00e7\u00e3o da al\u00edquota e item da lista",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -3801,7 +3724,7 @@
         {
           "indice": 2,
           "nome": "IND_DED",
-          "descricao": "Indicador do tipo de dedu\u00e7\u00e3o: 0 - Compensa\u00e7\u00e3o do ISS calculado a maior; 1 - Benef\u00edcio fiscal por incentivo \u00e0 cultura; 2 - Decis\u00e3o administrativa ou judicial; 9 - Outros",
+          "descricao": "Indicador do tipo de dedu\u00e7\u00e3o: 0- Compensa\u00e7\u00e3o do ISS calculado a maior; 1- Benef\u00edcio fiscal por incentivo \u00e0 cultura; 2- Decis\u00e3o administrativa ou judicial; 9- Outros",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -3834,7 +3757,7 @@
         {
           "indice": 5,
           "nome": "IND_PROC",
-          "descricao": "Indicador da origem do processo: 0 - Sefin; 1 - Justi\u00e7a Federal; 2 - Justi\u00e7a Estadual; 9 - Outros",
+          "descricao": "Indicador da origem do processo: 0- Sefin; 1- Justi\u00e7a Federal; 2- Justi\u00e7a Estadual; 9- Outros",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -4117,7 +4040,7 @@
         {
           "indice": 4,
           "nome": "IND_SOC",
-          "descricao": "Indicador de participa\u00e7\u00e3o societ\u00e1ria: 0 - S\u00f3cio 1 - N\u00e3o s\u00f3cio",
+          "descricao": "Indicador de participa\u00e7\u00e3o societ\u00e1ria: 0- S\u00f3cio 1- N\u00e3o s\u00f3cio",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -4356,17 +4279,6 @@
           "tipo": "C",
           "tamanho": "60",
           "decimal": null,
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 3,
-          "nome": "QTD",
-          "descricao": "Quantidade produzida",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "6",
           "valores": "-",
           "obrigatorio": true,
           "regras": []
@@ -4918,1375 +4830,6 @@
       ]
     },
     {
-      "codigo": "C180",
-      "nome": "Informa\u00e7\u00f5es complementares das opera\u00e7\u00f5es de entrada de mercadorias sujeitas \u00e0 substitui\u00e7\u00e3o tribut\u00e1ria (c\u00f3digo 01, 1B, 04 e 55)",
-      "regras": [],
-      "nivel": 4,
-      "ocorrencia": "1:1",
-      "campos_chave": [],
-      "campos": [
-        {
-          "indice": 2,
-          "nome": "COD_RESP_RET",
-          "descricao": "C\u00f3digo que indica o respons\u00e1vel pela reten\u00e7\u00e3o do ICMS ST: 1-Remetente Direto 2-Remetente Indireto 3-Pr\u00f3prio declarante",
-          "tipo": "N",
-          "tamanho": "001*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 3,
-          "nome": "QUANT_CONV",
-          "descricao": "Quantidade do item",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 4,
-          "nome": "UNID",
-          "descricao": "Unidade adotada para informar o campo QUANT_CONV.",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 5,
-          "nome": "VL_UNIT_CONV",
-          "descricao": "Valor unit\u00e1rio da mercadoria, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 6,
-          "nome": "VL_UNIT_ICMS_OP_CONV",
-          "descricao": "Valor unit\u00e1rio do ICMS opera\u00e7\u00e3o pr\u00f3pria que o informante teria direito ao cr\u00e9dito caso a mercadoria estivesse sob o regime comum de tributa\u00e7\u00e3o, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 7,
-          "nome": "VL_UNIT_BC_ICMS_ST_CONV",
-          "descricao": "Valor unit\u00e1rio da base de c\u00e1lculo do imposto pago ou retido anteriormente por substitui\u00e7\u00e3o, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d, aplicando-se redu\u00e7\u00e3o, se houver.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 8,
-          "nome": "VL_UNIT_ICMS_ST_CONV",
-          "descricao": "Valor unit\u00e1rio do imposto pago ou retido anteriormente por substitui\u00e7\u00e3o, inclusive FCP se devido, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 9,
-          "nome": "VL_UNIT_FCP_ST_CONV",
-          "descricao": "Valor unit\u00e1rio do FCP_ST agregado ao valor informado no campo \u201cVL_UNIT_ICMS_ST_CONV\u201d",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 10,
-          "nome": "COD_DA",
-          "descricao": "C\u00f3digo do modelo do documento de arrecada\u00e7\u00e3o: 0 \u2013 Documento estadual de arrecada\u00e7\u00e3o 1 \u2013 GNRE",
-          "tipo": "C",
-          "tamanho": "001*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 11,
-          "nome": "NUM_DA",
-          "descricao": "N\u00famero do documento de arrecada\u00e7\u00e3o estadual, se houver",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        }
-      ]
-    },
-    {
-      "codigo": "C185",
-      "nome": "Informa\u00e7\u00f5es complementares das opera\u00e7\u00f5es de sa\u00edda de mercadorias sujeitas \u00e0 substitui\u00e7\u00e3o tribut\u00e1ria (c\u00f3digo 01, 1B, 04 e 55)",
-      "regras": [],
-      "nivel": 3,
-      "ocorrencia": "1:1",
-      "campos_chave": [],
-      "campos": [
-        {
-          "indice": 2,
-          "nome": "NUM_ITEM",
-          "descricao": "N\u00famero sequencial do item no documento fiscal",
-          "tipo": "N",
-          "tamanho": "003",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 3,
-          "nome": "COD_ITEM",
-          "descricao": "C\u00f3digo do item (campo 02 do Registro 0200)",
-          "tipo": "C",
-          "tamanho": "060",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 4,
-          "nome": "CST_ICMS",
-          "descricao": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente ao ICMS",
-          "tipo": "N",
-          "tamanho": "003*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 5,
-          "nome": "CFOP",
-          "descricao": "C\u00f3digo Fiscal de Opera\u00e7\u00e3o e Presta\u00e7\u00e3o",
-          "tipo": "N",
-          "tamanho": "004*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 6,
-          "nome": "COD_MOT_REST_COMPL",
-          "descricao": "C\u00f3digo do motivo da restitui\u00e7\u00e3o ou complementa\u00e7\u00e3o conforme Tabela 5.7",
-          "tipo": "C",
-          "tamanho": "005*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 7,
-          "nome": "QUANT_CONV",
-          "descricao": "Quantidade do item",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 8,
-          "nome": "UNID",
-          "descricao": "Unidade adotada para informar o campo QUANT_CONV.",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 9,
-          "nome": "VL_UNIT_CONV",
-          "descricao": "Valor unit\u00e1rio da mercadoria, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 10,
-          "nome": "VL_UNIT_ICMS_NA_OPERACAO_CONV",
-          "descricao": "Valor unit\u00e1rio para o ICMS na opera\u00e7\u00e3o, caso n\u00e3o houvesse a ST, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d, considerando redu\u00e7\u00e3o da base de c\u00e1lculo do ICMS ST na tributa\u00e7\u00e3o, se houver.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 11,
-          "nome": "VL_UNIT_ICMS_OP_CONV",
-          "descricao": "Valor unit\u00e1rio do ICMS que o contribuinte teria se creditado, ou pode se creditar, referente \u00e0 opera\u00e7\u00e3o de entrada da mercadoria, caso estivesse submetida ao regime comum de tributa\u00e7\u00e3o, no desfazimento da substitui\u00e7\u00e3o tribut\u00e1ria, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 12,
-          "nome": "VL_UNIT_ICMS_OP_ESTOQUE_CONV",
-          "descricao": "Valor m\u00e9dio unit\u00e1rio do ICMS que o contribuinte teria se creditado referente \u00e0 opera\u00e7\u00e3o de entrada das mercadorias em estoque caso estivesse submetida ao regime comum de tributa\u00e7\u00e3o, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 13,
-          "nome": "VL_UNIT_ICMS_ST_ESTOQUE_CONV",
-          "descricao": "Valor m\u00e9dio unit\u00e1rio do ICMS ST, incluindo FCP ST, das mercadorias em estoque, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        }
-      ]
-    },
-    {
-      "codigo": "C330",
-      "nome": "Informa\u00e7\u00f5es complementares das opera\u00e7\u00f5es de sa\u00edda de mercadorias sujeitas \u00e0 substitui\u00e7\u00e3o tribut\u00e1ria (c\u00f3digo 02)",
-      "regras": [],
-      "nivel": 5,
-      "ocorrencia": "1:1",
-      "campos_chave": [],
-      "campos": [
-        {
-          "indice": 2,
-          "nome": "COD_MOT_REST_COMPL",
-          "descricao": "C\u00f3digo do motivo da restitui\u00e7\u00e3o ou complementa\u00e7\u00e3o conforme Tabela 5.7",
-          "tipo": "C",
-          "tamanho": "005*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 3,
-          "nome": "QUANT_CONV",
-          "descricao": "Quantidade do item",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 4,
-          "nome": "UNID",
-          "descricao": "Unidade adotada para informar o campo QUANT_CONV.",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 5,
-          "nome": "VL_UNIT_CONV",
-          "descricao": "Valor unit\u00e1rio da mercadoria, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 6,
-          "nome": "VL_UNIT_ICMS_NA_OPERACAO_CONV",
-          "descricao": "Valor unit\u00e1rio para o ICMS na opera\u00e7\u00e3o, caso n\u00e3o houvesse a ST, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d, aplicando-se a mesma redu\u00e7\u00e3o da base de c\u00e1lculo do ICMS ST na tributa\u00e7\u00e3o, se houver.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 7,
-          "nome": "VL_UNIT_ICMS_OP_CONV",
-          "descricao": "Valor unit\u00e1rio correspondente ao ICMS OP utilizado no c\u00e1lculo do ressarcimento / restitui\u00e7\u00e3o, no desfazimento da substitui\u00e7\u00e3o tribut\u00e1ria, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 8,
-          "nome": "VL_UNIT_ICMS_OP_ESTOQUE_CONV",
-          "descricao": "Valor m\u00e9dio unit\u00e1rio do ICMS que o contribuinte teria se creditado referente \u00e0 opera\u00e7\u00e3o de entrada das mercadorias em estoque caso estivesse submetida ao regime comum de tributa\u00e7\u00e3o, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 9,
-          "nome": "VL_UNIT_ICMS_ST_ESTOQUE_CONV",
-          "descricao": "Valor m\u00e9dio unit\u00e1rio do ICMS ST, incluindo FCP ST, das mercadorias em estoque, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        }
-      ]
-    },
-    {
-      "codigo": "C380",
-      "nome": "Informa\u00e7\u00f5es complementares das opera\u00e7\u00f5es de sa\u00edda de mercadorias sujeitas \u00e0 substitui\u00e7\u00e3o tribut\u00e1ria (c\u00f3digo 02)",
-      "regras": [],
-      "nivel": 4,
-      "ocorrencia": "1:1",
-      "campos_chave": [],
-      "campos": [
-        {
-          "indice": 2,
-          "nome": "COD_MOT_REST_COMPL",
-          "descricao": "C\u00f3digo do motivo da restitui\u00e7\u00e3o ou complementa\u00e7\u00e3o conforme Tabela 5.7",
-          "tipo": "C",
-          "tamanho": "005*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 3,
-          "nome": "QUANT_CONV",
-          "descricao": "Quantidade do item",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 4,
-          "nome": "UNID",
-          "descricao": "Unidade adotada para informar o campo QUANT_CONV.",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 5,
-          "nome": "VL_UNIT_CONV",
-          "descricao": "Valor unit\u00e1rio da mercadoria, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 6,
-          "nome": "VL_UNIT_ICMS_NA_OPERACAO_CONV",
-          "descricao": "Valor unit\u00e1rio para o ICMS na opera\u00e7\u00e3o, caso n\u00e3o houvesse a ST, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d, aplicando-se a mesma redu\u00e7\u00e3o da base de c\u00e1lculo do ICMS ST na tributa\u00e7\u00e3o, se houver.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 7,
-          "nome": "VL_UNIT_ICMS_OP_CONV",
-          "descricao": "Valor unit\u00e1rio correspondente ao ICMS OP utilizado no c\u00e1lculo do ressarcimento / restitui\u00e7\u00e3o, no desfazimento da substitui\u00e7\u00e3o tribut\u00e1ria, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 8,
-          "nome": "VL_UNIT_ICMS_OP_ESTOQUE_CONV",
-          "descricao": "Valor m\u00e9dio unit\u00e1rio do ICMS que o contribuinte teria se creditado referente \u00e0 opera\u00e7\u00e3o de entrada das mercadorias em estoque caso estivesse submetida ao regime comum de tributa\u00e7\u00e3o, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 9,
-          "nome": "VL_UNIT_ICMS_ST_ESTOQUE_CONV",
-          "descricao": "Valor m\u00e9dio unit\u00e1rio do ICMS ST, incluindo FCP ST, das mercadorias em estoque, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        }
-      ]
-    },
-    {
-      "codigo": "C430",
-      "nome": "Informa\u00e7\u00f5es complementares das opera\u00e7\u00f5es de sa\u00edda de mercadorias sujeitas \u00e0 substitui\u00e7\u00e3o tribut\u00e1ria (c\u00f3digo 02, 02D e 60)",
-      "regras": [],
-      "nivel": 6,
-      "ocorrencia": "1:1",
-      "campos_chave": [],
-      "campos": [
-        {
-          "indice": 2,
-          "nome": "COD_MOT_REST_COMPL",
-          "descricao": "C\u00f3digo do motivo da restitui\u00e7\u00e3o ou complementa\u00e7\u00e3o conforme Tabela 5.7",
-          "tipo": "C",
-          "tamanho": "005*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 3,
-          "nome": "QUANT_CONV",
-          "descricao": "Quantidade do item",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 4,
-          "nome": "UNID",
-          "descricao": "Unidade adotada para informar o campo QUANT_CONV.",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 5,
-          "nome": "VL_UNIT_CONV",
-          "descricao": "Valor unit\u00e1rio da mercadoria, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 6,
-          "nome": "VL_UNIT_ICMS_NA_OPERACAO_CONV",
-          "descricao": "Valor unit\u00e1rio para o ICMS na opera\u00e7\u00e3o, caso n\u00e3o houvesse a ST, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d, considerando redu\u00e7\u00e3o da base de c\u00e1lculo do ICMS ST na tributa\u00e7\u00e3o, se houver.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 7,
-          "nome": "VL_UNIT_ICMS_OP_CONV",
-          "descricao": "Valor unit\u00e1rio do ICMS que o contribuinte teria se creditado, ou pode se creditar, referente \u00e0 opera\u00e7\u00e3o de entrada da mercadoria, caso estivesse submetida ao regime comum de tributa\u00e7\u00e3o, no desfazimento da substitui\u00e7\u00e3o tribut\u00e1ria, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 8,
-          "nome": "VL_UNIT_ICMS_OP_ESTOQUE_CONV",
-          "descricao": "Valor m\u00e9dio unit\u00e1rio do ICMS que o contribuinte teria se creditado referente \u00e0 opera\u00e7\u00e3o de entrada das mercadorias em estoque caso estivesse submetida ao regime comum de tributa\u00e7\u00e3o, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 9,
-          "nome": "VL_UNIT_ICMS_ST_ESTOQUE_CONV",
-          "descricao": "Valor m\u00e9dio unit\u00e1rio do ICMS ST, incluindo FCP ST, das mercadorias em estoque, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        }
-      ]
-    },
-    {
-      "codigo": "C480",
-      "nome": "Informa\u00e7\u00f5es complementares das opera\u00e7\u00f5es de sa\u00edda de mercadorias sujeitas \u00e0 substitui\u00e7\u00e3o tribut\u00e1ria (c\u00f3digo 02)",
-      "regras": [],
-      "nivel": 6,
-      "ocorrencia": "1:1",
-      "campos_chave": [],
-      "campos": [
-        {
-          "indice": 2,
-          "nome": "COD_MOT_REST_COMPL",
-          "descricao": "C\u00f3digo do motivo da restitui\u00e7\u00e3o ou complementa\u00e7\u00e3o conforme Tabela 5.7",
-          "tipo": "C",
-          "tamanho": "005*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 3,
-          "nome": "QUANT_CONV",
-          "descricao": "Quantidade do item",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 4,
-          "nome": "UNID",
-          "descricao": "Unidade adotada para informar o campo QUANT_CONV.",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 5,
-          "nome": "VL_UNIT_CONV",
-          "descricao": "Valor unit\u00e1rio da mercadoria, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 6,
-          "nome": "VL_UNIT_ICMS_NA_OPERACAO_CONV",
-          "descricao": "Valor unit\u00e1rio para o ICMS na opera\u00e7\u00e3o, caso n\u00e3o houvesse a ST, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d, aplicando-se a mesma redu\u00e7\u00e3o da base de c\u00e1lculo do ICMS ST na tributa\u00e7\u00e3o, se houver.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 7,
-          "nome": "VL_UNIT_ICMS_OP_CONV",
-          "descricao": "Valor unit\u00e1rio correspondente ao ICMS OP utilizado no c\u00e1lculo do ressarcimento / restitui\u00e7\u00e3o, no desfazimento da substitui\u00e7\u00e3o tribut\u00e1ria, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 8,
-          "nome": "VL_UNIT_ICMS_OP_ESTOQUE_CONV",
-          "descricao": "Valor m\u00e9dio unit\u00e1rio do ICMS que o contribuinte teria se creditado referente \u00e0 opera\u00e7\u00e3o de entrada das mercadorias em estoque caso estivesse submetida ao regime comum de tributa\u00e7\u00e3o, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 9,
-          "nome": "VL_UNIT_ICMS_ST_ESTOQUE_CONV",
-          "descricao": "Valor m\u00e9dio unit\u00e1rio do ICMS ST, incluindo FCP ST, das mercadorias em estoque, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        }
-      ]
-    },
-    {
-      "codigo": "C591",
-      "nome": "Informa\u00e7\u00f5es do Fundo de Combate \u00e0 Pobreza \u2013 FCP na NF3e (c\u00f3digo 66)",
-      "regras": [],
-      "nivel": 4,
-      "ocorrencia": "1:1",
-      "campos_chave": [],
-      "campos": [
-        {
-          "indice": 2,
-          "nome": "VL_FCP_OP",
-          "descricao": "Valor do Fundo de Combate \u00e0 Pobreza (FCP) vinculado \u00e0 opera\u00e7\u00e3o pr\u00f3pria, na combina\u00e7\u00e3o de CST_ICMS, CFOP e al\u00edquota do ICMS",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 3,
-          "nome": "VL_FCP_ST",
-          "descricao": "Valor do Fundo de Combate \u00e0 Pobreza (FCP) vinculado \u00e0 opera\u00e7\u00e3o de substitui\u00e7\u00e3o tribut\u00e1ria, na combina\u00e7\u00e3o de CST_ICMS, CFOP e al\u00edquota do ICMS.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        }
-      ]
-    },
-    {
-      "codigo": "C595",
-      "nome": "Observa\u00e7\u00f5es do Lan\u00e7amento Fiscal (c\u00f3digos 06, 28, 29 e 66)",
-      "regras": [],
-      "nivel": 3,
-      "ocorrencia": "1:N",
-      "campos_chave": [],
-      "campos": [
-        {
-          "indice": 2,
-          "nome": "COD_OBS",
-          "descricao": "C\u00f3digo da observa\u00e7\u00e3o do lan\u00e7amento fiscal (campo 02 do Registro 0460)",
-          "tipo": "C",
-          "tamanho": "006",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 3,
-          "nome": "TXT_COMPL",
-          "descricao": "Descri\u00e7\u00e3o complementar do c\u00f3digo de observa\u00e7\u00e3o.",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        }
-      ]
-    },
-    {
-      "codigo": "C597",
-      "nome": "Outras obriga\u00e7\u00f5es tribut\u00e1rias, ajustes e informa\u00e7\u00f5es de valores provenientes de documento fiscal.",
-      "regras": [],
-      "nivel": 4,
-      "ocorrencia": "1:N",
-      "campos_chave": [],
-      "campos": [
-        {
-          "indice": 2,
-          "nome": "COD_AJ",
-          "descricao": "C\u00f3digo do ajustes/benef\u00edcio/incentivo, conforme tabela indicada no item 5.3.",
-          "tipo": "C",
-          "tamanho": "010*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 3,
-          "nome": "DESCR_COMPL_AJ",
-          "descricao": "Descri\u00e7\u00e3o complementar do ajuste do documento fiscal",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 4,
-          "nome": "COD_ITEM",
-          "descricao": "C\u00f3digo do item (campo 02 do Registro 0200)",
-          "tipo": "C",
-          "tamanho": "060",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 5,
-          "nome": "VL_BC_ICMS",
-          "descricao": "Base de c\u00e1lculo do ICMS ou do ICMS ST",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 6,
-          "nome": "ALIQ_ICMS",
-          "descricao": "Al\u00edquota do ICMS",
-          "tipo": "N",
-          "tamanho": "006",
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 7,
-          "nome": "VL_ICMS",
-          "descricao": "Valor do ICMS ou do ICMS ST",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 8,
-          "nome": "VL_OUTROS",
-          "descricao": "Outros valores",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        }
-      ]
-    },
-    {
-      "codigo": "C810",
-      "nome": "Itens do documento do cupom fiscal eletr\u00f4nico \u2013 SAT (CF-E-SAT) (c\u00f3digo 59)",
-      "regras": [],
-      "nivel": 3,
-      "ocorrencia": "1:N",
-      "campos_chave": [],
-      "campos": [
-        {
-          "indice": 2,
-          "nome": "NUM_ITEM",
-          "descricao": "N\u00famero do item no documento fiscal",
-          "tipo": "N",
-          "tamanho": "003",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 3,
-          "nome": "COD_ITEM",
-          "descricao": "C\u00f3digo do item (campo 02 do Registro 0200)",
-          "tipo": "C",
-          "tamanho": "060",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 4,
-          "nome": "QTD",
-          "descricao": "Quantidade do item",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "05",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 5,
-          "nome": "UNID",
-          "descricao": "Unidade do item (Campo 02 do registro 0190)",
-          "tipo": "C",
-          "tamanho": "006",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 6,
-          "nome": "VL_ITEM",
-          "descricao": "Valor total do item (mercadorias ou servi\u00e7os)",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 7,
-          "nome": "CST_ICMS",
-          "descricao": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente ao ICMS",
-          "tipo": "N",
-          "tamanho": "003*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 8,
-          "nome": "CFOP",
-          "descricao": "C\u00f3digo Fiscal de Opera\u00e7\u00e3o e Presta\u00e7\u00e3o",
-          "tipo": "N",
-          "tamanho": "004*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        }
-      ]
-    },
-    {
-      "codigo": "C815",
-      "nome": "Informa\u00e7\u00f5es complementares das opera\u00e7\u00f5es de sa\u00edda de mercadorias sujeitas \u00e0 substitui\u00e7\u00e3o tribut\u00e1ria (CF-E-SAT) (c\u00f3digo 59)",
-      "regras": [],
-      "nivel": 4,
-      "ocorrencia": "1:1",
-      "campos_chave": [],
-      "campos": [
-        {
-          "indice": 2,
-          "nome": "COD_MOT_REST_COMPL",
-          "descricao": "C\u00f3digo do motivo da restitui\u00e7\u00e3o ou complementa\u00e7\u00e3o conforme Tabela 5.7",
-          "tipo": "C",
-          "tamanho": "005*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 3,
-          "nome": "QUANT_CONV",
-          "descricao": "Quantidade do item",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 4,
-          "nome": "UNID",
-          "descricao": "Unidade adotada para informar o campo QUANT_CONV.",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 5,
-          "nome": "VL_UNIT_CONV",
-          "descricao": "Valor unit\u00e1rio da mercadoria, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 6,
-          "nome": "VL_UNIT_ICMS_NA_OPERACAO_CONV",
-          "descricao": "Valor unit\u00e1rio para o ICMS na opera\u00e7\u00e3o, caso n\u00e3o houvesse a ST, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d, aplicando-se a mesma redu\u00e7\u00e3o da base de c\u00e1lculo do ICMS ST na tributa\u00e7\u00e3o, se houver.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 7,
-          "nome": "VL_UNIT_ICMS_OP_CONV",
-          "descricao": "Valor unit\u00e1rio correspondente ao ICMS OP utilizado no c\u00e1lculo do ressarcimento / restitui\u00e7\u00e3o, no desfazimento da substitui\u00e7\u00e3o tribut\u00e1ria, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 8,
-          "nome": "VL_UNIT_ICMS_OP_ESTOQUE_CONV",
-          "descricao": "Valor m\u00e9dio unit\u00e1rio do ICMS que o contribuinte teria se creditado referente \u00e0 opera\u00e7\u00e3o de entrada das mercadorias em estoque caso estivesse submetida ao regime comum de tributa\u00e7\u00e3o, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 9,
-          "nome": "VL_UNIT_ICMS_ST_ESTOQUE_CONV",
-          "descricao": "Valor m\u00e9dio unit\u00e1rio do ICMS ST, incluindo FCP ST, das mercadorias em estoque, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        }
-      ]
-    },
-    {
-      "codigo": "C870",
-      "nome": "Itens do documento do cupom fiscal eletr\u00f4nico \u2013 SAT (CF-E-SAT) (c\u00f3digo 59)",
-      "regras": [],
-      "nivel": 3,
-      "ocorrencia": "1:N",
-      "campos_chave": [],
-      "campos": [
-        {
-          "indice": 2,
-          "nome": "COD_ITEM",
-          "descricao": "C\u00f3digo do item (campo 02 do Registro 0200)",
-          "tipo": "C",
-          "tamanho": "060",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 3,
-          "nome": "QTD",
-          "descricao": "Quantidade do item",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "05",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 4,
-          "nome": "UNID",
-          "descricao": "Unidade do item (Campo 02 do registro 0190)",
-          "tipo": "C",
-          "tamanho": "006",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 5,
-          "nome": "CST_ICMS",
-          "descricao": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria referente ao ICMS",
-          "tipo": "N",
-          "tamanho": "003*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 6,
-          "nome": "CFOP",
-          "descricao": "C\u00f3digo Fiscal de Opera\u00e7\u00e3o e Presta\u00e7\u00e3o",
-          "tipo": "N",
-          "tamanho": "004*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        }
-      ]
-    },
-    {
-      "codigo": "C880",
-      "nome": "Informa\u00e7\u00f5es complementares das opera\u00e7\u00f5es de sa\u00edda de mercadorias sujeitas \u00e0 substitui\u00e7\u00e3o tribut\u00e1ria (CF-E-SAT) (c\u00f3digo 59)",
-      "regras": [],
-      "nivel": 4,
-      "ocorrencia": "1:1",
-      "campos_chave": [],
-      "campos": [
-        {
-          "indice": 2,
-          "nome": "COD_MOT_REST_COMPL",
-          "descricao": "C\u00f3digo do motivo da restitui\u00e7\u00e3o ou complementa\u00e7\u00e3o conforme Tabela 5.7",
-          "tipo": "C",
-          "tamanho": "005*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 3,
-          "nome": "QUANT_CONV",
-          "descricao": "Quantidade do item",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 4,
-          "nome": "UNID",
-          "descricao": "Unidade adotada para informar o campo QUANT_CONV.",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 5,
-          "nome": "VL_UNIT_CONV",
-          "descricao": "Valor unit\u00e1rio da mercadoria, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "03",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 6,
-          "nome": "VL_UNIT_ICMS_NA_OPERACAO_CONV",
-          "descricao": "Valor unit\u00e1rio para o ICMS na opera\u00e7\u00e3o, caso n\u00e3o houvesse a ST, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d, aplicando-se a mesma redu\u00e7\u00e3o da base de c\u00e1lculo do ICMS ST na tributa\u00e7\u00e3o, se houver.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "03",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 7,
-          "nome": "VL_UNIT_ICMS_OP_CONV",
-          "descricao": "Valor unit\u00e1rio correspondente ao ICMS OP utilizado no c\u00e1lculo do ressarcimento / restitui\u00e7\u00e3o, no desfazimento da substitui\u00e7\u00e3o tribut\u00e1ria, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "03",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 8,
-          "nome": "VL_UNIT_ICMS_OP_ESTOQUE_CONV",
-          "descricao": "Valor m\u00e9dio unit\u00e1rio do ICMS que o contribuinte teria se creditado referente \u00e0 opera\u00e7\u00e3o de entrada das mercadorias em estoque caso estivesse submetida ao regime comum de tributa\u00e7\u00e3o, calculado conforme a legisla\u00e7\u00e3o de cada UF, considerando a unidade utilizada para informar o campo \u201cQUANT_CONV\u201d",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "03",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 9,
-          "nome": "VL_UNIT_ICMS_ST_ESTOQUE_CONV",
-          "descricao": "Valor m\u00e9dio unit\u00e1rio do ICMS ST, incluindo FCP ST, das mercadorias em estoque, considerando unidade utilizada para informar o campo \u201cQUANT_CONV\u201d.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "03",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        }
-      ]
-    },
-    {
-      "codigo": "0002",
-      "nome": "Classifica\u00e7\u00e3o do Estabelecimento Industrial ou Equiparado a Industrial",
-      "regras": [],
-      "nivel": 1,
-      "ocorrencia": "1 por arquivo",
-      "campos_chave": [],
-      "campos": [
-        {
-          "indice": 2,
-          "nome": "CLAS_ESTAB_IND",
-          "descricao": "Informar a classifica\u00e7\u00e3o do estabelecimento conforme tabela 4.5.5",
-          "tipo": "N",
-          "tamanho": "002",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        }
-      ]
-    },
-    {
-      "codigo": "H030",
-      "nome": "Informa\u00e7\u00f5es complementares do invent\u00e1rio das mercadorias sujeitas ao regime de substitui\u00e7\u00e3o tribut\u00e1ria",
-      "regras": [],
-      "nivel": 4,
-      "ocorrencia": "1:1",
-      "campos_chave": [],
-      "campos": [
-        {
-          "indice": 2,
-          "nome": "VL_ICMS_OP",
-          "descricao": "Valor m\u00e9dio unit\u00e1rio do ICMS OP",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 3,
-          "nome": "VL_BC_ICMS_ST",
-          "descricao": "Valor m\u00e9dio unit\u00e1rio da base de c\u00e1lculo do ICMS ST",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 4,
-          "nome": "VL_ICMS_ST",
-          "descricao": "Valor m\u00e9dio unit\u00e1rio do ICMS ST",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 5,
-          "nome": "VL_FCP",
-          "descricao": "Valor m\u00e9dio unit\u00e1rio do FCP",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "06",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        }
-      ]
-    },
-    {
-      "codigo": "1250",
-      "nome": "Informa\u00e7\u00f5es consolidadas de saldos de restitui\u00e7\u00e3o, ressarcimento e complementa\u00e7\u00e3o do ICMS",
-      "regras": [],
-      "nivel": 2,
-      "ocorrencia": "1:1",
-      "campos_chave": [],
-      "campos": [
-        {
-          "indice": 2,
-          "nome": "VL_CREDITO_ICMS_OP",
-          "descricao": "Informar o valor total do ICMS opera\u00e7\u00e3o pr\u00f3pria que o informante tem direito ao cr\u00e9dito, na forma prevista na legisla\u00e7\u00e3o, referente \u00e0s hip\u00f3teses de restitui\u00e7\u00e3o em que h\u00e1 previs\u00e3o deste cr\u00e9dito.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 3,
-          "nome": "VL_ICMS_ST_REST",
-          "descricao": "Informar o valor total do ICMS ST que o informante tem direito ao cr\u00e9dito, na forma prevista na legisla\u00e7\u00e3o, referente \u00e0s hip\u00f3teses de restitui\u00e7\u00e3o em que h\u00e1 previs\u00e3o deste cr\u00e9dito.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 4,
-          "nome": "VL_FCP_ST_REST",
-          "descricao": "Informar o valor total do FCP_ST agregado ao valor do ICMS ST informado no campo \u201cVL_ICMS_ST_REST\u201d.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 5,
-          "nome": "VL_ICMS_ST_COMPL",
-          "descricao": "Informar o valor total do d\u00e9bito referente ao complemento do imposto, nos casos previstos na legisla\u00e7\u00e3o.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 6,
-          "nome": "VL_FCP_ST_COMPL",
-          "descricao": "Informar o valor total do FCP_ST agregado ao valor informado no campo \u201cVL_ICMS_ST_COMPL\u201d",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        }
-      ]
-    },
-    {
-      "codigo": "1255",
-      "nome": "Informa\u00e7\u00f5es consolidadas de saldos de restitui\u00e7\u00e3o, ressarcimento e complementa\u00e7\u00e3o do ICMS por motivo",
-      "regras": [],
-      "nivel": 3,
-      "ocorrencia": "1:N",
-      "campos_chave": [],
-      "campos": [
-        {
-          "indice": 2,
-          "nome": "COD_MOT_REST_COMPL",
-          "descricao": "C\u00f3digo do motivo da restitui\u00e7\u00e3o ou complementa\u00e7\u00e3o conforme Tabela 5.7",
-          "tipo": "C",
-          "tamanho": "005*",
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 3,
-          "nome": "VL_CREDITO_ICMS_OP_MOT",
-          "descricao": "Informar o valor total do ICMS opera\u00e7\u00e3o pr\u00f3pria que o informante tem direito ao cr\u00e9dito, na forma prevista na legisla\u00e7\u00e3o, referente \u00e0s hip\u00f3teses de restitui\u00e7\u00e3o em que h\u00e1 previs\u00e3o deste cr\u00e9dito, para o mesmo \u201cCOD_MOT_REST_COMPL\u201d",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 4,
-          "nome": "VL_ICMS_ST_REST_MOT",
-          "descricao": "Informar o valor total do ICMS ST que o informante tem direito ao cr\u00e9dito, na forma prevista na legisla\u00e7\u00e3o, referente \u00e0s hip\u00f3teses de restitui\u00e7\u00e3o em que h\u00e1 previs\u00e3o deste cr\u00e9dito, para o mesmo \u201cCOD_MOT_REST_COMPL\u201d",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 5,
-          "nome": "VL_FCP_ST_REST_MOT",
-          "descricao": "Informar o valor total do FCP_ST agregado ao valor do ICMS ST informado no campo \u201cVL_ICMS_ST_REST_MOT\u201d",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 6,
-          "nome": "VL_ICMS_ST_COMPL_MOT",
-          "descricao": "Informar o valor total do d\u00e9bito referente ao complemento do imposto, nos casos previstos na legisla\u00e7\u00e3o, para o mesmo \u201cCOD_MOT_REST_COMPL\u201d",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 7,
-          "nome": "VL_FCP_ST_COMPL_MOT",
-          "descricao": "Informar o valor total do FCP_ST agregado ao valor informado no campo \u201cVL_ICMS_ST_COMPL_MOT\u201d",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        }
-      ]
-    },
-    {
       "codigo": "0000",
       "nome": "Abertura do Arquivo Digital e Identifica\u00e7\u00e3o da entidade",
       "regras": [],
@@ -6308,7 +4851,7 @@
         {
           "indice": 3,
           "nome": "COD_FIN",
-          "descricao": "C\u00f3digo da finalidade do arquivo:",
+          "descricao": "C\u00f3digo da finalidade do arquivo: 0 - Remessa do arquivo original; 1 - Remessa do arquivo substituto.",
           "tipo": "N",
           "tamanho": "001",
           "decimal": null,
@@ -6602,7 +5145,7 @@
         {
           "indice": 3,
           "nome": "IE_ST",
-          "descricao": "Inscri\u00e7\u00e3o Estadual do contribuinte substituto na unidade da federa\u00e7\u00e3o do contribuinte substitu\u00eddo ou unidade de federa\u00e7\u00e3o do consumidor final n\u00e3o contribuinte - ICMS Destino EC 87/15.",
+          "descricao": "Inscri\u00e7\u00e3o Estadual do contribuinte substituto na unidade da federa\u00e7\u00e3o do contribuinte substitu\u00eddo ou unidade de",
           "tipo": "C",
           "tamanho": "014",
           "decimal": null,
@@ -6998,7 +5541,7 @@
           "tamanho": "060",
           "decimal": null,
           "valores": "-",
-          "obrigatorio": true,
+          "obrigatorio": null,
           "regras": []
         },
         {
@@ -7009,7 +5552,7 @@
           "tamanho": null,
           "decimal": null,
           "valores": "-",
-          "obrigatorio": true,
+          "obrigatorio": null,
           "regras": []
         },
         {
@@ -7042,7 +5585,7 @@
           "tamanho": "006",
           "decimal": null,
           "valores": "-",
-          "obrigatorio": true,
+          "obrigatorio": null,
           "regras": []
         },
         {
@@ -7053,7 +5596,7 @@
           "tamanho": "2",
           "decimal": null,
           "valores": "-",
-          "obrigatorio": true,
+          "obrigatorio": null,
           "regras": []
         },
         {
@@ -7285,7 +5828,7 @@
         {
           "indice": 3,
           "nome": "TXT",
-          "descricao": "Texto livre da informa\u00e7\u00e3o complementar existente no documento fiscal, inclusive esp\u00e9cie de normas legais, poder normativo, n\u00famero, capitula\u00e7\u00e3o, data e demais refer\u00eancias pertinentes com indica\u00e7\u00f5es referentes ao tributo.",
+          "descricao": "Texto livre da informa\u00e7\u00e3o complementar existente no documento fiscal, inclusive esp\u00e9cie de normas legais, poder normativo, n\u00famero, capitula\u00e7\u00e3o, data e demais refer\u00eancias pertinentes com indica\u00e7\u00e3o referentes ao tributo.",
           "tipo": "C",
           "tamanho": null,
           "decimal": null,
@@ -7334,19 +5877,7 @@
       "nivel": 1,
       "ocorrencia": "1:1",
       "campos_chave": [],
-      "campos": [
-        {
-          "indice": 2,
-          "nome": "QTD_LIN_0",
-          "descricao": "Quantidade total de linhas do Bloco 0",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        }
-      ]
+      "campos": []
     },
     {
       "codigo": "C001",
@@ -7391,7 +5922,7 @@
         {
           "indice": 3,
           "nome": "IND_EMIT",
-          "descricao": "Indicador do emitente do documento fiscal: 0 - Emiss\u00e3o pr\u00f3pria; 1 - Terceiros",
+          "descricao": "Indicador do emitente do documento fiscal: 0- Emiss\u00e3o pr\u00f3pria;",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -7611,7 +6142,7 @@
         {
           "indice": 23,
           "nome": "VL_BC_ICMS_ST",
-          "descricao": "Valor da base de c\u00e1lculo do ICMS substitui\u00e7\u00e3o tribut\u00e1ria",
+          "descricao": "Valor da base de c\u00e1lculo do ICMS substitui\u00e7\u00e3o",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -7694,30 +6225,7 @@
       "nivel": 3,
       "ocorrencia": "1:1",
       "campos_chave": [],
-      "campos": [
-        {
-          "indice": 2,
-          "nome": "OPER",
-          "descricao": "Indicador do tipo de opera\u00e7\u00e3o: 0- Combust\u00edveis e Lubrificantes; 1- Leasing de ve\u00edculos ou faturamento direto.",
-          "tipo": "N",
-          "tamanho": "001*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 3,
-          "nome": "UF",
-          "descricao": "Sigla da UF de destino do ICMS_ST",
-          "tipo": "C",
-          "tamanho": "002*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        }
-      ]
+      "campos": []
     },
     {
       "codigo": "C110",
@@ -8089,64 +6597,9 @@
           "indice": 5,
           "nome": "CPF_COL",
           "descricao": "CPF do contribuinte do local de coleta das mercadorias",
-          "tipo": "N",
-          "tamanho": "011*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 6,
-          "nome": "COD_MUN_COL",
-          "descricao": "C\u00f3digo do Munic\u00edpio do local de coleta",
-          "tipo": "N",
-          "tamanho": "007*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 7,
-          "nome": "CNPJ_ENTG",
-          "descricao": "N\u00famero do CNPJ do contribuinte do local de entrega",
-          "tipo": "N",
-          "tamanho": "014*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 8,
-          "nome": "IE_ENTG",
-          "descricao": "Inscri\u00e7\u00e3o Estadual do contribuinte do local de entrega",
           "tipo": "C",
-          "tamanho": "014",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 9,
-          "nome": "CPF_ENTG",
-          "descricao": "CPF do contribuinte do local de entrega",
-          "tipo": "N",
-          "tamanho": "011*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 10,
-          "nome": "COD_MUN_ENTG",
-          "descricao": "C\u00f3digo do Munic\u00edpio do local de entrega",
-          "tipo": "N",
-          "tamanho": "007*",
-          "decimal": null,
+          "tamanho": "N",
+          "decimal": "011*",
           "valores": "-",
           "obrigatorio": null,
           "regras": []
@@ -8294,7 +6747,7 @@
         {
           "indice": 2,
           "nome": "VL_SERV_NT",
-          "descricao": "Valor dos servi\u00e7os sob n\u00e3o-incid\u00eancia ou n\u00e3o-tributados pelo ICMS",
+          "descricao": "Valor dos servi\u00e7os sob n\u00e3o-incid\u00eancia ou n\u00e3o- tributados pelo ICMS",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -8338,7 +6791,7 @@
         {
           "indice": 6,
           "nome": "VL_IRRF",
-          "descricao": "Valor do Imposto de Renda - Retido na",
+          "descricao": "Valor do Imposto de Renda - Retido na Fonte",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -8381,7 +6834,7 @@
         {
           "indice": 2,
           "nome": "IND_EMIT",
-          "descricao": "Indicador do emitente do t\u00edtulo: 0 - Emiss\u00e3o pr\u00f3pria; 1 - Terceiros",
+          "descricao": "Indicador do emitente do t\u00edtulo: 0- Emiss\u00e3o pr\u00f3pria; 1- Terceiros",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -8392,7 +6845,7 @@
         {
           "indice": 3,
           "nome": "IND_TIT",
-          "descricao": "Indicador do tipo de t\u00edtulo de cr\u00e9dito: 00 - Duplicata; 01 - Cheque; 02 - Promiss\u00f3ria; 03 - Recibo; 99 - Outros (descrever)",
+          "descricao": "Indicador do tipo de t\u00edtulo de cr\u00e9dito: 00- Duplicata; 01- Cheque; 02- Promiss\u00f3ria; 03- Recibo; 99- Outros (descrever)",
           "tipo": "C",
           "tamanho": "002*",
           "decimal": null,
@@ -9254,7 +7707,7 @@
         {
           "indice": 6,
           "nome": "IND_MED",
-          "descricao": "Indicador de tipo de refer\u00eancia da base de c\u00e1lculo do ICMS (ST) do produto farmac\u00eautico: 0 - Base de c\u00e1lculo referente ao pre\u00e7o tabelado ou pre\u00e7o m\u00e1ximo sugerido; 1 - Base c\u00e1lculo \u2013 Margem de valor agregado; 2 - Base de c\u00e1lculo referente \u00e0 Lista Negativa; 3 - Base de c\u00e1lculo referente \u00e0 Lista Positiva; 4 - Base de c\u00e1lculo referente \u00e0 Lista Neutra",
+          "descricao": "Indicador de tipo de refer\u00eancia da base de c\u00e1lculo do ICMS (ST) do produto farmac\u00eautico: 0- Base de c\u00e1lculo referente ao pre\u00e7o tabelado ou pre\u00e7o m\u00e1ximo sugerido; 1- Base c\u00e1lculo \u2013 Margem de valor agregado; 2- Base de c\u00e1lculo referente \u00e0 Lista Negativa; 3- Base de c\u00e1lculo referente \u00e0 Lista Positiva; 4- Base de c\u00e1lculo referente \u00e0 Lista Neutra",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -9265,7 +7718,7 @@
         {
           "indice": 7,
           "nome": "TP_PROD",
-          "descricao": "Tipo de produto: 0 - Similar; 1 - Gen\u00e9rico; 2 - \u00c9tico ou de marca;",
+          "descricao": "Tipo de produto: 0- Similar; 1- Gen\u00e9rico; 2- \u00c9tico ou de marca;",
           "tipo": "C",
           "tamanho": "1*",
           "decimal": null,
@@ -9297,7 +7750,7 @@
         {
           "indice": 2,
           "nome": "IND_ARM",
-          "descricao": "Indicador do tipo da arma de fogo: 0 - Uso permitido; 1 - Uso restrito",
+          "descricao": "Indicador do tipo da arma de fogo:",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -9340,7 +7793,7 @@
         {
           "indice": 2,
           "nome": "IND_VEIC_OPER",
-          "descricao": "Indicador do tipo de opera\u00e7\u00e3o com ve\u00edculo: 0 - Venda para concession\u00e1ria; 1 - Faturamento direto; 2 - Venda direta; 3 - Venda da concession\u00e1ria; 9 - Outros",
+          "descricao": "Indicador do tipo de opera\u00e7\u00e3o com ve\u00edculo: 0- Venda para concession\u00e1ria; 1- Faturamento direto; 2- Venda direta; 3- Venda da concession\u00e1ria; 9- Outros",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -9570,7 +8023,7 @@
         {
           "indice": 18,
           "nome": "COD_RESP_RET",
-          "descricao": "C\u00f3digo que indica o respons\u00e1vel pela reten\u00e7\u00e3o do ICMS ST: 1 - Remetente Direto 2 - Remetente Indireto 3 - Pr\u00f3prio declarante",
+          "descricao": "C\u00f3digo que indica o respons\u00e1vel pela reten\u00e7\u00e3o do ICMS-ST: 1-Remetente Direto 2-Remetente Indireto 3-Pr\u00f3prio declarante",
           "tipo": "N",
           "tamanho": "001*",
           "decimal": null,
@@ -9581,7 +8034,7 @@
         {
           "indice": 19,
           "nome": "COD_MOT_RES",
-          "descricao": "C\u00f3digo do motivo do ressarcimento: 1 - Venda para outra UF; 2 -Sa\u00edda amparada por isen\u00e7\u00e3o ou n\u00e3o incid\u00eancia; 3 - Perda ou deteriora\u00e7\u00e3o; 4 - Furto ou roubo; 5 - Exporta\u00e7\u00e3o; 6 - Venda interna para Simples Nacional 9 - Outros",
+          "descricao": "C\u00f3digo do motivo do ressarcimento: 1 \u2013 Venda para outra UF; 2 \u2013Sa\u00edda amparada por isen\u00e7\u00e3o ou n\u00e3o incid\u00eancia; 3 \u2013 Perda ou deteriora\u00e7\u00e3o; 4 \u2013 Furto ou roubo;",
           "tipo": "N",
           "tamanho": "001*",
           "decimal": null,
@@ -9592,7 +8045,7 @@
         {
           "indice": 20,
           "nome": "CHAVE_NFE_RET",
-          "descricao": "N\u00famero completo da chave da NF-e emitida pelo substituto, na qual consta o valor do ICMS ST retido",
+          "descricao": "N\u00famero completo da chave da NF-e emitida pelo substituto, na qual consta o valor do ICMS-ST retido",
           "tipo": "N",
           "tamanho": "044*",
           "decimal": null,
@@ -9603,7 +8056,7 @@
         {
           "indice": 21,
           "nome": "COD_PART_NFE_RET",
-          "descricao": "C\u00f3digo do participante do emitente da NF-e em que houve a reten\u00e7\u00e3o do ICMS ST \u2013 campo 02 do registro 0150",
+          "descricao": "C\u00f3digo do participante do emitente da NF-e em que houve a reten\u00e7\u00e3o do ICMS-ST \u2013 campo 02 do registro 0150",
           "tipo": "C",
           "tamanho": "060",
           "decimal": null,
@@ -9614,7 +8067,7 @@
         {
           "indice": 22,
           "nome": "SER_NFE_RET",
-          "descricao": "S\u00e9rie da NF-e em que houve a reten\u00e7\u00e3o do ICMS ST",
+          "descricao": "S\u00e9rie da NF-e em que houve a reten\u00e7\u00e3o do ICMS- ST",
           "tipo": "C",
           "tamanho": "003",
           "decimal": null,
@@ -9625,7 +8078,7 @@
         {
           "indice": 23,
           "nome": "NUM_NFE_RET",
-          "descricao": "N\u00famero da NF-e em que houve a reten\u00e7\u00e3o do ICMS ST",
+          "descricao": "N\u00famero da NF-e em que houve a reten\u00e7\u00e3o do ICMS-ST",
           "tipo": "N",
           "tamanho": "009",
           "decimal": null,
@@ -9636,7 +8089,7 @@
         {
           "indice": 24,
           "nome": "ITEM_NFE_RET",
-          "descricao": "N\u00famero sequencial do item na NF-e em que houve a reten\u00e7\u00e3o do ICMS ST, que corresponde \u00e0 mercadoria objeto de pedido de ressarcimento",
+          "descricao": "N\u00famero sequencial do item na NF-e em que houve a reten\u00e7\u00e3o do ICMS-ST, que corresponde \u00e0 mercadoria objeto de pedido de ressarcimento",
           "tipo": "N",
           "tamanho": "003",
           "decimal": null,
@@ -9744,7 +8197,7 @@
         {
           "indice": 3,
           "nome": "ICMS_ST_REP",
-          "descricao": "Valor do ICMS ST a repassar/deduzir em opera\u00e7\u00f5es interestaduais",
+          "descricao": "Valor do ICMS-ST a repassar/deduzir em opera\u00e7\u00f5es interestaduais",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -9755,7 +8208,7 @@
         {
           "indice": 4,
           "nome": "ICMS_ST_COMPL",
-          "descricao": "Valor do ICMS ST a complementar \u00e0 UF de destino",
+          "descricao": "Valor do ICMS-ST a complementar \u00e0 UF de destino",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -10222,7 +8675,7 @@
         {
           "indice": 5,
           "nome": "VL_OPR",
-          "descricao": "Valor total acumulado das opera\u00e7\u00f5es correspondentes \u00e0 combina\u00e7\u00e3o de",
+          "descricao": "Valor total acumulado das opera\u00e7\u00f5es correspondentes \u00e0 combina\u00e7\u00e3o de CST_ICMS, CFOP e al\u00edquota do ICMS, inclu\u00eddas as despesas acess\u00f3rias e acr\u00e9scimos.",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -10436,83 +8889,6 @@
           "valores": "-",
           "obrigatorio": null,
           "regras": []
-        },
-        {
-          "indice": 6,
-          "nome": "CNPJ_CPF",
-          "descricao": "CNPJ ou CPF do destinat\u00e1rio",
-          "tipo": "N",
-          "tamanho": "014",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 7,
-          "nome": "VL_MERC",
-          "descricao": "Valor das mercadorias constantes no documento fiscal",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 8,
-          "nome": "VL_DOC",
-          "descricao": "Valor total do documento fiscal",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 9,
-          "nome": "VL_DESC",
-          "descricao": "Valor total do desconto",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 10,
-          "nome": "VL_PIS",
-          "descricao": "Valor total do PIS",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 11,
-          "nome": "VL_COFINS",
-          "descricao": "Valor total da COFINS",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 12,
-          "nome": "COD_CTA",
-          "descricao": "C\u00f3digo da conta anal\u00edtica cont\u00e1bil debitada/creditada",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
         }
       ]
     },
@@ -10527,7 +8903,7 @@
         {
           "indice": 2,
           "nome": "NUM_ITEM",
-          "descricao": "N\u00famero sequencial do item no documento",
+          "descricao": "N\u00famero sequencial do item no documento fiscal",
           "tipo": "N",
           "tamanho": "003",
           "decimal": null,
@@ -10832,17 +9208,6 @@
           "indice": 2,
           "nome": "VL_PIS",
           "descricao": "Valor total do PIS",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 3,
-          "nome": "VL_COFINS",
-          "descricao": "Valor total da COFINS",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -11496,7 +9861,7 @@
     },
     {
       "codigo": "C500",
-      "nome": "Nota Fiscal/Conta de Energia El\u00e9trica (c\u00f3digo 06), Nota Fiscal de Energia El\u00e9trica Eletr\u00f4nica (c\u00f3digo 66) , Nota Fiscal/Conta de fornecimento d\u00e1gua canalizada (c\u00f3digo 29) e Nota Fiscal/Consumo Fornecimento de G\u00e1s (C\u00f3digo 28)",
+      "nome": "Nota Fiscal/Conta de Energia El\u00e9trica (c\u00f3digo 06), Nota Fiscal/Conta de fornecimento d'\u00e1gua canalizada (c\u00f3digo 29) e Nota Fiscal/Consumo Fornecimento de G\u00e1s (C\u00f3digo 28)",
       "regras": [],
       "nivel": 2,
       "ocorrencia": "V",
@@ -11505,7 +9870,7 @@
         {
           "indice": 2,
           "nome": "IND_OPER",
-          "descricao": "Indicador do tipo de opera\u00e7\u00e3o: 0 - Entrada; 1 - Sa\u00edda",
+          "descricao": "Indicador do tipo de opera\u00e7\u00e3o: 0- Entrada; 1- Sa\u00edda",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -11516,7 +9881,7 @@
         {
           "indice": 3,
           "nome": "IND_EMIT",
-          "descricao": "Indicador do emitente do documento fiscal: 0 - Emiss\u00e3o pr\u00f3pria; 1 - Terceiros",
+          "descricao": "Indicador do emitente do documento fiscal: 0- Emiss\u00e3o pr\u00f3pria; 1- Terceiros",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -11582,7 +9947,7 @@
         {
           "indice": 9,
           "nome": "COD_CONS",
-          "descricao": "- C\u00f3digo de classe de consumo de energia el\u00e9trica ou g\u00e1s: 01 - Comercial 02 - Consumo Pr\u00f3prio 03 - Ilumina\u00e7\u00e3o P\u00fablica 04 - Industrial 05 - Poder P\u00fablico 06 - Residencial 07 - Rural 08 - Servi\u00e7o P\u00fablico. - C\u00f3digo de classe de consumo de Fornecimento D\u00b4\u00e1gua \u2013 Tabela 4.4.2.",
+          "descricao": "- C\u00f3digo de classe de consumo de energia el\u00e9trica ou g\u00e1s: 01 - Comercial 02 - Consumo Pr\u00f3prio 03 - Ilumina\u00e7\u00e3o P\u00fablica 04 - Industrial 05 - Poder P\u00fablico 06 - Residencial 07 - Rural 08 -Servi\u00e7o P\u00fablico. - C\u00f3digo de classe de consumo de Fornecimento D\u00b4\u00e1gua \u2013 Tabela 4.4.2.",
           "tipo": "C",
           "tamanho": "002*",
           "decimal": null,
@@ -11787,72 +10152,6 @@
           "valores": "-",
           "obrigatorio": null,
           "regras": []
-        },
-        {
-          "indice": 28,
-          "nome": "CHV_DOCe",
-          "descricao": "Chave da Nota Fiscal de Energia El\u00e9trica Eletr\u00f4nica",
-          "tipo": "N",
-          "tamanho": "044*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 29,
-          "nome": "FIN_DOCe",
-          "descricao": "Finalidade da emiss\u00e3o do documento eletr\u00f4nico: 1 \u2013 Normal 2 \u2013 Substitui\u00e7\u00e3o 3 \u2013 Normal com ajuste",
-          "tipo": "N",
-          "tamanho": "001*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 30,
-          "nome": "CHV_DOCe_REF",
-          "descricao": "Chave da nota referenciada.",
-          "tipo": "N",
-          "tamanho": "044*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 31,
-          "nome": "IND_DEST",
-          "descricao": "Indicador do Destinat\u00e1rio/Acessante: 1 \u2013 Contribuinte do ICMS; 2 \u2013 Contribuinte Isento de Inscri\u00e7\u00e3o no Cadastro de Contribuintes do ICMS; 9 \u2013 N\u00e3o Contribuinte.",
-          "tipo": "N",
-          "tamanho": "001*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 32,
-          "nome": "COD_MUN_DEST",
-          "descricao": "C\u00f3digo do munic\u00edpio do destinat\u00e1rio conforme a tabela do IBGE.",
-          "tipo": "N",
-          "tamanho": "007*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 33,
-          "nome": "COD_CTA",
-          "descricao": "C\u00f3digo da conta anal\u00edtica cont\u00e1bil debitada/creditada",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
         }
       ]
     },
@@ -12032,7 +10331,7 @@
         {
           "indice": 17,
           "nome": "IND_REC",
-          "descricao": "Indicador do tipo de receita: 0- Receita pr\u00f3pria;",
+          "descricao": "Indicador do tipo de receita: 0- Receita pr\u00f3pria; 1- Receita de terceiros",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -12088,7 +10387,7 @@
     },
     {
       "codigo": "C590",
-      "nome": "Registro Anal\u00edtico do Documento - Nota Fiscal/Conta de Energia El\u00e9trica (c\u00f3digo 06), Nota Fiscal de Energia El\u00e9trica Eletr\u00f4nica (c\u00f3digo 66), Nota Fiscal/Conta de fornecimento d'\u00e1gua canalizada (c\u00f3digo 29) e Nota Fiscal/Conta Fornecimento de G\u00e1s (C\u00f3digo 28)",
+      "nome": "Registro Anal\u00edtico do Documento - Nota Fiscal/Conta de Energia El\u00e9trica (c\u00f3digo 06), Nota Fiscal/Conta de fornecimento d'\u00e1gua canalizada (c\u00f3digo 29) e Nota Fiscal/Conta Fornecimento de G\u00e1s (C\u00f3digo 28)",
       "regras": [],
       "nivel": 3,
       "ocorrencia": "1:N",
@@ -12261,7 +10560,7 @@
         {
           "indice": 6,
           "nome": "COD_CONS",
-          "descricao": "- C\u00f3digo de classe de consumo de energia el\u00e9trica ou g\u00e1s: 01 - Comercial 02 - Consumo Pr\u00f3prio 03 - Ilumina\u00e7\u00e3o P\u00fablica 04 - Industrial 05 - Poder P\u00fablico 06 - Residencial 07 - Rural 08 -Servi\u00e7o P\u00fablico. - C\u00f3digo de classe de consumo de Fornecimento D\u00b4\u00e1gua \u2013 Tabela 4.4.2.",
+          "descricao": "- C\u00f3digo de classe de consumo de energia el\u00e9trica ou g\u00e1s: 01 - Comercial 02 - Consumo Pr\u00f3prio 03 - Ilumina\u00e7\u00e3o P\u00fablica 04 - Industrial 05 - Poder P\u00fablico",
           "tipo": "C",
           "tamanho": "002*",
           "decimal": null,
@@ -12349,7 +10648,7 @@
         {
           "indice": 14,
           "nome": "VL_SERV_NT",
-          "descricao": "Valor acumulado dos servi\u00e7os n\u00e3o- tributados pelo ICMS",
+          "descricao": "Valor acumulado dos servi\u00e7os n\u00e3o-tributados pelo ICMS",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -12927,7 +11226,7 @@
         {
           "indice": 6,
           "nome": "VL_BC_ICMS",
-          "descricao": "Parcela correspondente ao \u201cValor da base de c\u00e1lculo do ICMS\u201d referente \u00e0 combina\u00e7\u00e3o",
+          "descricao": "Parcela correspondente ao \u201cValor da base de c\u00e1lculo do ICMS\u201d referente \u00e0 combina\u00e7\u00e3o CST_ICMS, CFOP, e al\u00edquota do ICMS",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -13397,7 +11696,7 @@
           "descricao": "Valor acumulado da base de c\u00e1lculo do ICMS, referente \u00e0 combina\u00e7\u00e3o de CST_ICMS, CFOP e AL\u00cdQUOTA DO ICMS.",
           "tipo": "N",
           "tamanho": null,
-          "decimal": "02",
+          "decimal": "2",
           "valores": "-",
           "obrigatorio": null,
           "regras": []
@@ -13405,7 +11704,7 @@
         {
           "indice": 7,
           "nome": "VL_ICMS",
-          "descricao": "Parcela correspondente ao \"Valor do ICMS\" referente \u00e0 combina\u00e7\u00e3o de CST_ICMS, CFOP e al\u00edquota do ICMS.",
+          "descricao": "Parcela correspondente ao \"Valor do ICMS\" referente \u00e0",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -13458,7 +11757,7 @@
         {
           "indice": 2,
           "nome": "IND_MOV",
-          "descricao": "Indicador de movimento:",
+          "descricao": "Indicador de movimento: 0- Bloco com dados informados; 1- Bloco sem dados informados",
           "tipo": "C",
           "tamanho": "001",
           "decimal": null,
@@ -13479,7 +11778,7 @@
         {
           "indice": 2,
           "nome": "IND_OPER",
-          "descricao": "Indicador do tipo de opera\u00e7\u00e3o: 0 - Aquisi\u00e7\u00e3o; 1 - Presta\u00e7\u00e3o",
+          "descricao": "Indicador do tipo de opera\u00e7\u00e3o: 0- Aquisi\u00e7\u00e3o; 1- Presta\u00e7\u00e3o",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -13490,7 +11789,7 @@
         {
           "indice": 3,
           "nome": "IND_EMIT",
-          "descricao": "Indicador do emitente do documento fiscal: 0 - Emiss\u00e3o pr\u00f3pria; 1 - Terceiros",
+          "descricao": "Indicador do emitente do documento fiscal: 0- Emiss\u00e3o pr\u00f3pria; 1- Terceiros",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -13611,7 +11910,7 @@
         {
           "indice": 14,
           "nome": "CHV_CTE_REF",
-          "descricao": "Chave do Bilhete de Passagem Eletr\u00f4nico substitu\u00eddo",
+          "descricao": "Chave do CT-e de refer\u00eancia cujos valores foram",
           "tipo": "N",
           "tamanho": "044*",
           "decimal": null,
@@ -13644,7 +11943,7 @@
         {
           "indice": 17,
           "nome": "IND_FRT",
-          "descricao": "Indicador do tipo do frete: 0 - Por conta de terceiros; 1 - Por conta do emitente; 2 - Por conta do destinat\u00e1rio; 9 - Sem cobran\u00e7a de frete.",
+          "descricao": "Indicador do tipo do frete: 0- Por conta de terceiros; 1- Por conta do emitente; 2- Por conta do destinat\u00e1rio; 9- Sem cobran\u00e7a de frete.",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -14025,7 +12324,7 @@
         {
           "indice": 3,
           "nome": "COD_MUN_ORIG",
-          "descricao": "C\u00f3digo do munic\u00edpio de origem do servi\u00e7o, conforme a tabela IBGE(Preencher com 9999999, se Exterior)",
+          "descricao": "C\u00f3digo do munic\u00edpio de origem do servi\u00e7o,",
           "tipo": "N",
           "tamanho": "007*",
           "decimal": null,
@@ -14058,7 +12357,7 @@
         {
           "indice": 6,
           "nome": "VEIC_ID",
-          "descricao": "Identifica\u00e7\u00e3o da embarca\u00e7\u00e3o (IRIM ou Registro",
+          "descricao": "Identifica\u00e7\u00e3o da embarca\u00e7\u00e3o (IRIM ou Registro CPP)",
           "tipo": "C",
           "tamanho": null,
           "decimal": null,
@@ -14211,7 +12510,7 @@
         {
           "indice": 6,
           "nome": "IND_TFA",
-          "descricao": "Indicador do tipo de tarifa aplicada: 0- Exp.; 1- Enc.; 2- C.I.; 9- Outra",
+          "descricao": "Indicador do tipo de tarifa aplicada: 0- Exp.;",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -14581,7 +12880,7 @@
         {
           "indice": 3,
           "nome": "COD_PART_RED",
-          "descricao": "C\u00f3digo do participante (campo 02 do Registro 0150): - redespachante, se houver",
+          "descricao": "C\u00f3digo do participante (campo 02 do Registro 0150):",
           "tipo": "C",
           "tamanho": "060",
           "decimal": null,
@@ -14625,7 +12924,7 @@
         {
           "indice": 7,
           "nome": "IND_NAT_FRT",
-          "descricao": "Indicador da natureza do frete: 0- Negoci\u00e1vel;",
+          "descricao": "Indicador da natureza do frete: 0- Negoci\u00e1vel; 1- N\u00e3o negoci\u00e1vel",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -14800,7 +13099,7 @@
         {
           "indice": 9,
           "nome": "UF_TOM",
-          "descricao": "Sigla da unidade da federa\u00e7\u00e3o do participante",
+          "descricao": "Sigla da unidade da federa\u00e7\u00e3o do participante tomador do servi\u00e7o",
           "tipo": "C",
           "tamanho": "002*",
           "decimal": null,
@@ -15030,7 +13329,7 @@
     },
     {
       "codigo": "D197",
-      "nome": "Outras obriga\u00e7\u00f5es tribut\u00e1rias, ajustes e informa\u00e7\u00f5es de valores provenientes do",
+      "nome": "Outras obriga\u00e7\u00f5es tribut\u00e1rias, ajustes e informa\u00e7\u00f5es de valores provenientes do documento fiscal.",
       "regras": [],
       "nivel": 4,
       "ocorrencia": "1:N",
@@ -15181,7 +13480,7 @@
         {
           "indice": 7,
           "nome": "CST_ICMS",
-          "descricao": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria, conforme a",
+          "descricao": "C\u00f3digo da Situa\u00e7\u00e3o Tribut\u00e1ria, conforme a Tabela indicada no item 4.3.1",
           "tipo": "N",
           "tamanho": "003*",
           "decimal": null,
@@ -16717,7 +15016,7 @@
         {
           "indice": 2,
           "nome": "IND_SERV",
-          "descricao": "Indicador do tipo de servi\u00e7o prestado: 0 - Telefonia; 1 - Comunica\u00e7\u00e3o de dados; 2 - TV por assinatura; 3 - Provimento de acesso \u00e0 Internet; 4 - Multim\u00eddia; 9 - Outros",
+          "descricao": "Indicador do tipo de servi\u00e7o prestado: 0- Telefonia; 1- Comunica\u00e7\u00e3o de dados; 2- TV por assinatura; 3- Provimento de acesso \u00e0 Internet; 4- Multim\u00eddia; 9- Outros",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -17023,7 +15322,7 @@
         {
           "indice": 12,
           "nome": "VL_SERV_NT",
-          "descricao": "Valor acumulado dos servi\u00e7os n\u00e3o-tributados pelo ICMS",
+          "descricao": "Valor acumulado dos servi\u00e7os n\u00e3o- tributados pelo ICMS",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -17231,7 +15530,7 @@
         {
           "indice": 13,
           "nome": "VL_BC_ICMS_UF",
-          "descricao": "Valor da base de c\u00e1lculo do ICMS de outras",
+          "descricao": "Valor da base de c\u00e1lculo do ICMS de outras UFs",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -17351,7 +15650,7 @@
         {
           "indice": 6,
           "nome": "VL_BC_ICMS",
-          "descricao": "Parcela correspondente ao \u201cValor da base de c\u00e1lculo do ICMS\u201d referente \u00e0 combina\u00e7\u00e3o CST_ICMS, CFOP, e al\u00edquota do ICMS",
+          "descricao": "Parcela correspondente ao \"Valor da base de c\u00e1lculo do ICMS\" referente \u00e0 combina\u00e7\u00e3o CST_ICMS, CFOP, e al\u00edquota do ICMS",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -17636,7 +15935,7 @@
     },
     {
       "codigo": "D697",
-      "nome": "Registro de informa\u00e7\u00f5es de outras UFs, relativamente aos servi\u00e7os \u201cn\u00e3o- medidos\u201d de televis\u00e3o por assinatura via sat\u00e9lite",
+      "nome": "Registro de informa\u00e7\u00f5es de outras UFs, relativamente aos servi\u00e7os \u201cn\u00e3o-medidos\u201d de televis\u00e3o por assinatura via sat\u00e9lite",
       "regras": [],
       "nivel": 4,
       "ocorrencia": "1:N",
@@ -17675,7 +15974,7 @@
         {
           "indice": 2,
           "nome": "IND_MOV",
-          "descricao": "Indicador de movimento: 0- Bloco com dados informados; 1- Bloco sem dados informados",
+          "descricao": "Indicador de movimento:",
           "tipo": "C",
           "tamanho": "001",
           "decimal": null,
@@ -17871,7 +16170,7 @@
         {
           "indice": 15,
           "nome": "DEB_ESP",
-          "descricao": "Valores recolhidos ou a recolher, extra-apura\u00e7\u00e3o.",
+          "descricao": "Valores recolhidos ou a recolher, extra- apura\u00e7\u00e3o.",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -18392,7 +16691,7 @@
         {
           "indice": 10,
           "nome": "VL_AJ_DEBITOS_ST",
-          "descricao": "Valor total dos ajustes a d\u00e9bito de ICMS ST, provenientes de ajustes do documento fiscal.",
+          "descricao": "Valor total dos ajustes a d\u00e9bito de ICMS ST,",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -18447,7 +16746,7 @@
         {
           "indice": 15,
           "nome": "DEB_ESP_ST",
-          "descricao": "Valores recolhidos ou a recolher, extra-apura\u00e7\u00e3o.",
+          "descricao": "Valores recolhidos ou a recolher, extra- apura\u00e7\u00e3o.",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -18533,7 +16832,7 @@
         {
           "indice": 4,
           "nome": "IND_PROC",
-          "descricao": "Indicador da origem do processo: 0 - Sefaz; 1 - Justi\u00e7a Federal; 2 - Justi\u00e7a Estadual; 9 - Outros",
+          "descricao": "Indicador da origem do processo: 0- Sefaz; 1- Justi\u00e7a Federal; 2- Justi\u00e7a Estadual; 9- Outros",
           "tipo": "N",
           "tamanho": "001*",
           "decimal": null,
@@ -19129,7 +17428,7 @@
         {
           "indice": 4,
           "nome": "MOT_INV",
-          "descricao": "Informe o motivo do Invent\u00e1rio: 01 \u2013 No final no per\u00edodo; 02 \u2013 Na mudan\u00e7a de forma de tributa\u00e7\u00e3o da mercadoria (ICMS); 03 \u2013 Na solicita\u00e7\u00e3o da baixa cadastral, paralisa\u00e7\u00e3o tempor\u00e1ria e outras situa\u00e7\u00f5es; 04 \u2013 Na altera\u00e7\u00e3o de regime de pagamento \u2013 condi\u00e7\u00e3o do contribuinte; 05 \u2013 Por determina\u00e7\u00e3o dos fiscos; 06 \u2013 Para controle das mercadorias sujeitas ao regime de substitui\u00e7\u00e3o tribut\u00e1ria \u2013 restitui\u00e7\u00e3o/ ressarcimento/ complementa\u00e7\u00e3o.",
+          "descricao": "Informe o motivo do Invent\u00e1rio: 01 \u2013 No final no per\u00edodo; 02 \u2013 Na mudan\u00e7a de forma de tributa\u00e7\u00e3o da mercadoria (ICMS); 03 \u2013 Na solicita\u00e7\u00e3o da baixa cadastral, paralisa\u00e7\u00e3o tempor\u00e1ria e outras situa\u00e7\u00f5es; 04 \u2013 Na altera\u00e7\u00e3o de regime de pagamento \u2013 condi\u00e7\u00e3o do contribuinte; 05 \u2013 Por determina\u00e7\u00e3o dos fiscos.",
           "tipo": "C",
           "tamanho": "002*",
           "decimal": null,
@@ -19388,7 +17687,7 @@
         {
           "indice": 5,
           "nome": "IND_USINA",
-          "descricao": "Reg. 1390 \u2013 Usinas de a\u00e7\u00facar e/\u00e1lcool \u2013 O estabelecimento \u00e9 produtor de a\u00e7\u00facar e/ou \u00e1lcool carburante com movimenta\u00e7\u00e3o e/ou estoque no per\u00edodo:",
+          "descricao": "Reg. 1390 \u2013 Usinas de a\u00e7\u00facar e/\u00e1lcool \u2013 O estabelecimento \u00e9 produtor de a\u00e7\u00facar e/ou \u00e1lcool carburante com movimenta\u00e7\u00e3o e/ou estoque no per\u00edodo: S \u2013 Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -19399,7 +17698,7 @@
         {
           "indice": 6,
           "nome": "IND_VA",
-          "descricao": "Reg 1400 - Sendo o registro obrigat\u00f3rio em sua Unidade de Federa\u00e7\u00e3o, existem informa\u00e7\u00f5es a serem prestadas neste registro: S \u2013 Sim; N - N\u00e3o",
+          "descricao": "Reg 1400 \u2013 Sendo o registro obrigat\u00f3rio em sua Unidade de Federa\u00e7\u00e3o, existem informa\u00e7\u00f5es a serem prestadas neste registro: S \u2013 Sim; N - N\u00e3o",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -19432,7 +17731,7 @@
         {
           "indice": 9,
           "nome": "IND_FORM",
-          "descricao": "Reg. 1700 - Foram emitidos documentos fiscais em papel no per\u00edodo em unidade da federa\u00e7\u00e3o que exija o controle de utiliza\u00e7\u00e3o de documentos fiscais: S \u2013 Sim N - N\u00e3o",
+          "descricao": "Reg. 1700 \u2013 Foram emitidos documentos fiscais em papel no per\u00edodo em unidade da federa\u00e7\u00e3o que exija o controle de utiliza\u00e7\u00e3o de documentos fiscais: S \u2013 Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -19443,7 +17742,7 @@
         {
           "indice": 10,
           "nome": "IND_AER",
-          "descricao": "Reg 1800 - A empresa prestou servi\u00e7os de transporte a\u00e9reo de cargas e de passageiros: S \u2013 Sim N - N\u00e3o",
+          "descricao": "Reg 1800 \u2013 A empresa prestou servi\u00e7os de transporte a\u00e9reo de cargas e de passageiros: S \u2013 Sim N - N\u00e3o",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -19477,17 +17776,6 @@
           "indice": 13,
           "nome": "IND_GIAF4",
           "descricao": "Reg. 1980 - Possui informa\u00e7\u00f5es GIAF4? S \u2013 Sim; N \u2013 N\u00e3o.",
-          "tipo": "C",
-          "tamanho": "001*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 14,
-          "nome": "IND_REST_RESSARC_COMPL_ICMS",
-          "descricao": "Reg. 1250 \u2013 Possui informa\u00e7\u00f5es consolidadas de saldos de restitui\u00e7\u00e3o, ressarcimento e complementa\u00e7\u00e3o do ICMS? S \u2013 Sim; N \u2013 N\u00e3o.",
           "tipo": "C",
           "tamanho": "001*",
           "decimal": null,
@@ -19607,7 +17895,7 @@
         {
           "indice": 11,
           "nome": "TP_CHC",
-          "descricao": "Informa\u00e7\u00e3o do tipo de conhecimento de embarque: 01 \u2013 AWB; 02 \u2013 MAWB; 03 \u2013 HAWB; 04 \u2013 COMAT; 06 \u2013 R. EXPRESSAS; 07 \u2013 ETIQ. REXPRESSAS; 08 \u2013 HR. EXPRESSAS; 09 \u2013 AV7; 10 \u2013 BL; 11 \u2013 MBL; 12 \u2013 HBL; 13 \u2013 CRT; 14 \u2013 DSIC; 16 \u2013 COMAT BL; 17 \u2013 RWB; 18 \u2013 HRWB; 19 \u2013 TIF/DTA; 20 \u2013 CP2; 91 \u2013 N\u00c2O IATA; 92 \u2013 MNAO IATA; 93 \u2013 HNAO IATA; 99 \u2013 OUTROS.",
+          "descricao": "Informa\u00e7\u00e3o do tipo de conhecimento de embarque: 01 \u2013 AWB; 02 \u2013 MAWB; 03 \u2013 HAWB; 04 \u2013 COMAT; 06 \u2013 R. EXPRESSAS;",
           "tipo": "N",
           "tamanho": "002*",
           "decimal": null,
@@ -19715,7 +18003,7 @@
         {
           "indice": 2,
           "nome": "COD_PART",
-          "descricao": "C\u00f3digo do participante-Fornecedor da Mercadoria destinada \u00e0",
+          "descricao": "C\u00f3digo do participante-Fornecedor da Mercadoria destinada \u00e0 exporta\u00e7\u00e3o (campo 02 do Registro 0150)",
           "tipo": "C",
           "tamanho": "060",
           "decimal": null,
@@ -19731,84 +18019,7 @@
           "tamanho": "002*",
           "decimal": null,
           "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 4,
-          "nome": "SER",
-          "descricao": "S\u00e9rie do documento fiscal recebido com fins espec\u00edficos de exporta\u00e7\u00e3o.",
-          "tipo": "C",
-          "tamanho": "004",
-          "decimal": null,
-          "valores": "-",
           "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 5,
-          "nome": "NUM_DOC",
-          "descricao": "N\u00famero do documento fiscal recebido com fins espec\u00edficos de exporta\u00e7\u00e3o.",
-          "tipo": "N",
-          "tamanho": "009",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 6,
-          "nome": "DT_DOC",
-          "descricao": "Data da emiss\u00e3o do documento fiscal recebido com fins espec\u00edficos de exporta\u00e7\u00e3o",
-          "tipo": "N",
-          "tamanho": "008*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 7,
-          "nome": "CHV_NFE",
-          "descricao": "Chave da Nota Fiscal Eletr\u00f4nica",
-          "tipo": "N",
-          "tamanho": "044*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 8,
-          "nome": "NR_MEMO",
-          "descricao": "N\u00famero do Memorando de Exporta\u00e7\u00e3o",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 9,
-          "nome": "QTD",
-          "descricao": "Quantidade do item efetivamente exportado.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "03",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 10,
-          "nome": "UNID",
-          "descricao": "Unidade do item (Campo 02 do registro 0190)",
-          "tipo": "C",
-          "tamanho": "006",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": true,
           "regras": []
         }
       ]
@@ -20336,7 +18547,7 @@
         {
           "indice": 5,
           "nome": "TIPO_MEDICAO",
-          "descricao": "Identificador de medi\u00e7\u00e3o: 0 \u2013 anal\u00f3gico 1 \u2013 digital",
+          "descricao": "Identificador de medi\u00e7\u00e3o: 0 - anal\u00f3gico; 1 \u2013 digital",
           "tipo": "C",
           "tamanho": "001",
           "decimal": null,
@@ -20432,7 +18643,7 @@
         {
           "indice": 2,
           "nome": "COD_PROD",
-          "descricao": "C\u00f3digo do produto conforme tabela 5.8",
+          "descricao": "C\u00f3digo do produto: 01 \u2013 \u00c1lcool Et\u00edlico Hidratado Carburante 02 - \u00c1lcool Et\u00edlico Anidro Carburante 03 \u2013 A\u00e7\u00facar",
           "tipo": "N",
           "tamanho": "002*",
           "decimal": null,
@@ -20464,7 +18675,7 @@
         {
           "indice": 3,
           "nome": "QTD_MOID",
-          "descricao": "Quantidade de insumo esmagado (toneladas)",
+          "descricao": "Quantidade de cana esmagada (toneladas)",
           "tipo": "N",
           "tamanho": null,
           "decimal": "02",
@@ -20547,116 +18758,6 @@
           "decimal": "02",
           "valores": "-",
           "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 11,
-          "nome": "SA\u00cdDAS",
-          "descricao": "Sa\u00eddas (litros / kg)",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 12,
-          "nome": "ESTQ_FIN",
-          "descricao": "Estoque final (litros / kg)",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 13,
-          "nome": "ESTQ_INI_MEL",
-          "descricao": "Estoque inicial de mel residual (kg)",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 14,
-          "nome": "PROD_DIA_MEL",
-          "descricao": "Produ\u00e7\u00e3o de mel residual (kg) e entradas de mel (kg)",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 15,
-          "nome": "UTIL_MEL",
-          "descricao": "Mel residual utilizado (kg) e sa\u00eddas de mel (kg)",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 16,
-          "nome": "PROD_ALC_MEL",
-          "descricao": "Produ\u00e7\u00e3o de \u00e1lcool (litros) ou a\u00e7\u00facar (kg) proveniente do mel residual.",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 17,
-          "nome": "OBS",
-          "descricao": "Observa\u00e7\u00f5es",
-          "tipo": "C",
-          "tamanho": null,
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": null,
-          "regras": []
-        },
-        {
-          "indice": 18,
-          "nome": "COD_ITEM",
-          "descricao": "Informar o insumo conforme c\u00f3digo do item (campo 02 do Registro 0200)",
-          "tipo": "C",
-          "tamanho": "060",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 19,
-          "nome": "TP_RESIDUO",
-          "descricao": "Tipo de res\u00edduo produzido: 01 - Baga\u00e7o de cana 02 - DDG 03 - WDG",
-          "tipo": "N",
-          "tamanho": "002*",
-          "decimal": null,
-          "valores": "-",
-          "obrigatorio": true,
-          "regras": []
-        },
-        {
-          "indice": 20,
-          "nome": "QTD_RESIDUO",
-          "descricao": "Quantidade de res\u00edduo produzido (toneladas)",
-          "tipo": "N",
-          "tamanho": null,
-          "decimal": "02",
-          "valores": "-",
-          "obrigatorio": true,
           "regras": []
         }
       ]
@@ -20990,7 +19091,7 @@
         {
           "indice": 27,
           "nome": "COD_GRUPO_TENSAO",
-          "descricao": "C\u00f3digo de grupo de tens\u00e3o: 01 - A1 - Alta Tens\u00e3o (230kV ou mais) 02 - A2 - Alta Tens\u00e3o (88 a 138kV) 03 - A3 - Alta Tens\u00e3o (69kV) 04 - A3a - Alta Tens\u00e3o (30kV a 44kV) 05 - A4 - Alta Tens\u00e3o (2,3kV a 25kV) 06 - AS - Alta Tens\u00e3o Subterr\u00e2neo 06 07 - B1 - Residencial 07 08 - B1 - Residencial Baixa Renda 08 09 - B2 - Rural 09 10 - B2 - Cooperativa de Eletrifica\u00e7\u00e3o Rural 11 - B2 - Servi\u00e7o P\u00fablico de Irriga\u00e7\u00e3o",
+          "descricao": "C\u00f3digo de grupo de tens\u00e3o: 01 - A1 - Alta Tens\u00e3o (230kV ou mais) 02 - A2 - Alta Tens\u00e3o (88 a 138kV) 03 - A3 - Alta Tens\u00e3o (69kV) 04 - A3a - Alta Tens\u00e3o (30kV a 44kV) 05 - A4 - Alta Tens\u00e3o (2,3kV a 25kV) 06 - AS - Alta Tens\u00e3o Subterr\u00e2neo 06 07 - B1 - Residencial 07 08 - B1 - Residencial Baixa Renda 08 09 - B2 - Rural 09 10 - B2 - Cooperativa de Eletrifica\u00e7\u00e3o Rural 11 - B2 - Servi\u00e7o P\u00fablico de Irriga\u00e7\u00e3o 12 - B3 - Demais Classes 13 - B4a - Ilumina\u00e7\u00e3o P\u00fablica - rede de distribui\u00e7\u00e3o 14 - B4b - Ilumina\u00e7\u00e3o P\u00fablica - bulbo de l\u00e2mpada",
           "tipo": "C",
           "tamanho": "002*",
           "decimal": null,
