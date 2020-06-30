@@ -1,0 +1,3 @@
+"Register","Page","Nº","Campo","Descrição","Tipo","Tam","Dec","Obrig"
+"0120",72,"02","MES_REFER","Mês de referência do ano-calendário da escrituração  sem dados, dispensada da entrega. Campo a ser preenchido no formato “mmaaaa”","C","006*","-","S"
+"A001",90,"02","IND_MOV","Indicador de movimento: 0 - Bloco com dados informados; 1 - Bloco sem dados informados","C","001","-","S"

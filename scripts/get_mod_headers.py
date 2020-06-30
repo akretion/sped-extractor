@@ -33,7 +33,7 @@ def _get_mod_headers(mod):
 
 @click.command()
 def main():
-    """Return a list of all the different fields headers found in the four modules.
+    """Display a list of all the different fields headers found in the four modules.
 
     Used to define the modules headers hard-coded at the beginning of ./build_csv.py .
     """

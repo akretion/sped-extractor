@@ -1,6 +1,2 @@
-scripts/__pycache__/*
-
-specs/ecd/raw_camelot_csv/*
-specs/ecf/raw_camelot_csv/*
-specs/efd_icms_ipi/raw_camelot_csv/*
-specs/efd_pis_cofins/raw_camelot_csv/*
+__pycache__/
+raw_camelot_csv/

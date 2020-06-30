@@ -7,6 +7,7 @@ import csv
 import click
 import requests
 from PyPDF2 import PdfFileReader
+from pathlib import Path
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
@@ -14,42 +15,32 @@ logger.setLevel(logging.INFO)
 
 
 def _get_max_min_year():
-    """Return a tuplet with most recent and oldest year version available in
-    '../specs/download_url.csv' """
-    max_year = 2020
-    min_year = 2016
-    with open("../specs/download_url.csv", "r") as csvfile:
-        reader = csv.reader(csvfile, delimiter=",", quotechar='"')
-        header = next(reader)
-        col_year = header.index("year_version")
-        for row in reader:
-            year = int(row[col_year])
-            if year > max_year:
-                max_year = year
-            if year < min_year:
-                min_year = year
-    return (max_year, min_year)
+    """Return a tuplet with most recent and oldest year folder available in '../specs/'
+    """
+    years = [f.name for f in os.scandir("../specs/") if f.is_dir()]
+    return (int(max(years, key=int)), int(min(years, key=int)))
 
 
 MOST_RECENT_YEAR = _get_max_min_year()[0]
 OLDEST_YEAR = _get_max_min_year()[1]
 
 
-def _get_url(mod, year_version):
+def _get_url(mod, year):
     """Return the first URL found for a module's year version"""
-    with open("../specs/download_url.csv", "r") as csvfile:
+    with open("../specs/{}/download_info.csv".format(year), "r") as csvfile:
         reader = csv.reader(csvfile, delimiter=",", quotechar='"')
         header = next(reader)
         col_url = header.index("url")
         col_mod = header.index("module")
-        col_year = header.index("year_version")
         for row in reader:
-            if row[col_mod] == mod and row[col_year] == str(year_version):
+            if row[col_mod] == mod:
                 return row[col_url]
 
-def _download(mod, year_version):
-    pdf = "../specs/{}.pdf".format(mod)
-    url = _get_url(mod, year_version)
+
+def _download(mod, year):
+    Path("../specs/{}/pdf".format(year)).mkdir(parents=True, exist_ok=True)
+    pdf = "../specs/{}/pdf/{}.pdf".format(year, mod)
+    url = _get_url(mod, year)
     try:
         r = requests.get(url)
     except requests.exceptions.MissingSchema:
@@ -85,18 +76,14 @@ def _download(mod, year_version):
 )
 def main(year):
     """Download SPED specifications pdf from http://sped.rfb.gov.br/"""
+    assert year >= OLDEST_YEAR and year <= MOST_RECENT_YEAR, (
+        f"An integer between {OLDEST_YEAR} and {MOST_RECENT_YEAR} is required "
+        f"for year's option, not '{year}'"
+    )
+
     for module in ["ecd", "ecf", "efd_icms_ipi", "efd_pis_cofins"]:
-        if year < OLDEST_YEAR or year > MOST_RECENT_YEAR :
-            logger.warning(
-                "An integer between {} and {} is required for year's option, not '{}'.\
-                ".format(
-                    OLDEST_YEAR, MOST_RECENT_YEAR, year
-                )
-            )
-            break
-        else:
-            logger.info("Downloading {} pdf from {}...".format(module.upper(), year))
-            _download(module, year)
+        logger.info(f"Downloading pdf {module.upper()} {year}...")
+        _download(module, year)
 
 
 if __name__ == "__main__":

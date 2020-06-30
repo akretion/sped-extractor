@@ -4,6 +4,7 @@ import logging
 
 import click
 from build_csv import get_fields, get_registers
+from download import MOST_RECENT_YEAR, OLDEST_YEAR
 from sped.efd.icms_ipi import registros as efd_icms_ipi_registers
 from sped.efd.pis_cofins import registros as efd_pis_cofins_registers
 from sped.escrituracao import Escrituracao
@@ -64,22 +65,24 @@ def _get_python_sped_reg_and_fields(mod):
     return reg_classes, fields
 
 
-def _compare_registers(mod, pysped_registers):
-    ext_registers = get_registers(mod)
+def _compare_registers(mod, path_raw, year, pysped_registers):
+    ext_registers = get_registers(mod, path_raw, year)
     ext_reg_codes = [reg["code"] for reg in ext_registers]
 
     not_in_pysped = [c for c in ext_reg_codes if c not in pysped_registers]
-    logger.info("    Not in python-sped : {}".format(not_in_pysped))
+    logger.info(f"    >> {len(not_in_pysped)} not in python-sped : {not_in_pysped}")
 
     not_in_extractor = [c for c in pysped_registers if c not in ext_reg_codes]
-    logger.info("    Not in sped_extractor : {}".format(not_in_extractor))
+    logger.info(
+        f"    >> {len(not_in_extractor)} not in sped_extractor : {not_in_extractor}"
+    )
 
     common_reg = [c for c in ext_reg_codes if c in pysped_registers]
     return common_reg
 
 
-def _compare_fields(mod, common_reg, pysped_fields):
-    ext_fields = get_fields(mod)
+def _compare_fields(mod, year, common_reg, pysped_fields, detail):
+    ext_fields = get_fields(mod, year)
     not_in_pysped = {}
     not_in_extractor = {}
 
@@ -90,37 +93,56 @@ def _compare_fields(mod, common_reg, pysped_fields):
         not_in_pysped[reg] = [c for c in ext_fields_reg if c not in psped_fields_reg]
         not_in_extractor[reg] = [c for c in psped_fields_reg if c not in ext_fields_reg]
 
-    logger.info("  Not in python-sped :")
+    logger.info("    Not in python-sped :")
     fields_nb = 0
     reg_nb = 0
     for reg, fields in not_in_pysped.items():
         if fields:
-            logger.info("    {} : {}".format(reg, fields))
             fields_nb += len(fields)
             reg_nb += 1
-    logger.info("  >> {} missing fields in {} registers\n".format(fields_nb, reg_nb))
+            if detail:
+                logger.info(f"      {reg} : {fields}")
+    logger.info(f"    >> {fields_nb} missing fields in {reg_nb} registers\n")
 
-    logger.info("  Not in sped_extractor :")
+    logger.info("    Not in sped_extractor :")
     fields_nb = 0
     reg_nb = 0
     for reg, fields in not_in_extractor.items():
         if fields:
-            logger.info("    {} : {}".format(reg, fields))
             fields_nb += len(fields)
             reg_nb += 1
-    logger.info("  >> {} missing fields in {} registers\n".format(fields_nb, reg_nb))
+            if detail:
+                logger.info(f"      {reg} : {fields}")
+    logger.info(f"    >> {fields_nb} missing fields in {reg_nb} registers\n")
 
 
 @click.command()
-def main():
+@click.option(
+    "--year",
+    default=MOST_RECENT_YEAR,
+    show_default=True,
+    type=int,
+    help=f"Specify a SPED specification year between {OLDEST_YEAR} and "
+    f"{MOST_RECENT_YEAR}",
+)
+@click.option(
+    "--detail/--no-detail",
+    default=False,
+    show_default=True,
+    help="Detail the list of all the fields missing in python-sped or sped_extractor",
+)
+def main(year, detail):
     """Compare extracted registerts and fields with python-sped library."""
     for mod in ["ecd", "ecf", "efd_icms_ipi", "efd_pis_cofins"]:
-        logger.info("\nComparing {} module...".format(mod.upper()))
-        logger.info("\nRegisters :")
+        path_raw = f"../specs/{year}/{mod}/raw_camelot_csv/"
         pysped_registers, pysped_fields = _get_python_sped_reg_and_fields(mod)
-        common_reg = _compare_registers(mod, pysped_registers)
-        logger.info("\nFields :")
-        _compare_fields(mod, common_reg, pysped_fields)
+
+        logger.info(f"\n-- Comparing {mod.upper()} module...")
+        logger.info("\nREGISTERS :")
+        common_reg = _compare_registers(mod, path_raw, year, pysped_registers)
+
+        logger.info("\nFIELDS :")
+        _compare_fields(mod, year, common_reg, pysped_fields, detail)
 
 
 if __name__ == "__main__":
