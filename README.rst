@@ -29,7 +29,7 @@ Arquivos extraidos
 ==================
 
 =============================  ===================================  ==========================  ===========================
-Registros                      CSV fiél                             CSV utilizável              JSON utilizável
+Registros                      CSV fiél                             CSV utilizável              JSON "tipo python-sped"
 =============================  ===================================  ==========================  ===========================
 ECD_registers.csv_             ECD_accurate_fields.csv_             ECD_fields.csv_             ECD_fields.json_
 ECF_registers.csv_             ECF_accurate_fields.csv_             ECF_fields.csv_             ECF_fields.json_
@@ -198,22 +198,22 @@ Esse package está administrado por `Akretion <https://akretion.com/pt-BR>`_.
 .. _camelot: https://github.com/atlanhq/camelot
 .. _python-sped: https://github.com/sped-br/python-sped/
 
-.. _ECD_registers.csv: specs/ecd/ecd_registers.csv
-.. _ECF_registers.csv: specs/ecf/ecf_registers.csv
-.. _EFD_ICMS_IPI_registers.csv: specs/efd_icms_ipi/efd_icms_ipi_registers.csv
-.. _EFD_PIS_COFINS_registers.csv: specs/efd_pis_cofins/efd_pis_cofins_registers.csv
+.. _ECD_registers.csv: specs/2020/ecd/ecd_registers.csv
+.. _ECF_registers.csv: specs/2020/ecf/ecf_registers.csv
+.. _EFD_ICMS_IPI_registers.csv: specs/2020/efd_icms_ipi/efd_icms_ipi_registers.csv
+.. _EFD_PIS_COFINS_registers.csv: specs/2020/efd_pis_cofins/efd_pis_cofins_registers.csv
 
-.. _ECD_accurate_fields.csv: specs/ecd/ecd_accurate_fields.csv
-.. _ECF_accurate_fields.csv: specs/ecf/ecf_accurate_fields.csv
-.. _EFD_ICMS_IPI_accurate_fields.csv: specs/efd_icms_ipi/efd_icms_ipi_accurate_fields.csv
-.. _EFD_PIS_COFINS_accurate_fields.csv: specs/efd_pis_cofins/efd_pis_cofins_accurate_fields.csv
+.. _ECD_accurate_fields.csv: specs/2020/ecd/ecd_accurate_fields.csv
+.. _ECF_accurate_fields.csv: specs/2020/ecf/ecf_accurate_fields.csv
+.. _EFD_ICMS_IPI_accurate_fields.csv: specs/2020/efd_icms_ipi/efd_icms_ipi_accurate_fields.csv
+.. _EFD_PIS_COFINS_accurate_fields.csv: specs/2020/efd_pis_cofins/efd_pis_cofins_accurate_fields.csv
 
-.. _ECD_fields.csv: specs/ecd/ecd_fields.csv
-.. _ECF_fields.csv: specs/ecf/ecf_fields.csv
-.. _EFD_ICMS_IPI_fields.csv: specs/efd_icms_ipi/efd_icms_ipi_fields.csv
-.. _EFD_PIS_COFINS_fields.csv: specs/efd_pis_cofins/efd_pis_cofins_fields.csv
+.. _ECD_fields.csv: specs/2020/ecd/ecd_fields.csv
+.. _ECF_fields.csv: specs/2020/ecf/ecf_fields.csv
+.. _EFD_ICMS_IPI_fields.csv: specs/2020/efd_icms_ipi/efd_icms_ipi_fields.csv
+.. _EFD_PIS_COFINS_fields.csv: specs/2020/efd_pis_cofins/efd_pis_cofins_fields.csv
 
-.. _ECD_fields.json: specs/ecd/ecd_fields.json
-.. _ECF_fields.json: specs/ecf/ecf_fields.json
-.. _EFD_ICMS_IPI_fields.json: specs/efd_icms_ipi/efd_icms_ipi_fields.json
-.. _EFD_PIS_COFINS_fields.json: specs/efd_pis_cofins/efd_pis_cofins_fields.json
+.. _ECD_fields.json: specs/2020/ecd/ecd_fields.json
+.. _ECF_fields.json: specs/2020/ecf/ecf_fields.json
+.. _EFD_ICMS_IPI_fields.json: specs/2020/efd_icms_ipi/efd_icms_ipi_fields.json
+.. _EFD_PIS_COFINS_fields.json: specs/2020/efd_pis_cofins/efd_pis_cofins_fields.json
