@@ -5,8 +5,8 @@ extracted by extract_csv.py :
 
 1.  `extract_registers_list` extracts a list of the module's registers
     from the module's blocks registers lists.
-2.  `extract_register_fields` extracts a register's fields rows as they appear in the
-    raw CSV.
+2.  `extract_register_fields` extracts fields rows from one register's table as they
+    appear in the raw CSV files.
 3.  Using this method and the module's registers list, `build_accurate_fields_csv`
     creates a CSV file named 'MODULE_accurate_fields.csv' listing the fields rows
     for each module as they appear in the original pdf.
@@ -196,9 +196,7 @@ def extract_registers_list(mod, path_raw, year):
     for csv_file in files:
         with open(path_raw + "{}".format(csv_file), "r") as csvfile:
             reader = csv.reader(csvfile, delimiter=",", quotechar='"')
-            count = 0
             for row in reader:
-                count += 1
                 if (
                     ("BLOCO" in row or "Bloco" in row or "Registro" in row)
                     and (
@@ -578,8 +576,11 @@ def _map_field_row(row, mod):
     return field
 
 
-def get_fields(mod, year):
-    """Returns a list of the module's fields recorded as dictionaries"""
+def get_fields(mod, year, with_reg=False):
+    """Returns a list of the module's fields recorded as dictionaries
+
+    `with_reg` is an optional argument to add the REG field (opening every registers
+    tables) to this list of dictionaries. Used in ./build_json.py """
     accurate_path = f"../specs/{year}/{mod}/{mod}_accurate_fields.csv"
     fields = []
 
@@ -589,7 +590,7 @@ def get_fields(mod, year):
         # Avoid CSV header
         next(accurate_fields)
         for row in accurate_fields:
-            if row[3] != "REG":
+            if row[3] != "REG" or with_reg:
                 fields.append(_map_field_row(row, mod))
 
     logger.info(f"    {len(fields)} fields catched in {mod.upper()}")
@@ -730,6 +731,58 @@ def build_registers_csv(mod, path_raw, year, extracted_registers=None):
                     register[col] = ""
                 row.append(register[col])
             reg_csv.writerow(row)
+
+
+# 6. BONUS : `get_blocks` to get module's blocks list
+# ======================================================
+
+
+def extract_blocks(mod, path_raw, year):
+    """Return a list of the module's blocks rows as found in path_raw"""
+    files = []
+    extracted_blocks = []
+    in_block_list = False
+
+    for (_dirpath, _dirnames, filenames) in walk(path_raw):
+        files = sorted(filenames, key=natural_keys)
+    for csv_file in files:
+        with open(path_raw + "{}".format(csv_file), "r") as csvfile:
+            reader = csv.reader(csvfile, delimiter=",", quotechar='"')
+            for row in reader:
+                if (
+                    len(row) in [2, 3]
+                    and row[0] == "Bloco"
+                    and row[1] in ["Descrição", "Nome do Bloco"]
+                ):
+                    in_block_list = True
+                    continue
+                if in_block_list and row[0] != "Bloco":
+                    extracted_blocks.append(row)
+                    if row[0] == "9":
+                        return extracted_blocks
+    if not extracted_blocks:
+        logger.warning(f"    /!\\ No Blocks list catched in {mod.upper()}")
+        return []
+
+
+def get_blocks(mod, parth_raw, year, extracted_blocks=False):
+    """Return a list of dictionaries representing module's blocks.
+    Used in ./build_json.py"""
+    blocks = []
+    if not extracted_blocks:
+        extracted_blocks = extract_blocks(mod, parth_raw, year)
+    for row in extracted_blocks:
+        block = {}
+        block["code"] = row[0].replace("*", "")
+        block["desc"] = " ".join(row[1].split())
+        if len(row) == 3:  # in ECF
+            block["info"] = row[2]
+        blocks.append(block)
+    return blocks
+
+
+#  main()
+# =========================
 
 
 @click.command()

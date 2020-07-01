@@ -5,7 +5,7 @@ import json
 import logging
 
 import click
-from build_csv import get_fields, get_registers
+from build_csv import get_blocks, get_fields, get_registers
 from download import MOST_RECENT_YEAR, OLDEST_YEAR
 
 logger = logging.getLogger(__name__)
@@ -13,13 +13,25 @@ logger.addHandler(logging.StreamHandler())
 logger.setLevel(logging.INFO)
 
 
+def _convert_length(f):
+    """Convert field's length in integer when it is possible"""
+    tamanho = f.get("length")
+    if tamanho:
+        try:
+            tamanho = int(tamanho)
+        except ValueError:
+            pass
+    return tamanho
+
+
 def _build_pythonsped_json(mod, year):
     """Build a module dictionary organized with nested registers and fields following
     the structure and the keys for python-sped leiautes and save it as a JSON file"""
     json_path = f"../specs/{year}/{mod}/{mod}_fields.json"
     path_raw = f"../specs/{year}/{mod}/raw_camelot_csv/"
+    blocks = get_blocks(mod, path_raw, year)
     registers = get_registers(mod, path_raw, year)
-    fields = get_fields(mod, year)
+    fields = get_fields(mod, year, with_reg=True)
 
     # 1) Initiate dictionary with module's name, date and pdf version taken from the
     # module's download_info.csv file
@@ -37,7 +49,12 @@ def _build_pythonsped_json(mod, year):
                 module["data_inicio"] = row[col_date]
 
     # 2) Add module's blocks list
-    # TODO
+    module["blocos"] = []
+    for b in blocks:
+        block = {}
+        block["nome"] = b["code"]
+        block["descricao"] = b["desc"]
+        module["blocos"].append(block)
 
     # 3) Add module's registers list
     module["registros"] = []
@@ -57,16 +74,18 @@ def _build_pythonsped_json(mod, year):
                 campo["nome"] = f["code"]
                 campo["descricao"] = f["desc"]
                 # Use spec_type not interpreted f["type"]
-                campo["tipo"] = f.get("spec_type") if f.get("spec_type") else "C"
-                campo["tamanho"] = f.get("length")
-                campo["decimal"] = f.get("decimal") if f.get("decimal") else None
+                campo["tipo"] = f.get("spec_type", "C")
+                campo["tamanho"] = _convert_length(f)
+                campo["decimal"] = f.get("decimal")
                 # Use spec_values not interpreted f["values"]
-                campo["valores"] = f.get("spec_values") if f.get("spec_values") else "-"
-                campo["obrigatorio"] = f.get("required")
-                campo["regras"] = f.get("rules") if f.get("rules") else []
+                campo["valores"] = f.get("spec_values", "-")
+                campo["obrigatorio"] = f.get("required", False)
+                campo["regras"] = f.get("rules", [])
                 # Append campo
                 reg["campos"].append(campo)
         # 4) reg['regras']  gathering all the register fields rules
+        # TODO it looks like the python-sped leiaute is not following this idea to fill
+        # this reg["regras"] item...
         for c in reg["campos"]:
             if c.get("regras"):
                 reg["regras"].extend(c.get("regras"))
@@ -78,7 +97,7 @@ def _build_pythonsped_json(mod, year):
         json_file.seek(0)
         json_file.truncate()
 
-        json.dump(module, json_file, indent=4)
+        json.dump(module, json_file, ensure_ascii=False, indent=2)
 
 
 @click.command()
