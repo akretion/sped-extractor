@@ -3,7 +3,7 @@ sped_extractor
 ============
 
 
-Esse package extrai as tabelas dos pdf das `especificações da SPED <http://sped.rfb.gov.br/pasta/show/9>`_ usando o package python `camelot`_ e cria arquivos CSV e JSON com as informações da **integralidade dos registros e campos de cada módulo**, levemente formatados para ser utilizados por outros programas.
+Esse package extrai as tabelas dos pdf das `especificações da SPED <http://sped.rfb.gov.br/pasta/show/9>`_ usando o package python `camelot`_ e cria arquivos CSV com as informações da **integralidade dos registros e campos de cada módulo**, levemente formatados para ser utilizados por outros programas.
 
 Os módulos da SPED tratados por esse package são :
 
@@ -17,7 +17,7 @@ Os módulos da SPED tratados por esse package são :
 - *MODULE_registers.csv* : a lista detalhada dos **registros** do módulo ``MODULE``.
 - *MODULE_accurate_fields.csv* : a lista das linhas dos **campos** de cada registro *como eles aparecem no pdf* das especificações (para conferir e melhorar o resultado da extração).
 - *MODULE_fields.csv* : a lista dos mesmos campos porém **com atributos "interpretados"**, utilizáveis mais facilmente por outros programas.
-- *MODULE_fields.json* : a mesma lista dos campos com atributos "interpretados", em **formato JSON** em vez de CSV.
+- *MODULE_python-sped.json* : A lista dos blocos, registros e campos de cada módulo, formatada em JSON, seguindo o leiaute do package `python-sped`_ para ser utilizado por ele.
 
 
 **Table of contents**
@@ -31,10 +31,10 @@ Arquivos extraidos
 =============================  ===================================  ==========================  ===========================
 Registros                      CSV fiél                             CSV utilizável              JSON "tipo python-sped"
 =============================  ===================================  ==========================  ===========================
-ECD_registers.csv_             ECD_accurate_fields.csv_             ECD_fields.csv_             ECD_fields.json_
-ECF_registers.csv_             ECF_accurate_fields.csv_             ECF_fields.csv_             ECF_fields.json_
-EFD_ICMS_IPI_registers.csv_    EFD_ICMS_IPI_accurate_fields.csv_    EFD_ICMS_IPI_fields.csv_    EFD_ICMS_IPI_fields.json_
-EFD_PIS_COFINS_registers.csv_  EFD_PIS_COFINS_accurate_fields.csv_  EFD_PIS_COFINS_fields.csv_  EFD_PIS_COFINS_fields.json_
+ECD_registers.csv_             ECD_accurate_fields.csv_             ECD_fields.csv_             ECD_python-sped.json_
+ECF_registers.csv_             ECF_accurate_fields.csv_             ECF_fields.csv_             ECF_python-sped.json_
+EFD_ICMS_IPI_registers.csv_    EFD_ICMS_IPI_accurate_fields.csv_    EFD_ICMS_IPI_fields.csv_    EFD_ICMS_IPI_python-sped.json_
+EFD_PIS_COFINS_registers.csv_  EFD_PIS_COFINS_accurate_fields.csv_  EFD_PIS_COFINS_fields.csv_  EFD_PIS_COFINS_python-sped.json_
 =============================  ===================================  ==========================  ===========================
 
 Instalação
@@ -54,7 +54,37 @@ Uma vez `camelot`_ instalado, é só baixar esse repositório ::
 
   $ git clone https://github.com/akretion/sped_extractor/
 
-E ir na pasta *scripts/* para lançar os scripts desejados.
+A pasta *scripts/* reúne os scripts para baixar e extrair os registros e campos de cada módulo SPED enquanto a pasta *specs/* reúne **os pdf** baixados, **os CSV** e JSON extraídos, **os patches** possíveis para essas extrações além das **infos para baixar os pdf**, agrupados pelo **ano de publicação** das versões dos pdf dos manuais da SPED :
+
+::
+
+  .
+  ├── scripts
+  |   [...]
+  └── specs
+      ├── 2019
+      |   [...]
+      └── 2020
+          ├── camelot_patch
+          │   ├── ecd_camelot_patch.csv
+          |   [...]
+          ├── download_info.csv
+          ├── ecd
+          │   ├── ecd_accurate_fields.csv
+          │   ├── ecd_fields.csv
+          │   ├── ecd_python-sped.json
+          │   └── ecd_registers.csv
+          ├── ecf
+          |   [...]
+          ├── efd_icms_ipi
+          |   [...]
+          ├── efd_pis_cofins
+          |   [...]
+          └── pdf
+              ├── ecd.pdf
+              ├── ecf.pdf
+              ├── efd_icms_ipi.pdf
+              └── efd_pis_cofins.pdf
 
 Utilização
 ==========
@@ -63,19 +93,24 @@ Depois de ter baixado esse repositório, todos os arquivos da pasta *scripts/* p
 
 1. 📥 ``./download.sh`` : **Baixe os arquivos pdf** originais contendo as especificações da SPED :
 
-  🔎  A opção ``--year`` permite definir a versão dos pdf do ano desejado. Se não indicar nada os pdf mais recentes serão baixados.
+  A opção ``--year`` permite definir a versão dos pdf do ano desejado. Se não indicar nada os pdf mais recentes serão baixados.
 
 ::
 
-  PATH_TO/sped_extractor/scripts$ ./download.py
-  Downloading ECD pdf from 2020...
-  Downloading ECF pdf from 2020...
-  [...]
+  PATH_TO/sped_extractor/scripts$ $ ./download.py --year=2019
+  Downloading pdf ECD 2019...
+  Downloading pdf ECF 2019...
+  Downloading pdf EFD_ICMS_IPI 2019...
+  Downloading pdf EFD_PIS_COFINS 2019...
+
+Os links usados para baixar esses pdf se encontram no arquivo *download_info.csv* na pasta do ano de publicação das versões dos pdf a baixar.
+
+  ⚠️  É importante diferenciar o ano de *publicação* dos manuais do ano de *aplicação* desses manuais. Assim, os pdf baixados na pasta **2020/** correspondem às tabelas para serem usadas principalmente no ano-calendário de **2019** (informação anotada na colona ``date_init`` do arquivo *download_info.csv*).
 
 
-2. ⛏️ ``./extract_csv.py`` : Use `camelot`_ para **extrair as tabelas dos pdf** e coloque os arquivos CSV extraidos na pasta */specs/MODULE/raw_camelot_csv/* :
+2. ⛏️ ``./extract_csv.py`` : Use `camelot`_ para **extrair as tabelas dos pdf** e coloque os arquivos CSV extraidos na pasta */specs/YEAR/MODULE/raw_camelot_csv/* :
 
-  🔎  A opção ``--limit=n`` é facultativa para extrair apenas as tabelas das 'n' primeiras páginas.
+  A opção ``--limit=n`` é facultativa para extrair apenas as tabelas das 'n' primeiras páginas.
 
 ::
 
@@ -89,27 +124,32 @@ Depois de ter baixado esse repositório, todos os arquivos da pasta *scripts/* p
 
 3. 🏗️ ``./build_csv.py`` : Percorre os CSV da pasta */specs/MODULE/raw_camelot_csv/* e **cria 3 arquivos CSV** por módulo :
 
-  🔎  O ``./build_csv.py`` aplica linhas corretivas escritas em duro na pasta *scripts/camelot_patch/2019/* por padrão. Para não aplicar essas correções, usar a opção ``--no-patch``.
+  O ``./build_csv.py`` aplica linhas corretivas escritas em duro na pasta *scripts/YEAR/camelot_patch/* por padrão. Para não aplicar essas correções, usar a opção ``--no-patch``.
 
 ::
 
   PATH_TO/sped_extractor/scripts$ ./build_csv.py
 
-  Building CSV files for ECD...
+  Building CSV files for ECD 2020...
   > ecd_accurate_fields.csv
   > ecd_registers.csv
+      70 registers catched in ECD
   > ecd_fields.csv
+      323 fields catched in ECD
 
-  Building CSV files for ECF...
+  Building CSV files for ECF 2020...
   > ecf_accurate_fields.csv
   > ecf_registers.csv
+      179 registers catched in ECF
   > ecf_fields.csv
+      903 fields catched in ECF
+
   [...]
 
 
 -------
 
-Além desses scripts básicos, existe também o ``./build_json.py`` para **criar um arquivo JSON** por módulo com a lista dos campos com atributos "interpretados" :
+Além desses scripts básicos, existe também o ``./build_json.py`` para **criar um arquivo JSON "tipo python-sped"** por módulo com a lista dos campos com atributos "interpretados" :
 
   ⚠️  Como esse script usa os arquivos CSV dos campos "fiéis" criados por ``./build_csv.py`` para criar os JSON, é nécessário ter gerado esses arquivos primeiro.
 
@@ -117,8 +157,8 @@ Além desses scripts básicos, existe também o ``./build_json.py`` para **criar
 
   PATH_TO/sped_extractor/scripts$ ./build_json.py
   Building JSON files for each modules...
-  > ecd_fields.json
-  > ecf_fields.json
+  > ecd_python-sped.json
+  > ecf_python-sped.json
   [...]
 
 Configuração
@@ -172,8 +212,7 @@ Roadmap
 ========
 
 - Criar pacote python instalável com pip.
-- Criar o arquivo JSON para os registros de cada módulo.
-- Work on ``./build_json.py`` in order to render JSON with a real nested structure : *Block > Register > Field* (with nested Registers following their own level, following *python-sped* structure)
+- Melhorar o arquivo JSON "tipo python-sped" (valor dos itens "regras" e "campos_chave" dos registros)
 
 Créditos
 =======
@@ -213,7 +252,7 @@ Esse package está administrado por `Akretion <https://akretion.com/pt-BR>`_.
 .. _EFD_ICMS_IPI_fields.csv: specs/2020/efd_icms_ipi/efd_icms_ipi_fields.csv
 .. _EFD_PIS_COFINS_fields.csv: specs/2020/efd_pis_cofins/efd_pis_cofins_fields.csv
 
-.. _ECD_fields.json: specs/2020/ecd/ecd_fields.json
-.. _ECF_fields.json: specs/2020/ecf/ecf_fields.json
-.. _EFD_ICMS_IPI_fields.json: specs/2020/efd_icms_ipi/efd_icms_ipi_fields.json
-.. _EFD_PIS_COFINS_fields.json: specs/2020/efd_pis_cofins/efd_pis_cofins_fields.json
+.. _ECD_python-sped.json: specs/2020/ecd/ecd_python-sped.json
+.. _ECF_python-sped.json: specs/2020/ecf/ecf_python-sped.json
+.. _EFD_ICMS_IPI_python-sped.json: specs/2020/efd_icms_ipi/efd_icms_ipi_python-sped.json
+.. _EFD_PIS_COFINS_python-sped.json: specs/2020/efd_pis_cofins/efd_pis_cofins_python-sped.json
