@@ -93,7 +93,7 @@ Depois de ter baixado esse repositório, todos os arquivos da pasta *scripts/* p
 
 1. 📥 ``./download.sh`` : **Baixe os arquivos pdf** originais contendo as especificações da SPED :
 
-  A opção ``--year`` permite definir a versão dos pdf do ano desejado. Se não indicar nada os pdf mais recentes serão baixados.
+  A opção ``--year`` permite definir a versão dos pdf do ano desejado. Se não indicar nada os pdf os mais recentes serão baixados.
 
 ::
 
@@ -128,7 +128,7 @@ Os links usados para baixar esses pdf se encontram no arquivo *download_info.csv
 
 ::
 
-  PATH_TO/sped_extractor/scripts$ ./build_csv.py
+  PATH_TO/sped_extractor/scripts$ ./build_csv.py --no-patch
 
   Building CSV files for ECD 2020...
   > ecd_accurate_fields.csv
@@ -149,13 +149,13 @@ Os links usados para baixar esses pdf se encontram no arquivo *download_info.csv
 
 -------
 
-Além desses scripts básicos, existe também o ``./build_json.py`` para **criar um arquivo JSON "tipo python-sped"** por módulo com a lista dos campos com atributos "interpretados" :
+Além desses scripts básicos, existe também o ``./build_python-sped_json.py`` para **criar um arquivo JSON "tipo python-sped"** por módulo com a lista dos campos com atributos "interpretados" :
 
   ⚠️  Como esse script usa os arquivos CSV dos campos "fiéis" criados por ``./build_csv.py`` para criar os JSON, é nécessário ter gerado esses arquivos primeiro.
 
 ::
 
-  PATH_TO/sped_extractor/scripts$ ./build_json.py
+  PATH_TO/sped_extractor/scripts$ ./build_python-sped_json.py
   Building JSON files for each modules...
   > ecd_python-sped.json
   > ecf_python-sped.json

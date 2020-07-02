@@ -580,7 +580,7 @@ def get_fields(mod, year, with_reg=False):
     """Returns a list of the module's fields recorded as dictionaries
 
     `with_reg` is an optional argument to add the REG field (opening every registers
-    tables) to this list of dictionaries. Used in ./build_json.py """
+    tables) to this list of dictionaries. Used in ./build_python-sped_json.py """
     accurate_path = f"../specs/{year}/{mod}/{mod}_accurate_fields.csv"
     fields = []
 
@@ -767,7 +767,7 @@ def extract_blocks(mod, path_raw, year):
 
 def get_blocks(mod, parth_raw, year, extracted_blocks=False):
     """Return a list of dictionaries representing module's blocks.
-    Used in ./build_json.py"""
+    Used in ./build_python-sped_json.py"""
     blocks = []
     if not extracted_blocks:
         extracted_blocks = extract_blocks(mod, parth_raw, year)
