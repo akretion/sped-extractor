@@ -38,21 +38,19 @@ def _get_url(mod, year):
 
 
 def _download(mod, year):
-    Path("../specs/{}/pdf".format(year)).mkdir(parents=True, exist_ok=True)
-    pdf = "../specs/{}/pdf/{}.pdf".format(year, mod)
+    Path(f"../specs/{year}/pdf").mkdir(parents=True, exist_ok=True)
+    pdf = f"../specs/{year}/pdf/{mod}.pdf"
     url = _get_url(mod, year)
     try:
         r = requests.get(url)
     except requests.exceptions.MissingSchema:
         logger.warning(
-            "  Cannot download {}'s pdf because '{}' is not a valid URL.".format(
-                mod.upper(), url
-            )
+            f"  Cannot download {mod.upper()}'s pdf because '{url}' is not a valid URL."
         )
         pass
     else:
         if not r or r.headers.get("content-type") != "application/pdf":
-            logger.warning("  No pdf found at '{}' for {}.".format(url, mod.upper()))
+            logger.warning(f"  No pdf found at '{url}' for {mod.upper()}.")
         else:
             # Remove existing pdf if any
             try:

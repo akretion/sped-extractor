@@ -151,7 +151,7 @@ Os links usados para baixar esses pdf se encontram no arquivo *download_info.csv
 
 Além desses scripts básicos, existe também o ``./build_python-sped_json.py`` para **criar um arquivo JSON "tipo python-sped"** por módulo com a lista dos campos com atributos "interpretados" :
 
-  ⚠️  Como esse script usa os arquivos CSV dos campos "fiéis" criados por ``./build_csv.py`` para criar os JSON, é nécessário ter gerado esses arquivos primeiro.
+  ⚠️  Da mesma maneira que para usar ``./build_csv.py``, é necessário extrair primeiro as tabelas dos pdf com ``./extract_csv.py`` antes de usar ``./build_python-sped_json.py``
 
 ::
 
@@ -169,7 +169,7 @@ Patches
 
 Apesar de `camelot`_ ser o melhor package python para extrair tabelas de pdf, ele não é 100% perfeito. No entanto, **é possível substituir linhas de campos extraidas incorretamente** por linhas certas registradas manualmente.
 
-Para isso basta escrever a linha correta no arquivo *scripts/camelot_patch/2019/MODULE_camelot_patch.csv* para ela ser applicada no lugar certo no CSV *MODULE_accurate_fields.csv*.
+Para isso basta escrever a linha correta no arquivo *scripts/YEAR/camelot_patch/MODULE_camelot_patch.csv* para ela ser applicada no lugar certo no CSV *MODULE_accurate_fields.csv*.
 
   🔎  O ``./build_csv.py`` aplica as linhas corretivas por padrão. Para não aplicar essas correções, usar a opção ``--no-patch``.
 
@@ -205,8 +205,9 @@ python-sped_ é uma biblioteca python com a lista dos campos de cada módulo da 
 
 Apesar disso, pode ser interessante comparar essas listas de campos com as listas extraidas pelo **sped_extractor**. Para isso é só lançar o script ``./compare_ptyhon-sped.py``.
 
-Um exemple de comparação com python-sped_ pode ser encontrada `aqui <https://gist.github.com/clementmbr/3a730276bd19f639780521777628d763>`_.
+Um exemple de comparação com python-sped_ pode ser encontrada `aqui <https://gist.github.com/clementmbr/d422c02c52e1bbae7d2972475b363ea2>`_.
 
+  🔎  Para detalhar as listas dos campos faltando em cada modelo, usar a opção ``--detail``.
 
 Roadmap
 ========

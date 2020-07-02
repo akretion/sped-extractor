@@ -65,8 +65,8 @@ def _get_python_sped_reg_and_fields(mod):
     return reg_classes, fields
 
 
-def _compare_registers(mod, path_raw, year, pysped_registers):
-    ext_registers = get_registers(mod, path_raw, year)
+def _compare_registers(mod, year, pysped_registers):
+    ext_registers = get_registers(mod, year)
     ext_reg_codes = [reg["code"] for reg in ext_registers]
 
     not_in_pysped = [c for c in ext_reg_codes if c not in pysped_registers]
@@ -134,12 +134,11 @@ def _compare_fields(mod, year, common_reg, pysped_fields, detail):
 def main(year, detail):
     """Compare extracted registerts and fields with python-sped library."""
     for mod in ["ecd", "ecf", "efd_icms_ipi", "efd_pis_cofins"]:
-        path_raw = f"../specs/{year}/{mod}/raw_camelot_csv/"
         pysped_registers, pysped_fields = _get_python_sped_reg_and_fields(mod)
 
         logger.info(f"\n-- Comparing {mod.upper()} module...")
         logger.info("\nREGISTERS :")
-        common_reg = _compare_registers(mod, path_raw, year, pysped_registers)
+        common_reg = _compare_registers(mod, year, pysped_registers)
 
         logger.info("\nFIELDS :")
         _compare_fields(mod, year, common_reg, pysped_fields, detail)

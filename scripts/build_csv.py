@@ -21,8 +21,8 @@ extracted by extract_csv.py :
 
 import csv
 import logging
+import os
 import re
-from os import path, walk
 
 import click
 from download import MOST_RECENT_YEAR, OLDEST_YEAR
@@ -102,8 +102,47 @@ def natural_keys(text):
     return [_atoi(c) for c in re.split(r"(\d+)", text)]
 
 
+def _get_raw_rows(mod, year):
+    """Walk through ../specs/YEAR/MODULE/raw_camelot_csv/ and return a big dictionary
+    of all the raw rows found in raw CSV files extracted by ./extract_csv.py, gathered
+    by their page number :
+
+    raw_rows = {
+        12: [
+            ["Empresas  Obrigad...", "Devem  produzir  o  livro  “Z”..."],
+            ["Nº", "Campo", "Descrição", "Tipo", "Tamanho", "Decimal"],
+            ["01", "REG", "Identificador do registro: I510", "C", "004", "-"],
+            ["02", "NAT_SUB_CNT", "Natureza  da  subconta", "C", "002", "-"],
+            ["03", "COD_SUB_CNT", "Código da subco....", "C", "020", "-"],
+            ...
+        ],
+        13: [[...], [...]],
+        ...
+    }
+    """
+    files = []
+    raw_rows = {}
+    path_raw = f"../specs/{year}/{mod}/raw_camelot_csv/"
+
+    for (_dirpath, _dirnames, filenames) in os.walk(path_raw):
+        files = sorted(filenames, key=natural_keys)
+    assert files, (
+        f"No raw CSV files found at '{path_raw}'. "
+        "Run sped_extractor's script './extract_csv.py' before continuing"
+    )
+    for csv_file in files:
+        page = int(csv_file.split("-")[2])
+        with open(path_raw + f"{csv_file}", "r") as csvfile:
+            reader = csv.reader(csvfile, delimiter=",", quotechar='"')
+            for row in reader:
+                raw_rows.setdefault(page, []).append(row)
+
+    return raw_rows
+
+
 def clean_row(row):
     """Clean row's content"""
+    row = [str(x) for x in row]
     for index, cell in enumerate(row):
         # replace all the whitespaces ("  ", \n, \r...)
         clean_cell = " ".join(cell.split())
@@ -183,42 +222,39 @@ def _map_register_row(mod, row):
     return register
 
 
-def extract_registers_list(mod, path_raw, year):
-    """Scans the raw csv tables and return 'registers', a list of dictionaries giving
+def extract_registers_list(mod, year, raw_rows=None):
+    """Scans the raw csv rows and return 'registers', a list of dictionaries giving
     all the information about the module's registers (block, code, description,
     hierarchy level and card) found in the block's registers lists."""
-    files = []
     registers = []
     in_block = False
+    if not raw_rows:
+        raw_rows = _get_raw_rows(mod, year)
 
-    for (_dirpath, _dirnames, filenames) in walk(path_raw):
-        files = sorted(filenames, key=natural_keys)
-    for csv_file in files:
-        with open(path_raw + "{}".format(csv_file), "r") as csvfile:
-            reader = csv.reader(csvfile, delimiter=",", quotechar='"')
-            for row in reader:
-                if (
-                    ("BLOCO" in row or "Bloco" in row or "Registro" in row)
-                    and (
-                        "NÍVEL" in row
-                        or "Nível" in row
-                        or r"N\xc3\xadvel" in row
-                        or "Nome do Registro" in row
-                        or "Reg." in row
-                    )
-                    or "BLOCO  DESCRIÇÃO" in row  # ecf
-                ):  # ecd
-                    in_block = True
-                    continue
-                if in_block:
-                    if "".join(row) == "":
-                        continue  # empty line
-                    reg = _map_register_row(mod, clean_row(row))
-                    if reg and reg["code"] not in [r["code"] for r in registers]:
-                        registers.append(reg)
+    for page in raw_rows:
+        for row in raw_rows[page]:
+            if (
+                ("BLOCO" in row or "Bloco" in row or "Registro" in row)
+                and (
+                    "NÍVEL" in row
+                    or "Nível" in row
+                    or r"N\xc3\xadvel" in row
+                    or "Nome do Registro" in row
+                    or "Reg." in row
+                )
+                or "BLOCO  DESCRIÇÃO" in row  # ecf
+            ):  # ecd
+                in_block = True
+                continue
+            if in_block:
+                if "".join(row) == "":
+                    continue  # empty line
+                reg = _map_register_row(mod, clean_row(row))
+                if reg and reg["code"] not in [r["code"] for r in registers]:
+                    registers.append(reg)
 
-                        if reg["code"] == "9999":
-                            return registers
+                    if reg["code"] == "9999":
+                        return registers
 
     return registers
 
@@ -346,57 +382,54 @@ def _is_field_row(row, last_field_index):
         return False
 
 
-def extract_register_fields(mod, path_raw, year, register_name, patch=True):
-    """Scans the csv files to find the rows describing the fields
+def extract_register_fields(mod, year, register_name, raw_rows=None, patch=True):
+    """Scans the raw_rows to find the rows describing the fields
     of a given register."""
-    files = []
     in_register = False
     last_field_index = 1
     reg_fields = []
 
-    for (_dirpath, _dirnames, filenames) in walk(path_raw):
-        files = sorted(filenames, key=natural_keys)
-    for csv_file in files:
-        page = int(csv_file.split("-")[2])
-        with open(path_raw + csv_file, "r") as csvfile:
-            reader = csv.reader(csvfile, delimiter=",", quotechar='"')
-            for row in reader:
-                if "".join(row) == "" or len(row) < 4:
-                    continue  # empty line
+    if not raw_rows:
+        raw_rows = _get_raw_rows(mod, year)
 
-                row = _format_row(clean_row(row))
-                # Align row cells under module's header
-                row = _map_row_mod_header(row, mod)
+    for page in raw_rows:
+        for row in raw_rows[page]:
+            if "".join([str(x) for x in row]) == "" or len(row) < 4:
+                continue  # empty line
 
-                if not in_register and _is_reg_row(row) and register_name in row[2]:
-                    # We found the register's table first row describing the register
-                    # itself
-                    in_register = True
+            row = _format_row(clean_row(row))
+            # Align row cells under module's header
+            row = _map_row_mod_header(row, mod)
+
+            if not in_register and _is_reg_row(row) and register_name in row[2]:
+                # We found the register's table first row describing the register
+                # itself
+                in_register = True
+
+                # Add register's name and page columns
+                row.insert(0, page)
+                row.insert(0, register_name)
+                reg_fields.append(row)
+                continue
+
+            if in_register:
+                if _is_reg_row(row) and register_name not in row[2]:
+                    # next register table found -> stopping
+                    return reg_fields
+
+                if patch:
+                    row = _apply_camelot_patch(mod, year, register_name, row)
+
+                # TODO : handle instances where the field's row is split in two by a
+                # page break. (=all the fields are empty except Description - 3rd
+                # column). Example : EFD PIS COFINS page 78 Registro 0200
+                if _is_field_row(row, last_field_index):
+                    last_field_index = int(row[0])
 
                     # Add register's name and page columns
                     row.insert(0, page)
                     row.insert(0, register_name)
                     reg_fields.append(row)
-                    continue
-
-                if in_register:
-                    if _is_reg_row(row) and register_name not in row[2]:
-                        # next register table found -> stopping
-                        return reg_fields
-
-                    if patch:
-                        row = _apply_camelot_patch(mod, year, register_name, row)
-
-                    # TODO : handle instances where the field's row is split in two by a
-                    # page break. (=all the fields are empty except Description - 3rd
-                    # column). Example : EFD PIS COFINS page 78 Registro 0200
-                    if _is_field_row(row, last_field_index):
-                        last_field_index = int(row[0])
-
-                        # Add register's name and page columns
-                        row.insert(0, page)
-                        row.insert(0, register_name)
-                        reg_fields.append(row)
 
     return reg_fields
 
@@ -406,18 +439,17 @@ def extract_register_fields(mod, path_raw, year, register_name, patch=True):
 
 
 def build_accurate_fields_csv(
-    mod, path_raw, year, extracted_registers=None, patch=True
+    mod, year, raw_rows=None, extracted_registers=None, patch=True
 ):
     """Build a CSV file with the module's fields rows as they appear in the original
     pdf.
 
     If the registers list is passed as an argument, it avoids to make the extraction
     another time."""
-    if not extracted_registers:
-        extracted_registers = extract_registers_list(mod, path_raw, year)
-
-    fields_path = f"../specs/{year}/{mod}/{mod}_accurate_fields.csv"
     reg_with_no_field = []
+    fields_path = f"../specs/{year}/{mod}/{mod}_accurate_fields.csv"
+    if not extracted_registers:
+        extracted_registers = extract_registers_list(mod, year, raw_rows)
 
     with open(fields_path, "w") as fields_file:
         # Delete actual fields_file's datas before writing
@@ -427,18 +459,19 @@ def build_accurate_fields_csv(
         fields = csv.writer(
             fields_file, delimiter=",", quotechar='"', quoting=csv.QUOTE_ALL
         )
-
-        mod_fields = []
+        # Write module's header
         mod_header = ["Register", "Page"] + [c[0] for c in _get_mod_header(mod)]
         fields.writerow(mod_header)
+        # Catch all the module's fields
+        mod_fields = []
         for register in extracted_registers:
             reg_fields = extract_register_fields(
-                mod, path_raw, year, register["code"], patch
+                mod, year, register["code"], raw_rows, patch
             )
             mod_fields.extend(reg_fields)
+            # A register table must have at least two rows
+            # (the first row describes the register itself)
             if len(reg_fields) < 2:
-                # A register table must have at least two rows
-                # (the first row describes the register itself)
                 reg_with_no_field.append(register["code"])
 
         if reg_with_no_field:
@@ -446,6 +479,7 @@ def build_accurate_fields_csv(
                 f"    /!\\ {len(reg_with_no_field)} registers with no field "
                 f"catched by camelot : {reg_with_no_field}"
             )
+        # Write module's fields
         for row in mod_fields:
             fields.writerow(row)
 
@@ -475,9 +509,8 @@ def _convert_field_type(field):
             field["type"] = "char"
         else:
             logger.warning(
-                "Could not define field {} type in register {}".format(
-                    field["code"], field["register"]
-                )
+                f"Could not define field {field['code']} type in register "
+                f"{field['register']}"
             )
     return field
 
@@ -493,15 +526,12 @@ def _convert_field_required(field):
         field["conditional_required"] = True
     elif field.get("register") and field.get("spec_required"):
         logger.warning(
-            "Could not define if field {} is required in register {}".format(
-                field["code"], field["register"]
-            )
+            f"Could not define if field {field['code']} is required in register "
+            f"{field['register']}"
         )
     elif field.get("spec_required"):
         # In this case we are converting a register item not a field
-        logger.warning(
-            "Could not define if register {} is required".format(field["code"])
-        )
+        logger.warning(f"Could not define if register {field['code']} is required")
     return field
 
 
@@ -577,12 +607,16 @@ def _map_field_row(row, mod):
 
 
 def get_fields(mod, year, with_reg=False):
-    """Returns a list of the module's fields recorded as dictionaries
+    """Returns a list of the module's fields recorded as dictionaries with interpreted
+    values.
 
     `with_reg` is an optional argument to add the REG field (opening every registers
     tables) to this list of dictionaries. Used in ./build_python-sped_json.py """
-    accurate_path = f"../specs/{year}/{mod}/{mod}_accurate_fields.csv"
     fields = []
+    accurate_path = f"../specs/{year}/{mod}/{mod}_accurate_fields.csv"
+
+    if not os.path.isfile(accurate_path) or os.path.getsize(accurate_path) == 0:
+        build_accurate_fields_csv(mod, year)
 
     # Open the CSV with the accurate fields list
     with open(accurate_path, "r") as accurate_file:
@@ -597,7 +631,7 @@ def get_fields(mod, year, with_reg=False):
     return fields
 
 
-def get_registers(mod, path_raw, year, extracted_registers=None):
+def get_registers(mod, year, raw_rows=None, extracted_registers=None):
     """Add the `required` and `field_in_out` attributes (calculated from the
     MODULE_accurate_fields.csv file) to the registers extracted by
     `extract_registers_list()` and return this registers list.
@@ -605,13 +639,19 @@ def get_registers(mod, path_raw, year, extracted_registers=None):
     If the `extracted_registers` is passed as an argument, it avoids to make the
     extraction another time."""
 
+    if not raw_rows:
+        raw_rows = _get_raw_rows(mod, year)
     if extracted_registers:
         registers = extracted_registers
     else:
-        registers = extract_registers_list(mod, path_raw, year)
+        registers = extract_registers_list(mod, year, raw_rows)
 
     accurate_path = f"../specs/{year}/{mod}/{mod}_accurate_fields.csv"
     mod_keys = [c[1] for c in _get_mod_header(mod)]
+
+    # Build MODULE_accurate_fields.csv if empty or not existing
+    if not os.path.isfile(accurate_path) or os.path.getsize(accurate_path) == 0:
+        build_accurate_fields_csv(mod, year, raw_rows, registers)
 
     # Open the CSV with the accurate fields list
     with open(accurate_path, "r") as accurate_file:
@@ -704,13 +744,13 @@ def build_usable_fields_csv(mod, year):
             fields_csv.writerow(row)
 
 
-def build_registers_csv(mod, path_raw, year, extracted_registers=None):
+def build_registers_csv(mod, year, raw_rows=None, extracted_registers=None):
     """Generate a csv with the Registers specifications. One line for each register.
     If no registers argument is passed, the registers list extraction will be made by
     `get_registers`.
     """
     file_path = f"../specs/{year}/{mod}/{mod}_registers.csv"
-    registers = get_registers(mod, path_raw, year, extracted_registers)
+    registers = get_registers(mod, year, raw_rows, extracted_registers)
     header = _get_usable_csv_header(registers)
 
     with open(file_path, "w") as reg_file:
@@ -737,40 +777,38 @@ def build_registers_csv(mod, path_raw, year, extracted_registers=None):
 # ======================================================
 
 
-def extract_blocks(mod, path_raw, year):
+def extract_blocks(mod, year, raw_rows=None):
     """Return a list of the module's blocks rows as found in path_raw"""
-    files = []
     extracted_blocks = []
     in_block_list = False
 
-    for (_dirpath, _dirnames, filenames) in walk(path_raw):
-        files = sorted(filenames, key=natural_keys)
-    for csv_file in files:
-        with open(path_raw + "{}".format(csv_file), "r") as csvfile:
-            reader = csv.reader(csvfile, delimiter=",", quotechar='"')
-            for row in reader:
-                if (
-                    len(row) in [2, 3]
-                    and row[0] == "Bloco"
-                    and row[1] in ["Descrição", "Nome do Bloco"]
-                ):
-                    in_block_list = True
-                    continue
-                if in_block_list and row[0] != "Bloco":
-                    extracted_blocks.append(row)
-                    if row[0] == "9":
-                        return extracted_blocks
+    if not raw_rows:
+        raw_rows = _get_raw_rows(mod, year)
+
+    for page in raw_rows:
+        for row in raw_rows[page]:
+            if (
+                len(row) in [2, 3]
+                and row[0] == "Bloco"
+                and row[1] in ["Descrição", "Nome do Bloco"]
+            ):
+                in_block_list = True
+                continue
+            if in_block_list and row[0] != "Bloco":
+                extracted_blocks.append(row)
+                if row[0] == "9":
+                    return extracted_blocks
     if not extracted_blocks:
         logger.warning(f"    /!\\ No Blocks list catched in {mod.upper()}")
         return []
 
 
-def get_blocks(mod, parth_raw, year, extracted_blocks=False):
+def get_blocks(mod, year, raw_rows=None, extracted_blocks=None):
     """Return a list of dictionaries representing module's blocks.
     Used in ./build_python-sped_json.py"""
     blocks = []
     if not extracted_blocks:
-        extracted_blocks = extract_blocks(mod, parth_raw, year)
+        extracted_blocks = extract_blocks(mod, year, raw_rows)
     for row in extracted_blocks:
         block = {}
         block["code"] = row[0].replace("*", "")
@@ -817,22 +855,22 @@ def main(year, patch):
     for mod in ["ecd", "ecf", "efd_icms_ipi", "efd_pis_cofins"]:
         logger.info(f"\nBuilding CSV files for {mod.upper()} {year}...")
 
-        if patch and not path.isfile(
+        if patch and not os.path.isfile(
             f"../specs/{year}/camelot_patch/{mod}_camelot_patch.csv"
         ):
             logger.warning(
-                f"    No CSV patch '{mod}_camelot_patch.csv' for {mod.upper()} in "
-                f"'../specs/{year}/'"
+                f"    No CSV patch '{mod}_camelot_patch.csv' found for {mod.upper()} "
+                f"in '../specs/{year}/'"
             )
 
-        path_raw = f"../specs/{year}/{mod}/raw_camelot_csv/"
-        extracted_registers = extract_registers_list(mod, path_raw, year)
+        raw_rows = _get_raw_rows(mod, year)
+        extracted_registers = extract_registers_list(mod, year, raw_rows)
 
         logger.info(f"> {mod}_accurate_fields.csv")
-        build_accurate_fields_csv(mod, path_raw, year, extracted_registers, patch)
+        build_accurate_fields_csv(mod, year, raw_rows, extracted_registers, patch)
 
         logger.info(f"> {mod}_registers.csv")
-        build_registers_csv(mod, path_raw, year, extracted_registers)
+        build_registers_csv(mod, year, raw_rows, extracted_registers)
 
         logger.info(f"> {mod}_fields.csv")
         build_usable_fields_csv(mod, year)

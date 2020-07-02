@@ -28,9 +28,8 @@ def _build_pythonsped_json(mod, year):
     """Build a module dictionary organized with nested registers and fields following
     the structure and the keys for python-sped leiautes and save it as a JSON file"""
     json_path = f"../specs/{year}/{mod}/{mod}_python-sped.json"
-    path_raw = f"../specs/{year}/{mod}/raw_camelot_csv/"
-    blocks = get_blocks(mod, path_raw, year)
-    registers = get_registers(mod, path_raw, year)
+    blocks = get_blocks(mod, year)
+    registers = get_registers(mod, year)
     fields = get_fields(mod, year, with_reg=True)
 
     # 1) Initiate dictionary with module's name, date and pdf version taken from the

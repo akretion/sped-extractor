@@ -41,7 +41,7 @@
         "REGRA_CAMPO_CARACTERE_INVALIDO",
         "REGRA_TABELA_MUNICIPIO",
         "REGRA_COD_MUN_INV_UF",
-        "REGRA_CAMPO_CARACTERE",
+        "REGRA_CAMPO_CARACTERE_INVALIDO",
         "REGRA_TABELA_SITUACAO",
         "REGRA_TABELA_SIT_INICIO_PER",
         "REGRA_HASH_SUBSTITUIDA",
@@ -164,7 +164,7 @@
           "decimal": null,
           "valores": "-",
           "obrigatorio": false,
-          "regras": ["REGRA_CAMPO_CARACTERE"]
+          "regras": ["REGRA_CAMPO_CARACTERE_INVALIDO"]
         },
         {
           "indice": 11,
@@ -1628,7 +1628,7 @@
         {
           "indice": 6,
           "nome": "TIPO",
-          "descricao": "Indicação do tipo de dado (N: numérico; C: caractere).",
+          "descricao": "C Indicação do tipo de dado (N: numérico; C: caractere). N: numérico - campos adicionais que conterão informações de valores em espécie (moeda), com duas decimais. : caractere - campos adicionais que conterão outras informações que não sejam valores em espécie (moeda), Exemplos: Códigos, CNPJ, CPF, etc..",
           "tipo": "C",
           "tamanho": null,
           "decimal": null,
@@ -3237,7 +3237,7 @@
         {
           "indice": 2,
           "nome": "DT_INI",
-          "descricao": "Data inicial das demonstrações contábeis.",
+          "descricao": "O Data inicial das demonstrações contábeis. bservação: A data inicial das demonstrações deve ser a data posterior ao último encerramento do exercício, mesmo que essa data não esteja no período da ECD transmitida. Exemplo: Data do Último Encerramento do Exercício: 31/12/2020 Data Inicial das Demonstrações Contábeis: 01/01/2021",
           "tipo": "N",
           "tamanho": 8,
           "decimal": null,
@@ -3313,7 +3313,7 @@
         {
           "indice": 2,
           "nome": "COD_AGL",
-          "descricao": "O Código de aglutinação atribuído pela pessoa jurídica. bservação: Caso o indicador de código de aglutinação seja totalizador (T), o código de aglutinação deve ser informado, mas não deve estar cadastrado no registro I052 – os códigos de aglutinação informados no registro I052 são somente para contas analíticas.",
+          "descricao": "O Código de aglutinação atribuído pela pessoa jurídica. bservação: Caso o indicador de código de aglutinação seja totalizador (T), o código de aglutinação deve ser informado, mas não deve estar cadastrado no registro I052 – os códigos de aglutinação informados no registro I052 são somente",
           "tipo": "C",
           "tamanho": null,
           "decimal": null,
@@ -3477,7 +3477,7 @@
         {
           "indice": 3,
           "nome": "COD_AGL",
-          "descricao": "O Código de aglutinação das linhas, atribuído pela pessoa jurídica. bservação: Caso o indicador de código de aglutinação seja totalizador (T), o código de aglutinação deve ser informado, mas não deve estar cadastrado no registro I052 –",
+          "descricao": "O Código de aglutinação das linhas, atribuído pela pessoa jurídica. bservação: Caso o indicador de código de aglutinação seja totalizador (T), o código de aglutinação deve ser informado, mas não deve estar cadastrado no",
           "tipo": "C",
           "tamanho": null,
           "decimal": null,
@@ -3536,7 +3536,7 @@
         {
           "indice": 8,
           "nome": "VL_CTA_INI_",
-          "descricao": "Valor do saldo final da linha no período imediatamente anterior.",
+          "descricao": "Valor do saldo final da linha no período imediatamente anterior (saldo final da DRE anterior).",
           "tipo": "N",
           "tamanho": 19,
           "decimal": "02",
