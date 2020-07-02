@@ -4,10 +4,10 @@ import logging
 
 import click
 from build_csv import get_fields, get_registers
-from download import MOST_RECENT_YEAR, OLDEST_YEAR
 from sped.efd.icms_ipi import registros as efd_icms_ipi_registers
 from sped.efd.pis_cofins import registros as efd_pis_cofins_registers
 from sped.escrituracao import Escrituracao
+from years import MOST_RECENT_YEAR, OLDEST_YEAR
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
@@ -121,9 +121,9 @@ def _compare_fields(mod, year, common_reg, pysped_fields, detail):
     "--year",
     default=MOST_RECENT_YEAR,
     show_default=True,
-    type=int,
-    help=f"Specify a SPED specification year between {OLDEST_YEAR} and "
-    f"{MOST_RECENT_YEAR}",
+    type=click.IntRange(OLDEST_YEAR, MOST_RECENT_YEAR),
+    help="Operate on a specific year's folder, "
+    f"can be between {OLDEST_YEAR} and {MOST_RECENT_YEAR}",
 )
 @click.option(
     "--detail/--no-detail",

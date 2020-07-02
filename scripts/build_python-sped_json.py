@@ -6,7 +6,7 @@ import logging
 
 import click
 from build_csv import get_blocks, get_fields, get_registers
-from download import MOST_RECENT_YEAR, OLDEST_YEAR
+from years import MOST_RECENT_YEAR, OLDEST_YEAR
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
@@ -104,10 +104,9 @@ def _build_pythonsped_json(mod, year):
     "--year",
     default=MOST_RECENT_YEAR,
     show_default=True,
-    type=int,
-    help="Specify a SPED specification year between {} and {}".format(
-        OLDEST_YEAR, MOST_RECENT_YEAR
-    ),
+    type=click.IntRange(OLDEST_YEAR, MOST_RECENT_YEAR),
+    help="Operate on a specific year's folder, "
+    f"can be between {OLDEST_YEAR} and {MOST_RECENT_YEAR}",
 )
 def main(year):
     """Build a JSON file with the module's fields for each module."""

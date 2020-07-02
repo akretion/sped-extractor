@@ -6,8 +6,8 @@ from pathlib import Path
 
 import camelot
 import click
-from download import MOST_RECENT_YEAR, OLDEST_YEAR
 from PyPDF2 import PdfFileReader
+from years import MOST_RECENT_YEAR, OLDEST_YEAR
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
@@ -48,10 +48,9 @@ def _extract_csv(mod, pdf_path, year, limit=False):
     "--year",
     default=MOST_RECENT_YEAR,
     show_default=True,
-    type=int,
-    help="Extract tables from a specific year between {} and {}".format(
-        OLDEST_YEAR, MOST_RECENT_YEAR
-    ),
+    type=click.IntRange(OLDEST_YEAR, MOST_RECENT_YEAR),
+    help="Operate on a specific year's folder, "
+    f"can be between {OLDEST_YEAR} and {MOST_RECENT_YEAR}",
 )
 @click.option(
     "-l",
@@ -75,6 +74,11 @@ def main(year, limit):
     )
     for mod in ["ecd", "ecf", "efd_icms_ipi", "efd_pis_cofins"]:
         pdf_path = f"../specs/{year}/pdf/{mod}.pdf"
+        assert Path(pdf_path).is_file(), (
+            f"No pdf found for {mod.upper()} in '../specs/{year}/pdf/'. "
+            f"Please run ''./download.py --year={year}' before continuing."
+        )
+
         limit_pages = _limit_pages(pdf_path, limit)
 
         logger.info(f"> {mod.upper()} - {limit_pages} pages")

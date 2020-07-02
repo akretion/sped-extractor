@@ -9,32 +9,30 @@ import requests
 from PyPDF2 import PdfFileReader
 from pathlib import Path
 
+from years import MOST_RECENT_YEAR, OLDEST_YEAR
+
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
 logger.setLevel(logging.INFO)
 
 
-def _get_max_min_year():
-    """Return a tuplet with most recent and oldest year folder available in '../specs/'
-    """
-    years = [f.name for f in os.scandir("../specs/") if f.is_dir()]
-    return (int(max(years, key=int)), int(min(years, key=int)))
-
-
-MOST_RECENT_YEAR = _get_max_min_year()[0]
-OLDEST_YEAR = _get_max_min_year()[1]
-
-
 def _get_url(mod, year):
     """Return the first URL found for a module's year version"""
-    with open(f"../specs/{year}/download_info.csv", "r") as csvfile:
-        reader = csv.reader(csvfile, delimiter=",", quotechar='"')
-        header = next(reader)
-        col_url = header.index("url")
-        col_mod = header.index("module")
-        for row in reader:
-            if row[col_mod] == mod:
-                return row[col_url]
+    dl_info_path = f"../specs/{year}/download_info.csv"
+    try:
+        with open(dl_info_path, "r") as csvfile:
+            reader = csv.reader(csvfile, delimiter=",", quotechar='"')
+            header = next(reader)
+            col_url = header.index("url")
+            col_mod = header.index("module")
+            for row in reader:
+                if row[col_mod] == mod:
+                    return row[col_url]
+    except FileNotFoundError:
+        logger.exception(
+            f"The file '{dl_info_path}' containing the pdf URL "
+            "is required to download them."
+        )
 
 
 def _download(mod, year):
@@ -44,7 +42,7 @@ def _download(mod, year):
     try:
         r = requests.get(url)
     except requests.exceptions.MissingSchema:
-        logger.warning(
+        logger.exception(
             f"  Cannot download {mod.upper()}'s pdf because '{url}' is not a valid URL."
         )
         pass
@@ -67,17 +65,12 @@ def _download(mod, year):
     "--year",
     default=MOST_RECENT_YEAR,
     show_default=True,
-    type=int,
-    help="Specify a SPED specification year between {} and {}".format(
-        OLDEST_YEAR, MOST_RECENT_YEAR
-    ),
+    type=click.IntRange(OLDEST_YEAR, MOST_RECENT_YEAR),
+    help="Operate on a specific year's folder, "
+    f"can be between {OLDEST_YEAR} and {MOST_RECENT_YEAR}",
 )
 def main(year):
     """Download SPED specifications pdf from http://sped.rfb.gov.br/"""
-    assert year >= OLDEST_YEAR and year <= MOST_RECENT_YEAR, (
-        f"An integer between {OLDEST_YEAR} and {MOST_RECENT_YEAR} is required "
-        f"for year's option, not '{year}'"
-    )
 
     for module in ["ecd", "ecf", "efd_icms_ipi", "efd_pis_cofins"]:
         logger.info(f"Downloading pdf {module.upper()} {year}...")

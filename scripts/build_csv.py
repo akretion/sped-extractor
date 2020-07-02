@@ -25,7 +25,7 @@ import os
 import re
 
 import click
-from download import MOST_RECENT_YEAR, OLDEST_YEAR
+from years import MOST_RECENT_YEAR, OLDEST_YEAR
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
@@ -398,14 +398,15 @@ def extract_register_fields(mod, year, register_name, raw_rows=None, patch=True)
                 continue  # empty line
 
             row = _format_row(clean_row(row))
-            # Align row cells under module's header
             row = _map_row_mod_header(row, mod)
+            # N-B : We assume losing performance by cleaning and aligning every row
+            # instead of only the worthy ones in order to simplify the identification
+            # of register's fields rows (realized by _is_reg_row and _is_field_row).
 
             if not in_register and _is_reg_row(row) and register_name in row[2]:
                 # We found the register's table first row describing the register
                 # itself
                 in_register = True
-
                 # Add register's name and page columns
                 row.insert(0, page)
                 row.insert(0, register_name)
@@ -509,7 +510,7 @@ def _convert_field_type(field):
             field["type"] = "char"
         else:
             logger.warning(
-                f"Could not define field {field['code']} type in register "
+                f"    Could not define field {field['code']} type in register "
                 f"{field['register']}"
             )
     return field
@@ -526,12 +527,12 @@ def _convert_field_required(field):
         field["conditional_required"] = True
     elif field.get("register") and field.get("spec_required"):
         logger.warning(
-            f"Could not define if field {field['code']} is required in register "
+            f"    Could not define if field {field['code']} is required in register "
             f"{field['register']}"
         )
     elif field.get("spec_required"):
         # In this case we are converting a register item not a field
-        logger.warning(f"Could not define if register {field['code']} is required")
+        logger.warning(f"    Could not define if register {field['code']} is required")
     return field
 
 
@@ -615,6 +616,7 @@ def get_fields(mod, year, with_reg=False):
     fields = []
     accurate_path = f"../specs/{year}/{mod}/{mod}_accurate_fields.csv"
 
+    # Build MODULE_accurate_fields.csv if empty or not existing
     if not os.path.isfile(accurate_path) or os.path.getsize(accurate_path) == 0:
         build_accurate_fields_csv(mod, year)
 
@@ -828,10 +830,9 @@ def get_blocks(mod, year, raw_rows=None, extracted_blocks=None):
     "--year",
     default=MOST_RECENT_YEAR,
     show_default=True,
-    type=int,
-    help="Specify a SPED specification year between {} and {}".format(
-        OLDEST_YEAR, MOST_RECENT_YEAR
-    ),
+    type=click.IntRange(OLDEST_YEAR, MOST_RECENT_YEAR),
+    help="Operate on a specific year's folder, "
+    f"can be between {OLDEST_YEAR} and {MOST_RECENT_YEAR}",
 )
 @click.option(
     "--patch/--no-patch",

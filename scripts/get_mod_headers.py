@@ -4,7 +4,7 @@ import logging
 
 import click
 from build_csv import _get_raw_rows, _is_reg_row, clean_row
-from download import MOST_RECENT_YEAR, OLDEST_YEAR
+from years import MOST_RECENT_YEAR, OLDEST_YEAR
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
@@ -29,10 +29,9 @@ def _get_mod_headers(mod, year):
     "--year",
     default=MOST_RECENT_YEAR,
     show_default=True,
-    type=int,
-    help="Extract tables from a specific year between {} and {}".format(
-        OLDEST_YEAR, MOST_RECENT_YEAR
-    ),
+    type=click.IntRange(OLDEST_YEAR, MOST_RECENT_YEAR),
+    help="Operate on a specific year's folder, "
+    f"can be between {OLDEST_YEAR} and {MOST_RECENT_YEAR}",
 )
 @click.command()
 def main(year):
