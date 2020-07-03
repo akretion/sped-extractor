@@ -2,9 +2,9 @@ import os
 
 
 def _get_max_min_year():
-    """Return a tuplet with most recent and oldest year folder available in '../specs/'
+    """Return a tuplet with most recent and oldest year folder available in './specs/'
     """
-    years = [f.name for f in os.scandir("../specs/") if f.is_dir()]
+    years = [f.name for f in os.scandir("./specs/") if f.is_dir()]
     return (int(max(years, key=int)), int(min(years, key=int)))
 
 

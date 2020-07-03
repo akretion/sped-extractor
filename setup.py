@@ -11,8 +11,8 @@ setup(
     name="sped-extractor",
     version=__version__,
     description=(
-        "Extrai e interpreta a integralidade dos registros e campos das tabelas dos "
-        "manuais do SPED (Sistema Público de Escrituração Digital), para os módulos "
+        "Extrai e interpreta os registros e os campos das tabelas dos manuais do SPED "
+        "(Sistema Público de Escrituração Digital), para os módulos "
         "ECD, ECF, EFD Contribuições (PIS, COFINS) e EFD ICMS IPI."
     ),
     long_description=README,

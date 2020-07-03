@@ -103,7 +103,7 @@ def natural_keys(text):
 
 
 def _get_raw_rows(mod, year):
-    """Walk through ../specs/YEAR/MODULE/raw_camelot_csv/ and return a big dictionary
+    """Walk through ./specs/YEAR/MODULE/raw_camelot_csv/ and return a big dictionary
     of all the raw rows found in raw CSV files extracted by ./extract_csv.py, gathered
     by their page number :
 
@@ -122,7 +122,7 @@ def _get_raw_rows(mod, year):
     """
     files = []
     raw_rows = {}
-    path_raw = f"../specs/{year}/{mod}/raw_camelot_csv/"
+    path_raw = f"./specs/{year}/{mod}/raw_camelot_csv/"
 
     for (_dirpath, _dirnames, filenames) in os.walk(path_raw):
         files = sorted(filenames, key=natural_keys)
@@ -345,7 +345,7 @@ def _is_reg_row(row):
 
 def _apply_camelot_patch(mod, year, register, row):
     """Catches patched row in ./camelot_patch/ and return override current row"""
-    patch_path = f"../specs/{year}/camelot_patch/{mod}_camelot_patch.csv"
+    patch_path = f"./specs/{year}/camelot_patch/{mod}_camelot_patch.csv"
 
     try:
         with open(patch_path, "r") as csvfile:
@@ -448,7 +448,7 @@ def build_accurate_fields_csv(
     If the registers list is passed as an argument, it avoids to make the extraction
     another time."""
     reg_with_no_field = []
-    fields_path = f"../specs/{year}/{mod}/{mod}_accurate_fields.csv"
+    fields_path = f"./specs/{year}/{mod}/{mod}_accurate_fields.csv"
     if not extracted_registers:
         extracted_registers = extract_registers_list(mod, year, raw_rows)
 
@@ -614,7 +614,7 @@ def get_fields(mod, year, with_reg=False):
     `with_reg` is an optional argument to add the REG field (opening every registers
     tables) to this list of dictionaries. Used in ./build_python-sped_json.py """
     fields = []
-    accurate_path = f"../specs/{year}/{mod}/{mod}_accurate_fields.csv"
+    accurate_path = f"./specs/{year}/{mod}/{mod}_accurate_fields.csv"
 
     # Build MODULE_accurate_fields.csv if empty or not existing
     if not os.path.isfile(accurate_path) or os.path.getsize(accurate_path) == 0:
@@ -648,7 +648,7 @@ def get_registers(mod, year, raw_rows=None, extracted_registers=None):
     else:
         registers = extract_registers_list(mod, year, raw_rows)
 
-    accurate_path = f"../specs/{year}/{mod}/{mod}_accurate_fields.csv"
+    accurate_path = f"./specs/{year}/{mod}/{mod}_accurate_fields.csv"
     mod_keys = [c[1] for c in _get_mod_header(mod)]
 
     # Build MODULE_accurate_fields.csv if empty or not existing
@@ -721,7 +721,7 @@ def _get_usable_csv_header(fields):
 
 
 def build_usable_fields_csv(mod, year):
-    file_path = f"../specs/{year}/{mod}/{mod}_fields.csv"
+    file_path = f"./specs/{year}/{mod}/{mod}_fields.csv"
     fields = get_fields(mod, year)
 
     # Open the CSV with the accurate fields list
@@ -751,7 +751,7 @@ def build_registers_csv(mod, year, raw_rows=None, extracted_registers=None):
     If no registers argument is passed, the registers list extraction will be made by
     `get_registers`.
     """
-    file_path = f"../specs/{year}/{mod}/{mod}_registers.csv"
+    file_path = f"./specs/{year}/{mod}/{mod}_registers.csv"
     registers = get_registers(mod, year, raw_rows, extracted_registers)
     header = _get_usable_csv_header(registers)
 
@@ -857,11 +857,11 @@ def main(year, patch):
         logger.info(f"\nBuilding CSV files for {mod.upper()} {year}...")
 
         if patch and not os.path.isfile(
-            f"../specs/{year}/camelot_patch/{mod}_camelot_patch.csv"
+            f"./specs/{year}/camelot_patch/{mod}_camelot_patch.csv"
         ):
             logger.warning(
                 f"    No CSV patch '{mod}_camelot_patch.csv' found for {mod.upper()} "
-                f"in '../specs/{year}/'"
+                f"in './specs/{year}/'"
             )
 
         raw_rows = _get_raw_rows(mod, year)

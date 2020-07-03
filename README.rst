@@ -1,9 +1,9 @@
-============
+==============
 sped-extractor
-============
+==============
 
 
-Esse package extrai as tabelas dos pdf das `especificações da SPED <http://sped.rfb.gov.br/pasta/show/9>`_ usando o package python `camelot`_ e cria arquivos CSV com as informações da **integralidade dos registros e campos de cada módulo**, levemente formatados para ser utilizados por outros programas.
+Esse package extrai as tabelas dos pdf das `especificações da SPED <http://sped.rfb.gov.br/pasta/show/9>`_ usando o package python `camelot`_ e cria arquivos CSV com as informações **dos registros e campos de cada módulo**, levemente formatados para ser utilizados por outros programas.
 
 Os módulos da SPED tratados por esse package são :
 
@@ -174,7 +174,7 @@ Para isso basta escrever a linha correta no arquivo *spedextractor/YEAR/camelot_
   🔎  O ``./build_csv.py`` aplica as linhas corretivas por padrão. Para não aplicar essas correções, usar a opção ``--no-patch``.
 
 Cabeçalhos de Módulos
-~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
 
 Os arquivos CSV "fiéis" de cada módulo usam um cabeçalho (comum a todos os campos do módulo) escrito em duro no início de *build_csv.py*.
 
@@ -199,7 +199,7 @@ Para definir "manualmente" esses cabeçalhos, é possível usar o script ``./get
   [...]
 
 Comparar sped-extractor com python-sped
-~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 python-sped_ é uma biblioteca python com a lista dos campos de cada módulo da SPED, porém escrita "manualmente" e desatualizada (ECD e ECF seguindo os pdf das especificações de 2017, EFD/ICMS-IPI e EFD/PIS-COFINS seguindo os pdf das especificações de 2015).
 
@@ -216,7 +216,7 @@ Roadmap
 - Melhorar o arquivo JSON "tipo python-sped" (valor dos itens "regras" e "campos_chave" dos registros)
 
 Créditos
-=======
+========
 
 Autores
 ~~~~~~~
@@ -224,14 +224,14 @@ Autores
 * Akretion
 
 Contributores
-~~~~~~~~~~~~
+~~~~~~~~~~~~~
 
 * Raphaël Valyi <raphael.valyi@akretion.com.br>
 * Clément Mombereau <clement.mombereau@akretion.com.br>
 
 
 Administradores
-~~~~~~~~~~~
+~~~~~~~~~~~~~~~~
 
 Esse package está administrado por `Akretion <https://akretion.com/pt-BR>`_.
 
