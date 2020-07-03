@@ -74,7 +74,7 @@ def _compare_registers(mod, year, pysped_registers):
 
     not_in_extractor = [c for c in pysped_registers if c not in ext_reg_codes]
     logger.info(
-        f"    >> {len(not_in_extractor)} not in sped_extractor : {not_in_extractor}"
+        f"    >> {len(not_in_extractor)} not in sped-extractor : {not_in_extractor}"
     )
 
     common_reg = [c for c in ext_reg_codes if c in pysped_registers]
@@ -104,7 +104,7 @@ def _compare_fields(mod, year, common_reg, pysped_fields, detail):
                 logger.info(f"      {reg} : {fields}")
     logger.info(f"    >> {fields_nb} missing fields in {reg_nb} registers\n")
 
-    logger.info("    Not in sped_extractor :")
+    logger.info("    Not in sped-extractor :")
     fields_nb = 0
     reg_nb = 0
     for reg, fields in not_in_extractor.items():
@@ -129,7 +129,7 @@ def _compare_fields(mod, year, common_reg, pysped_fields, detail):
     "--detail/--no-detail",
     default=False,
     show_default=True,
-    help="Detail the list of all the fields missing in python-sped or sped_extractor",
+    help="Detail the list of all the fields missing in python-sped or sped-extractor",
 )
 def main(year, detail):
     """Compare extracted registerts and fields with python-sped library."""

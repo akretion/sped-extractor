@@ -1,5 +1,5 @@
 ============
-sped_extractor
+sped-extractor
 ============
 
 
@@ -52,7 +52,7 @@ E depois instalar camelot a partir do repositório github ::
 
 Uma vez `camelot`_ instalado, é só baixar esse repositório ::
 
-  $ git clone https://github.com/akretion/sped_extractor/
+  $ git clone https://github.com/akretion/sped-extractor/
 
 A pasta *scripts/* reúne os scripts para baixar e extrair os registros e campos de cada módulo SPED enquanto a pasta *specs/* reúne **os pdf** baixados, **os CSV** e JSON extraídos, **os patches** possíveis para essas extrações além das **infos para baixar os pdf**, agrupados pelo **ano de publicação** das versões dos pdf dos manuais da SPED :
 
@@ -97,7 +97,7 @@ Depois de ter baixado esse repositório, todos os arquivos da pasta *scripts/* p
 
 ::
 
-  PATH_TO/sped_extractor/scripts$ $ ./download.py --year=2019
+  PATH_TO/sped-extractor/scripts$ $ ./download.py --year=2019
   Downloading pdf ECD 2019...
   Downloading pdf ECF 2019...
   Downloading pdf EFD_ICMS_IPI 2019...
@@ -114,7 +114,7 @@ Os links usados para baixar esses pdf se encontram no arquivo *download_info.csv
 
 ::
 
-  PATH_TO/sped_extractor/scripts$ ./extract_csv.py --limit=5
+  PATH_TO/sped-extractor/scripts$ ./extract_csv.py --limit=5
   Extracting tables from SPED pdf. It can take a while (easily 20 minutes)
   > ECD - 5 pages
       extracting pages 0 to 5...
@@ -128,7 +128,7 @@ Os links usados para baixar esses pdf se encontram no arquivo *download_info.csv
 
 ::
 
-  PATH_TO/sped_extractor/scripts$ ./build_csv.py --no-patch
+  PATH_TO/sped-extractor/scripts$ ./build_csv.py --no-patch
 
   Building CSV files for ECD 2020...
   > ecd_accurate_fields.csv
@@ -155,7 +155,7 @@ Além desses scripts básicos, existe também o ``./build_python-sped_json.py`` 
 
 ::
 
-  PATH_TO/sped_extractor/scripts$ ./build_python-sped_json.py
+  PATH_TO/sped-extractor/scripts$ ./build_python-sped_json.py
   Building JSON files for each modules...
   > ecd_python-sped.json
   > ecf_python-sped.json
@@ -182,7 +182,7 @@ Para definir "manualmente" esses cabeçalhos, é possível usar o script ``./get
 
 ::
 
-  PATH_TO/sped_extractor/scripts$ ./get_mod_headers.py
+  PATH_TO/sped-extractor/scripts$ ./get_mod_headers.py
 
   ECD's headers :
   ['Nº', 'Campo', 'Descrição', 'Tipo', 'Tamanho', 'Decimal']
@@ -198,12 +198,12 @@ Para definir "manualmente" esses cabeçalhos, é possível usar o script ``./get
 
   [...]
 
-Comparar sped_extractor com python-sped
+Comparar sped-extractor com python-sped
 ~~~~~~~
 
 python-sped_ é uma biblioteca python com a lista dos campos de cada módulo da SPED, porém escrita "manualmente" e desatualizada (ECD e ECF seguindo os pdf das especificações de 2017, EFD/ICMS-IPI e EFD/PIS-COFINS seguindo os pdf das especificações de 2015).
 
-Apesar disso, pode ser interessante comparar essas listas de campos com as listas extraidas pelo **sped_extractor**. Para isso é só lançar o script ``./compare_ptyhon-sped.py``.
+Apesar disso, pode ser interessante comparar essas listas de campos com as listas extraidas pelo **sped-extractor**. Para isso é só lançar o script ``./compare_ptyhon-sped.py``.
 
 Um exemple de comparação com python-sped_ pode ser encontrada `aqui <https://gist.github.com/clementmbr/d422c02c52e1bbae7d2972475b363ea2>`_.
 

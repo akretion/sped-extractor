@@ -128,7 +128,7 @@ def _get_raw_rows(mod, year):
         files = sorted(filenames, key=natural_keys)
     assert files, (
         f"No raw CSV files found at '{path_raw}'. "
-        "Run sped_extractor's script './extract_csv.py' before continuing"
+        "Run sped-extractor's script './extract_csv.py' before continuing"
     )
     for csv_file in files:
         page = int(csv_file.split("-")[2])
