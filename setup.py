@@ -29,4 +29,6 @@ setup(
     packages=["spedextractor"],
     include_package_data=True,
     install_requires=[r.strip() for r in open("requirements.txt").read().splitlines()],
+    use_scm_version=True,
+    setup_requires=["setuptools_scm"],
 )
