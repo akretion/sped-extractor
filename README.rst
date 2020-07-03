@@ -40,7 +40,7 @@ EFD_PIS_COFINS_registers.csv_  EFD_PIS_COFINS_accurate_fields.csv_  EFD_PIS_COFI
 Instalação
 ============
 
-Os scripts precisam da última versão de `camelot`_ para funcionar. Para isso precisa primeiro `instalar as dependências de camelot <https://camelot-py.readthedocs.io/en/master/user/install-deps.html>`_ ::
+O package ``spedextractor`` da última versão de `camelot`_ para funcionar. Para isso precisa primeiro `instalar as dependências de camelot <https://camelot-py.readthedocs.io/en/master/user/install-deps.html>`_ ::
 
   $ apt install python3-tk ghostscript
 
@@ -54,12 +54,12 @@ Uma vez `camelot`_ instalado, é só baixar esse repositório ::
 
   $ git clone https://github.com/akretion/sped-extractor/
 
-A pasta *scripts/* reúne os scripts para baixar e extrair os registros e campos de cada módulo SPED enquanto a pasta *specs/* reúne **os pdf** baixados, **os CSV** e JSON extraídos, **os patches** possíveis para essas extrações além das **infos para baixar os pdf**, agrupados pelo **ano de publicação** das versões dos pdf dos manuais da SPED :
+A pasta *spedextractor/* reúne os scripts para baixar e extrair os registros e campos de cada módulo SPED enquanto a pasta *specs/* reúne **os pdf** baixados, **os CSV** e JSON extraídos, **os patches** possíveis para essas extrações além das **infos para baixar os pdf**, agrupados pelo **ano de publicação** das versões dos pdf dos manuais da SPED :
 
 ::
 
   .
-  ├── scripts
+  ├── spedextractor
   |   [...]
   └── specs
       ├── 2019
@@ -89,7 +89,7 @@ A pasta *scripts/* reúne os scripts para baixar e extrair os registros e campos
 Utilização
 ==========
 
-Depois de ter baixado esse repositório, todos os arquivos da pasta *scripts/* podem ser usados como Interface de linha de comando no terminal.
+Depois de ter baixado esse repositório, todos os arquivos da pasta *spedextractor/* podem ser usados como Interface de linha de comando no terminal.
 
 1. 📥 ``./download.sh`` : **Baixe os arquivos pdf** originais contendo as especificações da SPED :
 
@@ -97,7 +97,7 @@ Depois de ter baixado esse repositório, todos os arquivos da pasta *scripts/* p
 
 ::
 
-  PATH_TO/sped-extractor/scripts$ $ ./download.py --year=2019
+  PATH_TO/sped-extractor/spedextractor$ $ ./download.py --year=2019
   Downloading pdf ECD 2019...
   Downloading pdf ECF 2019...
   Downloading pdf EFD_ICMS_IPI 2019...
@@ -114,7 +114,7 @@ Os links usados para baixar esses pdf se encontram no arquivo *download_info.csv
 
 ::
 
-  PATH_TO/sped-extractor/scripts$ ./extract_csv.py --limit=5
+  PATH_TO/sped-extractor/spedextractor$ ./extract_csv.py --limit=5
   Extracting tables from SPED pdf. It can take a while (easily 20 minutes)
   > ECD - 5 pages
       extracting pages 0 to 5...
@@ -124,11 +124,11 @@ Os links usados para baixar esses pdf se encontram no arquivo *download_info.csv
 
 3. 🏗️ ``./build_csv.py`` : Percorre os CSV da pasta */specs/MODULE/raw_camelot_csv/* e **cria 3 arquivos CSV** por módulo :
 
-  O ``./build_csv.py`` aplica linhas corretivas escritas em duro na pasta *scripts/YEAR/camelot_patch/* por padrão. Para não aplicar essas correções, usar a opção ``--no-patch``.
+  O ``./build_csv.py`` aplica linhas corretivas escritas em duro na pasta *spedextractor/YEAR/camelot_patch/* por padrão. Para não aplicar essas correções, usar a opção ``--no-patch``.
 
 ::
 
-  PATH_TO/sped-extractor/scripts$ ./build_csv.py --no-patch
+  PATH_TO/sped-extractor/spedextractor$ ./build_csv.py --no-patch
 
   Building CSV files for ECD 2020...
   > ecd_accurate_fields.csv
@@ -155,7 +155,7 @@ Além desses scripts básicos, existe também o ``./build_python-sped_json.py`` 
 
 ::
 
-  PATH_TO/sped-extractor/scripts$ ./build_python-sped_json.py
+  PATH_TO/sped-extractor/spedextractor$ ./build_python-sped_json.py
   Building JSON files for each modules...
   > ecd_python-sped.json
   > ecf_python-sped.json
@@ -169,7 +169,7 @@ Patches
 
 Apesar de `camelot`_ ser o melhor package python para extrair tabelas de pdf, ele não é 100% perfeito. No entanto, **é possível substituir linhas de campos extraidas incorretamente** por linhas certas registradas manualmente.
 
-Para isso basta escrever a linha correta no arquivo *scripts/YEAR/camelot_patch/MODULE_camelot_patch.csv* para ela ser applicada no lugar certo no CSV *MODULE_accurate_fields.csv*.
+Para isso basta escrever a linha correta no arquivo *spedextractor/YEAR/camelot_patch/MODULE_camelot_patch.csv* para ela ser applicada no lugar certo no CSV *MODULE_accurate_fields.csv*.
 
   🔎  O ``./build_csv.py`` aplica as linhas corretivas por padrão. Para não aplicar essas correções, usar a opção ``--no-patch``.
 
@@ -182,7 +182,7 @@ Para definir "manualmente" esses cabeçalhos, é possível usar o script ``./get
 
 ::
 
-  PATH_TO/sped-extractor/scripts$ ./get_mod_headers.py
+  PATH_TO/sped-extractor/spedextractor$ ./get_mod_headers.py
 
   ECD's headers :
   ['Nº', 'Campo', 'Descrição', 'Tipo', 'Tamanho', 'Decimal']
