@@ -1,4 +1,4 @@
-camelot-py==0.8.0a0
+camelot-py>=0.8.0
 unidecode
 click
 # only for ./compare_python-sped.py :
