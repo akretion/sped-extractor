@@ -22,6 +22,7 @@ setup(
     author_email="contact@akretion.com.br",
     license="MIT",
     classifiers=[
+        "Development Status :: 3 - Alpha",
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.7",
@@ -29,6 +30,5 @@ setup(
     packages=["spedextractor"],
     include_package_data=True,
     install_requires=[r.strip() for r in open("requirements.txt").read().splitlines()],
-    use_scm_version=True,
     setup_requires=["setuptools_scm"],
 )

@@ -26,7 +26,7 @@ def _limit_pages(pdf_path, limit=False):
 def _extract_csv(mod, pdf_path, year, limit=False):
     limit_pages = _limit_pages(pdf_path, limit)
 
-    export_csv_path = f"./specs/{year}/{mod}/raw_camelot_csv/"
+    export_csv_path = f"../specs/{year}/{mod}/raw_camelot_csv/"
     # Creating directory if not existing
     Path(export_csv_path).mkdir(parents=True, exist_ok=True)
     # Deleting previous extracted files if existing
@@ -63,8 +63,8 @@ def _extract_csv(mod, pdf_path, year, limit=False):
 def main(year, limit):
     """Extract tables from SPED modules pdf (from a given year) using camelot.
 
-    The pdf must be present at './specs/YEAR/' and the extracted CSV files will be
-    placed at './specs/YEAR/MODULE/raw_camelot_csv/'.
+    The pdf must be present at '../specs/YEAR/' and the extracted CSV files will be
+    placed at '../specs/YEAR/MODULE/raw_camelot_csv/'.
 
     If an option --limit is given, only the first pages will be parsed until the limit
     number."""
@@ -73,9 +73,9 @@ def main(year, limit):
         "(easily 20 minutes)"
     )
     for mod in ["ecd", "ecf", "efd_icms_ipi", "efd_pis_cofins"]:
-        pdf_path = f"./specs/{year}/pdf/{mod}.pdf"
+        pdf_path = f"../specs/{year}/pdf/{mod}.pdf"
         assert Path(pdf_path).is_file(), (
-            f"No pdf found for {mod.upper()} in './specs/{year}/pdf/'. "
+            f"No pdf found for {mod.upper()} in '../specs/{year}/pdf/'. "
             f"Please run ''./download.py --year={year}' before continuing."
         )
 

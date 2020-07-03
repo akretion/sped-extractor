@@ -27,7 +27,7 @@ def _convert_length(f):
 def _build_pythonsped_json(mod, year):
     """Build a module dictionary organized with nested registers and fields following
     the structure and the keys for python-sped leiautes and save it as a JSON file"""
-    json_path = f"./specs/{year}/{mod}/{mod}_python-sped.json"
+    json_path = f"../specs/{year}/{mod}/{mod}_python-sped.json"
     blocks = get_blocks(mod, year)
     registers = get_registers(mod, year)
     fields = get_fields(mod, year, with_reg=True)
@@ -36,7 +36,7 @@ def _build_pythonsped_json(mod, year):
     # module's download_info.csv file
     module = {}
     module["tipo"] = mod
-    with open(f"./specs/{year}/download_info.csv", "r") as csvfile:
+    with open(f"../specs/{year}/download_info.csv", "r") as csvfile:
         reader = csv.reader(csvfile, delimiter=",", quotechar='"')
         header = next(reader)
         col_mod = header.index("module")

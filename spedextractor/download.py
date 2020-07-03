@@ -18,7 +18,7 @@ logger.setLevel(logging.INFO)
 
 def _get_url(mod, year):
     """Return the first URL found for a module's year version"""
-    dl_info_path = f"./specs/{year}/download_info.csv"
+    dl_info_path = f"../specs/{year}/download_info.csv"
     try:
         with open(dl_info_path, "r") as csvfile:
             reader = csv.reader(csvfile, delimiter=",", quotechar='"')
@@ -36,8 +36,8 @@ def _get_url(mod, year):
 
 
 def _download(mod, year):
-    Path(f"./specs/{year}/pdf").mkdir(parents=True, exist_ok=True)
-    pdf = f"./specs/{year}/pdf/{mod}.pdf"
+    Path(f"../specs/{year}/pdf").mkdir(parents=True, exist_ok=True)
+    pdf = f"../specs/{year}/pdf/{mod}.pdf"
     url = _get_url(mod, year)
     try:
         r = requests.get(url)
