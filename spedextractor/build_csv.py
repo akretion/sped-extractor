@@ -25,62 +25,11 @@ import re
 
 import click
 
-from .constants import MODULES, MOST_RECENT_YEAR, OLDEST_YEAR, SPECS_PATH
+from .constants import MODULE_HEADER, MODULES, MOST_RECENT_YEAR, OLDEST_YEAR, SPECS_PATH
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
 logger.setLevel(logging.INFO)
-
-# We chose to hard-code the modules fields headers because it is easier to actualize
-# them manually when necessary than mantaining a good heuristic algorithm catching these
-# headers from raw CSV files.
-# To define these headers manually, please use the script `./get_all_headers.py` which
-# displays all the possible headers for each module.
-MODULE_HEADER = {
-    "ecd": [
-        ("Nº", "index"),
-        ("Campo", "code"),
-        ("Descrição", "desc"),
-        # key "type" reserved for the interpreted field dictionary
-        ("Tipo", "spec_type"),
-        ("Tamanho", "length"),
-        ("Decimal", "decimal"),
-        ("Valores Válidos", "spec_values"),
-        # key "required" reserved for the interpreted field dictionary
-        ("Obrigatório", "spec_required"),
-        ("Regras de Validação do Campo", "rules"),
-    ],
-    "ecf": [
-        ("Nº", "index"),
-        ("Campo", "code"),
-        ("Descrição", "desc"),
-        ("Tipo", "spec_type"),
-        ("Tamanho", "length"),
-        ("Decimal", "decimal"),
-        ("Valores Válidos", "spec_values"),
-        ("Obrigatório", "spec_required"),
-    ],
-    "efd_icms_ipi": [
-        ("Nº", "index"),
-        ("Campo", "code"),
-        ("Descrição", "desc"),
-        ("Tipo", "spec_type"),
-        ("Tam", "length"),
-        ("Dec", "decimal"),
-        ("Obrig", "spec_required"),
-        ("Entr", "spec_in"),
-        ("Saídas", "spec_out"),
-    ],
-    "efd_pis_cofins": [
-        ("Nº", "index"),
-        ("Campo", "code"),
-        ("Descrição", "desc"),
-        ("Tipo", "spec_type"),
-        ("Tam", "length"),
-        ("Dec", "decimal"),
-        ("Obrig", "spec_required"),
-    ],
-}
 
 
 def _get_mod_header(mod):
