@@ -1,10 +1,13 @@
-import os
+import pathlib
+
+SPECS_PATH = pathlib.Path(__file__).parent.resolve() / "specs"
+MODULES = ["ecd", "ecf", "efd_icms_ipi", "efd_pis_cofins"]
 
 
 def _get_max_min_year():
     """Return a tuplet with most recent and oldest year folder available in './specs/'
     """
-    years = [f.name for f in os.scandir("./specs/") if f.is_dir()]
+    years = [entry.name for entry in SPECS_PATH.iterdir() if entry.is_dir()]
     return (int(max(years, key=int)), int(min(years, key=int)))
 
 

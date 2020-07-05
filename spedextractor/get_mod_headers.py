@@ -3,8 +3,9 @@
 import logging
 
 import click
-from build_csv import _get_raw_rows, _is_reg_row, clean_row
-from years import MOST_RECENT_YEAR, OLDEST_YEAR
+
+from .build_csv import _get_raw_rows, _is_reg_row, clean_row
+from .constants import MODULES, MOST_RECENT_YEAR, OLDEST_YEAR
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
@@ -39,7 +40,7 @@ def main(year):
 
     Used to define the modules headers hard-coded at the beginning of ./build_csv.py .
     """
-    for mod in ["ecd", "ecf", "efd_icms_ipi", "efd_pis_cofins"]:
+    for mod in MODULES:
         headers = _get_mod_headers(mod, year)
         logger.info(f"\n{mod.upper()}'s headers :")
         for header in headers:

@@ -3,9 +3,9 @@ import pathlib
 from setuptools import setup
 from spedextractor import __version__
 
-HERE = pathlib.Path(__file__).parent
+REPO = pathlib.Path(__file__).parent
 
-README = (HERE / "README.rst").read_text()
+README = (REPO / "README.rst").read_text()
 
 setup(
     name="sped-extractor",

@@ -21,11 +21,11 @@ extracted by extract_csv.py :
 
 import csv
 import logging
-import os
 import re
 
 import click
-from years import MOST_RECENT_YEAR, OLDEST_YEAR
+
+from .constants import MODULES, MOST_RECENT_YEAR, OLDEST_YEAR, SPECS_PATH
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
@@ -94,12 +94,12 @@ def _atoi(text):
 
 
 # used to sort csv files
-def natural_keys(text):
+def natural_keys(file):
     """
     alist.sort(key=natural_keys) sorts in human order
     http://nedbatchelder.com/blog/200712/human_sorting.html
     """
-    return [_atoi(c) for c in re.split(r"(\d+)", text)]
+    return [_atoi(c) for c in re.split(r"(\d+)", file.name)]
 
 
 def _get_raw_rows(mod, year):
@@ -120,22 +120,22 @@ def _get_raw_rows(mod, year):
         ...
     }
     """
-    files = []
     raw_rows = {}
-    path_raw = f"./specs/{year}/{mod}/raw_camelot_csv/"
+    path_raw = SPECS_PATH / f"{year}" / f"{mod}" / "raw_camelot_csv"
 
-    for (_dirpath, _dirnames, filenames) in os.walk(path_raw):
-        files = sorted(filenames, key=natural_keys)
-    assert files, (
-        f"No raw CSV files found at '{path_raw}'. "
-        "Run sped-extractor's script './extract_csv.py' before continuing"
-    )
-    for csv_file in files:
-        page = int(csv_file.split("-")[2])
-        with open(path_raw + f"{csv_file}", "r") as csvfile:
+    csv_files = sorted([file for file in path_raw.iterdir()], key=natural_keys)
+
+    for csv_file in csv_files:
+        page = int(csv_file.name.split("-")[2])
+        with open(csv_file, "r") as csvfile:
             reader = csv.reader(csvfile, delimiter=",", quotechar='"')
             for row in reader:
                 raw_rows.setdefault(page, []).append(row)
+
+    assert path_raw, (
+        f"No raw CSV files found at '{str(path_raw.resolve())}/'.\n"
+        "Run 'python -m spedextractor.extract_csv' before continuing."
+    )
 
     return raw_rows
 
@@ -345,12 +345,12 @@ def _is_reg_row(row):
 
 def _apply_camelot_patch(mod, year, register, row):
     """Catches patched row in ./camelot_patch/ and return override current row"""
-    patch_path = f"./specs/{year}/camelot_patch/{mod}_camelot_patch.csv"
+    patch_file = SPECS_PATH / f"{year}" / "camelot_patch" / f"{mod}_camelot_patch.csv"
 
     try:
-        with open(patch_path, "r") as csvfile:
-            reader = csv.reader(csvfile, delimiter=",", quotechar='"')
-            for patch_row in reader:
+        with open(patch_file, "r") as patch_csv:
+            patch_rows = csv.reader(patch_csv, delimiter=",", quotechar='"')
+            for patch_row in patch_rows:
                 # N-B : A patch can be applied twice if a row which is not a register's
                 # field match this condition (e.g. field TIP_ENT in ECF register 0010).
                 # But it is not a problem as the non-field row will be ignore after.
@@ -447,42 +447,44 @@ def build_accurate_fields_csv(
 
     If the registers list is passed as an argument, it avoids to make the extraction
     another time."""
+    accurate_file = SPECS_PATH / f"{year}" / f"{mod}" / f"{mod}_accurate_fields.csv"
     reg_with_no_field = []
-    fields_path = f"./specs/{year}/{mod}/{mod}_accurate_fields.csv"
     if not extracted_registers:
         extracted_registers = extract_registers_list(mod, year, raw_rows)
 
-    with open(fields_path, "w") as fields_file:
-        # Delete actual fields_file's datas before writing
-        fields_file.seek(0)
-        fields_file.truncate()
+    # Catch all the module's fields
+    mod_fields = []
+    for register in extracted_registers:
+        reg_fields = extract_register_fields(
+            mod, year, register["code"], raw_rows, patch
+        )
+        mod_fields.extend(reg_fields)
+        # Catch registers with no fields for information.
+        # N-B : A register table must have at least two rows (the first row describes
+        # the register itself)
+        if len(reg_fields) < 2:
+            reg_with_no_field.append(register["code"])
 
-        fields = csv.writer(
-            fields_file, delimiter=",", quotechar='"', quoting=csv.QUOTE_ALL
+    if reg_with_no_field:
+        logger.info(
+            f"    /!\\ {len(reg_with_no_field)} registers with no field "
+            f"catched by camelot : {reg_with_no_field}"
+        )
+
+    with open(accurate_file, "w") as accurate_csv:
+        # Delete actual fields_file's datas before writing
+        accurate_csv.seek(0)
+        accurate_csv.truncate()
+
+        accurate_rows = csv.writer(
+            accurate_csv, delimiter=",", quotechar='"', quoting=csv.QUOTE_ALL
         )
         # Write module's header
         mod_header = ["Register", "Page"] + [c[0] for c in _get_mod_header(mod)]
-        fields.writerow(mod_header)
-        # Catch all the module's fields
-        mod_fields = []
-        for register in extracted_registers:
-            reg_fields = extract_register_fields(
-                mod, year, register["code"], raw_rows, patch
-            )
-            mod_fields.extend(reg_fields)
-            # A register table must have at least two rows
-            # (the first row describes the register itself)
-            if len(reg_fields) < 2:
-                reg_with_no_field.append(register["code"])
-
-        if reg_with_no_field:
-            logger.info(
-                f"    /!\\ {len(reg_with_no_field)} registers with no field "
-                f"catched by camelot : {reg_with_no_field}"
-            )
+        accurate_rows.writerow(mod_header)
         # Write module's fields
         for row in mod_fields:
-            fields.writerow(row)
+            accurate_rows.writerow(row)
 
 
 # 4. `get_fields` and `get_registers`
@@ -613,19 +615,23 @@ def get_fields(mod, year=MOST_RECENT_YEAR, with_reg=False):
 
     `with_reg` is an optional argument to add the REG field (opening every registers
     tables) to this list of dictionaries. Used in ./build_python-sped_json.py """
+    if mod not in MODULES:
+        raise ValueError(
+            f"'{mod}' is not a valid module name. Choose between {MODULES}"
+        )
+    accurate_file = SPECS_PATH / f"{year}" / f"{mod}" / f"{mod}_accurate_fields.csv"
     fields = []
-    accurate_path = f"./specs/{year}/{mod}/{mod}_accurate_fields.csv"
 
     # Build MODULE_accurate_fields.csv if empty or not existing
-    if not os.path.isfile(accurate_path) or os.path.getsize(accurate_path) == 0:
+    if not accurate_file.exists() or accurate_file.stat().st_size == 0:
         build_accurate_fields_csv(mod, year)
 
     # Open the CSV with the accurate fields list
-    with open(accurate_path, "r") as accurate_file:
-        accurate_fields = csv.reader(accurate_file, delimiter=",", quotechar='"')
+    with open(accurate_file, "r") as accurate_csv:
+        accurate_rows = csv.reader(accurate_csv, delimiter=",", quotechar='"')
         # Avoid CSV header
-        next(accurate_fields)
-        for row in accurate_fields:
+        next(accurate_rows)
+        for row in accurate_rows:
             if row[3] != "REG" or with_reg:
                 fields.append(_map_field_row(row, mod))
 
@@ -640,6 +646,12 @@ def get_registers(mod, year=MOST_RECENT_YEAR, raw_rows=None, extracted_registers
 
     If the `extracted_registers` is passed as an argument, it avoids to make the
     extraction another time."""
+    if mod not in MODULES:
+        raise ValueError(
+            f"'{mod}' is not a valid module name. Choose between {MODULES}"
+        )
+    accurate_file = SPECS_PATH / f"{year}" / f"{mod}" / f"{mod}_accurate_fields.csv"
+    mod_keys = [c[1] for c in _get_mod_header(mod)]
 
     if not raw_rows:
         raw_rows = _get_raw_rows(mod, year)
@@ -648,19 +660,16 @@ def get_registers(mod, year=MOST_RECENT_YEAR, raw_rows=None, extracted_registers
     else:
         registers = extract_registers_list(mod, year, raw_rows)
 
-    accurate_path = f"./specs/{year}/{mod}/{mod}_accurate_fields.csv"
-    mod_keys = [c[1] for c in _get_mod_header(mod)]
-
     # Build MODULE_accurate_fields.csv if empty or not existing
-    if not os.path.isfile(accurate_path) or os.path.getsize(accurate_path) == 0:
+    if not accurate_file.exists() or accurate_file.stat().st_size == 0:
         build_accurate_fields_csv(mod, year, raw_rows, registers)
 
     # Open the CSV with the accurate fields list
-    with open(accurate_path, "r") as accurate_file:
-        accurate_fields = csv.reader(accurate_file, delimiter=",", quotechar='"')
+    with open(accurate_file, "r") as accurate_csv:
+        accurate_rows = csv.reader(accurate_csv, delimiter=",", quotechar='"')
         # Avoid CSV header
-        next(accurate_fields)
-        for row in accurate_fields:
+        next(accurate_rows)
+        for row in accurate_rows:
             if row[3] == "REG":
                 for register in registers:
                     if register["code"] == row[0]:
@@ -721,17 +730,17 @@ def _get_usable_csv_header(fields):
 
 
 def build_usable_fields_csv(mod, year):
-    file_path = f"./specs/{year}/{mod}/{mod}_fields.csv"
+    fields_file = SPECS_PATH / f"{year}" / f"{mod}" / f"{mod}_fields.csv"
     fields = get_fields(mod, year)
 
     # Open the CSV with the accurate fields list
-    with open(file_path, "w") as file:
+    with open(fields_file, "w") as f_file:
         # Delete actual usable_file's datas before writing
-        file.seek(0)
-        file.truncate()
+        f_file.seek(0)
+        f_file.truncate()
 
         fields_csv = csv.writer(
-            file, delimiter=",", quotechar='"', quoting=csv.QUOTE_ALL
+            f_file, delimiter=",", quotechar='"', quoting=csv.QUOTE_ALL
         )
 
         header = _get_usable_csv_header(fields)
@@ -751,11 +760,11 @@ def build_registers_csv(mod, year, raw_rows=None, extracted_registers=None):
     If no registers argument is passed, the registers list extraction will be made by
     `get_registers`.
     """
-    file_path = f"./specs/{year}/{mod}/{mod}_registers.csv"
+    registers_file = SPECS_PATH / f"{year}" / f"{mod}" / f"{mod}_registers.csv"
     registers = get_registers(mod, year, raw_rows, extracted_registers)
     header = _get_usable_csv_header(registers)
 
-    with open(file_path, "w") as reg_file:
+    with open(registers_file, "w") as reg_file:
         # Delete actual reg_file's datas before writing
         reg_file.seek(0)
         reg_file.truncate()
@@ -808,6 +817,10 @@ def extract_blocks(mod, year, raw_rows=None):
 def get_blocks(mod, year, raw_rows=None, extracted_blocks=None):
     """Return a list of dictionaries representing module's blocks.
     Used in ./build_python-sped_json.py"""
+    if mod not in MODULES:
+        raise ValueError(
+            f"'{mod}' is not a valid module name. Choose between {MODULES}"
+        )
     blocks = []
     if not extracted_blocks:
         extracted_blocks = extract_blocks(mod, year, raw_rows)
@@ -853,12 +866,13 @@ def main(year, patch):
     - MODULE_fields.csv : list all the module's registers fields with unified and
     'usable' interpreted values (useful to create python objects from these fields)."""
 
-    for mod in ["ecd", "ecf", "efd_icms_ipi", "efd_pis_cofins"]:
+    for mod in MODULES:
         logger.info(f"\nBuilding CSV files for {mod.upper()} {year}...")
 
-        if patch and not os.path.isfile(
-            f"./specs/{year}/camelot_patch/{mod}_camelot_patch.csv"
-        ):
+        patch_file = (
+            SPECS_PATH / f"{year}" / "camelot_patch" / f"{mod}_camelot_patch.csv"
+        )
+        if patch and not patch_file.is_file():
             logger.warning(
                 f"    No CSV patch '{mod}_camelot_patch.csv' found for {mod.upper()} "
                 f"in './specs/{year}/'"

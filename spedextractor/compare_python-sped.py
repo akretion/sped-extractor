@@ -3,11 +3,12 @@
 import logging
 
 import click
-from build_csv import get_fields, get_registers
 from sped.efd.icms_ipi import registros as efd_icms_ipi_registers
 from sped.efd.pis_cofins import registros as efd_pis_cofins_registers
 from sped.escrituracao import Escrituracao
-from years import MOST_RECENT_YEAR, OLDEST_YEAR
+
+from .build_csv import get_fields, get_registers
+from .constants import MODULES, MOST_RECENT_YEAR, OLDEST_YEAR
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
@@ -133,7 +134,7 @@ def _compare_fields(mod, year, common_reg, pysped_fields, detail):
 )
 def main(year, detail):
     """Compare extracted registerts and fields with python-sped library."""
-    for mod in ["ecd", "ecf", "efd_icms_ipi", "efd_pis_cofins"]:
+    for mod in MODULES:
         pysped_registers, pysped_fields = _get_python_sped_reg_and_fields(mod)
 
         logger.info(f"\n-- Comparing {mod.upper()} module...")

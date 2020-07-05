@@ -5,8 +5,9 @@ import json
 import logging
 
 import click
-from build_csv import get_blocks, get_fields, get_registers
-from years import MOST_RECENT_YEAR, OLDEST_YEAR
+
+from .build_csv import get_blocks, get_fields, get_registers
+from .constants import MODULES, MOST_RECENT_YEAR, OLDEST_YEAR, SPECS_PATH
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
@@ -27,7 +28,8 @@ def _convert_length(f):
 def _build_pythonsped_json(mod, year):
     """Build a module dictionary organized with nested registers and fields following
     the structure and the keys for python-sped leiautes and save it as a JSON file"""
-    json_path = f"./specs/{year}/{mod}/{mod}_python-sped.json"
+    json_file = SPECS_PATH / f"{year}" / f"{mod}" / f"{mod}_python-sped.json"
+    dl_info_file = SPECS_PATH / f"{year}" / "download_info.csv"
     blocks = get_blocks(mod, year)
     registers = get_registers(mod, year)
     fields = get_fields(mod, year, with_reg=True)
@@ -36,7 +38,7 @@ def _build_pythonsped_json(mod, year):
     # module's download_info.csv file
     module = {}
     module["tipo"] = mod
-    with open(f"./specs/{year}/download_info.csv", "r") as csvfile:
+    with open(dl_info_file, "r") as csvfile:
         reader = csv.reader(csvfile, delimiter=",", quotechar='"')
         header = next(reader)
         col_mod = header.index("module")
@@ -91,12 +93,12 @@ def _build_pythonsped_json(mod, year):
         # Append reg
         module["registros"].append(reg)
 
-    with open(json_path, "w") as json_file:
-        # Delete actual json_file's datas before writing
-        json_file.seek(0)
-        json_file.truncate()
+    with open(json_file, "w") as json_f:
+        # Delete actual json_f's datas before writing
+        json_f.seek(0)
+        json_f.truncate()
 
-        json.dump(module, json_file, ensure_ascii=False, indent=2)
+        json.dump(module, json_f, ensure_ascii=False, indent=2)
 
 
 @click.command()
@@ -111,7 +113,7 @@ def _build_pythonsped_json(mod, year):
 def main(year):
     """Build a JSON file with the module's fields for each module."""
     logger.info("Building JSON files for each modules...\n")
-    for mod in ["ecd", "ecf", "efd_icms_ipi", "efd_pis_cofins"]:
+    for mod in MODULES:
         _build_pythonsped_json(mod, year)
         logger.info(f"> {mod}_python-sped.json\n")
 
