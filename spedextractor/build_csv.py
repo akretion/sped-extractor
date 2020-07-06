@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 This module is divided in 5 steps in order to build usable CSV files from the raw CSV
 extracted by extract_tables.py :
