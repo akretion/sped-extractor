@@ -4,7 +4,7 @@ import logging
 
 import click
 
-from .build_csv import _get_raw_rows, _is_reg_row, clean_row
+from .build_csv import _is_reg_row, clean_row, get_raw_rows
 from .constants import MODULES, MOST_RECENT_YEAR, OLDEST_YEAR
 
 logger = logging.getLogger(__name__)
@@ -12,10 +12,10 @@ logger.addHandler(logging.StreamHandler())
 logger.setLevel(logging.INFO)
 
 
-def _get_mod_headers(mod, year):
+def get_mod_table_headers(mod, year):
     previous_row = False
     headers = []
-    raw_rows = _get_raw_rows(mod, year)
+    raw_rows = get_raw_rows(mod, year)
 
     for page in raw_rows:
         for row in raw_rows[page]:
@@ -41,7 +41,7 @@ def main(year):
     Used to define the modules headers hard-coded at the beginning of ./build_csv.py .
     """
     for mod in MODULES:
-        headers = _get_mod_headers(mod, year)
+        headers = get_mod_table_headers(mod, year)
         logger.info(f"\n{mod.upper()}'s headers :")
         for header in headers:
             logger.info(header)

@@ -17,7 +17,16 @@ Os módulos da SPED tratados por esse package são :
 - *MODULE_registers.csv* : a lista detalhada dos **registros** do módulo ``MODULE``.
 - *MODULE_accurate_fields.csv* : a lista das linhas dos **campos** de cada registro *como eles aparecem no pdf* das especificações (para conferir e melhorar o resultado da extração).
 - *MODULE_fields.csv* : a lista dos mesmos campos porém **com atributos "interpretados"**, utilizáveis mais facilmente por outros programas.
-- *MODULE_python-sped.json* : A lista dos blocos, registros e campos de cada módulo, formatada em JSON, seguindo o leiaute do package `python-sped`_ para ser utilizado por ele.
+- *MODULE_pythonsped.json* : A lista dos blocos, registros e campos de cada módulo, formatada em JSON, seguindo o leiaute do package `python-sped`_ para ser utilizado por ele.
+
+E os campos, registros e blocos de cada módulo são accessiveis como dicionários python com um simples :
+
+.. code-block:: python
+
+  >>> from spedextractor import get_fields, get_registers, get_blocks
+  >>> get_fields("ecd")
+    [{'register': '0000', 'index': 2, 'code': 'LECD', 'desc': 'Texto fixo contendo “LECD”.', 'length': '004', 'type': 'char', 'required': True, [...]}, [...] ]
+
 
 
 **Table of contents**
@@ -40,15 +49,9 @@ EFD_PIS_COFINS_registers.csv_  EFD_PIS_COFINS_accurate_fields.csv_  EFD_PIS_COFI
 Instalação
 ============
 
-O package ``spedextractor`` da última versão de `camelot`_ para funcionar. Para isso precisa primeiro `instalar as dependências de camelot <https://camelot-py.readthedocs.io/en/master/user/install-deps.html>`_ ::
+.. code-block:: shell
 
-  $ apt install python3-tk ghostscript
-
-E depois instalar camelot a partir do repositório github ::
-
-  $ git clone https://www.github.com/camelot-dev/camelot
-  $ cd camelot
-  $ pip install ".[cv]"
+  $ pip install sped-extractor
 
 Uma vez `camelot`_ instalado, é só baixar esse repositório ::
 
@@ -108,13 +111,13 @@ Os links usados para baixar esses pdf se encontram no arquivo *download_info.csv
   ⚠️  É importante diferenciar o ano de *publicação* dos manuais do ano de *aplicação* desses manuais. Assim, os pdf baixados na pasta **2020/** correspondem às tabelas para serem usadas principalmente no ano-calendário de **2019** (informação anotada na colona ``date_init`` do arquivo *download_info.csv*).
 
 
-2. ⛏️ ``./extract_csv.py`` : Use `camelot`_ para **extrair as tabelas dos pdf** e coloque os arquivos CSV extraidos na pasta */specs/YEAR/MODULE/raw_camelot_csv/* :
+2. ⛏️ ``./extract_tables.py`` : Use `camelot`_ para **extrair as tabelas dos pdf** e coloque os arquivos CSV extraidos na pasta */specs/YEAR/MODULE/raw_camelot_csv/* :
 
   A opção ``--limit=n`` é facultativa para extrair apenas as tabelas das 'n' primeiras páginas.
 
 ::
 
-  PATH_TO/sped-extractor/spedextractor$ ./extract_csv.py --limit=5
+  PATH_TO/sped-extractor/spedextractor$ ./extract_tables.py --limit=5
   Extracting tables from SPED pdf. It can take a while (easily 20 minutes)
   > ECD - 5 pages
       extracting pages 0 to 5...
@@ -151,7 +154,7 @@ Os links usados para baixar esses pdf se encontram no arquivo *download_info.csv
 
 Além desses scripts básicos, existe também o ``./build_python-sped_json.py`` para **criar um arquivo JSON "tipo python-sped"** por módulo com a lista dos campos com atributos "interpretados" :
 
-  ⚠️  Da mesma maneira que para usar ``./build_csv.py``, é necessário extrair primeiro as tabelas dos pdf com ``./extract_csv.py`` antes de usar ``./build_python-sped_json.py``
+  ⚠️  Da mesma maneira que para usar ``./build_csv.py``, é necessário extrair primeiro as tabelas dos pdf com ``./extract_tables.py`` antes de usar ``./build_python-sped_json.py``
 
 ::
 
@@ -238,22 +241,22 @@ Esse package está administrado por `Akretion <https://akretion.com/pt-BR>`_.
 .. _camelot: https://github.com/atlanhq/camelot
 .. _python-sped: https://github.com/sped-br/python-sped/
 
-.. _ECD_registers.csv: specs/2020/ecd/ecd_registers.csv
-.. _ECF_registers.csv: specs/2020/ecf/ecf_registers.csv
-.. _EFD_ICMS_IPI_registers.csv: specs/2020/efd_icms_ipi/efd_icms_ipi_registers.csv
-.. _EFD_PIS_COFINS_registers.csv: specs/2020/efd_pis_cofins/efd_pis_cofins_registers.csv
+.. _ECD_registers.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/ecd/ecd_registers.csv
+.. _ECF_registers.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/ecf/ecf_registers.csv
+.. _EFD_ICMS_IPI_registers.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/efd_icms_ipi/efd_icms_ipi_registers.csv
+.. _EFD_PIS_COFINS_registers.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/efd_pis_cofins/efd_pis_cofins_registers.csv
 
-.. _ECD_accurate_fields.csv: specs/2020/ecd/ecd_accurate_fields.csv
-.. _ECF_accurate_fields.csv: specs/2020/ecf/ecf_accurate_fields.csv
-.. _EFD_ICMS_IPI_accurate_fields.csv: specs/2020/efd_icms_ipi/efd_icms_ipi_accurate_fields.csv
-.. _EFD_PIS_COFINS_accurate_fields.csv: specs/2020/efd_pis_cofins/efd_pis_cofins_accurate_fields.csv
+.. _ECD_accurate_fields.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/ecd/ecd_accurate_fields.csv
+.. _ECF_accurate_fields.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/ecf/ecf_accurate_fields.csv
+.. _EFD_ICMS_IPI_accurate_fields.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/efd_icms_ipi/efd_icms_ipi_accurate_fields.csv
+.. _EFD_PIS_COFINS_accurate_fields.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/efd_pis_cofins/efd_pis_cofins_accurate_fields.csv
 
-.. _ECD_fields.csv: specs/2020/ecd/ecd_fields.csv
-.. _ECF_fields.csv: specs/2020/ecf/ecf_fields.csv
-.. _EFD_ICMS_IPI_fields.csv: specs/2020/efd_icms_ipi/efd_icms_ipi_fields.csv
-.. _EFD_PIS_COFINS_fields.csv: specs/2020/efd_pis_cofins/efd_pis_cofins_fields.csv
+.. _ECD_fields.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/ecd/ecd_fields.csv
+.. _ECF_fields.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/ecf/ecf_fields.csv
+.. _EFD_ICMS_IPI_fields.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/efd_icms_ipi/efd_icms_ipi_fields.csv
+.. _EFD_PIS_COFINS_fields.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/efd_pis_cofins/efd_pis_cofins_fields.csv
 
-.. _ECD_python-sped.json: specs/2020/ecd/ecd_python-sped.json
-.. _ECF_python-sped.json: specs/2020/ecf/ecf_python-sped.json
-.. _EFD_ICMS_IPI_python-sped.json: specs/2020/efd_icms_ipi/efd_icms_ipi_python-sped.json
-.. _EFD_PIS_COFINS_python-sped.json: specs/2020/efd_pis_cofins/efd_pis_cofins_python-sped.json
+.. _ECD_python-sped.json: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/ecd/ecd_pythonsped.json
+.. _ECF_python-sped.json: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/ecf/ecf_pythonsped.json
+.. _EFD_ICMS_IPI_python-sped.json: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/efd_icms_ipi/efd_icms_ipi_pythonsped.json
+.. _EFD_PIS_COFINS_python-sped.json: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/specs/2020/efd_pis_cofins/efd_pis_cofins_pythonsped.json

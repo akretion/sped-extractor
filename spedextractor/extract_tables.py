@@ -6,6 +6,7 @@ import camelot
 import click
 from PyPDF2 import PdfFileReader
 
+from . import download
 from .constants import MODULES, MOST_RECENT_YEAR, OLDEST_YEAR, SPECS_PATH
 
 logger = logging.getLogger(__name__)
@@ -22,12 +23,20 @@ def _limit_pages(pdf, limit=False):
     return limit if limit else pdf_file.getNumPages()
 
 
-def _extract_csv(mod, pdf, year, limit=False):
+def extract_mod_tables(mod, year, pdf=None, limit=False):
+    if not pdf:
+        download.download_mod_pdf(mod, year)
+        pdf = SPECS_PATH / f"{year}" / "pdf" / f"{mod}.pdf"
+
     pdf_path = str(pdf.resolve())
     limit_pages = _limit_pages(pdf, limit)
     export_csv = SPECS_PATH / f"{year}" / f"{mod}" / "raw_camelot_csv"
     export_csv_path = str((export_csv / f"{mod}.csv").resolve())
 
+    logger.info(
+        f"> Extracting pdf {mod.upper()} {year} - {limit_pages} pages. "
+        "It can take easily 5 minutes..."
+    )
     # Creating directory if not existing
     export_csv.mkdir(parents=True, exist_ok=True)
     # Deleting previous extracted files if existing
@@ -38,7 +47,7 @@ def _extract_csv(mod, pdf, year, limit=False):
     i = START
     while i < limit_pages:
         limit = min(i + STEP, limit_pages)
-        logger.info(f"    extracting pages {i} to {limit}...")
+        logger.info(f"    pages {i} to {limit}...")
         tables = camelot.read_pdf(pdf_path, pages=f"{i}-{limit}", line_scale=40)
         tables.export(export_csv_path, f="csv", compress=False)
         i += STEP
@@ -74,16 +83,7 @@ def main(year, limit):
         "(easily 20 minutes)"
     )
     for mod in MODULES:
-        pdf = SPECS_PATH / f"{year}" / "pdf" / f"{mod}.pdf"
-        assert pdf.is_file(), (
-            f"No pdf found for {mod.upper()} in './specs/{year}/pdf/'. "
-            f"Please run ''./download.py --year={year}' before continuing."
-        )
-
-        limit_pages = _limit_pages(pdf, limit)
-
-        logger.info(f"> {mod.upper()} - {limit_pages} pages")
-        _extract_csv(mod, pdf, year, limit)
+        extract_mod_tables(mod, year, limit)
 
 
 if __name__ == "__main__":

@@ -25,14 +25,16 @@ def _convert_length(f):
     return tamanho
 
 
-def _build_pythonsped_json(mod, year):
+def build_mod_pythonsped_json(mod, year):
     """Build a module dictionary organized with nested registers and fields following
     the structure and the keys for python-sped leiautes and save it as a JSON file"""
-    json_file = SPECS_PATH / f"{year}" / f"{mod}" / f"{mod}_python-sped.json"
+    json_file = SPECS_PATH / f"{year}" / f"{mod}" / f"{mod}_pythonsped.json"
     dl_info_file = SPECS_PATH / f"{year}" / "download_info.csv"
     blocks = get_blocks(mod, year)
     registers = get_registers(mod, year)
     fields = get_fields(mod, year, with_reg=True)
+
+    logger.info(f"> Building {mod}_pythonsped.json\n")
 
     # 1) Initiate dictionary with module's name, date and pdf version taken from the
     # module's download_info.csv file
@@ -114,8 +116,7 @@ def main(year):
     """Build a JSON file with the module's fields for each module."""
     logger.info("Building JSON files for each modules...\n")
     for mod in MODULES:
-        _build_pythonsped_json(mod, year)
-        logger.info(f"> {mod}_python-sped.json\n")
+        build_mod_pythonsped_json(mod, year)
 
 
 if __name__ == "__main__":

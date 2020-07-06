@@ -27,12 +27,13 @@ def _get_url(mod, year):
                     return row[col_url]
     except FileNotFoundError:
         logger.exception(
-            f"The file '{dl_info_file}' containing the pdf URLs is required to "
-            "download them."
+            f"The file '{dl_info_file}' containing the SPED {year} pdfs URLs is "
+            "required to download them."
         )
 
 
-def _download(mod, year):
+def download_mod_pdf(mod, year):
+    logger.info(f"> Downloading pdf {mod.upper()} {year}...")
     pdf_folder = SPECS_PATH / f"{year}" / "pdf"
     # Create pdf folder if necessary
     pdf_folder.mkdir(parents=True, exist_ok=True)
@@ -74,8 +75,7 @@ def main(year):
     """Download SPED specifications pdf from http://sped.rfb.gov.br/"""
 
     for module in MODULES:
-        logger.info(f"\n> Downloading pdf {module.upper()} {year}...")
-        _download(module, year)
+        download_mod_pdf(module, year)
 
 
 if __name__ == "__main__":

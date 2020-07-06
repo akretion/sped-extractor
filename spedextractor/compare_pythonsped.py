@@ -67,6 +67,7 @@ def _get_python_sped_reg_and_fields(mod):
 
 
 def _compare_registers(mod, year, pysped_registers):
+    logger.info("\nREGISTERS :")
     ext_registers = get_registers(mod, year)
     ext_reg_codes = [reg["code"] for reg in ext_registers]
 
@@ -83,6 +84,7 @@ def _compare_registers(mod, year, pysped_registers):
 
 
 def _compare_fields(mod, year, common_reg, pysped_fields, detail):
+    logger.info("\nFIELDS :")
     ext_fields = get_fields(mod, year)
     not_in_pysped = {}
     not_in_extractor = {}
@@ -138,10 +140,8 @@ def main(year, detail):
         pysped_registers, pysped_fields = _get_python_sped_reg_and_fields(mod)
 
         logger.info(f"\n-- Comparing {mod.upper()} module...")
-        logger.info("\nREGISTERS :")
         common_reg = _compare_registers(mod, year, pysped_registers)
 
-        logger.info("\nFIELDS :")
         _compare_fields(mod, year, common_reg, pysped_fields, detail)
 
 
