@@ -3,3 +3,4 @@ unidecode
 click
 # only for ./compare_python-sped.py :
 python-sped
+requests
