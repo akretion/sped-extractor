@@ -243,6 +243,13 @@ def _split_code_desc(row, c):
 
 def _format_row(row):
     """Separates columns joined together"""
+    # TODO FIXME
+    # ECD VL_CTA_INI_ -> VL_CTA_INI
+    # ECF NIF/CNPJ -> NIF
+    # EFD ICMS MES_REF* -> MES_REF
+    # EFD ICMS TP_CT-e -> ??
+    # EFD ICMS COD_SIT; -> COD_SIT
+
     # change ["04  VL_BC_RET", ""] into ["04","VL_BC_RET"]
     if _is_joined_index(row, 0) and row[1] == "":
         split = row[0].split(" ")
@@ -551,7 +558,7 @@ def _map_field_row(row, mod):
             field[key] = row[index + 2]
 
     # Interpret raw datas
-    field["index"] = int(field["index"].replace("*", "0"))  # TODO check * cases
+    field["index"] = int(field.get("index", "0").replace("*", "0"))  # TODO check * cases
     field["code"] = _normalize_field_code(field["code"])
 
     field = _convert_field_type(field)
