@@ -50,8 +50,10 @@ from odoo import fields, models
 # Reinf https://www.youtube.com/watch?v=K4b3XqkYyJk
 
 
+# TODO ECD I550 e I555: campos RZ_CONT e RZ_CONT_TOT são parametrizaveis, ver manual e demo!
+
 def collect_register_children(registers):
-    """reads the registers hierarchy."""
+    """read the registers hierarchy."""
     for register_info in registers:
         if register_info["level"] > 1:
             collect_children = False
@@ -78,6 +80,11 @@ def collect_register_children(registers):
 def get_structure(mod, registers):
     structure = f"STRUCTURE SPED {mod.upper()}"
     for reg in registers:
+        short_desc, left = extract_string_and_help(
+            mod, reg["code"], reg["desc"], set(), 50
+        )
+        reg["short_desc"] = short_desc
+
         if reg["level"] == 0:
             continue
         if reg["level"] == 1:
@@ -86,13 +93,9 @@ def get_structure(mod, registers):
             continue
         if reg["level"] == 2:
             structure += "\n"
-            desc, left = extract_string_and_help(
-                mod, reg["code"], reg["desc"].upper(), set()
-            )
+            desc = reg["short_desc"].upper()
         elif reg["level"] == 3:
-            desc, left = extract_string_and_help(
-                mod, reg["code"], reg["desc"].lower(), set()
-            )
+            desc = reg["short_desc"]
         else:
             desc = ""
         if desc == reg["code"]:
@@ -111,7 +114,15 @@ def get_structure(mod, registers):
 class SpedFilters(OdooFilters):
     def registry_name(self, name: str) -> str:
         name = self.class_name(name)
-        return f"{self.schema}.{self.version}.{name[-4:]}"
+        return f"{self.schema}.{self.version}.{name[-4:].lower()}"
+
+    def class_properties(
+        self,
+        obj: Class,
+        parents: List[Class],
+    ) -> str:
+        register = list(filter(lambda x: x["code"] == obj.name[-4:], self.registers))[0]
+        return f"_sped_level = {register['level']}"
 
     def extract_field_attributes(self, parents: List[Class], attr: Attr):
         obj = parents[-1]
@@ -142,7 +153,7 @@ class SpedFilters(OdooFilters):
         ]:  # (not in trivial types)
             kwargs["xsd_type"] = xsd_type
 
-        if help_attr and help_attr != string:
+        if help_attr:
             kwargs["help"] = help_attr
 
         return kwargs
@@ -171,6 +182,9 @@ def main(year):
         GeneratorSubstitution(
             type=ObjectType.FIELD, search="TP_CT-e", replace="TP_CT_e"
         ),  # efd_icms_ipi, efd_pis_cofins
+        GeneratorSubstitution(
+            type=ObjectType.FIELD, search="IND_E-COM_TI", replace="IND_E_COM_TI"
+        ),  # ecf
     ]
     config.conventions.field_name.safe_prefix = (
         "NO_PREFIX_NO_SAFE_NAME"  # no field prefix
@@ -187,12 +201,21 @@ def main(year):
     generator.filters.python_inherit_model = "models.Model"
     generator.filters.inherit_model = "l10n_br_sped.mixin"
 
+    security_csv = '"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"\n'
     for mod in MODULES:
         print("********************* MOD", mod)
         schema = f"l10n_br_sped.{mod}"
         generator.filters.schema = schema
         version = "1"  # FIXME
         generator.filters.version = version
+        mod_fields = get_fields(mod, year)
+
+        views_xml = '<?xml version="1.0" encoding="UTF-8"?>\n<odoo>'
+        views_xml += ('\n    <menuitem name="%s"'
+            ' parent="menu_root" id="%s" sequence="2" />'
+        ) % (mod.replace("_", " ").upper(), mod)
+        last_bloco = None
+
         classes = []
         registers = list(
             sorted(
@@ -210,24 +233,56 @@ def main(year):
             )
         )
         collect_register_children(registers)
+        generator.filters.registers = registers
 
-        fields = get_fields(mod, year)
-        field_iterator = groupby(fields, lambda x: x["register"])
-        for reg_code, group in field_iterator:
-            matching_registers = list(
-                filter(lambda x: x["code"] == reg_code, registers)
+        for register in registers:
+            short_desc, left = extract_string_and_help(
+                mod, register["code"], register["desc"], set(), 50
             )
-            if not matching_registers:  # non data register
-                continue
-            register = matching_registers[0]
+            register["short_desc"] = short_desc
+
+            bloco_char = register["code"][0]
+            if bloco_char != last_bloco:
+                views_xml += ('\n\n\n    <menuitem name="BLOCO %s"'
+                            ' parent="%s" id="%s_%s"/>'
+                            ) % (bloco_char,
+                                mod,
+                                mod,
+                                bloco_char.lower())
+            last_bloco = bloco_char
+
+            if register["level"] == 2:
+                action_name = register["short_desc"]
+                action = """\n
+    <record id='%s_%s_action' model='ir.actions.act_window'>
+        <field name="name">%s</field>
+        <field name="res_model">l10n_br_sped.%s.%s.%s</field>
+        <field name="view_mode">tree,form</field>
+    </record>""" % (mod,
+                        register["code"].lower(),
+                        action_name,
+                        mod,
+                        version,
+                        register["code"].lower())
+                views_xml += action
+
+                views_xml += ('\n    <menuitem action="%s_%s_action"'
+                            ' parent="%s_%s" id="%s_%s"/>') % (
+                                mod,
+                                register["code"].lower(),
+                                mod,
+                                bloco_char.lower(),
+                                mod,
+                                register["code"].lower(),
+                            )
+
+
             if register["level"] in (0, 1):  # Blocks and their start/end registers
                 continue
-            #            if register["code"][0] in ["0", "9"]:  # TODO sure? These aren't transaction but having them in a table might be handy
-            #                continue
 
-            name = f"Registro{reg_code}"
+            name = f"Registro{register['code']}"
             attrs = []
-            for field in list(group):
+            for field in list(filter(lambda x: x["register"] == register["code"], mod_fields)): #list(group):
                 tdec = None
                 if field["code"] in (
                     "REG",
@@ -299,11 +354,15 @@ def main(year):
                 child_qname = "Registro{}".format(child["code"])
                 types = [AttrType(qname=child_qname, native=False)]
                 m2o_field_name = "reg_{}_id".format(child["code"])
+                restrictions = Restrictions(
+                    min_occurs=0  # TODO sure?
+                )
                 attr = Attr(
                     tag=m2o_field_name,
                     name=m2o_field_name,
                     types=types,
-                    help=child["desc"],
+                    restrictions=restrictions,
+                    help=child["code"] + ": " + child["desc"],
                 )
                 attrs.append(attr)
 
@@ -329,13 +388,14 @@ def main(year):
                     max_occurs=999999
                 )  # TODO make it work. It uses metadata in generate.py and fail
 
-                m2o_field_name = "reg_{}_ids".format(child["code"])
+                o2m_field_name = "reg_{}_ids".format(child["code"])
+                # TODO find a way to pass string=child["code"]
                 attr = Attr(
-                    tag=m2o_field_name,
-                    name=m2o_field_name,
+                    tag=o2m_field_name,
+                    name=o2m_field_name,
                     types=types,
                     restrictions=restrictions,
-                    help=child["desc"],
+                    help=child["code"] + ": " + child["desc"],
                 )
                 attrs.append(attr)
 
@@ -350,6 +410,8 @@ def main(year):
             )
             classes.append(k)
             generator.filters.all_complex_types.append(k)
+            security_csv += f"access_{mod}_{register['code'].lower()},{mod}.{register['code'].lower()},model_l10n_br_sped_{mod}_{version}_{register['code'].lower()},base.group_user,1,1,1,1\n"
+
         structure = get_structure(mod, registers)
         source = (
             HEADER
@@ -362,9 +424,20 @@ def main(year):
             source = format_str(source, mode=FileMode())
         except Exception as e:
             print(e)
-        path = Path(str(SPECS_PATH) + f"/{year}/{mod}/sped_{mod}.py")
+
+        base_path = str(SPECS_PATH) + f"/{year}/"
+#        base_path = "/home/rvalyi/DEV/analogica/odoo/local-src/"  # FIXME
+        path = Path(f"/{base_path}/l10n_br_sped/models/sped_{mod}.py")
         print("written file", path)
         path.write_text(source, encoding="utf-8")
+
+        path = Path(f"/{base_path}/l10n_br_sped/views/sped_{mod}.xml")
+        path.write_text(views_xml + "\n</odoo>", encoding="utf-8")
+
+
+    path = Path(f"/{base_path}/l10n_br_sped/security/ir.model.access.csv")
+    path.write_text(security_csv, encoding="utf-8")
+
 
 
 if __name__ == "__main__":
