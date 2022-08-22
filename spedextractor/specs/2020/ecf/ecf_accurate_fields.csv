@@ -117,6 +117,7 @@
 "C040","96","9","NAT_LIVR","Natureza do Livro: finalidade a que se destina o instrumento","C","80","-","-","Sim"
 "C040","96","10","COD_VER_LC","Código da Versão do Leiaute Contábil","C","-","-","-","Sim"
 "C040","96","11","IND_ESC","Indicador da Forma de Escrituração Contábil: G - Livro Diário (Completo sem escrituração auxiliar) R - Livro Diário com Escrituração Resumida (com escrituração auxiliar) B - Livro Balancetes Diários e Balanços","C","1","-","[G; R; B; S]","Sim"
+"C040","96","12","IDENT_MF","Identificação de moeda funcional: Indica que a escrituração abrange valores com base na moeda funcional (art. 287 da Instrução Normativa RFB nº 1.700, de 14 de março de 2017).","C","1","-","[S;N]","Sim"
 "C050","97","1","REG","Texto fixo contendo a identificação do registro (C050).","C","4","-","[C050]","Sim"
 "C050","97","2","DT_ALT","Data de Atualização (inclusão/ alteração).","N","8","-","-","Sim"
 "C050","97","3","COD_NAT","Código da Natureza da Conta/Grupo de Contas.","C","2","-","-","Sim"

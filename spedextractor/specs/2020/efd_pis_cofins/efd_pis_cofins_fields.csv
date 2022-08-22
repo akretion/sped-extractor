@@ -175,7 +175,7 @@
 "C100","3","IND_EMIT","char","True","001*","","C","S","Indicador do emitente do documento fiscal: 0- Emissão própria; 1- Terceiros"
 "C100","4","COD_PART","char","True","060","","C","S","Código do participante (campo 02 do Registro 0150): - do emitente do documento ou do remetente das mercadorias, no caso de entradas; - do adquirente, no caso de saídas"
 "C100","5","COD_MOD","char","True","002*","","C","S","Código do modelo do documento fiscal, conforme a Tabela 4.1.1"
-"C100","6","COD_SIT;","int","True","002*","","N","S","Código da situação do documento fiscal, conforme a Tabela 4.1.2"
+"C100","6","COD_SIT","int","True","002*","","N","S","Código da situação do documento fiscal, conforme a Tabela 4.1.2"
 "C100","7","SER","char","False","003","","C","N","Série do documento fiscal"
 "C100","8","NUM_DOC","int","True","009","","N","S","Número do documento fiscal"
 "C100","9","CHV_NFE","int","False","044*","","N","N","Chave da Nota Fiscal Eletrônica ou da NFC-e"
