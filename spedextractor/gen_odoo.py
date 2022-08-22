@@ -3,6 +3,7 @@ from collections import defaultdict
 from collections import OrderedDict
 from itertools import groupby
 from pathlib import Path
+from typing import Dict
 from typing import List
 
 import click
@@ -25,7 +26,6 @@ from .build_csv import _is_reg_row
 from .build_csv import clean_row
 from .build_csv import get_blocks
 from .build_csv import get_fields
-from .build_csv import get_raw_rows
 from .build_csv import get_registers
 from .constants import MODULES
 from .constants import MOST_RECENT_YEAR
@@ -43,9 +43,10 @@ HEADER = """# Copyright 2022 Akretion - Raphaël Valyi <raphael.valyi@akretion.c
 
 IMPORTS = """import textwrap
 from odoo import fields, models
+from . import sped_models
 """
 
-
+# Tem um projeto php que tem o mesmo scope https://github.com/nfephp-org/sped-efd
 # NOTE doc estrutura https://www.youtube.com/watch?v=dhdo9lXwVZg
 # Reinf https://www.youtube.com/watch?v=K4b3XqkYyJk
 
@@ -70,7 +71,8 @@ def collect_register_children(registers):
                             children_m2o.append(r)
                         else:
                             children_o2m.append(r)
-                            r["parent"] = register_info
+                            r["o2m_parent"] = register_info
+                        r["parent"] = register_info
                     elif r["level"] <= level:
                         break
             register_info["children_o2m"] = children_o2m
@@ -81,7 +83,7 @@ def get_structure(mod, registers):
     structure = f"STRUCTURE SPED {mod.upper()}"
     for reg in registers:
         short_desc, left = extract_string_and_help(
-            mod, reg["code"], reg["desc"], set(), 50
+            mod, reg["code"], reg["desc"], set(), 100
         )
         reg["short_desc"] = short_desc
 
@@ -100,7 +102,7 @@ def get_structure(mod, registers):
             desc = ""
         if desc == reg["code"]:
             desc = reg["desc"][:40] + "..."
-        if reg.get("parent"):
+        if reg.get("o2m_parent"):
             structure += (
                 "\n" + "  " * (reg["level"] - 1) + "\u2261 " + reg["code"] + " " + desc
             )
@@ -125,38 +127,80 @@ class SpedFilters(OdooFilters):
         return f"_sped_level = {register['level']}"
 
     def extract_field_attributes(self, parents: List[Class], attr: Attr):
+        """
+        xsdata-odoo override. Note that because we pass native xsdata types
+        (Model, Attr, Restriction...) to xsdata-odoo, we may not be able to
+        pass every detail we want to the templating. So here we lookup for
+        these details again when we need.
+        """
         obj = parents[-1]
         kwargs = OrderedDict()
         if not hasattr(obj, "unique_labels"):
             obj.unique_labels = set()  # will avoid repeating field labels
         string, help_attr = extract_string_and_help(
-            obj.name, attr.name, attr.help, obj.unique_labels
+            obj.name, attr.name, attr.help, obj.unique_labels, 50
         )
+#        if attr.name == "REC_NRB_BLOCO_C":
+#            print("wwwwwwwwwwww", string, help_attr)
+#            xxx
         kwargs["string"] = string
 
         metadata = self.field_metadata(attr, {}, [p.name for p in parents])
         if metadata.get("required") or (not attr.is_list and not attr.is_optional):
-            # we choose not to put required=True (required in database) to avoid
-            # messing with existing Odoo modules.
-            if "sped" in self.schema:
-                kwargs["required"] = True
-            else:
-                kwargs["xsd_required"] = True
+            kwargs["required"] = True
 
-        if "sped" in self.schema and attr.default:  # hack to pass TDec_
-            xsd_type = attr.default
+        # relational kwargs:
+        if attr.name.endswith("_id") and "_Registro" in attr.name:
+            kwargs["ondelete"] = "cascade"
+        elif attr.name.startswith("reg_") and attr.name.endswith("_ids"):
+            target_reg_code = attr.name.replace("reg_", "").replace("_ids", "")
+            target_register = list(filter(lambda x: x["code"] == target_reg_code, self.registers))[0]
+            kwargs["sped_card"] = target_register["card"]
+            kwargs["sped_required"] = target_register.get("spec_required", "UNDEF_REQUIRED")
         else:
-            xsd_type = self.simple_type_from_xsd(obj, attr)
-        if xsd_type and xsd_type not in [
-            "xsd:string",
-            "xsd:date",
-        ]:  # (not in trivial types)
-            kwargs["xsd_type"] = xsd_type
+            # simple types
+            register = list(filter(lambda x: x["code"] == obj.name[-4:], self.registers))[0]
+            field = list(filter(lambda x: x["code"] == attr.name and x["register"] == obj.name[-4:], self.fields))[0]
+            if field.get("length") and field["length"].isdigit():  # TODO Sometimes we have an '*' in the pdfs...
+                kwargs["sped_length"] = int(field["length"])
+            if attr.types and attr.types[0].datatype.code =="float" and field.get("decimal"):
+                digits = int(field["decimal"])
+                if digits < 10:
+                    kwargs["xsd_type"] = f"TDec_160{digits}"
+                else:
+                    kwargs["xsd_type"] = f"TDec_16{digits}"
 
         if help_attr:
             kwargs["help"] = help_attr
 
         return kwargs
+
+    def odoo_extract_number_attrs(
+        self, obj: Class, attr: Attr, kwargs: Dict[str, Dict]
+    ):
+        python_type = attr.types[0].datatype.code
+        if python_type in ("float", "decimal"):
+            xsd_type = kwargs.get("xsd_type", "")
+
+            # Brazilian fiscal documents:
+            if xsd_type.startswith("TDec_"):
+                if (
+                    int(xsd_type[7:9]) != 2
+                    or (
+                        not attr.name.startswith("VL_")
+                        and not attr.name.startswith("VAL_")
+                        and not attr.name.startswith("VALOR")
+                    )
+                ):
+                    kwargs["digits"] = (
+                        int(xsd_type[5:7]),
+                        int(xsd_type[7:9]),
+                    )
+                else:
+                    kwargs[
+                        "currency_field"
+                    ] = "brl_currency_id"  # TODO use company_curreny_id
+
 
 
 @click.option(
@@ -202,8 +246,9 @@ def main(year):
     generator.filters.inherit_model = "l10n_br_sped.mixin"
 
     security_csv = '"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"\n'
+
     for mod in MODULES:
-        print("********************* MOD", mod)
+        print(f"\n\n********************* Generating {mod} *********************")
         schema = f"l10n_br_sped.{mod}"
         generator.filters.schema = schema
         version = "1"  # FIXME
@@ -220,10 +265,10 @@ def main(year):
         registers = list(
             sorted(
                 filter(
-                    lambda x: x["code"][0] != "C" or mod not in ("ecd", "ecf"),
+                    lambda x: x["code"][0] != "C" or mod not in ("ecd", "ecf"),  # filled by the validator
                     get_registers(mod, year),
                 ),
-                key=lambda x: x["code"][0] == "0"
+                key=lambda x: x["code"][0] == "0"  # hacky bloco ordering that just does the job
                 and "a" + x["code"]
                 or x["code"][0] == "9"
                 and "d" + x["code"]
@@ -234,10 +279,11 @@ def main(year):
         )
         collect_register_children(registers)
         generator.filters.registers = registers
+        generator.filters.fields = mod_fields
 
         for register in registers:
             short_desc, left = extract_string_and_help(
-                mod, register["code"], register["desc"], set(), 50
+                mod, register["code"], register["desc"], set(), 100
             )
             register["short_desc"] = short_desc
 
@@ -252,7 +298,7 @@ def main(year):
             last_bloco = bloco_char
 
             if register["level"] == 2:
-                action_name = register["short_desc"]
+                action_name = register["code"] + " " + register["short_desc"]
                 action = """\n
     <record id='%s_%s_action' model='ir.actions.act_window'>
         <field name="name">%s</field>
@@ -277,27 +323,22 @@ def main(year):
                             )
 
 
-            if register["level"] in (0, 1):  # Blocks and their start/end registers
+            if register["level"] in (0, 1):
+                # Blocks and their start/end registers don't need to be in the database
                 continue
 
             name = f"Registro{register['code']}"
             attrs = []
-            for field in list(filter(lambda x: x["register"] == register["code"], mod_fields)): #list(group):
-                tdec = None
+            for field in list(filter(lambda x: x["register"] == register["code"], mod_fields)):
                 if field["code"] in (
                     "REG",
-                    "1REG",
                 ):  # no need for DB field for fixed field
                     continue
-
-                # TODO FIXME should be fixed in field extraction upfront!
-                if field["code"][-1] in ("*", "_", ";"):
-                    field["code"] = field["code"][:-1]
 
                 if not field.get("type"):
                     print("ERROR !!!!!!!!!!!!", field)
                     field["type"] = "string"
-                if field["code"].startswith("DT_"):
+                if field["code"].startswith("DT_") or field["code"].startswith("DAT_") or field["code"].startswith("DATA"):
                     types = [
                         AttrType(
                             qname="{http://www.w3.org/2001/XMLSchema}date", native=True
@@ -315,11 +356,6 @@ def main(year):
                         )
                     ]
                 elif field["type"] == "float":
-                    digits = int(field["decimal"])
-                    if digits < 10:
-                        tdec = f"TDec_160{digits}"
-                    else:
-                        tdec = f"TDec_16{digits}"
                     types = [
                         AttrType(
                             qname="{http://www.w3.org/2001/XMLSchema}float", native=True
@@ -332,6 +368,7 @@ def main(year):
                             native=True,
                         )
                     ]
+                    # TODO Some string fields are in fact Selection fields!
                 # TODO diff entrada/saida e O / OC (Obrigatorio Condicional); see ICMS C170
                 restrictions = Restrictions(
                     min_occurs=field.get("required")
@@ -345,26 +382,30 @@ def main(year):
                     restrictions=restrictions,
                     help=field["desc"],
                     index=field["index"],
-                    default=tdec,
                 )
                 attrs.append(attr)
-                # TODO add date_field and company_id if level == 1, or via mixin?
 
-            for child in register["children_m2o"]:
-                child_qname = "Registro{}".format(child["code"])
-                types = [AttrType(qname=child_qname, native=False)]
-                m2o_field_name = "reg_{}_id".format(child["code"])
-                restrictions = Restrictions(
-                    min_occurs=0  # TODO sure?
-                )
-                attr = Attr(
-                    tag=m2o_field_name,
-                    name=m2o_field_name,
-                    types=types,
-                    restrictions=restrictions,
-                    help=child["code"] + ": " + child["desc"],
-                )
-                attrs.append(attr)
+#            if register["level"] == 2:
+#                dates = list(filter(lambda x: "date" in x.types[0].qname, attrs))
+#                if len(dates) == 1:
+#                    print("DATE ", register["code"], dates[0].name)
+#                    print("NO DATE IN", register["code"], [attr.name for attr in attrs])
+
+#            for child in register["children_m2o"]:
+#                child_qname = "Registro{}".format(child["code"])
+#                types = [AttrType(qname=child_qname, native=False)]
+#                m2o_field_name = "reg_{}_id".format(child["code"])
+#                restrictions = Restrictions(
+#                    min_occurs=0  # TODO sure?
+#                )
+#                attr = Attr(
+#                    tag=m2o_field_name,
+#                    name=m2o_field_name,
+#                    types=types,
+#                    restrictions=restrictions,
+#                    help=child["code"] + ": " + child["desc"],
+#                )
+#                attrs.append(attr)
 
             if register.get("parent"):
                 parent = register["parent"]
@@ -381,12 +422,12 @@ def main(year):
                 )
                 attrs.append(attr)
 
-            for child in register["children_o2m"]:
+            for child in register["children_m2o"] + register["children_o2m"]:
                 child_qname = "Registro{}".format(child["code"])
                 types = [AttrType(qname=child_qname, native=False)]
                 restrictions = Restrictions(
                     max_occurs=999999
-                )  # TODO make it work. It uses metadata in generate.py and fail
+                )
 
                 o2m_field_name = "reg_{}_ids".format(child["code"])
                 # TODO find a way to pass string=child["code"]
@@ -395,7 +436,7 @@ def main(year):
                     name=o2m_field_name,
                     types=types,
                     restrictions=restrictions,
-                    help=child["code"] + ": " + child["desc"],
+                    help=child["code"] + " " + child["desc"],
                 )
                 attrs.append(attr)
 
@@ -418,7 +459,7 @@ def main(year):
             + f'\n"""\n{structure}\n"""\n\n'
             + IMPORTS
             + "\n"
-            + generator.render_classes(classes, None)
+            + generator.render_classes(classes, None).replace("fields.Integer(", "sped_models.BigInt(")
         )
         try:
             source = format_str(source, mode=FileMode())
@@ -426,7 +467,7 @@ def main(year):
             print(e)
 
         base_path = str(SPECS_PATH) + f"/{year}/"
-#        base_path = "/home/rvalyi/DEV/analogica/odoo/local-src/"  # FIXME
+        # base_path = "/home/rvalyi/DEV/analogica/odoo/local-src/"  # FIXME
         path = Path(f"/{base_path}/l10n_br_sped/models/sped_{mod}.py")
         print("written file", path)
         path.write_text(source, encoding="utf-8")
