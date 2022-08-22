@@ -217,7 +217,7 @@ def extract_registers_list(mod, year, raw_rows=None):
 
 def _is_joined_index(row, c):
     """ Checks if row's column 'c' start with row's index and need to be split"""
-    if len(row) > 4 and row[c][0:2].isdigit() and len(row[c]) > 5 and " " in row[c]:
+    if len(row) > 4 and row[c][0:1].isdigit() and len(row[c]) > 3 and " " in row[c]:
         return True
     return False
 
@@ -243,18 +243,12 @@ def _split_code_desc(row, c):
 
 def _format_row(row):
     """Separates columns joined together"""
-    # TODO FIXME
-    # ECD VL_CTA_INI_ -> VL_CTA_INI
-    # ECF NIF/CNPJ -> NIF
-    # EFD ICMS MES_REF* -> MES_REF
-    # EFD ICMS TP_CT-e -> ??
-    # EFD ICMS COD_SIT; -> COD_SIT
 
     # change ["04  VL_BC_RET", ""] into ["04","VL_BC_RET"]
     if _is_joined_index(row, 0) and row[1] == "":
         split = row[0].split(" ")
         row = [split[0], " ".join(split[1:])] + row[2:]
-    # change ["", "04  VL_BC_RET"] into ["04","VL_BC_RET"]
+    # change ["", "04  VL_BC_RET"] into ["04","VL_BC_RET"] or ["", "1 REG"] into ["1", "REG"]
     if _is_joined_index(row, 1) and row[0] == "":
         split = row[1].split(" ")
         row = [split[0], " ".join(split[1:])] + row[2:]
@@ -419,6 +413,7 @@ def build_accurate_fields_csv(
         reg_fields = extract_register_fields(
             mod, year, register["code"], raw_rows, patch
         )
+
         mod_fields.extend(reg_fields)
         # Catch registers with no fields for information.
         # N-B : A register table must have at least two rows (the first row describes
@@ -453,7 +448,22 @@ def build_accurate_fields_csv(
 
 
 def _normalize_field_code(code):
-    return code.replace("  ", "").replace(" ", "").replace("__", "_")
+    code = code.replace("  ", "").replace(" ", "").replace("__", "_")
+    new_code = ""
+    for char in code:
+        if char.isalpha() or char.isdigit() or char == "_":
+            new_code += char
+        elif char in ("/", "-"):
+            # warn about a few fields like TP_CT-e or NIF/CNPJ which are true SPED fields (WTF!!)
+            # but invalid Python names... So in Odoo we will replace their names in the model
+            # definitions and during the SPED import/export...
+            new_code += char
+            logger.warning(f"field code {code} is invalid in Python and will need special care!")
+        else:  # likely a pdf error
+            logger.warning(f"field code {code} has bad char '{char}'! '{char}' has been skipped!")
+            continue
+    return new_code
+
 
 
 def _convert_field_type(field):
@@ -702,7 +712,6 @@ def _get_usable_csv_header(fields):
 def build_usable_fields_csv(mod, year):
     fields_file = SPECS_PATH / f"{year}" / f"{mod}" / f"{mod}_fields.csv"
     fields = get_fields(mod, year)
-
     logger.info(f"> Building {mod}_fields.csv")
 
     # Open the CSV with the accurate fields list
