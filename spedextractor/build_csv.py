@@ -594,6 +594,7 @@ def get_fields(mod, year=MOST_RECENT_YEAR, with_reg=False):
     tables) to this list of dictionaries. Used in build_pythonsped_json.py.
     :type with_reg: bool
     """
+    # TODO add "Valores Válidos" (ECD), "Regras de Validação do Campo" (ECD), "Entr" (ICMS/IPI), "Saídas" (ICMS/IPI)
 
     if mod not in MODULES:
         raise ValueError(
