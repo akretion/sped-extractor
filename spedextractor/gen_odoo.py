@@ -1,7 +1,6 @@
 import logging
 from collections import defaultdict
 from collections import OrderedDict
-from itertools import groupby
 from pathlib import Path
 from typing import Dict
 from typing import List
@@ -13,18 +12,13 @@ from xsdata.codegen.models import Attr
 from xsdata.codegen.models import AttrType
 from xsdata.codegen.models import Class
 from xsdata.codegen.models import Restrictions
-from xsdata.formats.dataclass.filters import Filters
 from xsdata.models.config import GeneratorConfig
 from xsdata.models.config import GeneratorSubstitution
 from xsdata.models.config import ObjectType
-from xsdata_odoo.generator import GeneratorResult
 from xsdata_odoo.generator import OdooFilters
 from xsdata_odoo.generator import OdooGenerator
 from xsdata_odoo.wrap_text import extract_string_and_help
 
-from .build_csv import _is_reg_row
-from .build_csv import clean_row
-from .build_csv import get_blocks
 from .build_csv import get_fields
 from .build_csv import get_registers
 from .constants import MODULES
@@ -159,7 +153,6 @@ class SpedFilters(OdooFilters):
             kwargs["sped_required"] = target_register.get("spec_required", "UNDEF_REQUIRED")
         else:
             # simple types
-            register = list(filter(lambda x: x["code"] == obj.name[-4:], self.registers))[0]
             field = list(filter(lambda x: x["code"] == attr.name and x["register"] == obj.name[-4:], self.fields))[0]
             if field.get("length") and field["length"].isdigit():  # TODO Sometimes we have an '*' in the pdfs...
                 kwargs["sped_length"] = int(field["length"])
