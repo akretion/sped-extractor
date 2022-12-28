@@ -126,7 +126,7 @@ class SpedFilters(OdooFilters):
         register = list(filter(lambda x: x["code"] == obj.name[-4:], self.registers))[0]
         return f"_sped_level = {register['level']}"
 
-    def extract_field_attributes(self, parents: List[Class], attr: Attr):
+    def _extract_field_attributes(self, parents: List[Class], attr: Attr):
         """
         xsdata-odoo override. Note that because we pass native xsdata types
         (Model, Attr, Restriction...) to xsdata-odoo, we may not be able to
@@ -175,7 +175,7 @@ class SpedFilters(OdooFilters):
 
         return kwargs
 
-    def odoo_extract_number_attrs(
+    def _extract_number_attrs(
         self, obj: Class, attr: Attr, kwargs: Dict[str, Dict]
     ):
         python_type = attr.types[0].datatype.code
@@ -384,6 +384,10 @@ def main(year):
                     index=field["index"],
                 )
                 attrs.append(attr)
+
+            # TODO if register spec_in or spec_out, then add a register_type = Field.Selection(["in", "out"])
+            # only if level = 2?
+
 
 #            if register["level"] == 2:
 #                dates = list(filter(lambda x: "date" in x.types[0].qname, attrs))
