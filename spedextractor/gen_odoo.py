@@ -47,6 +47,7 @@ from . import sped_models
 
 # TODO ECD I550 e I555: campos RZ_CONT e RZ_CONT_TOT são parametrizaveis, ver manual e demo!
 
+
 def collect_register_children(registers):
     """read the registers hierarchy."""
     for register_info in registers:
@@ -134,9 +135,9 @@ class SpedFilters(OdooFilters):
         string, help_attr = extract_string_and_help(
             obj.name, attr.name, attr.help, obj.unique_labels, 50
         )
-#        if attr.name == "REC_NRB_BLOCO_C":
-#            print("wwwwwwwwwwww", string, help_attr)
-#            xxx
+        #        if attr.name == "REC_NRB_BLOCO_C":
+        #            print("wwwwwwwwwwww", string, help_attr)
+        #            xxx
         kwargs["string"] = string
 
         metadata = self.field_metadata(attr, {}, [p.name for p in parents])
@@ -148,15 +149,30 @@ class SpedFilters(OdooFilters):
             kwargs["ondelete"] = "cascade"
         elif attr.name.startswith("reg_") and attr.name.endswith("_ids"):
             target_reg_code = attr.name.replace("reg_", "").replace("_ids", "")
-            target_register = list(filter(lambda x: x["code"] == target_reg_code, self.registers))[0]
+            target_register = list(
+                filter(lambda x: x["code"] == target_reg_code, self.registers)
+            )[0]
             kwargs["sped_card"] = target_register["card"]
-            kwargs["sped_required"] = target_register.get("spec_required", "UNDEF_REQUIRED")
+            kwargs["sped_required"] = target_register.get(
+                "spec_required", "UNDEF_REQUIRED"
+            )
         else:
             # simple types
-            field = list(filter(lambda x: x["code"] == attr.name and x["register"] == obj.name[-4:], self.fields))[0]
-            if field.get("length") and field["length"].isdigit():  # TODO Sometimes we have an '*' in the pdfs...
+            field = list(
+                filter(
+                    lambda x: x["code"] == attr.name and x["register"] == obj.name[-4:],
+                    self.fields,
+                )
+            )[0]
+            if (
+                field.get("length") and field["length"].isdigit()
+            ):  # TODO Sometimes we have an '*' in the pdfs...
                 kwargs["sped_length"] = int(field["length"])
-            if attr.types and attr.types[0].datatype.code =="float" and field.get("decimal"):
+            if (
+                attr.types
+                and attr.types[0].datatype.code == "float"
+                and field.get("decimal")
+            ):
                 digits = int(field["decimal"])
                 if digits < 10:
                     kwargs["xsd_type"] = f"TDec_160{digits}"
@@ -168,22 +184,17 @@ class SpedFilters(OdooFilters):
 
         return kwargs
 
-    def _extract_number_attrs(
-        self, obj: Class, attr: Attr, kwargs: Dict[str, Dict]
-    ):
+    def _extract_number_attrs(self, obj: Class, attr: Attr, kwargs: Dict[str, Dict]):
         python_type = attr.types[0].datatype.code
         if python_type in ("float", "decimal"):
             xsd_type = kwargs.get("xsd_type", "")
 
             # Brazilian fiscal documents:
             if xsd_type.startswith("TDec_"):
-                if (
-                    int(xsd_type[7:9]) != 2
-                    or (
-                        not attr.name.startswith("VL_")
-                        and not attr.name.startswith("VAL_")
-                        and not attr.name.startswith("VALOR")
-                    )
+                if int(xsd_type[7:9]) != 2 or (
+                    not attr.name.startswith("VL_")
+                    and not attr.name.startswith("VAL_")
+                    and not attr.name.startswith("VALOR")
                 ):
                     kwargs["digits"] = (
                         int(xsd_type[5:7]),
@@ -193,7 +204,6 @@ class SpedFilters(OdooFilters):
                     kwargs[
                         "currency_field"
                     ] = "brl_currency_id"  # TODO use company_curreny_id
-
 
 
 @click.option(
@@ -249,8 +259,8 @@ def main(year):
         mod_fields = get_fields(mod, year)
 
         views_xml = '<?xml version="1.0" encoding="UTF-8"?>\n<odoo>'
-        views_xml += ('\n    <menuitem name="%s"'
-            ' parent="menu_root" id="%s" sequence="2" />'
+        views_xml += (
+            '\n    <menuitem name="%s"' ' parent="menu_root" id="%s" sequence="2" />'
         ) % (mod.replace("_", " ").upper(), mod)
         last_bloco = None
 
@@ -258,10 +268,12 @@ def main(year):
         registers = list(
             sorted(
                 filter(
-                    lambda x: x["code"][0] != "C" or mod not in ("ecd", "ecf"),  # filled by the validator
+                    lambda x: x["code"][0] != "C"
+                    or mod not in ("ecd", "ecf"),  # filled by the validator
                     get_registers(mod, year),
                 ),
-                key=lambda x: x["code"][0] == "0"  # hacky bloco ordering that just does the job
+                key=lambda x: x["code"][0]
+                == "0"  # hacky bloco ordering that just does the job
                 and "a" + x["code"]
                 or x["code"][0] == "9"
                 and "d" + x["code"]
@@ -282,12 +294,9 @@ def main(year):
 
             bloco_char = register["code"][0]
             if bloco_char != last_bloco:
-                views_xml += ('\n\n\n    <menuitem name="BLOCO %s"'
-                            ' parent="%s" id="%s_%s"/>'
-                            ) % (bloco_char,
-                                mod,
-                                mod,
-                                bloco_char.lower())
+                views_xml += (
+                    '\n\n\n    <menuitem name="BLOCO %s"' ' parent="%s" id="%s_%s"/>'
+                ) % (bloco_char, mod, mod, bloco_char.lower())
             last_bloco = bloco_char
 
             if register["level"] == 2:
@@ -297,24 +306,27 @@ def main(year):
         <field name="name">%s</field>
         <field name="res_model">l10n_br_sped.%s.%s.%s</field>
         <field name="view_mode">tree,form</field>
-    </record>""" % (mod,
-                        register["code"].lower(),
-                        action_name,
-                        mod,
-                        version,
-                        register["code"].lower())
+    </record>""" % (
+                    mod,
+                    register["code"].lower(),
+                    action_name,
+                    mod,
+                    version,
+                    register["code"].lower(),
+                )
                 views_xml += action
 
-                views_xml += ('\n    <menuitem action="%s_%s_action"'
-                            ' parent="%s_%s" id="%s_%s"/>') % (
-                                mod,
-                                register["code"].lower(),
-                                mod,
-                                bloco_char.lower(),
-                                mod,
-                                register["code"].lower(),
-                            )
-
+                views_xml += (
+                    '\n    <menuitem action="%s_%s_action"'
+                    ' parent="%s_%s" id="%s_%s"/>'
+                ) % (
+                    mod,
+                    register["code"].lower(),
+                    mod,
+                    bloco_char.lower(),
+                    mod,
+                    register["code"].lower(),
+                )
 
             if register["level"] in (0, 1):
                 # Blocks and their start/end registers don't need to be in the database
@@ -322,16 +334,20 @@ def main(year):
 
             name = f"Registro{register['code']}"
             attrs = []
-            for field in list(filter(lambda x: x["register"] == register["code"], mod_fields)):
-                if field["code"] in (
-                    "REG",
-                ):  # no need for DB field for fixed field
+            for field in list(
+                filter(lambda x: x["register"] == register["code"], mod_fields)
+            ):
+                if field["code"] in ("REG",):  # no need for DB field for fixed field
                     continue
 
                 if not field.get("type"):
                     print("ERROR !!!!!!!!!!!!", field)
                     field["type"] = "string"
-                if field["code"].startswith("DT_") or field["code"].startswith("DAT_") or field["code"].startswith("DATA"):
+                if (
+                    field["code"].startswith("DT_")
+                    or field["code"].startswith("DAT_")
+                    or field["code"].startswith("DATA")
+                ):
                     types = [
                         AttrType(
                             qname="{http://www.w3.org/2001/XMLSchema}date", native=True
@@ -381,28 +397,27 @@ def main(year):
             # TODO if register spec_in or spec_out, then add a register_type = Field.Selection(["in", "out"])
             # only if level = 2?
 
+            #            if register["level"] == 2:
+            #                dates = list(filter(lambda x: "date" in x.types[0].qname, attrs))
+            #                if len(dates) == 1:
+            #                    print("DATE ", register["code"], dates[0].name)
+            #                    print("NO DATE IN", register["code"], [attr.name for attr in attrs])
 
-#            if register["level"] == 2:
-#                dates = list(filter(lambda x: "date" in x.types[0].qname, attrs))
-#                if len(dates) == 1:
-#                    print("DATE ", register["code"], dates[0].name)
-#                    print("NO DATE IN", register["code"], [attr.name for attr in attrs])
-
-#            for child in register["children_m2o"]:
-#                child_qname = "Registro{}".format(child["code"])
-#                types = [AttrType(qname=child_qname, native=False)]
-#                m2o_field_name = "reg_{}_id".format(child["code"])
-#                restrictions = Restrictions(
-#                    min_occurs=0  # TODO sure?
-#                )
-#                attr = Attr(
-#                    tag=m2o_field_name,
-#                    name=m2o_field_name,
-#                    types=types,
-#                    restrictions=restrictions,
-#                    help=child["code"] + ": " + child["desc"],
-#                )
-#                attrs.append(attr)
+            #            for child in register["children_m2o"]:
+            #                child_qname = "Registro{}".format(child["code"])
+            #                types = [AttrType(qname=child_qname, native=False)]
+            #                m2o_field_name = "reg_{}_id".format(child["code"])
+            #                restrictions = Restrictions(
+            #                    min_occurs=0  # TODO sure?
+            #                )
+            #                attr = Attr(
+            #                    tag=m2o_field_name,
+            #                    name=m2o_field_name,
+            #                    types=types,
+            #                    restrictions=restrictions,
+            #                    help=child["code"] + ": " + child["desc"],
+            #                )
+            #                attrs.append(attr)
 
             if register.get("parent"):
                 parent = register["parent"]
@@ -419,12 +434,10 @@ def main(year):
                 )
                 attrs.append(attr)
 
-            for child in register["children_m2o"] + register["children_o2m"]:
+            for child in register.get("children_m2o", []) + register.get("children_o2m", []):
                 child_qname = "Registro{}".format(child["code"])
                 types = [AttrType(qname=child_qname, native=False)]
-                restrictions = Restrictions(
-                    max_occurs=999999
-                )
+                restrictions = Restrictions(max_occurs=999999)
 
                 o2m_field_name = "reg_{}_ids".format(child["code"])
                 # TODO find a way to pass string=child["code"]
@@ -456,7 +469,9 @@ def main(year):
             + f'\n"""\n{structure}\n"""\n\n'
             + IMPORTS
             + "\n"
-            + generator.render_classes(classes, None).replace("fields.Integer(", "sped_models.BigInt(")
+            + generator.render_classes(classes, None).replace(
+                "fields.Integer(", "sped_models.BigInt("
+            )
         )
         try:
             source = format_str(source, mode=FileMode())
@@ -472,10 +487,8 @@ def main(year):
         path = Path(f"/{base_path}/l10n_br_sped/views/sped_{mod}.xml")
         path.write_text(views_xml + "\n</odoo>", encoding="utf-8")
 
-
     path = Path(f"/{base_path}/l10n_br_sped/security/ir.model.access.csv")
     path.write_text(security_csv, encoding="utf-8")
-
 
 
 if __name__ == "__main__":
