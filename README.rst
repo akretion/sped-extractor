@@ -17,7 +17,6 @@ Os módulos da SPED tratados por esse package são :
 - *MODULE_registers.csv* : a lista detalhada dos **registros** do módulo ``MODULE``.
 - *MODULE_accurate_fields.csv* : a lista das linhas dos **campos** de cada registro *como eles aparecem no pdf* das especificações (para conferir e melhorar o resultado da extração).
 - *MODULE_fields.csv* : a lista dos mesmos campos porém **com atributos "interpretados"**, utilizáveis mais facilmente por outros programas.
-- *MODULE_pythonsped.json* : A lista dos blocos, registros e campos de cada módulo, formatada em JSON, seguindo o leiaute do package `python-sped`_ para ser utilizado por ele.
 
 📇 Uma vez ``sped-extractor`` for instalado, os campos, registros e blocos de cada módulo são facilmente accessiveis como **dicionários python**  :
 
@@ -35,14 +34,14 @@ Os módulos da SPED tratados por esse package são :
 Arquivos extraidos
 ==================
 
-=============================  ===================================  ==========================  ===========================
-Registros                      CSV fiél                             CSV utilizável              JSON "tipo python-sped"
-=============================  ===================================  ==========================  ===========================
-ECD_registers.csv_             ECD_accurate_fields.csv_             ECD_fields.csv_             ECD_pythonsped.json_
-ECF_registers.csv_             ECF_accurate_fields.csv_             ECF_fields.csv_             ECF_pythonsped.json_
-EFD_ICMS_IPI_registers.csv_    EFD_ICMS_IPI_accurate_fields.csv_    EFD_ICMS_IPI_fields.csv_    EFD_ICMS_IPI_pythonsped.json_
-EFD_PIS_COFINS_registers.csv_  EFD_PIS_COFINS_accurate_fields.csv_  EFD_PIS_COFINS_fields.csv_  EFD_PIS_COFINS_pythonsped.json_
-=============================  ===================================  ==========================  ===========================
+=============================  ===================================  ========================== 
+Registros                      CSV fiél                             CSV utilizável             
+=============================  ===================================  ========================== 
+ECD_registers.csv_             ECD_accurate_fields.csv_             ECD_fields.csv_           
+ECF_registers.csv_             ECF_accurate_fields.csv_             ECF_fields.csv_           
+EFD_ICMS_IPI_registers.csv_    EFD_ICMS_IPI_accurate_fields.csv_    EFD_ICMS_IPI_fields.csv_   
+EFD_PIS_COFINS_registers.csv_  EFD_PIS_COFINS_accurate_fields.csv_  EFD_PIS_COFINS_fields.csv_ 
+=============================  ===================================  ==========================
 
 Instalação
 ============
@@ -92,7 +91,6 @@ O package é composto de todos os scripts necessários à construção desses 4 
           ├── ecd
           │   ├── ecd_accurate_fields.csv
           │   ├── ecd_fields.csv
-          │   ├── ecd_pythonsped.json
           │   └── ecd_registers.csv
           ├── ecf
           |   [...]
@@ -143,13 +141,6 @@ Obviamente os scripts ``download.py`` e ``extract_tables.py`` são utilizáveis 
   $ python -m spedextractor.download
   $ python -m spedextractor.extract_tables
 
--------
-
-Além desses scripts principais construindo os arquivos CSV, existe também o ``build_pythonsped_json.py`` para **criar um arquivo JSON "tipo python-sped"** por módulo com todos os campos aninhados nos seus registros respectivos ::
-
-  $ python -m spedextractor.build_pythonsped_json
-
-...adicionando a opção ``--year`` se precisar.
 
 Configuração
 ============
@@ -238,8 +229,3 @@ Esse package está administrado por `Akretion <https://akretion.com/pt-BR>`_.
 .. _ECF_fields.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/ecf/ecf_fields.csv
 .. _EFD_ICMS_IPI_fields.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/efd_icms_ipi/efd_icms_ipi_fields.csv
 .. _EFD_PIS_COFINS_fields.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/efd_pis_cofins/efd_pis_cofins_fields.csv
-
-.. _ECD_pythonsped.json: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/ecd/ecd_pythonsped.json
-.. _ECF_pythonsped.json: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/ecf/ecf_pythonsped.json
-.. _EFD_ICMS_IPI_pythonsped.json: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/efd_icms_ipi/efd_icms_ipi_pythonsped.json
-.. _EFD_PIS_COFINS_pythonsped.json: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/specs/2020/efd_pis_cofins/efd_pis_cofins_pythonsped.json
