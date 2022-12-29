@@ -40,6 +40,13 @@ from odoo import fields, models
 from . import sped_models
 """
 
+LAYOUT_VERSIONS = {
+    "ecd": "9",
+    "ecf": "8",
+    "efd_icms_ipi": "17",
+    "efd_pis_cofins": "6",
+}
+
 # Tem um projeto php que tem o mesmo scope https://github.com/nfephp-org/sped-efd
 # NOTE doc estrutura https://www.youtube.com/watch?v=dhdo9lXwVZg
 # Reinf https://www.youtube.com/watch?v=K4b3XqkYyJk
@@ -254,7 +261,7 @@ def main(year):
         print(f"\n\n********************* Generating {mod} *********************")
         schema = f"l10n_br_sped.{mod}"
         generator.filters.schema = schema
-        version = "1"  # FIXME
+        version = LAYOUT_VERSIONS[mod]
         generator.filters.version = version
         mod_fields = get_fields(mod, year)
 
@@ -358,12 +365,21 @@ def main(year):
                     or field["type"] == "float"
                     and int(field["decimal"]) == 0
                 ):
-                    types = [
-                        AttrType(
-                            qname="{http://www.w3.org/2001/XMLSchema}integer",
-                            native=True,
-                        )
-                    ]
+                    if "CPF" in field["code"] or "CNPJ" in field["code"]:
+                        # force fields.Char to avoid Integer PG size limitation
+                        types = [
+                            AttrType(
+                                qname="{http://www.w3.org/2001/XMLSchema}string",
+                                native=True,
+                            )
+                        ]
+                    else:
+                        types = [
+                            AttrType(
+                                qname="{http://www.w3.org/2001/XMLSchema}integer",
+                                native=True,
+                            )
+                        ]
                 elif field["type"] == "float":
                     types = [
                         AttrType(
@@ -434,7 +450,9 @@ def main(year):
                 )
                 attrs.append(attr)
 
-            for child in register.get("children_m2o", []) + register.get("children_o2m", []):
+            for child in register.get("children_m2o", []) + register.get(
+                "children_o2m", []
+            ):
                 child_qname = "Registro{}".format(child["code"])
                 types = [AttrType(qname=child_qname, native=False)]
                 restrictions = Restrictions(max_occurs=999999)
@@ -469,9 +487,7 @@ def main(year):
             + f'\n"""\n{structure}\n"""\n\n'
             + IMPORTS
             + "\n"
-            + generator.render_classes(classes, None).replace(
-                "fields.Integer(", "sped_models.BigInt("
-            )
+            + generator.render_classes(classes, None)
         )
         try:
             source = format_str(source, mode=FileMode())
