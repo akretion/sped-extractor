@@ -122,6 +122,15 @@ class SpedFilters(OdooFilters):
         name = self.class_name(name)
         return f"{self.schema}.{self.version}.{name[-4:].lower()}"
 
+    def registry_comodel(self, type_names: List[str]):
+        # NOTE: we take only the last part of inner Types with .split(".")[-1]
+        # but if that were to create Type duplicates we could change that.
+        clean_type_names = type_names[-1].replace('"', "").split(".")
+        comodel = self.registry_name(clean_type_names[-1], type_names=clean_type_names)
+        comodel = comodel.split(".")[0:1] + comodel.split(".")[-1:]
+        print("==========", comodel)
+        return comodel
+
     def class_properties(
         self,
         obj: Class,
@@ -147,9 +156,6 @@ class SpedFilters(OdooFilters):
         string, help_attr = extract_string_and_help(
             obj.name, attr.name, attr.help, obj.unique_labels, 50
         )
-        #        if attr.name == "REC_NRB_BLOCO_C":
-        #            print("wwwwwwwwwwww", string, help_attr)
-        #            xxx
         kwargs["string"] = string
 
         metadata = self.field_metadata(attr, {}, [p.name for p in parents])
