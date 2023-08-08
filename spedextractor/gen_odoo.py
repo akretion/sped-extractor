@@ -17,7 +17,7 @@ from xsdata.models.config import GeneratorSubstitution
 from xsdata.models.config import ObjectType
 from xsdata_odoo.generator import OdooFilters
 from xsdata_odoo.generator import OdooGenerator
-from xsdata_odoo.wrap_text import extract_string_and_help
+from xsdata_odoo.text_utils import extract_string_and_help
 
 from .build_csv import get_fields
 from .build_csv import get_registers
@@ -116,7 +116,9 @@ def get_structure(mod, registers):
 
 
 class SpedFilters(OdooFilters):
-    def registry_name(self, name: str) -> str:
+    def registry_name(
+        self, name: str = "", parents: List[Class] = [], type_names: List[str] = []
+    ) -> str:
         name = self.class_name(name)
         return f"{self.schema}.{self.version}.{name[-4:].lower()}"
 
@@ -127,6 +129,9 @@ class SpedFilters(OdooFilters):
     ) -> str:
         register = list(filter(lambda x: x["code"] == obj.name[-4:], self.registers))[0]
         return f"_sped_level = {register['level']}"
+
+    def odoo_class_name(self, obj: Class, parents: List[Class] = []):
+        return obj.name
 
     def _extract_field_attributes(self, parents: List[Class], attr: Attr):
         """
@@ -160,9 +165,8 @@ class SpedFilters(OdooFilters):
                 filter(lambda x: x["code"] == target_reg_code, self.registers)
             )[0]
             kwargs["sped_card"] = target_register["card"]
-            kwargs["sped_required"] = target_register.get(
-                "spec_required", "UNDEF_REQUIRED"
-            )
+            if target_register.get("spec_required") == "Sim":
+                kwargs["sped_required"] = True
         else:
             # simple types
             field = list(
@@ -193,7 +197,7 @@ class SpedFilters(OdooFilters):
 
     def _extract_number_attrs(self, obj: Class, attr: Attr, kwargs: Dict[str, Dict]):
         python_type = attr.types[0].datatype.code
-        if python_type in ("float", "decimal"):
+        if python_type in ("float", "decimal", "integer"):
             xsd_type = kwargs.get("xsd_type", "")
 
             # Brazilian fiscal documents:
@@ -210,7 +214,11 @@ class SpedFilters(OdooFilters):
                 else:
                     kwargs[
                         "currency_field"
-                    ] = "brl_currency_id"  # TODO use company_curreny_id
+                    ] = "brl_currency_id"  # use company_curreny_id?
+            elif attr.name.startswith(("VL_", "VAL_", "VALOR")):
+                    kwargs[
+                        "currency_field"
+                    ] = "brl_currency_id"  # use company_curreny_id?
 
 
 @click.option(
@@ -249,6 +257,7 @@ def main(year):
         config,
         [],
         [],
+        {},  # registry_names
         defaultdict(list),
     )
     generator.filters.register(generator.env)
@@ -335,7 +344,7 @@ def main(year):
                     register["code"].lower(),
                 )
 
-            if register["level"] in (0, 1):
+            if register["level"] in (0, 1) and register["code"] != "0000":
                 # Blocks and their start/end registers don't need to be in the database
                 continue
 
@@ -346,7 +355,6 @@ def main(year):
             ):
                 if field["code"] in ("REG",):  # no need for DB field for fixed field
                     continue
-
                 if not field.get("type"):
                     print("ERROR !!!!!!!!!!!!", field)
                     field["type"] = "string"
@@ -363,7 +371,7 @@ def main(year):
                 elif (
                     field["type"] == "int"
                     or field["type"] == "float"
-                    and int(field["decimal"]) == 0
+                    and field.get("decimal") and int(field["decimal"]) == 0
                 ):
                     if "CPF" in field["code"] or "CNPJ" in field["code"]:
                         # force fields.Char to avoid Integer PG size limitation
