@@ -21,6 +21,7 @@ extracted by extract_tables.py :
 import csv
 import logging
 import re
+from unidecode import unidecode
 
 import click
 
@@ -216,7 +217,7 @@ def extract_registers_list(mod, year, raw_rows=None):
 
 
 def _is_joined_index(row, c):
-    """ Checks if row's column 'c' start with row's index and need to be split"""
+    """Checks if row's column 'c' start with row's index and need to be split"""
     if len(row) > 4 and row[c][0:1].isdigit() and len(row[c]) > 3 and " " in row[c]:
         return True
     return False
@@ -308,6 +309,7 @@ def _apply_camelot_patch(mod, year, register, row):
                 # field match this condition (e.g. field TIP_ENT in ECF register 0010).
                 # But it is not a problem as the non-field row will be ignore after.
                 if patch_row[0] == register and patch_row[2] == row[0]:
+                    # FIXME
                     row = patch_row[2:]
                     logger.info(f"    PATCH : field {row[1]} in register {register}")
     except FileNotFoundError:
@@ -448,7 +450,17 @@ def build_accurate_fields_csv(
 
 
 def _normalize_field_code(code):
+    """
+    The pdf SPED specification has plenty of typing errors. We fix them here.
+    This method can be completed in an incremental form: logging warnings
+    during the generation and then creating an exception for them.
+    """
+
     code = code.replace("  ", "").replace(" ", "").replace("__", "_")
+    code = code.replace(";", "")  # example COD_SIT; in efd_pis_cofins
+    code = code.replace("*", "")  # example  MES_REF* in efd_icms_ipi
+    code = code.replace("-", "_")  # example TP_CT-e in efd_pis_cofins
+    code = unidecode(code)  # example NÍVEL in efd_icms_ipi
     new_code = ""
     for char in code:
         if char.isalpha() or char.isdigit() or char == "_":
@@ -458,24 +470,29 @@ def _normalize_field_code(code):
             # but invalid Python names... So in Odoo we will replace their names in the model
             # definitions and during the SPED import/export...
             new_code += char
-            logger.warning(f"field code {code} is invalid in Python and will need special care!")
+            logger.warning(
+                f"field code {code} is invalid in Python and will need special care!"
+            )
         else:  # likely a pdf error
-            logger.warning(f"field code {code} has bad char '{char}'! '{char}' has been skipped!")
+            logger.warning(
+                f"field code {code} has bad char '{char}'! '{char}' has been skipped!"
+            )
             continue
     return new_code
 
 
-
 def _convert_field_type(field):
     """Return a string giving the 'interpreted' field's type :
-    'char', 'int', 'float' or 'date'. """
+    'char', 'int', 'float' or 'date'."""
     spec_type = field.get("spec_type")
     if spec_type:
         code = field["code"]
         if spec_type == "D" or code.startswith("DT_") or code.startswith("DATA_"):
             field["type"] = "date"
         elif spec_type == "N":
-            field["type"] = "float" if field.get("decimal") else "int"
+            field["type"] = (
+                "float" if field.get("decimal") or code.startswith("VL_") else "int"
+            )
         # If no given type, define it as "character"
         # "NS" ("Numérico Com Sinal") means that the field's value must be "+" ou "-"
         # cf. ECF pdf page 26
@@ -527,8 +544,7 @@ def _convert_field_in_out(field):
 
 
 def _convert_values(field):
-    """Add a 'values' keys if field["spec_values"] can be interpreted as a list of items
-    """
+    """Add a 'values' keys if field["spec_values"] can be interpreted as a list of items"""
     values = field.get("spec_values")
     if values:
         # Remove unnecessary quotes
@@ -568,7 +584,9 @@ def _map_field_row(row, mod):
             field[key] = row[index + 2]
 
     # Interpret raw datas
-    field["index"] = int(field.get("index", "0").replace("*", "0"))  # TODO check * cases
+    field["index"] = int(
+        field.get("index", "0").replace("*", "0")
+    )  # TODO check * cases
     field["code"] = _normalize_field_code(field["code"])
 
     field = _convert_field_type(field)
@@ -613,6 +631,7 @@ def get_fields(mod, year=MOST_RECENT_YEAR, with_reg=False):
         # Avoid CSV header
         next(accurate_rows)
         for row in accurate_rows:
+            row = _apply_camelot_patch(mod, year, row[0], row)
             if row[3] != "REG" or with_reg:
                 fields.append(_map_field_row(row, mod))
 
