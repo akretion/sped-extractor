@@ -4,3 +4,6 @@ click
 # only for ./compare_python-sped.py :
 python-sped
 requests
+opencv-python
+PyPDF2
+ghostscript
