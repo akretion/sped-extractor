@@ -1,5 +1,5 @@
 module,version,date_init,url
 ecd,9,2022-03-31,http://sped.rfb.gov.br/arquivo/download/5965
 ecf,8,2022-07-26,http://sped.rfb.gov.br/arquivo/download/5972
-efd_icms_ipi,3.0.7,2021-10-06,http://sped.rfb.gov.br/arquivo/download/5899
-efd_pis_cofins,1.35,2021-06-18,http://sped.rfb.gov.br/arquivo/download/5836
+efd_icms_ipi,16,2021-10-06,http://sped.rfb.gov.br/arquivo/download/5899
+efd_pis_cofins,6,2021-06-18,http://sped.rfb.gov.br/arquivo/download/5836
