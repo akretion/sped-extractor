@@ -1,8 +1,9 @@
 import logging
+import os
 
 import camelot
 import click
-from PyPDF2 import PdfFileReader
+from PyPDF2 import PdfReader
 
 from . import download
 from .constants import MODULES, MOST_RECENT_YEAR, OLDEST_YEAR, SPECS_PATH
@@ -17,16 +18,18 @@ STEP = 10
 
 def _limit_pages(pdf, limit=False):
     """Return the pages number to be extracted"""
-    pdf_file = PdfFileReader(str(pdf.resolve()))
-    return limit if limit else pdf_file.getNumPages()
+    pdf_file = PdfReader(str(pdf.resolve()))
+    return limit if limit else len(pdf_file.pages)
 
 
 def extract_mod_tables(mod, year, pdf=None, limit=False):
     if not pdf:
-        download.download_mod_pdf(mod, year)
         pdf = SPECS_PATH / f"{year}" / "pdf" / f"{mod}.pdf"
 
     pdf_path = str(pdf.resolve())
+    if not os.path.isfile(pdf_path):
+        download.download_mod_pdf(mod, year)
+
     limit_pages = _limit_pages(pdf, limit)
     export_csv = SPECS_PATH / f"{year}" / f"{mod}" / "raw_camelot_csv"
     export_csv_path = str((export_csv / f"{mod}.csv").resolve())
