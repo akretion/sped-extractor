@@ -494,6 +494,8 @@ def _convert_field_type(field):
                 or code.startswith("IND_")
                 or code.startswith("COD_")
                 or code.startswith("TIPO")
+                or "CPF" in code
+                or "CNPJ" in code
                 or (
                     isinstance(field.get("length", 0), int)
                     or field.get("length", "0").isdigit()
