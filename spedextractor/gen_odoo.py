@@ -183,6 +183,11 @@ class SpedFilters(OdooFilters):
             if field.get("xsd_type"):
                 kwargs["xsd_type"] = field["xsd_type"]
 
+            if field.get("in_required"):
+                kwargs["in_required"] = True
+            elif field.get("out_required"):
+                kwargs["out_required"] = True
+
             if (
                 field.get("length")
             ):  # as str because ometimes we have an '*' in the pdfs -> means more than
