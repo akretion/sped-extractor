@@ -337,6 +337,10 @@ access_manager_{mod}_declaration,{mod}.declaration,model_l10n_br_sped_declaratio
         generator.filters.fields = mod_fields
 
         for register in registers:
+            if register["level"] in (0, 1) and register["code"] != "0000":
+                # Blocks and their start/end registers don't need to be in the database
+                continue
+
             short_desc, left = extract_string_and_help(
                 mod, register["code"], register["desc"], set(), 100
             )
@@ -352,6 +356,12 @@ access_manager_{mod}_declaration,{mod}.declaration,model_l10n_br_sped_declaratio
                 )
                 concrete_models_source += f"""\n    _name = \"l10n_br_sped.{mod}.{register['code'].lower()}\""""
                 concrete_models_source += f"""\n    _inherit = \"l10n_br_sped.{mod}.{version}.{register['code'].lower()}\""""
+                concrete_models_source += """
+
+    # @api.model
+    # def _map_from_odoo(cls, record, parent_record):#, declaration):
+    #     return {
+                """
 
             bloco_char = register["code"][0]
             if bloco_char != last_bloco:
@@ -388,10 +398,6 @@ access_manager_{mod}_declaration,{mod}.declaration,model_l10n_br_sped_declaratio
                     register["code"].lower(),
                 )
 
-            if register["level"] in (0, 1) and register["code"] != "0000":
-                # Blocks and their start/end registers don't need to be in the database
-                continue
-
             name = f"Registro{register['code']}"
             attrs = []
             for field in list(
@@ -400,8 +406,11 @@ access_manager_{mod}_declaration,{mod}.declaration,model_l10n_br_sped_declaratio
                 if field["code"] in ("REG",):  # no need for DB field for fixed field
                     continue
                 if not field.get("type"):
-                    RuntimeError("ERROR  %s !" % (field,))
-                    field["type"] = "string"
+                    field["type"] = "char"
+
+                # listing all fields helps writting and reviewing mappings:
+                concrete_models_source += f"""    #         "{field["code"]}": 0,  # TODO\n"""
+ 
                 if (
                     field["code"].startswith("DT_")
                     or field["code"].startswith("DAT_")
@@ -479,6 +488,8 @@ access_manager_{mod}_declaration,{mod}.declaration,model_l10n_br_sped_declaratio
             #                )
             #                attrs.append(attr)
 
+            concrete_models_source += "    #     }"  # close fields list
+
             if register.get("parent"):
                 parent = register["parent"]
                 parent_qname = "Registro{}".format(parent["code"])
@@ -542,18 +553,18 @@ access_manager_{mod}_declaration,{mod}.declaration,model_l10n_br_sped_declaratio
 
         base_path = str(SPECS_PATH) + f"/{year}/"
 
-        path = Path(f"/{base_path}/l10n_br_sped/models/sped_{mod}_spec_{version}.py")
+        path = Path(f"{base_path}/l10n_br_sped/models/sped_{mod}_spec_{version}.py")
         print("written file", path)
         path.write_text(source, encoding="utf-8")
 
-        path = Path(f"/{base_path}/l10n_br_sped/models/sped_{mod}.py")
+        path = Path(f"{base_path}/l10n_br_sped/models/sped_{mod}.py")
         print("written file", path)
         path.write_text(concrete_models_source, encoding="utf-8")
 
-        path = Path(f"/{base_path}/l10n_br_sped/views/sped_{mod}.xml")
+        path = Path(f"{base_path}/l10n_br_sped/views/sped_{mod}.xml")
         path.write_text(views_xml + "\n</odoo>", encoding="utf-8")
 
-        path = Path(f"/{base_path}/l10n_br_sped/security/{mod}_ir.model.access.csv")
+        path = Path(f"{base_path}/l10n_br_sped/security/{mod}_ir.model.access.csv")
         path.write_text(security_csv, encoding="utf-8")
 
 
