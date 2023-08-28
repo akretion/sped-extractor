@@ -89,7 +89,6 @@ def get_raw_rows(mod, year):
         f"No raw CSV files found at '{str(path_raw.resolve())}/'.\n"
         "Run 'python -m spedextractor.extract_tables' before continuing."
     )
-
     return raw_rows
 
 
@@ -490,9 +489,28 @@ def _convert_field_type(field):
         if spec_type == "D" or code.startswith("DT_") or code.startswith("DATA_"):
             field["type"] = "date"
         elif spec_type == "N":
-            field["type"] = (
-                "float" if field.get("decimal") or code.startswith("VL_") else "int"
-            )
+            if (
+                "*" in field.get("length", "")
+                or code.startswith("IND_")
+                or code.startswith("COD_")
+                or code.startswith("TIPO")
+                or (
+                    isinstance(field.get("length", 0), int)
+                    or field.get("length", "0").isdigit()
+                )
+                and not field.get("decimal")
+                and int(field.get("length", 0)) > 1
+            ):
+                # for _IND and COD_ the issue is the Integer Odoo widget sucks
+                # so it's better to have a Char field.
+                # as for lengths with *, it's a bit the same. These fields can also be void in Odoo
+                # without the need to have 0 by default such as True integers.
+                field["type"] = "char"
+                field["xsd_type"] = "numeric_code"
+            elif field.get("decimal") or code.startswith("VL_"):
+                field["type"] = "float"
+            else:
+                field["type"] = "int"
         # If no given type, define it as "character"
         # "NS" ("Numérico Com Sinal") means that the field's value must be "+" ou "-"
         # cf. ECF pdf page 26
