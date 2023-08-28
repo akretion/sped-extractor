@@ -55,6 +55,20 @@ def collect_register_children(registers):
             register_info["children_o2m"] = children_o2m
             register_info["children_m2o"] = children_m2o
 
+def _get_alphanum_sequence(register_code):
+    """
+    Used to order the SPED register in the same order
+    as in the SPED layout (the register name alone won't cut it)
+    """
+    bloco_key = register_code[0]
+    if bloco_key == "0":
+        return "0" + register_code
+    elif bloco_key == "1":
+        return "2" + register_code
+    elif bloco_key == "9":
+        return "3" + register_code
+    else:
+        return "1" + register_code
 
 def get_structure(mod, registers):
     structure = f"STRUCTURE SPED {mod.upper()}"
@@ -305,14 +319,7 @@ access_manager_{mod}_declaration,{mod}.declaration,model_l10n_br_sped_declaratio
                     or mod not in ("ecd", "ecf"),  # filled by the validator
                     get_registers(mod, year),
                 ),
-                key=lambda x: x["code"][0]
-                == "0"  # hacky bloco ordering that just does the job
-                and "a" + x["code"]
-                or x["code"][0] == "9"
-                and "d" + x["code"]
-                or x["code"][0] == "1"
-                and "c" + x["code"]
-                or "b" + x["code"],
+                key=lambda x: _get_alphanum_sequence(x["code"])
             )
         )
         collect_register_children(registers)
@@ -401,21 +408,12 @@ access_manager_{mod}_declaration,{mod}.declaration,model_l10n_br_sped_declaratio
                     and field.get("decimal")
                     and int(field["decimal"]) == 0
                 ):
-                    if "CPF" in field["code"] or "CNPJ" in field["code"]:
-                        # force fields.Char to avoid Integer PG size limitation
-                        types = [
-                            AttrType(
-                                qname="{http://www.w3.org/2001/XMLSchema}string",
-                                native=True,
-                            )
-                        ]
-                    else:
-                        types = [
-                            AttrType(
-                                qname="{http://www.w3.org/2001/XMLSchema}integer",
-                                native=True,
-                            )
-                        ]
+                    types = [
+                        AttrType(
+                            qname="{http://www.w3.org/2001/XMLSchema}integer",
+                            native=True,
+                        )
+                    ]
                 elif field["type"] == "float":
                     types = [
                         AttrType(
