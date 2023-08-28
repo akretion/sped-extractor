@@ -30,6 +30,25 @@ def _get_url(mod, year):
         )
 
 
+def get_version(mod, year):
+    """Return the first layout version for a given mod and year"""
+    dl_info_file = SPECS_PATH / f"{year}" / "download_info.csv"
+    try:
+        with open(dl_info_file, "r") as csvfile:
+            reader = csv.reader(csvfile, delimiter=",", quotechar='"')
+            header = next(reader)
+            col_version = header.index("version")
+            col_mod = header.index("module")
+            for row in reader:
+                if row[col_mod] == mod:
+                    return row[col_version]
+    except FileNotFoundError:
+        logger.exception(
+            f"The file '{dl_info_file}' containing the SPED {year} pdfs URLs is "
+            "required to download them."
+        )
+
+
 def download_mod_pdf(mod, year):
     logger.info(f"> Downloading pdf {mod.upper()} {year}...")
     pdf_folder = SPECS_PATH / f"{year}" / "pdf"

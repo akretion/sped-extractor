@@ -1,30 +1,19 @@
 import logging
-from collections import defaultdict
-from collections import OrderedDict
+from collections import OrderedDict, defaultdict
 from pathlib import Path
-from typing import Dict
-from typing import List
+from typing import Dict, List
 
 import click
-from black import FileMode
-from black import format_str
-from xsdata.codegen.models import Attr
-from xsdata.codegen.models import AttrType
-from xsdata.codegen.models import Class
-from xsdata.codegen.models import Restrictions
-from xsdata.models.config import GeneratorConfig
-from xsdata.models.config import GeneratorSubstitution
-from xsdata.models.config import ObjectType
-from xsdata_odoo.generator import OdooFilters
-from xsdata_odoo.generator import OdooGenerator
+from black import FileMode, format_str
+from xsdata.codegen.models import Attr, AttrType, Class, Restrictions
+from xsdata.models.config import (GeneratorConfig, GeneratorSubstitution,
+                                  ObjectType)
+from xsdata_odoo.generator import OdooFilters, OdooGenerator
 from xsdata_odoo.text_utils import extract_string_and_help
 
-from .build_csv import get_fields
-from .build_csv import get_registers
-from .constants import MODULES
-from .constants import MOST_RECENT_YEAR
-from .constants import OLDEST_YEAR
-from .constants import SPECS_PATH
+from .build_csv import get_fields, get_registers
+from .constants import MODULES, MOST_RECENT_YEAR, OLDEST_YEAR, SPECS_PATH
+from .download import get_version
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
@@ -39,21 +28,6 @@ IMPORTS = """import textwrap
 
 from odoo import fields, models
 """
-
-#TODO put year
-LAYOUT_VERSIONS = {
-    "ecd": "9",
-    "ecf": "9",
-    "efd_icms_ipi": "17",
-    "efd_pis_cofins": "6",
-}
-
-# Tem um projeto php que tem o mesmo scope https://github.com/nfephp-org/sped-efd
-# NOTE doc estrutura https://www.youtube.com/watch?v=dhdo9lXwVZg
-# Reinf https://www.youtube.com/watch?v=K4b3XqkYyJk
-
-
-# TODO ECD I550 e I555: campos RZ_CONT e RZ_CONT_TOT são parametrizaveis, ver manual e demo!
 
 
 def collect_register_children(registers):
@@ -107,11 +81,17 @@ def get_structure(mod, registers):
             desc = reg["desc"][:40] + "..."
         if reg.get("o2m_parent"):
             structure += (
-                "\n" + "  " * (reg["level"] - 1) + "\u2261 " + (reg["code"] + " " + desc).strip()
+                "\n"
+                + "  " * (reg["level"] - 1)
+                + "\u2261 "
+                + (reg["code"] + " " + desc).strip()
             )
         else:
             structure += (
-                "\n" + "  " * (reg["level"] - 1) + "- " + (reg["code"] + " " + desc).strip()
+                "\n"
+                + "  " * (reg["level"] - 1)
+                + "- "
+                + (reg["code"] + " " + desc).strip()
             )
     return structure
 
@@ -225,9 +205,7 @@ class SpedFilters(OdooFilters):
                         "currency_field"
                     ] = "brl_currency_id"  # use company_curreny_id?
             elif attr.name.startswith(("VL_", "VAL_", "VALOR")):
-                    kwargs[
-                        "currency_field"
-                    ] = "brl_currency_id"  # use company_curreny_id?
+                kwargs["currency_field"] = "brl_currency_id"  # use company_curreny_id?
 
 
 @click.option(
@@ -277,7 +255,7 @@ def main(year):
         schema = f"l10n_br_sped.{mod}"
         generator.filters.inherit_model = f"l10n_br_sped.mixin.{mod}"
         generator.filters.schema = schema
-        version = LAYOUT_VERSIONS[mod]
+        version = get_version(mod, year)
         generator.filters.version = version
         mod_fields = get_fields(mod, year)
 
@@ -288,9 +266,9 @@ access_manager_{mod}_declaration,{mod}.declaration,model_l10n_br_sped_declaratio
 
         views_xml = '<?xml version="1.0" encoding="UTF-8"?>\n<odoo>'
         views_xml += (
-            '\n    <menuitem name="%s"' ' parent="l10n_br_sped_base.menu_root" id="%s" sequence="2" />'
+            '\n    <menuitem name="%s"'
+            ' parent="l10n_br_sped_base.menu_root" id="%s" sequence="2" />'
         ) % (mod.replace("_", " ").upper(), mod)
-
 
         action = """\n
     <record id="declaration_%s_action" model="ir.actions.act_window">
@@ -313,8 +291,9 @@ access_manager_{mod}_declaration,{mod}.declaration,model_l10n_br_sped_declaratio
             mod,
         )
 
-
-        concrete_models_source = HEADER + "\nimport textwrap\n\nfrom odoo import models\n"
+        concrete_models_source = (
+            HEADER + "\nimport textwrap\n\nfrom odoo import models\n"
+        )
 
         last_bloco = None
 
@@ -347,13 +326,15 @@ access_manager_{mod}_declaration,{mod}.declaration,model_l10n_br_sped_declaratio
             register["short_desc"] = short_desc
 
             if register["level"] > 1 or register["code"] == "0000":
-                concrete_models_source += f"\n\nclass Registro{register['code']}(models.Model):"
+                concrete_models_source += (
+                    f"\n\nclass Registro{register['code']}(models.Model):"
+                )
                 concrete_models_source += f"""\n    \"{register['short_desc']}\""""
-                concrete_models_source += f"""\n    _description = textwrap.dedent("    %s" % (__doc__,))"""
+                concrete_models_source += (
+                    f"""\n    _description = textwrap.dedent("    %s" % (__doc__,))"""
+                )
                 concrete_models_source += f"""\n    _name = \"l10n_br_sped.{mod}.{register['code'].lower()}\""""
                 concrete_models_source += f"""\n    _inherit = \"l10n_br_sped.{mod}.{version}.{register['code'].lower()}\""""
-
- 
 
             bloco_char = register["code"][0]
             if bloco_char != last_bloco:
@@ -417,7 +398,8 @@ access_manager_{mod}_declaration,{mod}.declaration,model_l10n_br_sped_declaratio
                 elif (
                     field["type"] == "int"
                     or field["type"] == "float"
-                    and field.get("decimal") and int(field["decimal"]) == 0
+                    and field.get("decimal")
+                    and int(field["decimal"]) == 0
                 ):
                     if "CPF" in field["code"] or "CNPJ" in field["code"]:
                         # force fields.Char to avoid Integer PG size limitation
