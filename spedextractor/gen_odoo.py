@@ -170,6 +170,7 @@ class SpedFilters(OdooFilters):
             kwargs["sped_card"] = target_register["card"]
             if target_register.get("spec_required") == "Sim":
                 kwargs["sped_required"] = True
+
         else:
             # simple types
             field = list(
@@ -178,10 +179,14 @@ class SpedFilters(OdooFilters):
                     self.fields,
                 )
             )[0]
+
+            if field.get("xsd_type"):
+                kwargs["xsd_type"] = field["xsd_type"]
+
             if (
-                field.get("length") and field["length"].isdigit()
-            ):  # TODO Sometimes we have an '*' in the pdfs...
-                kwargs["sped_length"] = int(field["length"])
+                field.get("length")
+            ):  # as str because ometimes we have an '*' in the pdfs -> means more than
+                kwargs["sped_length"] = str(field["length"].replace("0", ""))
             if (
                 attr.types
                 and attr.types[0].datatype.code == "float"
