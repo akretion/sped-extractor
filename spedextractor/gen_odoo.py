@@ -6,8 +6,7 @@ from typing import Dict, List
 import click
 from black import FileMode, format_str
 from xsdata.codegen.models import Attr, AttrType, Class, Restrictions
-from xsdata.models.config import (GeneratorConfig, GeneratorSubstitution,
-                                  ObjectType)
+from xsdata.models.config import GeneratorConfig, GeneratorSubstitution, ObjectType
 from xsdata_odoo.generator import OdooFilters, OdooGenerator
 from xsdata_odoo.text_utils import extract_string_and_help
 
@@ -55,6 +54,7 @@ def collect_register_children(registers):
             register_info["children_o2m"] = children_o2m
             register_info["children_m2o"] = children_m2o
 
+
 def _get_alphanum_sequence(register_code):
     """
     Used to order the SPED register in the same order
@@ -69,6 +69,7 @@ def _get_alphanum_sequence(register_code):
         return "3" + register_code
     else:
         return "1" + register_code
+
 
 def get_structure(mod, registers):
     structure = f"STRUCTURE SPED {mod.upper()}"
@@ -188,8 +189,8 @@ class SpedFilters(OdooFilters):
             elif field.get("out_required"):
                 kwargs["out_required"] = True
 
-            if (
-                field.get("length")
+            if field.get(
+                "length"
             ):  # as str because ometimes we have an '*' in the pdfs -> means more than
                 kwargs["sped_length"] = str(field["length"].replace("0", ""))
             if (
@@ -315,7 +316,7 @@ access_manager_{mod}_declaration,{mod}.declaration,model_l10n_br_sped_declaratio
                     or mod not in ("ecd", "ecf"),  # filled by the validator
                     get_registers(mod, year),
                 ),
-                key=lambda x: _get_alphanum_sequence(x["code"])
+                key=lambda x: _get_alphanum_sequence(x["code"]),
             )
         )
         collect_register_children(registers)
@@ -386,17 +387,37 @@ access_manager_{mod}_declaration,{mod}.declaration,model_l10n_br_sped_declaratio
 
             name = f"Registro{register['code']}"
             attrs = []
+
+            # 1st we will make the register fields code unique. Incredibly in the SPED
+            # spec pdfs some register have duplicate field codes.
+            # example: EFD ICMS/IPI C170 with PIS_ALIQ or COFINS_ALIQ
+            # one is the percent and another is the R$ value...
+            # other case in EFD PIS/COFINS M210.
+            # in this case we append the line field index to the dup codes
+            # the field name doesn't really matter as it is not written in the SPED file.
+            unique_codes = set()
+            fields = []
             for field in list(
                 filter(lambda x: x["register"] == register["code"], mod_fields)
             ):
+                if field["code"] not in unique_codes:
+                    unique_codes.add(field["code"])
+                else:
+                    field["code"] = f'{field["code"]}_INDEX_{field["index"]}'
+                    unique_codes.add(field["code"])
+                fields.append(field)
+
+            for field in fields:
                 if field["code"] in ("REG",):  # no need for DB field for fixed field
                     continue
                 if not field.get("type"):
                     field["type"] = "char"
 
                 # listing all fields helps writting and reviewing mappings:
-                concrete_models_source += f"""    #         "{field["code"]}": 0,  # TODO\n"""
- 
+                concrete_models_source += (
+                    f"""    #         "{field["code"]}": 0,  # TODO\n"""
+                )
+
                 if (
                     field["code"].startswith("DT_")
                     or field["code"].startswith("DAT_")
