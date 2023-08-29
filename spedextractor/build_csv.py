@@ -458,20 +458,13 @@ def _normalize_field_code(code):
     code = code.replace("  ", "").replace(" ", "").replace("__", "_")
     code = code.replace(";", "")  # example COD_SIT; in efd_pis_cofins
     code = code.replace("*", "")  # example  MES_REF* in efd_icms_ipi
-    code = code.replace("-", "_")  # example TP_CT-e in efd_pis_cofins
+    code = code.replace("-", "_")  # example tp_ct-e in efd_pis_cofins
+    code = code.replace("/", "_")  # example tp_ct-e in efd_pis_cofins
     code = unidecode(code)  # example NÍVEL in efd_icms_ipi
     new_code = ""
     for char in code:
         if char.isalpha() or char.isdigit() or char == "_":
             new_code += char
-        elif char in ("/", "-"):
-            # warn about a few fields like TP_CT-e or NIF/CNPJ which are true SPED fields (WTF!!)
-            # but invalid Python names... So in Odoo we will replace their names in the model
-            # definitions and during the SPED import/export...
-            new_code += char
-            logger.warning(
-                f"field code {code} is invalid in Python and will need special care!"
-            )
         else:  # likely a pdf error
             logger.warning(
                 f"field code {code} has bad char '{char}'! '{char}' has been skipped!"

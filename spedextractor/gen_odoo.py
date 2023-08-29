@@ -245,20 +245,6 @@ def main(year):
     """Generate Odoo models."""
 
     config = GeneratorConfig()
-
-    # the SPED spec has a couple of bad field names we cannot use in Python/Odoo:
-    # (we know them by running flake8/black on the the generated files before fixing them)
-    config.substitutions.substitution += [
-        GeneratorSubstitution(
-            type=ObjectType.FIELD, search="NIF/CNPJ", replace="NIF_CNPJ"
-        ),  # ecf X357
-        GeneratorSubstitution(
-            type=ObjectType.FIELD, search="TP_CT-e", replace="TP_CT_e"
-        ),  # efd_icms_ipi, efd_pis_cofins
-        GeneratorSubstitution(
-            type=ObjectType.FIELD, search="IND_E-COM_TI", replace="IND_E_COM_TI"
-        ),  # ecf
-    ]
     config.conventions.field_name.safe_prefix = (
         "NO_PREFIX_NO_SAFE_NAME"  # no field prefix
     )
