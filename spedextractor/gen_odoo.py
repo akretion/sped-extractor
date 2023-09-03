@@ -414,8 +414,9 @@ access_manager_{mod}_declaration,{mod}.declaration,model_l10n_br_sped_declaratio
                     field["type"] = "char"
 
                 # listing all fields helps writting and reviewing mappings:
+                max_desc = 88 - len(field["code"]) - 29
                 concrete_models_source += (
-                    f"""    #         "{field["code"]}": 0,  # TODO\n"""
+                    f"""    #         "{field["code"]}": 0,  # {field["desc"][0:max_desc]}{len(field["desc"]) > max_desc and "..." or ""}\n"""
                 )
 
                 if (
