@@ -271,8 +271,6 @@ def main(year):
         mod_fields = get_fields(mod, year)
 
         security_csv = f""""id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
-access_user_{mod}_declaration,{mod}.declaration,model_l10n_br_sped_declaration_{mod},l10n_br_fiscal.group_user,1,0,0,0
-access_manager_{mod}_declaration,{mod}.declaration,model_l10n_br_sped_declaration_{mod},l10n_br_fiscal.group_manager,1,1,1,1
 """
 
         views_xml = '<?xml version="1.0" encoding="UTF-8"?>\n<odoo>'
@@ -284,7 +282,7 @@ access_manager_{mod}_declaration,{mod}.declaration,model_l10n_br_sped_declaratio
         action = """\n
     <record id="declaration_%s_action" model="ir.actions.act_window">
     <field name="name">%s Declaration</field>
-    <field name="res_model">l10n_br_sped.declaration.%s</field>
+    <field name="res_model">l10n_br_sped.%s.0000</field>
     <field name="view_mode">tree,form</field>
     </record>""" % (
             mod,
@@ -346,7 +344,7 @@ access_manager_{mod}_declaration,{mod}.declaration,model_l10n_br_sped_declaratio
                 concrete_models_source += """
 
     # @api.model
-    # def _map_from_odoo(cls, record, parent_record):#, declaration):
+    # def _map_from_odoo(cls, record, parent_record, declaration):
     #     return {
                 """
 
@@ -357,7 +355,7 @@ access_manager_{mod}_declaration,{mod}.declaration,model_l10n_br_sped_declaratio
                 ) % (bloco_char, mod, mod, bloco_char.lower())
             last_bloco = bloco_char
 
-            if register["level"] == 2 or register["code"] == "0000":
+            if register["level"] == 2:# or register["code"] == "0000":
                 action_name = register["code"] + " " + register["short_desc"]
                 action = """\n
     <record id="%s_%s_action" model="ir.actions.act_window">
