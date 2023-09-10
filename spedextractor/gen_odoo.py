@@ -293,7 +293,7 @@ def main(year):
 
         views_xml += (
             '\n    <menuitem action="declaration_%s_action"'
-            ' parent="%s" id="declaration_%s"/>'
+            ' parent="%s" id="declaration_%s" />'
         ) % (
             mod,
             mod,
@@ -351,7 +351,7 @@ def main(year):
             bloco_char = register["code"][0]
             if bloco_char != last_bloco:
                 views_xml += (
-                    '\n\n\n    <menuitem name="BLOCO %s"' ' parent="%s" id="%s_%s"/>'
+                    '\n\n\n    <menuitem name="BLOCO %s"' ' parent="%s" id="%s_%s" />'
                 ) % (bloco_char, mod, mod, bloco_char.lower())
             last_bloco = bloco_char
 
@@ -373,7 +373,7 @@ def main(year):
 
                 views_xml += (
                     '\n    <menuitem action="%s_%s_action"'
-                    ' parent="%s_%s" id="%s_%s"/>'
+                    ' parent="%s_%s" id="%s_%s" />'
                 ) % (
                     mod,
                     register["code"].lower(),
