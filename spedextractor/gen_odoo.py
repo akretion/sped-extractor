@@ -326,6 +326,10 @@ def main(year):
                 # Blocks and their start/end registers don't need to be in the database
                 continue
 
+            if register["code"][0] == "9":
+                # bloco 9 is automatic, not ERP data
+                break
+
             short_desc, left = extract_string_and_help(
                 mod, register["code"], register["desc"], set(), 100
             )
