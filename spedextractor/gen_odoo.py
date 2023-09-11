@@ -348,7 +348,7 @@ def main(year):
                 concrete_models_source += """
 
     # @api.model
-    # def _map_from_odoo(cls, record, parent_record, declaration):
+    # def _map_from_odoo(self, record, parent_record, declaration):
     #     return {
                 """
 
