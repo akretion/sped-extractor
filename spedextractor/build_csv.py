@@ -470,7 +470,7 @@ def _normalize_field_code(code):
                 f"field code {code} has bad char '{char}'! '{char}' has been skipped!"
             )
             continue
-    return new_code
+    return new_code.upper()
 
 
 def _convert_field_type(field):
