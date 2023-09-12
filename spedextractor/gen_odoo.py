@@ -137,6 +137,12 @@ class SpedFilters(OdooFilters):
     def odoo_class_name(self, obj: Class, parents: List[Class] = []):
         return obj.name
 
+    def odoo_inherit_model(self, obj: Class) -> str:
+        if "0000" in obj.name:
+            return "l10n_br_sped.declaration"
+        else:
+            return self.inherit_model
+
     def _extract_field_attributes(self, parents: List[Class], attr: Attr):
         """
         xsdata-odoo override. Note that because we pass native xsdata types
