@@ -1,0 +1,4556 @@
+{
+  "tipo": "ecd",
+  "versao": "8",
+  "data_inicio": "2019-01-01",
+  "registros": [
+    {
+      "codigo": "0000",
+      "nome": "ABERTURA DO ARQUIVO DIGITAL E IDENTIFICA\u00c7\u00c3O DO EMPRES\u00c1RIO OU DA SOCIEDADE EMPRES\u00c1RIA",
+      "regras": [
+        "REGRA_DATA_INI_MAIOR",
+        "REGRA_INICIO_PERIODO",
+        "REGRA_FIM_PERIODO",
+        "REGRA_VALIDA_CNPJ",
+        "REGRA_TABELA_UF",
+        "REGRA_CAMPO_CARACTERE_INVALIDO",
+        "REGRA_TABELA_MUNICIPIO",
+        "REGRA_COD_MUN_INV_UF",
+        "REGRA_CAMPO_CARACTERE",
+        "REGRA_TABELA_SITUACAO",
+        "REGRA_TABELA_SIT_INICIO_PER",
+        "REGRA_HASH_SUBSTITUIDA",
+        "REGRA_VALIDA_HEXADECIMAL",
+        "REGRA_SCP_OBRIGATORIO",
+        "REGRA_SCP_NAO_PREENCHER",
+        "REGRA_CNPJ_DIFERENTE_SCP",
+        "REGRA_VALIDA_CNPJ",
+        "REGRA_CONGLOMERADO_MES_12"
+      ],
+      "nivel": 0,
+      "ocorrencia": "1:1",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "LECD",
+          "descricao": "Texto fixo contendo \u201cLECD\u201d.",
+          "tipo": "C",
+          "tamanho": "004",
+          "decimal": null,
+          "valores": "\u201cLECD\u201d",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 3,
+          "nome": "DT_INI",
+          "descricao": "Data inicial das informa\u00e7\u00f5es contidas no arquivo.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_DATA_INI_MAIOR", "REGRA_INICIO_PERIODO"]
+        },
+        {
+          "indice": 4,
+          "nome": "DT_FIN",
+          "descricao": "Data final das informa\u00e7\u00f5es contidas no arquivo.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_FIM_PERIODO"]
+        },
+        {
+          "indice": 5,
+          "nome": "NOME",
+          "descricao": "Nome empresarial da pessoa jur\u00eddica.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 6,
+          "nome": "CNPJ",
+          "descricao": "N\u00famero de inscri\u00e7\u00e3o da pessoa jur\u00eddica no CNPJ. Observa\u00e7\u00e3o: Esse CNPJ \u00e9 sempre da S\u00f3cia Ostensiva, no caso do arquivo da SCP.",
+          "tipo": "N",
+          "tamanho": "014",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_VALIDA_CNPJ"]
+        },
+        {
+          "indice": 7,
+          "nome": "UF",
+          "descricao": "Sigla da unidade da federa\u00e7\u00e3o da pessoa jur\u00eddica.",
+          "tipo": "C",
+          "tamanho": "002",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_TABELA_UF"]
+        },
+        {
+          "indice": 8,
+          "nome": "IE",
+          "descricao": "Inscri\u00e7\u00e3o Estadual da pessoa jur\u00eddica.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_CAMPO_CARACTERE_INVALIDO"]
+        },
+        {
+          "indice": 9,
+          "nome": "COD_MUN",
+          "descricao": "C\u00f3digo do munic\u00edpio do domic\u00edlio fiscal da pessoa jur\u00eddica, conforme tabela do IBGE \u2013 Instituto Brasileiro de Geografia e Estat\u00edstica.",
+          "tipo": "N",
+          "tamanho": "007",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_TABELA_MUNICIPIO", "REGRA_COD_MUN_INV_UF"]
+        },
+        {
+          "indice": 10,
+          "nome": "IM",
+          "descricao": "Inscri\u00e7\u00e3o Municipal da pessoa jur\u00eddica.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_CAMPO_CARACTERE"]
+        },
+        {
+          "indice": 11,
+          "nome": "IND_SIT_ESP",
+          "descricao": "Indicador de situa\u00e7\u00e3o especial (conforme tabela publicada pelo Sped).",
+          "tipo": "N",
+          "tamanho": "1",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_TABELA_SITUACAO"]
+        },
+        {
+          "indice": 12,
+          "nome": "IND_SIT_INI_PER",
+          "descricao": "Indicador de situa\u00e7\u00e3o no in\u00edcio do per\u00edodo (conforme tabela publicada pelo Sped).",
+          "tipo": "N",
+          "tamanho": "1",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_TABELA_SIT_INICIO_PER"]
+        },
+        {
+          "indice": 13,
+          "nome": "IND_NIRE",
+          "descricao": "Indicador de exist\u00eancia de NIRE: 0 \u2013 Empresa n\u00e3o possui registro na Junta Comercial (n\u00e3o possui NIRE) 1 \u2013 Empresa possui registro na Junta Comercial (possui NIRE)",
+          "tipo": "N",
+          "tamanho": "1",
+          "decimal": null,
+          "valores": "[0,1]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 14,
+          "nome": "IND_FIN_ESC",
+          "descricao": "Indicador de finalidade da escritura\u00e7\u00e3o: 0 - Original 1 \u2013 Substituta",
+          "tipo": "N",
+          "tamanho": "1",
+          "decimal": null,
+          "valores": "[0,1]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 15,
+          "nome": "COD_HASH_SUB",
+          "descricao": "Hash da escritura\u00e7\u00e3o substitu\u00edda.",
+          "tipo": "C",
+          "tamanho": "40",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_HASH_SUBSTITUIDA", "REGRA_VALIDA_HEXADECIMAL"]
+        },
+        {
+          "indice": 16,
+          "nome": "IND_GRANDE_PORTE",
+          "descricao": "Indicador de entidade sujeita a auditoria independente: 0 \u2013 Empresa n\u00e3o \u00e9 entidade sujeita a auditoria independente. 1 \u2013 Empresa \u00e9 entidade sujeita a auditoria independente \u2013 Ativo Total superior a R$ 240.000.000,00 ou Receita Bruta Anual superior R$300.000.000,00.",
+          "tipo": "N",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[0; 1]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 17,
+          "nome": "TIP_ECD",
+          "descricao": "Indicador do tipo de ECD: 0 \u2013 ECD de empresa n\u00e3o participante de SCP como s\u00f3cio ostensivo. 1 \u2013 ECD de empresa participante de SCP como s\u00f3cio ostensivo. 2 \u2013 ECD da SCP.",
+          "tipo": "N",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[0; 1; 2]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 18,
+          "nome": "COD_SCP",
+          "descricao": "CNPJ da SCP (Art. 4\u00ba, XVII, da IN RFB n\u00ba 1.634, de 6 de maio de 2016). Observa\u00e7\u00e3o: S\u00f3 deve ser preenchido pela pr\u00f3pria SCP com o CNPJ da SCP (N\u00e3o \u00e9 preenchido pelo s\u00f3cio ostensivo).",
+          "tipo": "N",
+          "tamanho": "014",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": [
+            "REGRA_SCP_OBRIGATORIO",
+            "REGRA_SCP_NAO_PREENCHER",
+            "REGRA_CNPJ_DIFERENTE_SCP",
+            "REGRA_VALIDA_CNPJ"
+          ]
+        },
+        {
+          "indice": 19,
+          "nome": "IDENT_MF",
+          "descricao": "Identifica\u00e7\u00e3o de moeda funcional: Indica que a escritura\u00e7\u00e3o abrange valores com base na moeda funcional (art. 287 da Instru\u00e7\u00e3o Normativa RFB n\u00ba 1.700, de 14 de mar\u00e7o de 2017). Observa\u00e7\u00e3o: Dever\u00e1 ser utilizado o registro I020 para informa\u00e7\u00e3o de campos adicionais, conforme instru\u00e7\u00f5es do item 1.24.",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[S; N]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 20,
+          "nome": "IND_ESC_CONS",
+          "descricao": "Escritura\u00e7\u00f5es Cont\u00e1beis Consolidadas: (Deve ser preenchido pela empresa controladora obrigada a informar demonstra\u00e7\u00f5es cont\u00e1beis consolidadas, nos termos da Lei n\u00ba 6.404/76 e/ou do Pronunciamento T\u00e9cnico CPC 36 \u2013 Demonstra\u00e7\u00f5es Consolidadas) S \u2013 Sim N \u2013 N\u00e3o",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[S; N]",
+          "obrigatorio": true,
+          "regras": ["REGRA_CONGLOMERADO_MES_12"]
+        },
+        {
+          "indice": 21,
+          "nome": "IND_CENTRALIZADA",
+          "descricao": "Indicador da modalidade de escritura\u00e7\u00e3o centralizada ou descentralizada: 0 \u2013 Escritura\u00e7\u00e3o Centralizada 1 \u2013 Escritura\u00e7\u00e3o Descentralizada",
+          "tipo": "N",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[0;1]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 22,
+          "nome": "IND_MUDANC_PC",
+          "descricao": "Indicador de mudan\u00e7a de plano de contas: 0 \u2013 N\u00e3o houve mudan\u00e7a no plano de contas. 1 \u2013 Houve mudan\u00e7a no plano de contas.",
+          "tipo": "N",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[0;1]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 23,
+          "nome": "COD_PLAN_REF",
+          "descricao": "C\u00f3digo do Plano de Contas Referencial que ser\u00e1 utilizado para o mapeamento de todas as contas anal\u00edticas: 1 \u2013 PJ em Geral \u2013 Lucro Real 2 \u2013 PJ em Geral \u2013 Lucro Presumido 3 \u2013 Financeiras \u2013 Lucro Real 4 \u2013 Seguradoras \u2013 Lucro Real 5 \u2013 Imunes e Isentas em Geral 6 \u2013 Imunes e Isentas \u2013 Financeiras 7 \u2013 Imunes e Isentas \u2013 Seguradoras 8 \u2013 Entidades Fechadas de Previd\u00eancia Complementar 9 \u2013 Partidos Pol\u00edticos 10 \u2013 Financeiras \u2013 Lucro Presumido bserva\u00e7\u00e3o: Caso a pessoa jur\u00eddica n\u00e3o realize o mapeamento para os planos referenciais na ECD, este campo deve ficar em branco.",
+          "tipo": "C",
+          "tamanho": "2",
+          "decimal": null,
+          "valores": "[1; 2; 3; 4; 5; 6; 7; 8; 9; 10; '']",
+          "obrigatorio": false,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "0001",
+      "nome": "ABERTURA DO BLOCO 0",
+      "regras": [],
+      "nivel": 1,
+      "ocorrencia": "1:1",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "IND_DAD",
+          "descricao": "Indicador de movimento: 0- Bloco com dados informados; 1- Bloco sem dados informados.",
+          "tipo": "N",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[0,1]",
+          "obrigatorio": true,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "0007",
+      "nome": "OUTRAS INSCRI\u00c7\u00d5ES CADASTRAIS DA PESSOA JUR\u00cdDICA",
+      "regras": ["REGRA_TABELA_INSTITUICOES_CADASTRO", "REGRA_VALIDA_INSCRICAO"],
+      "nivel": 2,
+      "ocorrencia": "0:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "COD_ENT_REF",
+          "descricao": "C\u00f3digo da institui\u00e7\u00e3o respons\u00e1vel pela administra\u00e7\u00e3o do cadastro (conforme tabela publicada pelo Sped).",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_TABELA_INSTITUICOES_CADASTRO"]
+        },
+        {
+          "indice": 3,
+          "nome": "COD_INSCR",
+          "descricao": "C\u00f3digo cadastral da pessoa jur\u00eddica na institui\u00e7\u00e3o identificada no campo 02.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_VALIDA_INSCRICAO"]
+        }
+      ]
+    },
+    {
+      "codigo": "0020",
+      "nome": "ESCRITURA\u00c7\u00c3O CONT\u00c1BIL DESCENTRALIZADA",
+      "regras": [
+        "REGRA_CONGLOMERADO_NA_MATRIZ",
+        "REGRA_VALIDA_CNPJ",
+        "REGRA_VERIFICA_CNPJ_REG_0000_REG_0020",
+        "REGRA_REGISTRO_DUPLICADO",
+        "REGRA_DUPLICIDADE_CNPJ_REG_0000_REG_0020",
+        "REGRA_TABELA_UF",
+        "REGRA_CAMPO_CARACTERE_INVALIDO",
+        "REGRA_TABELA_MUNICIPIO",
+        "REGRA_CAMPO_CARACTERE_INVALIDO",
+        "REGRA_VALIDA_NIRE"
+      ],
+      "nivel": 2,
+      "ocorrencia": "0:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "IND_DEC",
+          "descricao": "Indicador de descentraliza\u00e7\u00e3o: 0 \u2013 Escritura\u00e7\u00e3o da matriz. 1 \u2013 Escritura\u00e7\u00e3o da filial.",
+          "tipo": "N",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[0,1]",
+          "obrigatorio": true,
+          "regras": ["REGRA_CONGLOMERADO_NA_MATRIZ"]
+        },
+        {
+          "indice": 3,
+          "nome": "CNPJ",
+          "descricao": "N\u00famero de inscri\u00e7\u00e3o da pessoa jur\u00eddica no CNPJ da matriz ou da filial.",
+          "tipo": "N",
+          "tamanho": "014",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": [
+            "REGRA_VALIDA_CNPJ",
+            "REGRA_VERIFICA_CNPJ_REG_0000_REG_0020",
+            "REGRA_REGISTRO_DUPLICADO",
+            "REGRA_DUPLICIDADE_CNPJ_REG_0000_REG_0020"
+          ]
+        },
+        {
+          "indice": 4,
+          "nome": "UF",
+          "descricao": "Sigla da unidade da federa\u00e7\u00e3o da matriz ou da filial.",
+          "tipo": "C",
+          "tamanho": "002",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_TABELA_UF"]
+        },
+        {
+          "indice": 5,
+          "nome": "IE",
+          "descricao": "Inscri\u00e7\u00e3o estadual da matriz ou da filial.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_CAMPO_CARACTERE_INVALIDO"]
+        },
+        {
+          "indice": 6,
+          "nome": "COD_MUN",
+          "descricao": "C\u00f3digo do munic\u00edpio do domic\u00edlio da matriz ou da filial.",
+          "tipo": "N",
+          "tamanho": "007",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_TABELA_MUNICIPIO"]
+        },
+        {
+          "indice": 7,
+          "nome": "IM",
+          "descricao": "N\u00famero de Inscri\u00e7\u00e3o Municipal da matriz ou da filial.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_CAMPO_CARACTERE_INVALIDO"]
+        },
+        {
+          "indice": 8,
+          "nome": "NIRE",
+          "descricao": "N\u00famero de Identifica\u00e7\u00e3o do Registro de Empresas da matriz ou da filial na Junta Comercial.",
+          "tipo": "N",
+          "tamanho": "11",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_VALIDA_NIRE"]
+        }
+      ]
+    },
+    {
+      "codigo": "0035",
+      "nome": "IDENTIFICA\u00c7\u00c3O DAS SCP",
+      "regras": ["REGRA_CNPJ_DIFERENTE_SCP"],
+      "nivel": 2,
+      "ocorrencia": "0:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "COD_SCP",
+          "descricao": "CNPJ da SCP (Art. 4\u00ba, XVII, da Instru\u00e7\u00e3o Normativa RFB n\u00ba 1.634, de 6 de maio de 2016).",
+          "tipo": "C",
+          "tamanho": "014",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_CNPJ_DIFERENTE_SCP"]
+        },
+        {
+          "indice": 3,
+          "nome": "NOME_SCP",
+          "descricao": "Nome da SCP",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "0150",
+      "nome": "TABELA DE CADASTRO DO PARTICIPANTE",
+      "regras": [
+        "REGRA_REGISTRO_DUPLICADO",
+        "REGRA_TABELA_PAIS",
+        "REGRA_VALIDA_CNPJ",
+        "REGRA_VALIDA_CPF",
+        "REGRA_TABELA_UF",
+        "REGRA_CAMPO_NAO_OBRIGATORIO_PAIS_BRASIL",
+        "REGRA_CAMPO_CARACTERE_INVALIDO",
+        "REGRA_CAMPO_CARACTERE_INVALIDO",
+        "REGRA_TABELA_MUNICIPIO",
+        "REGRA_CAMPO_NAO_OBRIGATORIO_PAIS_BRASIL",
+        "REGRA_CAMPO_CARACTERE_INVALIDO",
+        "REGRA_CAMPO_CARACTERE_INVALIDO"
+      ],
+      "nivel": 2,
+      "ocorrencia": "0:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "COD_PART",
+          "descricao": "C\u00f3digo de identifica\u00e7\u00e3o do participante no arquivo criado pela pr\u00f3pria pessoa jur\u00eddica.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_REGISTRO_DUPLICADO"]
+        },
+        {
+          "indice": 3,
+          "nome": "NOME",
+          "descricao": "Nome pessoal ou empresarial do participante.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 4,
+          "nome": "COD_PAIS",
+          "descricao": "C\u00f3digo do pa\u00eds do participante, conforme a tabela do Banco Central do Brasil.",
+          "tipo": "N",
+          "tamanho": "005",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_TABELA_PAIS"]
+        },
+        {
+          "indice": 5,
+          "nome": "CNPJ",
+          "descricao": "CNPJ do participante.",
+          "tipo": "N",
+          "tamanho": "014",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_VALIDA_CNPJ"]
+        },
+        {
+          "indice": 6,
+          "nome": "CPF",
+          "descricao": "CPF do participante.",
+          "tipo": "N",
+          "tamanho": "011",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_VALIDA_CPF"]
+        },
+        {
+          "indice": 7,
+          "nome": "NIT",
+          "descricao": "N\u00famero de Identifica\u00e7\u00e3o do Trabalhador, Pis, Pasep, SUS.",
+          "tipo": "N",
+          "tamanho": "011",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": []
+        },
+        {
+          "indice": 8,
+          "nome": "UF",
+          "descricao": "Sigla da unidade da federa\u00e7\u00e3o do participante.",
+          "tipo": "C",
+          "tamanho": "002",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_TABELA_UF", "REGRA_CAMPO_NAO_OBRIGATORIO_PAIS_BRASIL"]
+        },
+        {
+          "indice": 9,
+          "nome": "IE",
+          "descricao": "Inscri\u00e7\u00e3o Estadual do participante.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_CAMPO_CARACTERE_INVALIDO"]
+        },
+        {
+          "indice": 10,
+          "nome": "IE_ST",
+          "descricao": "Inscri\u00e7\u00e3o Estadual do participante na unidade da federa\u00e7\u00e3o do destinat\u00e1rio, na condi\u00e7\u00e3o de contribuinte substituto.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_CAMPO_CARACTERE_INVALIDO"]
+        },
+        {
+          "indice": 11,
+          "nome": "COD_MUN",
+          "descricao": "C\u00f3digo do munic\u00edpio, conforme a tabela do IBGE.",
+          "tipo": "N",
+          "tamanho": "007",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": [
+            "REGRA_TABELA_MUNICIPIO",
+            "REGRA_CAMPO_NAO_OBRIGATORIO_PAIS_BRASIL"
+          ]
+        },
+        {
+          "indice": 12,
+          "nome": "IM",
+          "descricao": "Inscri\u00e7\u00e3o Municipal do participante.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_CAMPO_CARACTERE_INVALIDO"]
+        },
+        {
+          "indice": 13,
+          "nome": "SUFRAMA",
+          "descricao": "N\u00famero de inscri\u00e7\u00e3o do participante na Suframa.",
+          "tipo": "C",
+          "tamanho": "009",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_CAMPO_CARACTERE_INVALIDO"]
+        }
+      ]
+    },
+    {
+      "codigo": "0180",
+      "nome": "IDENTIFICA\u00c7\u00c3O DO RELACIONAMENTO COM O PARTICIPANTE",
+      "regras": ["REGRA_TABELA_RELACIONAMENTO", "REGRA_DT_INI_MAIOR_DT_FIN_REL"],
+      "nivel": 3,
+      "ocorrencia": "1:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "COD_REL",
+          "descricao": "C\u00f3digo do relacionamento conforme tabela publicada pelo Sped.",
+          "tipo": "N",
+          "tamanho": "002",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_TABELA_RELACIONAMENTO"]
+        },
+        {
+          "indice": 3,
+          "nome": "DT_INI_REL",
+          "descricao": "Data do in\u00edcio do relacionamento.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_DT_INI_MAIOR_DT_FIN_REL"]
+        },
+        {
+          "indice": 4,
+          "nome": "DT_FIN_REL",
+          "descricao": "Data do t\u00e9rmino do relacionamento.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "0990",
+      "nome": "ENCERRAMENTO DO BLOCO 0",
+      "regras": ["REGRA_QTD_LIN_BLOCO_0"],
+      "nivel": 1,
+      "ocorrencia": "1:1",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "QTD_LIN_0",
+          "descricao": "Quantidade total de linhas do Bloco 0.",
+          "tipo": "N",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_QTD_LIN_BLOCO_0"]
+        }
+      ]
+    },
+    {
+      "codigo": "C001",
+      "nome": "ABERTURA DO BLOCO C",
+      "regras": [],
+      "nivel": 1,
+      "ocorrencia": "1:1",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "IND_DAD",
+          "descricao": "Indicador de movimento: 0- Bloco com dados informados; 1- Bloco sem dados informados.",
+          "tipo": "N",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[0,1]",
+          "obrigatorio": true,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "C040",
+      "nome": "IDENTIFICA\u00c7\u00c3O DA ESCRITURA\u00c7\u00c3O CONT\u00c1BIL RECUPERADA",
+      "regras": [],
+      "nivel": 2,
+      "ocorrencia": "1:1",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "HASH_ECD_REC",
+          "descricao": "Hashcode da ECD recuperada.",
+          "tipo": "C",
+          "tamanho": "040",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 3,
+          "nome": "DT_INI_ECD_REC",
+          "descricao": "Data inicial das informa\u00e7\u00f5es contidas na ECD recuperada.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 4,
+          "nome": "DT_FIN_ECD_REC",
+          "descricao": "Data final das informa\u00e7\u00f5es contidas na ECD recuperada.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 5,
+          "nome": "CNPJ_ECD_REC",
+          "descricao": "CNPJ da ECD recuperada.",
+          "tipo": "N",
+          "tamanho": "014",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 6,
+          "nome": "IND_ESC",
+          "descricao": "Indicador da forma de escritura\u00e7\u00e3o cont\u00e1bil: G \u2013 Livro Di\u00e1rio Geral. R \u2013 Livro Di\u00e1rio com Escritura\u00e7\u00e3o Resumida. B \u2013 Livro de Balancetes Di\u00e1rios.",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[G;R;B]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 7,
+          "nome": "COD_VER_LC",
+          "descricao": "C\u00f3digo da vers\u00e3o do leiaute.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 8,
+          "nome": "NUM_ORD",
+          "descricao": "N\u00famero de ordem da escritura\u00e7\u00e3o.",
+          "tipo": "N",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 9,
+          "nome": "NAT_LIVR",
+          "descricao": "Natureza do livro.",
+          "tipo": "C",
+          "tamanho": "080",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 10,
+          "nome": "IND_SIT_ESP_ECD_REC",
+          "descricao": "Indicador de situa\u00e7\u00e3o especial da ECD recuperada: 1 \u2013 Cis\u00e3o. 2 \u2013 Fus\u00e3o. 3 - Incorpora\u00e7\u00e3o. 4 \u2013 Extin\u00e7\u00e3o.",
+          "tipo": "N",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[1;2;3;4]",
+          "obrigatorio": false,
+          "regras": []
+        },
+        {
+          "indice": 11,
+          "nome": "IND_NIRE_ECD_REC",
+          "descricao": "Indicador de exist\u00eancia de Nire: 0 \u2013 Pessoa jur\u00eddica n\u00e3o possui registro na Junta Comercial. 1 \u2013 Pessoa jur\u00eddica possui registro na Junta Comercial.",
+          "tipo": "N",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[0;1]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 12,
+          "nome": "IND_FIN_ESC_ECD_REC",
+          "descricao": "Indicador da finalidade da escritura\u00e7\u00e3o: 0 \u2013 Original. 1 \u2013 Substituta.",
+          "tipo": "N",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[0;1]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 13,
+          "nome": "TIP_ECD_REC",
+          "descricao": "Indicador do tipo da ECD: 0 \u2013 ECD de empresa n\u00e3o participante de SCP como s\u00f3cio ostensivo. 1 \u2013 ECD de empresa participante de SCP como s\u00f3cio ostensivo. 2 \u2013 ECD da SCP.",
+          "tipo": "N",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[0;1;2]",
+          "obrigatorio": null,
+          "regras": []
+        },
+        {
+          "indice": 14,
+          "nome": "COD_SCP_ECD_REC",
+          "descricao": "CNPJ da SCP.",
+          "tipo": "N",
+          "tamanho": "014",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": []
+        },
+        {
+          "indice": 15,
+          "nome": "IDENT_MF_ECD_REC",
+          "descricao": "Identifica\u00e7\u00e3o de moeda funcional: S \u2013 Sim N \u2013 N\u00e3o",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[S;N]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 16,
+          "nome": "IND_ESC_CONS_ECD_REC",
+          "descricao": "Identifica\u00e7\u00e3o de escritura\u00e7\u00f5es cont\u00e1beis consolidadas: S \u2013 Sim N \u2013 N\u00e3o",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[S;N]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 17,
+          "nome": "IND_CENTRALIZADA_ECD_REC",
+          "descricao": "Identifica\u00e7\u00e3o de escritura\u00e7\u00e3o cont\u00e1bil centralizada ou descentralizada: 0 \u2013 Escritura\u00e7\u00e3o centralizada. 1 \u2013 Escritura\u00e7\u00e3o descentralizada.",
+          "tipo": "N",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[0;1]",
+          "obrigatorio": false,
+          "regras": []
+        },
+        {
+          "indice": 18,
+          "nome": "IND_MUDANCA_PC_ECD_REC",
+          "descricao": "Indicativo de mudan\u00e7a de plano de contas: 0 \u2013 N\u00e3o houve altera\u00e7\u00e3o de plano de contas. 1 \u2013 Houve altera\u00e7\u00e3o de plano de contas.",
+          "tipo": "N",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[0;1]",
+          "obrigatorio": false,
+          "regras": []
+        },
+        {
+          "indice": 19,
+          "nome": "IND_PLANO_REF_ECD_REC",
+          "descricao": "C\u00f3digo do Plano de Contas Referencial que ser\u00e1 utilizado para o mapeamento de todas as contas anal\u00edticas: 1 \u2013 PJ em Geral \u2013 Lucro Real. 2 \u2013 PJ em Geral \u2013 Lucro Presumido. 3 \u2013 Financeiras \u2013 Lucro Real. 4 \u2013 Seguradoras \u2013 Lucro Real. 5 \u2013 Imunes e Isentas em Geral. 6 \u2013 Imunes e Isentas \u2013 Financeiras. 7 \u2013 Imunes e Isentas \u2013 Seguradoras. 8 \u2013 Entidades Fechadas de Previd\u00eancia Complementar. 9 \u2013 Partidos Pol\u00edticos. 10 \u2013 Financeiras \u2013 Lucro Presumido.",
+          "tipo": "N",
+          "tamanho": "002",
+          "decimal": null,
+          "valores": "[0;1;2;3;4; 5;6;7;8;9;10]",
+          "obrigatorio": false,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "C150",
+      "nome": "SALDOS PERI\u00d3DICOS RECUPERADOS \u2013 IDENTIFICA\u00c7\u00c3O DO PER\u00cdODO",
+      "regras": [],
+      "nivel": 3,
+      "ocorrencia": "1:1",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "DT_INI",
+          "descricao": "Data inicial do per\u00edodo.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 3,
+          "nome": "DT_FIN",
+          "descricao": "Data final do per\u00edodo.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "C155",
+      "nome": "DETALHE DOS SALDOS PERI\u00d3DICOS RECUPERADOS",
+      "regras": [],
+      "nivel": 4,
+      "ocorrencia": "1:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "COD_CTA_REC",
+          "descricao": "C\u00f3digo da conta anal\u00edtica.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 3,
+          "nome": "COD_CCUS_REC",
+          "descricao": "C\u00f3digo do centro de custos.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": []
+        },
+        {
+          "indice": 4,
+          "nome": "VL_SLD_INI_REC",
+          "descricao": "Valor do saldo inicial do per\u00edodo.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "002",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 5,
+          "nome": "IND_DC_INI_REC",
+          "descricao": "Indicador da situa\u00e7\u00e3o do saldo inicial: D \u2013 Devedor. C \u2013 Credor.",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[D;C]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 6,
+          "nome": "VL_DEB_REC",
+          "descricao": "Valor total dos d\u00e9bitos no per\u00edodo.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "002",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 7,
+          "nome": "VL_CRED_REC",
+          "descricao": "Valor total dos cr\u00e9ditos no per\u00edodo.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "002",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 8,
+          "nome": "VL_SLD_FIN_REC",
+          "descricao": "Valor do saldo final do per\u00edodo.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "002",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 9,
+          "nome": "IND_DC_FIN_REC",
+          "descricao": "Indicador da situa\u00e7\u00e3o do saldo final do per\u00edodo.",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[D;C]",
+          "obrigatorio": true,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "C600",
+      "nome": "DEMONSTRA\u00c7\u00d5ES CONT\u00c1BEIS RECUPERADAS - PER\u00cdODO",
+      "regras": [],
+      "nivel": 3,
+      "ocorrencia": "1:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "DT_INI",
+          "descricao": "Data inicial das demonstra\u00e7\u00f5es cont\u00e1beis.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 3,
+          "nome": "DT_FIN",
+          "descricao": "Data final das demonstra\u00e7\u00f5es cont\u00e1beis.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 4,
+          "nome": "ID_DEM",
+          "descricao": "Identifica\u00e7\u00e3o das demonstra\u00e7\u00f5es: 1 \u2013 Demonstra\u00e7\u00f5es cont\u00e1beis do empres\u00e1rio ou sociedade empres\u00e1ria a que se refere a escritura\u00e7\u00e3o. 2 \u2013 Demonstra\u00e7\u00f5es consolidadas ou de outras pessoas jur\u00eddicas.",
+          "tipo": "N",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[1;2]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 5,
+          "nome": "CAB_DEM",
+          "descricao": "Cabe\u00e7alho das demonstra\u00e7\u00f5es",
+          "tipo": "C",
+          "tamanho": "65535",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "C650",
+      "nome": "DEMONSTRA\u00c7\u00c3O DO RESULTADO DO EXERC\u00cdCIO RECUPERADA",
+      "regras": [],
+      "nivel": 4,
+      "ocorrencia": "1:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "COD_AGL",
+          "descricao": "C\u00f3digo de aglutina\u00e7\u00e3o da linha.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 3,
+          "nome": "NIVEL_AGL",
+          "descricao": "N\u00edvel do c\u00f3digo de aglutina\u00e7\u00e3o da linha.",
+          "tipo": "N",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 4,
+          "nome": "DESCR_COD_AGL",
+          "descricao": "Descri\u00e7\u00e3o do c\u00f3digo de aglutina\u00e7\u00e3o da linha.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 5,
+          "nome": "VL_CTA_FIN",
+          "descricao": "Valor do saldo final da linha.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "002",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 6,
+          "nome": "IND_DC_CTA_FIN",
+          "descricao": "Indicador da situa\u00e7\u00e3o do saldo final da linha: D \u2013 Devedor. C \u2013 Credor.",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[D;C]",
+          "obrigatorio": true,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "C990",
+      "nome": "ENCERRAMENTO DO BLOCO C",
+      "regras": ["REGRA_QTD_LIN_BLOCO_C"],
+      "nivel": 1,
+      "ocorrencia": "1:1",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "QTD_LIN_0",
+          "descricao": "Quantidade total de linhas do Bloco 0.",
+          "tipo": "N",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_QTD_LIN_BLOCO_C"]
+        }
+      ]
+    },
+    {
+      "codigo": "I001",
+      "nome": "ABERTURA DO BLOCO I",
+      "regras": [],
+      "nivel": 1,
+      "ocorrencia": "1:1",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "IND_DAD",
+          "descricao": "Indicador de movimento: 0- Bloco com dados informados; 1- Bloco sem dados informados.",
+          "tipo": "N",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[0,1]",
+          "obrigatorio": true,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "I010",
+      "nome": "IDENTIFICA\u00c7\u00c3O DA ESCRITURA\u00c7\u00c3O CONT\u00c1BIL",
+      "regras": ["REGRA_VERSAO_LC"],
+      "nivel": 2,
+      "ocorrencia": "1:1",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "IND_ESC",
+          "descricao": "G R A B Z Indicador da forma de escritura\u00e7\u00e3o cont\u00e1bil: - Livro Di\u00e1rio (Completo sem escritura\u00e7\u00e3o auxiliar). - Livro Di\u00e1rio com Escritura\u00e7\u00e3o Resumida (com escritura\u00e7\u00e3o auxiliar). - Livro Di\u00e1rio Auxiliar ao Di\u00e1rio com Escritura\u00e7\u00e3o Resumida. - Livro Balancetes Di\u00e1rios e Balan\u00e7os. \u2013 Raz\u00e3o Auxiliar (Livro Cont\u00e1bil Auxiliar conforme leiaute definido nos registros I500 a I555).",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[\u201cG\u201d,\u201dR\u201d, \u201dA\u201d,\u201dB\u201d, \u201dZ\u201d]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 3,
+          "nome": "COD_VER_LC",
+          "descricao": "C\u00f3digo da Vers\u00e3o do Leiaute Cont\u00e1bil. (Preencher com 8.00)",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "[8.00]",
+          "obrigatorio": true,
+          "regras": ["REGRA_VERSAO_LC"]
+        }
+      ]
+    },
+    {
+      "codigo": "I012",
+      "nome": "LIVROS AUXILIARES AO DI\u00c1RIO",
+      "regras": [
+        "REGRA_MAIOR_QUE_ZERO",
+        "REGRA_VALIDA_TIPO_LIVRO_AUXILIAR",
+        "REGRA_CAMPO_COD_HASH_AUX_OBRIGATORIO",
+        "REGRA_VALIDA_HEXADECIMAL"
+      ],
+      "nivel": 3,
+      "ocorrencia": "0:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "NUM_ORD",
+          "descricao": "N\u00famero de ordem do instrumento associado.",
+          "tipo": "N",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_MAIOR_QUE_ZERO"]
+        },
+        {
+          "indice": 3,
+          "nome": "NAT_LIVR",
+          "descricao": "Natureza do livro associado; finalidade a que se destina o instrumento.",
+          "tipo": "C",
+          "tamanho": "80",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 4,
+          "nome": "TIPO",
+          "descricao": "Tipo de escritura\u00e7\u00e3o do livro associado: 0 \u2013 digital (inclu\u00eddo no Sped). 1 \u2013 outros.",
+          "tipo": "N",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[0,1]",
+          "obrigatorio": true,
+          "regras": ["REGRA_VALIDA_TIPO_LIVRO_AUXILIAR"]
+        },
+        {
+          "indice": 5,
+          "nome": "COD_HASH_AUX",
+          "descricao": "C\u00f3digo Hash do arquivo correspondente ao livro auxiliar utilizado na assinatura digital.",
+          "tipo": "C",
+          "tamanho": "40",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_CAMPO_COD_HASH_AUX_OBRIGATORIO", "REGRA_VALIDA_HEXADECIMAL"]
+        }
+      ]
+    },
+    {
+      "codigo": "I015",
+      "nome": "IDENTIFICA\u00c7\u00c3O DAS CONTAS DA ESCRITURA\u00c7\u00c3O RESUMIDA A QUE SE REFERE A ESCRITURA\u00c7\u00c3O AUXILIAR",
+      "regras": [
+        "REGRA_VALIDA_CONTA_RESUMIDA_AUXILIAR",
+        "REGRA_VALIDA_CONTA_AUXILIAR_RESUMIDA"
+      ],
+      "nivel": 4,
+      "ocorrencia": "1:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "COD_CTA_RES",
+          "descricao": "C\u00f3digo da(s) conta(s) anal\u00edtica(s) do Livro Di\u00e1rio com Escritura\u00e7\u00e3o Resumida (R) que recebe os lan\u00e7amentos globais (deve corresponder a uma conta sint\u00e9tica no livro auxiliar).",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": [
+            "REGRA_VALIDA_CONTA_RESUMIDA_AUXILIAR",
+            "REGRA_VALIDA_CONTA_AUXILIAR_RESUMIDA"
+          ]
+        }
+      ]
+    },
+    {
+      "codigo": "I020",
+      "nome": "CAMPOS ADICIONAIS",
+      "regras": ["REGRA_REG_COD_NUM_AD_DUPLICADO"],
+      "nivel": 3,
+      "ocorrencia": "0:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "REG_COD",
+          "descricao": "C\u00f3digo do registro que recepciona o campo adicional.",
+          "tipo": "C",
+          "tamanho": "004",
+          "decimal": null,
+          "valores": "[do \u201cI050\u201d ao \u201cI355\u201d]",
+          "obrigatorio": true,
+          "regras": ["REGRA_REG_COD_NUM_AD_DUPLICADO"]
+        },
+        {
+          "indice": 3,
+          "nome": "NUM_AD",
+          "descricao": "N\u00famero sequencial do campo adicional.",
+          "tipo": "N",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 4,
+          "nome": "CAMPO",
+          "descricao": "Nome do campo adicional.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 5,
+          "nome": "DESCRI\u00c7\u00c3O",
+          "descricao": "Descri\u00e7\u00e3o do campo adicional.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": []
+        },
+        {
+          "indice": 6,
+          "nome": "TIPO",
+          "descricao": "Indica\u00e7\u00e3o do tipo de dado (N: num\u00e9rico; C: caractere).",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "[\u201cN\u201d,\u201dC\u201d]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 7,
+          "nome": "IND_DC_INI_MF",
+          "descricao": "Indicador da situa\u00e7\u00e3o do saldo inicial em moeda funcional: D - Devedor; C - Credor.",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[\u201cD\u201d,\u201dC\u201d]",
+          "obrigatorio": null,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "I030",
+      "nome": "TERMO DE ABERTURA",
+      "regras": [
+        "REGRA_MAIOR_QUE_ZERO",
+        "REGRA_VALIDA_IDENT_MF_LIVRO_RAS",
+        "REGRA_VALIDA_CONTEUDO_NAT_LIVR",
+        "REGRA_IGUAL_QTD_LIN_REG9999",
+        "REGRA_IGUAL_NOME_REG0000",
+        "REGRA_VALIDA_NIRE",
+        "REGRA_NIRE_UF",
+        "REGRA_CAMPO_OBRIGATORIO_NIRE",
+        "REGRA_IGUAL_CNPJ_REG0000",
+        "REGRA_DATA_INI_MAIOR_ADV",
+        "REGRA_DATA_INI_MAIOR",
+        "REGRA_PREENCHE_DATA_I030",
+        "REGRA_OBRIGATORIA_DT_EX_SOCIAL"
+      ],
+      "nivel": 3,
+      "ocorrencia": "1:1",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "DNRC_ABERT",
+          "descricao": "Texto fixo contendo \u201cTERMO DE ABERTURA\u201d.",
+          "tipo": "C",
+          "tamanho": "017",
+          "decimal": null,
+          "valores": "\u201cTERMO DE ABERTURA\u201d",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 3,
+          "nome": "NUM_ORD",
+          "descricao": "N\u00famero de ordem do instrumento de escritura\u00e7\u00e3o.",
+          "tipo": "N",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_MAIOR_QUE_ZERO"]
+        },
+        {
+          "indice": 4,
+          "nome": "NAT_LIVR",
+          "descricao": "Natureza do livro; finalidade a que se destina o instrumento.",
+          "tipo": "C",
+          "tamanho": "80",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": [
+            "REGRA_VALIDA_IDENT_MF_LIVRO_RAS",
+            "REGRA_VALIDA_CONTEUDO_NAT_LIVR"
+          ]
+        },
+        {
+          "indice": 5,
+          "nome": "QTD_LIN",
+          "descricao": "Quantidade total de linhas do arquivo digital.",
+          "tipo": "N",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_IGUAL_QTD_LIN_REG9999"]
+        },
+        {
+          "indice": 6,
+          "nome": "NOME",
+          "descricao": "Nome empresarial.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_IGUAL_NOME_REG0000"]
+        },
+        {
+          "indice": 7,
+          "nome": "NIRE",
+          "descricao": "N\u00famero de Identifica\u00e7\u00e3o do Registro de Empresas da Junta Comercial.",
+          "tipo": "N",
+          "tamanho": "011",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": [
+            "REGRA_VALIDA_NIRE",
+            "REGRA_NIRE_UF",
+            "REGRA_CAMPO_OBRIGATORIO_NIRE"
+          ]
+        },
+        {
+          "indice": 8,
+          "nome": "CNPJ",
+          "descricao": "N\u00famero de inscri\u00e7\u00e3o no CNPJ.",
+          "tipo": "N",
+          "tamanho": "014",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_IGUAL_CNPJ_REG0000"]
+        },
+        {
+          "indice": 9,
+          "nome": "DT_ARQ",
+          "descricao": "Data do arquivamento dos atos constitutivos.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_DATA_INI_MAIOR_ADV"]
+        },
+        {
+          "indice": 10,
+          "nome": "DT_ARQ_CONV",
+          "descricao": "Data de arquivamento do ato de convers\u00e3o de sociedade simples em sociedade empres\u00e1ria.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_DATA_INI_MAIOR", "REGRA_PREENCHE_DATA_I030"]
+        },
+        {
+          "indice": 11,
+          "nome": "DESC_MUN",
+          "descricao": "Munic\u00edpio.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": []
+        },
+        {
+          "indice": 12,
+          "nome": "DT_EX_SOCIAL",
+          "descricao": "Data de encerramento do exerc\u00edcio social.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_OBRIGATORIA_DT_EX_SOCIAL"]
+        }
+      ]
+    },
+    {
+      "codigo": "I050",
+      "nome": "PLANO DE CONTAS",
+      "regras": [
+        "REGRA_ANO_ALT_MAIOR_ANO_FIN",
+        "REGRA_TABELA_NATUREZA",
+        "REGRA_MAIOR_QUE_UM",
+        "REGRA_VALIDA_NIVEL_CONTAS",
+        "REGRA_COD_CTA_IGUAL_COD_CTA_SUP",
+        "REGRA_COD_CTA_SUP_OBRIGATORIO",
+        "REGRA_CTA_DE_NIVEL_SUPERIOR_INVALIDA",
+        "REGRA_CONTA_SUPERIOR_NAO_SE_APLICA"
+      ],
+      "nivel": 3,
+      "ocorrencia": "1:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "DT_ALT",
+          "descricao": "Data da inclus\u00e3o/altera\u00e7\u00e3o.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_ANO_ALT_MAIOR_ANO_FIN"]
+        },
+        {
+          "indice": 3,
+          "nome": "COD_NAT",
+          "descricao": "C\u00f3digo da natureza da conta/grupo de contas, conforme tabela publicada pelo Sped.",
+          "tipo": "C",
+          "tamanho": "002",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_TABELA_NATUREZA"]
+        },
+        {
+          "indice": 4,
+          "nome": "IND_CTA",
+          "descricao": "Indicador do tipo de conta: S - Sint\u00e9tica (grupo de contas) A - Anal\u00edtica (conta)",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[\u201cS\u201d,\u201dA\u201d]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 5,
+          "nome": "NIVEL",
+          "descricao": "N\u00edvel da conta anal\u00edtica/grupo de contas.",
+          "tipo": "N",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_MAIOR_QUE_UM", "REGRA_VALIDA_NIVEL_CONTAS"]
+        },
+        {
+          "indice": 6,
+          "nome": "COD_CTA",
+          "descricao": "C\u00f3digo da conta anal\u00edtica/grupo de contas.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_COD_CTA_IGUAL_COD_CTA_SUP"]
+        },
+        {
+          "indice": 7,
+          "nome": "COD_CTA_SUP",
+          "descricao": "C\u00f3digo da conta sint\u00e9tica /grupo de contas de n\u00edvel imediatamente superior.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": [
+            "REGRA_COD_CTA_SUP_OBRIGATORIO",
+            "REGRA_CTA_DE_NIVEL_SUPERIOR_INVALIDA",
+            "REGRA_CONTA_SUPERIOR_NAO_SE_APLICA"
+          ]
+        },
+        {
+          "indice": 8,
+          "nome": "CTA",
+          "descricao": "Nome da conta anal\u00edtica/grupo de contas.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "I051",
+      "nome": "PLANO DE CONTAS REFERENCIAL",
+      "regras": [
+        "REGRA_CCUS_NO_CENTRO_CUSTOS_N3",
+        "REGRA_VALIDADE_COD_CTA_PAD",
+        "REGRA_NAO_EXISTE_COD_CTA_PAD"
+      ],
+      "nivel": 4,
+      "ocorrencia": "1:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "COD_CCUS",
+          "descricao": "C\u00f3digo do centro de custo.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_CCUS_NO_CENTRO_CUSTOS_N3"]
+        },
+        {
+          "indice": 3,
+          "nome": "COD_CTA_REF",
+          "descricao": "C\u00f3digo da conta de acordo com o plano de contas referencial, conforme tabela publicada pelos \u00f3rg\u00e3os indicados no campo COD_PLAN_REF do registro 0000.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_VALIDADE_COD_CTA_PAD", "REGRA_NAO_EXISTE_COD_CTA_PAD"]
+        }
+      ]
+    },
+    {
+      "codigo": "I052",
+      "nome": "INDICA\u00c7\u00c3O DOS C\u00d3DIGOS DE AGLUTINA\u00c7\u00c3O",
+      "regras": ["REGRA_CCUS_NO_CENTRO_CUSTOS_N3"],
+      "nivel": 4,
+      "ocorrencia": "1:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "COD_CCUS",
+          "descricao": "C\u00f3digo do centro de custo.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_CCUS_NO_CENTRO_CUSTOS_N3"]
+        },
+        {
+          "indice": 3,
+          "nome": "COD_AGL",
+          "descricao": "C\u00f3digo de aglutina\u00e7\u00e3o utilizado nas demonstra\u00e7\u00f5es cont\u00e1beis do bloco J (Somente para as contas anal\u00edticas).",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "I053",
+      "nome": "SUBCONTAS CORRELATAS",
+      "regras": [
+        "REGRA_COD_IDT_UNICO_POR_CONTA",
+        "REGRA_SUBCONTA_NO_PLANO_CONTAS",
+        "REGRA_NAT_090_UNICA_POR_CONTA"
+      ],
+      "nivel": 4,
+      "ocorrencia": "1:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "COD_IDT",
+          "descricao": "C\u00f3digo de identifica\u00e7\u00e3o do grupo de conta- subconta(s)",
+          "tipo": "C",
+          "tamanho": "006",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_COD_IDT_UNICO_POR_CONTA"]
+        },
+        {
+          "indice": 3,
+          "nome": "COD_CNT_CORR",
+          "descricao": "C\u00f3digo da subconta correlata (deve estar no plano de contas e s\u00f3 pode estar relacionada a um \u00fanico grupo)",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_SUBCONTA_NO_PLANO_CONTAS"]
+        },
+        {
+          "indice": 4,
+          "nome": "NAT_SUB_CNT",
+          "descricao": "Natureza da subconta correlata (conforme tabela de natureza da subconta publicada no Sped )",
+          "tipo": "C",
+          "tamanho": "002",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_NAT_090_UNICA_POR_CONTA"]
+        }
+      ]
+    },
+    {
+      "codigo": "I075",
+      "nome": "TABELA DE HIST\u00d3RICO PADRONIZADO",
+      "regras": ["REGRA_REGISTRO_DUPLICADO"],
+      "nivel": 3,
+      "ocorrencia": "0:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "COD_HIST",
+          "descricao": "C\u00f3digo do hist\u00f3rico padronizado.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_REGISTRO_DUPLICADO"]
+        },
+        {
+          "indice": 3,
+          "nome": "DESCR_HIST",
+          "descricao": "Descri\u00e7\u00e3o do hist\u00f3rico padronizado.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "I100",
+      "nome": "CENTRO DE CUSTOS",
+      "regras": ["REGRA_DT_ALT_DATA_MAIOR"],
+      "nivel": 3,
+      "ocorrencia": "0:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "DT_ALT",
+          "descricao": "Data da inclus\u00e3o/altera\u00e7\u00e3o.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_DT_ALT_DATA_MAIOR"]
+        },
+        {
+          "indice": 3,
+          "nome": "COD_CCUS",
+          "descricao": "C\u00f3digo do centro de custos.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 4,
+          "nome": "CCUS",
+          "descricao": "Nome do centro de custos.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "I150",
+      "nome": "SALDOS PERI\u00d3DICOS \u2013 IDENTIFICA\u00c7\u00c3O DO PER\u00cdODO",
+      "regras": [
+        "REGRA_DATA_INTERVALO_DO_ARQUIVO",
+        "REGRA_DT_INI_MAIOR_DT_FIN",
+        "REGRA_DT_INI_INICIO_MES",
+        "REGRA_DATA_INTERVALO_DO_ARQUIVO",
+        "REGRA_DT_FIN_FIM_MES"
+      ],
+      "nivel": 3,
+      "ocorrencia": "1:12",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "DT_INI",
+          "descricao": "Data de in\u00edcio do per\u00edodo.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": [
+            "REGRA_DATA_INTERVALO_DO_ARQUIVO",
+            "REGRA_DT_INI_MAIOR_DT_FIN",
+            "REGRA_DT_INI_INICIO_MES"
+          ]
+        },
+        {
+          "indice": 3,
+          "nome": "DT_FIN",
+          "descricao": "Data de fim do per\u00edodo.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_DATA_INTERVALO_DO_ARQUIVO", "REGRA_DT_FIN_FIM_MES"]
+        }
+      ]
+    },
+    {
+      "codigo": "I151",
+      "nome": "FICHAS DE ASSINATURA DIGITAL DOS ARQUIVOS QUE CONT\u00c9M AS LAN\u00c7AMENTO UTILIZADAS NO PER\u00cdODO",
+      "regras": [],
+      "nivel": 4,
+      "ocorrencia": "0:N",
+      "campos_chave": [],
+      "campos": []
+    },
+    {
+      "codigo": "I155",
+      "nome": "DETALHES DOS SALDOS PERI\u00d3DICOS",
+      "regras": [
+        "REGRA_CONTA_PARA_LANCAMENTO",
+        "REGRA_CCUS_NO_CENTRO_CUSTOS",
+        "REGRA_IND_DC_INI_OBRIGATORIO",
+        "REGRA_IND_DC_FIN_OBRIGATORIO"
+      ],
+      "nivel": 4,
+      "ocorrencia": "1:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "COD_CTA",
+          "descricao": "C\u00f3digo da conta anal\u00edtica.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_CONTA_PARA_LANCAMENTO"]
+        },
+        {
+          "indice": 3,
+          "nome": "COD_CCUS",
+          "descricao": "C\u00f3digo do centro de custos.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_CCUS_NO_CENTRO_CUSTOS"]
+        },
+        {
+          "indice": 4,
+          "nome": "VL_SLD_INI",
+          "descricao": "Valor do saldo inicial do per\u00edodo.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 5,
+          "nome": "IND_DC_INI",
+          "descricao": "Indicador da situa\u00e7\u00e3o do saldo inicial: D - Devedor; C - Credor.",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[\u201cD\u201d,\u201dC\u201d]",
+          "obrigatorio": false,
+          "regras": ["REGRA_IND_DC_INI_OBRIGATORIO"]
+        },
+        {
+          "indice": 6,
+          "nome": "VL_DEB",
+          "descricao": "Valor total dos d\u00e9bitos do per\u00edodo.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 7,
+          "nome": "VL_CRED",
+          "descricao": "Valor total dos cr\u00e9ditos do per\u00edodo.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 8,
+          "nome": "VL_SLD_FIN",
+          "descricao": "Valor do saldo final do per\u00edodo.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 9,
+          "nome": "IND_DC_FIN",
+          "descricao": "Indicador da situa\u00e7\u00e3o do saldo final: D - Devedor; C - Credor.",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[\u201cD\u201d,\u201dC\u201d]",
+          "obrigatorio": false,
+          "regras": ["REGRA_IND_DC_FIN_OBRIGATORIO"]
+        },
+        {
+          "indice": 10,
+          "nome": "VL_SLD_INI_MF",
+          "descricao": "Valor do saldo inicial do per\u00edodo em moeda funcional, convertido para reais.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": null,
+          "regras": []
+        },
+        {
+          "indice": 11,
+          "nome": "IND_DC_INI_MF",
+          "descricao": "Indicador da situa\u00e7\u00e3o do saldo inicial em moeda funcional: D - Devedor; C - Credor.",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[\u201cD\u201d,\u201dC\u201d]",
+          "obrigatorio": null,
+          "regras": []
+        },
+        {
+          "indice": 12,
+          "nome": "VL_DEB_MF",
+          "descricao": "Valor total dos d\u00e9bitos do per\u00edodo em moeda funcional, convertido para reais.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": null,
+          "regras": []
+        },
+        {
+          "indice": 13,
+          "nome": "VL_CRED_MF",
+          "descricao": "Valor total dos cr\u00e9ditos do per\u00edodo em moeda funcional, convertido para reais.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": null,
+          "regras": []
+        },
+        {
+          "indice": 14,
+          "nome": "VL_SLD_FIN_MF",
+          "descricao": "Valor do saldo final do per\u00edodo em moeda funcional, convertido para reais.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": null,
+          "regras": []
+        },
+        {
+          "indice": 15,
+          "nome": "IND_DC_FIN_MF",
+          "descricao": "Indicador da situa\u00e7\u00e3o do saldo final em moeda funcional: D - Devedor; C - Credor.",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[\u201cD\u201d,\u201dC\u201d]",
+          "obrigatorio": null,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "I157",
+      "nome": "TRANSFER\u00caNCIA DE SALDOS DO PLANO DE CONTAS ANTERIOR",
+      "regras": ["REGRA_IND_DC_INI_OBRIGATORIO"],
+      "nivel": 5,
+      "ocorrencia": "1:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "COD_CTA",
+          "descricao": "C\u00f3digo da conta anal\u00edtica do plano de contas anterior.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 3,
+          "nome": "COD_CCUS",
+          "descricao": "C\u00f3digo do centro de custos do plano de contas anterior.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": []
+        },
+        {
+          "indice": 4,
+          "nome": "VL_SLD_INI",
+          "descricao": "Valor do saldo inicial do per\u00edodo.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 5,
+          "nome": "IND_DC_INI",
+          "descricao": "Indicador da situa\u00e7\u00e3o do saldo inicial: D - Devedor; C - Credor.",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[\u201cD\u201d,\u201dC\u201d]",
+          "obrigatorio": false,
+          "regras": ["REGRA_IND_DC_INI_OBRIGATORIO"]
+        },
+        {
+          "indice": 6,
+          "nome": "VL_SLD_INI_MF",
+          "descricao": "Valor do saldo inicial do per\u00edodo em moeda funcional, convertido para reais.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": null,
+          "regras": []
+        },
+        {
+          "indice": 7,
+          "nome": "IND_DC_INI_MF",
+          "descricao": "Indicador da situa\u00e7\u00e3o do saldo inicial em moeda funcional: D - Devedor; C - Credor.",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[\u201cD\u201d,\u201dC\u201d]",
+          "obrigatorio": null,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "I200",
+      "nome": "LAN\u00c7AMENTO CONT\u00c1BIL",
+      "regras": [
+        "REGRA_REGISTRO_DUPLICADO",
+        "REGRA_DATA_INTERVALO_DO_ARQUIVO",
+        "REGRA_DATA_ANTIGA",
+        "REGRA_VALIDACAO_VL_LCTO_DEB",
+        "REGRA_VALIDACAO_VL_LCTO_CRED",
+        "REGRA_VALIDACAO_VL_LCTO_ESC_AUXILIAR",
+        "REGRA_DT_LCTO_EXT_OBRIGATORIA",
+        "REGRA_DT_LCTO_EXT_INDEVIDA",
+        "REGRA_DT_ANTIGA",
+        "REGRA_DT_LCTO_EXT_INV"
+      ],
+      "nivel": 3,
+      "ocorrencia": "1:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "NUM_LCTO",
+          "descricao": "N\u00famero ou C\u00f3digo de identifica\u00e7\u00e3o \u00fanico do lan\u00e7amento cont\u00e1bil.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_REGISTRO_DUPLICADO"]
+        },
+        {
+          "indice": 3,
+          "nome": "DT_LCTO",
+          "descricao": "Data do lan\u00e7amento.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_DATA_INTERVALO_DO_ARQUIVO", "REGRA_DATA_ANTIGA"]
+        },
+        {
+          "indice": 4,
+          "nome": "VL_LCTO",
+          "descricao": "Valor do lan\u00e7amento.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": [
+            "REGRA_VALIDACAO_VL_LCTO_DEB",
+            "REGRA_VALIDACAO_VL_LCTO_CRED",
+            "REGRA_VALIDACAO_VL_LCTO_ESC_AUXILIAR"
+          ]
+        },
+        {
+          "indice": 5,
+          "nome": "IND_LCTO",
+          "descricao": "Indicador do tipo de lan\u00e7amento: N - Lan\u00e7amento normal (todos os lan\u00e7amentos, exceto os de encerramento das contas de resultado); E - Lan\u00e7amento de encerramento de contas de resultado. X \u2013 Lan\u00e7amento extempor\u00e2neo.",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[\u201cN\u201d, \u201cE\u201d]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 6,
+          "nome": "DT_LCTO_EXT",
+          "descricao": "O Data de ocorr\u00eancia dos fatos objeto do lan\u00e7amento extempor\u00e2neo. bserva\u00e7\u00e3o: Caso n\u00e3o seja poss\u00edvel precisar a data a que se refiram os fatos do lan\u00e7amento extempor\u00e2neo, informar a data de encerramento do exerc\u00edcio em que ocorreram esses fatos.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": [
+            "REGRA_DT_LCTO_EXT_OBRIGATORIA",
+            "REGRA_DT_LCTO_EXT_INDEVIDA",
+            "REGRA_DT_ANTIGA",
+            "REGRA_DT_LCTO_EXT_INV"
+          ]
+        },
+        {
+          "indice": 7,
+          "nome": "VL_LCTO_MF",
+          "descricao": "Valor do lan\u00e7amento em moeda funcional, convertido para reais.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": null,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "I250",
+      "nome": "PARTIDAS DO LAN\u00c7AMENTO CONT\u00c1BIL",
+      "regras": [
+        "REGRA_CONTA_PARA_LANCAMENTO",
+        "REGRA_LANC_EXT_CONTA_RESULTADO",
+        "REGRA_CCUS_NO_CENTRO_CUSTOS",
+        "REGRA_COD_HIS_PAD_NO_HISTORICO_PADRAO",
+        "REGRA_CODIGO_PARTICIPANTE"
+      ],
+      "nivel": 4,
+      "ocorrencia": "1:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "COD_CTA",
+          "descricao": "C\u00f3digo da conta anal\u00edtica debitada/creditada.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_CONTA_PARA_LANCAMENTO", "REGRA_LANC_EXT_CONTA_RESULTADO"]
+        },
+        {
+          "indice": 3,
+          "nome": "COD_CCUS",
+          "descricao": "C\u00f3digo do centro de custos.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_CCUS_NO_CENTRO_CUSTOS"]
+        },
+        {
+          "indice": 4,
+          "nome": "VL_DC",
+          "descricao": "Valor da partida.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 5,
+          "nome": "IND_DC",
+          "descricao": "Indicador da natureza da partida: D - D\u00e9bito; C - Cr\u00e9dito.",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[\u201cD\u201d,\u201dC\u201d]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 6,
+          "nome": "NUM_ARQ",
+          "descricao": "N\u00famero, C\u00f3digo ou caminho de localiza\u00e7\u00e3o dos documentos arquivados.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": []
+        },
+        {
+          "indice": 7,
+          "nome": "COD_HIST_PAD",
+          "descricao": "C\u00f3digo do hist\u00f3rico padronizado, conforme tabela I075.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_COD_HIS_PAD_NO_HISTORICO_PADRAO"]
+        },
+        {
+          "indice": 8,
+          "nome": "HIST",
+          "descricao": "O Hist\u00f3rico completo da partida ou hist\u00f3rico complementar. bserva\u00e7\u00e3o: Caso o lan\u00e7amento seja do tipo \u201cX\u201d \u2013 lan\u00e7amento extempor\u00e2neo - em qualquer das formas de retifica\u00e7\u00e3o, o hist\u00f3rico do lan\u00e7amento extempor\u00e2neo deve especificar o motivo da corre\u00e7\u00e3o, a data e o n\u00famero do lan\u00e7amento de origem (item 32 do ITG 2000 (R1)).",
+          "tipo": "C",
+          "tamanho": "65535",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": []
+        },
+        {
+          "indice": 9,
+          "nome": "COD_PART",
+          "descricao": "C\u00f3digo de identifica\u00e7\u00e3o do participante na partida conforme tabela 0150 (preencher somente quando identificado o tipo de participa\u00e7\u00e3o no registro 0180).",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_CODIGO_PARTICIPANTE"]
+        },
+        {
+          "indice": 10,
+          "nome": "VL_DC_MF",
+          "descricao": "Valor da partida em moeda funcional, convertido para reais.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": null,
+          "regras": []
+        },
+        {
+          "indice": 11,
+          "nome": "IND_DC_MF",
+          "descricao": "Indicador da natureza da partida em moeda funcional: D - D\u00e9bito; C - Cr\u00e9dito.",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[\u201cD\u201d,\u201dC\u201d]",
+          "obrigatorio": null,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "I300",
+      "nome": "BALANCETES DI\u00c1RIOS \u2013 IDENTIFICA\u00c7\u00c3O DA DATA",
+      "regras": ["REGRA_DATA_INTERVALO_DO_ARQUIVO"],
+      "nivel": 3,
+      "ocorrencia": "0:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "DT_BCTE",
+          "descricao": "Data do balancete.",
+          "tipo": "N",
+          "tamanho": "8",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_DATA_INTERVALO_DO_ARQUIVO"]
+        }
+      ]
+    },
+    {
+      "codigo": "I310",
+      "nome": "DETALHES DO BALANCETE DI\u00c1RIO",
+      "regras": ["REGRA_CONTA_PARA_LANCAMENTO", "REGRA_CCUS_NO_CENTRO_CUSTOS"],
+      "nivel": 4,
+      "ocorrencia": "1:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "COD_CTA",
+          "descricao": "C\u00f3digo da conta anal\u00edtica debitada/creditada.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_CONTA_PARA_LANCAMENTO"]
+        },
+        {
+          "indice": 3,
+          "nome": "COD_CCUS",
+          "descricao": "C\u00f3digo do centro de custos.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_CCUS_NO_CENTRO_CUSTOS"]
+        },
+        {
+          "indice": 4,
+          "nome": "VAL_DEBD",
+          "descricao": "Total dos d\u00e9bitos do dia.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 5,
+          "nome": "VAL_CREDD",
+          "descricao": "Total dos cr\u00e9ditos do dia.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 6,
+          "nome": "VAL_DEB_MF",
+          "descricao": "Total dos d\u00e9bitos do dia em moeda funcional, convertido para reais.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": null,
+          "regras": []
+        },
+        {
+          "indice": 7,
+          "nome": "VAL_CRED_MF",
+          "descricao": "Total dos cr\u00e9ditos do dia em moeda funcional, convertido para reais.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": null,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "I350",
+      "nome": "SALDOS DAS CONTAS DE RESULTADO ANTES DO ENCERRAMENTO \u2013 IDENTIFICA\u00c7\u00c3O DA DATA",
+      "regras": ["REGRA_DATA_INTERVALO_DO_ARQUIVO"],
+      "nivel": 3,
+      "ocorrencia": "1:12",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "DT_RES",
+          "descricao": "Data da apura\u00e7\u00e3o do resultado.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_DATA_INTERVALO_DO_ARQUIVO"]
+        }
+      ]
+    },
+    {
+      "codigo": "I355",
+      "nome": "DOS SALDOS DAS CONTAS DE RESULTADO ANTES DO DETALHES ENCERRAMENTO",
+      "regras": [
+        "REGRA_CONTA_RESULTADO",
+        "REGRA_CONTA_PARA_LANCAMENTO",
+        "REGRA_CCUS_NO_CENTRO_CUSTOS"
+      ],
+      "nivel": 4,
+      "ocorrencia": "1:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "COD_CTA",
+          "descricao": "C\u00f3digo da conta anal\u00edtica de resultado.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_CONTA_RESULTADO", "REGRA_CONTA_PARA_LANCAMENTO"]
+        },
+        {
+          "indice": 3,
+          "nome": "COD_CCUS",
+          "descricao": "C\u00f3digo do centro de custos.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_CCUS_NO_CENTRO_CUSTOS"]
+        },
+        {
+          "indice": 4,
+          "nome": "VL_CTA",
+          "descricao": "Valor do saldo final antes do lan\u00e7amento de encerramento.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 5,
+          "nome": "IND_DC",
+          "descricao": "Indicador da situa\u00e7\u00e3o do saldo final: D - Devedor; C - Credor.",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[\u201cD\u201d,\u201dC\u201d]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 6,
+          "nome": "VL_CTA_MF",
+          "descricao": "Valor do saldo final antes do lan\u00e7amento de encerramento em moeda funcional, convertido para reais.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": null,
+          "regras": []
+        },
+        {
+          "indice": 7,
+          "nome": "IND_DC_MF",
+          "descricao": "Indicador da situa\u00e7\u00e3o do saldo final em moeda funcional: D - Devedor; C - Credor.",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[\u201cD\u201d,\u201dC\u201d]",
+          "obrigatorio": null,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "I500",
+      "nome": "PAR\u00c2METROS DE IMPRESS\u00c3O/VISUALIZA\u00c7\u00c3O DO LIVRO RAZ\u00c3O AUXILIAR COM LEIAUTE PARAMETRIZ\u00c1VEL",
+      "regras": ["REGRA_TAM_FONTE"],
+      "nivel": 3,
+      "ocorrencia": "0:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "TAM_FONTE",
+          "descricao": "Tamanho da fonte.",
+          "tipo": "N",
+          "tamanho": "002",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_TAM_FONTE"]
+        }
+      ]
+    },
+    {
+      "codigo": "I510",
+      "nome": "DEFINI\u00c7\u00c3O DOS CAMPOS DO LIVRO RAZ\u00c3O AUXILIAR COM LEIAUTE PARAMETRIZ\u00c1VEL",
+      "regras": [],
+      "nivel": 3,
+      "ocorrencia": "0:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "NM_CAMPO",
+          "descricao": "Nome do campo, sem espa\u00e7os em branco ou caractere especial.",
+          "tipo": "C",
+          "tamanho": "016",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 3,
+          "nome": "DESC_CAMPO",
+          "descricao": "Descri\u00e7\u00e3o do campo (utilizada na visualiza\u00e7\u00e3o do Livro Auxiliar)",
+          "tipo": "C",
+          "tamanho": "050",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 4,
+          "nome": "TIPO_CAMPO",
+          "descricao": "Tipo do campo: \u201cN\u201d \u2013 Num\u00e9rico; \u201cC\u201d \u2013 Caractere.",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[N, C]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 5,
+          "nome": "TAM_CAMPO",
+          "descricao": "Tamanho do campo.",
+          "tipo": "N",
+          "tamanho": "003",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 6,
+          "nome": "DEC_CAMPO",
+          "descricao": "Quantidade de casas decimais para campos tipo \u201cN\u201d.",
+          "tipo": "N",
+          "tamanho": "002",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": []
+        },
+        {
+          "indice": 7,
+          "nome": "COL_CAMPO",
+          "descricao": "Largura da coluna no relat\u00f3rio (em quantidade de caracteres).",
+          "tipo": "N",
+          "tamanho": "003",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "I550",
+      "nome": "DETALHES DO LIVRO RAZ\u00c3O AUXILIAR COM LEIAUTE PARAMETRIZ\u00c1VEL",
+      "regras": [],
+      "nivel": 3,
+      "ocorrencia": "0:N",
+      "campos_chave": [],
+      "campos": []
+    },
+    {
+      "codigo": "I555",
+      "nome": "TOTAIS NO LIVRO RAZ\u00c3O AUXILIAR COM LEIAUTE PARAMETRIZ\u00c1VEL",
+      "regras": [],
+      "nivel": 4,
+      "ocorrencia": "0:N",
+      "campos_chave": [],
+      "campos": []
+    },
+    {
+      "codigo": "I990",
+      "nome": "ENCERRAMENTO DO BLOCO I",
+      "regras": ["REGRA_QTD_LIN_BLOCOI"],
+      "nivel": 1,
+      "ocorrencia": "1:1",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "QTD_LIN_I",
+          "descricao": "Quantidade total de linhas do Bloco I.",
+          "tipo": "N",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_QTD_LIN_BLOCOI"]
+        }
+      ]
+    },
+    {
+      "codigo": "J001",
+      "nome": "ABERTURA DO BLOCO J",
+      "regras": [],
+      "nivel": 1,
+      "ocorrencia": "1:1",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "IND_DAD",
+          "descricao": "Indicador de movimento: 0- Bloco com dados informados; 1- Bloco sem dados informados.",
+          "tipo": "N",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[0,1]",
+          "obrigatorio": true,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "J005",
+      "nome": "DEMONSTRA\u00c7\u00d5ES CONT\u00c1BEIS",
+      "regras": [
+        "REGRA_DATA_INI_MAIOR",
+        "REGRA_DT_INI_MAIOR_DT_FIN",
+        "REGRA_DATA_ANTIGA",
+        "REGRA_DATA_INI_MAIOR",
+        "REGRA_DATA_ANTIGA",
+        "REGRA_CAB_DEM_OBRIGATORIO"
+      ],
+      "nivel": 2,
+      "ocorrencia": "1:12",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "DT_INI",
+          "descricao": "Data inicial das demonstra\u00e7\u00f5es cont\u00e1beis.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": [
+            "REGRA_DATA_INI_MAIOR",
+            "REGRA_DT_INI_MAIOR_DT_FIN",
+            "REGRA_DATA_ANTIGA"
+          ]
+        },
+        {
+          "indice": 3,
+          "nome": "DT_FIN",
+          "descricao": "Data final das demonstra\u00e7\u00f5es cont\u00e1beis.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_DATA_INI_MAIOR", "REGRA_DATA_ANTIGA"]
+        },
+        {
+          "indice": 4,
+          "nome": "ID_DEM",
+          "descricao": "Identifica\u00e7\u00e3o das demonstra\u00e7\u00f5es: 1 \u2013 demonstra\u00e7\u00f5es cont\u00e1beis da pessoa jur\u00eddica a que se refere a escritura\u00e7\u00e3o; 2 \u2013 demonstra\u00e7\u00f5es consolidadas ou de outras pessoas jur\u00eddicas.",
+          "tipo": "N",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[1,2]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 5,
+          "nome": "CAB_DEM",
+          "descricao": "Cabe\u00e7alho das demonstra\u00e7\u00f5es.",
+          "tipo": "C",
+          "tamanho": "65535",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_CAB_DEM_OBRIGATORIO"]
+        }
+      ]
+    },
+    {
+      "codigo": "J100",
+      "nome": "BALAN\u00c7O PATRIMONIAL",
+      "regras": [
+        "REGRA_COD_AGL_IGUAL_COD_AGL_SUPERIOR",
+        "REGRA_MAIOR_QUE_ZERO",
+        "REGRA_VALIDA_NIVEL_AGL",
+        "REGRA_COD_AGL_SUP_OBRIGATORIO",
+        "REGRA_COD_AGL_DE_NIVEL_SUPERIOR_INVALIDO",
+        "REGRA_COD_AGL_NAO_SE_APLICA"
+      ],
+      "nivel": 3,
+      "ocorrencia": "1:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "COD_AGL",
+          "descricao": "O C\u00f3digo de aglutina\u00e7\u00e3o atribu\u00eddo pela pessoa jur\u00eddica. bserva\u00e7\u00e3o: Caso o indicador de c\u00f3digo de aglutina\u00e7\u00e3o seja totalizador (T), o c\u00f3digo de aglutina\u00e7\u00e3o deve ser informado, mas n\u00e3o deve estar cadastrado no registro I052 \u2013 os c\u00f3digos de aglutina\u00e7\u00e3o informados no registro I052 s\u00e3o somente para contas anal\u00edticas.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_COD_AGL_IGUAL_COD_AGL_SUPERIOR"]
+        },
+        {
+          "indice": 3,
+          "nome": "IND_COD_AGL",
+          "descricao": "Indicador do tipo de c\u00f3digo de aglutina\u00e7\u00e3o das linhas: T \u2013 Totalizador (n\u00edvel que totaliza um ou mais n\u00edveis inferiores da demonstra\u00e7\u00e3o financeira) D \u2013 Detalhe (n\u00edvel mais detalhado da demonstra\u00e7\u00e3o financeira)",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[\u201cT\u201d,\u201cD\u201d]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 4,
+          "nome": "NIVEL_AGL",
+          "descricao": "N\u00edvel do C\u00f3digo de aglutina\u00e7\u00e3o (mesmo conceito do plano de contas \u2013 Registro I050).",
+          "tipo": "N",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_MAIOR_QUE_ZERO", "REGRA_VALIDA_NIVEL_AGL"]
+        },
+        {
+          "indice": 5,
+          "nome": "COD_AGL_SUP",
+          "descricao": "C\u00f3digo de aglutina\u00e7\u00e3o sint\u00e9tico/grupo de c\u00f3digo de aglutina\u00e7\u00e3o de n\u00edvel superior.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": [
+            "REGRA_COD_AGL_SUP_OBRIGATORIO",
+            "REGRA_COD_AGL_DE_NIVEL_SUPERIOR_INVALIDO",
+            "REGRA_COD_AGL_NAO_SE_APLICA"
+          ]
+        },
+        {
+          "indice": 6,
+          "nome": "IND_GRP_BAL",
+          "descricao": "Indicador de grupo do balan\u00e7o: A \u2013 Ativo; P \u2013 Passivo e Patrim\u00f4nio L\u00edquido.",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[\u201cA\u201d,\u201dP\u201d]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 7,
+          "nome": "DESCR_COD_AGL",
+          "descricao": "Descri\u00e7\u00e3o do C\u00f3digo de aglutina\u00e7\u00e3o.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 8,
+          "nome": "VL_CTA_INI",
+          "descricao": "Valor inicial do c\u00f3digo de aglutina\u00e7\u00e3o no Balan\u00e7o Patrimonial no exerc\u00edcio informado, ou de per\u00edodo definido em norma espec\u00edfica.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "2",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 9,
+          "nome": "IND_DC_CTA_INI",
+          "descricao": "Indicador da situa\u00e7\u00e3o do saldo inicial informado no campo anterior: D - Devedor; C \u2013 Credor.",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[\u201cD\u201d,\u201dC\u201d]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 10,
+          "nome": "VL_CTA_FIN",
+          "descricao": "Valor final do c\u00f3digo de aglutina\u00e7\u00e3o no Balan\u00e7o Patrimonial no exerc\u00edcio informado, ou de per\u00edodo definido em norma espec\u00edfica.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "2",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 11,
+          "nome": "IND_DC_CTA_FIN",
+          "descricao": "Indicador da situa\u00e7\u00e3o do saldo final informado no campo anterior: D - Devedor; C \u2013 Credor.",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[\u201cD\u201d,\u201dC\u201d]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 12,
+          "nome": "NOTA_EXP_REF",
+          "descricao": "Refer\u00eancia a numera\u00e7\u00e3o das notas explicativas relativas \u00e0s demonstra\u00e7\u00f5es cont\u00e1beis.",
+          "tipo": "C",
+          "tamanho": "12",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "J150",
+      "nome": "DEMONSTRA\u00c7\u00c3O DO RESULTADO DO EXERC\u00cdCIO (DRE)",
+      "regras": [
+        "REGRA_COD_AGL_IGUAL_COD_AGL_SUPERIOR",
+        "REGRA_MAIOR_QUE_ZERO",
+        "REGRA_VALIDA_NIVEL_AGL",
+        "REGRA_COD_AGL_SUP_OBRIGATORIO",
+        "REGRA_COD_AGL_DE_NIVEL_SUPERIOR_INVALIDO",
+        "REGRA_COD_AGL_NAO_SE_APLICA"
+      ],
+      "nivel": 3,
+      "ocorrencia": "1:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "NU_ORDEM",
+          "descricao": "O N\u00famero de ordem da linha na visualiza\u00e7\u00e3o da demonstra\u00e7\u00e3o. rdem de apresenta\u00e7\u00e3o da linha na visualiza\u00e7\u00e3o do registro J150.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 3,
+          "nome": "COD_AGL",
+          "descricao": "O C\u00f3digo de aglutina\u00e7\u00e3o das linhas, atribu\u00eddo pela pessoa jur\u00eddica. bserva\u00e7\u00e3o: Caso o indicador de c\u00f3digo de aglutina\u00e7\u00e3o seja totalizador (T), o c\u00f3digo de aglutina\u00e7\u00e3o deve ser informado, mas n\u00e3o deve estar cadastrado no registro I052 \u2013",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_COD_AGL_IGUAL_COD_AGL_SUPERIOR"]
+        },
+        {
+          "indice": 4,
+          "nome": "IND_COD_AGL",
+          "descricao": "Indicador do tipo de c\u00f3digo de aglutina\u00e7\u00e3o das linhas: T \u2013 Totalizador (n\u00edvel que totaliza um ou mais n\u00edveis inferiores da demonstra\u00e7\u00e3o financeira) D \u2013 Detalhe (n\u00edvel mais detalhado da demonstra\u00e7\u00e3o financeira)",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[\u201cT\u201d,\u201cD\u201d]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 5,
+          "nome": "NIVEL_AGL",
+          "descricao": "N\u00edvel do C\u00f3digo de aglutina\u00e7\u00e3o (mesmo conceito do plano de contas \u2013 Registro I050).",
+          "tipo": "N",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_MAIOR_QUE_ZERO", "REGRA_VALIDA_NIVEL_AGL"]
+        },
+        {
+          "indice": 6,
+          "nome": "COD_AGL_SUP",
+          "descricao": "C\u00f3digo de aglutina\u00e7\u00e3o sint\u00e9tico/grupo de c\u00f3digo de aglutina\u00e7\u00e3o de n\u00edvel superior.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": [
+            "REGRA_COD_AGL_SUP_OBRIGATORIO",
+            "REGRA_COD_AGL_DE_NIVEL_SUPERIOR_INVALIDO",
+            "REGRA_COD_AGL_NAO_SE_APLICA"
+          ]
+        },
+        {
+          "indice": 7,
+          "nome": "DESCR_COD_AGL",
+          "descricao": "Descri\u00e7\u00e3o do C\u00f3digo de aglutina\u00e7\u00e3o.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 8,
+          "nome": "VL_CTA_INI_",
+          "descricao": "Valor do saldo final da linha no per\u00edodo imediatamente anterior.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": []
+        },
+        {
+          "indice": 9,
+          "nome": "IND_DC_CTA_INI",
+          "descricao": "Indicador da situa\u00e7\u00e3o do valor final da linha no per\u00edodo imediatamente anterior: D \u2013 Devedor; C \u2013 Credor.",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[\u201cD\u201d,\u201cC\u201d]",
+          "obrigatorio": false,
+          "regras": []
+        },
+        {
+          "indice": 10,
+          "nome": "VL_CTA_FIN",
+          "descricao": "Valor final da linha antes do encerramento do exerc\u00edcio.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 11,
+          "nome": "IND_DC_CTA_FIN",
+          "descricao": "Indicador da situa\u00e7\u00e3o do valor final da linha antes do encerramento do exerc\u00edcio: D \u2013 Devedor; C \u2013 Credor.",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[\u201cD\u201d,\u201cC\u201d]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 12,
+          "nome": "IND_GRP_DRE",
+          "descricao": "D R Indicador de grupo da DRE: \u2013 Linha totalizadora ou de detalhe da demonstra\u00e7\u00e3o que, por sua natureza de despesa, represente redu\u00e7\u00e3o do lucro. \u2013 Linha totalizadora ou de detalhe da demonstra\u00e7\u00e3o que, por sua natureza de receita, represente incremento do lucro.",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[\u201cD\u201d,\u201dR\u201d]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 13,
+          "nome": "NOTA_EXP_REF",
+          "descricao": "Refer\u00eancia a numera\u00e7\u00e3o das notas explicativas relativas \u00e0s demonstra\u00e7\u00f5es cont\u00e1beis.",
+          "tipo": "C",
+          "tamanho": "12",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "J210",
+      "nome": "DE OU DEMONSTRA\u00c7\u00c3O LUCROS PREJU\u00cdZOS ACUMULADOS DO (DLPA)/DEMONSTRA\u00c7\u00c3O DE MUTA\u00c7\u00d5ES PATRIM\u00d4NIO L\u00cdQUIDO (DMPL)",
+      "regras": [
+        "REGRA_EXISTE_AGLUTINACAO_J210",
+        "REGRA_VALIDA_TOTAL_COD_AGLUTINACAO_J215"
+      ],
+      "nivel": 3,
+      "ocorrencia": "1:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "IND_TIP",
+          "descricao": "Indicador do tipo de demonstra\u00e7\u00e3o: 0 \u2013 DLPA \u2013 Demonstra\u00e7\u00e3o de Lucro ou Preju\u00edzos Acumulados 1 \u2013 DMPL \u2013 Demonstra\u00e7\u00e3o de Muta\u00e7\u00f5es do Patrim\u00f4nio L\u00edquido",
+          "tipo": "N",
+          "tamanho": "001",
+          "decimal": "0",
+          "valores": "[0,1]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 3,
+          "nome": "COD_AGL",
+          "descricao": "C\u00f3digo de aglutina\u00e7\u00e3o das contas anal\u00edticas do patrim\u00f4nio l\u00edquido, atribu\u00eddo pela empresa.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_EXISTE_AGLUTINACAO_J210"]
+        },
+        {
+          "indice": 4,
+          "nome": "DESCR_COD_AGL",
+          "descricao": "Descri\u00e7\u00e3o do c\u00f3digo de aglutina\u00e7\u00e3o",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 5,
+          "nome": "VL_CTA_INI",
+          "descricao": "Saldo inicial do c\u00f3digo de aglutina\u00e7\u00e3o na demonstra\u00e7\u00e3o do per\u00edodo informado.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 6,
+          "nome": "IND_DC_CTA_INI",
+          "descricao": "Indicador da situa\u00e7\u00e3o do saldo inicial informado no campo anterior: D \u2013 Devedor C \u2013 Credor",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[\u201cD\u201d,\u201dC\u201d]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 7,
+          "nome": "VL_CTA_FIN",
+          "descricao": "Saldo final do c\u00f3digo de aglutina\u00e7\u00e3o na demonstra\u00e7\u00e3o do per\u00edodo informado.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_VALIDA_TOTAL_COD_AGLUTINACAO_J215"]
+        },
+        {
+          "indice": 8,
+          "nome": "IND_DC_CTA_FIN",
+          "descricao": "Indicador da situa\u00e7\u00e3o do saldo final informado no campo anterior: D \u2013 Devedor C \u2013 Credor",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[\u201cD\u201d,\u201dC\u201d]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 9,
+          "nome": "NOTAS_EXP_REF",
+          "descricao": "Refer\u00eancia \u00e0 numera\u00e7\u00e3o das notas explicativas relativas \u00e0s demonstra\u00e7\u00f5es cont\u00e1beis.",
+          "tipo": "C",
+          "tamanho": "12",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "J215",
+      "nome": "FATO CONT\u00c1BIL QUE ALTERA A CONTA LUCROS ACUMULADOS OU A CONTA PREJU\u00cdZOS ACUMULADOS OU O PATRIM\u00d4NIO L\u00cdQUIDO",
+      "regras": [],
+      "nivel": 4,
+      "ocorrencia": "1:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "COD_HIST_FAT",
+          "descricao": "C\u00f3digo do hist\u00f3rico do fato cont\u00e1bil.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 3,
+          "nome": "DESC_FAT",
+          "descricao": "Descri\u00e7\u00e3o do Fato Cont\u00e1bil",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 4,
+          "nome": "VL_FAT_CONT",
+          "descricao": "Valor do fato cont\u00e1bil.",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 5,
+          "nome": "IND_DC_FAT",
+          "descricao": "Indicador de situa\u00e7\u00e3o do saldo informado no campo anterior: D \u2013 Devedor C \u2013 Credor P \u2013 Subtotal ou total positivo N \u2013 Subtotal ou total negativo",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[\u201cD\u201d, \u201cC\u201d, \u201cP\u201d, \u201cN\u201d]",
+          "obrigatorio": true,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "J800",
+      "nome": "OUTRAS INFORMA\u00c7\u00d5ES",
+      "regras": ["REGRA_VALIDA_HASH_ARQUIVO"],
+      "nivel": 3,
+      "ocorrencia": "1:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "TIPO_DOC",
+          "descricao": "Tipo de documento: 001: Demonstra\u00e7\u00e3o do Resultado Abrangente do Per\u00edodo 002: Demonstra\u00e7\u00e3o dos Fluxos de Caixa 003: Demonstra\u00e7\u00e3o do Valor Adicionado 010: Notas Explicativas 011: Relat\u00f3rio da Administra\u00e7\u00e3o 012: Parecer dos Auditores 099: Outros",
+          "tipo": "C",
+          "tamanho": "003",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 3,
+          "nome": "DESC_RTF",
+          "descricao": "Descri\u00e7\u00e3o do arquivo .rtf.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": []
+        },
+        {
+          "indice": 4,
+          "nome": "HASH_RTF",
+          "descricao": "Hash do arquivo .rtf inclu\u00eddo. Observa\u00e7\u00e3o: O HASH \u00e9 preenchido automaticamente pelo sistema (n\u00e3o \u00e9 edit\u00e1vel e n\u00e3o pode ser alterado).",
+          "tipo": "C",
+          "tamanho": "041",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_VALIDA_HASH_ARQUIVO"]
+        },
+        {
+          "indice": 5,
+          "nome": "ARQ_RTF",
+          "descricao": "Sequ\u00eancia de bytes que representem um \u00fanico arquivo no formato RTF (Rich Text Format).",
+          "tipo": "C",
+          "tamanho": "N\u00e3o existe limite de tamanho",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 6,
+          "nome": "IND_FIM_RTF",
+          "descricao": "Indicador de fim do arquivo RTF. Texto fixo contendo \u201cJ800FIM\u201d.",
+          "tipo": "C",
+          "tamanho": "007",
+          "decimal": null,
+          "valores": "\"J800FIM\"",
+          "obrigatorio": true,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "J801",
+      "nome": "TERMO DE VERIFICA\u00c7\u00c3O PARA FINS DE SUBSTITUI\u00c7\u00c3O DA ECD",
+      "regras": ["REGRA_VALIDA_HASH_ARQUIVO"],
+      "nivel": 3,
+      "ocorrencia": "0:1",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "TIPO_DOC",
+          "descricao": "Tipo de documento:",
+          "tipo": "C",
+          "tamanho": "003",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 3,
+          "nome": "DESC_RTF",
+          "descricao": "Descri\u00e7\u00e3o do arquivo .rtf.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": []
+        },
+        {
+          "indice": 4,
+          "nome": "COD_MOT_SUBS",
+          "descricao": "O C\u00f3digo do motivo da substitui\u00e7\u00e3o: 001 \u2013 Mudan\u00e7as de saldos das contas que n\u00e3o podem ser realizadas por meio de lan\u00e7amentos extempor\u00e2neos 002 \u2013 Altera\u00e7\u00e3o de assinatura 003 \u2013 Altera\u00e7\u00e3o de demonstra\u00e7\u00f5es cont\u00e1beis 004 \u2013 Altera\u00e7\u00e3o da forma de escritura\u00e7\u00e3o cont\u00e1bil 005 \u2013 Altera\u00e7\u00e3o do n\u00famero do livro 099 \u2013 Outros bserva\u00e7\u00e3o: O c\u00f3digo a ser adotado deve ser aquele cujo motivo \u00e9 o preponderante na substitui\u00e7\u00e3o da ECD.",
+          "tipo": "C",
+          "tamanho": "010",
+          "decimal": null,
+          "valores": "[\u201c001\u201d; \u201c002\u201d; \u201c003\u201d; \u201c004\u201d; \u201c005\u201d; \u201c099\u201d]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 5,
+          "nome": "HASH_RTF",
+          "descricao": "Hash do arquivo .rtf inclu\u00eddo. Observa\u00e7\u00e3o: O HASH \u00e9 preenchido automaticamente pelo sistema (n\u00e3o \u00e9 edit\u00e1vel e n\u00e3o pode ser alterado).",
+          "tipo": "C",
+          "tamanho": "041",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_VALIDA_HASH_ARQUIVO"]
+        },
+        {
+          "indice": 6,
+          "nome": "ARQ_RTF",
+          "descricao": "Sequ\u00eancia de bytes que representem um \u00fanico arquivo no formato RTF (Rich Text Format).",
+          "tipo": "C",
+          "tamanho": "N\u00e3o existe limite de tamanho",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 7,
+          "nome": "IND_FIM_RTF",
+          "descricao": "Indicador de fim do arquivo RTF. Texto fixo contendo \u201cJ801FIM\u201d.",
+          "tipo": "C",
+          "tamanho": "007",
+          "decimal": null,
+          "valores": "\"J801FIM\"",
+          "obrigatorio": true,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "J900",
+      "nome": "TERMO DE ENCERRAMENTO",
+      "regras": [
+        "REGRA_IGUAL_NUM_ORD_REGI030",
+        "REGRA_VALIDA_CONTEUDO_NAT_LIVR",
+        "REGRA_IGUAL_NOME_REG0000",
+        "REGRA_IGUAL_QTD_LIN_REG9999",
+        "REGRA_IGUAL_DT_INI_REG0000",
+        "REGRA_IGUAL_DT_FIN_REG0000"
+      ],
+      "nivel": 2,
+      "ocorrencia": "1:1",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "DNRC_ENCER",
+          "descricao": "Texto fixo contendo \u201cTERMO DE ENCERRAMENTO\u201d.",
+          "tipo": "C",
+          "tamanho": "021",
+          "decimal": null,
+          "valores": "\u201cTERMO DE ENCERRAMENTO\u201d",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 3,
+          "nome": "NUM_ORD",
+          "descricao": "N\u00famero de ordem do instrumento de escritura\u00e7\u00e3o.",
+          "tipo": "N",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_IGUAL_NUM_ORD_REGI030"]
+        },
+        {
+          "indice": 4,
+          "nome": "NAT_LIVRO",
+          "descricao": "Natureza do livro; finalidade a que se destinou o instrumento.",
+          "tipo": "C",
+          "tamanho": "80",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_VALIDA_CONTEUDO_NAT_LIVR"]
+        },
+        {
+          "indice": 5,
+          "nome": "NOME",
+          "descricao": "Nome empresarial.",
+          "tipo": "C",
+          "tamanho": "(*)",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_IGUAL_NOME_REG0000"]
+        },
+        {
+          "indice": 6,
+          "nome": "QTD_LIN",
+          "descricao": "Quantidade total de linhas do arquivo digital.",
+          "tipo": "N",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_IGUAL_QTD_LIN_REG9999"]
+        },
+        {
+          "indice": 7,
+          "nome": "DT_INI_ESCR",
+          "descricao": "Data de in\u00edcio da escritura\u00e7\u00e3o.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_IGUAL_DT_INI_REG0000"]
+        },
+        {
+          "indice": 8,
+          "nome": "DT_FIN_ESCR",
+          "descricao": "Data de t\u00e9rmino da escritura\u00e7\u00e3o.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_IGUAL_DT_FIN_REG0000"]
+        }
+      ]
+    },
+    {
+      "codigo": "J930",
+      "nome": "SIGNAT\u00c1RIOS DA ESCRITURA\u00c7\u00c3O",
+      "regras": [
+        "REGRA_VALIDA_CPF",
+        "REGRA_VALIDA_CNPJ",
+        "REGRA_TABELA_ASSINANTE_DESC",
+        "REGRA_QUALIF_INV_RESP_LEGAL",
+        "REGRA_OBRIGATORIO_CONTADOR",
+        "REGRA_OBRIGATORIO_CONTADOR",
+        "REGRA_OBRIGATORIO_CONTADOR",
+        "REGRA_TABELA_UF",
+        "REGRA_OBRIGATORIO_CONTADOR",
+        "REGRA_AVISO_ASSIN_CNPJ",
+        "REGRA_VALIDA_FORMATO_SEQUENCIAL_CRC",
+        "REGRA_ADVERTENCIA_CONTADOR",
+        "REGRA_AVISO_ASSIN_CNPJ",
+        "REGRA_ADVERTENCIA_CONTADOR",
+        "REGRA_AVISO_ASSIN_CNPJ"
+      ],
+      "nivel": 3,
+      "ocorrencia": "1:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "IDENT_NOM",
+          "descricao": "Nome do signat\u00e1rio.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 3,
+          "nome": "IDENT_CPF_CNPJ",
+          "descricao": "CPF ou CNPJ",
+          "tipo": "N",
+          "tamanho": "CPF (11) CNPJ(14)",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_VALIDA_CPF", "REGRA_VALIDA_CNPJ"]
+        },
+        {
+          "indice": 4,
+          "nome": "IDENT_QUALIF",
+          "descricao": "Qualifica\u00e7\u00e3o do assinante, conforme tabela.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_TABELA_ASSINANTE_DESC"]
+        },
+        {
+          "indice": 5,
+          "nome": "COD_ASSIN",
+          "descricao": "C\u00f3digo de qualifica\u00e7\u00e3o do assinante, conforme tabela.",
+          "tipo": "C",
+          "tamanho": "003",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_QUALIF_INV_RESP_LEGAL"]
+        },
+        {
+          "indice": 6,
+          "nome": "IND_CRC",
+          "descricao": "N\u00famero de inscri\u00e7\u00e3o do contabilista no Conselho Regional de Contabilidade.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_OBRIGATORIO_CONTADOR"]
+        },
+        {
+          "indice": 7,
+          "nome": "EMAIL",
+          "descricao": "Email do signat\u00e1rio.",
+          "tipo": "C",
+          "tamanho": "060",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_OBRIGATORIO_CONTADOR"]
+        },
+        {
+          "indice": 8,
+          "nome": "FONE",
+          "descricao": "Telefone do signat\u00e1rio.",
+          "tipo": "C",
+          "tamanho": "014",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_OBRIGATORIO_CONTADOR"]
+        },
+        {
+          "indice": 9,
+          "nome": "UF_CRC",
+          "descricao": "Indica\u00e7\u00e3o da unidade da federa\u00e7\u00e3o que expediu o CRC.",
+          "tipo": "C",
+          "tamanho": "002",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": [
+            "REGRA_TABELA_UF",
+            "REGRA_OBRIGATORIO_CONTADOR",
+            "REGRA_AVISO_ASSIN_CNPJ"
+          ]
+        },
+        {
+          "indice": 10,
+          "nome": "NUM_SEQ_CRC",
+          "descricao": "N\u00famero da Certid\u00e3o de Regularidade Profissional do Contador no seguinte formato: UF/ano/n\u00famero",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": [
+            "REGRA_VALIDA_FORMATO_SEQUENCIAL_CRC",
+            "REGRA_ADVERTENCIA_CONTADOR",
+            "REGRA_AVISO_ASSIN_CNPJ"
+          ]
+        },
+        {
+          "indice": 11,
+          "nome": "DT_CRC",
+          "descricao": "Data de validade da Certid\u00e3o de Regularidade Profissional do Contador",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_ADVERTENCIA_CONTADOR", "REGRA_AVISO_ASSIN_CNPJ"]
+        },
+        {
+          "indice": 12,
+          "nome": "IND_RESP_LEGAL",
+          "descricao": "Identifica\u00e7\u00e3o do signat\u00e1rio que ser\u00e1 validado como respons\u00e1vel pela assinatura da ECD, conforme atos societ\u00e1rios: S \u2013 Sim N \u2013 N\u00e3o",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[S; N]",
+          "obrigatorio": true,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "J932",
+      "nome": "SIGNAT\u00c1RIOS DO TERMO DE VERIFICA\u00c7\u00c3O PARA FINS DE SUBSTITUI\u00c7\u00c3O DA ECD",
+      "regras": [
+        "REGRA_VALIDA_CPF",
+        "REGRA_VALIDA_CNPJ",
+        "REGRA_TABELA_ASSINANTE_DESC",
+        "REGRA_QUALIF_INVALIDA_ASS_TERMO",
+        "REGRA_OBRIGATORIO_ASS_TERMO",
+        "REGRA_OBRIGATORIO_ASS_TERMO",
+        "REGRA_OBRIGATORIO_ASS_TERMO",
+        "REGRA_TABELA_UF",
+        "REGRA_OBRIGATORIO_ASS_TERMO",
+        "REGRA_VALIDA_FORMATO_SEQUENCIAL_CRC",
+        "REGRA_ADV_ASS_CONTADOR_TERMO",
+        "REGRA_ADV_ASS_CONTADOR_TERMO"
+      ],
+      "nivel": 3,
+      "ocorrencia": "1:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "IDENT_NOM_T",
+          "descricao": "Nome do signat\u00e1rio do termo de verifica\u00e7\u00e3o.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 3,
+          "nome": "IDENT_CPF_CNPJ_T",
+          "descricao": "CPF ou CNPJ do assinante do termo de verifica\u00e7\u00e3o.",
+          "tipo": "N",
+          "tamanho": "CPF (11) CNPJ(14)",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_VALIDA_CPF", "REGRA_VALIDA_CNPJ"]
+        },
+        {
+          "indice": 4,
+          "nome": "IDENT_QUALIF_T",
+          "descricao": "Qualifica\u00e7\u00e3o do assinante do termo de verifica\u00e7\u00e3o, conforme tabela.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_TABELA_ASSINANTE_DESC"]
+        },
+        {
+          "indice": 5,
+          "nome": "COD_ASSIN_T",
+          "descricao": "C\u00f3digo de qualifica\u00e7\u00e3o do assinante do termo de verifica\u00e7\u00e3o, conforme tabela.",
+          "tipo": "C",
+          "tamanho": "003",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_QUALIF_INVALIDA_ASS_TERMO"]
+        },
+        {
+          "indice": 6,
+          "nome": "IND_CRC_T",
+          "descricao": "N\u00famero de inscri\u00e7\u00e3o do contabilista no Conselho",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_OBRIGATORIO_ASS_TERMO"]
+        },
+        {
+          "indice": 7,
+          "nome": "EMAIL_T",
+          "descricao": "Email do signat\u00e1rio.",
+          "tipo": "C",
+          "tamanho": "060",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_OBRIGATORIO_ASS_TERMO"]
+        },
+        {
+          "indice": 8,
+          "nome": "FONE_T",
+          "descricao": "Telefone do signat\u00e1rio.",
+          "tipo": "C",
+          "tamanho": "014",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_OBRIGATORIO_ASS_TERMO"]
+        },
+        {
+          "indice": 9,
+          "nome": "UF_CRC_T",
+          "descricao": "Indica\u00e7\u00e3o da unidade da federa\u00e7\u00e3o que expediu o CRC.",
+          "tipo": "C",
+          "tamanho": "002",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_TABELA_UF", "REGRA_OBRIGATORIO_ASS_TERMO"]
+        },
+        {
+          "indice": 10,
+          "nome": "NUM_SEQ_CRC_T",
+          "descricao": "N\u00famero da Certid\u00e3o de Regularidade Profissional do Contador no seguinte formato: UF/ano/n\u00famero",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": [
+            "REGRA_VALIDA_FORMATO_SEQUENCIAL_CRC",
+            "REGRA_ADV_ASS_CONTADOR_TERMO"
+          ]
+        },
+        {
+          "indice": 11,
+          "nome": "DT_CRC_T",
+          "descricao": "Data de validade da Certid\u00e3o de Regularidade Profissional do Contador",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_ADV_ASS_CONTADOR_TERMO"]
+        }
+      ]
+    },
+    {
+      "codigo": "J935",
+      "nome": "IDENTIFICA\u00c7\u00c3O DOS AUDITORES INDEPENDENTES",
+      "regras": [
+        "REGRA_VALIDA_CNJP",
+        "REGRA_VALIDA_CPF",
+        "REGRA_COD_CVM_AUD_OBRIGATORIO"
+      ],
+      "nivel": 3,
+      "ocorrencia": "1:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "NI_CPF_CNPJ",
+          "descricao": "CPF do auditor independente/CNPJ da pessoa jur\u00eddica de auditoria independente.",
+          "tipo": "C",
+          "tamanho": "CPF (11) CNPJ (14)",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_VALIDA_CNJP", "REGRA_VALIDA_CPF"]
+        },
+        {
+          "indice": 3,
+          "nome": "NOME_AUDITOR_FIRMA",
+          "descricao": "Nome do auditor independente ou pessoa jur\u00eddica de auditoria independente.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 4,
+          "nome": "COD_CVM_AUDITOR",
+          "descricao": "Registro do auditor independente na CVM.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_COD_CVM_AUD_OBRIGATORIO"]
+        }
+      ]
+    },
+    {
+      "codigo": "J990",
+      "nome": "ENCERRAMENTO DO BLOCO J",
+      "regras": ["REGRA_QTD_LIN_BLOCOJ"],
+      "nivel": 1,
+      "ocorrencia": "1:1",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "QTD_LIN_J",
+          "descricao": "Quantidade total de linhas do Bloco J.",
+          "tipo": "N",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_QTD_LIN_BLOCOJ"]
+        }
+      ]
+    },
+    {
+      "codigo": "K001",
+      "nome": "ABERTURA DO BLOCO K",
+      "regras": [],
+      "nivel": 1,
+      "ocorrencia": "1:1",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "IND_DAD",
+          "descricao": "Indicador de movimento: 0- Bloco com dados informados; 1- Bloco sem dados informados.",
+          "tipo": "N",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[0,1]",
+          "obrigatorio": true,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "K030",
+      "nome": "PER\u00cdODO DA ESCRITURA\u00c7\u00c3O CONT\u00c1BIL CONSOLIDADA",
+      "regras": [
+        "REGRA_DATA_MAIOR_INICIAL_CONS",
+        "REGRA_IGUAL_DT_FIN_REG0000",
+        "REGRA_PERIODO_CONS"
+      ],
+      "nivel": 2,
+      "ocorrencia": "0:1",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "DT_INI",
+          "descricao": "Data inicial do per\u00edodo consolidado.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 3,
+          "nome": "DT_FIN",
+          "descricao": "Data final do per\u00edodo consolidado.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": [
+            "REGRA_DATA_MAIOR_INICIAL_CONS",
+            "REGRA_IGUAL_DT_FIN_REG0000",
+            "REGRA_PERIODO_CONS"
+          ]
+        }
+      ]
+    },
+    {
+      "codigo": "K100",
+      "nome": "RELA\u00c7\u00c3O DAS EMPRESAS CONSOLIDADAS",
+      "regras": [
+        "REGRA_TABELA_PAISES",
+        "REGRA_OBRIGATORIO_CNPJ_BRASIL",
+        "REGRA_PERC_MENOR_IGUAL_100",
+        "REGRA_MAIOR_IGUAL__ZERO",
+        "REGRA_PERC_MENOR_IGUAL_100",
+        "REGRA_MAIOR_IGUAL_ZERO",
+        "REGRA_CONSOLIDADA_INICIO_DIFERENTE",
+        "REGRA_ANO_IGUAL__ANTERIOR_K030",
+        "REGRA_DATA_FIN_MAIOR_IGUAL",
+        "REGRA_CONSOLIDADA_FINAL_DIFERENTE",
+        "REGRA_PERIODO_CONS",
+        "REGRA_ANO_IGUAL__ANTERIOR_K030"
+      ],
+      "nivel": 3,
+      "ocorrencia": "0:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "COD_PAIS",
+          "descricao": "C\u00f3digo do pa\u00eds da empresa, conforme tabela do Banco Central do Brasil.",
+          "tipo": "N",
+          "tamanho": "005",
+          "decimal": null,
+          "valores": "Tabela externa PAIS_SISCOMEX",
+          "obrigatorio": true,
+          "regras": ["REGRA_TABELA_PAISES"]
+        },
+        {
+          "indice": 3,
+          "nome": "EMP_COD",
+          "descricao": "C\u00f3digo de identifica\u00e7\u00e3o da empresa participante.",
+          "tipo": "N",
+          "tamanho": "004",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 4,
+          "nome": "CNPJ",
+          "descricao": "CNPJ (somente os 8 primeiros d\u00edgitos).",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": ["REGRA_OBRIGATORIO_CNPJ_BRASIL"]
+        },
+        {
+          "indice": 5,
+          "nome": "NOME",
+          "descricao": "Nome empresarial.",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 6,
+          "nome": "PER_PART",
+          "descricao": "Percentual de participa\u00e7\u00e3o total do conglomerado na empresa no final do per\u00edodo consolidado. Observa\u00e7\u00e3o: Neste campo, deve ser informado o percentual de participa\u00e7\u00e3o acion\u00e1ria da empresa titular da ECD.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": "004",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_PERC_MENOR_IGUAL_100", "REGRA_MAIOR_IGUAL__ZERO"]
+        },
+        {
+          "indice": 7,
+          "nome": "EVENTO",
+          "descricao": "Evento societ\u00e1rio ocorrido no per\u00edodo: S - Sim N \u2013 N\u00e3o",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[S;N]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 8,
+          "nome": "PER_CONS",
+          "descricao": "Percentual de consolida\u00e7\u00e3o da empresa no final do per\u00edodo consolidado: Informar o percentual do resultado da empresa que foi para a consolida\u00e7\u00e3o.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": "004",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_PERC_MENOR_IGUAL_100", "REGRA_MAIOR_IGUAL_ZERO"]
+        },
+        {
+          "indice": 9,
+          "nome": "DATA_INI_EMP",
+          "descricao": "Data inicial do per\u00edodo da escritura\u00e7\u00e3o cont\u00e1bil da empresa que foi consolidada.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": [
+            "REGRA_CONSOLIDADA_INICIO_DIFERENTE",
+            "REGRA_ANO_IGUAL__ANTERIOR_K030"
+          ]
+        },
+        {
+          "indice": 10,
+          "nome": "DATA_FIN_EMP",
+          "descricao": "Data final do per\u00edodo da escritura\u00e7\u00e3o cont\u00e1bil da empresa que foi consolidada",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": [
+            "REGRA_DATA_FIN_MAIOR_IGUAL",
+            "REGRA_CONSOLIDADA_FINAL_DIFERENTE",
+            "REGRA_PERIODO_CONS",
+            "REGRA_ANO_IGUAL__ANTERIOR_K030"
+          ]
+        }
+      ]
+    },
+    {
+      "codigo": "K110",
+      "nome": "RELA\u00c7\u00c3O DOS EVENTOS SOCIET\u00c1RIOS",
+      "regras": ["REGRA_ANO_IGUAL_ANTERIOR_POSTERIOR_K030"],
+      "nivel": 4,
+      "ocorrencia": "0:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "EVENTO",
+          "descricao": "Evento societ\u00e1rio ocorrido no per\u00edodo: 1 \u2013 Aquisi\u00e7\u00e3o 2 \u2013 Aliena\u00e7\u00e3o 3 \u2013 Fus\u00e3o 4 \u2013 Cis\u00e3o Parcial 5 \u2013 Cis\u00e3o Total 6 \u2013 Incorpora\u00e7\u00e3o 7 \u2013 Extin\u00e7\u00e3o 8 \u2013 Constitui\u00e7\u00e3o",
+          "tipo": "N",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[1;2;3;4;5;6;7;8]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 3,
+          "nome": "DT_EVENTO",
+          "descricao": "Data do evento societ\u00e1rio.",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_ANO_IGUAL_ANTERIOR_POSTERIOR_K030"]
+        }
+      ]
+    },
+    {
+      "codigo": "K115",
+      "nome": "EMPRESAS PARTICIPANTES DO EVENTO SOCIET\u00c1RIO",
+      "regras": [
+        "REGRA_EXISTE_EMP_COD_K100",
+        "REGRA_CONDICAO_COMPATIVEL",
+        "REGRA_PERC_MENOR_IGUAL_100"
+      ],
+      "nivel": 5,
+      "ocorrencia": "0:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "EMP_COD_PART",
+          "descricao": "C\u00f3digo da empresa envolvida na opera\u00e7\u00e3o",
+          "tipo": "N",
+          "tamanho": "004",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_EXISTE_EMP_COD_K100"]
+        },
+        {
+          "indice": 3,
+          "nome": "COND_PART",
+          "descricao": "Condi\u00e7\u00e3o da empresa relacionada \u00e0 opera\u00e7\u00e3o: 1 \u2013 Sucessora; 2 \u2013 Adquirente; 3 \u2013 Alienante.",
+          "tipo": "N",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[1;2;3]",
+          "obrigatorio": true,
+          "regras": ["REGRA_CONDICAO_COMPATIVEL"]
+        },
+        {
+          "indice": 4,
+          "nome": "PER_EVT",
+          "descricao": "Percentual da empresa participante envolvida na opera\u00e7\u00e3o",
+          "tipo": "N",
+          "tamanho": "008",
+          "decimal": "004",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_PERC_MENOR_IGUAL_100"]
+        }
+      ]
+    },
+    {
+      "codigo": "K200",
+      "nome": "PLANO DE CONTAS CONSOLIDADO",
+      "regras": [
+        "REGRA_TABELA_NATUREZA",
+        "REGRA_MAIOR_QUE_UM",
+        "REGRA_ANALITICA_NIVEL_2",
+        "REGRA_COD_CTA_SUP_OBRIGATORIO",
+        "REGRA_CONTA_SUPERIOR_NAO_SE_APLICA",
+        "REGRA_CTA_CONSOLIDADA_DE_NIVEL_SUPERIOR_INVALIDA"
+      ],
+      "nivel": 2,
+      "ocorrencia": "1:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "COD_NAT",
+          "descricao": "C\u00f3digo da natureza da conta/grupo de contas, conforme tabela publicada pelo Sped.",
+          "tipo": "C",
+          "tamanho": "002",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_TABELA_NATUREZA"]
+        },
+        {
+          "indice": 3,
+          "nome": "IND_CTA",
+          "descricao": "Indicador do tipo de conta: S - Sint\u00e9tica (grupo de contas); A - Anal\u00edtica (conta).",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[S;A]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 4,
+          "nome": "NIVEL",
+          "descricao": "N\u00edvel da conta",
+          "tipo": "N",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_MAIOR_QUE_UM", "REGRA_ANALITICA_NIVEL_2"]
+        },
+        {
+          "indice": 5,
+          "nome": "COD_CTA",
+          "descricao": "C\u00f3digo da conta",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 6,
+          "nome": "COD_CTA_SUP",
+          "descricao": "C\u00f3digo da conta superior",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": false,
+          "regras": [
+            "REGRA_COD_CTA_SUP_OBRIGATORIO",
+            "REGRA_CONTA_SUPERIOR_NAO_SE_APLICA",
+            "REGRA_CTA_CONSOLIDADA_DE_NIVEL_SUPERIOR_INVALIDA"
+          ]
+        },
+        {
+          "indice": 7,
+          "nome": "CTA",
+          "descricao": "Nome da conta",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "K210",
+      "nome": "MAPEAMENTO PARA O PLANO DE CONTAS DAS EMPRESAS CONSOLIDADAS",
+      "regras": ["REGRA_EXISTE_EMP_COD_K100"],
+      "nivel": 3,
+      "ocorrencia": "1:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "COD_EMP",
+          "descricao": "C\u00f3digo de identifica\u00e7\u00e3o da empresa participante",
+          "tipo": "N",
+          "tamanho": "004",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_EXISTE_EMP_COD_K100"]
+        },
+        {
+          "indice": 3,
+          "nome": "COD_CTA_EMP",
+          "descricao": "C\u00f3digo da conta da empresa participante",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "K300",
+      "nome": "SALDOS DAS CONTAS CONSOLIDADAS",
+      "regras": [
+        "REGRA_EXISTE_K200_ANALITICA",
+        "REGRA_SOMATORIO_VALOR_ELIMINACOES",
+        "REGRA_CALCULO_VALOR_CONSOLIDADO"
+      ],
+      "nivel": 3,
+      "ocorrencia": "0:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "COD_CTA",
+          "descricao": "C\u00f3digo da conta consolidada",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_EXISTE_K200_ANALITICA"]
+        },
+        {
+          "indice": 3,
+          "nome": "VAL_AG",
+          "descricao": "Valor absoluto aglutinado",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 4,
+          "nome": "IND_VAL_AG",
+          "descricao": "Indicador da situa\u00e7\u00e3o do valor aglutinado: D \u2013 Devedor C \u2013 Credor",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[D;C]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 5,
+          "nome": "VAL_EL",
+          "descricao": "Valor absoluto das elimina\u00e7\u00f5es",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_SOMATORIO_VALOR_ELIMINACOES"]
+        },
+        {
+          "indice": 6,
+          "nome": "IND_VAL_EL",
+          "descricao": "Indicador da situa\u00e7\u00e3o do valor eliminado: D \u2013 Devedor C \u2013 Credor",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[D;C]",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 7,
+          "nome": "VAL_CS",
+          "descricao": "Valor absoluto consolidado: VAL_CS = VAL_AG \u2013 VAL_EL",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_CALCULO_VALOR_CONSOLIDADO"]
+        },
+        {
+          "indice": 8,
+          "nome": "IND_VAL_CS",
+          "descricao": "Indicador da situa\u00e7\u00e3o do valor consolidado: D \u2013 Devedor C \u2013 Credor",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[D;C]",
+          "obrigatorio": true,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "K310",
+      "nome": "EMPRESAS DETENTORAS DAS PARCELAS DO VALOR ELIMINADO TOTAL",
+      "regras": ["REGRA_EXISTE_EMP_COD_K100", "REGRA_SOMATORIO_VALOR_CONTRAPARTIDA"],
+      "nivel": 4,
+      "ocorrencia": "0:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "EMP_COD_PARTE",
+          "descricao": "C\u00f3digo da empresa detentora do valor aglutinado que foi eliminado",
+          "tipo": "N",
+          "tamanho": "004",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_EXISTE_EMP_COD_K100"]
+        },
+        {
+          "indice": 3,
+          "nome": "VALOR",
+          "descricao": "Parcela do valor eliminado total",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_SOMATORIO_VALOR_CONTRAPARTIDA"]
+        },
+        {
+          "indice": 4,
+          "nome": "IND_VALOR",
+          "descricao": "Indicador da situa\u00e7\u00e3o do valor eliminado: D \u2013 Devedor C \u2013 Credor",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[D;C]",
+          "obrigatorio": true,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "K315",
+      "nome": "EMPRESAS CONTRAPARTES DAS PARCELAS DO VALOR ELIMINADO TOTAL",
+      "regras": [
+        "REGRA_EXISTE_EMP_COD_K100",
+        "REGRA_EMP_COD_CONTRA_DIFERENTE_EMP_COD_PARTE",
+        "REGRA_COD_CTA_DIFERENTE_COD_CONTRA",
+        "REGRA_EXISTE_COD_CTA_K300",
+        "REGRA_MAIOR_QUE_ZERO",
+        "REGRA_SOMATORIO_VALOR_CONTRAPARTIDA"
+      ],
+      "nivel": 5,
+      "ocorrencia": "0:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "EMP_COD_CONTRA",
+          "descricao": "C\u00f3digo da empresa da contrapartida",
+          "tipo": "N",
+          "tamanho": "004",
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": [
+            "REGRA_EXISTE_EMP_COD_K100",
+            "REGRA_EMP_COD_CONTRA_DIFERENTE_EMP_COD_PARTE"
+          ]
+        },
+        {
+          "indice": 3,
+          "nome": "COD_CONTRA",
+          "descricao": "C\u00f3digo da conta consolidada da contrapartida",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_COD_CTA_DIFERENTE_COD_CONTRA", "REGRA_EXISTE_COD_CTA_K300"]
+        },
+        {
+          "indice": 4,
+          "nome": "VALOR",
+          "descricao": "Parcela da contrapartida do valor eliminado total",
+          "tipo": "N",
+          "tamanho": "019",
+          "decimal": "02",
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_MAIOR_QUE_ZERO", "REGRA_SOMATORIO_VALOR_CONTRAPARTIDA"]
+        },
+        {
+          "indice": 5,
+          "nome": "IND_VALOR",
+          "descricao": "Indicador da situa\u00e7\u00e3o do valor eliminado: D \u2013 Devedor C \u2013 Credor",
+          "tipo": "C",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[D;C]",
+          "obrigatorio": true,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "K990",
+      "nome": "ENCERRAMENTO DO BLOCO K",
+      "regras": ["REGRA_QRD_LIN_BLOCOK"],
+      "nivel": 1,
+      "ocorrencia": "1:1",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "QTD_LIN_K",
+          "descricao": "Quantidade total de linhas do Bloco K.",
+          "tipo": "N",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_QRD_LIN_BLOCOK"]
+        }
+      ]
+    },
+    {
+      "codigo": "9001",
+      "nome": "ABERTURA DO BLOCO 9",
+      "regras": [],
+      "nivel": 1,
+      "ocorrencia": "1:1",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "IND_DAD",
+          "descricao": "Indicador de movimento: 0- Bloco com dados informados; 1- Bloco sem dados informados.",
+          "tipo": "N",
+          "tamanho": "001",
+          "decimal": null,
+          "valores": "[0,1]",
+          "obrigatorio": true,
+          "regras": []
+        }
+      ]
+    },
+    {
+      "codigo": "9900",
+      "nome": "REGISTROS DO ARQUIVO",
+      "regras": ["REGRA_QTD_REG_BLC"],
+      "nivel": 2,
+      "ocorrencia": "1:N",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "REG_BLC",
+          "descricao": "Registro que ser\u00e1 totalizado no pr\u00f3ximo campo.",
+          "tipo": "C",
+          "tamanho": "4",
+          "decimal": null,
+          "valores": "Somente tipos de registro previstos para a escritura\u00e7\u00e3o cont\u00e1bil digital",
+          "obrigatorio": true,
+          "regras": []
+        },
+        {
+          "indice": 3,
+          "nome": "QTD_REG_BLC",
+          "descricao": "Total de registros do tipo informado no campo anterior.",
+          "tipo": "N",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_QTD_REG_BLC"]
+        }
+      ]
+    },
+    {
+      "codigo": "9990",
+      "nome": "ENCERRAMENTO DO BLOCO 9",
+      "regras": ["REGRA_QRD_LIN_BLOCO9"],
+      "nivel": 1,
+      "ocorrencia": "1:1",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "QTD_LIN_9",
+          "descricao": "Quantidade total de linhas do Bloco 9.",
+          "tipo": "N",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_QRD_LIN_BLOCO9"]
+        }
+      ]
+    },
+    {
+      "codigo": "9999",
+      "nome": "ENCERRAMENTO DO ARQUIVO DIGITAL",
+      "regras": ["REGRA_QTD_LIN_ARQUIVO"],
+      "nivel": 0,
+      "ocorrencia": "1:1",
+      "campos_chave": [],
+      "campos": [
+        {
+          "indice": 2,
+          "nome": "QTD_LIN",
+          "descricao": "Quantidade total de linhas do arquivo digital.",
+          "tipo": "N",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": true,
+          "regras": ["REGRA_QTD_LIN_ARQUIVO"]
+        },
+        {
+          "indice": 3,
+          "nome": "REGRA_REGISTRO_OBRIGATORIO",
+          "descricao": "Verifica se o tipo de registro \u00e9 obrigat\u00f3rio, conforme obrigatoriedade definida em cada registro. Erro",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": null,
+          "regras": []
+        },
+        {
+          "indice": 4,
+          "nome": "REGRA_REGISTRO_NAO_SE_APLICA",
+          "descricao": "Verifica se o tipo de registro se aplica \u00e0 escritura\u00e7\u00e3o, conforme defini\u00e7\u00f5es do leiaute do arquivo. Erro",
+          "tipo": "C",
+          "tamanho": null,
+          "decimal": null,
+          "valores": "-",
+          "obrigatorio": null,
+          "regras": []
+        }
+      ]
+    }
+  ]
+}
