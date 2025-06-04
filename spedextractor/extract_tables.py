@@ -40,8 +40,8 @@ def extract_mod_tables(mod, year, pdf=None, limit=False):
     export_csv_path = str((export_csv / f"{mod}.csv").resolve())
 
     logger.info(
-        f"> Extracting pdf {mod.upper()} {year} - {limit_pages} pages. "
-        "It can take easily 5 minutes..."
+        f"> Extracting pdf {mod.upper()} {year} - {limit_pages} pages to {export_csv_path}"
+        "\nIt can take 5 minutes..."
     )
     # Creating directory if not existing
     export_csv.mkdir(parents=True, exist_ok=True)
