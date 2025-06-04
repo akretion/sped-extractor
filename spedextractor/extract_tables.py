@@ -3,7 +3,12 @@ import os
 
 import camelot
 import click
-from PyPDF2 import PdfReader
+
+try:
+    from PyPDF2 import PdfReader
+except ImportError:
+    from PyPDF2 import PdfFileReader as PdfReader  # Fallback alias
+
 
 from . import download
 from .constants import MODULES, MOST_RECENT_YEAR, OLDEST_YEAR, SPECS_PATH
