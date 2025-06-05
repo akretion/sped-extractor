@@ -29,8 +29,8 @@ from . import extract_tables
 from .constants import MODULE_HEADER, MODULES, MOST_RECENT_YEAR, OLDEST_YEAR, SPECS_PATH
 
 logger = logging.getLogger(__name__)
-logger.addHandler(logging.StreamHandler())
-logger.setLevel(logging.INFO)
+# logger.addHandler(logging.StreamHandler())
+# logger.setLevel(logging.INFO)
 
 
 def _get_mod_header(mod):
@@ -75,20 +75,46 @@ def get_raw_rows(mod, year):
 
     if not path_raw.exists():
         extract_tables.extract_mod_tables(mod, year)
+        # After potential extraction, check again.
+        if (
+            not path_raw.exists()
+        ):  # If still not exists (e.g. download failed or extract_tables failed)
+            logger.error(
+                f"Raw CSV directory {path_raw} not found and could not be created/populated by extract_tables."
+            )
+            return {}  # Return empty to avoid crashing on iterdir
+
+    # If path_raw exists but is not a directory, also return empty.
+    if not path_raw.is_dir():
+        logger.warning(f"Path {path_raw} exists but is not a directory.")
+        return {}
 
     csv_files = sorted([file for file in path_raw.iterdir()], key=natural_keys)
 
     for csv_file in csv_files:
-        page = int(csv_file.name.split("-")[2])
-        with open(csv_file, "r") as csvfile:
-            reader = csv.reader(csvfile, delimiter=",", quotechar='"')
-            for row in reader:
-                raw_rows.setdefault(page, []).append(row)
+        parts = csv_file.name.split("-")
+        # Expecting names like "ecd-page-5-table-1.csv"
+        # At least 4 parts: [mod, "page", pagenum, tableinfo.csv]
+        if len(parts) >= 4 and parts[1] == "page" and parts[2].isdigit():
+            try:
+                page = int(parts[2])
+                with open(csv_file, "r", encoding="utf-8") as csvfile_content:
+                    reader = csv.reader(csvfile_content, delimiter=",", quotechar='"')
+                    for row_content in reader:
+                        raw_rows.setdefault(page, []).append(row_content)
+            except ValueError:  # Handles if parts[2] is not an int after all
+                logger.warning(
+                    f"Could not parse page number from filename: {csv_file.name}"
+                )
+            except (
+                Exception
+            ) as e:  # Catch other potential errors during file read/parse
+                logger.warning(f"Could not read or parse CSV file {csv_file}: {e}")
+        else:
+            logger.warning(
+                f"Skipping file with unexpected name format: {csv_file.name}"
+            )
 
-    assert path_raw, (
-        f"No raw CSV files found at '{str(path_raw.resolve())}/'.\n"
-        "Run 'python -m spedextractor.extract_tables' before continuing."
-    )
     return raw_rows
 
 
@@ -114,7 +140,9 @@ def clean_row(row):
 
 
 def _is_register_code(code):
-    return code and len(code) == 4 and code[1:3].isdigit()
+    if not code:
+        return False
+    return len(code) == 4 and code[1:3].isdigit()
 
 
 def _map_register_row(mod, row):
@@ -314,6 +342,22 @@ def _apply_camelot_patch(mod, year, register, row):
     except FileNotFoundError:
         return row
     return row
+
+
+# def _is_field_row(row, last_field_index=0): # last_field_index is effectively unused for sequence check
+#
+#     """Returns True if the row match a series of condition to be a register's field"""
+#     if (
+#         len(row) > 1 and row[1] != "" # "Campo" column has content
+#         and len(row[1]) < 32
+#         and len(row[1]) > 1
+#         and not row[1][0].isdigit() # "Campo" does not start with a digit
+#         and "RZ_CONT" not in row[1] # Specific exclusion
+#         and (row[0].isdigit() or row[0] == "*") # "Nº" column is a digit or '*'
+#         and row[1] != "REG" # "Campo" is not "REG"
+#     ):
+#         return True
+#     return False
 
 
 def _is_field_row(row, last_field_index):
@@ -622,7 +666,7 @@ def get_fields(mod, year=MOST_RECENT_YEAR, with_reg=False):
     :type year: int
 
     :param with_reg: An optional argument to add the REG field (opening every registers
-    tables) to this list of dictionaries. Used in build_pythonsped_json.py.
+    tables) to this list of dictionaries.
     :type with_reg: bool
     """
     # TODO add "Valores Válidos" (ECD), "Regras de Validação do Campo" (ECD), "Entr" (ICMS/IPI), "Saídas" (ICMS/IPI)
@@ -831,8 +875,7 @@ def extract_blocks(mod, year, raw_rows=None):
 
 
 def get_blocks(mod, year, raw_rows=None, extracted_blocks=None):
-    """Return a list of dictionaries representing module's blocks.
-    Used in ./build_python-sped_json.py"""
+    """Return a list of dictionaries representing module's blocks."""
     if mod not in MODULES:
         raise ValueError(
             f"'{mod}' is not a valid module name. Choose between {MODULES}"
