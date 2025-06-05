@@ -39,13 +39,31 @@ Homepage = "https://github.com/akretion/sped-extractor"
 Repository = "https://github.com/akretion/sped-extractor"
 Bug-Tracker = "https://github.com/akretion/sped-extractor/issues"
 
-# --- Setuptools specific configuration ---
+[project.scripts]
+sped-download = "spedextractor.download:main"
+sped-extract-tables = "spedextractor.extract_tables:main"
+sped-build-csv = "spedextractor.build_csv:main"
+sped-gen-odoo = "spedextractor.gen_odoo:main"
+
+[project.optional-dependencies]
+test = [
+    "codecov",
+    "pre-commit",
+    "pytest",
+    "pytest-cov",
+]
+
 [tool.setuptools]
 include-package-data = true
 packages = ["spedextractor"]
 
 [tool.setuptools.dynamic]
 version = {attr = "spedextractor.__version__"}
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "INFO"
+log_level = "DEBUG" # Sets the level for caplog capture
 
 [tool.ruff]
 line-length = 88
