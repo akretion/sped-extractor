@@ -8,8 +8,6 @@ import camelot
 
 from PyPDF2.errors import PdfReadWarning
 
-warnings.filterwarnings("ignore", category=PdfReadWarning)
-
 import click
 
 try:
@@ -24,6 +22,8 @@ from .constants import (
     OLDEST_YEAR,
     SPECS_PATH,
 )
+
+warnings.filterwarnings("ignore", category=PdfReadWarning)
 
 logger = logging.getLogger(__name__)
 

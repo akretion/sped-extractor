@@ -280,7 +280,7 @@ def main(year):
         generator.filters.version = version
         mod_fields = get_fields(mod, year)
 
-        security_csv = f""""id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+        security_csv = """"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
 """
 
         views_xml = '<?xml version="1.0" encoding="UTF-8"?>\n<odoo>'
@@ -351,7 +351,7 @@ def main(year):
                 )
                 concrete_models_source += f"""\n    \"{register["short_desc"]}\""""
                 concrete_models_source += (
-                    f"""\n    _description = textwrap.dedent("    %s" % (__doc__,))"""
+                    """\n    _description = textwrap.dedent("    %s" % (__doc__,))"""
                 )
                 concrete_models_source += f"""\n    _name = \"l10n_br_sped.{mod}.{register["code"].lower()}\""""
                 concrete_models_source += f"""\n    _inherit = \"l10n_br_sped.{mod}.{version}.{register["code"].lower()}\""""

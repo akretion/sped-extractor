@@ -8,7 +8,7 @@ dynamic = ["version"]
 description = "Extrai e interpreta os registros e os campos das tabelas dos manuais do SPED (Sistema Público de Escrituração Digital), para os módulos ECD, ECF, EFD Contribuições (PIS, COFINS) e EFD ICMS IPI."
 readme = {file = "README.rst", content-type = "text/x-rst"}
 requires-python = ">=3.9"
-license = {text = "MIT"} 
+license = {text = "MIT"}
 
 authors = [
     { name = "Raphaël Valyi", email = "raphael.valyi@akretion.com" },

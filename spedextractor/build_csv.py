@@ -612,7 +612,7 @@ def _convert_values(field):
             values = values.split(",")
         elif ";" in values:
             values = values.split(";")
-        if type(values) == list:
+        if isinstance(values, list):
             field["values"] = [v.replace(" ", "").replace("''", "") for v in values]
         if field.get("spec_type") and field["spec_type"] == "NS":
             field["values"] = ["+", "-"]  # cf. ECF pdf page 26

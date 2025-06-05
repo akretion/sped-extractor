@@ -34,13 +34,13 @@ Os módulos da SPED tratados por esse package são :
 Arquivos extraidos
 ==================
 
-=============================  ===================================  ========================== 
-Registros                      CSV fiél                             CSV utilizável             
-=============================  ===================================  ========================== 
-ECD_registers.csv_             ECD_accurate_fields.csv_             ECD_fields.csv_           
-ECF_registers.csv_             ECF_accurate_fields.csv_             ECF_fields.csv_           
-EFD_ICMS_IPI_registers.csv_    EFD_ICMS_IPI_accurate_fields.csv_    EFD_ICMS_IPI_fields.csv_   
-EFD_PIS_COFINS_registers.csv_  EFD_PIS_COFINS_accurate_fields.csv_  EFD_PIS_COFINS_fields.csv_ 
+=============================  ===================================  ==========================
+Registros                      CSV fiél                             CSV utilizável
+=============================  ===================================  ==========================
+ECD_registers.csv_             ECD_accurate_fields.csv_             ECD_fields.csv_
+ECF_registers.csv_             ECF_accurate_fields.csv_             ECF_fields.csv_
+EFD_ICMS_IPI_registers.csv_    EFD_ICMS_IPI_accurate_fields.csv_    EFD_ICMS_IPI_fields.csv_
+EFD_PIS_COFINS_registers.csv_  EFD_PIS_COFINS_accurate_fields.csv_  EFD_PIS_COFINS_fields.csv_
 =============================  ===================================  ==========================
 
 Instalação
