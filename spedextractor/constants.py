@@ -1,37 +1,50 @@
 import pathlib
+import logging
+from typing import Tuple, Optional, List, Dict
 
-SPECS_PATH = pathlib.Path(__file__).parent.resolve() / "specs"
+logger = logging.getLogger(__name__)
+
+SPECS_PATH: pathlib.Path = pathlib.Path(__file__).parent.resolve() / "specs"
+
+MODULES: List[str] = ["ecd", "ecf", "efd_icms_ipi", "efd_pis_cofins"]
 
 
-def _get_max_min_year():
-    """Return a tuplet with most recent and oldest year folder available in './specs/'
+def _get_max_min_year() -> Tuple[Optional[int], Optional[int]]:
+    """Return a tuple with most recent and oldest year folder available in './specs/'
+    Returns (None, None) if no valid year directories are found.
     """
-    years = [entry.name for entry in SPECS_PATH.iterdir() if entry.is_dir()]
-    return (int(max(years, key=int)), int(min(years, key=int)))
+    valid_years: List[int] = []
+    if SPECS_PATH.exists() and SPECS_PATH.is_dir():
+        for entry in SPECS_PATH.iterdir():
+            if entry.is_dir():
+                try:
+                    valid_years.append(int(entry.name))
+                except ValueError:
+                    logger.debug(f"Skipping non-integer directory name: {entry.name}")
+
+    if not valid_years:
+        logger.warning(
+            f"No valid year directories found in {SPECS_PATH}. "
+            "Cannot determine MOST_RECENT_YEAR or OLDEST_YEAR."
+        )
+        return None, None
+    return max(valid_years), min(valid_years)
 
 
-MOST_RECENT_YEAR = _get_max_min_year()[0]
-OLDEST_YEAR = _get_max_min_year()[1]
+_max_year, _min_year = _get_max_min_year()
 
-MODULES = ["ecd", "ecf", "efd_icms_ipi", "efd_pis_cofins"]
+MOST_RECENT_YEAR: int = _max_year if _max_year is not None else 2024  # Example default
+OLDEST_YEAR: int = _min_year if _min_year is not None else 2010  # Example default
 
-# We chose to hard-code the modules fields headers because it is easier to actualize
-# them manually when necessary than mantaining a good heuristic algorithm catching these
-# headers from raw CSV files.
-# To define these headers manually, please use the script :
-# `python -m spedextractor.get_mod_headers`
-# which displays all the possible headers for each module.
-MODULE_HEADER = {
+MODULE_HEADER: Dict[str, List[Tuple[str, str]]] = {
     "ecd": [
         ("Nº", "index"),
         ("Campo", "code"),
         ("Descrição", "desc"),
-        # key "type" reserved for the interpreted field dictionary
         ("Tipo", "spec_type"),
         ("Tamanho", "length"),
         ("Decimal", "decimal"),
         ("Valores Válidos", "spec_values"),
-        # key "required" reserved for the interpreted field dictionary
         ("Obrigatório", "spec_required"),
         ("Regras de Validação do Campo", "rules"),
     ],

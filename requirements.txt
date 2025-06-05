@@ -1,9 +1,0 @@
-camelot-py>=0.8.0
-unidecode
-click
-# only for ./compare_python-sped.py :
-python-sped
-requests
-opencv-python
-PyPDF2
-ghostscript

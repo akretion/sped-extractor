@@ -1,57 +1,145 @@
+import sys
 import logging
-import os
+import pathlib
+import warnings
+from typing import Optional, List
 
 import camelot
+
+from PyPDF2.errors import PdfReadWarning
+
 import click
-from PyPDF2 import PdfReader
+
+try:
+    from PyPDF2 import PdfReader
+except ImportError:
+    from PyPDF2 import PdfFileReader as PdfReader  # type: ignore
 
 from . import download
-from .constants import MODULES, MOST_RECENT_YEAR, OLDEST_YEAR, SPECS_PATH
+from .constants import (
+    MODULES,
+    MOST_RECENT_YEAR,
+    OLDEST_YEAR,
+    SPECS_PATH,
+)
+
+warnings.filterwarnings("ignore", category=PdfReadWarning)
 
 logger = logging.getLogger(__name__)
-logger.addHandler(logging.StreamHandler())
-logger.setLevel(logging.INFO)
 
-START = 0
-STEP = 10
+CAMELOT_LINE_SCALE: int = 40
+DEFAULT_CHUNK_SIZE: int = 10
 
 
-def _limit_pages(pdf, limit=False):
-    """Return the pages number to be extracted"""
-    pdf_file = PdfReader(str(pdf.resolve()))
-    return limit if limit else len(pdf_file.pages)
+def _get_pdf_page_count(pdf_path: pathlib.Path) -> int:
+    """Return the number of pages in the PDF, or 0 if error."""
+    if not pdf_path.is_file():
+        logger.error(f"PDF file not found at {pdf_path} for counting pages.")
+        return 0
+    try:
+        with open(pdf_path, "rb") as f:
+            pdf_reader = PdfReader(f)
+            return len(pdf_reader.pages)
+    except Exception as e:
+        logger.error(f"Error reading PDF {pdf_path} for page count: {e}")
+        return 0
 
 
-def extract_mod_tables(mod, year, pdf=None, limit=False):
-    if not pdf:
-        pdf = SPECS_PATH / f"{year}" / "pdf" / f"{mod}.pdf"
+def extract_mod_tables(
+    mod_name: str,
+    year: int,
+    pdf_path_override: Optional[pathlib.Path] = None,
+    limit_pages_to_extract: int = 0,
+    page_chunk_size: int = DEFAULT_CHUNK_SIZE,
+) -> bool:
+    """
+    Extracts tables from a single SPED module's PDF.
+    Returns True if extraction process completed, False if critical error.
+    """
+    pdf_to_process: pathlib.Path
+    if pdf_path_override:
+        pdf_to_process = pdf_path_override
+    else:
+        pdf_to_process = SPECS_PATH / str(year) / "pdf" / f"{mod_name}.pdf"
 
-    pdf_path = str(pdf.resolve())
-    if not os.path.isfile(pdf_path):
-        download.download_mod_pdf(mod, year)
+    if not pdf_to_process.is_file():
+        logger.info(f"PDF {pdf_to_process.name} not found. Attempting download...")
+        if not download.download_mod_pdf(mod_name, year):
+            logger.error(
+                f"Failed to download PDF for {mod_name.upper()} {year}. Cannot extract tables."
+            )
+            return False
+        if not pdf_path_override and not pdf_to_process.is_file():
+            logger.error(
+                f"PDF still not found at {pdf_to_process} after download attempt. Cannot extract tables."
+            )
+            return False
 
-    limit_pages = _limit_pages(pdf, limit)
-    export_csv = SPECS_PATH / f"{year}" / f"{mod}" / "raw_camelot_csv"
-    export_csv_path = str((export_csv / f"{mod}.csv").resolve())
+    actual_page_count = _get_pdf_page_count(pdf_to_process)
+    if actual_page_count == 0:
+        logger.warning(
+            f"Cannot process PDF {pdf_to_process.name} as it has 0 pages or is unreadable."
+        )
+        return False
+
+    pages_to_process = actual_page_count
+    if limit_pages_to_extract > 0:
+        pages_to_process = min(limit_pages_to_extract, actual_page_count)
+
+    if pages_to_process == 0:
+        logger.info(f"No pages to process for {pdf_to_process.name}.")
+        return True
+
+    export_csv_dir: pathlib.Path = SPECS_PATH / str(year) / mod_name / "raw_camelot_csv"
 
     logger.info(
-        f"> Extracting pdf {mod.upper()} {year} - {limit_pages} pages. "
-        "It can take easily 5 minutes..."
+        f"> Extracting PDF {pdf_to_process.name} ({mod_name.upper()} {year}) - "
+        f"{pages_to_process} of {actual_page_count} page(s) to {export_csv_dir}"
     )
-    # Creating directory if not existing
-    export_csv.mkdir(parents=True, exist_ok=True)
-    # Deleting previous extracted files if existing
-    for file in export_csv.iterdir():
-        file.unlink()
+    export_csv_dir.mkdir(parents=True, exist_ok=True)
 
-    # Extracting with camelot : we process the pages 10 by 10 to avoid malloc errors
-    i = START
-    while i < limit_pages:
-        limit = min(i + STEP, limit_pages)
-        logger.info(f"    pages {i} to {limit}...")
-        tables = camelot.read_pdf(pdf_path, pages=f"{i}-{limit}", line_scale=40)
-        tables.export(export_csv_path, f="csv", compress=False)
-        i += STEP
+    logger.info(f"  Cleaning up previous CSV files in {export_csv_dir}...")
+    for file in export_csv_dir.glob("*.csv"):
+        try:
+            file.unlink()
+        except OSError as e:
+            logger.warning(f"Could not delete old CSV {file}: {e}")
+
+    current_page_start = 1
+    extraction_successful_for_all_chunks = True
+    while current_page_start <= pages_to_process:
+        end_page_in_chunk = min(
+            current_page_start + page_chunk_size - 1, pages_to_process
+        )
+        page_range_str = f"{current_page_start}-{end_page_in_chunk}"
+
+        logger.info(f"    Processing pages {page_range_str}...")
+        try:
+            tables = camelot.read_pdf(
+                str(pdf_to_process),
+                pages=page_range_str,
+                line_scale=CAMELOT_LINE_SCALE,
+            )
+            if tables.n == 0:
+                logger.info(
+                    f"      No tables found by Camelot on pages {page_range_str}."
+                )
+            else:
+                export_filename_prefix = export_csv_dir / mod_name
+                tables.export(str(export_filename_prefix), f="csv", compress=False)
+                logger.info(
+                    f"      Exported {tables.n} table(s) from pages {page_range_str}. "
+                    f"Files saved in {export_csv_dir} with prefix '{mod_name}-page-*'."
+                )
+        except Exception as e:
+            logger.error(
+                f"    Error processing pages {page_range_str} with Camelot for {pdf_to_process.name}: {e}"
+            )
+            extraction_successful_for_all_chunks = False
+        current_page_start = end_page_in_chunk + 1
+
+    logger.info(f"Finished extracting tables for {mod_name.upper()} {year}.")
+    return extraction_successful_for_all_chunks
 
 
 @click.command()
@@ -60,32 +148,90 @@ def extract_mod_tables(mod, year, pdf=None, limit=False):
     default=MOST_RECENT_YEAR,
     show_default=True,
     type=click.IntRange(OLDEST_YEAR, MOST_RECENT_YEAR),
-    help="Operate on a specific year's folder, "
-    f"can be between {OLDEST_YEAR} and {MOST_RECENT_YEAR}",
+    help=f"Year of the SPED specifications (between {OLDEST_YEAR} and {MOST_RECENT_YEAR}).",
+)
+@click.option(
+    "--module",
+    "target_module_str",
+    type=click.Choice(MODULES, case_sensitive=False),  # Use MODULES list from constants
+    required=False,
+    help="Specific SPED module to process. If not provided, all configured modules will be processed.",
 )
 @click.option(
     "-l",
-    "--limit",
-    default=False,
+    "--limit-pages",
+    "limit_pages_to_extract",
+    default=0,
     show_default=True,
-    type=int,
-    help="Extract a limited number of pdf pages",
+    type=click.IntRange(min=0),
+    help="Limit extraction to the first N pages of the PDF (0 for no limit).",
 )
-def main(year, limit):
-    """Extract tables from SPED modules pdf (from a given year) using camelot.
+@click.option(
+    "--chunk-size",
+    default=DEFAULT_CHUNK_SIZE,
+    show_default=True,
+    type=click.IntRange(min=1),
+    help="Number of PDF pages to process in each Camelot batch.",
+)
+def main(
+    year: int,
+    target_module_str: Optional[str],
+    limit_pages_to_extract: int,
+    chunk_size: int,
+):
+    """
+    Extract tables from SPED module PDFs (for a given year) using Camelot.
+    PDFs are expected in './specs/YEAR/pdf/' or will be downloaded if missing.
+    Extracted CSV files are placed in './specs/YEAR/MODULE/raw_camelot_csv/'.
+    """
+    if "pytest" not in sys.modules:
+        # If no handlers are configured for the root logger OR for our specific logger,
+        # set up basic console logging.
+        # Check both to be more robust.
+        sped_logger = logging.getLogger(
+            "spedextractor"
+        )  # Get your package's base logger
+        if not logging.getLogger().hasHandlers() and not sped_logger.hasHandlers():
+            logging.basicConfig(
+                level=logging.INFO,
+                format="%(levelname)-7s: %(name)s: %(message)s",  # Slightly more informative format
+            )
 
-    The pdf must be present at './specs/YEAR/' and the extracted CSV files will be
-    placed at './specs/YEAR/MODULE/raw_camelot_csv/'.
+    logger.info(f"--- Starting table extraction process for SPED {year} ---")
 
-    If an option --limit is given, only the first pages will be parsed until the limit
-    number."""
-    logger.info(
-        f"Extracting tables from the {year} SPED pdf. It can take a while "
-        "(easily 20 minutes)"
-    )
-    for mod in MODULES:
-        extract_mod_tables(mod, year, limit)
+    if MOST_RECENT_YEAR is None or OLDEST_YEAR is None:
+        logger.error(
+            "Critical: MOST_RECENT_YEAR or OLDEST_YEAR is not set. Check 'specs' directory or constants."
+        )
+        return
+
+    modules_to_process: List[str] = []
+    if target_module_str:
+        modules_to_process.append(target_module_str.lower())
+    else:
+        modules_to_process = MODULES
+
+    overall_success = True
+    for mod_name in modules_to_process:
+        logger.info(f"Processing module: {mod_name.upper()}")
+        if not extract_mod_tables(
+            mod_name,
+            year,
+            limit_pages_to_extract=limit_pages_to_extract,
+            page_chunk_size=chunk_size,
+        ):
+            overall_success = False
+
+    logger.info(f"--- Table extraction process finished for SPED {year} ---")
+    if not overall_success:
+        logger.warning(
+            "One or more modules encountered critical errors during extraction."
+        )
 
 
 if __name__ == "__main__":
+    if not logging.getLogger().hasHandlers() or not logging.getLogger().handlers:
+        logging.basicConfig(
+            level=logging.INFO, format="%(levelname)s %(name)s:%(lineno)d: %(message)s"
+        )
     main()

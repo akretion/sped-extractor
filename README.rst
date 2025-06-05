@@ -1,3 +1,23 @@
+.. image:: https://img.shields.io/pypi/v/sped-extractor.svg
+    :target: https://pypi.org/project/sped-extractor/
+    :alt: PyPI Version
+
+.. image:: https://img.shields.io/pypi/pyversions/sped-extractor.svg
+    :target: https://pypi.org/project/sped-extractor/
+    :alt: Python Versions
+
+.. image:: https://img.shields.io/github/actions/workflow/status/akretion/sped-extractor/main.yml?branch=master
+    :target: https://github.com/akretion/sped-extractor/actions/workflows/main.yml
+    :alt: Build Status
+
+.. image:: https://img.shields.io/codecov/c/github/akretion/sped-extractor.svg
+    :target: https://codecov.io/gh/akretion/sped-extractor
+    :alt: Coverage Status
+
+.. image:: https://img.shields.io/pypi/l/sped-extractor.svg
+    :target: https://opensource.org/licenses/MIT
+    :alt: License
+
 ==============
 sped-extractor
 ==============
@@ -34,13 +54,13 @@ Os módulos da SPED tratados por esse package são :
 Arquivos extraidos
 ==================
 
-=============================  ===================================  ========================== 
-Registros                      CSV fiél                             CSV utilizável             
-=============================  ===================================  ========================== 
-ECD_registers.csv_             ECD_accurate_fields.csv_             ECD_fields.csv_           
-ECF_registers.csv_             ECF_accurate_fields.csv_             ECF_fields.csv_           
-EFD_ICMS_IPI_registers.csv_    EFD_ICMS_IPI_accurate_fields.csv_    EFD_ICMS_IPI_fields.csv_   
-EFD_PIS_COFINS_registers.csv_  EFD_PIS_COFINS_accurate_fields.csv_  EFD_PIS_COFINS_fields.csv_ 
+=============================  ===================================  ==========================
+Registros                      CSV fiél                             CSV utilizável
+=============================  ===================================  ==========================
+ECD_registers.csv_             ECD_accurate_fields.csv_             ECD_fields.csv_
+ECF_registers.csv_             ECF_accurate_fields.csv_             ECF_fields.csv_
+EFD_ICMS_IPI_registers.csv_    EFD_ICMS_IPI_accurate_fields.csv_    EFD_ICMS_IPI_fields.csv_
+EFD_PIS_COFINS_registers.csv_  EFD_PIS_COFINS_accurate_fields.csv_  EFD_PIS_COFINS_fields.csv_
 =============================  ===================================  ==========================
 
 Instalação

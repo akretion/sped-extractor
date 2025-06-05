@@ -1,12 +1,12 @@
+import os
 import logging
 from collections import OrderedDict, defaultdict
 from pathlib import Path
-from typing import Dict, List
+from typing import Any, Dict, List
 
 import click
-from black import FileMode, format_str
 from xsdata.codegen.models import Attr, AttrType, Class, Restrictions
-from xsdata.models.config import GeneratorConfig, GeneratorSubstitution, ObjectType
+from xsdata.models.config import GeneratorConfig
 from xsdata_odoo.generator import OdooFilters, OdooGenerator
 from xsdata_odoo.text_utils import extract_string_and_help
 
@@ -144,7 +144,9 @@ class SpedFilters(OdooFilters):
         else:
             return self.inherit_model
 
-    def _extract_field_attributes(self, parents: List[Class], attr: Attr):
+    def _extract_field_attributes(
+        self, parents: List[Class], attr: Attr
+    ) -> OrderedDict[str, Any]:
         """
         xsdata-odoo override. Note that because we pass native xsdata types
         (Model, Attr, Restriction...) to xsdata-odoo, we may not be able to
@@ -163,7 +165,7 @@ class SpedFilters(OdooFilters):
             string = string.split("_")[1]
         kwargs["string"] = string
 
-        metadata = self.field_metadata(attr, {}, [p.name for p in parents])
+        metadata = self.field_metadata(obj, attr, None)
         if metadata.get("required") or (not attr.is_list and not attr.is_optional):
             kwargs["required"] = True
 
@@ -233,9 +235,9 @@ class SpedFilters(OdooFilters):
                         int(xsd_type[7:9]),
                     )
                 else:
-                    kwargs[
-                        "currency_field"
-                    ] = "brl_currency_id"  # use company_curreny_id?
+                    kwargs["currency_field"] = (
+                        "brl_currency_id"  # use company_curreny_id?
+                    )
             elif attr.name.startswith(("VL_", "VAL_", "VALOR")):
                 kwargs["currency_field"] = "brl_currency_id"  # use company_curreny_id?
 
@@ -256,6 +258,7 @@ def main(year):
     config.conventions.field_name.safe_prefix = (
         "NO_PREFIX_NO_SAFE_NAME"  # no field prefix
     )
+    config.output.max_line_length = 88  # OCA style
     generator = OdooGenerator(config)
 
     generator.filters = SpedFilters(
@@ -277,7 +280,7 @@ def main(year):
         generator.filters.version = version
         mod_fields = get_fields(mod, year)
 
-        security_csv = f""""id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+        security_csv = """"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
 """
 
         views_xml = '<?xml version="1.0" encoding="UTF-8"?>\n<odoo>'
@@ -346,12 +349,12 @@ def main(year):
                 concrete_models_source += (
                     f"\n\nclass Registro{register['code']}(models.Model):"
                 )
-                concrete_models_source += f"""\n    \"{register['short_desc']}\""""
+                concrete_models_source += f"""\n    \"{register["short_desc"]}\""""
                 concrete_models_source += (
-                    f"""\n    _description = textwrap.dedent("    %s" % (__doc__,))"""
+                    """\n    _description = textwrap.dedent("    %s" % (__doc__,))"""
                 )
-                concrete_models_source += f"""\n    _name = \"l10n_br_sped.{mod}.{register['code'].lower()}\""""
-                concrete_models_source += f"""\n    _inherit = \"l10n_br_sped.{mod}.{version}.{register['code'].lower()}\""""
+                concrete_models_source += f"""\n    _name = \"l10n_br_sped.{mod}.{register["code"].lower()}\""""
+                concrete_models_source += f"""\n    _inherit = \"l10n_br_sped.{mod}.{version}.{register["code"].lower()}\""""
                 concrete_models_source += """
 
     # @api.model
@@ -362,11 +365,11 @@ def main(year):
             bloco_char = register["code"][0]
             if bloco_char != last_bloco:
                 views_xml += (
-                    '\n\n\n    <menuitem name="BLOCO %s"' ' parent="%s" id="%s_%s" />'
+                    '\n\n\n    <menuitem name="BLOCO %s" parent="%s" id="%s_%s" />'
                 ) % (bloco_char, mod, mod, bloco_char.lower())
             last_bloco = bloco_char
 
-            if register["level"] == 2:# or register["code"] == "0000":
+            if register["level"] == 2:  # or register["code"] == "0000":
                 action_name = register["code"] + " " + register["short_desc"]
                 action = """\n
     <record id="%s_%s_action" model="ir.actions.act_window">
@@ -383,8 +386,7 @@ def main(year):
                 views_xml += action
 
                 views_xml += (
-                    '\n    <menuitem action="%s_%s_action"'
-                    ' parent="%s_%s" id="%s_%s" />'
+                    '\n    <menuitem action="%s_%s_action" parent="%s_%s" id="%s_%s" />'
                 ) % (
                     mod,
                     register["code"].lower(),
@@ -412,7 +414,7 @@ def main(year):
                 if field["code"] not in unique_codes:
                     unique_codes.add(field["code"])
                 else:
-                    field["code"] = f'{field["code"]}_INDEX_{field["index"]}'
+                    field["code"] = f"{field['code']}_INDEX_{field['index']}"
                     unique_codes.add(field["code"])
                 fields.append(field)
 
@@ -424,9 +426,7 @@ def main(year):
 
                 # listing all fields helps writting and reviewing mappings:
                 max_desc = 88 - len(field["code"]) - 29
-                concrete_models_source += (
-                    f"""    #         "{field["code"]}": 0,  # {field["desc"][0:max_desc]}{len(field["desc"]) > max_desc and "..." or ""}\n"""
-                )
+                concrete_models_source += f"""    #         "{field["code"]}": 0,  # {field["desc"][0:max_desc]}{len(field["desc"]) > max_desc and "..." or ""}\n"""
 
                 if (
                     field["code"].startswith("DT_")
@@ -562,26 +562,30 @@ def main(year):
             + "\n"
             + generator.render_classes(classes, None)
         )
-        try:
-            source = format_str(source, mode=FileMode())
-            concrete_models_source = format_str(concrete_models_source, mode=FileMode())
-        except Exception as e:
-            print(e)
 
         base_path = str(SPECS_PATH) + f"/{year}/"
 
-        path = Path(f"{base_path}/l10n_br_sped/models/sped_{mod}_spec_{version}.py")
+        os.makedirs(f"{base_path}/l10n_br_sped_{mod}/models", exist_ok=True)
+        os.makedirs(f"{base_path}/l10n_br_sped_{mod}/views", exist_ok=True)
+        os.makedirs(f"{base_path}/l10n_br_sped_{mod}/security", exist_ok=True)
+        path = Path(
+            f"{base_path}/l10n_br_sped_{mod}/models/sped_{mod}_spec_{version}.py"
+        )
         print("written file", path)
         path.write_text(source, encoding="utf-8")
+        generator.ruff_code([path])
 
-        path = Path(f"{base_path}/l10n_br_sped/models/sped_{mod}.py")
+        path = Path(f"{base_path}/l10n_br_sped_{mod}/models/sped_{mod}.py")
         print("written file", path)
         path.write_text(concrete_models_source, encoding="utf-8")
+        generator.ruff_code([path])
 
-        path = Path(f"{base_path}/l10n_br_sped/views/sped_{mod}.xml")
+        path = Path(f"{base_path}/l10n_br_sped_{mod}/views/sped_{mod}.xml")
         path.write_text(views_xml + "\n</odoo>", encoding="utf-8")
 
-        path = Path(f"{base_path}/l10n_br_sped/security/{mod}_ir.model.access.csv")
+        path = Path(
+            f"{base_path}/l10n_br_sped_{mod}/security/{mod}_ir.model.access.csv"
+        )
         path.write_text(security_csv, encoding="utf-8")
 
 
