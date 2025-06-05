@@ -26,13 +26,3 @@ wheels/
 .installed.cfg
 *.egg
 MANIFEST
-
-# Pre-commit lint stuff
-.flake8
-.editorconfig
-.eslintrc.yml
-.isort.cfg
-.pre-commit-config.yaml
-.prettierrc.yml
-.pylintrc
-.pylintrc-mandatory
