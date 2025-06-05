@@ -30,7 +30,7 @@ dependencies = [
     "camelot-py",
     "unidecode",
     "click",
-    "PyPDF2",
+    "PyPDF2==1.27.12",  # same PyPDF2 version as Odoo 16 for convenienc
     "xsdata-odoo",
 ]
 
