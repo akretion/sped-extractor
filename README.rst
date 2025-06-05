@@ -1,3 +1,23 @@
+.. image:: https://img.shields.io/pypi/v/sped-extractor.svg
+    :target: https://pypi.org/project/sped-extractor/
+    :alt: PyPI Version
+
+.. image:: https://img.shields.io/pypi/pyversions/sped-extractor.svg
+    :target: https://pypi.org/project/sped-extractor/
+    :alt: Python Versions
+
+.. image:: https://img.shields.io/github/actions/workflow/status/akretion/sped-extractor/main.yml?branch=master
+    :target: https://github.com/akretion/sped-extractor/actions/workflows/main.yml
+    :alt: Build Status
+
+.. image:: https://img.shields.io/codecov/c/github/akretion/sped-extractor.svg
+    :target: https://codecov.io/gh/akretion/sped-extractor
+    :alt: Coverage Status
+
+.. image:: https://img.shields.io/pypi/l/sped-extractor.svg
+    :target: https://opensource.org/licenses/MIT
+    :alt: License
+
 ==============
 sped-extractor
 ==============
