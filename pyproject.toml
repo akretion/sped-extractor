@@ -50,6 +50,7 @@ test = [
     "codecov",
     "pre-commit",
     "pytest",
+    "pytest-mock",
     "pytest-cov",
 ]
 
