@@ -2,10 +2,6 @@
     :target: https://pypi.org/project/sped-extractor/
     :alt: PyPI Version
 
-.. image:: https://img.shields.io/pypi/pyversions/sped-extractor.svg
-    :target: https://pypi.org/project/sped-extractor/
-    :alt: Python Versions
-
 .. image:: https://img.shields.io/github/actions/workflow/status/akretion/sped-extractor/main.yml?branch=master
     :target: https://github.com/akretion/sped-extractor/actions/workflows/main.yml
     :alt: Build Status
@@ -193,18 +189,6 @@ Para definir "manualmente" esses cabeçalhos, é possível usar o script ``get_t
 
   [...]
 
-Comparar sped-extractor com python-sped
-=======================================
-
-python-sped_ é uma biblioteca python com a lista dos campos de cada módulo da SPED, porém escrita "manualmente" e desatualizada (ECD e ECF seguindo os pdf das especificações de 2017, EFD/ICMS-IPI e EFD/PIS-COFINS seguindo os pdf das especificações de 2015).
-
-Apesar disso, pode ser interessante comparar essas listas de campos com as listas extraidas pelo **sped-extractor**. Para isso é só lançar o script ``compare_pythonsped.py`` ::
-
-  $ python -m spedextractor.compare_pythonsped
-
-Um exemplo de comparação com python-sped_ pode ser encontrado `aqui <https://gist.github.com/clementmbr/d422c02c52e1bbae7d2972475b363ea2>`_.
-
-  🔎  Para detalhar as listas dos campos faltando em cada modelo, adicionar a opção ``--detail``.
 
 Roadmap
 ========
