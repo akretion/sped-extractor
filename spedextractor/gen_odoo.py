@@ -119,10 +119,10 @@ class SpedFilters(OdooFilters):
         name = self.class_name(name)
         return f"{self.schema}.{self.version}.{name[-4:].lower()}"
 
-    def registry_comodel(self, type_names: List[str]):
+    def registry_comodel(self, type_name: str):
         # NOTE: we take only the last part of inner Types with .split(".")[-1]
         # but if that were to create Type duplicates we could change that.
-        clean_type_names = type_names[-1].replace('"', "").split(".")
+        clean_type_names = type_name.replace('"', "").split(".")
         comodel = self.registry_name(clean_type_names[-1], type_names=clean_type_names)
         comodel = ".".join(comodel.split(".")[0:2] + comodel.split(".")[-1:])
         return comodel
@@ -254,6 +254,7 @@ class SpedFilters(OdooFilters):
 def main(year):
     """Generate Odoo models."""
 
+    os.environ["XSDATA_LANG"] = "portuguese"
     config = GeneratorConfig()
     config.conventions.field_name.safe_prefix = (
         "NO_PREFIX_NO_SAFE_NAME"  # no field prefix
