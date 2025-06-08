@@ -1,4 +1,3 @@
-import csv
 import logging
 import pathlib
 from typing import Optional, List
@@ -8,7 +7,6 @@ import requests
 
 from .constants import (
     MODULES,
-    MODULES2,
     SPECS_PATH,
 )
 
@@ -21,7 +19,7 @@ def download_mod_pdf(mod_name: str) -> bool:
     Returns True on success, False on failure.
     """
     pdf_folder: pathlib.Path = (
-        SPECS_PATH / mod_name / str(MODULES2[mod_name][0]) / "pdf"
+        SPECS_PATH / mod_name / str(MODULES[mod_name][0]) / "pdf"
     )
     pdf_folder.mkdir(parents=True, exist_ok=True)
     pdf_file_path: pathlib.Path = pdf_folder / f"{mod_name}.pdf"
@@ -29,7 +27,7 @@ def download_mod_pdf(mod_name: str) -> bool:
     logger.info(f"Attempting to download PDF for module '{mod_name.upper()}'.")
     logger.info(f"  Target file location: {pdf_file_path}")
 
-    url = MODULES2[mod_name][2]
+    url = MODULES[mod_name][2]
     logger.info(f"  Downloading from URL: {url}")
 
     try:
@@ -69,7 +67,7 @@ def download_mod_pdf(mod_name: str) -> bool:
 @click.option(
     "--module",
     "target_module_str",
-    type=click.Choice(MODULES, case_sensitive=False),
+    type=click.Choice(MODULES.keys(), case_sensitive=False),
     required=False,
     help="Specific SPED module to download. If not provided, all modules will be downloaded.",
 )
@@ -89,10 +87,10 @@ def main(target_module_str: Optional[str]):
     if target_module_str:
         modules_to_download.append(target_module_str.lower())
     else:
-        modules_to_download = MODULES
+        modules_to_download = MODULES.keys()
 
     for module in modules_to_download:
-        layout = MODULES2[module][0]
+        layout = MODULES[module][0]
         spec_dir = SPECS_PATH / module / str(layout)
 
         spec_dir.mkdir(parents=True, exist_ok=True)

@@ -1,4 +1,3 @@
-# tests/test_extract_tables.py
 import pytest
 from click.testing import CliRunner
 from pathlib import Path
@@ -6,7 +5,7 @@ from unittest import mock
 
 from spedextractor import extract_tables
 from spedextractor import constants as extract_constants
-from spedextractor.constants import MODULES2
+from spedextractor.constants import MODULES
 
 from spedextractor import (
     download as extract_download_module,
@@ -41,7 +40,7 @@ def mock_specs_extract(tmp_path, monkeypatch):
 @pytest.fixture
 def dummy_pdf_file(mock_specs_extract) -> Path:
     mod_name = "ecd"
-    layout = MODULES2["ecd"][0]
+    layout = MODULES["ecd"][0]
     pdf_dir = mock_specs_extract / str(layout) / "pdf"
     pdf_dir.mkdir(parents=True, exist_ok=True)
     pdf_file = pdf_dir / f"{mod_name}.pdf"
@@ -95,7 +94,7 @@ def test_get_pdf_page_count(dummy_pdf_file):
 
 def test_extract_mod_tables_pdf_exists(mock_camelot_read_pdf):
     mod_name = "ecd"
-    layout = MODULES2["ecd"][0]
+    layout = MODULES["ecd"][0]
 
     assert extract_tables.extract_mod_tables(mod_name) is True
 

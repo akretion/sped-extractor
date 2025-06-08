@@ -7,7 +7,6 @@ from spedextractor import build_csv
 from spedextractor import constants as sped_constants
 
 
-# --- Helper to create dummy raw CSV files ---
 def create_dummy_raw_csv_file(base_path: Path, filename: str, data: list):
     file_path = base_path / filename
     file_path.parent.mkdir(parents=True, exist_ok=True)
@@ -76,7 +75,7 @@ def test_normalize_field_code():
 # --- Test for get_raw_rows ---
 def test_get_raw_rows(mock_specs_path_build_csv, mock_extract_mod_tables):
     mod = "ecd"
-    layout = sped_constants.MODULES2[mod][0]
+    layout = sped_constants.MODULES[mod][0]
     raw_csv_dir = mock_specs_path_build_csv / mod / str(layout) / "raw_camelot_csv"
     create_dummy_raw_csv_file(
         raw_csv_dir, f"{mod}-page-10-table-1.csv", [["r1c1", "r1c2"], ["r2c1", "r2c2"]]
@@ -94,7 +93,7 @@ def test_get_raw_rows_calls_extract_if_missing(
     mock_specs_path_build_csv, mock_extract_mod_tables
 ):
     mod = "ecd"
-    layout = sped_constants.MODULES2[mod][0]
+    layout = sped_constants.MODULES[mod][0]
     raw_csv_dir_path = mock_specs_path_build_csv / mod / str(layout) / "raw_camelot_csv"
 
     def simulate_extraction_creates_dir_and_file(m):
@@ -134,7 +133,7 @@ def ecd_raw_rows_for_registers():
 
 def test_extract_registers_list_ecd(ecd_raw_rows_for_registers):
     mod = "ecd"
-    layout = sped_constants.MODULES2[mod][0]
+    layout = sped_constants.MODULES[mod][0]
     registers = build_csv.extract_registers_list(
         mod, layout, raw_rows=ecd_raw_rows_for_registers
     )
@@ -235,7 +234,7 @@ def test_extract_register_fields_ecd_0000(
     ecd_raw_rows_for_0000_fields_fixture, ecd_module_header_fixture
 ):
     mod = "ecd"
-    layout = sped_constants.MODULES2[mod][0]
+    layout = sped_constants.MODULES[mod][0]
     register_name = "0000"
     with mock.patch(
         "spedextractor.build_csv._get_mod_header",
@@ -269,7 +268,7 @@ ACCURATE_ECD_FIELDS_CSV_CONTENT = """Register,Page,Nº,Campo,Descrição,Tipo,Ta
 @pytest.fixture
 def mock_ecd_accurate_fields_csv(mock_specs_path_build_csv):
     mod = "ecd"
-    layout = sped_constants.MODULES2[mod][0]
+    layout = sped_constants.MODULES[mod][0]
     accurate_file_dir = mock_specs_path_build_csv / mod / str(layout)
     accurate_file_dir.mkdir(parents=True, exist_ok=True)
     accurate_file_path = accurate_file_dir / f"accurate_fields.csv"
@@ -294,7 +293,7 @@ def ecd_registers_for_get_registers():
 
 def test_get_fields_ecd(mock_ecd_accurate_fields_csv, ecd_module_header_fixture):
     mod = "ecd"
-    layout = sped_constants.MODULES2[mod][0]
+    layout = sped_constants.MODULES[mod][0]
     with mock.patch(
         "spedextractor.build_csv._get_mod_header",
         return_value=ecd_module_header_fixture,
@@ -310,7 +309,7 @@ def test_get_registers_ecd(
     ecd_registers_for_get_registers,
 ):
     mod = "ecd"
-    layout = sped_constants.MODULES2[mod][0]
+    layout = sped_constants.MODULES[mod][0]
     with (
         mock.patch(
             "spedextractor.build_csv._get_mod_header",
@@ -332,7 +331,7 @@ def test_build_usable_fields_csv_ecd(
     mock_ecd_accurate_fields_csv, mock_specs_path_build_csv, ecd_module_header_fixture
 ):
     mod = "ecd"
-    layout = sped_constants.MODULES2[mod][0]
+    layout = sped_constants.MODULES[mod][0]
     with mock.patch(
         "spedextractor.build_csv._get_mod_header",
         return_value=ecd_module_header_fixture,
@@ -353,7 +352,7 @@ def test_build_registers_csv_ecd(
     ecd_registers_for_get_registers,
 ):
     mod = "ecd"
-    layout = sped_constants.MODULES2[mod][0]
+    layout = sped_constants.MODULES[mod][0]
     with (
         mock.patch(
             "spedextractor.build_csv._get_mod_header",

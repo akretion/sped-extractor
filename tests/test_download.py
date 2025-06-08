@@ -1,11 +1,10 @@
-# tests/test_download.py
 import pytest
 from click.testing import CliRunner
 from unittest import mock
 
 from spedextractor import download
 from spedextractor import constants as download_constants
-from spedextractor.constants import MODULES2
+from spedextractor.constants import MODULES
 
 
 # This fixture provides a mocked SPECS_PATH and ensures it's cleaned up
@@ -60,7 +59,7 @@ def test_download_mod_pdf_success_unit(
     # mock_requests_global is autouse, but we also accept it as an argument
     # to make it explicit that this test uses it for assertions.
     mod_name = "ecd"
-    layout = MODULES2["ecd"][0]
+    layout = MODULES["ecd"][0]
 
     assert download.download_mod_pdf(mod_name) is True
 

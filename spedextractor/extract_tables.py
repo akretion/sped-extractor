@@ -18,7 +18,6 @@ except ImportError:
 from . import download
 from .constants import (
     MODULES,
-    MODULES2,
     SPECS_PATH,
 )
 
@@ -61,7 +60,7 @@ def extract_mod_tables(
         pdf_to_process = (
             SPECS_PATH
             / mod_name
-            / str(MODULES2[mod_name][0])
+            / str(MODULES[mod_name][0])
             / "pdf"
             / f"{mod_name}.pdf"
         )
@@ -95,7 +94,7 @@ def extract_mod_tables(
         return True
 
     export_csv_dir: pathlib.Path = (
-        SPECS_PATH / mod_name / str(MODULES2[mod_name][0]) / "raw_camelot_csv"
+        SPECS_PATH / mod_name / str(MODULES[mod_name][0]) / "raw_camelot_csv"
     )
 
     logger.info(
@@ -152,7 +151,7 @@ def extract_mod_tables(
 @click.option(
     "--module",
     "target_module_str",
-    type=click.Choice(MODULES, case_sensitive=False),  # Use MODULES list from constants
+    type=click.Choice(MODULES.keys(), case_sensitive=False),
     required=False,
     help="Specific SPED module to process. If not provided, all configured modules will be processed.",
 )
@@ -201,7 +200,7 @@ def main(
     if target_module_str:
         modules_to_process.append(target_module_str.lower())
     else:
-        modules_to_process = MODULES
+        modules_to_process = MODULES.keys()
 
     overall_success = True
     for mod_name in modules_to_process:

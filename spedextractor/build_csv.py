@@ -26,7 +26,7 @@ from unidecode import unidecode
 import click
 
 from . import extract_tables
-from .constants import MODULE_HEADER, MODULES, MODULES2, SPECS_PATH
+from .constants import MODULE_HEADER, MODULES, SPECS_PATH
 
 logger = logging.getLogger(__name__)
 # logger.addHandler(logging.StreamHandler())
@@ -673,7 +673,7 @@ def get_fields(mod, layout, with_reg=False):
 
     if mod not in MODULES:
         raise ValueError(
-            f"'{mod}' is not a valid module name. Choose between {MODULES}"
+            f"'{mod}' is not a valid module name. Choose between {MODULES.keys()}"
         )
     accurate_file = SPECS_PATH / mod / str(layout) / "accurate_fields.csv"
     fields = []
@@ -705,7 +705,7 @@ def get_registers(mod, layout, raw_rows=None, extracted_registers=None):
     extraction another time."""
     if mod not in MODULES:
         raise ValueError(
-            f"'{mod}' is not a valid module name. Choose between {MODULES}"
+            f"'{mod}' is not a valid module name. Choose between {MODULES.keys()}"
         )
     accurate_file = SPECS_PATH / mod / str(layout) / "accurate_fields.csv"
     mod_keys = [c[1] for c in _get_mod_header(mod)]
@@ -878,7 +878,7 @@ def get_blocks(mod, layout, raw_rows=None, extracted_blocks=None):
     """Return a list of dictionaries representing module's blocks."""
     if mod not in MODULES:
         raise ValueError(
-            f"'{mod}' is not a valid module name. Choose between {MODULES}"
+            f"'{mod}' is not a valid module name. Choose between {MODULES.keys()}"
         )
     blocks = []
     if not extracted_blocks:
@@ -919,7 +919,7 @@ def main(patch):
 
     for mod in MODULES:
         logger.info(f"\n==== Building CSV files for {mod.upper()} ====")
-        layout = MODULES2[mod][0]
+        layout = MODULES[mod][0]
 
         patch_file = (
             SPECS_PATH / mod / str(layout) / "camelot_patch" / f"camelot_patch.csv"
