@@ -94,7 +94,6 @@ def test_get_pdf_page_count(dummy_pdf_file):
 
 def test_extract_mod_tables_pdf_exists(mock_camelot_read_pdf):
     mod_name = "ecd"
-    layout = MODULES["ecd"][0]
 
     assert extract_tables.extract_mod_tables(mod_name) is True
 
@@ -133,9 +132,9 @@ def TODOtest_extract_cli_specific_module(
 
     if result.exception and not isinstance(result.exception, SystemExit):
         raise result.exception
-    assert result.exit_code == 0, (
-        f"CLI failed. Output: {result.output}\nException: {result.exception}\nLogs: {caplog.text}"
-    )
+    assert (
+        result.exit_code == 0
+    ), f"CLI failed. Output: {result.output}\nException: {result.exception}\nLogs: {caplog.text}"
 
     actual_mock_read_pdf_func.assert_called_once()  # Use the unpacked mock
     args, kwargs = actual_mock_read_pdf_func.call_args

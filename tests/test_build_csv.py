@@ -108,7 +108,8 @@ def test_get_raw_rows_calls_extract_if_missing(
 
     assert not raw_csv_dir_path.exists()  # Ensure dir doesn't exist before call
 
-    result_raw_rows = build_csv.get_raw_rows(mod, layout)
+    # result_raw_rows = build_csv.get_raw_rows(mod, layout)
+    build_csv.get_raw_rows(mod, layout)
     mock_extract_mod_tables.assert_called_once_with(mod)
     # assert raw_csv_dir_path.exists()  # Check dir was created by side_effect
     # assert 1 in result_raw_rows  # Check that the dummy file was processed
@@ -271,7 +272,7 @@ def mock_ecd_accurate_fields_csv(mock_specs_path_build_csv):
     layout = sped_constants.MODULES[mod][0]
     accurate_file_dir = mock_specs_path_build_csv / mod / str(layout)
     accurate_file_dir.mkdir(parents=True, exist_ok=True)
-    accurate_file_path = accurate_file_dir / f"accurate_fields.csv"
+    accurate_file_path = accurate_file_dir / "accurate_fields.csv"
     with open(accurate_file_path, "w", encoding="utf-8") as f:
         f.write(ACCURATE_ECD_FIELDS_CSV_CONTENT)
     return accurate_file_path

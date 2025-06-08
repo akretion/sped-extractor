@@ -18,9 +18,7 @@ def download_mod_pdf(mod_name: str) -> bool:
     Downloads the PDF for a given SPED module.
     Returns True on success, False on failure.
     """
-    pdf_folder: pathlib.Path = (
-        SPECS_PATH / mod_name / str(MODULES[mod_name][0])
-    )
+    pdf_folder: pathlib.Path = SPECS_PATH / mod_name / str(MODULES[mod_name][0])
     pdf_folder.mkdir(parents=True, exist_ok=True)
     pdf_file_path: pathlib.Path = pdf_folder / f"{mod_name}.pdf"
 

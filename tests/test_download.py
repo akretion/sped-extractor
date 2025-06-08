@@ -87,9 +87,9 @@ def TODOtest_download_cli_specific_module(mocker, mock_specs, caplog):
     runner = CliRunner()
     result = runner.invoke(download.main, ["--module", "ecd"])
 
-    assert result.exit_code == 0, (
-        f"CLI failed. Output: {result.output}\nLogs: {caplog.text}"
-    )
+    assert (
+        result.exit_code == 0
+    ), f"CLI failed. Output: {result.output}\nLogs: {caplog.text}"
 
     # Check logs to infer behavior
     assert "Attempting to download PDF for module 'ECD' for year 2023." in caplog.text

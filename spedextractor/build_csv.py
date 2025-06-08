@@ -922,7 +922,7 @@ def main(patch):
         layout = MODULES[mod][0]
 
         patch_file = (
-            SPECS_PATH / mod / str(layout) / "camelot_patch" / f"camelot_patch.csv"
+            SPECS_PATH / mod / str(layout) / "camelot_patch" / "camelot_patch.csv"
         )
         if patch and not patch_file.is_file():
             logger.warning(

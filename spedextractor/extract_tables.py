@@ -58,10 +58,7 @@ def extract_mod_tables(
         pdf_to_process = pdf_path_override
     else:
         pdf_to_process = (
-            SPECS_PATH
-            / mod_name
-            / str(MODULES[mod_name][0])
-            / f"{mod_name}.pdf"
+            SPECS_PATH / mod_name / str(MODULES[mod_name][0]) / f"{mod_name}.pdf"
         )
 
     if not pdf_to_process.is_file():
