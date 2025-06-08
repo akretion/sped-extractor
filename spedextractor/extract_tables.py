@@ -18,8 +18,6 @@ except ImportError:
 from . import download
 from .constants import (
     MODULES,
-    MOST_RECENT_YEAR,
-    OLDEST_YEAR,
     SPECS_PATH,
 )
 
@@ -47,7 +45,6 @@ def _get_pdf_page_count(pdf_path: pathlib.Path) -> int:
 
 def extract_mod_tables(
     mod_name: str,
-    year: int,
     pdf_path_override: Optional[pathlib.Path] = None,
     limit_pages_to_extract: int = 0,
     page_chunk_size: int = DEFAULT_CHUNK_SIZE,
@@ -60,13 +57,15 @@ def extract_mod_tables(
     if pdf_path_override:
         pdf_to_process = pdf_path_override
     else:
-        pdf_to_process = SPECS_PATH / str(year) / "pdf" / f"{mod_name}.pdf"
+        pdf_to_process = (
+            SPECS_PATH / mod_name / str(MODULES[mod_name][0]) / f"{mod_name}.pdf"
+        )
 
     if not pdf_to_process.is_file():
         logger.info(f"PDF {pdf_to_process.name} not found. Attempting download...")
-        if not download.download_mod_pdf(mod_name, year):
+        if not download.download_mod_pdf(mod_name):
             logger.error(
-                f"Failed to download PDF for {mod_name.upper()} {year}. Cannot extract tables."
+                f"Failed to download PDF for {mod_name.upper()}. Cannot extract tables."
             )
             return False
         if not pdf_path_override and not pdf_to_process.is_file():
@@ -90,10 +89,12 @@ def extract_mod_tables(
         logger.info(f"No pages to process for {pdf_to_process.name}.")
         return True
 
-    export_csv_dir: pathlib.Path = SPECS_PATH / str(year) / mod_name / "raw_camelot_csv"
+    export_csv_dir: pathlib.Path = (
+        SPECS_PATH / mod_name / str(MODULES[mod_name][0]) / "raw_camelot_csv"
+    )
 
     logger.info(
-        f"> Extracting PDF {pdf_to_process.name} ({mod_name.upper()} {year}) - "
+        f"> Extracting PDF {pdf_to_process.name} - "
         f"{pages_to_process} of {actual_page_count} page(s) to {export_csv_dir}"
     )
     export_csv_dir.mkdir(parents=True, exist_ok=True)
@@ -138,22 +139,15 @@ def extract_mod_tables(
             extraction_successful_for_all_chunks = False
         current_page_start = end_page_in_chunk + 1
 
-    logger.info(f"Finished extracting tables for {mod_name.upper()} {year}.")
+    logger.info(f"Finished extracting tables for {mod_name.upper()}.")
     return extraction_successful_for_all_chunks
 
 
 @click.command()
 @click.option(
-    "--year",
-    default=MOST_RECENT_YEAR,
-    show_default=True,
-    type=click.IntRange(OLDEST_YEAR, MOST_RECENT_YEAR),
-    help=f"Year of the SPED specifications (between {OLDEST_YEAR} and {MOST_RECENT_YEAR}).",
-)
-@click.option(
     "--module",
     "target_module_str",
-    type=click.Choice(MODULES, case_sensitive=False),  # Use MODULES list from constants
+    type=click.Choice(MODULES.keys(), case_sensitive=False),
     required=False,
     help="Specific SPED module to process. If not provided, all configured modules will be processed.",
 )
@@ -174,15 +168,14 @@ def extract_mod_tables(
     help="Number of PDF pages to process in each Camelot batch.",
 )
 def main(
-    year: int,
     target_module_str: Optional[str],
     limit_pages_to_extract: int,
     chunk_size: int,
 ):
     """
-    Extract tables from SPED module PDFs (for a given year) using Camelot.
-    PDFs are expected in './specs/YEAR/pdf/' or will be downloaded if missing.
-    Extracted CSV files are placed in './specs/YEAR/MODULE/raw_camelot_csv/'.
+    Extract tables from SPED module PDF using Camelot.
+    PDFs are expected in './specs/MODULE/LAYOUT/pdf/' or will be downloaded if missing.
+    Extracted CSV files are placed in './specs/MODULE/LAYOUT/raw_camelot_csv/'.
     """
     if "pytest" not in sys.modules:
         # If no handlers are configured for the root logger OR for our specific logger,
@@ -197,32 +190,25 @@ def main(
                 format="%(levelname)-7s: %(name)s: %(message)s",  # Slightly more informative format
             )
 
-    logger.info(f"--- Starting table extraction process for SPED {year} ---")
-
-    if MOST_RECENT_YEAR is None or OLDEST_YEAR is None:
-        logger.error(
-            "Critical: MOST_RECENT_YEAR or OLDEST_YEAR is not set. Check 'specs' directory or constants."
-        )
-        return
+    logger.info("--- Starting table extraction process for SPED ---")
 
     modules_to_process: List[str] = []
     if target_module_str:
         modules_to_process.append(target_module_str.lower())
     else:
-        modules_to_process = MODULES
+        modules_to_process = MODULES.keys()
 
     overall_success = True
     for mod_name in modules_to_process:
         logger.info(f"Processing module: {mod_name.upper()}")
         if not extract_mod_tables(
             mod_name,
-            year,
             limit_pages_to_extract=limit_pages_to_extract,
             page_chunk_size=chunk_size,
         ):
             overall_success = False
 
-    logger.info(f"--- Table extraction process finished for SPED {year} ---")
+    logger.info("--- Table extraction process finished for SPED ---")
     if not overall_success:
         logger.warning(
             "One or more modules encountered critical errors during extraction."

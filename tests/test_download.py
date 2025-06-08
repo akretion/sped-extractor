@@ -1,10 +1,10 @@
-# tests/test_download.py
 import pytest
 from click.testing import CliRunner
 from unittest import mock
 
 from spedextractor import download
 from spedextractor import constants as download_constants
+from spedextractor.constants import MODULES
 
 
 # This fixture provides a mocked SPECS_PATH and ensures it's cleaned up
@@ -15,20 +15,6 @@ def mock_specs(tmp_path, monkeypatch):
     monkeypatch.setattr(download, "SPECS_PATH", m_specs_path)
     monkeypatch.setattr(download_constants, "SPECS_PATH", m_specs_path)
     return m_specs_path
-
-
-# This fixture creates the necessary download_info.csv in the mocked SPECS_PATH
-@pytest.fixture
-def dummy_download_info_csv(mock_specs):  # Depends on mock_specs
-    year = "2023"  # Align with year used in tests
-    year_dir = mock_specs / year
-    year_dir.mkdir(parents=True, exist_ok=True)
-    csv_file = year_dir / "download_info.csv"
-    with open(csv_file, "w", encoding="utf-8") as f:
-        f.write("module,url,version\n")
-        f.write("ecd,http://example.com/ecd.pdf,1.0\n")
-        f.write("ecf,http://example.com/ecf.pdf,2.0\n")
-    return csv_file
 
 
 @pytest.fixture(autouse=True)  # This autouse is fine
@@ -65,66 +51,41 @@ def unit_test_mock_specs(
     return m_specs_path
 
 
-@pytest.fixture
-def unit_test_dummy_download_info_csv(unit_test_mock_specs):
-    year = "2023"
-    year_dir = unit_test_mock_specs / year
-    year_dir.mkdir(parents=True, exist_ok=True)
-    csv_file = year_dir / "download_info.csv"
-    with open(csv_file, "w", encoding="utf-8") as f:
-        f.write("module,url,version\n")
-        f.write(
-            "ecd,http://example.com/ecd-unit.pdf,1.0-unit\n"
-        )  # Different URL for clarity
-    return csv_file
-
-
 def test_download_mod_pdf_success_unit(
     unit_test_mock_specs,
-    unit_test_dummy_download_info_csv,
     mock_requests_global,
     caplog,
 ):
     # mock_requests_global is autouse, but we also accept it as an argument
     # to make it explicit that this test uses it for assertions.
     mod_name = "ecd"
-    year = 2023
+    layout = MODULES["ecd"][0]
 
-    assert download.download_mod_pdf(mod_name, year) is True
+    assert download.download_mod_pdf(mod_name) is True
 
     # mock_requests_global is the mock of requests.get
     mock_requests_global.assert_any_call(
-        "http://example.com/ecd-unit.pdf", stream=True, timeout=30
+        "http://sped.rfb.gov.br/arquivo/download/5965", stream=True, timeout=30
     )
 
-    expected_pdf_path = unit_test_mock_specs / str(year) / "pdf" / f"{mod_name}.pdf"
+    expected_pdf_path = (
+        unit_test_mock_specs / mod_name / str(layout) / f"{mod_name}.pdf"
+    )
     assert expected_pdf_path.exists()
     assert expected_pdf_path.read_bytes() == b"%PDF-dummy-content-global"
     assert f"Successfully downloaded and saved: {expected_pdf_path}" in caplog.text
 
 
-def test_get_url_found_unit(
-    unit_test_mock_specs, unit_test_dummy_download_info_csv
-):  # Needs its own mock_specs
-    url = download._get_url("ecd", 2023)
-    assert url == "http://example.com/ecd-unit.pdf"
-
-
 # --- CLI Tests ---
-def TODOtest_download_cli_specific_module(
-    mocker, mock_specs, dummy_download_info_csv, caplog
-):
+def TODOtest_download_cli_specific_module(mocker, mock_specs, caplog):
     # mock_requests_for_cli_tests is autouse, so it's active.
-    # mock_specs and dummy_download_info_csv provide the file system setup.
 
-    mocker.patch.object(download_constants, "MOST_RECENT_YEAR", 2023)
-    mocker.patch.object(download_constants, "OLDEST_YEAR", 2020)
     mocker.patch.object(
         download_constants, "MODULES", ["ecd", "ecf"]
     )  # Critical for click.Choice
 
     runner = CliRunner()
-    result = runner.invoke(download.main, ["--year", "2023", "--module", "ecd"])
+    result = runner.invoke(download.main, ["--module", "ecd"])
 
     assert (
         result.exit_code == 0
@@ -132,41 +93,8 @@ def TODOtest_download_cli_specific_module(
 
     # Check logs to infer behavior
     assert "Attempting to download PDF for module 'ECD' for year 2023." in caplog.text
-    expected_pdf_path = mock_specs / "2023" / "pdf" / "ecd.pdf"
+    expected_pdf_path = mock_specs / "2023" / "ecd.pdf"
     assert f"Target file location: {expected_pdf_path}" in caplog.text
     assert f"Successfully downloaded and saved: {expected_pdf_path}" in caplog.text
-    assert (mock_specs / "2023" / "pdf" / "ecd.pdf").exists()
-    assert not (mock_specs / "2023" / "pdf" / "ecf.pdf").exists()
-
-
-def TODOtest_download_cli_all_modules(
-    mocker, mock_specs, dummy_download_info_csv, caplog
-):
-    # mock_requests_for_cli_tests is autouse.
-    # mock_specs and dummy_download_info_csv provide the file system setup.
-
-    mocker.patch.object(download_constants, "MOST_RECENT_YEAR", 2023)
-    mocker.patch.object(download_constants, "OLDEST_YEAR", 2020)
-    test_modules = ["ecd", "ecf"]
-    mocker.patch.object(download_constants, "MODULES", test_modules)
-
-    runner = CliRunner()
-    result = runner.invoke(download.main, ["--year", "2023"])
-
-    assert (
-        result.exit_code == 0
-    ), f"CLI failed. Output: {result.output}\nLogs: {caplog.text}"
-
-    # Check ECD logs and file
-    assert "Attempting to download PDF for module 'ECD' for year 2023." in caplog.text
-    expected_ecd_pdf_path = mock_specs / "2023" / "pdf" / "ecd.pdf"
-    assert f"Target file location: {expected_ecd_pdf_path}" in caplog.text
-    assert f"Successfully downloaded and saved: {expected_ecd_pdf_path}" in caplog.text
-    assert (mock_specs / "2023" / "pdf" / "ecd.pdf").exists()
-
-    # Check ECF logs and file
-    assert "Attempting to download PDF for module 'ECF' for year 2023." in caplog.text
-    expected_ecf_pdf_path = mock_specs / "2023" / "pdf" / "ecf.pdf"
-    assert f"Target file location: {expected_ecf_pdf_path}" in caplog.text
-    assert f"Successfully downloaded and saved: {expected_ecf_pdf_path}" in caplog.text
-    assert (mock_specs / "2023" / "pdf" / "ecf.pdf").exists()
+    assert (mock_specs / "2023" / "ecd.pdf").exists()
+    assert not (mock_specs / "2023" / "ecf.pdf").exists()

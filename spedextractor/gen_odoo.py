@@ -11,8 +11,7 @@ from xsdata_odoo.generator import OdooFilters, OdooGenerator
 from xsdata_odoo.text_utils import extract_string_and_help
 
 from .build_csv import get_fields, get_registers
-from .constants import MODULES, MOST_RECENT_YEAR, OLDEST_YEAR, SPECS_PATH
-from .download import get_version
+from .constants import MODULES, SPECS_PATH
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
@@ -242,16 +241,8 @@ class SpedFilters(OdooFilters):
                 kwargs["currency_field"] = "brl_currency_id"  # use company_curreny_id?
 
 
-@click.option(
-    "--year",
-    default=MOST_RECENT_YEAR,
-    show_default=True,
-    type=click.IntRange(OLDEST_YEAR, MOST_RECENT_YEAR),
-    help="Operate on a specific year's folder, "
-    f"can be between {OLDEST_YEAR} and {MOST_RECENT_YEAR}",
-)
 @click.command()
-def main(year):
+def main():
     """Generate Odoo models."""
 
     os.environ["XSDATA_LANG"] = "portuguese"
@@ -272,14 +263,14 @@ def main(year):
     generator.filters.register(generator.env)
     generator.filters.python_inherit_model = "models.AbstractModel"
 
-    for mod in MODULES:
+    for mod in MODULES.keys():
         print(f"\n\n********************* Generating {mod} *********************")
         schema = f"l10n_br_sped.{mod}"
         generator.filters.inherit_model = f"l10n_br_sped.mixin.{mod}"
         generator.filters.schema = schema
-        version = get_version(mod, year)
-        generator.filters.version = version
-        mod_fields = get_fields(mod, year)
+        layout = MODULES[mod][0]
+        generator.filters.version = layout
+        mod_fields = get_fields(mod, layout)
 
         security_csv = """"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
 """
@@ -323,7 +314,7 @@ def main(year):
                 filter(
                     lambda x: x["code"][0] != "C"
                     or mod not in ("ecd", "ecf"),  # filled by the validator
-                    get_registers(mod, year),
+                    get_registers(mod, layout),
                 ),
                 key=lambda x: _get_alphanum_sequence(x["code"]),
             )
@@ -355,7 +346,7 @@ def main(year):
                     """\n    _description = textwrap.dedent("    %s" % (__doc__,))"""
                 )
                 concrete_models_source += f"""\n    _name = \"l10n_br_sped.{mod}.{register["code"].lower()}\""""
-                concrete_models_source += f"""\n    _inherit = \"l10n_br_sped.{mod}.{version}.{register["code"].lower()}\""""
+                concrete_models_source += f"""\n    _inherit = \"l10n_br_sped.{mod}.{layout}.{register["code"].lower()}\""""
                 concrete_models_source += """
 
     # @api.model
@@ -564,13 +555,13 @@ def main(year):
             + generator.render_classes(classes, None)
         )
 
-        base_path = str(SPECS_PATH) + f"/{year}/"
+        base_path = str(SPECS_PATH) + f"/{mod}/{layout}/"
 
         os.makedirs(f"{base_path}/l10n_br_sped_{mod}/models", exist_ok=True)
         os.makedirs(f"{base_path}/l10n_br_sped_{mod}/views", exist_ok=True)
         os.makedirs(f"{base_path}/l10n_br_sped_{mod}/security", exist_ok=True)
         path = Path(
-            f"{base_path}/l10n_br_sped_{mod}/models/sped_{mod}_spec_{version}.py"
+            f"{base_path}/l10n_br_sped_{mod}/models/sped_{mod}_spec_{layout}.py"
         )
         print("written file", path)
         path.write_text(source, encoding="utf-8")
