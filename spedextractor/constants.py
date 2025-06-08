@@ -8,6 +8,14 @@ SPECS_PATH: pathlib.Path = pathlib.Path(__file__).parent.resolve() / "specs"
 
 MODULES: List[str] = ["ecd", "ecf", "efd_icms_ipi", "efd_pis_cofins"]
 
+# TODO replace MODULES everywhere
+MODULES2: dict[str, tuple] = {
+    "ecd": (9, "2022-03-31", "http://sped.rfb.gov.br/arquivo/download/5965"),
+    "ecf": (9, "2022-07-26", "http://sped.rfb.gov.br/arquivo/download/5972"),
+    "efd_icms_ipi": (19, "25-09-2024", "http://sped.rfb.gov.br/arquivo/download/7545"),
+    "efd_pis_cofins": (6, "2021-06-18", "http://sped.rfb.gov.br/arquivo/download/5836"),
+}
+
 
 def _get_max_min_year() -> Tuple[Optional[int], Optional[int]]:
     """Return a tuple with most recent and oldest year folder available in './specs/'
@@ -33,8 +41,8 @@ def _get_max_min_year() -> Tuple[Optional[int], Optional[int]]:
 
 _max_year, _min_year = _get_max_min_year()
 
-MOST_RECENT_YEAR: int = _max_year if _max_year is not None else 2024  # Example default
-OLDEST_YEAR: int = _min_year if _min_year is not None else 2010  # Example default
+# MOST_RECENT_YEAR: int = _max_year if _max_year is not None else 2024  # Example default
+# OLDEST_YEAR: int = _min_year if _min_year is not None else 2010  # Example default
 
 MODULE_HEADER: Dict[str, List[Tuple[str, str]]] = {
     "ecd": [

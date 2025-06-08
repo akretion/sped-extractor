@@ -21,9 +21,9 @@ STRUCTURE SPED EFD_PIS_COFINS
     ≡ 0150 tabela de cadastro do participante
     ≡ 0190 identificação das unidades de medida
     ≡ 0200 tabela de identificação do item
-      ≡ 0205 
-      - 0206 
-      - 0208 
+      ≡ 0205
+      - 0206
+      - 0208
     ≡ 0400 tabela de natureza da operação/ prestação
     ≡ 0450 tabela de informação complementar do documento fiscal
 
@@ -37,107 +37,107 @@ STRUCTURE SPED EFD_PIS_COFINS
 
   - A010 IDENTIFICAÇÃO DO ESTABELECIMENTO
     ≡ A100 documento – nota fiscal de serviço
-      ≡ A110 
-      ≡ A111 
-      ≡ A120 
-      ≡ A170 
+      ≡ A110
+      ≡ A111
+      ≡ A120
+      ≡ A170
 
 <BLOCO C>
 
   - C010 IDENTIFICAÇÃO DO ESTABELECIMENTO
     ≡ C100 documento - nota fiscal (código 01)
-      ≡ C110 
-      ≡ C111 
-      ≡ C120 
-      ≡ C170 
-      ≡ C175 
+      ≡ C110
+      ≡ C111
+      ≡ C120
+      ≡ C170
+      ≡ C175
     ≡ C180 Consolidação de Notas Fiscais Eletrônica...
-      ≡ C181 
-      ≡ C185 
-      ≡ C188 
+      ≡ C181
+      ≡ C185
+      ≡ C188
     ≡ C190 consolidação de notas fiscais eletrônicas
-      ≡ C191 
-      ≡ C195 
-      ≡ C198 
-      ≡ C199 
+      ≡ C191
+      ≡ C195
+      ≡ C198
+      ≡ C199
     ≡ C380 nota fiscal de venda a consumidor
-      ≡ C381 
-      ≡ C385 
+      ≡ C381
+      ≡ C385
     ≡ C395 notas fiscais de venda a consumidor
-      ≡ C396 
+      ≡ C396
     ≡ C400 equipamento ecf (códigos 02 e 2d)
-      ≡ C405 
-        ≡ C481 
-        ≡ C485 
-      ≡ C489 
+      ≡ C405
+        ≡ C481
+        ≡ C485
+      ≡ C489
     ≡ C490 consolidação de documentos emitidos por ecf
-      ≡ C491 
-      ≡ C495 
-      ≡ C499 
+      ≡ C491
+      ≡ C495
+      ≡ C499
     ≡ C500 nota fiscal/conta de energia elétrica
-      ≡ C501 
-      ≡ C505 
-      ≡ C509 
+      ≡ C501
+      ≡ C505
+      ≡ C509
     ≡ C600 Consolidação Diária de Notas Fiscais/Con...
-      ≡ C601 
-      ≡ C605 
-      ≡ C609 
+      ≡ C601
+      ≡ C605
+      ≡ C609
     ≡ C800 cupom fiscal eletrônico – cf-e
-      ≡ C810 
-      ≡ C820 
-      ≡ C830 
+      ≡ C810
+      ≡ C820
+      ≡ C830
     ≡ C860 identificação do equipamento sat
-      ≡ C870 
-      ≡ C880 
-      ≡ C890 
+      ≡ C870
+      ≡ C880
+      ≡ C890
 
 <BLOCO D>
 
   - D010 IDENTIFICAÇÃO DO ESTABELECIMENTO
     ≡ D100 aquisição de serviços de transportes
-      ≡ D101 
-      ≡ D105 
-      ≡ D111 
+      ≡ D101
+      ≡ D105
+      ≡ D111
     ≡ D200 Resumo da Escrituração Diária – Prestaçã...
-      ≡ D201 
-      ≡ D205 
-      ≡ D209 
+      ≡ D201
+      ≡ D205
+      ≡ D209
     ≡ D300 resumo da escrituração diária
-      ≡ D309 
+      ≡ D309
     ≡ D350 resumo diário de cupom fiscal emitido por ecf
-      ≡ D359 
+      ≡ D359
     ≡ D500 nota fiscal de serviço de comunicação
-      ≡ D501 
-      ≡ D505 
-      ≡ D509 
+      ≡ D501
+      ≡ D505
+      ≡ D509
     ≡ D600 Consolidação da Prestação de Serviços – ...
-      ≡ D601 
-      ≡ D605 
-      ≡ D609 
+      ≡ D601
+      ≡ D605
+      ≡ D609
 
 <BLOCO F>
 
   - F010 IDENTIFICAÇÃO DO ESTABELECIMENTO
     ≡ F100 Demais Documentos e Operações Geradoras ...
-      ≡ F111 
+      ≡ F111
     ≡ F120 Bens Incorporados ao Ativo Imobilizado –...
-      ≡ F129 
+      ≡ F129
     ≡ F130 Bens Incorporados ao Ativo Imobilizado –...
-      ≡ F139 
+      ≡ F139
     ≡ F150 crédito presumido sobre estoque de abertura
     ≡ F200 Operações da Atividade Imobiliária – Uni...
-      - F205 
-      ≡ F210 
-      ≡ F211 
+      - F205
+      ≡ F210
+      ≡ F211
     ≡ F500 Consolidação das Operações da Pessoa Jur...
-      ≡ F509 
+      ≡ F509
     ≡ F510 Consolidação das Operações da Pessoa Jur...
-      ≡ F519 
+      ≡ F519
     ≡ F525 Composição da Receita Escriturada no Per...
     ≡ F550 Consolidação das Operações da Pessoa Jur...
-      ≡ F559 
+      ≡ F559
     ≡ F560 Consolidação das Operações da Pessoa Jur...
-      ≡ F569 
+      ≡ F569
     ≡ F600 contribuição retida na fonte
     ≡ F700 deduções diversas
     ≡ F800 créditos decorrentes de eventos de incorporação
@@ -146,27 +146,27 @@ STRUCTURE SPED EFD_PIS_COFINS
 
   - I010 IDENTIFICAÇÃO DA PESSOA JURÍDICA
     ≡ I100 consolidação das operações do período
-      ≡ I199 
-      ≡ I200 
-        ≡ I299 
-        ≡ I300 
-          ≡ I399 
+      ≡ I199
+      ≡ I200
+        ≡ I299
+        ≡ I300
+          ≡ I399
 
 <BLOCO M>
 
   - M100 CRÉDITO DE PIS/PASEP RELATIVO AO PERÍODO
     ≡ M105 Detalhamento da Base de Cálculo do Crédi...
     ≡ M110 ajustes do crédito de pis/pasep apurado
-      ≡ M115 
+      ≡ M115
 
   - M200 CONSOLIDAÇÃO DA CONTRIBUIÇÃO PARA O PIS/PASEP DO PERÍODO
     ≡ M205 Contribuição para o PIS/Pasep a Recolher...
     ≡ M210 detalhamento da contribuição para o pis/pasep do período
-      - M211 
-      ≡ M215 
-      ≡ M220 
-        ≡ M225 
-      ≡ M230 
+      - M211
+      ≡ M215
+      ≡ M220
+        ≡ M225
+      ≡ M230
 
   - M300 CONTRIBUIÇÃO DE PIS/PASEP DIFERIDA EM PERÍODOS ANTERIORES
 
@@ -178,16 +178,16 @@ STRUCTURE SPED EFD_PIS_COFINS
   - M500 CRÉDITO DE COFINS RELATIVO AO PERÍODO
     ≡ M505 Detalhamento da Base de Cálculo do Crédi...
     ≡ M510 ajustes do crédito de cofins apurado
-      ≡ M515 
+      ≡ M515
 
   - M600 CONSOLIDAÇÃO DA CONTRIBUIÇÃO PARA A SEGURIDADE SOCIAL
     ≡ M605 contribuição para a seguridade social
     ≡ M610 detalhamento da contribuição para a seguridade social
-      - M611 
-      ≡ M615 
-      ≡ M620 
-        ≡ M625 
-      ≡ M630 
+      - M611
+      ≡ M615
+      ≡ M620
+        ≡ M625
+      ≡ M630
 
   - M700 COFINS Diferida em Períodos Anteriores –...
 
@@ -198,8 +198,8 @@ STRUCTURE SPED EFD_PIS_COFINS
 
   - P010 IDENTIFICAÇÃO DO ESTABELECIMENTO
     ≡ P100 contribuição previdenciária sobre a receita bruta
-      ≡ P110 
-      ≡ P199 
+      ≡ P110
+      ≡ P199
 
   - P200 Consolidação da Contribuição Previdenciá...
     ≡ P210 Ajuste da Contribuição Previdenciária Ap...
@@ -215,7 +215,7 @@ STRUCTURE SPED EFD_PIS_COFINS
 
   - 1100 CONTROLE DE CRÉDITOS FISCAIS – PIS/PASEP
     ≡ 1101 apuração de crédito extemporâneo
-      - 1102 
+      - 1102
 
   - 1200 CONTRIBUIÇÃO SOCIAL EXTEMPORÂNEA – PIS/PASEP
     ≡ 1210 Detalhamento da Contribuição Social Exte...
@@ -225,7 +225,7 @@ STRUCTURE SPED EFD_PIS_COFINS
 
   - 1500 CONTROLE DE CRÉDITOS FISCAIS – COFINS
     ≡ 1501 apuração de crédito extemporâneo
-      - 1502 
+      - 1502
 
   - 1600 CONTRIBUIÇÃO SOCIAL EXTEMPORÂNEA – COFINS
     ≡ 1610 detalhamento da contribuição social extemporânea – cofins
@@ -249,6 +249,7 @@ from odoo import fields, models
 
 class Registro0035(models.Model):
     "Identificação da Sociedade em Conta de Participação - SCP"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.0035"
     _inherit = "l10n_br_sped.mixin"
@@ -263,6 +264,7 @@ class Registro0035(models.Model):
 
 class Registro0100(models.Model):
     "Dados do Contabilista"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.0100"
     _inherit = "l10n_br_sped.mixin"
@@ -278,16 +280,13 @@ class Registro0100(models.Model):
         string="CRC",
         required=True,
         help=(
-            "Número de inscrição do contabilista no Conselho Regional de "
-            "Contabilidade."
+            "Número de inscrição do contabilista no Conselho Regional de Contabilidade."
         ),
     )
 
     CNPJ = fields.Integer(
         string="Número de inscrição do escritório de contabilidade no CNPJ",
-        help=(
-            "Número de inscrição do escritório de contabilidade no CNPJ, se " "houver."
-        ),
+        help=("Número de inscrição do escritório de contabilidade no CNPJ, se houver."),
     )
 
     CEP = fields.Integer(string="Código de Endereçamento Postal")
@@ -370,9 +369,7 @@ class Registro0110(models.Model):
         comodel_name="l10n_br_sped.efd_pis_cofins.1.0111",
         string="id",
         required=True,
-        help=(
-            "Tabela de Receita Bruta Mensal para Fins de Rateio de Créditos " "Comuns"
-        ),
+        help=("Tabela de Receita Bruta Mensal para Fins de Rateio de Créditos Comuns"),
     )
 
 
@@ -429,6 +426,7 @@ class Registro0111(models.Model):
 
 class Registro0120(models.Model):
     "Identificação de EFD-Contribuições sem dados a Escriturar"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.0120"
     _inherit = "l10n_br_sped.mixin"
@@ -467,6 +465,7 @@ class Registro0120(models.Model):
 
 class Registro0140(models.Model):
     "Tabela de Cadastro de Estabelecimento"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.0140"
     _inherit = "l10n_br_sped.mixin"
@@ -510,7 +509,7 @@ class Registro0140(models.Model):
         string="id",
         required=True,
         help=(
-            "Regime de Apuração da Contribuição Previdenciária sobre a Receita" " Bruta"
+            "Regime de Apuração da Contribuição Previdenciária sobre a Receita Bruta"
         ),
     )
 
@@ -601,6 +600,7 @@ class Registro0145(models.Model):
 
 class Registro0150(models.Model):
     "Tabela de Cadastro do Participante"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.0150"
     _inherit = "l10n_br_sped.mixin"
@@ -618,8 +618,7 @@ class Registro0150(models.Model):
         string="Código do país do participante",
         required=True,
         help=(
-            "Código do país do participante, conforme a tabela indicada no "
-            "item 3.2.1."
+            "Código do país do participante, conforme a tabela indicada no item 3.2.1."
         ),
     )
 
@@ -652,6 +651,7 @@ class Registro0150(models.Model):
 
 class Registro0190(models.Model):
     "Identificação das Unidades de Medida"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.0190"
     _inherit = "l10n_br_sped.mixin"
@@ -670,6 +670,7 @@ class Registro0190(models.Model):
 
 class Registro0200(models.Model):
     "Tabela de Identificação do Item (Produtos e Serviços)"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.0200"
     _inherit = "l10n_br_sped.mixin"
@@ -681,16 +682,12 @@ class Registro0200(models.Model):
 
     COD_BARRA = fields.Char(
         string="Representação alfanumérico do código de barra do produto",
-        help=(
-            "Representação alfanumérico do código de barra do produto, se " "houver."
-        ),
+        help=("Representação alfanumérico do código de barra do produto, se houver."),
     )
 
     COD_ANT_ITEM = fields.Char(
         string="ITEM",
-        help=(
-            "Código anterior do item com relação à última informação " "apresentada."
-        ),
+        help=("Código anterior do item com relação à última informação apresentada."),
     )
 
     UNID_INV = fields.Char(
@@ -762,6 +759,7 @@ class Registro0200(models.Model):
 
 class Registro0205(models.Model):
     "Alteração do Item"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.0205"
     _inherit = "l10n_br_sped.mixin"
@@ -779,9 +777,7 @@ class Registro0205(models.Model):
 
     COD_ANT_ITEM = fields.Char(
         string="ITEM",
-        help=(
-            "Código anterior do item com relação à última informação " "apresentada."
-        ),
+        help=("Código anterior do item com relação à última informação apresentada."),
     )
 
     reg_0205_ids_Registro0200_id = fields.Many2one(
@@ -794,6 +790,7 @@ class Registro0205(models.Model):
 
 class Registro0206(models.Model):
     "Código de Produto conforme Tabela ANP (Combustíveis)"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.0206"
     _inherit = "l10n_br_sped.mixin"
@@ -808,6 +805,7 @@ class Registro0206(models.Model):
 
 class Registro0208(models.Model):
     "Código de Grupos por Marca Comercial – REFRI (Bebidas Frias)"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.0208"
     _inherit = "l10n_br_sped.mixin"
@@ -836,6 +834,7 @@ class Registro0208(models.Model):
 
 class Registro0400(models.Model):
     "Tabela de Natureza da Operação/ Prestação"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.0400"
     _inherit = "l10n_br_sped.mixin"
@@ -858,6 +857,7 @@ class Registro0400(models.Model):
 
 class Registro0450(models.Model):
     "Tabela de Informação Complementar do Documento Fiscal"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.0450"
     _inherit = "l10n_br_sped.mixin"
@@ -887,6 +887,7 @@ class Registro0450(models.Model):
 
 class Registro0500(models.Model):
     "Plano de Contas Contábeis – Contas Informadas"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.0500"
     _inherit = "l10n_br_sped.mixin"
@@ -944,6 +945,7 @@ class Registro0500(models.Model):
 
 class Registro0600(models.Model):
     "Centro de Custos"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.0600"
     _inherit = "l10n_br_sped.mixin"
@@ -1059,7 +1061,7 @@ class Registro0900(models.Model):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=("Receita total referente aos registros escriturados no Bloco 1 " "(RET)"),
+        help=("Receita total referente aos registros escriturados no Bloco 1 (RET)"),
     )
 
     REC_NRB_BLOCO_1 = fields.Monetary(
@@ -1093,6 +1095,7 @@ class Registro0900(models.Model):
 
 class RegistroA010(models.Model):
     "Identificação do Estabelecimento"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.A010"
     _inherit = "l10n_br_sped.mixin"
@@ -1111,6 +1114,7 @@ class RegistroA010(models.Model):
 
 class RegistroA100(models.Model):
     "Documento – Nota Fiscal de Serviço"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.A100"
     _inherit = "l10n_br_sped.mixin"
@@ -1182,8 +1186,7 @@ class RegistroA100(models.Model):
         string="Indicador do tipo de pagamento: 0",
         required=True,
         help=(
-            "Indicador do tipo de pagamento: 0- À vista; 1- A prazo; 9- Sem "
-            "pagamento."
+            "Indicador do tipo de pagamento: 0- À vista; 1- A prazo; 9- Sem pagamento."
         ),
     )
 
@@ -1270,6 +1273,7 @@ class RegistroA100(models.Model):
 
 class RegistroA110(models.Model):
     "Complemento de Documento – Informação Complementar da NF"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.A110"
     _inherit = "l10n_br_sped.mixin"
@@ -1295,6 +1299,7 @@ class RegistroA110(models.Model):
 
 class RegistroA111(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.A111"
     _inherit = "l10n_br_sped.mixin"
@@ -1322,6 +1327,7 @@ class RegistroA111(models.Model):
 
 class RegistroA120(models.Model):
     "Informação Complementar – Operações de Importação"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.A120"
     _inherit = "l10n_br_sped.mixin"
@@ -1387,6 +1393,7 @@ class RegistroA120(models.Model):
 
 class RegistroA170(models.Model):
     "Complemento de Documento – Itens do Documento"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.A170"
     _inherit = "l10n_br_sped.mixin"
@@ -1444,9 +1451,7 @@ class RegistroA170(models.Model):
     CST_PIS = fields.Integer(
         string="PIS",
         required=True,
-        help=(
-            "Código da Situação Tributária referente ao PIS/PASEP – Tabela " "4.3.3."
-        ),
+        help=("Código da Situação Tributária referente ao PIS/PASEP – Tabela 4.3.3."),
     )
 
     VL_BC_PIS = fields.Monetary(
@@ -1505,6 +1510,7 @@ class RegistroA170(models.Model):
 
 class RegistroC010(models.Model):
     "Identificação do Estabelecimento"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.C010"
     _inherit = "l10n_br_sped.mixin"
@@ -1586,9 +1592,7 @@ class RegistroC010(models.Model):
         "l10n_br_sped.efd_pis_cofins.1.C490",
         "reg_C490_ids_RegistroC010_id",
         string="Consolidação de Documentos Emitidos por ECF",
-        help=(
-            "Consolidação de Documentos Emitidos por ECF (Códigos 02, 2D, 59 e" " 60)"
-        ),
+        help=("Consolidação de Documentos Emitidos por ECF (Códigos 02, 2D, 59 e 60)"),
     )
 
     reg_C500_ids = fields.One2many(
@@ -1705,8 +1709,7 @@ class RegistroC100(models.Model):
         string="Indicador do tipo de pagamento: 0",
         required=True,
         help=(
-            "Indicador do tipo de pagamento: 0- À vista; 1- A prazo; 9- Sem "
-            "pagamento."
+            "Indicador do tipo de pagamento: 0- À vista; 1- A prazo; 9- Sem pagamento."
         ),
     )
 
@@ -1846,7 +1849,7 @@ class RegistroC100(models.Model):
         "reg_C170_ids_RegistroC100_id",
         string="Complemento de Documento – Itens do Documento",
         help=(
-            "Complemento de Documento – Itens do Documento (códigos 01, 1B, 04" " e 55)"
+            "Complemento de Documento – Itens do Documento (códigos 01, 1B, 04 e 55)"
         ),
     )
 
@@ -1894,6 +1897,7 @@ class RegistroC110(models.Model):
 
 class RegistroC111(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.C111"
     _inherit = "l10n_br_sped.mixin"
@@ -1925,6 +1929,7 @@ class RegistroC111(models.Model):
 
 class RegistroC120(models.Model):
     "Complemento de Documento – Operações de Importação (código 01)"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.C120"
     _inherit = "l10n_br_sped.mixin"
@@ -2440,6 +2445,7 @@ class RegistroC180(models.Model):
 
 class RegistroC181(models.Model):
     "Detalhamento da Consolidação - Operações de Vendas - PIS/PASEP"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.C181"
     _inherit = "l10n_br_sped.mixin"
@@ -2526,6 +2532,7 @@ class RegistroC181(models.Model):
 
 class RegistroC185(models.Model):
     "Detalhamento da Consolidação - Operações de Vendas – COFINS"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.C185"
     _inherit = "l10n_br_sped.mixin"
@@ -2609,6 +2616,7 @@ class RegistroC185(models.Model):
 
 class RegistroC188(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.C188"
     _inherit = "l10n_br_sped.mixin"
@@ -2905,6 +2913,7 @@ class RegistroC195(models.Model):
 
 class RegistroC198(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.C198"
     _inherit = "l10n_br_sped.mixin"
@@ -2937,6 +2946,7 @@ class RegistroC198(models.Model):
 
 class RegistroC199(models.Model):
     "Complemento de Documento – Operações de Importação (código 55)"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.C199"
     _inherit = "l10n_br_sped.mixin"
@@ -3047,6 +3057,7 @@ class RegistroC380(models.Model):
 
 class RegistroC381(models.Model):
     "Detalhamento da Consolidação – PIS/PASEP"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.C381"
     _inherit = "l10n_br_sped.mixin"
@@ -3127,6 +3138,7 @@ class RegistroC381(models.Model):
 
 class RegistroC385(models.Model):
     "Detalhamento da Consolidação – COFINS"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.C385"
     _inherit = "l10n_br_sped.mixin"
@@ -3222,8 +3234,7 @@ class RegistroC395(models.Model):
     COD_PART = fields.Char(
         string="Código do participante emitente do documento",
         help=(
-            "Código do participante emitente do documento (campo 02 do "
-            "Registro 0150)."
+            "Código do participante emitente do documento (campo 02 do Registro 0150)."
         ),
     )
 
@@ -3365,6 +3376,7 @@ class RegistroC396(models.Model):
 
 class RegistroC400(models.Model):
     "Equipamento ECF (códigos 02 e 2D)"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.C400"
     _inherit = "l10n_br_sped.mixin"
@@ -3403,6 +3415,7 @@ class RegistroC400(models.Model):
 
 class RegistroC405(models.Model):
     "Redução Z (códigos 02 e 2D)"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.C405"
     _inherit = "l10n_br_sped.mixin"
@@ -3452,8 +3465,7 @@ class RegistroC405(models.Model):
         "reg_C481_ids_RegistroC405_id",
         string="Resumo Diário de Documentos Emitidos por ECF – PIS/PASEP",
         help=(
-            "Resumo Diário de Documentos Emitidos por ECF – PIS/PASEP (Códigos"
-            " 02 e 2D)"
+            "Resumo Diário de Documentos Emitidos por ECF – PIS/PASEP (Códigos 02 e 2D)"
         ),
     )
 
@@ -3462,7 +3474,7 @@ class RegistroC405(models.Model):
         "reg_C485_ids_RegistroC405_id",
         string="Resumo Diário de Documentos Emitidos por ECF – COFINS",
         help=(
-            "Resumo Diário de Documentos Emitidos por ECF – COFINS (Códigos 02" " e 2D)"
+            "Resumo Diário de Documentos Emitidos por ECF – COFINS (Códigos 02 e 2D)"
         ),
     )
 
@@ -3616,6 +3628,7 @@ class RegistroC485(models.Model):
 
 class RegistroC489(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.C489"
     _inherit = "l10n_br_sped.mixin"
@@ -3771,9 +3784,7 @@ class RegistroC491(models.Model):
         comodel_name="l10n_br_sped.efd_pis_cofins.1.C490",
         string="Consolidação de Documentos Emitidos por ECF",
         required=True,
-        help=(
-            "Consolidação de Documentos Emitidos por ECF (Códigos 02, 2D, 59 e" " 60)"
-        ),
+        help=("Consolidação de Documentos Emitidos por ECF (Códigos 02, 2D, 59 e 60)"),
     )
 
 
@@ -3848,14 +3859,13 @@ class RegistroC495(models.Model):
         comodel_name="l10n_br_sped.efd_pis_cofins.1.C490",
         string="Consolidação de Documentos Emitidos por ECF",
         required=True,
-        help=(
-            "Consolidação de Documentos Emitidos por ECF (Códigos 02, 2D, 59 e" " 60)"
-        ),
+        help=("Consolidação de Documentos Emitidos por ECF (Códigos 02, 2D, 59 e 60)"),
     )
 
 
 class RegistroC499(models.Model):
     "Processo Referenciado - Documentos Emitidos Por ECF"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.C499"
     _inherit = "l10n_br_sped.mixin"
@@ -3878,9 +3888,7 @@ class RegistroC499(models.Model):
         comodel_name="l10n_br_sped.efd_pis_cofins.1.C490",
         string="Consolidação de Documentos Emitidos por ECF",
         required=True,
-        help=(
-            "Consolidação de Documentos Emitidos por ECF (Códigos 02, 2D, 59 e" " 60)"
-        ),
+        help=("Consolidação de Documentos Emitidos por ECF (Códigos 02, 2D, 59 e 60)"),
     )
 
 
@@ -3986,6 +3994,7 @@ class RegistroC500(models.Model):
 
 class RegistroC501(models.Model):
     "Complemento da operação (Códigos 06, 28 e 29) – PIS/PASEP"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.C501"
     _inherit = "l10n_br_sped.mixin"
@@ -4055,6 +4064,7 @@ class RegistroC501(models.Model):
 
 class RegistroC505(models.Model):
     "Complemento da operação (Códigos 06, 28 e 29) – COFINS"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.C505"
     _inherit = "l10n_br_sped.mixin"
@@ -4123,6 +4133,7 @@ class RegistroC505(models.Model):
 
 class RegistroC509(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.C509"
     _inherit = "l10n_br_sped.mixin"
@@ -4258,7 +4269,7 @@ class RegistroC600(models.Model):
         string="ST",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=("Valor acumulado da base de cálculo do ICMS substituição " "tributária"),
+        help=("Valor acumulado da base de cálculo do ICMS substituição tributária"),
     )
 
     VL_ICMS_ST = fields.Monetary(
@@ -4441,6 +4452,7 @@ class RegistroC605(models.Model):
 
 class RegistroC609(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.C609"
     _inherit = "l10n_br_sped.mixin"
@@ -4475,6 +4487,7 @@ class RegistroC609(models.Model):
 
 class RegistroC800(models.Model):
     "Cupom Fiscal Eletrônico – CF-e (Código 59)"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.C800"
     _inherit = "l10n_br_sped.mixin"
@@ -4767,6 +4780,7 @@ class RegistroC820(models.Model):
 
 class RegistroC830(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.C830"
     _inherit = "l10n_br_sped.mixin"
@@ -4827,8 +4841,7 @@ class RegistroC860(models.Model):
         "reg_C870_ids_RegistroC860_id",
         string="Detalhamento do Cupom Fiscal Eletrônico",
         help=(
-            "Detalhamento do Cupom Fiscal Eletrônico (Código 59) – PIS/PASEP e"
-            " COFINS"
+            "Detalhamento do Cupom Fiscal Eletrônico (Código 59) – PIS/PASEP e COFINS"
         ),
     )
 
@@ -4940,6 +4953,7 @@ class RegistroC870(models.Model):
 
 class RegistroC880(models.Model):
     "Detalhamento do Cupom Fiscal Eletrônico (Código 59) – PIS/PASEP"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.C880"
     _inherit = "l10n_br_sped.mixin"
@@ -5036,6 +5050,7 @@ class RegistroC880(models.Model):
 
 class RegistroC890(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.C890"
     _inherit = "l10n_br_sped.mixin"
@@ -5067,6 +5082,7 @@ class RegistroC890(models.Model):
 
 class RegistroD010(models.Model):
     "Identificação do Estabelecimento"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.D010"
     _inherit = "l10n_br_sped.mixin"
@@ -5295,6 +5311,7 @@ class RegistroD100(models.Model):
 
 class RegistroD101(models.Model):
     "Complemento do Documento de Transporte – PIS/PASEP"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.D101"
     _inherit = "l10n_br_sped.mixin"
@@ -5375,6 +5392,7 @@ class RegistroD101(models.Model):
 
 class RegistroD105(models.Model):
     "Complemento do Documento de Transporte – COFINS"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.D105"
     _inherit = "l10n_br_sped.mixin"
@@ -5452,6 +5470,7 @@ class RegistroD105(models.Model):
 
 class RegistroD111(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.D111"
     _inherit = "l10n_br_sped.mixin"
@@ -5577,6 +5596,7 @@ class RegistroD200(models.Model):
 
 class RegistroD201(models.Model):
     "Totalização do Resumo Diário – PIS/PASEP"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.D201"
     _inherit = "l10n_br_sped.mixin"
@@ -5633,6 +5653,7 @@ class RegistroD201(models.Model):
 
 class RegistroD205(models.Model):
     "Totalização do Resumo Diário – COFINS"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.D205"
     _inherit = "l10n_br_sped.mixin"
@@ -5688,6 +5709,7 @@ class RegistroD205(models.Model):
 
 class RegistroD209(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.D209"
     _inherit = "l10n_br_sped.mixin"
@@ -5720,6 +5742,7 @@ class RegistroD209(models.Model):
 
 class RegistroD300(models.Model):
     "Resumo da Escrituração Diária (Códigos 13, 14, 15, 16 e 18)."
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.D300"
     _inherit = "l10n_br_sped.mixin"
@@ -5845,6 +5868,7 @@ class RegistroD300(models.Model):
 
 class RegistroD309(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.D309"
     _inherit = "l10n_br_sped.mixin"
@@ -6027,6 +6051,7 @@ class RegistroD350(models.Model):
 
 class RegistroD359(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.D359"
     _inherit = "l10n_br_sped.mixin"
@@ -6085,8 +6110,7 @@ class RegistroD500(models.Model):
         string="Código do participante prestador do serviço",
         required=True,
         help=(
-            "Código do participante prestador do serviço (campo 02 do Registro"
-            " 0150)."
+            "Código do participante prestador do serviço (campo 02 do Registro 0150)."
         ),
     )
 
@@ -6205,6 +6229,7 @@ class RegistroD500(models.Model):
 
 class RegistroD501(models.Model):
     "Complemento da Operação (Código 21 e 22) – PIS/PASEP"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.D501"
     _inherit = "l10n_br_sped.mixin"
@@ -6269,6 +6294,7 @@ class RegistroD501(models.Model):
 
 class RegistroD505(models.Model):
     "Complemento da Operação (Código 21 e 22) – COFINS"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.D505"
     _inherit = "l10n_br_sped.mixin"
@@ -6326,6 +6352,7 @@ class RegistroD505(models.Model):
 
 class RegistroD509(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.D509"
     _inherit = "l10n_br_sped.mixin"
@@ -6373,7 +6400,7 @@ class RegistroD600(models.Model):
 
     COD_MUN = fields.Integer(
         string="Código do município dos terminais faturados",
-        help=("Código do município dos terminais faturados, conforme a tabela " "IBGE"),
+        help=("Código do município dos terminais faturados, conforme a tabela IBGE"),
     )
 
     SER = fields.Char(string="Série do documento fiscal")
@@ -6644,6 +6671,7 @@ class RegistroD605(models.Model):
 
 class RegistroD609(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.D609"
     _inherit = "l10n_br_sped.mixin"
@@ -6676,6 +6704,7 @@ class RegistroD609(models.Model):
 
 class RegistroF010(models.Model):
     "Identificação do Estabelecimento"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.F010"
     _inherit = "l10n_br_sped.mixin"
@@ -6689,7 +6718,7 @@ class RegistroF010(models.Model):
         "l10n_br_sped.efd_pis_cofins.1.F100",
         "reg_F100_ids_RegistroF010_id",
         string="ids",
-        help=("Demais Documentos e Operações Geradoras de Contribuição e " "Créditos"),
+        help=("Demais Documentos e Operações Geradoras de Contribuição e Créditos"),
     )
 
     reg_F120_ids = fields.One2many(
@@ -6803,6 +6832,7 @@ class RegistroF010(models.Model):
 
 class RegistroF100(models.Model):
     "Demais Documentos e Operações Geradoras de Contribuição e Créditos"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.F100"
     _inherit = "l10n_br_sped.mixin"
@@ -6939,6 +6969,7 @@ class RegistroF100(models.Model):
 
 class RegistroF111(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.F111"
     _inherit = "l10n_br_sped.mixin"
@@ -6961,7 +6992,7 @@ class RegistroF111(models.Model):
         comodel_name="l10n_br_sped.efd_pis_cofins.1.F100",
         string="id",
         required=True,
-        help=("Demais Documentos e Operações Geradoras de Contribuição e " "Créditos"),
+        help=("Demais Documentos e Operações Geradoras de Contribuição e Créditos"),
     )
 
 
@@ -7126,6 +7157,7 @@ class RegistroF120(models.Model):
 
 class RegistroF129(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.F129"
     _inherit = "l10n_br_sped.mixin"
@@ -7227,9 +7259,7 @@ class RegistroF130(models.Model):
         string="CRED (PARC_OPER_NAO_BC_CRED)",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=(
-            "Parcela do Valor de Aquisição a excluir da base de cálculo de " "Crédito"
-        ),
+        help=("Parcela do Valor de Aquisição a excluir da base de cálculo de Crédito"),
     )
 
     VL_BC_CRED = fields.Monetary(
@@ -7351,6 +7381,7 @@ class RegistroF130(models.Model):
 
 class RegistroF139(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.F139"
     _inherit = "l10n_br_sped.mixin"
@@ -7382,6 +7413,7 @@ class RegistroF139(models.Model):
 
 class RegistroF150(models.Model):
     "Crédito Presumido sobre Estoque de Abertura"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.F150"
     _inherit = "l10n_br_sped.mixin"
@@ -7420,8 +7452,7 @@ class RegistroF150(models.Model):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor da Base de Cálculo do Crédito sobre o Estoque de Abertura "
-            "(03 – 04)"
+            "Valor da Base de Cálculo do Crédito sobre o Estoque de Abertura (03 – 04)"
         ),
     )
 
@@ -7512,6 +7543,7 @@ class RegistroF150(models.Model):
 
 class RegistroF200(models.Model):
     "Operações da Atividade Imobiliária – Unidade Imobiliária Vendida"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.F200"
     _inherit = "l10n_br_sped.mixin"
@@ -7551,8 +7583,7 @@ class RegistroF200(models.Model):
     NUM_CONT = fields.Char(
         string="CONT",
         help=(
-            "Número do Contrato/Documento que formaliza a Venda da Unidade "
-            "Imobiliária"
+            "Número do Contrato/Documento que formaliza a Venda da Unidade Imobiliária"
         ),
     )
 
@@ -7826,8 +7857,7 @@ class RegistroF205(models.Model):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Parcela a descontar em períodos futuros – PIS/PASEP (Campo 09 – "
-            "10 – 11)."
+            "Parcela a descontar em períodos futuros – PIS/PASEP (Campo 09 – 10 – 11)."
         ),
     )
 
@@ -7889,9 +7919,7 @@ class RegistroF205(models.Model):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=(
-            "Parcela a descontar em períodos futuros – COFINS (Campo 15 – 16 –" " 17)."
-        ),
+        help=("Parcela a descontar em períodos futuros – COFINS (Campo 15 – 16 – 17)."),
     )
 
 
@@ -8014,6 +8042,7 @@ class RegistroF210(models.Model):
 
 class RegistroF211(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.F211"
     _inherit = "l10n_br_sped.mixin"
@@ -8056,8 +8085,7 @@ class RegistroF500(models.Model):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor total da receita recebida, referente à combinação de CST e "
-            "Alíquota."
+            "Valor total da receita recebida, referente à combinação de CST e Alíquota."
         ),
     )
 
@@ -8148,6 +8176,7 @@ class RegistroF500(models.Model):
 
 class RegistroF509(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.F509"
     _inherit = "l10n_br_sped.mixin"
@@ -8195,8 +8224,7 @@ class RegistroF510(models.Model):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor total da receita recebida, referente à combinação de CST e "
-            "Alíquota."
+            "Valor total da receita recebida, referente à combinação de CST e Alíquota."
         ),
     )
 
@@ -8296,6 +8324,7 @@ class RegistroF510(models.Model):
 
 class RegistroF519(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.F519"
     _inherit = "l10n_br_sped.mixin"
@@ -8404,9 +8433,7 @@ class RegistroF525(models.Model):
 
     COD_CTA = fields.Char(
         string="CTA",
-        help=(
-            "Código da conta analítica contábil representativa da receita " "recebida"
-        ),
+        help=("Código da conta analítica contábil representativa da receita recebida"),
     )
 
     reg_F525_ids_RegistroF010_id = fields.Many2one(
@@ -8432,8 +8459,7 @@ class RegistroF550(models.Model):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor total da receita auferida, referente à combinação de CST e "
-            "Alíquota."
+            "Valor total da receita auferida, referente à combinação de CST e Alíquota."
         ),
     )
 
@@ -8524,6 +8550,7 @@ class RegistroF550(models.Model):
 
 class RegistroF559(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.F559"
     _inherit = "l10n_br_sped.mixin"
@@ -8571,8 +8598,7 @@ class RegistroF560(models.Model):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor total da receita auferida, referente à combinação de CST e "
-            "Alíquota."
+            "Valor total da receita auferida, referente à combinação de CST e Alíquota."
         ),
     )
 
@@ -8671,6 +8697,7 @@ class RegistroF560(models.Model):
 
 class RegistroF569(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.F569"
     _inherit = "l10n_br_sped.mixin"
@@ -8704,6 +8731,7 @@ class RegistroF569(models.Model):
 
 class RegistroF600(models.Model):
     "Contribuição Retida na Fonte"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.F600"
     _inherit = "l10n_br_sped.mixin"
@@ -8732,9 +8760,7 @@ class RegistroF600(models.Model):
             16,
             4,
         ),
-        help=(
-            "Base de calculo da retenção ou do recolhimento (sociedade " "cooperativa)"
-        ),
+        help=("Base de calculo da retenção ou do recolhimento (sociedade cooperativa)"),
     )
 
     VL_RET = fields.Monetary(
@@ -8798,6 +8824,7 @@ class RegistroF600(models.Model):
 
 class RegistroF700(models.Model):
     "Deduções Diversas"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.F700"
     _inherit = "l10n_br_sped.mixin"
@@ -8873,6 +8900,7 @@ class RegistroF700(models.Model):
 
 class RegistroF800(models.Model):
     "Créditos Decorrentes de Eventos de Incorporação, Fusão e Cisão"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.F800"
     _inherit = "l10n_br_sped.mixin"
@@ -8924,7 +8952,7 @@ class RegistroF800(models.Model):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Percentual do crédito original transferido, no caso de evento de " "Cisão."
+            "Percentual do crédito original transferido, no caso de evento de Cisão."
         ),
     )
 
@@ -8937,6 +8965,7 @@ class RegistroF800(models.Model):
 
 class RegistroI010(models.Model):
     "Identificação da Pessoa Jurídica"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.I010"
     _inherit = "l10n_br_sped.mixin"
@@ -8968,6 +8997,7 @@ class RegistroI010(models.Model):
 
 class RegistroI100(models.Model):
     "Consolidação das Operações do Período"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.I100"
     _inherit = "l10n_br_sped.mixin"
@@ -9060,6 +9090,7 @@ class RegistroI100(models.Model):
 
 class RegistroI199(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.I199"
     _inherit = "l10n_br_sped.mixin"
@@ -9084,6 +9115,7 @@ class RegistroI199(models.Model):
 
 class RegistroI200(models.Model):
     "Composição das Receitas, Deduções e/ou Exclusões do Período"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.I200"
     _inherit = "l10n_br_sped.mixin"
@@ -9146,6 +9178,7 @@ class RegistroI200(models.Model):
 
 class RegistroI299(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.I299"
     _inherit = "l10n_br_sped.mixin"
@@ -9224,6 +9257,7 @@ class RegistroI300(models.Model):
 
 class RegistroI399(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.I399"
     _inherit = "l10n_br_sped.mixin"
@@ -9252,6 +9286,7 @@ class RegistroI399(models.Model):
 
 class RegistroM100(models.Model):
     "Crédito de PIS/PASEP Relativo ao Período"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.M100"
     _inherit = "l10n_br_sped.mixin"
@@ -9260,9 +9295,7 @@ class RegistroM100(models.Model):
     COD_CRED = fields.Char(
         string="Código de Tipo de Crédito apurado no período",
         required=True,
-        help=(
-            "Código de Tipo de Crédito apurado no período, conforme a Tabela " "4.3.6."
-        ),
+        help=("Código de Tipo de Crédito apurado no período, conforme a Tabela 4.3.6."),
     )
 
     IND_CRED_ORI = fields.Integer(
@@ -9342,8 +9375,7 @@ class RegistroM100(models.Model):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor Total do Crédito Disponível relativo ao Período (08 + 09 – "
-            "10 – 11)"
+            "Valor Total do Crédito Disponível relativo ao Período (08 + 09 – 10 – 11)"
         ),
     )
 
@@ -9384,8 +9416,7 @@ class RegistroM100(models.Model):
         "reg_M105_ids_RegistroM100_id",
         string="ids",
         help=(
-            "Detalhamento da Base de Cálculo do Crédito Apurado no Período – "
-            "PIS/PASEP"
+            "Detalhamento da Base de Cálculo do Crédito Apurado no Período – PIS/PASEP"
         ),
     )
 
@@ -9519,6 +9550,7 @@ class RegistroM105(models.Model):
 
 class RegistroM110(models.Model):
     "Ajustes do Crédito de PIS/PASEP Apurado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.M110"
     _inherit = "l10n_br_sped.mixin"
@@ -9628,7 +9660,7 @@ class RegistroM115(models.Model):
     DT_OPER_AJ = fields.Date(
         string="AJ",
         required=True,
-        help=("Data da operação a que se refere o ajuste informado neste " "registro."),
+        help=("Data da operação a que se refere o ajuste informado neste registro."),
     )
 
     DESC_AJ = fields.Char(
@@ -9652,6 +9684,7 @@ class RegistroM115(models.Model):
 
 class RegistroM200(models.Model):
     "Consolidação da Contribuição para o PIS/PASEP do Período"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.M200"
     _inherit = "l10n_br_sped.mixin"
@@ -9718,9 +9751,7 @@ class RegistroM200(models.Model):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=(
-            "Valor da Contribuição Não Cumulativa a Recolher/Pagar (05 – 06 - " "07)"
-        ),
+        help=("Valor da Contribuição Não Cumulativa a Recolher/Pagar (05 – 06 - 07)"),
     )
 
     VL_TOT_CONT_CUM_PER = fields.Monetary(
@@ -9830,6 +9861,7 @@ class RegistroM205(models.Model):
 
 class RegistroM210(models.Model):
     "Detalhamento da Contribuição para o PIS/PASEP do Período"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.M210"
     _inherit = "l10n_br_sped.mixin"
@@ -9839,8 +9871,7 @@ class RegistroM210(models.Model):
         string="Código da contribuição social apurada no período",
         required=True,
         help=(
-            "Código da contribuição social apurada no período, conforme a "
-            "Tabela 4.3.5."
+            "Código da contribuição social apurada no período, conforme a Tabela 4.3.5."
         ),
     )
 
@@ -9949,7 +9980,7 @@ class RegistroM210(models.Model):
         comodel_name="l10n_br_sped.efd_pis_cofins.1.M211",
         string="id",
         required=True,
-        help=("Sociedades Cooperativas – Composição da Base de Cálculo – " "PIS/PASEP"),
+        help=("Sociedades Cooperativas – Composição da Base de Cálculo – PIS/PASEP"),
     )
 
     reg_M210_ids_RegistroM200_id = fields.Many2one(
@@ -9963,7 +9994,7 @@ class RegistroM210(models.Model):
         "reg_M215_ids_RegistroM210_id",
         string="ids",
         help=(
-            "Detalhamento dos Ajustes da Base de Cálculo Mensal de PIS/Pasep " "Apurada"
+            "Detalhamento dos Ajustes da Base de Cálculo Mensal de PIS/Pasep Apurada"
         ),
     )
 
@@ -9982,6 +10013,7 @@ class RegistroM210(models.Model):
 
 class RegistroM211(models.Model):
     "Sociedades Cooperativas – Composição da Base de Cálculo – PIS/PASEP"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.M211"
     _inherit = "l10n_br_sped.mixin"
@@ -10109,6 +10141,7 @@ class RegistroM215(models.Model):
 
 class RegistroM220(models.Model):
     "Ajustes da Contribuição para o PIS/PASEP Apurada"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.M220"
     _inherit = "l10n_br_sped.mixin"
@@ -10118,8 +10151,7 @@ class RegistroM220(models.Model):
         string="Indicador do tipo de ajuste: 0",
         required=True,
         help=(
-            "Indicador do tipo de ajuste: 0- Ajuste de redução; 1- Ajuste de "
-            "acréscimo."
+            "Indicador do tipo de ajuste: 0- Ajuste de redução; 1- Ajuste de acréscimo."
         ),
     )
 
@@ -10205,7 +10237,7 @@ class RegistroM225(models.Model):
             16,
             3,
         ),
-        help=("Detalhamento da base de cálculo geradora de ajuste de " "contribuição"),
+        help=("Detalhamento da base de cálculo geradora de ajuste de contribuição"),
     )
 
     DET_ALIQ = fields.Float(
@@ -10221,7 +10253,7 @@ class RegistroM225(models.Model):
     DT_OPER_AJ = fields.Date(
         string="AJ (DT_OPER_AJ)",
         required=True,
-        help=("Data da operação a que se refere o ajuste informado neste " "registro."),
+        help=("Data da operação a que se refere o ajuste informado neste registro."),
     )
 
     DESC_AJ = fields.Char(
@@ -10245,6 +10277,7 @@ class RegistroM225(models.Model):
 
 class RegistroM230(models.Model):
     "Informações Adicionais de Diferimento"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.M230"
     _inherit = "l10n_br_sped.mixin"
@@ -10289,7 +10322,7 @@ class RegistroM230(models.Model):
     COD_CRED = fields.Char(
         string="Código de Tipo de Crédito diferido no período",
         help=(
-            "Código de Tipo de Crédito diferido no período, conforme a Tabela " "4.3.6."
+            "Código de Tipo de Crédito diferido no período, conforme a Tabela 4.3.6."
         ),
     )
 
@@ -10371,6 +10404,7 @@ class RegistroM300(models.Model):
 
 class RegistroM350(models.Model):
     "PIS/PASEP - Folha de Salários"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.M350"
     _inherit = "l10n_br_sped.mixin"
@@ -10509,6 +10543,7 @@ class RegistroM410(models.Model):
 
 class RegistroM500(models.Model):
     "Crédito de COFINS Relativo ao Período"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.M500"
     _inherit = "l10n_br_sped.mixin"
@@ -10517,9 +10552,7 @@ class RegistroM500(models.Model):
     COD_CRED = fields.Char(
         string="Código de Tipo de Crédito apurado no período",
         required=True,
-        help=(
-            "Código de Tipo de Crédito apurado no período, conforme a Tabela " "4.3.6."
-        ),
+        help=("Código de Tipo de Crédito apurado no período, conforme a Tabela 4.3.6."),
     )
 
     IND_CRED_ORI = fields.Integer(
@@ -10598,8 +10631,7 @@ class RegistroM500(models.Model):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor Total do Crédito Disponível relativo ao Período (08 + 09 – "
-            "10 – 11)"
+            "Valor Total do Crédito Disponível relativo ao Período (08 + 09 – 10 – 11)"
         ),
     )
 
@@ -10639,9 +10671,7 @@ class RegistroM500(models.Model):
         "l10n_br_sped.efd_pis_cofins.1.M505",
         "reg_M505_ids_RegistroM500_id",
         string="ids",
-        help=(
-            "Detalhamento da Base de Cálculo do Crédito Apurado no Período – " "COFINS"
-        ),
+        help=("Detalhamento da Base de Cálculo do Crédito Apurado no Período – COFINS"),
     )
 
     reg_M510_ids = fields.One2many(
@@ -10771,6 +10801,7 @@ class RegistroM505(models.Model):
 
 class RegistroM510(models.Model):
     "Ajustes do Crédito de COFINS Apurado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.M510"
     _inherit = "l10n_br_sped.mixin"
@@ -10780,8 +10811,7 @@ class RegistroM510(models.Model):
         string="Indicador do tipo de ajuste: 0",
         required=True,
         help=(
-            "Indicador do tipo de ajuste: 0- Ajuste de redução; 1- Ajuste de "
-            "acréscimo."
+            "Indicador do tipo de ajuste: 0- Ajuste de redução; 1- Ajuste de acréscimo."
         ),
     )
 
@@ -10883,7 +10913,7 @@ class RegistroM515(models.Model):
     DT_OPER_AJ = fields.Date(
         string="AJ",
         required=True,
-        help=("Data da operação a que se refere o ajuste informado neste " "registro."),
+        help=("Data da operação a que se refere o ajuste informado neste registro."),
     )
 
     DESC_AJ = fields.Char(
@@ -10975,9 +11005,7 @@ class RegistroM600(models.Model):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=(
-            "Valor da Contribuição Não Cumulativa a Recolher/Pagar (05 - 06 - " "07)"
-        ),
+        help=("Valor da Contribuição Não Cumulativa a Recolher/Pagar (05 - 06 - 07)"),
     )
 
     VL_TOT_CONT_CUM_PER = fields.Monetary(
@@ -11037,8 +11065,7 @@ class RegistroM600(models.Model):
         "reg_M610_ids_RegistroM600_id",
         string="Detalhamento da Contribuição para a Seguridade Social",
         help=(
-            "Detalhamento da Contribuição para a Seguridade Social - COFINS do"
-            " Período"
+            "Detalhamento da Contribuição para a Seguridade Social - COFINS do Período"
         ),
     )
 
@@ -11087,8 +11114,7 @@ class RegistroM605(models.Model):
         string="Consolidação da Contribuição para a Seguridade Social",
         required=True,
         help=(
-            "Consolidação da Contribuição para a Seguridade Social - COFINS do"
-            " Período"
+            "Consolidação da Contribuição para a Seguridade Social - COFINS do Período"
         ),
     )
 
@@ -11106,8 +11132,7 @@ class RegistroM610(models.Model):
         string="Código da contribuição social apurada no período",
         required=True,
         help=(
-            "Código da contribuição social apurada no período, conforme a "
-            "Tabela 4.3.5."
+            "Código da contribuição social apurada no período, conforme a Tabela 4.3.5."
         ),
     )
 
@@ -11223,8 +11248,7 @@ class RegistroM610(models.Model):
         string="Consolidação da Contribuição para a Seguridade Social",
         required=True,
         help=(
-            "Consolidação da Contribuição para a Seguridade Social - COFINS do"
-            " Período"
+            "Consolidação da Contribuição para a Seguridade Social - COFINS do Período"
         ),
     )
 
@@ -11232,9 +11256,7 @@ class RegistroM610(models.Model):
         "l10n_br_sped.efd_pis_cofins.1.M615",
         "reg_M615_ids_RegistroM610_id",
         string="ids",
-        help=(
-            "Detalhamento dos Ajustes da Base de Cálculo Mensal da COFINS " "Apurada"
-        ),
+        help=("Detalhamento dos Ajustes da Base de Cálculo Mensal da COFINS Apurada"),
     )
 
     reg_M620_ids = fields.One2many(
@@ -11252,6 +11274,7 @@ class RegistroM610(models.Model):
 
 class RegistroM611(models.Model):
     "Sociedades Cooperativas – Composição da Base de Cálculo – COFINS"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.M611"
     _inherit = "l10n_br_sped.mixin"
@@ -11374,14 +11397,14 @@ class RegistroM615(models.Model):
         string="Detalhamento da Contribuição para a Seguridade Social",
         required=True,
         help=(
-            "Detalhamento da Contribuição para a Seguridade Social - COFINS do"
-            " Período"
+            "Detalhamento da Contribuição para a Seguridade Social - COFINS do Período"
         ),
     )
 
 
 class RegistroM620(models.Model):
     "Ajustes da COFINS Apurada"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.M620"
     _inherit = "l10n_br_sped.mixin"
@@ -11391,8 +11414,7 @@ class RegistroM620(models.Model):
         string="Indicador do tipo de ajuste: 0",
         required=True,
         help=(
-            "Indicador do tipo de ajuste: 0- Ajuste de redução; 1- Ajuste de "
-            "acréscimo."
+            "Indicador do tipo de ajuste: 0- Ajuste de redução; 1- Ajuste de acréscimo."
         ),
     )
 
@@ -11429,8 +11451,7 @@ class RegistroM620(models.Model):
         string="Detalhamento da Contribuição para a Seguridade Social",
         required=True,
         help=(
-            "Detalhamento da Contribuição para a Seguridade Social - COFINS do"
-            " Período"
+            "Detalhamento da Contribuição para a Seguridade Social - COFINS do Período"
         ),
     )
 
@@ -11481,7 +11502,7 @@ class RegistroM625(models.Model):
             16,
             3,
         ),
-        help=("Detalhamento da base de cálculo geradora de ajuste de " "contribuição"),
+        help=("Detalhamento da base de cálculo geradora de ajuste de contribuição"),
     )
 
     DET_ALIQ = fields.Float(
@@ -11497,7 +11518,7 @@ class RegistroM625(models.Model):
     DT_OPER_AJ = fields.Date(
         string="AJ (DT_OPER_AJ)",
         required=True,
-        help=("Data da operação a que se refere o ajuste informado neste " "registro."),
+        help=("Data da operação a que se refere o ajuste informado neste registro."),
     )
 
     DESC_AJ = fields.Char(
@@ -11521,6 +11542,7 @@ class RegistroM625(models.Model):
 
 class RegistroM630(models.Model):
     "Informações Adicionais de Diferimento"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.M630"
     _inherit = "l10n_br_sped.mixin"
@@ -11565,7 +11587,7 @@ class RegistroM630(models.Model):
     COD_CRED = fields.Char(
         string="Código de Tipo de Crédito diferido no período",
         help=(
-            "Código de Tipo de Crédito diferido no período, conforme a Tabela " "4.3.6."
+            "Código de Tipo de Crédito diferido no período, conforme a Tabela 4.3.6."
         ),
     )
 
@@ -11574,14 +11596,14 @@ class RegistroM630(models.Model):
         string="Detalhamento da Contribuição para a Seguridade Social",
         required=True,
         help=(
-            "Detalhamento da Contribuição para a Seguridade Social - COFINS do"
-            " Período"
+            "Detalhamento da Contribuição para a Seguridade Social - COFINS do Período"
         ),
     )
 
 
 class RegistroM700(models.Model):
     "COFINS Diferida em Períodos Anteriores – Valores a Pagar no Período"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.M700"
     _inherit = "l10n_br_sped.mixin"
@@ -11750,6 +11772,7 @@ class RegistroM810(models.Model):
 
 class RegistroP010(models.Model):
     "Identificação do Estabelecimento"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.P010"
     _inherit = "l10n_br_sped.mixin"
@@ -11768,6 +11791,7 @@ class RegistroP010(models.Model):
 
 class RegistroP100(models.Model):
     "Contribuição Previdenciária sobre a Receita Bruta"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.P100"
     _inherit = "l10n_br_sped.mixin"
@@ -11840,7 +11864,7 @@ class RegistroP100(models.Model):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=("Valor da Contribuição Previdenciária Apurada sobre a Receita " "Bruta"),
+        help=("Valor da Contribuição Previdenciária Apurada sobre a Receita Bruta"),
     )
 
     COD_CTA = fields.Char(
@@ -11863,9 +11887,7 @@ class RegistroP100(models.Model):
         "l10n_br_sped.efd_pis_cofins.1.P110",
         "reg_P110_ids_RegistroP100_id",
         string="ids",
-        help=(
-            "Complemento da Escrituração – Detalhamento da Apuração da " "Contribuição"
-        ),
+        help=("Complemento da Escrituração – Detalhamento da Apuração da Contribuição"),
     )
 
     reg_P199_ids = fields.One2many(
@@ -11916,6 +11938,7 @@ class RegistroP110(models.Model):
 
 class RegistroP199(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.P199"
     _inherit = "l10n_br_sped.mixin"
@@ -11943,6 +11966,7 @@ class RegistroP199(models.Model):
 
 class RegistroP200(models.Model):
     "Consolidação da Contribuição Previdenciária sobre a Receita Bruta"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.P200"
     _inherit = "l10n_br_sped.mixin"
@@ -12010,12 +12034,13 @@ class RegistroP200(models.Model):
         "l10n_br_sped.efd_pis_cofins.1.P210",
         "reg_P210_ids_RegistroP200_id",
         string="ids",
-        help=("Ajuste da Contribuição Previdenciária Apurada sobre a Receita " "Bruta"),
+        help=("Ajuste da Contribuição Previdenciária Apurada sobre a Receita Bruta"),
     )
 
 
 class RegistroP210(models.Model):
     "Ajuste da Contribuição Previdenciária Apurada sobre a Receita Bruta"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.P210"
     _inherit = "l10n_br_sped.mixin"
@@ -12025,8 +12050,7 @@ class RegistroP210(models.Model):
         string="Indicador do tipo de ajuste: 0",
         required=True,
         help=(
-            "Indicador do tipo de ajuste: 0- Ajuste de redução; 1- Ajuste de "
-            "acréscimo."
+            "Indicador do tipo de ajuste: 0- Ajuste de redução; 1- Ajuste de acréscimo."
         ),
     )
 
@@ -12041,8 +12065,7 @@ class RegistroP210(models.Model):
         string="Código do ajuste",
         required=True,
         help=(
-            "Código do ajuste, conforme a Tabela indicada no item 4.3.8., "
-            "versão 1.01"
+            "Código do ajuste, conforme a Tabela indicada no item 4.3.8., versão 1.01"
         ),
     )
 
@@ -12071,6 +12094,7 @@ class RegistroP210(models.Model):
 
 class Registro1010(models.Model):
     "Processo Referenciado – Ação Judicial"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.1010"
     _inherit = "l10n_br_sped.mixin"
@@ -12118,6 +12142,7 @@ class Registro1010(models.Model):
 
 class Registro1011(models.Model):
     "Detalhamento das Contribuições com Exigibilidade Suspensa"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.1011"
     _inherit = "l10n_br_sped.mixin"
@@ -12313,6 +12338,7 @@ class Registro1011(models.Model):
 
 class Registro1020(models.Model):
     "Processo Referenciado – Processo Administrativo"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.1020"
     _inherit = "l10n_br_sped.mixin"
@@ -12321,9 +12347,7 @@ class Registro1020(models.Model):
     NUM_PROC = fields.Char(
         string="PROC",
         required=True,
-        help=(
-            "Identificação do Processo Administrativo ou da Decisão " "Administrativa"
-        ),
+        help=("Identificação do Processo Administrativo ou da Decisão Administrativa"),
     )
 
     IND_NAT_ACAO = fields.Char(
@@ -12384,9 +12408,7 @@ class Registro1050(models.Model):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=(
-            "Parcela do ajuste a apropriar na base de cálculo referente ao CST" " 01"
-        ),
+        help=("Parcela do ajuste a apropriar na base de cálculo referente ao CST 01"),
     )
 
     VL_AJ_CST02 = fields.Monetary(
@@ -12394,9 +12416,7 @@ class Registro1050(models.Model):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=(
-            "Parcela do ajuste a apropriar na base de cálculo referente ao CST" " 02"
-        ),
+        help=("Parcela do ajuste a apropriar na base de cálculo referente ao CST 02"),
     )
 
     VL_AJ_CST03 = fields.Monetary(
@@ -12404,9 +12424,7 @@ class Registro1050(models.Model):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=(
-            "Parcela do ajuste a apropriar na base de cálculo referente ao CST" " 03"
-        ),
+        help=("Parcela do ajuste a apropriar na base de cálculo referente ao CST 03"),
     )
 
     VL_AJ_CST04 = fields.Monetary(
@@ -12414,9 +12432,7 @@ class Registro1050(models.Model):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=(
-            "Parcela do ajuste a apropriar na base de cálculo referente ao CST" " 04"
-        ),
+        help=("Parcela do ajuste a apropriar na base de cálculo referente ao CST 04"),
     )
 
     VL_AJ_CST05 = fields.Monetary(
@@ -12424,9 +12440,7 @@ class Registro1050(models.Model):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=(
-            "Parcela do ajuste a apropriar na base de cálculo referente ao CST" " 05"
-        ),
+        help=("Parcela do ajuste a apropriar na base de cálculo referente ao CST 05"),
     )
 
     VL_AJ_CST06 = fields.Monetary(
@@ -12434,9 +12448,7 @@ class Registro1050(models.Model):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=(
-            "Parcela do ajuste a apropriar na base de cálculo referente ao CST" " 06"
-        ),
+        help=("Parcela do ajuste a apropriar na base de cálculo referente ao CST 06"),
     )
 
     VL_AJ_CST07 = fields.Monetary(
@@ -12444,9 +12456,7 @@ class Registro1050(models.Model):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=(
-            "Parcela do ajuste a apropriar na base de cálculo referente ao CST" " 07"
-        ),
+        help=("Parcela do ajuste a apropriar na base de cálculo referente ao CST 07"),
     )
 
     VL_AJ_CST08 = fields.Monetary(
@@ -12454,9 +12464,7 @@ class Registro1050(models.Model):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=(
-            "Parcela do ajuste a apropriar na base de cálculo referente ao CST" " 08"
-        ),
+        help=("Parcela do ajuste a apropriar na base de cálculo referente ao CST 08"),
     )
 
     VL_AJ_CST09 = fields.Monetary(
@@ -12464,9 +12472,7 @@ class Registro1050(models.Model):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=(
-            "Parcela do ajuste a apropriar na base de cálculo referente ao CST" " 09"
-        ),
+        help=("Parcela do ajuste a apropriar na base de cálculo referente ao CST 09"),
     )
 
     VL_AJ_CST49 = fields.Monetary(
@@ -12474,9 +12480,7 @@ class Registro1050(models.Model):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=(
-            "Parcela do ajuste a apropriar na base de cálculo referente ao CST" " 49"
-        ),
+        help=("Parcela do ajuste a apropriar na base de cálculo referente ao CST 49"),
     )
 
     VL_AJ_CST99 = fields.Monetary(
@@ -12484,9 +12488,7 @@ class Registro1050(models.Model):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=(
-            "Parcela do ajuste a apropriar na base de cálculo referente ao CST" " 99"
-        ),
+        help=("Parcela do ajuste a apropriar na base de cálculo referente ao CST 99"),
     )
 
     IND_APROP = fields.Char(
@@ -12508,6 +12510,7 @@ class Registro1050(models.Model):
 
 class Registro1100(models.Model):
     "Controle de Créditos Fiscais – PIS/PASEP"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.1100"
     _inherit = "l10n_br_sped.mixin"
@@ -12576,8 +12579,7 @@ class Registro1100(models.Model):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor do Crédito utilizado mediante Desconto, em Período(s) "
-            "Anterior(es)."
+            "Valor do Crédito utilizado mediante Desconto, em Período(s) Anterior(es)."
         ),
     )
 
@@ -12644,7 +12646,7 @@ class Registro1100(models.Model):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor do crédito transferido em evento de cisão, fusão ou " "incorporação."
+            "Valor do crédito transferido em evento de cisão, fusão ou incorporação."
         ),
     )
 
@@ -12753,9 +12755,7 @@ class Registro1101(models.Model):
             16,
             3,
         ),
-        help=(
-            "Base de Cálculo do Crédito de PIS/PASEP (em valor ou em " "quantidade)."
-        ),
+        help=("Base de Cálculo do Crédito de PIS/PASEP (em valor ou em quantidade)."),
     )
 
     ALIQ_PIS = fields.Float(
@@ -12851,7 +12851,7 @@ class Registro1102(models.Model):
         string="Parcela do Crédito de PIS/PASEP (VL_CRED_PIS_EXP)",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=("Parcela do Crédito de PIS/PASEP, vinculada a Receita de " "Exportação"),
+        help=("Parcela do Crédito de PIS/PASEP, vinculada a Receita de Exportação"),
     )
 
 
@@ -13084,6 +13084,7 @@ class Registro1220(models.Model):
 
 class Registro1300(models.Model):
     "Controle dos Valores Retidos na Fonte – PIS/PASEP"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.1300"
     _inherit = "l10n_br_sped.mixin"
@@ -13155,6 +13156,7 @@ class Registro1300(models.Model):
 
 class Registro1500(models.Model):
     "Controle de Créditos Fiscais – COFINS"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.1500"
     _inherit = "l10n_br_sped.mixin"
@@ -13223,8 +13225,7 @@ class Registro1500(models.Model):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor do Crédito utilizado mediante Desconto, em Período(s) "
-            "Anterior(es)"
+            "Valor do Crédito utilizado mediante Desconto, em Período(s) Anterior(es)"
         ),
     )
 
@@ -13289,9 +13290,7 @@ class Registro1500(models.Model):
         string="Valor do crédito transferido em evento de cisão",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=(
-            "Valor do crédito transferido em evento de cisão, fusão ou " "incorporação"
-        ),
+        help=("Valor do crédito transferido em evento de cisão, fusão ou incorporação"),
     )
 
     VL_CRED_OUT = fields.Monetary(
@@ -13730,6 +13729,7 @@ class Registro1620(models.Model):
 
 class Registro1700(models.Model):
     "Controle dos Valores Retidos na Fonte – COFINS"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.1700"
     _inherit = "l10n_br_sped.mixin"
@@ -13801,6 +13801,7 @@ class Registro1700(models.Model):
 
 class Registro1800(models.Model):
     "Incorporação Imobiliária – RET"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.1800"
     _inherit = "l10n_br_sped.mixin"
@@ -13809,9 +13810,7 @@ class Registro1800(models.Model):
     INC_IMOB = fields.Char(
         string="Empreendimento objeto de Incorporação Imobiliária",
         required=True,
-        help=(
-            "Empreendimento objeto de Incorporação Imobiliária, optante pelo " "RET."
-        ),
+        help=("Empreendimento objeto de Incorporação Imobiliária, optante pelo RET."),
     )
 
     REC_RECEB_RET = fields.Monetary(
@@ -13869,6 +13868,7 @@ class Registro1800(models.Model):
 
 class Registro1809(models.Model):
     "Processo Referenciado"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.1809"
     _inherit = "l10n_br_sped.mixin"
@@ -13966,6 +13966,7 @@ class Registro1900(models.Model):
 
 class Registro9900(models.Model):
     "Registros do Arquivo"
+
     _description = textwrap.dedent("    %s" % (__doc__,))
     _name = "l10n_br_sped.efd_pis_cofins.1.9900"
     _inherit = "l10n_br_sped.mixin"
