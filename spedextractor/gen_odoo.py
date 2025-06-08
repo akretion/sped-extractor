@@ -11,7 +11,7 @@ from xsdata_odoo.generator import OdooFilters, OdooGenerator
 from xsdata_odoo.text_utils import extract_string_and_help
 
 from .build_csv import get_fields, get_registers
-from .constants import MODULES, MODULES2, SPECS_PATH
+from .constants import MODULES, SPECS_PATH
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
@@ -263,12 +263,12 @@ def main():
     generator.filters.register(generator.env)
     generator.filters.python_inherit_model = "models.AbstractModel"
 
-    for mod in MODULES:
+    for mod in MODULES.keys():
         print(f"\n\n********************* Generating {mod} *********************")
         schema = f"l10n_br_sped.{mod}"
         generator.filters.inherit_model = f"l10n_br_sped.mixin.{mod}"
         generator.filters.schema = schema
-        layout = MODULES2[mod][0]
+        layout = MODULES[mod][0]
         generator.filters.version = layout
         mod_fields = get_fields(mod, layout)
 

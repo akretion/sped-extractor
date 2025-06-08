@@ -61,7 +61,6 @@ def extract_mod_tables(
             SPECS_PATH
             / mod_name
             / str(MODULES[mod_name][0])
-            / "pdf"
             / f"{mod_name}.pdf"
         )
 

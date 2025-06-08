@@ -69,7 +69,7 @@ def test_download_mod_pdf_success_unit(
     )
 
     expected_pdf_path = (
-        unit_test_mock_specs / mod_name / str(layout) / "pdf" / f"{mod_name}.pdf"
+        unit_test_mock_specs / mod_name / str(layout) / f"{mod_name}.pdf"
     )
     assert expected_pdf_path.exists()
     assert expected_pdf_path.read_bytes() == b"%PDF-dummy-content-global"
@@ -93,8 +93,8 @@ def TODOtest_download_cli_specific_module(mocker, mock_specs, caplog):
 
     # Check logs to infer behavior
     assert "Attempting to download PDF for module 'ECD' for year 2023." in caplog.text
-    expected_pdf_path = mock_specs / "2023" / "pdf" / "ecd.pdf"
+    expected_pdf_path = mock_specs / "2023" / "ecd.pdf"
     assert f"Target file location: {expected_pdf_path}" in caplog.text
     assert f"Successfully downloaded and saved: {expected_pdf_path}" in caplog.text
-    assert (mock_specs / "2023" / "pdf" / "ecd.pdf").exists()
-    assert not (mock_specs / "2023" / "pdf" / "ecf.pdf").exists()
+    assert (mock_specs / "2023" / "ecd.pdf").exists()
+    assert not (mock_specs / "2023" / "ecf.pdf").exists()

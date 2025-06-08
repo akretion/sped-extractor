@@ -7,8 +7,8 @@ logger = logging.getLogger(__name__)
 SPECS_PATH: pathlib.Path = pathlib.Path(__file__).parent.resolve() / "specs"
 
 MODULES: dict[str, tuple] = {
-    "ecd": (9, "2022-03-31", "http://sped.rfb.gov.br/arquivo/download/5965"),
-    "ecf": (9, "2022-07-26", "http://sped.rfb.gov.br/arquivo/download/5972"),
+    "ecd": (9, "2024-11-01", "http://sped.rfb.gov.br/arquivo/download/7300"),
+    "ecf": (9, "2025-05-02", "http://sped.rfb.gov.br/arquivo/download/7625"),  #TODO 10
     "efd_icms_ipi": (19, "25-09-2024", "http://sped.rfb.gov.br/arquivo/download/7545"),
     "efd_pis_cofins": (6, "2021-06-18", "http://sped.rfb.gov.br/arquivo/download/5836"),
 }

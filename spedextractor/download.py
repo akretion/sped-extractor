@@ -19,7 +19,7 @@ def download_mod_pdf(mod_name: str) -> bool:
     Returns True on success, False on failure.
     """
     pdf_folder: pathlib.Path = (
-        SPECS_PATH / mod_name / str(MODULES[mod_name][0]) / "pdf"
+        SPECS_PATH / mod_name / str(MODULES[mod_name][0])
     )
     pdf_folder.mkdir(parents=True, exist_ok=True)
     pdf_file_path: pathlib.Path = pdf_folder / f"{mod_name}.pdf"
@@ -94,7 +94,6 @@ def main(target_module_str: Optional[str]):
         spec_dir = SPECS_PATH / module / str(layout)
 
         spec_dir.mkdir(parents=True, exist_ok=True)
-        (spec_dir / "pdf").mkdir(parents=True, exist_ok=True)
 
         if download_mod_pdf(module):
             logger.info(f"--- PDF download process finished for SPED {module} ---")
