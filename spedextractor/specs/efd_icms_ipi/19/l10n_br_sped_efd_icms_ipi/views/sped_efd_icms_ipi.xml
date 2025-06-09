@@ -239,7 +239,7 @@
     <menuitem name="BLOCO D" parent="efd_icms_ipi" id="efd_icms_ipi_d" />
 
     <record id="efd_icms_ipi_d100_action" model="ir.actions.act_window">
-        <field name="name">D100 Registro D100- Nota Fiscal de Serviço de Transporte</field>
+        <field name="name">D100 Nota Fiscal de Serviço de Transporte</field>
         <field name="res_model">l10n_br_sped.efd_icms_ipi.d100</field>
         <field name="view_mode">tree,form</field>
     </record>
@@ -340,13 +340,6 @@
 
 
     <menuitem name="BLOCO K" parent="efd_icms_ipi" id="efd_icms_ipi_k" />
-
-    <record id="efd_icms_ipi_k010_action" model="ir.actions.act_window">
-        <field name="name">K010 Informação sobre o tipo de leiaute</field>
-        <field name="res_model">l10n_br_sped.efd_icms_ipi.k010</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-    <menuitem action="efd_icms_ipi_k010_action" parent="efd_icms_ipi_k" id="efd_icms_ipi_k010" />
 
     <record id="efd_icms_ipi_k100_action" model="ir.actions.act_window">
         <field name="name">K100 Período de Apuração do ICMS/IPI</field>

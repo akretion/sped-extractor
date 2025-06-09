@@ -150,7 +150,7 @@ STRUCTURE SPED EFD_ICMS_IPI
 
 <BLOCO D>
 
-  - D100 REGISTRO D100- NOTA FISCAL DE SERVIÇO DE TRANSPORTE
+  - D100 NOTA FISCAL DE SERVIÇO DE TRANSPORTE
     - D101 Informação complementar dos documentos fiscais quando das prestações interestaduais destinadas
     ≡ D110 Itens do documento
       ≡ D120
@@ -241,8 +241,6 @@ STRUCTURE SPED EFD_ICMS_IPI
       - H030
 
 <BLOCO K>
-
-  - K010 INFORMAÇÃO SOBRE O TIPO DE LEIAUTE
 
   - K100 PERÍODO DE APURAÇÃO DO ICMS/IPI
     ≡ K200 Estoque Escriturado
@@ -1369,6 +1367,12 @@ class RegistroB020(models.AbstractModel):
         currency_field="brl_currency_id",
     )
 
+    COD_INF_OBS = fields.Char(
+        string="Código da observação do lançamento fiscal",
+        sped_length="6",
+        help="Código da observação do lançamento fiscal (campo 02 do Registro 0460)",
+    )
+
     reg_B025_ids = fields.One2many(
         "l10n_br_sped.efd_icms_ipi.b025",
         "reg_B025_ids_RegistroB020_id",
@@ -1948,6 +1952,25 @@ class RegistroB500(models.AbstractModel):
     _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
     _sped_level = 2
 
+    VL_REC = fields.Monetary(
+        string="Valor mensal das receitas auferidas",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help="Valor mensal das receitas auferidas pela sociedade uniprofissional",
+    )
+
+    QTD_PROF = fields.Integer(
+        string="Quantidade de profissionais habilitados", required=True
+    )
+
+    VL_OR = fields.Monetary(
+        string="Valor do ISS devido",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
     reg_B510_ids = fields.One2many(
         "l10n_br_sped.efd_icms_ipi.b510",
         "reg_B510_ids_RegistroB500_id",
@@ -1966,6 +1989,7 @@ class RegistroB510(models.AbstractModel):
 
     IND_PROF = fields.Char(
         string="Indicador de habilitação",
+        required=True,
         sped_length="1*",
         help=(
             "Indicador de habilitação: 0- Profissional habilitado 1- Profissional não "
@@ -1975,23 +1999,26 @@ class RegistroB510(models.AbstractModel):
 
     IND_ESC = fields.Char(
         string="Indicador de escolaridade",
+        required=True,
         sped_length="1*",
         help="Indicador de escolaridade: 0- Nível superior 1- Nível médio",
     )
 
     IND_SOC = fields.Char(
         string="Indicador de participação societária",
+        required=True,
         sped_length="1*",
-        help="Indicador de participação societária: 0- Sócio 1- Não sócio",
+        help="Indicador de participação societária: 0 - Sócio 1 - Não sócio",
     )
 
     CPF = fields.Char(
         string="Número de inscrição do profissional no CPF",
+        required=True,
         xsd_type="numeric_code",
         sped_length="11*",
     )
 
-    NOME = fields.Char(string="Nome do profissional", sped_length="1")
+    NOME = fields.Char(string="Nome do profissional", required=True, sped_length="1")
 
     reg_B510_ids_RegistroB500_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.b500",
@@ -2082,6 +2109,121 @@ class RegistroC100(models.AbstractModel):
         in_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
+    )
+
+    IND_PGTO = fields.Char(
+        string="Indicador do tipo de pagamento: 0",
+        in_required=True,
+        sped_length="1*",
+        help=(
+            "Indicador do tipo de pagamento: 0 - À vista; 1 - A prazo; 9 - Sem "
+            "pagamento."
+        ),
+    )
+
+    VL_DESC = fields.Monetary(
+        string="Valor total do desconto",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_ABAT_NT = fields.Monetary(
+        string="Abatimento não tributado",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Abatimento não tributado e não comercial Por exemplo: desconto ICMS nas "
+            "remessas para ZFM."
+        ),
+    )
+
+    VL_MERC = fields.Monetary(
+        string="Valor total das mercadorias e serviços",
+        in_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    IND_FRT = fields.Char(
+        string="Indicador do tipo do frete: 0",
+        in_required=True,
+        sped_length="1*",
+        help=(
+            "Indicador do tipo do frete: 0 - Por conta de terceiros; 1 - Por conta do "
+            "emitente; 2 - Por conta do destinatário; 9 - Sem cobrança de frete."
+        ),
+    )
+
+    VL_FRT = fields.Monetary(
+        string="Valor do frete indicado no documento fiscal",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_SEG = fields.Monetary(
+        string="Valor do seguro indicado no documento fiscal",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_OUT_DA = fields.Monetary(
+        string="Valor de outras despesas acessórias",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_BC_ICMS = fields.Monetary(
+        string="Valor da base de cálculo do ICMS",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_ICMS = fields.Monetary(
+        string="Valor do ICMS", xsd_type="TDec_1602", currency_field="brl_currency_id"
+    )
+
+    VL_BC_ICMS_ST = fields.Monetary(
+        string="Valor da base de cálculo",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help="Valor da base de cálculo do ICMS substituição tributária",
+    )
+
+    VL_ICMS_ST = fields.Monetary(
+        string="Valor do ICMS retido por substituição tributária",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_IPI = fields.Monetary(
+        string="Valor total do IPI",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_PIS = fields.Monetary(
+        string="Valor total do PIS",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_COFINS = fields.Monetary(
+        string="Valor total da COFINS",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_PIS_ST = fields.Monetary(
+        string="Valor total do PIS retido por substituição",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_COFINS_ST = fields.Monetary(
+        string="Valor total da COFINS retido",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help="Valor total da COFINS retido por substituição tributária",
     )
 
     reg_C101_ids = fields.One2many(
@@ -2242,6 +2384,14 @@ class RegistroC101(models.AbstractModel):
         currency_field="brl_currency_id",
     )
 
+    VL_ICMS_UF_REM = fields.Monetary(
+        string="VL_ICMS_UF_REM",
+        in_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help="Valor total do ICMS Interestadual para a UF do remetente",
+    )
+
     reg_C101_ids_RegistroC100_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.c100",
         string="Documento - Nota Fiscal (código 01)",
@@ -2265,17 +2415,19 @@ class RegistroC105(models.AbstractModel):
     _sped_level = 3
 
     OPER = fields.Char(
-        string="Indicador do tipo de operação: 0",
+        string="Indicador do tipo de operação",
         xsd_type="numeric_code",
+        in_required=True,
         sped_length="1*",
         help=(
-            "Indicador do tipo de operação: 0 - Combustíveis e Lubrificantes; 1 - "
-            "Leasing de veículos ou faturamento direto. 2 - Recusa de recebimento (de "
-            "acordo com as condições descritas nas instruções do Registro)"
+            "Indicador do tipo de operação: 0- Combustíveis e Lubrificantes; 1- Leasing"
+            " de veículos ou faturamento direto."
         ),
     )
 
-    UF = fields.Char(string="Sigla da UF de destino do ICMS_ST", sped_length="2*")
+    UF = fields.Char(
+        string="Sigla da UF de destino do ICMS_ST", in_required=True, sped_length="2*"
+    )
 
     reg_C105_ids_RegistroC100_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.c100",
@@ -2301,6 +2453,7 @@ class RegistroC110(models.AbstractModel):
 
     COD_INF = fields.Char(
         string="Código da informação complementar",
+        in_required=True,
         sped_length="6",
         help=(
             "Código da informação complementar do documento fiscal (campo 02 do "
@@ -2380,15 +2533,18 @@ class RegistroC111(models.AbstractModel):
     _sped_level = 4
 
     NUM_PROC = fields.Char(
-        string="Identificação do processo ou ato concessório", sped_length="6"
+        string="Identificação do processo ou ato concessório",
+        in_required=True,
+        sped_length="15",
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
+        string="Indicador da origem do processo: 0",
+        in_required=True,
         sped_length="1*",
         help=(
-            "Indicador da origem do processo: 0- Sefaz 1 - Justiça Federal 2 - Justiça "
-            "Estadual 3 - Secex/RFB 9 - Outros"
+            "Indicador da origem do processo: 0 - SEFAZ; 1 - Justiça Federal; 2 - "
+            "Justiça Estadual; 3 - SECEX/SRF 9 - Outros."
         ),
     )
 
@@ -2413,16 +2569,19 @@ class RegistroC112(models.AbstractModel):
     _sped_level = 4
 
     COD_DA = fields.Char(
-        string="Código do modelo do documento de arrecadação",
+        string="Código do modelo do documento de arrecadação ",
+        in_required=True,
         sped_length="1*",
         help=(
-            "Código do modelo do documento de arrecadação: 0 - Documento estadual de "
-            "arrecadação 1 - GNRE"
+            "Código do modelo do documento de arrecadação : 0 – Documento estadual de "
+            "arrecadação 1 – GNRE"
         ),
     )
 
     UF = fields.Char(
-        string="Unidade federada beneficiária do recolhimento", sped_length="2*"
+        string="Unidade federada beneficiária do recolhimento",
+        in_required=True,
+        sped_length="2*",
     )
 
     NUM_DA = fields.Char(string="Número do documento de arrecadação")
@@ -2431,6 +2590,7 @@ class RegistroC112(models.AbstractModel):
 
     VL_DA = fields.Monetary(
         string="Valor do total do documento de arrecadação",
+        in_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
@@ -2440,15 +2600,18 @@ class RegistroC112(models.AbstractModel):
     )
 
     DT_VCTO = fields.Date(
-        string="Data de vencimento do documento de arrecadação", sped_length="8*"
+        string="Data de vencimento do documento de arrecadação",
+        in_required=True,
+        sped_length="8*",
     )
 
     DT_PGTO = fields.Date(
         string="Data de pagamento do documento de arrecadação",
+        in_required=True,
         sped_length="8*",
         help=(
             "Data de pagamento do documento de arrecadação, ou data do vencimento, no "
-            "caso de ICMS antecipado a recolher"
+            "caso de ICMS antecipado a recolher."
         ),
     )
 
@@ -2474,29 +2637,35 @@ class RegistroC113(models.AbstractModel):
 
     IND_OPER = fields.Char(
         string="Indicador do tipo de operação",
+        in_required=True,
         sped_length="1*",
-        help=("Indicador do tipo de operação: 0- Entrada/aquisição 1- Saída/prestação"),
+        help=(
+            "Indicador do tipo de operação: 0- Entrada/aquisição; 1- Saída/prestação"
+        ),
     )
 
     IND_EMIT = fields.Char(
         string="Indicador do emitente do título",
+        in_required=True,
         sped_length="1*",
-        help="Indicador do emitente do título: 0- Emissão própria 1- Terceiros",
+        help="Indicador do emitente do título: 0- Emissão própria; 1- Terceiros",
     )
 
     COD_PART = fields.Char(
         string="Código do participante emitente",
+        in_required=True,
         sped_length="6",
         help=(
             "Código do participante emitente (campo 02 do Registro 0150) do documento "
-            "referenciado"
+            "referenciado."
         ),
     )
 
     COD_MOD = fields.Char(
         string="Código do documento fiscal",
+        in_required=True,
         sped_length="2*",
-        help="Código do documento fiscal, conforme a tabela 4.1.1",
+        help="Código do documento fiscal, conforme a Tabela 4.1.1",
     )
 
     SER = fields.Char(string="Série do documento fiscal", sped_length="4")
@@ -2506,10 +2675,15 @@ class RegistroC113(models.AbstractModel):
     )
 
     NUM_DOC = fields.Char(
-        string="Número do documento fiscal", xsd_type="numeric_code", sped_length="9"
+        string="Número do documento fiscal",
+        xsd_type="numeric_code",
+        in_required=True,
+        sped_length="9",
     )
 
-    DT_DOC = fields.Date(string="Data da emissão do documento fiscal", sped_length="8*")
+    DT_DOC = fields.Date(
+        string="Data da emissão do documento fiscal", in_required=True, sped_length="8*"
+    )
 
     CHV_DOCE = fields.Char(
         string="Chave do Documento Eletrônico",
@@ -2592,12 +2766,13 @@ class RegistroC115(models.AbstractModel):
     _sped_level = 4
 
     IND_CARGA = fields.Char(
-        string="Indicador do tipo de transporte: 0",
+        string="Indicador do tipo de transporte",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="1*",
         help=(
-            "Indicador do tipo de transporte: 0 - Rodoviário 1 - Ferroviário 2 - Rodo-"
-            "Ferroviário 3 - Aquaviário 4 - Dutoviário 5 - Aéreo 9 - Outros"
+            "Indicador do tipo de transporte: 0 – Rodoviário; 1 – Ferroviário; 2 – "
+            "Rodo-Ferroviário; 3 – Aquaviário; 4 – Dutoviário; 5 – Aéreo; 9 – Outros."
         ),
     )
 
@@ -2608,9 +2783,9 @@ class RegistroC115(models.AbstractModel):
     )
 
     IE_COL = fields.Char(
-        string="Inscrição estadual do contribuinte do local",
+        string="Inscrição Estadual do contribuinte do local",
         sped_length="14",
-        help="Inscrição estadual do contribuinte do local de coleta",
+        help="Inscrição Estadual do contribuinte do local de coleta",
     )
 
     CPF_COL = fields.Char(
@@ -2635,7 +2810,7 @@ class RegistroC115(models.AbstractModel):
     IE_ENTG = fields.Char(
         string="IE_ENTG",
         sped_length="14",
-        help="Inscrição estadual do contribuinte do local de entrega",
+        help="Inscrição Estadual do contribuinte do local de entrega",
     )
 
     CPF_ENTG = fields.Char(
@@ -2645,7 +2820,7 @@ class RegistroC115(models.AbstractModel):
     )
 
     COD_MUN_ENTG = fields.Char(
-        string="Código do município do local de entrega",
+        string="Código do Município do local de entrega",
         xsd_type="numeric_code",
         sped_length="7*",
     )
@@ -2672,29 +2847,35 @@ class RegistroC116(models.AbstractModel):
 
     COD_MOD = fields.Char(
         string="Código do modelo do documento fiscal",
+        in_required=True,
         sped_length="2",
-        help="Código do modelo do documento fiscal, conforme a tabela 4.1.1",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
     )
 
     NR_SAT = fields.Char(
         string="Número de Série do equipamento SAT",
         xsd_type="numeric_code",
+        in_required=True,
         sped_length="9",
     )
 
     CHV_CFE = fields.Char(
         string="Chave do Cupom Fiscal Eletrônico",
         xsd_type="numeric_code",
+        in_required=True,
         sped_length="44",
     )
 
     NUM_CFE = fields.Char(
-        string="Número do Cupom Fiscal Eletrônico",
+        string="Número do cupom fiscal eletrônico",
         xsd_type="numeric_code",
+        in_required=True,
         sped_length="6",
     )
 
-    DT_DOC = fields.Date(string="Data da emissão do documento fiscal", sped_length="8")
+    DT_DOC = fields.Date(
+        string="Data da emissão do documento fiscal", in_required=True, sped_length="8"
+    )
 
     reg_C116_ids_RegistroC110_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.c110",
@@ -2775,6 +2956,7 @@ class RegistroC130(models.AbstractModel):
 
     VL_SERV_NT = fields.Monetary(
         string="Valor dos serviços sob não-incidência",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help="Valor dos serviços sob não-incidência ou não-tributados pelo ICMS",
@@ -2782,6 +2964,7 @@ class RegistroC130(models.AbstractModel):
 
     VL_BC_ISSQN = fields.Monetary(
         string="Valor da base de cálculo do ISSQN",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -2798,9 +2981,10 @@ class RegistroC130(models.AbstractModel):
     )
 
     VL_IRRF = fields.Monetary(
-        string="Valor do Imposto de Renda retido na fonte",
+        string="Valor do Imposto de Renda",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
+        help="Valor do Imposto de Renda - Retido na Fonte",
     )
 
     VL_BC_PREV = fields.Monetary(
@@ -2840,16 +3024,18 @@ class RegistroC140(models.AbstractModel):
 
     IND_EMIT = fields.Char(
         string="Indicador do emitente do título: 0",
+        in_required=True,
         sped_length="1*",
-        help="Indicador do emitente do título: 0 - Emissão própria 1 - Terceiros",
+        help="Indicador do emitente do título: 0 - Emissão própria; 1 - Terceiros",
     )
 
     IND_TIT = fields.Char(
         string="Indicador do tipo de título de crédito",
+        in_required=True,
         sped_length="2*",
         help=(
-            "Indicador do tipo de título de crédito: 00 - Duplicata 01 - Cheque 02 - "
-            "Promissória 03 - Recibo 99 - Outros (descrever)"
+            "Indicador do tipo de título de crédito: 00 - Duplicata; 01 - Cheque; 02 - "
+            "Promissória; 03 - Recibo; 99 - Outros (descrever)"
         ),
     )
 
@@ -2857,17 +3043,20 @@ class RegistroC140(models.AbstractModel):
 
     NUM_TIT = fields.Char(
         string="Número ou código identificador do título",
+        in_required=True,
         help="Número ou código identificador do título de crédito",
     )
 
     QTD_PARC = fields.Char(
         string="Quantidade de parcelas a receber/pagar",
         xsd_type="numeric_code",
+        in_required=True,
         sped_length="2",
     )
 
     VL_TIT = fields.Monetary(
         string="Valor total dos títulos de créditos",
+        in_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -2904,7 +3093,12 @@ class RegistroC141(models.AbstractModel):
     NUM_PARC = fields.Char(
         string="Número da parcela a receber/pagar",
         xsd_type="numeric_code",
+        in_required=True,
         sped_length="2",
+    )
+
+    DT_VCTO = fields.Date(
+        string="Data de vencimento da parcela", in_required=True, sped_length="8*"
     )
 
     reg_C141_ids_RegistroC140_id = fields.Many2one(
@@ -2938,10 +3132,13 @@ class RegistroC160(models.AbstractModel):
         string="Placa de identificação do veículo automotor", sped_length="7"
     )
 
-    QTD_VOL = fields.Integer(string="Quantidade de volumes transportados")
+    QTD_VOL = fields.Integer(
+        string="Quantidade de volumes transportados", out_required=True
+    )
 
     PESO_BRT = fields.Float(
         string="Peso bruto dos volumes transportados",
+        out_required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -2952,6 +3149,7 @@ class RegistroC160(models.AbstractModel):
 
     PESO_LIQ = fields.Float(
         string="Peso líquido dos volumes transportados",
+        out_required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -2992,11 +3190,13 @@ class RegistroC165(models.AbstractModel):
         ),
     )
 
-    VEIC_ID = fields.Char(string="Placa de identificação do veículo", sped_length="7")
+    VEIC_ID = fields.Char(
+        string="Placa de identificação do veículo", out_required=True, sped_length="7"
+    )
 
     COD_AUT = fields.Char(
-        string="Código da autorização fornecido pela SEFAZ",
-        help="Código da autorização fornecido pela SEFAZ (combustíveis)",
+        string="Código da autorização fornecido",
+        help="Código da autorização fornecido pela",
     )
 
     NR_PASSE = fields.Char(string="Número do Passe Fiscal")
@@ -3004,6 +3204,7 @@ class RegistroC165(models.AbstractModel):
     HORA = fields.Char(
         string="Hora da saída das mercadorias",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="6*",
     )
 
@@ -3020,10 +3221,13 @@ class RegistroC165(models.AbstractModel):
         ),
     )
 
-    QTD_VOL = fields.Integer(string="Quantidade de volumes transportados")
+    QTD_VOL = fields.Integer(
+        string="Quantidade de volumes transportados", out_required=True
+    )
 
     PESO_BRT = fields.Float(
         string="Peso bruto dos volumes transportados",
+        out_required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -3034,6 +3238,7 @@ class RegistroC165(models.AbstractModel):
 
     PESO_LIQ = fields.Float(
         string="Peso líquido dos volumes transportados",
+        out_required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -3075,11 +3280,13 @@ class RegistroC170(models.AbstractModel):
     NUM_ITEM = fields.Char(
         string="Número sequencial do item no documento fiscal",
         xsd_type="numeric_code",
+        in_required=True,
         sped_length="3",
     )
 
     COD_ITEM = fields.Char(
         string="Código do item",
+        in_required=True,
         sped_length="6",
         help="Código do item (campo 02 do Registro 0200)",
     )
@@ -3091,6 +3298,7 @@ class RegistroC170(models.AbstractModel):
 
     QTD = fields.Float(
         string="Quantidade do item",
+        in_required=True,
         xsd_type="TDec_1605",
         digits=(
             16,
@@ -3100,12 +3308,14 @@ class RegistroC170(models.AbstractModel):
 
     UNID = fields.Char(
         string="Unidade do item",
+        in_required=True,
         sped_length="6",
         help="Unidade do item (Campo 02 do registro 0190)",
     )
 
     VL_ITEM = fields.Monetary(
         string="Valor total do item",
+        in_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help="Valor total do item (mercadorias ou serviços)",
@@ -3118,17 +3328,16 @@ class RegistroC170(models.AbstractModel):
     )
 
     IND_MOV = fields.Char(
-        string="Movimentação física do item/Produto",
-        sped_length="1*",
-        help="Movimentação física do item/Produto: 0 - SIM 1 - NÃO",
+        string="Movimentação física do ITEM/PRODUTO", in_required=True, sped_length="1*"
     )
 
     CST_ICMS = fields.Char(
         string="Código da Situação Tributária referente ao ICMS",
         xsd_type="numeric_code",
+        in_required=True,
         sped_length="3*",
         help=(
-            "Código da Situação Tributária referente ao ICMS, conforme a tabela "
+            "Código da Situação Tributária referente ao ICMS, conforme a Tabela "
             "indicada no item 4.3.1"
         ),
     )
@@ -3136,6 +3345,7 @@ class RegistroC170(models.AbstractModel):
     CFOP = fields.Char(
         string="Código Fiscal de Operação e Prestação",
         xsd_type="numeric_code",
+        in_required=True,
         sped_length="4*",
     )
 
@@ -3196,15 +3406,15 @@ class RegistroC170(models.AbstractModel):
     IND_APUR = fields.Char(
         string="Indicador de período de apuração do IPI",
         sped_length="1*",
-        help="Indicador de período de apuração do IPI: 0 - Mensal 1 - Decendial",
+        help="Indicador de período de apuração do IPI: 0 - Mensal; 1 - Decendial",
     )
 
     CST_IPI = fields.Char(
         string="Código da Situação Tributária referente ao IPI",
         sped_length="2*",
         help=(
-            "Código da Situação Tributária referente ao IPI, conforme a tabela indicada"
-            " no item 4.3.2"
+            "Código da Situação Tributária referente ao IPI, conforme a Tabela indicada"
+            " no item 4.3.2."
         ),
     )
 
@@ -3213,7 +3423,7 @@ class RegistroC170(models.AbstractModel):
         sped_length="3*",
         help=(
             "Código de enquadramento legal do IPI, conforme tabela indicada no item "
-            "4.5.3"
+            "4.5.3."
         ),
     )
 
@@ -3246,9 +3456,7 @@ class RegistroC170(models.AbstractModel):
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Valor da base de cálculo do PIS",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
+        string="Valor da base de cálculo do PIS", currency_field="brl_currency_id"
     )
 
     ALIQ_PIS = fields.Float(
@@ -3261,38 +3469,22 @@ class RegistroC170(models.AbstractModel):
         ),
     )
 
-    QUANT_BC_PIS = fields.Float(
-        string="Quantidade - Base de cálculo PIS",
-        xsd_type="TDec_1603",
-        digits=(
-            16,
-            3,
-        ),
-    )
+    QUANT_BC_PIS = fields.Integer(string="Quantidade – Base de cálculo PIS")
 
-    ALIQ_PIS_INDEX_29 = fields.Float(
-        string="Alíquota do PIS (em reais)",
-        xsd_type="TDec_1604",
-        digits=(
-            16,
-            4,
-        ),
-    )
+    ALIQ_PIS_INDEX_29 = fields.Integer(string="Alíquota do PIS (em reais)")
 
     VL_PIS = fields.Monetary(
         string="Valor do PIS", xsd_type="TDec_1602", currency_field="brl_currency_id"
     )
 
     CST_COFINS = fields.Char(
-        string="Código da Situação Tributária referente à COFINS",
+        string="Código da Situação Tributária referente ao COFINS",
         xsd_type="numeric_code",
         sped_length="2*",
     )
 
     VL_BC_COFINS = fields.Monetary(
-        string="Valor da base de cálculo da COFINS",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
+        string="Valor da base de cálculo da COFINS", currency_field="brl_currency_id"
     )
 
     ALIQ_COFINS = fields.Float(
@@ -3305,23 +3497,9 @@ class RegistroC170(models.AbstractModel):
         ),
     )
 
-    QUANT_BC_COFINS = fields.Float(
-        string="Quantidade - Base de cálculo COFINS",
-        xsd_type="TDec_1603",
-        digits=(
-            16,
-            3,
-        ),
-    )
+    QUANT_BC_COFINS = fields.Integer(string="Quantidade – Base de cálculo COFINS")
 
-    ALIQ_COFINS_INDEX_35 = fields.Float(
-        string="Alíquota da COFINS (em reais)",
-        xsd_type="TDec_1604",
-        digits=(
-            16,
-            4,
-        ),
-    )
+    ALIQ_COFINS_INDEX_35 = fields.Integer(string="Alíquota da COFINS (em reais)")
 
     VL_COFINS = fields.Monetary(
         string="Valor da COFINS", xsd_type="TDec_1602", currency_field="brl_currency_id"
@@ -3498,12 +3676,14 @@ class RegistroC172(models.AbstractModel):
 
     VL_BC_ISSQN = fields.Monetary(
         string="Valor da base de cálculo do ISSQN",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     ALIQ_ISSQN = fields.Float(
         string="Alíquota do ISSQN",
+        out_required=True,
         sped_length="6",
         xsd_type="TDec_1602",
         digits=(
@@ -3513,7 +3693,10 @@ class RegistroC172(models.AbstractModel):
     )
 
     VL_ISSQN = fields.Monetary(
-        string="Valor do ISSQN", xsd_type="TDec_1602", currency_field="brl_currency_id"
+        string="Valor do ISSQN",
+        out_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
     )
 
     reg_C172_ids_RegistroC170_id = fields.Many2one(
@@ -3533,10 +3716,13 @@ class RegistroC173(models.AbstractModel):
     _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
     _sped_level = 4
 
-    LOTE_MED = fields.Char(string="Número do lote de fabricação do medicamento")
+    LOTE_MED = fields.Char(
+        string="Número do lote de fabricação do medicamento", in_required=True
+    )
 
     QTD_ITEM = fields.Float(
         string="Quantidade de item por lote",
+        in_required=True,
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -3544,32 +3730,39 @@ class RegistroC173(models.AbstractModel):
         ),
     )
 
-    DT_FAB = fields.Date(string="Data de fabricação do medicamento", sped_length="8*")
+    DT_FAB = fields.Date(
+        string="Data de fabricação do medicamento", in_required=True, sped_length="8*"
+    )
 
     DT_VAL = fields.Date(
-        string="Data de expiração da validade do medicamento", sped_length="8*"
+        string="Data de expiração da validade do medicamento",
+        in_required=True,
+        sped_length="8*",
     )
 
     IND_MED = fields.Char(
         string="Indicador de tipo de referência da base de cálculo",
+        in_required=True,
         sped_length="1*",
         help=(
             "Indicador de tipo de referência da base de cálculo do ICMS (ST) do produto"
-            " farmacêutico: 0- Base de cálculo referente ao preço tabela do ou preço "
-            "máximo sugerido 1- Base cálculo - Margem de valor agregado 2- Base de "
-            "cálculo referente à Lista Negativa 3- Base de cálculo referente à Lista "
-            "Positiva 4- Base de cálculo referente à Lista Neutra"
+            " farmacêutico: 0 - Base de cálculo referente ao preço tabelado ou preço "
+            "máximo sugerido; 1 - Base cálculo – Margem de valor agregado; 2 - Base de "
+            "cálculo referente à Lista Negativa; 3 - Base de cálculo referente à Lista "
+            "Positiva; 4 - Base de cálculo referente à Lista Neutra"
         ),
     )
 
     TP_PROD = fields.Char(
-        string="Tipo de produto",
+        string="Tipo de produto: 0 - Similar; 1",
+        in_required=True,
         sped_length="1*",
-        help="Tipo de produto: 0- Similar 1- Genérico 2- Ético ou de marca",
+        help="Tipo de produto: 0 - Similar; 1 - Genérico; 2 - Ético ou de marca;",
     )
 
     VL_TAB_MAX = fields.Monetary(
-        string="Valor do preço tabela do ou valor do preço máximo",
+        string="Valor do preço tabelado ou valor do preço máximo",
+        in_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -3592,15 +3785,19 @@ class RegistroC174(models.AbstractModel):
     _sped_level = 4
 
     IND_ARM = fields.Char(
-        string="Indicador do tipo da arma de fogo",
+        string="Indicador do tipo da arma de fogo: 0",
+        out_required=True,
         sped_length="1*",
-        help="Indicador do tipo da arma de fogo: 0- Uso permitido 1- Uso restrito",
+        help=("Indicador do tipo da arma de fogo: 0 - Uso permitido; 1 - Uso restrito"),
     )
 
-    NUM_ARM = fields.Char(string="Numeração de série de fabricação da arma")
+    NUM_ARM = fields.Char(
+        string="Numeração de série de fabricação da arma", out_required=True
+    )
 
     DESCR_COMPL = fields.Char(
         string="Descrição da arma",
+        out_required=True,
         help=(
             "Descrição da arma, compreendendo: número do cano, calibre, marca, "
             "capacidade de cartuchos, tipo de funcionamento, quantidade de canos, "
@@ -3895,6 +4092,24 @@ class RegistroC176(models.AbstractModel):
         help="Código do modelo do documento de",
     )
 
+    NUM_DA = fields.Char(
+        string="Número do documento de arrecadação estadual",
+        help="Número do documento de arrecadação estadual, se houver",
+    )
+
+    VL_UNIT_RES_FCP_ST = fields.Float(
+        string="VL_UNIT_RES_FCP_ST",
+        xsd_type="TDec_1603",
+        digits=(
+            16,
+            3,
+        ),
+        help=(
+            "Valor unitário do ressarcimento (parcial ou completo) de FCP decorrente da"
+            " quebra da ST"
+        ),
+    )
+
     reg_C176_ids_RegistroC170_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.c170",
         string="Complemento de Documento",
@@ -3947,18 +4162,21 @@ class RegistroC178(models.AbstractModel):
 
     CL_ENQ = fields.Char(
         string="Código da classe de enquadramento do IPI",
+        out_required=True,
         sped_length="5",
-        help="Código da classe de enquadramento do IPI, conforme tabela 4.5.1",
+        help="Código da classe de enquadramento do IPI, conforme Tabela 4.5.1.",
     )
 
     VL_UNID = fields.Monetary(
         string="Valor por unidade padrão de tributação",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     QUANT_PAD = fields.Float(
         string="Quantidade total de produtos na unidade padrão",
+        out_required=True,
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -3986,28 +4204,30 @@ class RegistroC179(models.AbstractModel):
 
     BC_ST_ORIG_DEST = fields.Float(
         string="Valor da base de cálculo ST na origem/destino",
+        out_required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
             2,
         ),
         help=(
-            "Valor da base de cálculo ST na origem/destino em operações interestaduais"
+            "Valor da base de cálculo ST na origem/destino em operações interestaduais."
         ),
     )
 
     ICMS_ST_REP = fields.Float(
-        string="Valor do ICMS-ST a repassar/deduzir",
+        string="Valor do ICMS ST a repassar/deduzir",
+        out_required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
             2,
         ),
-        help="Valor do ICMS-ST a repassar/deduzir em operações interestaduais",
+        help="Valor do ICMS ST a repassar/deduzir em operações interestaduais",
     )
 
     ICMS_ST_COMPL = fields.Float(
-        string="Valor do ICMS-ST a complementar à UF de destino",
+        string="Valor do ICMS ST a complementar à UF de destino",
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -4035,7 +4255,8 @@ class RegistroC179(models.AbstractModel):
             2,
         ),
         help=(
-            "Valor da parcela do imposto retido em remessa promovida por substituído"
+            "Valor da parcela do imposto retido em remessa promovida por substituído "
+            "intermediário"
         ),
     )
 
@@ -4056,6 +4277,119 @@ class RegistroC180(models.AbstractModel):
     _name = "l10n_br_sped.efd_icms_ipi.19.c180"
     _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
     _sped_level = 4
+
+    COD_RESP_RET = fields.Char(
+        string="Código que indica o responsável pela retenção",
+        xsd_type="numeric_code",
+        in_required=True,
+        sped_length="1*",
+        help=(
+            "Código que indica o responsável pela retenção do ICMS ST: 1-Remetente "
+            "Direto 2-Remetente Indireto 3-Próprio declarante"
+        ),
+    )
+
+    QUANT_CONV = fields.Float(
+        string="Quantidade do item",
+        in_required=True,
+        xsd_type="TDec_1606",
+        digits=(
+            16,
+            6,
+        ),
+    )
+
+    UNID = fields.Char(
+        string="Unidade adotada para informar o campo QUANT_CONV",
+        in_required=True,
+        sped_length="6",
+    )
+
+    VL_UNIT_CONV = fields.Float(
+        string="Valor unitário da mercadoria",
+        in_required=True,
+        xsd_type="TDec_1606",
+        digits=(
+            16,
+            6,
+        ),
+        help=(
+            "Valor unitário da mercadoria, considerando a unidade utilizada para "
+            "informar o campo “QUANT_CONV”."
+        ),
+    )
+
+    VL_UNIT_ICMS_OP_CONV = fields.Float(
+        string="Valor unitário do ICMS operação própria",
+        in_required=True,
+        xsd_type="TDec_1606",
+        digits=(
+            16,
+            6,
+        ),
+        help=(
+            "Valor unitário do ICMS operação própria que o informante teria direito ao "
+            "crédito caso a mercadoria estivesse sob o regime comum de tributação, "
+            "considerando unidade utilizada para informar o campo “QUANT_CONV”."
+        ),
+    )
+
+    VL_UNIT_BC_ICMS_ST_CONV = fields.Float(
+        string="Valor unitário da base de cálculo do imposto pago",
+        in_required=True,
+        xsd_type="TDec_1606",
+        digits=(
+            16,
+            6,
+        ),
+        help=(
+            "Valor unitário da base de cálculo do imposto pago ou retido anteriormente "
+            "por substituição, considerando a unidade utilizada para informar o campo "
+            "“QUANT_CONV”, aplicando-se redução, se houver."
+        ),
+    )
+
+    VL_UNIT_ICMS_ST_CONV = fields.Float(
+        string="Valor unitário do imposto pago",
+        in_required=True,
+        xsd_type="TDec_1606",
+        digits=(
+            16,
+            6,
+        ),
+        help=(
+            "Valor unitário do imposto pago ou retido anteriormente por substituição, "
+            "inclusive FCP se devido, considerando a unidade utilizada para informar o "
+            "campo “QUANT_CONV”."
+        ),
+    )
+
+    VL_UNIT_FCP_ST_CONV = fields.Float(
+        string="Valor unitário do FCP_ST agregado",
+        xsd_type="TDec_1606",
+        digits=(
+            16,
+            6,
+        ),
+        help=(
+            "Valor unitário do FCP_ST agregado ao valor informado no campo "
+            "“VL_UNIT_ICMS_ST_CONV”"
+        ),
+    )
+
+    COD_DA = fields.Char(
+        string="Código do modelo do documento de arrecadação",
+        sped_length="1*",
+        help=(
+            "Código do modelo do documento de arrecadação: 0 – Documento estadual de "
+            "arrecadação 1 – GNRE"
+        ),
+    )
+
+    NUM_DA = fields.Char(
+        string="Número do documento de arrecadação",
+        help="Número do documento de arrecadação, se houver",
+    )
 
     reg_C180_ids_RegistroC170_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.c170",
@@ -4181,11 +4515,13 @@ class RegistroC185(models.AbstractModel):
     NUM_ITEM = fields.Char(
         string="Número sequencial do item no documento fiscal",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="3",
     )
 
     COD_ITEM = fields.Char(
         string="Código do item",
+        out_required=True,
         sped_length="6",
         help="Código do item (campo 02 do Registro 0200)",
     )
@@ -4193,23 +4529,27 @@ class RegistroC185(models.AbstractModel):
     CST_ICMS = fields.Char(
         string="Código da Situação Tributária referente ao ICMS",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="3*",
     )
 
     CFOP = fields.Char(
         string="Código Fiscal de Operação e Prestação",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="4*",
     )
 
     COD_MOT_REST_COMPL = fields.Char(
         string="Código do motivo da restituição",
+        out_required=True,
         sped_length="5*",
         help="Código do motivo da restituição ou complementação conforme Tabela 5.7",
     )
 
     QUANT_CONV = fields.Float(
         string="Quantidade do item",
+        out_required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
@@ -4218,11 +4558,14 @@ class RegistroC185(models.AbstractModel):
     )
 
     UNID = fields.Char(
-        string="Unidade adotada para informar o campo QUANT_CONV", sped_length="6"
+        string="Unidade adotada para informar o campo QUANT_CONV",
+        out_required=True,
+        sped_length="6",
     )
 
     VL_UNIT_CONV = fields.Float(
         string="Valor unitário da mercadoria",
+        out_required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
@@ -4282,14 +4625,14 @@ class RegistroC185(models.AbstractModel):
     )
 
     VL_UNIT_ICMS_ST_ESTOQUE_CONV = fields.Float(
-        string="Valor médio unitário do ICMS/ST",
+        string="Valor médio unitário do ICMS ST",
         xsd_type="TDec_1606",
         digits=(
             16,
             6,
         ),
         help=(
-            "Valor médio unitário do ICMS/ST, incluindo FCP ST, das mercadorias em "
+            "Valor médio unitário do ICMS ST, incluindo FCP ST, das mercadorias em "
             "estoque, considerando a unidade utilizada para informar o campo "
             "“QUANT_CONV”"
         ),
@@ -4321,11 +4664,14 @@ class RegistroC186(models.AbstractModel):
     NUM_ITEM = fields.Char(
         string="Número sequencial do item no documento fiscal",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="3",
+        help="Número sequencial do item no documento fiscal de saída",
     )
 
     COD_ITEM = fields.Char(
         string="Código do item",
+        out_required=True,
         sped_length="6",
         help="Código do item (campo 02 do Registro 0200)",
     )
@@ -4334,39 +4680,54 @@ class RegistroC186(models.AbstractModel):
         string="Código da Situação Tributária referente ao ICMS",
         xsd_type="numeric_code",
         sped_length="3*",
+        help=(
+            "Código da Situação Tributária referente ao ICMS no documento fiscal de "
+            "saída"
+        ),
     )
 
     CFOP = fields.Char(
         string="Código Fiscal de Operação e Prestação",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="4*",
+        help="Código Fiscal de Operação e Prestação no documento fiscal de saída",
     )
 
     COD_MOT_REST_COMPL = fields.Char(
         string="Código do motivo da restituição",
+        in_required=True,
         sped_length="5*",
         help="Código do motivo da restituição ou complementação conforme Tabela 5.7",
     )
 
     QUANT_CONV = fields.Float(
-        string="Quantidade do item",
+        string="Quantidade do item no documento fiscal de saída",
+        out_required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
             6,
         ),
+        help=(
+            "Quantidade do item no documento fiscal de saída de acordo com as "
+            "instruções de preenchimento."
+        ),
     )
 
     UNID = fields.Char(
-        string="Unidade adotada para informar o campo QUANT_CONV", sped_length="6"
+        string="Unidade adotada para informar o campo QUANT_CONV",
+        out_required=True,
+        sped_length="6",
     )
 
     COD_MOD_ENTRADA = fields.Char(
-        string="Código do modelo do documento fiscal de saída",
+        string="Código do modelo do documento fiscal de entrada",
+        out_required=True,
         sped_length="2*",
         help=(
-            "Código do modelo do documento fiscal de saída, conforme a tabela indicada "
-            "no item 4.1.1"
+            "Código do modelo do documento fiscal de entrada, conforme a tabela "
+            "indicada no item 4.1.1"
         ),
     )
 
@@ -4387,12 +4748,15 @@ class RegistroC186(models.AbstractModel):
     )
 
     DT_DOC_ENTRADA = fields.Date(
-        string="Data da emissão do documento fiscal de entrada", sped_length="8*"
+        string="Data da emissão do documento fiscal de entrada",
+        out_required=True,
+        sped_length="8*",
     )
 
     NUM_ITEM_ENTRADA = fields.Char(
         string="Item do documento fiscal de entrada",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="3",
     )
 
@@ -4606,7 +4970,7 @@ class RegistroC191(models.AbstractModel):
         help=(
             "Valor do Fundo de Combate à Pobreza (FCP) vinculado à operação de "
             "substituição tributária, na combinação de CST_ICMS, CFOP e alíquota do "
-            "ICMS"
+            "ICMS."
         ),
     )
 
@@ -4641,6 +5005,7 @@ class RegistroC195(models.AbstractModel):
 
     COD_OBS = fields.Char(
         string="Código da observação do lançamento fiscal",
+        in_required=True,
         sped_length="6",
         help="Código da observação do lançamento fiscal (campo 02 do Registro 0460)",
     )
@@ -4750,32 +5115,40 @@ class RegistroC300(models.AbstractModel):
 
     COD_MOD = fields.Char(
         string="Código do modelo do documento fiscal",
+        out_required=True,
         sped_length="2*",
-        help="Código do modelo do documento fiscal, conforme a tabela 4.1.1",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
     )
 
-    SER = fields.Char(string="Série do documento fiscal", sped_length="4")
+    SER = fields.Char(
+        string="Série do documento fiscal", out_required=True, sped_length="4"
+    )
 
     SUB = fields.Char(string="Subsérie do documento fiscal", sped_length="3")
 
     NUM_DOC_INI = fields.Char(
         string="Número do documento fiscal inicial",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="6",
     )
 
     NUM_DOC_FIN = fields.Char(
         string="Número do documento fiscal final",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="6",
     )
 
     DT_DOC = fields.Date(
-        string="Data da emissão dos documentos fiscais", sped_length="8*"
+        string="Data da emissão dos documentos fiscais",
+        out_required=True,
+        sped_length="8*",
     )
 
     VL_DOC = fields.Monetary(
         string="Valor total dos documentos",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -4793,7 +5166,7 @@ class RegistroC300(models.AbstractModel):
     )
 
     COD_CTA = fields.Char(
-        string="Código", help="Código da conta analítica contábil debitada/creditada"
+        string="Código", help="Código da conta analítica contábil debitada/ creditada"
     )
 
     reg_C310_ids = fields.One2many(
@@ -4828,7 +5201,9 @@ class RegistroC310(models.AbstractModel):
     _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
     _sped_level = 3
 
-    NUM_DOC_CANC = fields.Integer(string="Número do documento fiscal cancelado")
+    NUM_DOC_CANC = fields.Integer(
+        string="Número do documento fiscal cancelado", out_required=True
+    )
 
     reg_C310_ids_RegistroC300_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.c300",
@@ -4854,15 +5229,17 @@ class RegistroC320(models.AbstractModel):
     CST_ICMS = fields.Char(
         string="Código da Situação Tributária",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="3*",
         help=(
-            "Código da Situação Tributária, conforme a tabela indicada no item 4.3.1"
+            "Código da Situação Tributária, conforme a Tabela indicada no item 4.3.1"
         ),
     )
 
     CFOP = fields.Char(
         string="Código Fiscal de Operação e Prestação",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="4*",
     )
 
@@ -4878,43 +5255,53 @@ class RegistroC320(models.AbstractModel):
 
     VL_OPR = fields.Monetary(
         string="Valor total acumulado",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
             "Valor total acumulado das operações correspondentes à combinação de "
             "CST_ICMS, CFOP e alíquota do ICMS, incluídas as despesas acessórias e "
-            "acréscimos"
+            "acréscimos."
         ),
     )
 
     VL_BC_ICMS = fields.Monetary(
         string="Valor acumulado da base de cálculo do ICMS",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
             "Valor acumulado da base de cálculo do ICMS, referente à combinação de "
-            "CST_ICMS, CFOP e alíquota do ICMS"
+            "CST_ICMS, CFOP, e alíquota do ICMS."
         ),
     )
 
     VL_ICMS = fields.Monetary(
         string="Valor acumulado do ICMS",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
             "Valor acumulado do ICMS, referente à combinação de CST_ICMS, CFOP e "
-            "alíquota do ICMS"
+            "alíquota do ICMS."
         ),
     )
 
     VL_RED_BC = fields.Monetary(
         string="Valor não tributado em função da redução da base",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
             "Valor não tributado em função da redução da base de cálculo do ICMS, "
-            "referente à combinação de CST_ICMS, CFOP e alíquota do ICMS"
+            "referente à combinação de CST_ICMS, CFOP, e alíquota do ICMS."
         ),
+    )
+
+    COD_OBS = fields.Char(
+        string="Código da observação do lançamento fiscal",
+        sped_length="6",
+        help="Código da observação do lançamento fiscal (campo 02 do Registro 0460)",
     )
 
     reg_C320_ids_RegistroC300_id = fields.Many2one(
@@ -5083,6 +5470,52 @@ class RegistroC330(models.AbstractModel):
         ),
     )
 
+    VL_UNIT_ICMS_OP_CONV = fields.Float(
+        string="Valor unitário do ICMS OP calculado conforme",
+        xsd_type="TDec_1606",
+        digits=(
+            16,
+            6,
+        ),
+        help=(
+            "Valor unitário do ICMS OP calculado conforme a legislação de cada UF, "
+            "considerando a unidade utilizada para informar o campo “QUANT_CONV”, "
+            "utilizado para cálculo de ressarcimento/restituição de ST, no desfazimento"
+            " da substituição tributária, quando se utiliza a fórmula descrita nas "
+            "instruções de preenchimento do campo 11, no item a1)."
+        ),
+    )
+
+    VL_UNIT_ICMS_OP_ESTOQUE_CONV = fields.Float(
+        string="Valor médio unitário do ICMS",
+        xsd_type="TDec_1606",
+        digits=(
+            16,
+            6,
+        ),
+        help=(
+            "Valor médio unitário do ICMS que o contribuinte teria se creditado "
+            "referente à operação de entrada das mercadorias em estoque caso estivesse "
+            "submetida ao regime comum de tributação, calculado conforme a legislação "
+            "de cada UF, considerando a unidade utilizada para informar o campo "
+            "“QUANT_CONV”"
+        ),
+    )
+
+    VL_UNIT_ICMS_ST_ESTOQUE_CONV = fields.Float(
+        string="Valor médio unitário do ICMS ST",
+        xsd_type="TDec_1606",
+        digits=(
+            16,
+            6,
+        ),
+        help=(
+            "Valor médio unitário do ICMS ST, incluindo FCP ST, das mercadorias em "
+            "estoque, considerando unidade utilizada para informar o campo "
+            "“QUANT_CONV”."
+        ),
+    )
+
     reg_C330_ids_RegistroC321_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.c321",
         string="Itens dos Resumos Diários dos Documentos",
@@ -5146,6 +5579,16 @@ class RegistroC350(models.AbstractModel):
         string="Valor total do PIS",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
+    )
+
+    VL_COFINS = fields.Monetary(
+        string="Valor total da COFINS",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    COD_CTA = fields.Char(
+        string="Código", help="Código da conta analítica contábil debitada/creditada"
     )
 
     reg_C370_ids = fields.One2many(
@@ -5250,12 +5693,14 @@ class RegistroC380(models.AbstractModel):
 
     COD_MOT_REST_COMPL = fields.Char(
         string="Código do motivo da restituição",
+        out_required=True,
         sped_length="5*",
         help="Código do motivo da restituição ou complementação conforme Tabela 5.7",
     )
 
     QUANT_CONV = fields.Float(
         string="Quantidade do item",
+        out_required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
@@ -5264,11 +5709,14 @@ class RegistroC380(models.AbstractModel):
     )
 
     UNID = fields.Char(
-        string="Unidade adotada para informar o campo QUANT_CONV", sped_length="6"
+        string="Unidade adotada para informar o campo QUANT_CONV",
+        out_required=True,
+        sped_length="6",
     )
 
     VL_UNIT_CONV = fields.Float(
         string="Valor unitário da mercadoria",
+        out_required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
@@ -5308,6 +5756,36 @@ class RegistroC380(models.AbstractModel):
             "utilizado para cálculo de ressarcimento/restituição de ST, no desfazimento"
             " da substituição tributária, quando se utiliza a fórmula descrita nas "
             "instruções de preenchimento do campo 11, no item a1)."
+        ),
+    )
+
+    VL_UNIT_ICMS_OP_ESTOQUE_CONV = fields.Float(
+        string="Valor médio unitário do ICMS",
+        xsd_type="TDec_1606",
+        digits=(
+            16,
+            6,
+        ),
+        help=(
+            "Valor médio unitário do ICMS que o contribuinte teria se creditado "
+            "referente à operação de entrada das mercadorias em estoque caso estivesse "
+            "submetida ao regime comum de tributação, calculado conforme a legislação "
+            "de cada UF, considerando a unidade utilizada para informar o campo "
+            "“QUANT_CONV”"
+        ),
+    )
+
+    VL_UNIT_ICMS_ST_ESTOQUE_CONV = fields.Float(
+        string="Valor médio unitário do ICMS ST",
+        xsd_type="TDec_1606",
+        digits=(
+            16,
+            6,
+        ),
+        help=(
+            "Valor médio unitário do ICMS ST, incluindo FCP ST, das mercadorias em "
+            "estoque, considerando unidade utilizada para informar o campo "
+            "“QUANT_CONV”."
         ),
     )
 
@@ -5422,75 +5900,27 @@ class RegistroC400(models.AbstractModel):
 
     COD_MOD = fields.Char(
         string="Código do modelo do documento fiscal",
+        out_required=True,
         sped_length="2*",
-        help="Código do modelo do documento fiscal, conforme a tabela 4.1.1",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
     )
 
-    ECF_MOD = fields.Char(string="Modelo do equipamento", sped_length="2")
+    ECF_MOD = fields.Char(
+        string="Modelo do equipamento", out_required=True, sped_length="2"
+    )
 
     ECF_FAB = fields.Char(
-        string="Número de série de fabricação do ECF", sped_length="21"
+        string="Número de série de fabricação do ECF",
+        out_required=True,
+        sped_length="21",
     )
 
     ECF_CX = fields.Char(
         string="Número do caixa atribuído ao ECF",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="3",
     )
-
-    HORA = fields.Char(
-        string="Hora da saída das mercadorias",
-        xsd_type="numeric_code",
-        out_required=True,
-        sped_length="6*",
-    )
-
-    TEMPER = fields.Float(
-        string="Temperatura em graus Celsius utilizada",
-        xsd_type="TDec_1601",
-        digits=(
-            16,
-            1,
-        ),
-        help=(
-            "Temperatura em graus Celsius utilizada para quantificação do volume de "
-            "combustível"
-        ),
-    )
-
-    QTD_VOL = fields.Integer(
-        string="Quantidade de volumes transportados", out_required=True
-    )
-
-    PESO_BRT = fields.Float(
-        string="Peso bruto dos volumes transportados",
-        out_required=True,
-        xsd_type="TDec_1602",
-        digits=(
-            16,
-            2,
-        ),
-        help="Peso bruto dos volumes transportados (em kg)",
-    )
-
-    PESO_LIQ = fields.Float(
-        string="Peso líquido dos volumes transportados",
-        out_required=True,
-        xsd_type="TDec_1602",
-        digits=(
-            16,
-            2,
-        ),
-        help="Peso líquido dos volumes transportados (em kg)",
-    )
-
-    NOM_MOT = fields.Char(string="Nome do motorista", sped_length="6")
-
-    CPF = fields.Char(
-        string="CPF do motorista", xsd_type="numeric_code", sped_length="11*"
-    )
-
-    UF_ID = fields.Char(string="Sigla da UF da placa do veículo", sped_length="2")
 
     reg_C405_ids = fields.One2many(
         "l10n_br_sped.efd_icms_ipi.c405",
@@ -5636,18 +6066,20 @@ class RegistroC420(models.AbstractModel):
 
     COD_TOT_PAR = fields.Char(
         string="Código do totalizador",
+        out_required=True,
         sped_length="7",
-        help="Código do totalizador, conforme tabela 4.4.6",
+        help="Código do totalizador, conforme Tabela 4.4.6",
     )
 
     VLR_ACUM_TOT = fields.Float(
         string="Valor acumulado no totalizador",
+        out_required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
             2,
         ),
-        help="Valor acumulado no totalizador, relativo à respectiva Redução Z",
+        help="Valor acumulado no totalizador, relativo à respectiva Redução Z.",
     )
 
     NR_TOT = fields.Char(
@@ -5656,7 +6088,7 @@ class RegistroC420(models.AbstractModel):
         sped_length="2",
         help=(
             "Número do totalizador quando ocorrer mais de uma situação com a mesma "
-            "carga tributária efetiva"
+            "carga tributária efetiva."
         ),
     )
 
@@ -5664,7 +6096,7 @@ class RegistroC420(models.AbstractModel):
         string="Descrição da situação tributária relativa",
         help=(
             "Descrição da situação tributária relativa ao totalizador parcial, quando "
-            "houver mais de um com a mesma carga tributária efetiva"
+            "houver mais de um com a mesma carga tributária efetiva."
         ),
     )
 
@@ -5694,12 +6126,14 @@ class RegistroC425(models.AbstractModel):
 
     COD_ITEM = fields.Char(
         string="Código do item",
+        out_required=True,
         sped_length="6",
         help="Código do item (campo 02 do Registro 0200)",
     )
 
     QTD = fields.Float(
         string="Quantidade acumulada do item",
+        out_required=True,
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -5709,12 +6143,14 @@ class RegistroC425(models.AbstractModel):
 
     UNID = fields.Char(
         string="Unidade do item",
+        out_required=True,
         sped_length="6",
         help="Unidade do item (Campo 02 do registro 0190)",
     )
 
     VL_ITEM = fields.Monetary(
         string="Valor acumulado do item",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -5758,16 +6194,99 @@ class RegistroC430(models.AbstractModel):
 
     COD_MOT_REST_COMPL = fields.Char(
         string="Código do motivo da restituição",
+        out_required=True,
         sped_length="5*",
         help="Código do motivo da restituição ou complementação conforme Tabela 5.7",
     )
 
     QUANT_CONV = fields.Float(
         string="Quantidade do item",
+        out_required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
             6,
+        ),
+    )
+
+    UNID = fields.Char(
+        string="Unidade adotada para informar o campo QUANT_CONV",
+        out_required=True,
+        sped_length="6",
+    )
+
+    VL_UNIT_CONV = fields.Float(
+        string="Valor unitário da mercadoria",
+        out_required=True,
+        xsd_type="TDec_1606",
+        digits=(
+            16,
+            6,
+        ),
+        help=(
+            "Valor unitário da mercadoria, considerando a unidade utilizada para "
+            "informar o campo “QUANT_CONV”."
+        ),
+    )
+
+    VL_UNIT_ICMS_NA_OPERACAO_CONV = fields.Float(
+        string="Valor unitário para o ICMS na operação",
+        xsd_type="TDec_1606",
+        digits=(
+            16,
+            6,
+        ),
+        help=(
+            "Valor unitário para o ICMS na operação, caso não houvesse a ST, "
+            "considerando unidade utilizada para informar o campo “QUANT_CONV”, "
+            "considerando redução da base de cálculo do ICMS ST na tributação, se "
+            "houver."
+        ),
+    )
+
+    VL_UNIT_ICMS_OP_CONV = fields.Float(
+        string="Valor unitário do ICMS OP calculado conforme",
+        xsd_type="TDec_1606",
+        digits=(
+            16,
+            6,
+        ),
+        help=(
+            "Valor unitário do ICMS OP calculado conforme a legislação de cada UF, "
+            "considerando a unidade utilizada para informar o campo “QUANT_CONV”, "
+            "utilizado para cálculo de ressarcimento/restituição de ST, no desfazimento"
+            " da substituição tributária, quando se utiliza a fórmula descrita nas "
+            "instruções de preenchimento do campo 11, no item a1)."
+        ),
+    )
+
+    VL_UNIT_ICMS_OP_ESTOQUE_CONV = fields.Float(
+        string="Valor médio unitário do ICMS",
+        xsd_type="TDec_1606",
+        digits=(
+            16,
+            6,
+        ),
+        help=(
+            "Valor médio unitário do ICMS que o contribuinte teria se creditado "
+            "referente à operação de entrada das mercadorias em estoque caso estivesse "
+            "submetida ao regime comum de tributação, calculado conforme a legislação "
+            "de cada UF, considerando a unidade utilizada para informar o campo "
+            "“QUANT_CONV”"
+        ),
+    )
+
+    VL_UNIT_ICMS_ST_ESTOQUE_CONV = fields.Float(
+        string="Valor médio unitário do ICMS ST",
+        xsd_type="TDec_1606",
+        digits=(
+            16,
+            6,
+        ),
+        help=(
+            "Valor médio unitário do ICMS ST, incluindo FCP ST, das mercadorias em "
+            "estoque, considerando unidade utilizada para informar o campo "
+            "“QUANT_CONV”."
         ),
     )
 
@@ -5790,27 +6309,35 @@ class RegistroC460(models.AbstractModel):
 
     COD_MOD = fields.Char(
         string="Código do modelo do documento fiscal",
+        out_required=True,
         sped_length="2*",
-        help="Código do modelo do documento fiscal, conforme a tabela 4.1.1",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
     )
 
     COD_SIT = fields.Char(
         string="Código da situação do documento fiscal",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="2*",
-        help="Código da situação do documento fiscal, conforme a tabela 4.1.2",
+        help="Código da situação do documento fiscal, conforme a Tabela 4.1.2",
     )
 
     NUM_DOC = fields.Char(
         string="Número do documento fiscal (COO)",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="9",
     )
 
-    DT_DOC = fields.Date(string="Data da emissão do documento fiscal", sped_length="8*")
+    DT_DOC = fields.Date(
+        string="Data da emissão do documento fiscal",
+        out_required=True,
+        sped_length="8*",
+    )
 
     VL_DOC = fields.Monetary(
         string="Valor total do documento fiscal",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -5868,12 +6395,14 @@ class RegistroC465(models.AbstractModel):
     CHV_CFE = fields.Char(
         string="Chave do Cupom Fiscal Eletrônico",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="44",
     )
 
     NUM_CCF = fields.Char(
         string="Número do Contador de Cupom Fiscal",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="9",
     )
 
@@ -5896,12 +6425,14 @@ class RegistroC470(models.AbstractModel):
 
     COD_ITEM = fields.Char(
         string="Código do item",
+        out_required=True,
         sped_length="6",
         help="Código do item (campo 02 do Registro 0200)",
     )
 
     QTD = fields.Float(
         string="Quantidade do item",
+        out_required=True,
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -5916,43 +6447,49 @@ class RegistroC470(models.AbstractModel):
             16,
             3,
         ),
-        help="Quantidade cancelada, no caso de cancelamento parcial de item",
+        help="Quantidade cancelada, no caso de cancelamento",
     )
 
     UNID = fields.Char(
         string="Unidade do item",
+        out_required=True,
         sped_length="6",
         help="Unidade do item (Campo 02 do registro 0190)",
     )
 
     VL_ITEM = fields.Monetary(
-        string="Valor do item", xsd_type="TDec_1602", currency_field="brl_currency_id"
+        string="Valor total do item",
+        out_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
     )
 
     CST_ICMS = fields.Char(
         string="Código da Situação Tributária",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="3*",
         help=(
-            "Código da Situação Tributária, conforme a tabela indicada no item 4.3.1."
+            "Código da Situação Tributária, conforme a Tabela indicada no item 4.3.1."
         ),
     )
 
     CFOP = fields.Char(
         string="Código Fiscal de Operação e Prestação",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="4*",
     )
 
     ALIQ_ICMS = fields.Float(
-        string="Alíquota do ICMS",
+        string="Alíquota do ICMS – Carga tributária efetiva",
         sped_length="6",
         xsd_type="TDec_1602",
         digits=(
             16,
             2,
         ),
-        help="Alíquota do ICMS - Carga tributária efetiva em percentual",
+        help="Alíquota do ICMS – Carga tributária efetiva em percentual",
     )
 
     VL_PIS = fields.Monetary(
@@ -5994,12 +6531,14 @@ class RegistroC480(models.AbstractModel):
 
     COD_MOT_REST_COMPL = fields.Char(
         string="Código do motivo da restituição",
+        out_required=True,
         sped_length="5*",
         help="Código do motivo da restituição ou complementação conforme Tabela 5.7",
     )
 
     QUANT_CONV = fields.Float(
         string="Quantidade do item",
+        out_required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
@@ -6008,11 +6547,14 @@ class RegistroC480(models.AbstractModel):
     )
 
     UNID = fields.Char(
-        string="Unidade adotada para informar o campo QUANT_CONV", sped_length="6"
+        string="Unidade adotada para informar o campo QUANT_CONV",
+        out_required=True,
+        sped_length="6",
     )
 
     VL_UNIT_CONV = fields.Float(
         string="Valor unitário da mercadoria",
+        out_required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
@@ -6068,6 +6610,20 @@ class RegistroC480(models.AbstractModel):
             "submetida ao regime comum de tributação, calculado conforme a legislação "
             "de cada UF, considerando a unidade utilizada para informar o campo "
             "“QUANT_CONV”"
+        ),
+    )
+
+    VL_UNIT_ICMS_ST_ESTOQUE_CONV = fields.Float(
+        string="Valor médio unitário do ICMS ST",
+        xsd_type="TDec_1606",
+        digits=(
+            16,
+            6,
+        ),
+        help=(
+            "Valor médio unitário do ICMS ST, incluindo FCP ST, das mercadorias em "
+            "estoque, considerando unidade utilizada para informar o campo "
+            "“QUANT_CONV”."
         ),
     )
 
@@ -6183,12 +6739,14 @@ class RegistroC495(models.AbstractModel):
 
     COD_ITEM = fields.Char(
         string="Código do item",
+        out_required=True,
         sped_length="6",
         help="Código do item (campo 02 do Registro 0200)",
     )
 
     QTD = fields.Float(
         string="Quantidade acumulada do item",
+        out_required=True,
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -6210,12 +6768,14 @@ class RegistroC495(models.AbstractModel):
 
     UNID = fields.Char(
         string="Unidade do item",
+        out_required=True,
         sped_length="6",
         help="Unidade do item (Campo 02 do registro 0190)",
     )
 
     VL_ITEM = fields.Monetary(
         string="Valor acumulado do item",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -6230,6 +6790,47 @@ class RegistroC495(models.AbstractModel):
         string="Valor acumulado dos cancelamentos",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
+    )
+
+    VL_ACMO = fields.Monetary(
+        string="Valor acumulado dos acréscimos",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_BC_ICMS = fields.Monetary(
+        string="Valor acumulado da base de cálculo do ICMS",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_ICMS = fields.Monetary(
+        string="Valor acumulado do ICMS",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_ISEN = fields.Monetary(
+        string="Valor das saídas isentas do ICMS",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_NT = fields.Monetary(
+        string="Valor das saídas sob não-incidência",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help="Valor das saídas sob não-incidência ou não- tributadas pelo ICMS",
+    )
+
+    VL_ICMS_ST = fields.Monetary(
+        string="Valor das saídas de mercadorias adquiridas",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor das saídas de mercadorias adquiridas com substituição tributária do "
+            "ICMS"
+        ),
     )
 
 
@@ -6266,6 +6867,249 @@ class RegistroC500(models.AbstractModel):
         in_required=True,
         sped_length="6",
         help="Código do participante (campo 02 do Registro 0150):",
+    )
+
+    COD_MOD = fields.Char(
+        string="Código do modelo do documento fiscal",
+        in_required=True,
+        sped_length="2*",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
+    )
+
+    COD_SIT = fields.Char(
+        string="Código da situação do documento fiscal",
+        xsd_type="numeric_code",
+        in_required=True,
+        sped_length="2*",
+        help="Código da situação do documento fiscal, conforme a Tabela 4.1.2",
+    )
+
+    SER = fields.Char(string="Série do documento fiscal", sped_length="4")
+
+    SUB = fields.Char(
+        string="Subsérie do documento fiscal", xsd_type="numeric_code", sped_length="3"
+    )
+
+    COD_CONS = fields.Char(
+        string="- Código de classe de consumo de energia elétrica",
+        sped_length="2*",
+        help=(
+            "- Código de classe de consumo de energia elétrica ou gás: 01 - Comercial "
+            "02 - Consumo Próprio 03 - Iluminação Pública 04 - Industrial 05 - Poder "
+            "Público 06 - Residencial 07 - Rural 08 - Serviço Público. - Código de "
+            "classe de consumo de Fornecimento D´água – Tabela 4.4.2."
+        ),
+    )
+
+    NUM_DOC = fields.Char(
+        string="Número do documento fiscal",
+        xsd_type="numeric_code",
+        in_required=True,
+        sped_length="9",
+    )
+
+    DT_DOC = fields.Date(
+        string="Data da emissão do documento fiscal", in_required=True, sped_length="8*"
+    )
+
+    DT_E_S = fields.Date(
+        string="Data da entrada ou da saída", in_required=True, sped_length="8*"
+    )
+
+    VL_DOC = fields.Monetary(
+        string="Valor total do documento fiscal",
+        in_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_DESC = fields.Monetary(
+        string="Valor total do desconto",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_FORN = fields.Monetary(
+        string="Valor total fornecido/consumido",
+        in_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_SERV_NT = fields.Monetary(
+        string="Valor total dos serviços não-tributados pelo ICMS",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_TERC = fields.Monetary(
+        string="Valor total cobrado em nome de terceiros",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_DA = fields.Monetary(
+        string="Valor total de despesas acessórias indicadas",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help="Valor total de despesas acessórias indicadas no documento fiscal",
+    )
+
+    VL_BC_ICMS = fields.Monetary(
+        string="Valor acumulado da base de cálculo do ICMS",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_ICMS = fields.Monetary(
+        string="Valor acumulado do ICMS",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_BC_ICMS_ST = fields.Monetary(
+        string="Valor acumulado da base de cálculo",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help="Valor acumulado da base de cálculo do ICMS substituição tributária",
+    )
+
+    VL_ICMS_ST = fields.Monetary(
+        string="Valor acumulado do ICMS retido",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help="Valor acumulado do ICMS retido por substituição tributária",
+    )
+
+    COD_INF = fields.Char(
+        string="Código da informação complementar",
+        sped_length="6",
+        help=(
+            "Código da informação complementar do documento fiscal (campo 02 do "
+            "Registro 0450)"
+        ),
+    )
+
+    VL_PIS = fields.Monetary(
+        string="Valor do PIS", xsd_type="TDec_1602", currency_field="brl_currency_id"
+    )
+
+    VL_COFINS = fields.Monetary(
+        string="Valor da COFINS", xsd_type="TDec_1602", currency_field="brl_currency_id"
+    )
+
+    TPLIGACAO = fields.Char(
+        string="Código de tipo de Ligação 1",
+        xsd_type="numeric_code",
+        sped_length="1*",
+        help="Código de tipo de Ligação 1 - Monofásico 2 - Bifásico 3 - Trifásico",
+    )
+
+    COD_GRUPO_TENSAO = fields.Char(
+        string="Código de grupo de tensão: 01 - A1",
+        sped_length="2*",
+        help=(
+            "Código de grupo de tensão: 01 - A1 - Alta Tensão (230kV ou mais) 02 - A2 -"
+            " Alta Tensão (88 a 138kV) 03 - A3 - Alta Tensão (69kV) 04 - A3a - Alta "
+            "Tensão (30kV a 44kV) 05 - A4 - Alta Tensão (2,3kV a 25kV) 06 - AS - Alta "
+            "Tensão Subterrâneo 06 07 - B1 - Residencial 07 08 - B1 - Residencial Baixa"
+            " Renda 08 09 - B2 - Rural 09"
+        ),
+    )
+
+    CHV_DOCE = fields.Char(
+        string="Chave da Nota Fiscal",
+        xsd_type="numeric_code",
+        sped_length="44*",
+        help="Chave da Nota Fiscal de Energia Elétrica Eletrônica",
+    )
+
+    FIN_DOCE = fields.Char(
+        string="Finalidade da emissão do documento eletrônico",
+        xsd_type="numeric_code",
+        sped_length="1*",
+        help=(
+            "Finalidade da emissão do documento eletrônico: 1 – Normal 2 – Substituição"
+            " 3 – Normal com ajuste"
+        ),
+    )
+
+    CHV_DOCE_REF = fields.Char(
+        string="Chave da nota referenciada", xsd_type="numeric_code", sped_length="44*"
+    )
+
+    IND_DEST = fields.Char(
+        string="Indicador do Destinatário/Acessante",
+        xsd_type="numeric_code",
+        out_required=True,
+        sped_length="1*",
+        help=(
+            "Indicador do Destinatário/Acessante: 1 – Contribuinte do ICMS; 2 – "
+            "Contribuinte Isento de Inscrição no Cadastro de Contribuintes do ICMS; 9 –"
+            " Não Contribuinte."
+        ),
+    )
+
+    COD_MUN_DEST = fields.Char(
+        string="Código do município do destinatário conforme",
+        xsd_type="numeric_code",
+        out_required=True,
+        sped_length="7*",
+        help="Código do município do destinatário conforme a tabela do IBGE.",
+    )
+
+    COD_CTA = fields.Char(
+        string="Código", help="Código da conta analítica contábil debitada/creditada"
+    )
+
+    COD_MOD_DOC_REF = fields.Char(
+        string="Código do modelo do documento fiscal referenciado",
+        xsd_type="numeric_code",
+        sped_length="2*",
+        help=(
+            "Código do modelo do documento fiscal referenciado, conforme a Tabela 4.1.1"
+        ),
+    )
+
+    HASH_DOC_REF = fields.Char(
+        string="Código de autenticação digital do registro",
+        sped_length="32",
+        help="Código de autenticação digital do registro (Convênio 115/2003).",
+    )
+
+    SER_DOC_REF = fields.Char(
+        string="Série do documento fiscal referenciado", sped_length="4"
+    )
+
+    NUM_DOC_REF = fields.Char(
+        string="Número do documento fiscal referenciado",
+        xsd_type="numeric_code",
+        sped_length="9",
+    )
+
+    MES_DOC_REF = fields.Char(
+        string="Mês e ano da emissão",
+        xsd_type="numeric_code",
+        sped_length="6*",
+        help="Mês e ano da emissão do documento fiscal referenciado.",
+    )
+
+    ENER_INJET = fields.Float(
+        string="Energia injetada",
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+    )
+
+    OUTRAS_DED = fields.Float(
+        string="Outras deduções",
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
     )
 
     reg_C510_ids = fields.One2many(
@@ -6663,6 +7507,7 @@ class RegistroC595(models.AbstractModel):
 
     COD_OBS = fields.Char(
         string="Código da observação do lançamento fiscal",
+        in_required=True,
         sped_length="6",
         help="Código da observação do lançamento fiscal (campo 02 do Registro 0460)",
     )
@@ -6704,10 +7549,11 @@ class RegistroC597(models.AbstractModel):
     _sped_level = 4
 
     COD_AJ = fields.Char(
-        string="Código do ajustes/benefício/incentivo",
+        string="Código dos ajustes/benefício/incentivo",
+        in_required=True,
         sped_length="1*",
         help=(
-            "Código do ajustes/benefício/incentivo, conforme tabela indicada no item "
+            "Código dos ajustes/benefício/incentivo, conforme tabela indicada no item "
             "5.3."
         ),
     )
@@ -7309,6 +8155,7 @@ class RegistroC790(models.AbstractModel):
     CST_ICMS = fields.Char(
         string="Código da Situação Tributária",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="3*",
         help=(
             "Código da Situação Tributária, conforme a tabela indicada no item 4.3.1"
@@ -7318,6 +8165,7 @@ class RegistroC790(models.AbstractModel):
     CFOP = fields.Char(
         string="Código Fiscal de Operação e Prestação",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="4*",
         help=(
             "Código Fiscal de Operação e Prestação, conforme a tabela indicada no item "
@@ -7337,36 +8185,40 @@ class RegistroC790(models.AbstractModel):
 
     VL_OPR = fields.Monetary(
         string="Valor da operação correspondente à combinação",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor da operação correspondente à combinação de CST_ICMS, CFOP e alíquota"
-            " do ICMS"
+            "Valor da operação correspondente à combinação de CST_ICMS, CFOP, e "
+            "alíquota do ICMS."
         ),
     )
 
     VL_BC_ICMS = fields.Monetary(
-        string="Parcela correspondente ao 'Valor da base",
+        string="Parcela correspondente ao “Valor da base",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Parcela correspondente ao 'Valor da base de cálculo do ICMS' referente à "
-            "combinação CST_ICMS, CFOP e alíquota do ICMS"
+            "Parcela correspondente ao “Valor da base de cálculo do ICMS” referente à "
+            "combinação CST_ICMS, CFOP, e alíquota do ICMS"
         ),
     )
 
     VL_ICMS = fields.Monetary(
-        string="Parcela correspondente ao 'Valor",
+        string="Parcela correspondente ao “Valor",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Parcela correspondente ao 'Valor do ICMS' referente à combinação CST_ICMS,"
+            "Parcela correspondente ao “Valor do ICMS” referente à combinação CST_ICMS,"
             " CFOP e alíquota do ICMS"
         ),
     )
 
     VL_BC_ICMS_ST = fields.Monetary(
         string="Valor da base de cálculo",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help="Valor da base de cálculo do ICMS substituição tributária",
@@ -7374,17 +8226,19 @@ class RegistroC790(models.AbstractModel):
 
     VL_ICMS_ST = fields.Monetary(
         string="Valor do ICMS retido por substituição tributária",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_RED_BC = fields.Monetary(
         string="Valor não tributado em função da redução da base",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
             "Valor não tributado em função da redução da base de cálculo do ICMS, "
-            "referente à combinação de CST_ICMS, CFOP e alíquota do ICMS"
+            "referente à combinação de CST_ICMS, CFOP e alíquota do ICMS.."
         ),
     )
 
@@ -7425,12 +8279,14 @@ class RegistroC791(models.AbstractModel):
 
     UF = fields.Char(
         string="Sigla da unidade da federação a que se refere",
+        out_required=True,
         sped_length="2*",
         help="Sigla da unidade da federação a que se refere a retenção ST",
     )
 
     VL_BC_ICMS_ST = fields.Monetary(
         string="Valor da base de cálculo",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help="Valor da base de cálculo do ICMS substituição tributária",
@@ -7438,6 +8294,7 @@ class RegistroC791(models.AbstractModel):
 
     VL_ICMS_ST = fields.Monetary(
         string="Valor do ICMS retido por substituição tributária",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -7604,17 +8461,20 @@ class RegistroC810(models.AbstractModel):
     NUM_ITEM = fields.Char(
         string="Número do item no documento fiscal",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="3",
     )
 
     COD_ITEM = fields.Char(
         string="Código do item",
+        out_required=True,
         sped_length="6",
         help="Código do item (campo 02 do Registro 0200)",
     )
 
     QTD = fields.Float(
         string="Quantidade do item",
+        out_required=True,
         xsd_type="TDec_1605",
         digits=(
             16,
@@ -7624,12 +8484,14 @@ class RegistroC810(models.AbstractModel):
 
     UNID = fields.Char(
         string="Unidade do item",
+        out_required=True,
         sped_length="6",
         help="Unidade do item (Campo 02 do registro 0190)",
     )
 
     VL_ITEM = fields.Monetary(
         string="Valor total do item",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help="Valor total do item (mercadorias ou serviços)",
@@ -7638,12 +8500,14 @@ class RegistroC810(models.AbstractModel):
     CST_ICMS = fields.Char(
         string="Código da Situação Tributária referente ao ICMS",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="3*",
     )
 
     CFOP = fields.Char(
         string="Código Fiscal de Operação e Prestação",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="4*",
     )
 
@@ -7678,12 +8542,14 @@ class RegistroC815(models.AbstractModel):
 
     COD_MOT_REST_COMPL = fields.Char(
         string="Código do motivo da restituição",
+        out_required=True,
         sped_length="5*",
         help="Código do motivo da restituição ou complementação conforme Tabela 5.7",
     )
 
     QUANT_CONV = fields.Float(
         string="Quantidade do item",
+        out_required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
@@ -7692,11 +8558,14 @@ class RegistroC815(models.AbstractModel):
     )
 
     UNID = fields.Char(
-        string="Unidade adotada para informar o campo QUANT_CONV", sped_length="6"
+        string="Unidade adotada para informar o campo QUANT_CONV",
+        out_required=True,
+        sped_length="6",
     )
 
     VL_UNIT_CONV = fields.Float(
         string="Valor unitário da mercadoria",
+        out_required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
@@ -7730,7 +8599,13 @@ class RegistroC815(models.AbstractModel):
             16,
             6,
         ),
-        help="Valor unitário do ICMS OP calculado conforme a legislação de cada UF,",
+        help=(
+            "Valor unitário do ICMS OP calculado conforme a legislação de cada UF, "
+            "considerando a unidade utilizada para informar o campo “QUANT_CONV”, "
+            "utilizado para cálculo de ressarcimento/restituição de ST, no desfazimento"
+            " da substituição tributária, quando se utiliza a fórmula descrita nas "
+            "instruções de preenchimento do campo 11, no item a1)."
+        ),
     )
 
     VL_UNIT_ICMS_OP_ESTOQUE_CONV = fields.Float(
@@ -7750,14 +8625,14 @@ class RegistroC815(models.AbstractModel):
     )
 
     VL_UNIT_ICMS_ST_ESTOQUE_CONV = fields.Float(
-        string="Valor médio unitário do ICMS/ST",
+        string="Valor médio unitário do ICMS ST",
         xsd_type="TDec_1606",
         digits=(
             16,
             6,
         ),
         help=(
-            "Valor médio unitário do ICMS/ST, incluindo FCP ST, das mercadorias em "
+            "Valor médio unitário do ICMS ST, incluindo FCP ST, das mercadorias em "
             "estoque, considerando unidade utilizada para informar o campo "
             "“QUANT_CONV”."
         ),
@@ -7785,6 +8660,7 @@ class RegistroC850(models.AbstractModel):
     CST_ICMS = fields.Char(
         string="Código da Situação Tributária",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="3",
         help=(
             "Código da Situação Tributária, conforme a Tabela indicada no item 4.3.1"
@@ -7794,6 +8670,7 @@ class RegistroC850(models.AbstractModel):
     CFOP = fields.Char(
         string="Código Fiscal de Operação e Prestação",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="4",
         help="Código Fiscal de Operação e Prestação do agrupamento de itens",
     )
@@ -7810,6 +8687,7 @@ class RegistroC850(models.AbstractModel):
 
     VL_OPR = fields.Monetary(
         string="“Valor total do CF-e” na combinação de CST_ICMS",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
@@ -7820,16 +8698,18 @@ class RegistroC850(models.AbstractModel):
 
     VL_BC_ICMS = fields.Monetary(
         string="Valor acumulado da base de cálculo do ICMS",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
             "Valor acumulado da base de cálculo do ICMS, referente à combinação de "
-            "CST_ICMS, CFOP, e alíquota do ICMS."
+            "CST_ICMS, CFOP, e"
         ),
     )
 
     VL_ICMS = fields.Monetary(
         string="Parcela correspondente ao “Valor",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
@@ -7926,12 +8806,14 @@ class RegistroC870(models.AbstractModel):
 
     COD_ITEM = fields.Char(
         string="Código do item",
+        out_required=True,
         sped_length="6",
         help="Código do item (campo 02 do Registro 0200)",
     )
 
     QTD = fields.Float(
         string="Quantidade do item",
+        out_required=True,
         xsd_type="TDec_1605",
         digits=(
             16,
@@ -7941,6 +8823,7 @@ class RegistroC870(models.AbstractModel):
 
     UNID = fields.Char(
         string="Unidade do item",
+        out_required=True,
         sped_length="6",
         help="Unidade do item (Campo 02 do registro 0190)",
     )
@@ -7948,12 +8831,14 @@ class RegistroC870(models.AbstractModel):
     CST_ICMS = fields.Char(
         string="Código da Situação Tributária referente ao ICMS",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="3*",
     )
 
     CFOP = fields.Char(
         string="Código Fiscal de Operação e Prestação",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="4*",
     )
 
@@ -7988,12 +8873,14 @@ class RegistroC880(models.AbstractModel):
 
     COD_MOT_REST_COMPL = fields.Char(
         string="Código do motivo da restituição",
+        out_required=True,
         sped_length="5*",
         help="Código do motivo da restituição ou complementação conforme Tabela 5.7",
     )
 
     QUANT_CONV = fields.Float(
         string="Quantidade do item",
+        out_required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
@@ -8002,11 +8889,14 @@ class RegistroC880(models.AbstractModel):
     )
 
     UNID = fields.Char(
-        string="Unidade adotada para informar o campo QUANT_CONV", sped_length="6"
+        string="Unidade adotada para informar o campo QUANT_CONV",
+        out_required=True,
+        sped_length="6",
     )
 
     VL_UNIT_CONV = fields.Float(
         string="Valor unitário da mercadoria",
+        out_required=True,
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -8046,6 +8936,36 @@ class RegistroC880(models.AbstractModel):
             "utilizado para cálculo de ressarcimento/restituição de ST, no desfazimento"
             " da substituição tributária, quando se utiliza a fórmula descrita nas "
             "instruções de preenchimento do campo 11, no item a1)."
+        ),
+    )
+
+    VL_UNIT_ICMS_OP_ESTOQUE_CONV = fields.Float(
+        string="Valor médio unitário do ICMS",
+        xsd_type="TDec_1603",
+        digits=(
+            16,
+            3,
+        ),
+        help=(
+            "Valor médio unitário do ICMS que o contribuinte teria se creditado "
+            "referente à operação de entrada das mercadorias em estoque caso estivesse "
+            "submetida ao regime comum de tributação, calculado conforme a legislação "
+            "de cada UF, considerando a unidade utilizada para informar o campo "
+            "“QUANT_CONV”"
+        ),
+    )
+
+    VL_UNIT_ICMS_ST_ESTOQUE_CONV = fields.Float(
+        string="Valor médio unitário do ICMS ST",
+        xsd_type="TDec_1603",
+        digits=(
+            16,
+            3,
+        ),
+        help=(
+            "Valor médio unitário do ICMS ST, incluindo FCP ST, das mercadorias em "
+            "estoque, considerando unidade utilizada para informar o campo "
+            "“QUANT_CONV”."
         ),
     )
 
@@ -8145,15 +9065,14 @@ class RegistroC890(models.AbstractModel):
 
 
 class RegistroD100(models.AbstractModel):
-    """Registro D100- Nota Fiscal de Serviço de Transporte (código 07) e
-    Conhecimentos de transporte Rodoviário de Cargas (código 08),
-    Conhecimentos de Transporte de Cargas Avulso (código 8b), Aquaviário de
-    Cargas (código 09), Aéreo (código 10), Ferroviário de Cargas (código
-    11), Multimodal de Cargas (código 26), Nota Fiscal de Transporte
-    ferroviário de carga (código 27), conhecimento de transporte eletrônico
-    – ct-e (código 57) e conhecimento de transporte eletrônico para outros
-    serviços - ct-e os (código 67) e bilhete de passagem eletrônico (código
-    63)."""
+    """Nota Fiscal de Serviço de Transporte (código 07), Conhecimentos de
+    Transpor- te Rodoviário De Cargas (código 08), Conhecimentos de
+    Transporte de Cargas Avulso (código 8b), Aquaviário de Cargas (código
+    09), Aéreo (código 10), Fer- roviário de Cargas (código 11), Multimodal
+    de Cargas (código 26), Nota Fiscal de Transporte Ferroviário de Carga
+    (código 27), Conhecimento de Transporte Eletrônico – CT-e (código 57),
+    Conhecimento de Transporte Eletrônico para Outros Serviços - CT-e OS
+    (código 67) e Bilhete de Passagem Eletrônico (códi- go 63)"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_icms_ipi.19.d100"
@@ -8161,40 +9080,46 @@ class RegistroD100(models.AbstractModel):
     _sped_level = 2
 
     IND_OPER = fields.Char(
-        string="Indicador do tipo de operação",
+        string="Indicador do tipo de operação: 0",
+        in_required=True,
         sped_length="1*",
-        help="Indicador do tipo de operação: 0- Aquisição 1- Prestação",
+        help="Indicador do tipo de operação: 0 - Aquisição; 1 - Prestação",
     )
 
     IND_EMIT = fields.Char(
         string="Indicador do emitente do documento fiscal",
+        in_required=True,
         sped_length="1*",
         help=(
-            "Indicador do emitente do documento fiscal: 0- Emissão própria 1- Terceiros"
+            "Indicador do emitente do documento fiscal: 0 - Emissão própria; 1 - "
+            "Terceiros"
         ),
     )
 
     COD_PART = fields.Char(
         string="Código do participante",
+        in_required=True,
         sped_length="6",
         help=(
             "Código do participante (campo 02 do Registro 0150): - do prestador de "
-            "serviço, no caso de aquisição de serviço - do tomador do serviço, no caso "
-            "de prestação de serviços"
+            "serviço, no caso de aquisição de serviço; - do tomador do serviço, no caso"
+            " de prestação de serviços."
         ),
     )
 
     COD_MOD = fields.Char(
         string="Código do modelo do documento fiscal",
+        in_required=True,
         sped_length="2*",
-        help="Código do modelo do documento fiscal, conforme a tabela 4.1.1",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
     )
 
     COD_SIT = fields.Char(
         string="Código da situação do documento fiscal",
         xsd_type="numeric_code",
+        in_required=True,
         sped_length="2*",
-        help="Código da situação do documento fiscal, conforme a tabela 4.1.2",
+        help="Código da situação do documento fiscal, conforme a Tabela 4.1.2",
     )
 
     SER = fields.Char(string="Série do documento fiscal", sped_length="4")
@@ -8202,7 +9127,10 @@ class RegistroD100(models.AbstractModel):
     SUB = fields.Char(string="Subsérie do documento fiscal", sped_length="3")
 
     NUM_DOC = fields.Char(
-        string="Número do documento fiscal", xsd_type="numeric_code", sped_length="9"
+        string="Número do documento fiscal",
+        xsd_type="numeric_code",
+        in_required=True,
+        sped_length="9",
     )
 
     CHV_CTE = fields.Char(
@@ -8215,10 +9143,14 @@ class RegistroD100(models.AbstractModel):
         ),
     )
 
-    DT_DOC = fields.Date(string="Data da emissão do documento fiscal", sped_length="8*")
+    DT_DOC = fields.Date(
+        string="Data da emissão do documento fiscal", in_required=True, sped_length="8*"
+    )
 
     DT_A_P = fields.Date(
-        string="Data da aquisição ou da prestação do serviço", sped_length="8*"
+        string="Data da aquisição ou da prestação do serviço",
+        in_required=True,
+        sped_length="8*",
     )
 
     TP_CT_E = fields.Char(
@@ -8233,13 +9165,15 @@ class RegistroD100(models.AbstractModel):
     )
 
     CHV_CTE_REF = fields.Char(
-        string="Chave do Documento Eletrônico Substituído",
+        string="Chave do Bilhete",
         xsd_type="numeric_code",
         sped_length="44*",
+        help="Chave do Bilhete de Passagem Eletrônico substituído",
     )
 
     VL_DOC = fields.Monetary(
         string="Valor total do documento fiscal",
+        in_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -8251,16 +9185,18 @@ class RegistroD100(models.AbstractModel):
     )
 
     IND_FRT = fields.Char(
-        string="Indicador do tipo do frete",
+        string="Indicador do tipo do frete: 0",
+        in_required=True,
         sped_length="1*",
         help=(
-            "Indicador do tipo do frete: 0- Por conta do emitente 1- Por conta do "
-            "destinatário/remetente 2- Por conta de terceiros 9- Sem cobrança de frete"
+            "Indicador do tipo do frete: 0 - Por conta de terceiros; 1 - Por conta do "
+            "emitente; 2 - Por conta do destinatário; 9 - Sem cobrança de frete."
         ),
     )
 
     VL_SERV = fields.Monetary(
         string="Valor total da prestação de serviço",
+        in_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -8282,12 +9218,7 @@ class RegistroD100(models.AbstractModel):
     )
 
     COD_INF = fields.Char(
-        string="Código da informação complementar",
-        sped_length="6",
-        help=(
-            "Código da informação complementar do documento fiscal (campo 02 do "
-            "Registro 0450)"
-        ),
+        string="Código da informação complementar do documento", sped_length="6"
     )
 
     COD_CTA = fields.Char(
@@ -8297,6 +9228,7 @@ class RegistroD100(models.AbstractModel):
     COD_MUN_ORIG = fields.Char(
         string="Código do município de origem do serviço",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="7*",
         help=(
             "Código do município de origem do serviço, conforme a tabela IBGE "
@@ -8307,6 +9239,7 @@ class RegistroD100(models.AbstractModel):
     COD_MUN_DEST = fields.Char(
         string="Código do município de destino",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="7*",
         help=(
             "Código do município de destino, conforme a tabela IBGE (Preencher com "
@@ -8421,6 +9354,7 @@ class RegistroD101(models.AbstractModel):
 
     VL_FCP_UF_DEST = fields.Monetary(
         string="Valor total relativo ao Fundo de Combate à Pobreza",
+        in_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
@@ -8430,6 +9364,7 @@ class RegistroD101(models.AbstractModel):
 
     VL_ICMS_UF_DEST = fields.Monetary(
         string="Valor total do ICMS Interestadual para a UF",
+        in_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help="Valor total do ICMS Interestadual para a UF de destino",
@@ -8437,6 +9372,7 @@ class RegistroD101(models.AbstractModel):
 
     VL_ICMS_UF_REM = fields.Monetary(
         string="VL_ICMS_UF_REM",
+        in_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help="Valor total do ICMS Interestadual para a UF do remetente",
@@ -8444,18 +9380,18 @@ class RegistroD101(models.AbstractModel):
 
     reg_D101_ids_RegistroD100_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.d100",
-        string="Registro D100- Nota Fiscal de Serviço",
+        string="Nota Fiscal de Serviço de Transporte",
         required=True,
         ondelete="cascade",
         help=(
-            "Registro D100- Nota Fiscal de Serviço de Transporte (código 07) e "
-            "Conhecimentos de transporte Rodoviário de Cargas (código 08), "
-            "Conhecimentos de Transporte de Cargas Avulso (código 8b), Aquaviário de "
-            "Cargas (código 09), Aéreo (código 10), Ferroviário de Cargas (código 11), "
-            "Multimodal de Cargas (código 26), Nota Fiscal de Transporte ferroviário de"
-            " carga (código 27), conhecimento de transporte eletrônico – ct-e (código "
-            "57) e conhecimento de transporte eletrônico para outros serviços - ct-e os"
-            " (código 67) e bilhete de passagem eletrônico (código 63)."
+            "Nota Fiscal de Serviço de Transporte (código 07), Conhecimentos de "
+            "Transpor- te Rodoviário De Cargas (código 08), Conhecimentos de Transporte"
+            " de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
+            "(código 10), Fer- roviário de Cargas (código 11), Multimodal de Cargas "
+            "(código 26), Nota Fiscal de Transporte Ferroviário de Carga (código 27), "
+            "Conhecimento de Transporte Eletrônico – CT-e (código 57), Conhecimento de "
+            "Transporte Eletrônico para Outros Serviços - CT-e OS (código 67) e Bilhete"
+            " de Passagem Eletrônico (códi- go 63)"
         ),
     )
 
@@ -8472,17 +9408,20 @@ class RegistroD110(models.AbstractModel):
     NUM_ITEM = fields.Char(
         string="Número sequencial do item no documento fiscal",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="3",
     )
 
     COD_ITEM = fields.Char(
         string="Código do item",
+        out_required=True,
         sped_length="6",
         help="Código do item (campo 02 do Registro 0200)",
     )
 
     VL_SERV = fields.Monetary(
         string="Valor do serviço",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -8493,18 +9432,18 @@ class RegistroD110(models.AbstractModel):
 
     reg_D110_ids_RegistroD100_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.d100",
-        string="Registro D100- Nota Fiscal de Serviço",
+        string="Nota Fiscal de Serviço de Transporte",
         required=True,
         ondelete="cascade",
         help=(
-            "Registro D100- Nota Fiscal de Serviço de Transporte (código 07) e "
-            "Conhecimentos de transporte Rodoviário de Cargas (código 08), "
-            "Conhecimentos de Transporte de Cargas Avulso (código 8b), Aquaviário de "
-            "Cargas (código 09), Aéreo (código 10), Ferroviário de Cargas (código 11), "
-            "Multimodal de Cargas (código 26), Nota Fiscal de Transporte ferroviário de"
-            " carga (código 27), conhecimento de transporte eletrônico – ct-e (código "
-            "57) e conhecimento de transporte eletrônico para outros serviços - ct-e os"
-            " (código 67) e bilhete de passagem eletrônico (código 63)."
+            "Nota Fiscal de Serviço de Transporte (código 07), Conhecimentos de "
+            "Transpor- te Rodoviário De Cargas (código 08), Conhecimentos de Transporte"
+            " de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
+            "(código 10), Fer- roviário de Cargas (código 11), Multimodal de Cargas "
+            "(código 26), Nota Fiscal de Transporte Ferroviário de Carga (código 27), "
+            "Conhecimento de Transporte Eletrônico – CT-e (código 57), Conhecimento de "
+            "Transporte Eletrônico para Outros Serviços - CT-e OS (código 67) e Bilhete"
+            " de Passagem Eletrônico (códi- go 63)"
         ),
     )
 
@@ -8589,31 +9528,41 @@ class RegistroD130(models.AbstractModel):
 
     IND_FRT_RED = fields.Char(
         string="Indicador do tipo do frete da operação",
+        out_required=True,
         sped_length="1*",
         help=(
-            "Indicador do tipo do frete da operação de redespacho: 0 - Sem redespacho; "
-            "1 - Por conta do emitente 2 - Por conta do destinatário 9 - Outros."
+            "Indicador do tipo do frete da operação de redespacho: 0 – Sem redespacho; "
+            "1 - Por conta do emitente; 2 - Por conta do destinatário; 9 – Outros."
         ),
     )
 
     COD_MUN_ORIG = fields.Char(
         string="Código do município de origem do serviço",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="7*",
-        help="Código do município de origem do serviço, conforme a tabela IBGE",
+        help=(
+            "Código do município de origem do serviço, conforme a tabela IBGE(Preencher"
+            " com 9999999, se Exterior)"
+        ),
     )
 
     COD_MUN_DEST = fields.Char(
         string="Código do município de destino",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="7*",
-        help="Código do município de destino, conforme a tabela IBGE",
+        help=(
+            "Código do município de destino, conforme a tabela IBGE(Preencher com "
+            "9999999, se Exterior)"
+        ),
     )
 
     VEIC_ID = fields.Char(string="Placa de identificação do veículo", sped_length="7")
 
     VL_LIQ_FRT = fields.Monetary(
         string="Valor líquido do frete",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -8646,6 +9595,7 @@ class RegistroD130(models.AbstractModel):
 
     VL_FRT = fields.Monetary(
         string="Valor total do frete",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -8654,18 +9604,18 @@ class RegistroD130(models.AbstractModel):
 
     reg_D130_ids_RegistroD100_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.d100",
-        string="Registro D100- Nota Fiscal de Serviço",
+        string="Nota Fiscal de Serviço de Transporte",
         required=True,
         ondelete="cascade",
         help=(
-            "Registro D100- Nota Fiscal de Serviço de Transporte (código 07) e "
-            "Conhecimentos de transporte Rodoviário de Cargas (código 08), "
-            "Conhecimentos de Transporte de Cargas Avulso (código 8b), Aquaviário de "
-            "Cargas (código 09), Aéreo (código 10), Ferroviário de Cargas (código 11), "
-            "Multimodal de Cargas (código 26), Nota Fiscal de Transporte ferroviário de"
-            " carga (código 27), conhecimento de transporte eletrônico – ct-e (código "
-            "57) e conhecimento de transporte eletrônico para outros serviços - ct-e os"
-            " (código 67) e bilhete de passagem eletrônico (código 63)."
+            "Nota Fiscal de Serviço de Transporte (código 07), Conhecimentos de "
+            "Transpor- te Rodoviário De Cargas (código 08), Conhecimentos de Transporte"
+            " de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
+            "(código 10), Fer- roviário de Cargas (código 11), Multimodal de Cargas "
+            "(código 26), Nota Fiscal de Transporte Ferroviário de Carga (código 27), "
+            "Conhecimento de Transporte Eletrônico – CT-e (código 57), Conhecimento de "
+            "Transporte Eletrônico para Outros Serviços - CT-e OS (código 67) e Bilhete"
+            " de Passagem Eletrônico (códi- go 63)"
         ),
     )
 
@@ -8690,40 +9640,96 @@ class RegistroD140(models.AbstractModel):
     COD_MUN_ORIG = fields.Char(
         string="Código do município de origem do serviço",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="7*",
-        help="Código do município de origem do serviço, conforme a tabela IBGE",
     )
 
     COD_MUN_DEST = fields.Char(
         string="Código do município de destino",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="7*",
-        help="Código do município de destino, conforme a tabela IBGE",
+        help=(
+            "Código do município de destino, conforme a tabela IBGE(Preencher com "
+            "9999999, se Exterior)"
+        ),
     )
 
     IND_VEIC = fields.Char(
         string="Indicador do tipo do veículo transportador",
+        out_required=True,
         sped_length="1*",
         help=(
-            "Indicador do tipo do veículo transportador: 0 - Embarcação 1 - "
+            "Indicador do tipo do veículo transportador: 0- Embarcação; 1- "
             "Empurrador/rebocador"
         ),
     )
 
+    VEIC_ID = fields.Char(
+        string="Identificação da embarcação",
+        help="Identificação da embarcação (IRIM ou Registro CPP)",
+    )
+
+    IND_NAV = fields.Char(
+        string="Indicador do tipo da navegação",
+        out_required=True,
+        sped_length="1*",
+        help="Indicador do tipo da navegação: 0- Interior; 1- Cabotagem",
+    )
+
+    VIAGEM = fields.Integer(string="Número da viagem")
+
+    VL_FRT_LIQ = fields.Monetary(
+        string="Valor líquido do frete",
+        out_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_DESP_PORT = fields.Monetary(
+        string="Valor das despesas portuárias",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_DESP_CAR_DESC = fields.Monetary(
+        string="Valor das despesas com carga e descarga",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_OUT = fields.Monetary(
+        string="Outros valores", xsd_type="TDec_1602", currency_field="brl_currency_id"
+    )
+
+    VL_FRT_BRT = fields.Monetary(
+        string="Valor bruto do frete",
+        out_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_FRT_MM = fields.Monetary(
+        string="Valor adicional do frete para renovação",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help="Valor adicional do frete para renovação da Marinha Mercante",
+    )
+
     reg_D140_ids_RegistroD100_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.d100",
-        string="Registro D100- Nota Fiscal de Serviço",
+        string="Nota Fiscal de Serviço de Transporte",
         required=True,
         ondelete="cascade",
         help=(
-            "Registro D100- Nota Fiscal de Serviço de Transporte (código 07) e "
-            "Conhecimentos de transporte Rodoviário de Cargas (código 08), "
-            "Conhecimentos de Transporte de Cargas Avulso (código 8b), Aquaviário de "
-            "Cargas (código 09), Aéreo (código 10), Ferroviário de Cargas (código 11), "
-            "Multimodal de Cargas (código 26), Nota Fiscal de Transporte ferroviário de"
-            " carga (código 27), conhecimento de transporte eletrônico – ct-e (código "
-            "57) e conhecimento de transporte eletrônico para outros serviços - ct-e os"
-            " (código 67) e bilhete de passagem eletrônico (código 63)."
+            "Nota Fiscal de Serviço de Transporte (código 07), Conhecimentos de "
+            "Transpor- te Rodoviário De Cargas (código 08), Conhecimentos de Transporte"
+            " de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
+            "(código 10), Fer- roviário de Cargas (código 11), Multimodal de Cargas "
+            "(código 26), Nota Fiscal de Transporte Ferroviário de Carga (código 27), "
+            "Conhecimento de Transporte Eletrônico – CT-e (código 57), Conhecimento de "
+            "Transporte Eletrônico para Outros Serviços - CT-e OS (código 67) e Bilhete"
+            " de Passagem Eletrônico (códi- go 63)"
         ),
     )
 
@@ -8739,15 +9745,23 @@ class RegistroD150(models.AbstractModel):
     COD_MUN_ORIG = fields.Char(
         string="Código do município de origem do serviço",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="7*",
-        help="Código do município de origem do serviço, conforme a tabela IBGE",
+        help=(
+            "Código do município de origem do serviço, conforme a tabela IBGE "
+            "(Preencher com 9999999, se Exterior)"
+        ),
     )
 
     COD_MUN_DEST = fields.Char(
         string="Código do município de destino",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="7*",
-        help="Código do município de destino, conforme a tabela IBGE",
+        help=(
+            "Código do município de destino, conforme a tabela IBGE (Preencher com "
+            "9999999, se Exterior)"
+        ),
     )
 
     VEIC_ID = fields.Char(string="Identificação da aeronave (DAC)")
@@ -8756,12 +9770,18 @@ class RegistroD150(models.AbstractModel):
 
     IND_TFA = fields.Char(
         string="Indicador do tipo de tarifa aplicada",
+        out_required=True,
         sped_length="1*",
-        help=("Indicador do tipo de tarifa aplicada: 0- Exp. 1- Enc. 2- C.I. 9- Outra"),
+        help=(
+            "Indicador do tipo de tarifa aplicada: 0- Exp.; 1- Enc.; 2- C.I.; 9- Outra"
+        ),
     )
 
     VL_PESO_TX = fields.Monetary(
-        string="Peso taxado", xsd_type="TDec_1602", currency_field="brl_currency_id"
+        string="Peso taxado",
+        out_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
     )
 
     VL_TX_TERR = fields.Monetary(
@@ -8788,18 +9808,18 @@ class RegistroD150(models.AbstractModel):
 
     reg_D150_ids_RegistroD100_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.d100",
-        string="Registro D100- Nota Fiscal de Serviço",
+        string="Nota Fiscal de Serviço de Transporte",
         required=True,
         ondelete="cascade",
         help=(
-            "Registro D100- Nota Fiscal de Serviço de Transporte (código 07) e "
-            "Conhecimentos de transporte Rodoviário de Cargas (código 08), "
-            "Conhecimentos de Transporte de Cargas Avulso (código 8b), Aquaviário de "
-            "Cargas (código 09), Aéreo (código 10), Ferroviário de Cargas (código 11), "
-            "Multimodal de Cargas (código 26), Nota Fiscal de Transporte ferroviário de"
-            " carga (código 27), conhecimento de transporte eletrônico – ct-e (código "
-            "57) e conhecimento de transporte eletrônico para outros serviços - ct-e os"
-            " (código 67) e bilhete de passagem eletrônico (código 63)."
+            "Nota Fiscal de Serviço de Transporte (código 07), Conhecimentos de "
+            "Transpor- te Rodoviário De Cargas (código 08), Conhecimentos de Transporte"
+            " de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
+            "(código 10), Fer- roviário de Cargas (código 11), Multimodal de Cargas "
+            "(código 26), Nota Fiscal de Transporte Ferroviário de Carga (código 27), "
+            "Conhecimento de Transporte Eletrônico – CT-e (código 57), Conhecimento de "
+            "Transporte Eletrônico para Outros Serviços - CT-e OS (código 67) e Bilhete"
+            " de Passagem Eletrônico (códi- go 63)"
         ),
     )
 
@@ -8818,29 +9838,36 @@ class RegistroD160(models.AbstractModel):
         string="CNPJ ou CPF do remetente das mercadorias",
         xsd_type="numeric_code",
         sped_length="14",
-        help="CNPJ ou CPF do remetente das mercadorias que constam na nota fiscal",
+        help="CNPJ ou CPF do remetente das mercadorias que constam na nota fiscal.",
     )
 
     IE_REM = fields.Char(
         string="Inscrição Estadual do remetente das mercadorias",
         sped_length="14",
         help=(
-            "Inscrição Estadual do remetente das mercadorias que constam na nota fiscal"
+            "Inscrição Estadual do remetente das mercadorias que constam na nota "
+            "fiscal."
         ),
     )
 
     COD_MUN_ORI = fields.Char(
         string="Código do Município de origem",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="7*",
-        help="Código do Município de origem, conforme tabela IBGE",
+        help=(
+            "Código do Município de origem, conforme tabela IBGE(Preencher com 9999999,"
+            " se Exterior)"
+        ),
     )
 
     CNPJ_CPF_DEST = fields.Char(
         string="CNPJ ou CPF do destinatário das mercadorias",
         xsd_type="numeric_code",
         sped_length="14",
-        help=("CNPJ ou CPF do destinatário das mercadorias que constam na nota fiscal"),
+        help=(
+            "CNPJ ou CPF do destinatário das mercadorias que constam na nota fiscal."
+        ),
     )
 
     IE_DEST = fields.Char(
@@ -8855,24 +9882,28 @@ class RegistroD160(models.AbstractModel):
     COD_MUN_DEST = fields.Char(
         string="Código do Município de destino",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="7*",
-        help="Código do Município de destino, conforme tabela IBGE",
+        help=(
+            "Código do Município de destino, conforme tabela IBGE(Preencher com "
+            "9999999, se Exterior)"
+        ),
     )
 
     reg_D160_ids_RegistroD100_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.d100",
-        string="Registro D100- Nota Fiscal de Serviço",
+        string="Nota Fiscal de Serviço de Transporte",
         required=True,
         ondelete="cascade",
         help=(
-            "Registro D100- Nota Fiscal de Serviço de Transporte (código 07) e "
-            "Conhecimentos de transporte Rodoviário de Cargas (código 08), "
-            "Conhecimentos de Transporte de Cargas Avulso (código 8b), Aquaviário de "
-            "Cargas (código 09), Aéreo (código 10), Ferroviário de Cargas (código 11), "
-            "Multimodal de Cargas (código 26), Nota Fiscal de Transporte ferroviário de"
-            " carga (código 27), conhecimento de transporte eletrônico – ct-e (código "
-            "57) e conhecimento de transporte eletrônico para outros serviços - ct-e os"
-            " (código 67) e bilhete de passagem eletrônico (código 63)."
+            "Nota Fiscal de Serviço de Transporte (código 07), Conhecimentos de "
+            "Transpor- te Rodoviário De Cargas (código 08), Conhecimentos de Transporte"
+            " de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
+            "(código 10), Fer- roviário de Cargas (código 11), Multimodal de Cargas "
+            "(código 26), Nota Fiscal de Transporte Ferroviário de Carga (código 27), "
+            "Conhecimento de Transporte Eletrônico – CT-e (código 57), Conhecimento de "
+            "Transporte Eletrônico para Outros Serviços - CT-e OS (código 67) e Bilhete"
+            " de Passagem Eletrônico (códi- go 63)"
         ),
     )
 
@@ -8906,11 +9937,12 @@ class RegistroD161(models.AbstractModel):
     IND_CARGA = fields.Char(
         string="Indicador do tipo de transporte da carga coletada",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="1*",
         help=(
-            "Indicador do tipo de transporte da carga coletada: 0 - Rodoviário 1 - "
-            "Ferroviário 2 - Rodo-Ferroviário 3 - Aquaviário 4 - Dutoviário 5 - Aéreo 9"
-            " - Outros"
+            "Indicador do tipo de transporte da carga coletada: 0-Rodoviário "
+            "1-Ferroviário 2-Rodo-Ferroviário 3-Aquaviário 4-Dutoviário 5-Aéreo "
+            "9-Outros"
         ),
     )
 
@@ -8927,8 +9959,12 @@ class RegistroD161(models.AbstractModel):
     COD_MUN_COL = fields.Char(
         string="Código do Município do local de coleta",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="7*",
-        help="Código do Município do local de coleta, conforme tabela IBGE",
+        help=(
+            "Código do Município do local de coleta, conforme tabela IBGE(Preencher com"
+            " 9999999, se Exterior)"
+        ),
     )
 
     CNPJ_CPF_ENTG = fields.Char(
@@ -8944,8 +9980,12 @@ class RegistroD161(models.AbstractModel):
     COD_MUN_ENTG = fields.Char(
         string="Código do Município do local de entrega",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="7*",
-        help="Código do Município do local de entrega, conforme tabela IBGE",
+        help=(
+            "Código do Município do local de entrega, conforme tabela IBGE(Preencher "
+            "com 9999999, se Exterior)"
+        ),
     )
 
     reg_D161_ids_RegistroD160_id = fields.Many2one(
@@ -8968,13 +10008,16 @@ class RegistroD162(models.AbstractModel):
     COD_MOD = fields.Char(
         string="Código do modelo do documento fiscal",
         sped_length="2*",
-        help="Código do modelo do documento fiscal, conforme a tabela 4.1.1",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
     )
 
     SER = fields.Char(string="Série do documento fiscal", sped_length="4")
 
     NUM_DOC = fields.Char(
-        string="Número do documento fiscal", xsd_type="numeric_code", sped_length="9"
+        string="Número do documento fiscal",
+        xsd_type="numeric_code",
+        out_required=True,
+        sped_length="9",
     )
 
     DT_DOC = fields.Date(string="Data da emissão do documento fiscal", sped_length="8*")
@@ -8992,7 +10035,9 @@ class RegistroD162(models.AbstractModel):
         help="Valor das mercadorias constantes no documento fiscal",
     )
 
-    QTD_VOL = fields.Integer(string="Quantidade de volumes transportados")
+    QTD_VOL = fields.Integer(
+        string="Quantidade de volumes transportados", out_required=True
+    )
 
     PESO_BRT = fields.Float(
         string="Peso bruto dos volumes transportados",
@@ -9052,35 +10097,85 @@ class RegistroD170(models.AbstractModel):
     COD_MUN_ORIG = fields.Char(
         string="Código do município de origem do serviço",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="7*",
-        help="Código do município de origem do serviço, conforme a tabela IBGE",
+        help=(
+            "Código do município de origem do serviço, conforme a tabela IBGE(Preencher"
+            " com 9999999, se Exterior)"
+        ),
     )
 
     COD_MUN_DEST = fields.Char(
         string="Código do município de destino",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="7*",
-        help="Código do município de destino, conforme a tabela IBGE",
+        help=(
+            "Código do município de destino, conforme a tabela IBGE(Preencher com "
+            "9999999, se Exterior)"
+        ),
     )
 
-    OTM = fields.Char(string="Registro do operador de transporte multimodal")
+    OTM = fields.Char(
+        string="Registro do operador de transporte multimodal", out_required=True
+    )
 
-    IND_NAT_FRT = fields.Char(string="Indicador da natureza do frete", sped_length="1*")
+    IND_NAT_FRT = fields.Char(
+        string="Indicador da natureza do frete",
+        out_required=True,
+        sped_length="1*",
+        help="Indicador da natureza do frete: 0- Negociável; 1- Não negociável",
+    )
+
+    VL_LIQ_FRT = fields.Monetary(
+        string="Valor líquido do frete",
+        out_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_GRIS = fields.Monetary(
+        string="Valor do gris",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help="Valor do gris (gerenciamento de risco)",
+    )
+
+    VL_PDG = fields.Monetary(
+        string="Somatório dos valores de pedágio",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_OUT = fields.Monetary(
+        string="Outros valores", xsd_type="TDec_1602", currency_field="brl_currency_id"
+    )
+
+    VL_FRT = fields.Monetary(
+        string="Valor total do frete",
+        out_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VEIC_ID = fields.Char(string="Placa de identificação do veículo", sped_length="7")
+
+    UF_ID = fields.Char(string="Sigla da UF da placa do veículo", sped_length="2")
 
     reg_D170_ids_RegistroD100_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.d100",
-        string="Registro D100- Nota Fiscal de Serviço",
+        string="Nota Fiscal de Serviço de Transporte",
         required=True,
         ondelete="cascade",
         help=(
-            "Registro D100- Nota Fiscal de Serviço de Transporte (código 07) e "
-            "Conhecimentos de transporte Rodoviário de Cargas (código 08), "
-            "Conhecimentos de Transporte de Cargas Avulso (código 8b), Aquaviário de "
-            "Cargas (código 09), Aéreo (código 10), Ferroviário de Cargas (código 11), "
-            "Multimodal de Cargas (código 26), Nota Fiscal de Transporte ferroviário de"
-            " carga (código 27), conhecimento de transporte eletrônico – ct-e (código "
-            "57) e conhecimento de transporte eletrônico para outros serviços - ct-e os"
-            " (código 67) e bilhete de passagem eletrônico (código 63)."
+            "Nota Fiscal de Serviço de Transporte (código 07), Conhecimentos de "
+            "Transpor- te Rodoviário De Cargas (código 08), Conhecimentos de Transporte"
+            " de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
+            "(código 10), Fer- roviário de Cargas (código 11), Multimodal de Cargas "
+            "(código 26), Nota Fiscal de Transporte Ferroviário de Carga (código 27), "
+            "Conhecimento de Transporte Eletrônico – CT-e (código 57), Conhecimento de "
+            "Transporte Eletrônico para Outros Serviços - CT-e OS (código 67) e Bilhete"
+            " de Passagem Eletrônico (códi- go 63)"
         ),
     )
 
@@ -9093,13 +10188,16 @@ class RegistroD180(models.AbstractModel):
     _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
     _sped_level = 3
 
-    NUM_SEQ = fields.Integer(string="Número de ordem sequencial do modal")
+    NUM_SEQ = fields.Integer(
+        string="Número de ordem sequencial do modal", out_required=True
+    )
 
     IND_EMIT = fields.Char(
         string="Indicador do emitente do documento fiscal",
+        out_required=True,
         sped_length="1*",
         help=(
-            "Indicador do emitente do documento fiscal: 0 - Emissão própria 1 - "
+            "Indicador do emitente do documento fiscal: 0 - Emissão própria; 1 - "
             "Terceiros"
         ),
     )
@@ -9107,11 +10205,13 @@ class RegistroD180(models.AbstractModel):
     CNPJ_CPF_EMIT = fields.Char(
         string="CNPJ ou CPF do participante emitente do modal",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="14",
     )
 
     UF_EMIT = fields.Char(
         string="Sigla da unidade da federação",
+        out_required=True,
         sped_length="2*",
         help="Sigla da unidade da federação do participante emitente do modal",
     )
@@ -9125,18 +10225,24 @@ class RegistroD180(models.AbstractModel):
     COD_MUN_ORIG = fields.Char(
         string="Código do município de origem do serviço",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="7*",
-        help="Código do município de origem do serviço, conforme a tabela IBGE",
+        help=(
+            "Código do município de origem do serviço, conforme a tabela IBGE(Preencher"
+            " com 9999999, se Exterior)"
+        ),
     )
 
     CNPJ_CPF_TOM = fields.Char(
         string="CNPJ/CPF do participante tomador do serviço",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="14",
     )
 
     UF_TOM = fields.Char(
         string="Sigla da unidade da federação (UF_TOM)",
+        out_required=True,
         sped_length="2*",
         help="Sigla da unidade da federação do participante tomador do serviço",
     )
@@ -9150,6 +10256,7 @@ class RegistroD180(models.AbstractModel):
     COD_MUN_DEST = fields.Char(
         string="Código do município de destino",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="7*",
         help=(
             "Código do município de destino, conforme a tabela IBGE(Preencher com "
@@ -9159,42 +10266,53 @@ class RegistroD180(models.AbstractModel):
 
     COD_MOD = fields.Char(
         string="Código do modelo do documento fiscal",
+        out_required=True,
         sped_length="2*",
-        help="Código do modelo do documento fiscal, conforme a tabela 4.1.1",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
     )
 
-    SER = fields.Char(string="Série do documento fiscal", sped_length="4")
+    SER = fields.Char(
+        string="Série do documento fiscal", out_required=True, sped_length="4"
+    )
 
     SUB = fields.Char(
         string="Subsérie do documento fiscal", xsd_type="numeric_code", sped_length="3"
     )
 
     NUM_DOC = fields.Char(
-        string="Número do documento fiscal", xsd_type="numeric_code", sped_length="9"
+        string="Número do documento fiscal",
+        xsd_type="numeric_code",
+        out_required=True,
+        sped_length="9",
     )
 
-    DT_DOC = fields.Date(string="Data da emissão do documento fiscal", sped_length="8*")
+    DT_DOC = fields.Date(
+        string="Data da emissão do documento fiscal",
+        out_required=True,
+        sped_length="8*",
+    )
 
     VL_DOC = fields.Monetary(
         string="Valor total do documento fiscal",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     reg_D180_ids_RegistroD100_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.d100",
-        string="Registro D100- Nota Fiscal de Serviço",
+        string="Nota Fiscal de Serviço de Transporte",
         required=True,
         ondelete="cascade",
         help=(
-            "Registro D100- Nota Fiscal de Serviço de Transporte (código 07) e "
-            "Conhecimentos de transporte Rodoviário de Cargas (código 08), "
-            "Conhecimentos de Transporte de Cargas Avulso (código 8b), Aquaviário de "
-            "Cargas (código 09), Aéreo (código 10), Ferroviário de Cargas (código 11), "
-            "Multimodal de Cargas (código 26), Nota Fiscal de Transporte ferroviário de"
-            " carga (código 27), conhecimento de transporte eletrônico – ct-e (código "
-            "57) e conhecimento de transporte eletrônico para outros serviços - ct-e os"
-            " (código 67) e bilhete de passagem eletrônico (código 63)."
+            "Nota Fiscal de Serviço de Transporte (código 07), Conhecimentos de "
+            "Transpor- te Rodoviário De Cargas (código 08), Conhecimentos de Transporte"
+            " de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
+            "(código 10), Fer- roviário de Cargas (código 11), Multimodal de Cargas "
+            "(código 26), Nota Fiscal de Transporte Ferroviário de Carga (código 27), "
+            "Conhecimento de Transporte Eletrônico – CT-e (código 57), Conhecimento de "
+            "Transporte Eletrônico para Outros Serviços - CT-e OS (código 67) e Bilhete"
+            " de Passagem Eletrônico (códi- go 63)"
         ),
     )
 
@@ -9211,6 +10329,7 @@ class RegistroD190(models.AbstractModel):
     CST_ICMS = fields.Char(
         string="Código da Situação Tributária",
         xsd_type="numeric_code",
+        in_required=True,
         sped_length="3*",
         help=(
             "Código da Situação Tributária, conforme a tabela indicada no item 4.3.1"
@@ -9220,6 +10339,7 @@ class RegistroD190(models.AbstractModel):
     CFOP = fields.Char(
         string="Código Fiscal de Operação e Prestação",
         xsd_type="numeric_code",
+        in_required=True,
         sped_length="4*",
         help=(
             "Código Fiscal de Operação e Prestação, conforme a tabela indicada no item "
@@ -9239,25 +10359,68 @@ class RegistroD190(models.AbstractModel):
 
     VL_OPR = fields.Monetary(
         string="Valor da operação correspondente à combinação",
+        in_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor da operação correspondente à combinação de CST_ICMS, CFOP e",
+        help=(
+            "Valor da operação correspondente à combinação de CST_ICMS, CFOP, e "
+            "alíquota do ICMS."
+        ),
+    )
+
+    VL_BC_ICMS = fields.Monetary(
+        string="Parcela correspondente ao 'Valor da base",
+        in_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Parcela correspondente ao 'Valor da base de cálculo do ICMS' referente à "
+            "combinação CST_ICMS, CFOP, e alíquota do ICMS"
+        ),
+    )
+
+    VL_ICMS = fields.Monetary(
+        string="Parcela correspondente ao 'Valor",
+        in_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Parcela correspondente ao 'Valor do ICMS' referente à combinação CST_ICMS,"
+            " CFOP e alíquota do ICMS"
+        ),
+    )
+
+    VL_RED_BC = fields.Monetary(
+        string="Valor não tributado em função da redução da base",
+        in_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor não tributado em função da redução da base de cálculo do ICMS, "
+            "referente à combinação de CST_ICMS, CFOP e alíquota do ICMS."
+        ),
+    )
+
+    COD_OBS = fields.Char(
+        string="Código da observação do lançamento fiscal",
+        sped_length="6",
+        help="Código da observação do lançamento fiscal (campo 02 do Registro 0460)",
     )
 
     reg_D190_ids_RegistroD100_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.d100",
-        string="Registro D100- Nota Fiscal de Serviço",
+        string="Nota Fiscal de Serviço de Transporte",
         required=True,
         ondelete="cascade",
         help=(
-            "Registro D100- Nota Fiscal de Serviço de Transporte (código 07) e "
-            "Conhecimentos de transporte Rodoviário de Cargas (código 08), "
-            "Conhecimentos de Transporte de Cargas Avulso (código 8b), Aquaviário de "
-            "Cargas (código 09), Aéreo (código 10), Ferroviário de Cargas (código 11), "
-            "Multimodal de Cargas (código 26), Nota Fiscal de Transporte ferroviário de"
-            " carga (código 27), conhecimento de transporte eletrônico – ct-e (código "
-            "57) e conhecimento de transporte eletrônico para outros serviços - ct-e os"
-            " (código 67) e bilhete de passagem eletrônico (código 63)."
+            "Nota Fiscal de Serviço de Transporte (código 07), Conhecimentos de "
+            "Transpor- te Rodoviário De Cargas (código 08), Conhecimentos de Transporte"
+            " de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
+            "(código 10), Fer- roviário de Cargas (código 11), Multimodal de Cargas "
+            "(código 26), Nota Fiscal de Transporte Ferroviário de Carga (código 27), "
+            "Conhecimento de Transporte Eletrônico – CT-e (código 57), Conhecimento de "
+            "Transporte Eletrônico para Outros Serviços - CT-e OS (código 67) e Bilhete"
+            " de Passagem Eletrônico (códi- go 63)"
         ),
     )
 
@@ -9273,6 +10436,7 @@ class RegistroD195(models.AbstractModel):
 
     COD_OBS = fields.Char(
         string="Código da observação do lançamento fiscal",
+        in_required=True,
         sped_length="6",
         help="Código da observação do lançamento fiscal (campo 02 do Registro 0460)",
     )
@@ -9281,18 +10445,18 @@ class RegistroD195(models.AbstractModel):
 
     reg_D195_ids_RegistroD100_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.d100",
-        string="Registro D100- Nota Fiscal de Serviço",
+        string="Nota Fiscal de Serviço de Transporte",
         required=True,
         ondelete="cascade",
         help=(
-            "Registro D100- Nota Fiscal de Serviço de Transporte (código 07) e "
-            "Conhecimentos de transporte Rodoviário de Cargas (código 08), "
-            "Conhecimentos de Transporte de Cargas Avulso (código 8b), Aquaviário de "
-            "Cargas (código 09), Aéreo (código 10), Ferroviário de Cargas (código 11), "
-            "Multimodal de Cargas (código 26), Nota Fiscal de Transporte ferroviário de"
-            " carga (código 27), conhecimento de transporte eletrônico – ct-e (código "
-            "57) e conhecimento de transporte eletrônico para outros serviços - ct-e os"
-            " (código 67) e bilhete de passagem eletrônico (código 63)."
+            "Nota Fiscal de Serviço de Transporte (código 07), Conhecimentos de "
+            "Transpor- te Rodoviário De Cargas (código 08), Conhecimentos de Transporte"
+            " de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
+            "(código 10), Fer- roviário de Cargas (código 11), Multimodal de Cargas "
+            "(código 26), Nota Fiscal de Transporte Ferroviário de Carga (código 27), "
+            "Conhecimento de Transporte Eletrônico – CT-e (código 57), Conhecimento de "
+            "Transporte Eletrônico para Outros Serviços - CT-e OS (código 67) e Bilhete"
+            " de Passagem Eletrônico (códi- go 63)"
         ),
     )
 
@@ -9319,10 +10483,11 @@ class RegistroD197(models.AbstractModel):
 
     COD_AJ = fields.Char(
         string="Código do ajustes/benefício/incentivo",
+        in_required=True,
         sped_length="1*",
         help=(
             "Código do ajustes/benefício/incentivo, conforme tabela indicada no item "
-            "5.3"
+            "5.3."
         ),
     )
 
@@ -9386,11 +10551,14 @@ class RegistroD300(models.AbstractModel):
 
     COD_MOD = fields.Char(
         string="Código do modelo do documento fiscal",
+        out_required=True,
         sped_length="2*",
-        help="Código do modelo do documento fiscal, conforme a tabela 4.1.1",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
     )
 
-    SER = fields.Char(string="Série do documento fiscal", sped_length="4")
+    SER = fields.Char(
+        string="Série do documento fiscal", out_required=True, sped_length="4"
+    )
 
     SUB = fields.Char(
         string="Subsérie do documento fiscal", xsd_type="numeric_code", sped_length="4"
@@ -9399,6 +10567,7 @@ class RegistroD300(models.AbstractModel):
     NUM_DOC_INI = fields.Char(
         string="Número do primeiro documento fiscal emitido",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="6",
         help=(
             "Número do primeiro documento fiscal emitido (mesmo modelo, série e "
@@ -9408,6 +10577,7 @@ class RegistroD300(models.AbstractModel):
 
     NUM_DOC_FIN = fields.Integer(
         string="Número do último documento fiscal emitido",
+        out_required=True,
         help=(
             "Número do último documento fiscal emitido (mesmo modelo, série e subsérie)"
         ),
@@ -9416,15 +10586,17 @@ class RegistroD300(models.AbstractModel):
     CST_ICMS = fields.Char(
         string="Código da Situação Tributária",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="3*",
         help=(
-            "Código da Situação Tributária, conforme a tabela indicada no item 4.3.1"
+            "Código da Situação Tributária, conforme a Tabela indicada no item 4.3.1"
         ),
     )
 
     CFOP = fields.Char(
         string="Código Fiscal de Operação",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="4*",
         help=(
             "Código Fiscal de Operação e Prestação conforme tabela indicada no item "
@@ -9443,17 +10615,20 @@ class RegistroD300(models.AbstractModel):
     )
 
     DT_DOC = fields.Date(
-        string="Data da emissão dos documentos fiscais", sped_length="8*"
+        string="Data da emissão dos documentos fiscais",
+        out_required=True,
+        sped_length="8*",
     )
 
     VL_OPR = fields.Monetary(
         string="Valor total acumulado",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
             "Valor total acumulado das operações correspondentes à combinação de "
             "CST_ICMS, CFOP e alíquota do ICMS, incluídas as despesas acessórias e "
-            "acréscimos"
+            "acréscimos."
         ),
     )
 
@@ -9465,6 +10640,7 @@ class RegistroD300(models.AbstractModel):
 
     VL_SERV = fields.Monetary(
         string="Valor total da prestação de serviço",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -9481,23 +10657,26 @@ class RegistroD300(models.AbstractModel):
 
     VL_BC_ICMS = fields.Monetary(
         string="Valor total da base de cálculo do ICMS",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_ICMS = fields.Monetary(
         string="Valor total do ICMS",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_RED_BC = fields.Monetary(
         string="Valor não tributado em função da redução da base",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
             "Valor não tributado em função da redução da base de cálculo do ICMS, "
-            "referente à combinação de CST_ICMS, CFOP e alíquota do ICMS"
+            "referente à combinação de CST_ICMS, CFOP e alíquota do ICMS."
         ),
     )
 
@@ -9545,7 +10724,9 @@ class RegistroD301(models.AbstractModel):
     _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
     _sped_level = 3
 
-    NUM_DOC_CANC = fields.Integer(string="Número do documento fiscal cancelado")
+    NUM_DOC_CANC = fields.Integer(
+        string="Número do documento fiscal cancelado", out_required=True
+    )
 
     reg_D301_ids_RegistroD300_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.d300",
@@ -9572,12 +10753,14 @@ class RegistroD310(models.AbstractModel):
     COD_MUN_ORIG = fields.Char(
         string="Código do município de origem do serviço",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="7*",
         help="Código do município de origem do serviço, conforme a tabela IBGE",
     )
 
     VL_SERV = fields.Monetary(
         string="Valor total da prestação de serviço",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -9617,19 +10800,25 @@ class RegistroD350(models.AbstractModel):
 
     COD_MOD = fields.Char(
         string="Código do modelo do documento fiscal",
+        out_required=True,
         sped_length="2*",
-        help="Código do modelo do documento fiscal, conforme a tabela 4.1.1",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
     )
 
-    ECF_MOD = fields.Char(string="Modelo do equipamento", sped_length="2")
+    ECF_MOD = fields.Char(
+        string="Modelo do equipamento", out_required=True, sped_length="2"
+    )
 
     ECF_FAB = fields.Char(
-        string="Número de série de fabricação do ECF", sped_length="21"
+        string="Número de série de fabricação do ECF",
+        out_required=True,
+        sped_length="21",
     )
 
     ECF_CX = fields.Char(
         string="Número do caixa atribuído ao ECF",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="3",
     )
 
@@ -9651,24 +10840,29 @@ class RegistroD355(models.AbstractModel):
     _sped_level = 3
 
     DT_DOC = fields.Date(
-        string="Data do movimento a que se refere a Redução Z", sped_length="8*"
+        string="Data do movimento a que se refere a Redução Z",
+        out_required=True,
+        sped_length="8*",
     )
 
     CRO = fields.Char(
         string="Posição do Contador de Reinício de Operação",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="3",
     )
 
     CRZ = fields.Char(
         string="Posição do Contador de Redução Z",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="6",
     )
 
     NUM_COO_FIN = fields.Char(
         string="Número do Contador de Ordem de Operação",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="9",
         help=(
             "Número do Contador de Ordem de Operação do último documento emitido no "
@@ -9678,6 +10872,7 @@ class RegistroD355(models.AbstractModel):
 
     GT_FIN = fields.Float(
         string="Valor do Grande Total final",
+        out_required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -9687,6 +10882,7 @@ class RegistroD355(models.AbstractModel):
 
     VL_BRT = fields.Monetary(
         string="Valor da venda bruta",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -9769,18 +10965,20 @@ class RegistroD365(models.AbstractModel):
 
     COD_TOT_PAR = fields.Char(
         string="Código do totalizador",
+        out_required=True,
         sped_length="7",
-        help="Código do totalizador, conforme tabela 4.4.6",
+        help="Código do totalizador, conforme Tabela 4.4.6",
     )
 
     VLR_ACUM_TOT = fields.Float(
         string="Valor acumulado no totalizador",
+        out_required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
             2,
         ),
-        help="Valor acumulado no totalizador, relativo à respectiva Redução Z",
+        help="Valor acumulado no totalizador, relativo à respectiva Redução Z.",
     )
 
     NR_TOT = fields.Char(
@@ -9789,7 +10987,7 @@ class RegistroD365(models.AbstractModel):
         sped_length="2",
         help=(
             "Número do totalizador quando ocorrer mais de uma situação com a mesma "
-            "carga tributária efetiva"
+            "carga tributária efetiva."
         ),
     )
 
@@ -9797,7 +10995,7 @@ class RegistroD365(models.AbstractModel):
         string="Descrição da situação tributária relativa",
         help=(
             "Descrição da situação tributária relativa ao totalizador parcial, quando "
-            "houver mais de um com a mesma carga tributária efetiva"
+            "houver mais de um com a mesma carga tributária efetiva."
         ),
     )
 
@@ -9831,17 +11029,21 @@ class RegistroD370(models.AbstractModel):
     COD_MUN_ORIG = fields.Char(
         string="Código do município de origem do serviço",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="7*",
         help="Código do município de origem do serviço, conforme a tabela IBGE",
     )
 
     VL_SERV = fields.Monetary(
         string="Valor total da prestação de serviço",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
-    QTD_BILH = fields.Integer(string="Quantidade de bilhetes emitidos")
+    QTD_BILH = fields.Integer(
+        string="Quantidade de bilhetes emitidos", out_required=True
+    )
 
     VL_BC_ICMS = fields.Monetary(
         string="Valor total da base de cálculo do ICMS",
@@ -9974,6 +11176,7 @@ class RegistroD400(models.AbstractModel):
 
     COD_PART = fields.Char(
         string="Código do participante",
+        out_required=True,
         sped_length="6",
         help=(
             "Código do participante (campo 02 do Registro 0150): - agência, filial ou "
@@ -9983,15 +11186,17 @@ class RegistroD400(models.AbstractModel):
 
     COD_MOD = fields.Char(
         string="Código do modelo do documento fiscal",
+        out_required=True,
         sped_length="2*",
-        help="Código do modelo do documento fiscal, conforme a tabela 4.1.1",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
     )
 
     COD_SIT = fields.Char(
         string="Código da situação do documento fiscal",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="2*",
-        help="Código da situação do documento fiscal, conforme a tabela 4.1.2",
+        help="Código da situação do documento fiscal, conforme a Tabela 4.1.2",
     )
 
     SER = fields.Char(string="Série do documento fiscal", sped_length="4")
@@ -10003,13 +11208,19 @@ class RegistroD400(models.AbstractModel):
     NUM_DOC = fields.Char(
         string="Número do documento fiscal resumo",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="6",
     )
 
-    DT_DOC = fields.Date(string="Data da emissão do documento fiscal", sped_length="8*")
+    DT_DOC = fields.Date(
+        string="Data da emissão do documento fiscal",
+        out_required=True,
+        sped_length="8*",
+    )
 
     VL_DOC = fields.Monetary(
         string="Valor total do documento fiscal",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -10022,6 +11233,7 @@ class RegistroD400(models.AbstractModel):
 
     VL_SERV = fields.Monetary(
         string="Valor acumulado da prestação de serviço",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -10077,14 +11289,101 @@ class RegistroD410(models.AbstractModel):
 
     COD_MOD = fields.Char(
         string="Código do modelo do documento fiscal ",
+        out_required=True,
         sped_length="2*",
-        help="Código do modelo do documento fiscal , conforme a tabela 4.1.1",
+        help="Código do modelo do documento fiscal , conforme a Tabela 4.1.1",
     )
 
-    SER = fields.Char(string="Série do documento fiscal", sped_length="4")
+    SER = fields.Char(
+        string="Série do documento fiscal", out_required=True, sped_length="4"
+    )
 
     SUB = fields.Char(
         string="Subsérie do documento fiscal", xsd_type="numeric_code", sped_length="3"
+    )
+
+    NUM_DOC_INI = fields.Char(
+        string="Número do documento fiscal inicial",
+        xsd_type="numeric_code",
+        out_required=True,
+        sped_length="6",
+        help="Número do documento fiscal inicial (mesmo modelo, série e subsérie)",
+    )
+
+    NUM_DOC_FIN = fields.Integer(
+        string="Número do documento fiscal final",
+        out_required=True,
+        help="Número do documento fiscal final(mesmo modelo, série e subsérie)",
+    )
+
+    DT_DOC = fields.Date(
+        string="Data da emissão dos documentos fiscais",
+        out_required=True,
+        sped_length="8*",
+    )
+
+    CST_ICMS = fields.Char(
+        string="Código da Situação Tributária",
+        xsd_type="numeric_code",
+        out_required=True,
+        sped_length="3*",
+        help=(
+            "Código da Situação Tributária, conforme a Tabela indicada no item 4.3.1"
+        ),
+    )
+
+    CFOP = fields.Char(
+        string="Código Fiscal de Operação e Prestação",
+        xsd_type="numeric_code",
+        out_required=True,
+        sped_length="4*",
+    )
+
+    ALIQ_ICMS = fields.Float(
+        string="Alíquota do ICMS",
+        sped_length="6",
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+    )
+
+    VL_OPR = fields.Monetary(
+        string="Valor total acumulado",
+        out_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor total acumulado das operações correspondentes à combinação de "
+            "CST_ICMS, CFOP e alíquota do ICMS, incluídas as despesas acessórias e "
+            "acréscimos."
+        ),
+    )
+
+    VL_DESC = fields.Monetary(
+        string="Valor acumulado dos descontos",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_SERV = fields.Monetary(
+        string="Valor acumulado da prestação de serviço",
+        out_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_BC_ICMS = fields.Monetary(
+        string="Valor acumulado da base de cálculo do ICMS",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_ICMS = fields.Monetary(
+        string="Valor acumulado do ICMS",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
     )
 
     reg_D410_ids_RegistroD400_id = fields.Many2one(
@@ -10116,7 +11415,9 @@ class RegistroD411(models.AbstractModel):
     _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
     _sped_level = 4
 
-    NUM_DOC_CANC = fields.Integer(string="Número do documento fiscal cancelado")
+    NUM_DOC_CANC = fields.Integer(
+        string="Número do documento fiscal cancelado", out_required=True
+    )
 
     reg_D411_ids_RegistroD410_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.d410",
@@ -10138,24 +11439,20 @@ class RegistroD420(models.AbstractModel):
     COD_MUN_ORIG = fields.Char(
         string="Código do município de origem do serviço",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="7*",
         help="Código do município de origem do serviço, conforme a tabela IBGE",
     )
 
     VL_SERV = fields.Monetary(
         string="Valor total da prestação de serviço",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_BC_ICMS = fields.Monetary(
         string="Valor total da base de cálculo do ICMS",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    VL_ICMS = fields.Monetary(
-        string="Valor total do ICMS",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -10179,27 +11476,147 @@ class RegistroD500(models.AbstractModel):
     _sped_level = 2
 
     IND_OPER = fields.Char(
-        string="Indicador do tipo de operação: 0",
+        string="Indicador do tipo de operação",
+        in_required=True,
         sped_length="1*",
-        help="Indicador do tipo de operação: 0 - Aquisição 1 - Prestação",
+        help="Indicador do tipo de operação: 0- Aquisição; 1- Prestação",
     )
 
     IND_EMIT = fields.Char(
         string="Indicador do emitente do documento fiscal",
+        in_required=True,
         sped_length="1*",
         help=(
-            "Indicador do emitente do documento fiscal: 0 - Emissão própria; 1 - "
+            "Indicador do emitente do documento fiscal: 0- Emissão própria; 1- "
             "Terceiros"
         ),
     )
 
     COD_PART = fields.Char(
         string="Código do participante",
+        in_required=True,
         sped_length="6",
         help=(
             "Código do participante (campo 02 do Registro 0150): - do prestador do "
-            "serviço, no caso de aquisição - do tomador do serviço, no caso de "
-            "prestação"
+            "serviço, no caso de aquisição; - do tomador do serviço, no caso de "
+            "prestação."
+        ),
+    )
+
+    COD_MOD = fields.Char(
+        string="Código do modelo do documento fiscal",
+        in_required=True,
+        sped_length="2*",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
+    )
+
+    COD_SIT = fields.Char(
+        string="Código da situação do documento fiscal",
+        xsd_type="numeric_code",
+        in_required=True,
+        sped_length="2*",
+        help="Código da situação do documento fiscal, conforme a Tabela 4.1.2",
+    )
+
+    SER = fields.Char(string="Série do documento fiscal", sped_length="4")
+
+    SUB = fields.Char(string="Subsérie do documento fiscal", sped_length="3")
+
+    NUM_DOC = fields.Char(
+        string="Número do documento fiscal",
+        xsd_type="numeric_code",
+        in_required=True,
+        sped_length="9",
+    )
+
+    DT_DOC = fields.Date(
+        string="Data da emissão do documento fiscal", in_required=True, sped_length="8*"
+    )
+
+    DT_A_P = fields.Date(
+        string="Data da entrada",
+        sped_length="8*",
+        help="Data da entrada (aquisição) ou da saída (prestação do serviço)",
+    )
+
+    VL_DOC = fields.Monetary(
+        string="Valor total do documento fiscal",
+        in_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_DESC = fields.Monetary(
+        string="Valor total do desconto",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_SERV = fields.Monetary(
+        string="Valor da prestação de serviços",
+        in_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_SERV_NT = fields.Monetary(
+        string="Valor total dos serviços não-tributados pelo ICMS",
+        out_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_TERC = fields.Monetary(
+        string="Valores cobrados em nome de terceiros",
+        out_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_DA = fields.Monetary(
+        string="Valor de outras despesas indicadas",
+        out_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help="Valor de outras despesas indicadas no documento fiscal",
+    )
+
+    VL_BC_ICMS = fields.Monetary(
+        string="Valor da base de cálculo do ICMS",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_ICMS = fields.Monetary(
+        string="Valor do ICMS", xsd_type="TDec_1602", currency_field="brl_currency_id"
+    )
+
+    COD_INF = fields.Char(
+        string="Código da informação complementar",
+        sped_length="6",
+        help="Código da informação complementar (campo 02 do Registro 0450)",
+    )
+
+    VL_PIS = fields.Monetary(
+        string="Valor do PIS", xsd_type="TDec_1602", currency_field="brl_currency_id"
+    )
+
+    VL_COFINS = fields.Monetary(
+        string="Valor da COFINS", xsd_type="TDec_1602", currency_field="brl_currency_id"
+    )
+
+    COD_CTA = fields.Char(
+        string="Código", help="Código da conta analítica contábil debitada/creditada"
+    )
+
+    TP_ASSINANTE = fields.Char(
+        string="Código do Tipo de Assinante: 1",
+        xsd_type="numeric_code",
+        out_required=True,
+        sped_length="1*",
+        help=(
+            "Código do Tipo de Assinante: 1 - Comercial/Industrial 2 - Poder Público 3 "
+            "- Residencial/Pessoa física 4 - Público 5 - Semi-Público 6 - Outros"
         ),
     )
 
@@ -10242,11 +11659,13 @@ class RegistroD510(models.AbstractModel):
     NUM_ITEM = fields.Char(
         string="Número sequencial do item no documento fiscal",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="3",
     )
 
     COD_ITEM = fields.Char(
         string="Código do item",
+        out_required=True,
         sped_length="6",
         help="Código do item (campo 02 do Registro 0200)",
     )
@@ -10254,15 +11673,17 @@ class RegistroD510(models.AbstractModel):
     COD_CLASS = fields.Char(
         string="Código de classificação do item do serviço",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="4*",
         help=(
             "Código de classificação do item do serviço de comunicação ou de "
-            "telecomunicação, conforme a tabela 4.4.1"
+            "telecomunicação, conforme a Tabela 4.4.1"
         ),
     )
 
     QTD = fields.Float(
         string="Quantidade do item",
+        out_required=True,
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -10272,12 +11693,16 @@ class RegistroD510(models.AbstractModel):
 
     UNID = fields.Char(
         string="Unidade do item",
+        out_required=True,
         sped_length="6",
         help="Unidade do item (Campo 02 do registro 0190)",
     )
 
     VL_ITEM = fields.Monetary(
-        string="Valor do item", xsd_type="TDec_1602", currency_field="brl_currency_id"
+        string="Valor do item",
+        out_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
     )
 
     VL_DESC = fields.Monetary(
@@ -10289,15 +11714,17 @@ class RegistroD510(models.AbstractModel):
     CST_ICMS = fields.Char(
         string="Código da Situação Tributária",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="3*",
         help=(
-            "Código da Situação Tributária, conforme a tabela indicada no item 4.3.1"
+            "Código da Situação Tributária, conforme a Tabela indicada no item 4.3.1"
         ),
     )
 
     CFOP = fields.Char(
         string="Código Fiscal de Operação e Prestação",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="4*",
     )
 
@@ -10324,25 +11751,26 @@ class RegistroD510(models.AbstractModel):
     )
 
     VL_BC_ICMS_UF = fields.Monetary(
-        string="Valor da base de cálculo do ICMS a outras UFs",
+        string="Valor da base de cálculo do ICMS de outras UFs",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_ICMS_UF = fields.Monetary(
-        string="Valor do ICMS a outras UFs",
+        string="Valor do ICMS de outras UFs",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     IND_REC = fields.Char(
-        string="Indicador do tipo de receita: 0",
+        string="Indicador do tipo de receita",
+        out_required=True,
         sped_length="1*",
         help=(
-            "Indicador do tipo de receita: 0 - Receita própria - serviços prestados 1 -"
-            " Receita própria - cobrança de débitos 2 - Receita própria - venda de "
-            "mercadorias 3 - Receita própria - venda de serviço pré-pago 4 - Outras "
-            "receitas próprias 5 - Receitas de terceiros (co-faturamento) 9 - Outras "
+            "Indicador do tipo de receita: 0- Receita própria - serviços prestados; 1- "
+            "Receita própria - cobrança de débitos; 2- Receita própria - venda de "
+            "mercadorias; 3- Receita própria - venda de serviço pré-pago; 4- Outras "
+            "receitas próprias; 5- Receitas de terceiros (co-faturamento); 9- Outras "
             "receitas de terceiros"
         ),
     )
@@ -10352,7 +11780,7 @@ class RegistroD510(models.AbstractModel):
         sped_length="6",
         help=(
             "Código do participante (campo 02 do Registro 0150) receptor da receita, "
-            "terceiro da operação, se houver"
+            "terceiro da operação, se houver."
         ),
     )
 
@@ -10364,9 +11792,7 @@ class RegistroD510(models.AbstractModel):
         string="Valor da COFINS", xsd_type="TDec_1602", currency_field="brl_currency_id"
     )
 
-    COD_CTA = fields.Char(
-        string="Código", help="Código da conta analítica contábil debitada/creditada"
-    )
+    COD_CTA = fields.Char(string="Código da conta analítica contábil")
 
     reg_D510_ids_RegistroD500_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.d500",
@@ -10390,11 +11816,12 @@ class RegistroD530(models.AbstractModel):
 
     IND_SERV = fields.Char(
         string="Indicador do tipo de serviço prestado",
+        out_required=True,
         sped_length="1*",
         help=(
-            "Indicador do tipo de serviço prestado: 0- Telefonia; 1- Comunicação de "
-            "dados; 2- TV por assinatura; 3- Provimento de acesso à Internet; 4- "
-            "Multimídia; 9- Outros"
+            "Indicador do tipo de serviço prestado: 0 - Telefonia; 1 - Comunicação de "
+            "dados; 2 - TV por assinatura; 3 - Provimento de acesso à Internet; 4 - "
+            "Multimídia; 9 - Outros"
         ),
     )
 
@@ -10409,14 +11836,12 @@ class RegistroD530(models.AbstractModel):
     PER_FISCAL = fields.Char(
         string="Período fiscal da prestação do serviço",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="6*",
         help="Período fiscal da prestação do serviço (MMAAAA)",
     )
 
-    COD_AREA = fields.Char(
-        string="Código de área do terminal faturado",
-        help="Código de área do terminal faturado, próprio da prestadora",
-    )
+    COD_AREA = fields.Char(string="Código de área do terminal faturado")
 
     TERMINAL = fields.Integer(string="Identificação do terminal faturado")
 
@@ -10443,6 +11868,7 @@ class RegistroD590(models.AbstractModel):
     CST_ICMS = fields.Char(
         string="Código da Situação Tributária",
         xsd_type="numeric_code",
+        in_required=True,
         sped_length="3*",
         help=(
             "Código da Situação Tributária, conforme a tabela indicada no item 4.3.1"
@@ -10452,6 +11878,7 @@ class RegistroD590(models.AbstractModel):
     CFOP = fields.Char(
         string="Código Fiscal de Operação e Prestação",
         xsd_type="numeric_code",
+        in_required=True,
         sped_length="4*",
         help=(
             "Código Fiscal de Operação e Prestação, conforme a tabela indicada no item "
@@ -10471,41 +11898,74 @@ class RegistroD590(models.AbstractModel):
 
     VL_OPR = fields.Monetary(
         string="Valor da operação correspondente à combinação",
+        in_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor da operação correspondente à combinação de CST_ICMS, CFOP e alíquota"
-            " do ICMS, incluídas as despesas acessórias e acréscimos"
+            "Valor da operação correspondente à combinação de CST_ICMS, CFOP, e "
+            "alíquota do ICMS, incluídas as despesas acessórias e acréscimos"
         ),
     )
 
     VL_BC_ICMS = fields.Monetary(
         string="Parcela correspondente ao 'Valor da base",
+        in_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
             "Parcela correspondente ao 'Valor da base de cálculo do ICMS' referente à "
-            "combinação CST_ICMS,CFOP e alíquota do ICMS"
+            "combinação CST_ICMS, CFOP, e alíquota do ICMS"
         ),
     )
 
     VL_ICMS = fields.Monetary(
         string="Parcela correspondente ao 'Valor",
+        in_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
             "Parcela correspondente ao 'Valor do ICMS' referente à combinação CST_ICMS,"
-            " CFOP e alíquota do ICMS"
+            " CFOP, e alíquota do ICMS"
         ),
     )
 
     VL_BC_ICMS_UF = fields.Monetary(
         string="Parcela correspondente ao valor da base de cálculo",
+        in_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Parcela correspondente ao valor da base de cálculo do ICMS de outras UFs,"
+            "Parcela correspondente ao valor da base de cálculo do ICMS de outras UFs, "
+            "referente à combinação de CST_ICMS, CFOP e alíquota do ICMS."
         ),
+    )
+
+    VL_ICMS_UF = fields.Monetary(
+        string="Parcela correspondente ao valor do ICMS",
+        in_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Parcela correspondente ao valor do ICMS de outras UFs, referente à "
+            "combinação de CST_ICMS, CFOP, e alíquota do ICMS."
+        ),
+    )
+
+    VL_RED_BC = fields.Monetary(
+        string="Valor não tributado em função da redução da base",
+        in_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor não tributado em função da redução da base de cálculo do ICMS, "
+            "referente à combinação de CST_ICMS, CFOP e alíquota do ICMS."
+        ),
+    )
+
+    COD_OBS = fields.Char(
+        string="Código da observação",
+        sped_length="6",
+        help="Código da observação (campo 02 do Registro 0460)",
     )
 
     reg_D590_ids_RegistroD500_id = fields.Many2one(
@@ -10531,18 +11991,22 @@ class RegistroD600(models.AbstractModel):
 
     COD_MOD = fields.Char(
         string="Código do modelo do documento fiscal",
+        out_required=True,
         sped_length="2*",
-        help="Código do modelo do documento fiscal, conforme a tabela 4.1.1",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
     )
 
     COD_MUN = fields.Char(
         string="Código do município dos terminais faturados",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="7*",
         help="Código do município dos terminais faturados, conforme a tabela IBGE",
     )
 
-    SER = fields.Char(string="Série do documento fiscal", sped_length="4")
+    SER = fields.Char(
+        string="Série do documento fiscal", out_required=True, sped_length="4"
+    )
 
     SUB = fields.Char(
         string="Subsérie do documento fiscal", xsd_type="numeric_code", sped_length="3"
@@ -10551,21 +12015,27 @@ class RegistroD600(models.AbstractModel):
     COD_CONS = fields.Char(
         string="Código de classe de consumo dos serviços",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="2*",
         help=(
             "Código de classe de consumo dos serviços de comunicação ou de "
-            "telecomunicação, conforme a tabela 4.4.4"
+            "telecomunicação, conforme a Tabela 4.4.4"
         ),
     )
 
     QTD_CONS = fields.Integer(
-        string="Quantidade", help="Quantidade de documentos consolidados neste registro"
+        string="Quantidade",
+        out_required=True,
+        help="Quantidade de documentos consolidados neste registro",
     )
 
-    DT_DOC = fields.Date(string="Data dos documentos consolidados", sped_length="8*")
+    DT_DOC = fields.Date(
+        string="Data dos documentos consolidados", out_required=True, sped_length="8*"
+    )
 
     VL_DOC = fields.Monetary(
         string="Valor total acumulado dos documentos fiscais",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -10578,6 +12048,7 @@ class RegistroD600(models.AbstractModel):
 
     VL_SERV = fields.Monetary(
         string="Valor acumulado das prestações",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help="Valor acumulado das prestações de serviços tributados pelo ICMS",
@@ -10650,21 +12121,24 @@ class RegistroD610(models.AbstractModel):
     COD_CLASS = fields.Char(
         string="Código de classificação do item do serviço",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="4*",
         help=(
             "Código de classificação do item do serviço de comunicação ou de "
-            "telecomunicação, conforme a tabela 4.4.1"
+            "telecomunicação, conforme a Tabela 4.4.1"
         ),
     )
 
     COD_ITEM = fields.Char(
         string="Código do item",
+        out_required=True,
         sped_length="6",
         help="Código do item (campo 02 do Registro 0200)",
     )
 
     QTD = fields.Float(
         string="Quantidade acumulada do item",
+        out_required=True,
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -10674,12 +12148,14 @@ class RegistroD610(models.AbstractModel):
 
     UNID = fields.Char(
         string="Unidade do item",
+        out_required=True,
         sped_length="6",
         help="Unidade do item (Campo 02 do registro 0190)",
     )
 
     VL_ITEM = fields.Monetary(
         string="Valor acumulado do item",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -10693,20 +12169,82 @@ class RegistroD610(models.AbstractModel):
     CST_ICMS = fields.Char(
         string="Código da Situação Tributária",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="3*",
         help=(
-            "Código da Situação Tributária, conforme a tabela indicada no item 4.3.1"
+            "Código da Situação Tributária, conforme a Tabela indicada no item 4.3.1"
         ),
     )
 
     CFOP = fields.Char(
         string="Código Fiscal de Operação",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="4*",
         help=(
             "Código Fiscal de Operação e Prestação conforme tabela indicada no item "
-            "4.2.2"
+            "4.2.2."
         ),
+    )
+
+    ALIQ_ICMS = fields.Float(
+        string="Alíquota do ICMS",
+        sped_length="6",
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+    )
+
+    VL_BC_ICMS = fields.Monetary(
+        string="Valor acumulado da base de cálculo do ICMS",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_ICMS = fields.Monetary(
+        string="Valor acumulado do ICMS debitado",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_BC_ICMS_UF = fields.Monetary(
+        string="Valor da base de cálculo do ICMS de outras UFs",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_ICMS_UF = fields.Monetary(
+        string="Valor do ICMS de outras UFs",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_RED_BC = fields.Monetary(
+        string="Valor não tributado em função da redução da base",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor não tributado em função da redução da base de cálculo do ICMS, "
+            "referente à combinação de CST_ICMS, CFOP e alíquota do ICMS."
+        ),
+    )
+
+    VL_PIS = fields.Monetary(
+        string="Valor acumulado do PIS",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_COFINS = fields.Monetary(
+        string="Valor acumulado da COFINS",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    COD_CTA = fields.Char(
+        string="Código", help="Código da conta analítica contábil debitada/creditada"
     )
 
     reg_D610_ids_RegistroD600_id = fields.Many2one(
@@ -10732,6 +12270,7 @@ class RegistroD690(models.AbstractModel):
     CST_ICMS = fields.Char(
         string="Código da Situação Tributária",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="3*",
         help=(
             "Código da Situação Tributária, conforme a tabela indicada no item 4.3.1"
@@ -10741,6 +12280,7 @@ class RegistroD690(models.AbstractModel):
     CFOP = fields.Char(
         string="Código Fiscal de Operação e Prestação",
         xsd_type="numeric_code",
+        out_required=True,
         sped_length="4*",
         help=(
             "Código Fiscal de Operação e Prestação, conforme a tabela indicada no item "
@@ -10760,68 +12300,68 @@ class RegistroD690(models.AbstractModel):
 
     VL_OPR = fields.Monetary(
         string="Valor da operação correspondente à combinação",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor da operação correspondente à combinação de CST_ICMS, CFOP e alíquota"
-            " do ICMS, incluídas as despesas acessórias e acréscimos"
+            "Valor da operação correspondente à combinação de CST_ICMS, CFOP, e "
+            "alíquota do ICMS, incluídas as despesas acessórias e acréscimos"
         ),
     )
 
     VL_BC_ICMS = fields.Monetary(
-        string="Parcela correspondente ao 'Valor da base",
+        string="Parcela correspondente ao “Valor da base",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Parcela correspondente ao 'Valor da base de cálculo do ICMS' referente à "
-            "combinação CST_ICMS, CFOP e alíquota do ICMS"
+            "Parcela correspondente ao “Valor da base de cálculo do ICMS” referente à "
+            "combinação CST_ICMS, CFOP, e alíquota do ICMS"
         ),
     )
 
     VL_ICMS = fields.Monetary(
         string="Parcela correspondente ao 'Valor",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
             "Parcela correspondente ao 'Valor do ICMS' referente à combinação CST_ICMS,"
-            " CFOP e alíquota do ICMS"
+            " CFOP, e alíquota do ICMS"
         ),
     )
 
     VL_BC_ICMS_UF = fields.Monetary(
         string="Parcela correspondente ao valor da base de cálculo",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
             "Parcela correspondente ao valor da base de cálculo do ICMS de outras UFs, "
-            "referente à combinação de CST_ICMS, CFOP e alíquota do ICMS"
+            "referente à"
         ),
     )
 
     VL_ICMS_UF = fields.Monetary(
         string="Parcela correspondente ao valor do ICMS",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
             "Parcela correspondente ao valor do ICMS de outras UFs, referente à "
-            "combinação de CST_ICMS, CFOP e alíquota do ICMS"
+            "combinação de CST ICMS, CFOP, e alíquota do ICMS."
         ),
     )
 
     VL_RED_BC = fields.Monetary(
         string="Valor não tributado em função da redução da base",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
             "Valor não tributado em função da redução da base de cálculo do ICMS, "
-            "referente à combinação de CST_ICMS, CFOP e alíquota do ICMS"
+            "referente à combinação de CST_ICMS, CFOP e alíquota do ICMS."
         ),
-    )
-
-    COD_OBS = fields.Char(
-        string="Código da observação do lançamento fiscal",
-        sped_length="6",
-        help="Código da observação do lançamento fiscal (campo 02 do Registro 0460)",
     )
 
     reg_D690_ids_RegistroD600_id = fields.Many2one(
@@ -10847,22 +12387,32 @@ class RegistroD695(models.AbstractModel):
 
     COD_MOD = fields.Char(
         string="Código do modelo do documento fiscal",
+        out_required=True,
         sped_length="2*",
-        help="Código do modelo do documento fiscal, conforme a tabela 4.1.1",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1.",
     )
 
-    SER = fields.Char(string="Série do documento fiscal", sped_length="4")
+    SER = fields.Char(
+        string="Série do documento fiscal", out_required=True, sped_length="4"
+    )
 
     NRO_ORD_INI = fields.Char(
-        string="Número de ordem inicial", xsd_type="numeric_code", sped_length="9"
+        string="Número de ordem inicial",
+        xsd_type="numeric_code",
+        out_required=True,
+        sped_length="9",
     )
 
     NRO_ORD_FIN = fields.Char(
-        string="Número de ordem final", xsd_type="numeric_code", sped_length="9"
+        string="Número de ordem final",
+        xsd_type="numeric_code",
+        out_required=True,
+        sped_length="9",
     )
 
     DT_DOC_INI = fields.Date(
         string="Data de emissão inicial",
+        out_required=True,
         sped_length="8*",
         help=(
             "Data de emissão inicial dos documentos / Data inicial de vencimento da "
@@ -10872,6 +12422,7 @@ class RegistroD695(models.AbstractModel):
 
     DT_DOC_FIN = fields.Date(
         string="Data de emissão final dos documentos / Data final",
+        out_required=True,
         sped_length="8*",
         help=(
             "Data de emissão final dos documentos / Data final do vencimento da fatura"
@@ -10879,7 +12430,16 @@ class RegistroD695(models.AbstractModel):
     )
 
     NOM_MEST = fields.Char(
-        string="Nome do arquivo Mestre de Documento Fiscal", sped_length="33"
+        string="Nome do arquivo Mestre de Documento Fiscal",
+        out_required=True,
+        sped_length="33",
+    )
+
+    CHV_COD_DIG = fields.Char(
+        string="Chave de codificação digital do arquivo Mestre",
+        out_required=True,
+        sped_length="32",
+        help="Chave de codificação digital do arquivo Mestre de Documento Fiscal",
     )
 
     reg_D696_ids = fields.One2many(
@@ -11034,16 +12594,22 @@ class RegistroD697(models.AbstractModel):
     _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
     _sped_level = 4
 
-    UF = fields.Char(string="Sigla da unidade da federação", sped_length="2*")
+    UF = fields.Char(
+        string="Sigla da unidade da federação", out_required=True, sped_length="2*"
+    )
 
     VL_BC_ICMS = fields.Monetary(
         string="Valor da base de cálculo do ICMS",
+        out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_ICMS = fields.Monetary(
-        string="Valor do ICMS", xsd_type="TDec_1602", currency_field="brl_currency_id"
+        string="Valor do ICMS",
+        out_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
     )
 
     reg_D697_ids_RegistroD696_id = fields.Many2one(
@@ -11064,11 +12630,13 @@ class RegistroE100(models.AbstractModel):
     _sped_level = 2
 
     DT_INI = fields.Date(
-        string="Data inicial a que a apuração se refere", sped_length="8*"
+        string="Data inicial a que a apuração se refere",
+        required=True,
+        sped_length="8*",
     )
 
     DT_FIN = fields.Date(
-        string="Data final a que a apuração se refere", sped_length="8*"
+        string="Data final a que a apuração se refere", required=True, sped_length="8*"
     )
 
     reg_E110_ids = fields.One2many(
@@ -11090,6 +12658,7 @@ class RegistroE110(models.AbstractModel):
 
     VL_TOT_DEBITOS = fields.Monetary(
         string="Valor total dos débitos por 'Saídas e prestações",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
@@ -11099,72 +12668,80 @@ class RegistroE110(models.AbstractModel):
 
     VL_AJ_DEBITOS = fields.Monetary(
         string="Valor total dos ajustes a débito decorrentes",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor total dos ajustes a débito decorrentes do documento fiscal",
+        help="Valor total dos ajustes a débito decorrentes do documento fiscal.",
     )
 
     VL_TOT_AJ_DEBITOS = fields.Monetary(
         string="Valor total de 'Ajustes a débito'",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_ESTORNOS_CRED = fields.Monetary(
         string="Valor total de Ajustes “Estornos de créditos”",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_TOT_CREDITOS = fields.Monetary(
         string="Valor total dos créditos por 'Entradas",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=(
-            "Valor total dos créditos por 'Entradas e aquisições com crédito do "
-            "imposto'"
-        ),
+        help="Valor total dos créditos por 'Entradas e aquisições com",
     )
 
     VL_AJ_CREDITOS = fields.Monetary(
         string="Valor total dos ajustes a crédito decorrentes",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor total dos ajustes a crédito decorrentes do documento fiscal",
+        help="Valor total dos ajustes a crédito decorrentes do documento fiscal.",
     )
 
     VL_TOT_AJ_CREDITOS = fields.Monetary(
         string="Valor total de 'Ajustes a crédito'",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_ESTORNOS_DEB = fields.Monetary(
         string="Valor total de Ajustes “Estornos de Débitos”",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_SLD_CREDOR_ANT = fields.Monetary(
         string="Valor total de 'Saldo credor do período anterior'",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_SLD_APURADO = fields.Monetary(
         string="Valor do saldo devedor apurado",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_TOT_DED = fields.Monetary(
         string="Valor total de 'Deduções'",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_ICMS_RECOLHER = fields.Monetary(
         string="Valor total de 'ICMS a recolher",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help="Valor total de 'ICMS a recolher (11-12)",
@@ -11172,6 +12749,7 @@ class RegistroE110(models.AbstractModel):
 
     VL_SLD_CREDOR_TRANSPORTAR = fields.Monetary(
         string="Valor total de 'Saldo credor a transportar",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help="Valor total de 'Saldo credor a transportar para o período seguinte”",
@@ -11179,12 +12757,13 @@ class RegistroE110(models.AbstractModel):
 
     DEB_ESP = fields.Float(
         string="Valores recolhidos ou a recolher",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
             2,
         ),
-        help="Valores recolhidos ou a recolher, extra-apuração",
+        help="Valores recolhidos ou a recolher, extra-apuração.",
     )
 
     reg_E110_ids_RegistroE100_id = fields.Many2one(
@@ -11231,14 +12810,22 @@ class RegistroE111(models.AbstractModel):
 
     COD_AJ_APUR = fields.Char(
         string="Código do ajuste da apuração e dedução",
+        required=True,
         sped_length="8*",
         help=(
-            "Código do ajuste da apuração e dedução, conforme a tabela indicada no item"
-            " 5.1.1"
+            "Código do ajuste da apuração e dedução, conforme a Tabela indicada no item"
+            " 5.1.1."
         ),
     )
 
     DESCR_COMPL_AJ = fields.Char(string="Descrição complementar do ajuste da apuração")
+
+    VL_AJ_APUR = fields.Monetary(
+        string="Valor do ajuste da apuração",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
 
     reg_E111_ids_RegistroE110_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.e110",
@@ -11283,7 +12870,7 @@ class RegistroE112(models.AbstractModel):
 
     NUM_PROC = fields.Char(
         string="Número do processo ao qual o ajuste está vinculado",
-        sped_length="6",
+        sped_length="15",
         help="Número do processo ao qual o ajuste está vinculado, se houver",
     )
 
@@ -11291,8 +12878,8 @@ class RegistroE112(models.AbstractModel):
         string="Indicador da origem do processo",
         sped_length="1*",
         help=(
-            "Indicador da origem do processo: 0- Sefaz 1- Justiça Federal 2- Justiça "
-            "Estadual 9- Outros"
+            "Indicador da origem do processo: 0- Sefaz; 1- Justiça Federal; 2- Justiça "
+            "Estadual; 9- Outros"
         ),
     )
 
@@ -11325,15 +12912,16 @@ class RegistroE113(models.AbstractModel):
         sped_length="6",
         help=(
             "Código do participante (campo 02 do Registro 0150): - do emitente do "
-            "documento ou do remetente das mercadorias, no caso de entradas - do "
+            "documento ou do remetente das mercadorias, no caso de entradas; - do "
             "adquirente, no caso de saídas"
         ),
     )
 
     COD_MOD = fields.Char(
         string="Código do modelo do documento fiscal",
+        required=True,
         sped_length="2*",
-        help="Código do modelo do documento fiscal, conforme a tabela 4.1.1",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
     )
 
     SER = fields.Char(string="Série do documento fiscal", sped_length="4")
@@ -11343,10 +12931,15 @@ class RegistroE113(models.AbstractModel):
     )
 
     NUM_DOC = fields.Char(
-        string="Número do documento fiscal", xsd_type="numeric_code", sped_length="9"
+        string="Número do documento fiscal",
+        required=True,
+        xsd_type="numeric_code",
+        sped_length="9",
     )
 
-    DT_DOC = fields.Date(string="Data da emissão do documento fiscal", sped_length="8*")
+    DT_DOC = fields.Date(
+        string="Data da emissão do documento fiscal", required=True, sped_length="8*"
+    )
 
     COD_ITEM = fields.Char(
         string="Código do item",
@@ -11356,14 +12949,9 @@ class RegistroE113(models.AbstractModel):
 
     VL_AJ_ITEM = fields.Monetary(
         string="Valor do ajuste para a operação/item",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-    )
-
-    CHV_DOCE = fields.Char(
-        string="Chave do Documento Eletrônico",
-        xsd_type="numeric_code",
-        sped_length="44*",
     )
 
     reg_E113_ids_RegistroE111_id = fields.Many2one(
@@ -11384,15 +12972,17 @@ class RegistroE115(models.AbstractModel):
 
     COD_INF_ADIC = fields.Char(
         string="Código da informação adicional conforme tabela",
+        required=True,
         sped_length="8*",
         help=(
             "Código da informação adicional conforme tabela a ser definida pelas SEFAZ,"
-            " conforme tabela definida no item 5.2"
+            " conforme tabela definida no item 5.2."
         ),
     )
 
     VL_INF_ADIC = fields.Monetary(
         string="Valor referente à informação adicional",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -11494,16 +13084,19 @@ class RegistroE200(models.AbstractModel):
 
     UF = fields.Char(
         string="Sigla da unidade da federação a que se refere",
+        required=True,
         sped_length="2*",
         help="Sigla da unidade da federação a que se refere a apuração do ICMS ST",
     )
 
     DT_INI = fields.Date(
-        string="Data inicial a que a apuração se refere", sped_length="8*"
+        string="Data inicial a que a apuração se refere",
+        required=True,
+        sped_length="8*",
     )
 
     DT_FIN = fields.Date(
-        string="Data final a que a apuração se refere", sped_length="8*"
+        string="Data final a que a apuração se refere", required=True, sped_length="8*"
     )
 
     reg_E210_ids = fields.One2many(
@@ -11524,34 +13117,39 @@ class RegistroE210(models.AbstractModel):
     _sped_level = 3
 
     IND_MOV_ST = fields.Char(
-        string="Indicador de movimento: 0",
+        string="Indicador de movimento",
+        required=True,
         sped_length="1",
         help=(
-            "Indicador de movimento: 0 - Sem operações com ST 1 - Com operações de ST"
+            "Indicador de movimento: 0 – Sem operações com ST 1 – Com operações de ST"
         ),
     )
 
     VL_SLD_CRED_ANT_ST = fields.Monetary(
-        string="Valor do 'Saldo credor de período anterior",
+        string="Valor do 'Saldo credor",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor do 'Saldo credor de período anterior - Substituição Tributária'",
+        help="Valor do 'Saldo credor de período anterior – Substituição Tributária'",
     )
 
     VL_DEVOL_ST = fields.Monetary(
         string="Valor total do ICMS ST de devolução de mercadorias",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_RESSARC_ST = fields.Monetary(
         string="Valor total do ICMS ST de ressarcimentos",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_OUT_CRED_ST = fields.Monetary(
         string="Valor total de Ajustes 'Outros créditos ST'",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help="Valor total de Ajustes 'Outros créditos ST' e “Estorno de débitos ST”",
@@ -11559,16 +13157,18 @@ class RegistroE210(models.AbstractModel):
 
     VL_AJ_CREDITOS_ST = fields.Monetary(
         string="Valor total dos ajustes a crédito de ICMS ST",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
             "Valor total dos ajustes a crédito de ICMS ST, provenientes de ajustes do "
-            "documento fiscal"
+            "documento fiscal."
         ),
     )
 
     VL_RETENCAO_ST = fields.Monetary(
         string="Valor Total do ICMS retido",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help="Valor Total do ICMS retido por Substituição Tributária",
@@ -11576,6 +13176,7 @@ class RegistroE210(models.AbstractModel):
 
     VL_OUT_DEB_ST = fields.Monetary(
         string="Valor Total dos ajustes 'Outros débitos ST' '",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
@@ -11585,30 +13186,56 @@ class RegistroE210(models.AbstractModel):
 
     VL_AJ_DEBITOS_ST = fields.Monetary(
         string="Valor total dos ajustes a débito de ICMS ST",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
             "Valor total dos ajustes a débito de ICMS ST, provenientes de ajustes do "
-            "documento fiscal"
+            "documento fiscal."
         ),
     )
 
     VL_SLD_DEV_ANT_ST = fields.Monetary(
         string="Valor total de Saldo devedor antes das deduções",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_DEDUCOES_ST = fields.Monetary(
         string="Valor total dos ajustes 'Deduções ST'",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_ICMS_RECOL_ST = fields.Monetary(
         string="Imposto a recolher ST (11-12)",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
+    )
+
+    VL_SLD_CRED_ST_TRANSPORTAR = fields.Monetary(
+        string="Saldo credor de ST a transportar",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Saldo credor de ST a transportar para o período seguinte "
+            "[(03+04+05+06+07+12) – (08+09+10)]."
+        ),
+    )
+
+    DEB_ESP_ST = fields.Float(
+        string="Valores recolhidos ou a recolher",
+        required=True,
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+        help="Valores recolhidos ou a recolher, extra-apuração.",
     )
 
     reg_E210_ids_RegistroE200_id = fields.Many2one(
@@ -11757,18 +13384,20 @@ class RegistroE240(models.AbstractModel):
 
     COD_PART = fields.Char(
         string="Código do participante",
+        required=True,
         sped_length="6",
         help=(
             "Código do participante (campo 02 do Registro 0150): - do emitente do "
-            "documento ou do remetente das mercadorias, no caso de entradas - do "
+            "documento ou do remetente das mercadorias, no caso de entradas; - do "
             "adquirente, no caso de saídas"
         ),
     )
 
     COD_MOD = fields.Char(
         string="Código do modelo do documento fiscal",
+        required=True,
         sped_length="2*",
-        help="Código do modelo do documento fiscal, conforme a tabela 4.1.1",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
     )
 
     SER = fields.Char(string="Série do documento fiscal", sped_length="4")
@@ -11778,10 +13407,15 @@ class RegistroE240(models.AbstractModel):
     )
 
     NUM_DOC = fields.Char(
-        string="Número do documento fiscal", xsd_type="numeric_code", sped_length="9"
+        string="Número do documento fiscal",
+        required=True,
+        xsd_type="numeric_code",
+        sped_length="9",
     )
 
-    DT_DOC = fields.Date(string="Data da emissão do documento fiscal", sped_length="8*")
+    DT_DOC = fields.Date(
+        string="Data da emissão do documento fiscal", required=True, sped_length="8*"
+    )
 
     COD_ITEM = fields.Char(
         string="Código do item",
@@ -11791,6 +13425,7 @@ class RegistroE240(models.AbstractModel):
 
     VL_AJ_ITEM = fields.Monetary(
         string="Valor do ajuste para a operação/item",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -11799,47 +13434,6 @@ class RegistroE240(models.AbstractModel):
         string="Chave do Documento Eletrônico",
         xsd_type="numeric_code",
         sped_length="44*",
-    )
-
-    VL_UNIT_ICMS_ST_CONV_REST = fields.Float(
-        string="Valor unitário do total do ICMS ST",
-        xsd_type="TDec_1606",
-        digits=(
-            16,
-            6,
-        ),
-        help=(
-            "Valor unitário do total do ICMS ST, incluindo FCP ST, a ser "
-            "restituído/ressarcido, calculado conforme a legislação de cada UF, "
-            "considerando a unidade utilizada para informar o campo “QUANT_CONV”."
-        ),
-    )
-
-    VL_UNIT_FCP_ST_CONV_REST = fields.Float(
-        string="Valor unitário correspondente à parcela",
-        xsd_type="TDec_1606",
-        digits=(
-            16,
-            6,
-        ),
-        help=(
-            "Valor unitário correspondente à parcela de ICMS FCP ST que compõe o campo "
-            "“VL_UNIT_ICMS_ST_CONV_REST”, considerando a unidade utilizada para "
-            "informar o campo “QUANT_CONV”."
-        ),
-    )
-
-    VL_UNIT_ICMS_ST_CONV_COMPL = fields.Float(
-        string="Valor unitário do complemento do ICMS",
-        xsd_type="TDec_1606",
-        digits=(
-            16,
-            6,
-        ),
-        help=(
-            "Valor unitário do complemento do ICMS, incluindo FCP ST, considerando a "
-            "unidade utilizada para informar o campo “QUANT_CONV”."
-        ),
     )
 
     reg_E240_ids_RegistroE220_id = fields.Many2one(
@@ -11939,20 +13533,23 @@ class RegistroE300(models.AbstractModel):
     _sped_level = 2
 
     UF = fields.Char(
-        string="Sigla da unidade da Federação a que se refere",
+        string="Sigla da unidade da federação a que se refere",
+        required=True,
         sped_length="2",
         help=(
-            "Sigla da unidade da Federação a que se refere à apuração do FCP e do ICMS "
-            "Diferencial de Alíquotas da UF de Origem/Destino"
+            "Sigla da unidade da federação a que se refere à apuração do FCP e do ICMS "
+            "Diferencial de Alíquota da UF de Origem/Destino"
         ),
     )
 
     DT_INI = fields.Date(
-        string="Data Inicial a que a apuração se refere", sped_length="8*"
+        string="Data inicial a que a apuração se refere",
+        required=True,
+        sped_length="8*",
     )
 
     DT_FIN = fields.Date(
-        string="Data Final a que a apuração se refere", sped_length="8*"
+        string="Data final a que a apuração se refere", required=True, sped_length="8*"
     )
 
     reg_E310_ids = fields.One2many(
@@ -11974,47 +13571,207 @@ class RegistroE310(models.AbstractModel):
     _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
     _sped_level = 3
 
-    IND_MOV_FCP_DIFAL = fields.Char(
-        string="Indicador de movimento: 0",
-        help="Indicador de movimento: 0 - Sem operações 1 - Com operações",
+    IND_MOV_DIFAL = fields.Char(
+        string="Indicador de movimento",
+        required=True,
+        help=(
+            "Indicador de movimento: 0 – Sem operações com ICMS Diferencial de Alíquota"
+            " da UF de Origem/Destino 1 – Com operações de ICMS Diferencial de Alíquota"
+            " da UF de Origem/Destino"
+        ),
     )
 
     VL_SLD_CRED_ANT_DIFAL = fields.Monetary(
         string="Valor do 'Saldo credor",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor do 'Saldo credor de período anterior – ICMS Diferencial de Alíquotas"
-            " da UF de Origem/Destino'"
+            "Valor do 'Saldo credor de período anterior – ICMS Diferencial de Alíquota "
+            "da UF de Origem/Destino'"
         ),
     )
 
     VL_TOT_DEBITOS_DIFAL = fields.Monetary(
         string="Valor total dos débitos por 'Saídas e prestações",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
             "Valor total dos débitos por 'Saídas e prestações com débito do ICMS "
-            "referente ao diferencial de alíquotas devido à UF de Origem/Destino'"
+            "referente ao diferencial de alíquota devido à UF do "
+            "Remetente/Destinatário'"
         ),
     )
 
     VL_OUT_DEB_DIFAL = fields.Monetary(
-        string="Valor total",
+        string="Valor Total",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor total dos ajustes 'Outros débitos ICMS Diferencial de Alíquotas da "
-            "UF de Origem/Destino' e “Estorno de créditos ICMS Diferencial de Alíquotas"
-            " da UF de Origem/Destino”"
+            "Valor Total dos ajustes 'Outros débitos ICMS Diferencial de Alíquota da UF"
+            " de Origem/Destino' ' e “Estorno de créditos ICMS Diferencial de Alíquota "
+            "da UF de Origem/Destino"
         ),
+    )
+
+    VL_TOT_DEB_FCP = fields.Monetary(
+        string="Valor total dos débitos FCP por 'Saídas",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help="Valor total dos débitos FCP por 'Saídas e prestações”",
     )
 
     VL_TOT_CREDITOS_DIFAL = fields.Monetary(
         string="Valor total dos créditos do ICMS referente",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=("Valor total dos créditos do ICMS referente ao diferencial de Alíquotas"),
+        help=(
+            "Valor total dos créditos do ICMS referente ao diferencial de alíquota "
+            "devido à UF dos Remetente/ Destinatário"
+        ),
+    )
+
+    VL_TOT_CRED_FCP = fields.Monetary(
+        string="Valor total dos créditos FCP por Entradas",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_OUT_CRED_DIFAL = fields.Monetary(
+        string="Valor total",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor total de Ajustes 'Outros créditos ICMS Diferencial de Alíquota da UF"
+            " de Origem/Destino' e “Estorno de débitos ICMS Diferencial de Alíquota da "
+            "UF de Origem/Destino”"
+        ),
+    )
+
+    VL_SLD_DEV_ANT_DIFAL = fields.Monetary(
+        string="Valor total de Saldo devedor ICMS Diferencial",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor total de Saldo devedor ICMS Diferencial de Alíquota da UF de "
+            "Origem/Destino antes das deduções"
+        ),
+    )
+
+    VL_DEDUCOES_DIFAL = fields.Monetary(
+        string="Valor total dos ajustes 'Deduções ICMS Diferencial",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor total dos ajustes 'Deduções ICMS Diferencial de Alíquota da UF de "
+            "Origem/Destino'"
+        ),
+    )
+
+    VL_RECOL = fields.Monetary(
+        string="Valor recolhido ou a recolher referente a FCP",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor recolhido ou a recolher referente a FCP e Imposto do Diferencial de "
+            "Alíquota da UF de Origem/Destino (10-11)"
+        ),
+    )
+
+    VL_SLD_CRED_TRANSPOR = fields.Monetary(
+        string="Saldo credor a transportar para o período seguinte",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    DEB_ESP_DIFAL = fields.Float(
+        string="Valores recolhidos ou a recolher",
+        required=True,
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+        help="Valores recolhidos ou a recolher, extra-apuração.",
+    )
+
+    VL_OUT_DEB_FCP = fields.Monetary(
+        string="Valor total dos ajustes 'Outros débitos FCP'",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor total dos ajustes 'Outros débitos FCP' e “Estorno de créditos FCP”"
+        ),
+    )
+
+    VL_TOT_CRED_FCP_INDEX_16 = fields.Monetary(
+        string="VL_TOT_CRED_FCP_INDEX_16",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_OUT_CRED_FCP = fields.Monetary(
+        string="Valor total de Ajustes 'Outros créditos FCP'",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor total de Ajustes 'Outros créditos FCP' e “Estorno de débitos FCP”"
+        ),
+    )
+
+    VL_SLD_DEV_ANT_FCP = fields.Monetary(
+        string="Valor total de Saldo devedor FCP antes",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help="Valor total de Saldo devedor FCP antes das deduções",
+    )
+
+    VL_DEDUCOES_FCP = fields.Monetary(
+        string="Valor total das deduções 'FCP'",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_RECOL_FCP = fields.Monetary(
+        string="Valor recolhido ou a recolher referente ao FCP",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help="Valor recolhido ou a recolher referente ao FCP (18– 19)",
+    )
+
+    VL_SLD_CRED_TRANSPORTAR_FCP = fields.Monetary(
+        string="Saldo credor a transportar",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help="Saldo credor a transportar para o período seguinte referente ao FCP",
+    )
+
+    DEB_ESP_FCP = fields.Float(
+        string="Valores recolhidos ou a recolher (DEB_ESP_FCP)",
+        required=True,
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+        help="Valores recolhidos ou a recolher, extra-apuração - FCP.",
     )
 
     reg_E310_ids_RegistroE300_id = fields.Many2one(
@@ -12062,9 +13819,10 @@ class RegistroE311(models.AbstractModel):
 
     COD_AJ_APUR = fields.Char(
         string="Código do ajuste da apuração e dedução",
+        required=True,
         sped_length="8*",
         help=(
-            "Código do ajuste da apuração e dedução, conforme a tabela indicada no item"
+            "Código do ajuste da apuração e dedução, conforme a Tabela indicada no item"
             " 5.1.1"
         ),
     )
@@ -12073,6 +13831,7 @@ class RegistroE311(models.AbstractModel):
 
     VL_AJ_APUR = fields.Monetary(
         string="Valor do ajuste da apuração",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -12124,14 +13883,18 @@ class RegistroE312(models.AbstractModel):
 
     NUM_PROC = fields.Char(
         string="Número do processo ao qual o ajuste está vinculado",
-        sped_length="6",
+        sped_length="15",
         help="Número do processo ao qual o ajuste está vinculado, se houver",
     )
 
     IND_PROC = fields.Char(
         string="Indicador da origem do processo",
+        xsd_type="numeric_code",
         sped_length="1*",
-        help="Indicador da origem do processo: 0- Sefaz",
+        help=(
+            "Indicador da origem do processo: 0- Sefaz; 1- Justiça Federal; 2- Justiça "
+            "Estadual; 9- Outros"
+        ),
     )
 
     PROC = fields.Char(
@@ -12165,13 +13928,14 @@ class RegistroE313(models.AbstractModel):
     COD_PART = fields.Char(
         string="Código do participante",
         sped_length="6",
-        help="Código do participante (campo 02 do Registro 0150):",
+        help="Código do participante (campo 02 do Registro 0150)",
     )
 
     COD_MOD = fields.Char(
         string="Código do modelo do documento fiscal",
+        required=True,
         sped_length="2*",
-        help="Código do modelo do documento fiscal, conforme a tabela 4.1.1",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
     )
 
     SER = fields.Char(string="Série do documento fiscal", sped_length="4")
@@ -12181,7 +13945,10 @@ class RegistroE313(models.AbstractModel):
     )
 
     NUM_DOC = fields.Char(
-        string="Número do documento fiscal", xsd_type="numeric_code", sped_length="9"
+        string="Número do documento fiscal",
+        required=True,
+        xsd_type="numeric_code",
+        sped_length="9",
     )
 
     CHV_DOCE = fields.Char(
@@ -12190,7 +13957,9 @@ class RegistroE313(models.AbstractModel):
         sped_length="44*",
     )
 
-    DT_DOC = fields.Date(string="Data da emissão do documento fiscal", sped_length="8*")
+    DT_DOC = fields.Date(
+        string="Data da emissão do documento fiscal", required=True, sped_length="8*"
+    )
 
     COD_ITEM = fields.Char(
         string="Código do item",
@@ -12200,6 +13969,7 @@ class RegistroE313(models.AbstractModel):
 
     VL_AJ_ITEM = fields.Monetary(
         string="Valor do ajuste para a operação/item",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -12227,29 +13997,34 @@ class RegistroE316(models.AbstractModel):
 
     COD_OR = fields.Char(
         string="Código da obrigação recolhida ou a recolher",
+        required=True,
         sped_length="3*",
-        help="Código da obrigação recolhida ou a recolher, conforme a tabela 5.4",
+        help="Código da obrigação recolhida ou a recolher, conforme a Tabela 5.4",
     )
 
     VL_OR = fields.Monetary(
         string="Valor da obrigação recolhida ou a recolher",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
-    DT_VCTO = fields.Date(string="Data de vencimento da obrigação", sped_length="8*")
+    DT_VCTO = fields.Date(
+        string="Data de vencimento da obrigação", required=True, sped_length="8*"
+    )
 
     COD_REC = fields.Char(
         string="Código de receita referente à obrigação",
+        required=True,
         help=(
             "Código de receita referente à obrigação, próprio da unidade da federação "
-            "da origem/destino, conforme legislação estadual"
+            "da origem/destino, conforme legislação estadual."
         ),
     )
 
     NUM_PROC = fields.Char(
         string="Número do processo ou auto de infração",
-        sped_length="6",
+        sped_length="15",
         help=(
             "Número do processo ou auto de infração ao qual a obrigação está vinculada,"
             " se houver"
@@ -12260,8 +14035,8 @@ class RegistroE316(models.AbstractModel):
         string="Indicador da origem do processo",
         sped_length="1*",
         help=(
-            "Indicador da origem do processo: 0- SEFAZ 1- Justiça Federal 2- Justiça "
-            "Estadual 9- Outros"
+            "Indicador da origem do processo: 0- SEFAZ; 1- Justiça Federal; 2- Justiça "
+            "Estadual; 9- Outros"
         ),
     )
 
@@ -12277,6 +14052,7 @@ class RegistroE316(models.AbstractModel):
 
     MES_REF = fields.Char(
         string="Informe o mês de referência no formato “mmaaaa”",
+        required=True,
         xsd_type="numeric_code",
         sped_length="6*",
     )
@@ -12407,6 +14183,7 @@ class RegistroE520(models.AbstractModel):
 
     VL_SD_ANT_IPI = fields.Monetary(
         string="Saldo credor do IPI transferido",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help="Saldo credor do IPI transferido do período anterior",
@@ -12414,6 +14191,7 @@ class RegistroE520(models.AbstractModel):
 
     VL_DEB_IPI = fields.Monetary(
         string="Valor total dos débitos por 'Saídas com débito",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help="Valor total dos débitos por 'Saídas com débito do imposto'",
@@ -12421,6 +14199,7 @@ class RegistroE520(models.AbstractModel):
 
     VL_CRED_IPI = fields.Monetary(
         string="Valor total dos créditos por 'Entradas",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
@@ -12431,6 +14210,7 @@ class RegistroE520(models.AbstractModel):
 
     VL_OD_IPI = fields.Monetary(
         string="Valor de 'Outros débitos' do IPI",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help="Valor de 'Outros débitos' do IPI (inclusive estornos de crédito)",
@@ -12438,6 +14218,7 @@ class RegistroE520(models.AbstractModel):
 
     VL_OC_IPI = fields.Monetary(
         string="Valor de 'Outros créditos' do IPI",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help="Valor de 'Outros créditos' do IPI (inclusive estornos de débitos)",
@@ -12445,6 +14226,7 @@ class RegistroE520(models.AbstractModel):
 
     VL_SC_IPI = fields.Monetary(
         string="Valor do saldo credor do IPI a transportar",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help="Valor do saldo credor do IPI a transportar para o período seguinte",
@@ -12452,6 +14234,7 @@ class RegistroE520(models.AbstractModel):
 
     VL_SD_IPI = fields.Monetary(
         string="Valor do saldo devedor do IPI a recolher",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -12481,31 +14264,50 @@ class RegistroE530(models.AbstractModel):
 
     IND_AJ = fields.Char(
         string="Indicador do tipo de ajuste",
+        required=True,
         sped_length="1*",
-        help="Indicador do tipo de ajuste: 0- Ajuste a débito 1- Ajuste a crédito",
+        help="Indicador do tipo de ajuste: 0- Ajuste a débito; 1- Ajuste a crédito",
     )
 
     VL_AJ = fields.Monetary(
-        string="Indicador da origem do documento vinculado",
+        string="Valor do ajuste",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
+    )
+
+    COD_AJ = fields.Char(
+        string="Código do ajuste da apuração",
+        required=True,
+        sped_length="3*",
         help=(
-            "Indicador da origem do documento vinculado ao ajuste: 0 - Processo "
-            "Judicial 1 - Processo Administrativo 2 - PER/DCOMP"
+            "Código do ajuste da apuração, conforme a Tabela indicada no item 4.5.4."
         ),
     )
 
-    ECF_FAB = fields.Char(
-        string="Número de série de fabricação do ECF",
-        out_required=True,
-        sped_length="21",
+    IND_DOC = fields.Char(
+        string="Indicador da origem do documento vinculado",
+        required=True,
+        sped_length="1*",
+        help=(
+            "Indicador da origem do documento vinculado ao ajuste: 0 - Processo "
+            "Judicial; 1 - Processo Administrativo; 2 - PER/DCOMP; 3 – Documento Fiscal"
+            " 9 – Outros."
+        ),
     )
 
-    ECF_CX = fields.Char(
-        string="Número do caixa atribuído ao ECF",
-        xsd_type="numeric_code",
-        out_required=True,
-        sped_length="3",
+    NUM_DOC = fields.Char(
+        string="Número do documento / processo / declaração",
+        help=(
+            "Número do documento / processo / declaração ao qual o ajuste está "
+            "vinculado, se houver"
+        ),
+    )
+
+    DESCR_AJ = fields.Char(
+        string="Descrição detalhada do ajuste",
+        required=True,
+        help="Descrição detalhada do ajuste, com citação dos documentos fiscais.",
     )
 
     reg_E530_ids_RegistroE520_id = fields.Many2one(
@@ -12716,6 +14518,7 @@ class RegistroG125(models.AbstractModel):
 
     COD_IND_BEM = fields.Char(
         string="Código individualizado do bem",
+        required=True,
         sped_length="6",
         help=(
             "Código individualizado do bem ou componente adotado no controle "
@@ -12724,19 +14527,22 @@ class RegistroG125(models.AbstractModel):
     )
 
     DT_MOV = fields.Date(
-        string="Data da movimentação ou do saldo inicial", sped_length="8*"
+        string="Data da movimentação ou do saldo inicial",
+        required=True,
+        sped_length="8*",
     )
 
     TIPO_MOV = fields.Char(
         string="Tipo de movimentação do bem ou componente",
+        required=True,
         sped_length="2*",
         help=(
             "Tipo de movimentação do bem ou componente: SI = Saldo inicial de bens "
-            "imobilizados IM = Imobilização de bem individual IA = Imobilização em "
-            "Andamento - Componente CI = Conclusão de Imobilização em Andamento - Bem "
-            "Resultante; MC = Imobilização oriunda do Ativo Circulante BA = Baixa do "
-            "bem - Fim do período de apropriação AT = Alienação ou Transferência PE = "
-            "Perecimento, Extravio ou Deterioração OT = Outras Saídas do Imobilizado"
+            "imobilizados; IM = Imobilização de bem individual; IA = Imobilização em "
+            "Andamento - Componente; CI = Conclusão de Imobilização em Andamento – Bem "
+            "Resultante; MC = Imobilização oriunda do Ativo Circulante; BA = Baixa do "
+            "bem - Fim do período de apropriação; AT = Alienação ou Transferência; PE ="
+            " Perecimento, Extravio ou Deterioração; OT = Outras Saídas do Imobilizado"
         ),
     )
 
@@ -12780,6 +14586,17 @@ class RegistroG125(models.AbstractModel):
         string="Número da parcela do ICMS", xsd_type="numeric_code", sped_length="3"
     )
 
+    VL_PARC_PASS = fields.Monetary(
+        string="Valor da parcela de ICMS passível de apropriação",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor da parcela de ICMS passível de apropriação (antes da aplicação da "
+            "participação percentual do valor das saídas tributadas/exportação sobre as"
+            " saídas totais)"
+        ),
+    )
+
     reg_G125_ids_RegistroG110_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.g110",
         string="ICMS – Ativo Permanente – CIAP",
@@ -12810,16 +14627,24 @@ class RegistroG126(models.AbstractModel):
     _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
     _sped_level = 4
 
-    DT_INI = fields.Date(string="Data inicial do período de apuração", sped_length="8*")
+    DT_INI = fields.Date(
+        string="Data inicial do período de apuração", required=True, sped_length="8*"
+    )
 
-    DT_FIM = fields.Date(string="Data final do período de apuração", sped_length="8*")
+    DT_FIM = fields.Date(
+        string="Data final do período de apuração", required=True, sped_length="8*"
+    )
 
     NUM_PARC = fields.Char(
-        string="Número da parcela do ICMS", xsd_type="numeric_code", sped_length="3"
+        string="Número da parcela do ICMS",
+        required=True,
+        xsd_type="numeric_code",
+        sped_length="3",
     )
 
     VL_PARC_PASS = fields.Monetary(
         string="Valor da parcela de ICMS passível de apropriação",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
@@ -12831,6 +14656,7 @@ class RegistroG126(models.AbstractModel):
 
     VL_TRIB_OC = fields.Monetary(
         string="Valor do somatório das saídas tributadas e saídas",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
@@ -12841,6 +14667,7 @@ class RegistroG126(models.AbstractModel):
 
     VL_TOTAL = fields.Monetary(
         string="Valor total de saídas",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help="Valor total de saídas no período indicado neste registro",
@@ -12848,6 +14675,7 @@ class RegistroG126(models.AbstractModel):
 
     IND_PER_SAI = fields.Char(
         string="Índice de participação do valor do somatório",
+        required=True,
         xsd_type="numeric_code",
         help=(
             "Índice de participação do valor do somatório das saídas tributadas e "
@@ -12857,12 +14685,13 @@ class RegistroG126(models.AbstractModel):
     )
 
     VL_PARC_APROP = fields.Monetary(
-        string="Valor de outros créditos de ICMS",
+        string="Valor de outros créditos de ICMS a ser apropriado",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor de outros créditos de ICMS a ser apropriado como na apuração (campo "
-            "05 vezes o campo 08)"
+            "Valor de outros créditos de ICMS a ser apropriado na apuração (campo 05 "
+            "vezes o campo 08)"
         ),
     )
 
@@ -12885,15 +14714,17 @@ class RegistroG130(models.AbstractModel):
 
     IND_EMIT = fields.Char(
         string="Indicador do emitente do documento fiscal",
+        required=True,
         sped_length="1*",
         help=(
-            "Indicador do emitente do documento fiscal: 0 - Emissão própria; 1 - "
+            "Indicador do emitente do documento fiscal: 0- Emissão própria; 1- "
             "Terceiros"
         ),
     )
 
     COD_PART = fields.Char(
         string="Código do participante ",
+        required=True,
         sped_length="6",
         help=(
             "Código do participante : - do emitente do documento ou do remetente das "
@@ -12903,6 +14734,7 @@ class RegistroG130(models.AbstractModel):
 
     COD_MOD = fields.Char(
         string="Código do modelo de documento fiscal",
+        required=True,
         sped_length="2*",
         help="Código do modelo de documento fiscal, conforme tabela 4.1.1",
     )
@@ -12910,7 +14742,10 @@ class RegistroG130(models.AbstractModel):
     SERIE = fields.Char(string="Série do documento fiscal", sped_length="3")
 
     NUM_DOC = fields.Char(
-        string="Número de documento fiscal", xsd_type="numeric_code", sped_length="9"
+        string="Número de documento fiscal",
+        required=True,
+        xsd_type="numeric_code",
+        sped_length="9",
     )
 
     CHV_NFE_CTE = fields.Char(
@@ -12919,7 +14754,9 @@ class RegistroG130(models.AbstractModel):
         sped_length="44*",
     )
 
-    DT_DOC = fields.Date(string="Data da emissão do documento fiscal", sped_length="8*")
+    DT_DOC = fields.Date(
+        string="Data da emissão do documento fiscal", required=True, sped_length="8*"
+    )
 
     NUM_DA = fields.Char(
         string="Número do documento de arrecadação estadual",
@@ -12952,8 +14789,84 @@ class RegistroG140(models.AbstractModel):
 
     NUM_ITEM = fields.Char(
         string="Número sequencial do item no documento fiscal",
+        required=True,
         xsd_type="numeric_code",
         sped_length="3",
+    )
+
+    COD_ITEM = fields.Char(
+        string="Código correspondente do bem no documento fiscal",
+        required=True,
+        sped_length="6",
+        help=(
+            "Código correspondente do bem no documento fiscal (campo 02 do registro "
+            "0200)"
+        ),
+    )
+
+    QTDE = fields.Float(
+        string="Quantidade",
+        required=True,
+        xsd_type="TDec_1605",
+        digits=(
+            16,
+            5,
+        ),
+        help=(
+            "Quantidade, deste item da nota fiscal, que foi aplicada neste bem, "
+            "expressa na mesma unidade constante no documento fiscal de entrada"
+        ),
+    )
+
+    UNID = fields.Char(
+        string="Unidade do item constante no documento fiscal",
+        required=True,
+        sped_length="6",
+        help="Unidade do item constante no documento fiscal de entrada",
+    )
+
+    VL_ICMS_OP_APLICADO = fields.Monetary(
+        string="Valor do ICMS da Operação Própria na entrada",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor do ICMS da Operação Própria na entrada do item, proporcional à "
+            "quantidade aplicada no bem ou componente."
+        ),
+    )
+
+    VL_ICMS_ST_APLICADO = fields.Monetary(
+        string="Valor do ICMS ST na entrada do item",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor do ICMS ST na entrada do item, proporcional à quantidade aplicada no"
+            " bem ou componente."
+        ),
+    )
+
+    VL_ICMS_FRT_APLICADO = fields.Monetary(
+        string="Valor do ICMS sobre Frete do Conhecimento",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor do ICMS sobre Frete do Conhecimento de Transporte na entrada do "
+            "item, proporcional à quantidade aplicada no bem ou componente."
+        ),
+    )
+
+    VL_ICMS_DIF_APLICADO = fields.Monetary(
+        string="Valor do ICMS Diferencial de Alíquota",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor do ICMS Diferencial de Alíquota, na entrada do item, proporcional à "
+            "quantidade aplicada no bem ou componente."
+        ),
     )
 
     reg_G140_ids_RegistroG130_id = fields.Many2one(
@@ -12972,24 +14885,26 @@ class RegistroH005(models.AbstractModel):
     _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
     _sped_level = 2
 
-    DT_INV = fields.Date(string="Data do inventário", sped_length="8*")
+    DT_INV = fields.Date(string="Data do inventário", required=True, sped_length="8*")
 
     VL_INV = fields.Monetary(
         string="Valor total do estoque",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     MOT_INV = fields.Char(
-        string="Informe o motivo do Inventário: 01",
+        string="Informe o motivo do Inventário",
+        required=True,
         sped_length="2*",
         help=(
-            "Informe o motivo do Inventário: 01 - No final no período 02 - Na mudança "
-            "de forma de tributação da mercadoria (ICMS) 03 - Na solicitação da baixa "
-            "cadastral, paralisação temporária e outras situações 04 - Na alteração de "
-            "regime de pagamento - condição do contribuinte 05 - Por determinação dos "
-            "fiscos 06 – Para controle das mercadorias sujeitas ao regime de "
-            "substituição tributária – restituição/ ressarcimento/ complementação"
+            "Informe o motivo do Inventário: 01 – No final no período; 02 – Na mudança "
+            "de forma de tributação da mercadoria (ICMS); 03 – Na solicitação da baixa "
+            "cadastral, paralisação temporária e outras situações; 04 – Na alteração de"
+            " regime de pagamento – condição do contribuinte; 05 – Por determinação dos"
+            " fiscos; 06 – Para controle das mercadorias sujeitas ao regime de "
+            "substituição tributária – restituição/ ressarcimento/ complementação."
         ),
     )
 
@@ -13113,16 +15028,18 @@ class RegistroH020(models.AbstractModel):
 
     CST_ICMS = fields.Char(
         string="Código da Situação Tributária referente ao ICMS",
+        required=True,
         xsd_type="numeric_code",
         sped_length="3*",
         help=(
-            "Código da Situação Tributária referente ao ICMS, conforme a tabela "
+            "Código da Situação Tributária referente ao ICMS, conforme a Tabela "
             "indicada no item 4.3.1"
         ),
     )
 
     BC_ICMS = fields.Float(
         string="Informe a base de cálculo do ICMS",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -13132,6 +15049,7 @@ class RegistroH020(models.AbstractModel):
 
     VL_ICMS = fields.Monetary(
         string="Informe o valor do ICMS a ser debitado",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help="Informe o valor do ICMS a ser debitado ou creditado",
@@ -13156,6 +15074,7 @@ class RegistroH030(models.AbstractModel):
 
     VL_ICMS_OP = fields.Float(
         string="Valor médio unitário do ICMS OP",
+        required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
@@ -13165,6 +15084,7 @@ class RegistroH030(models.AbstractModel):
 
     VL_BC_ICMS_ST = fields.Float(
         string="Valor médio unitário da base de cálculo do ICMS ST",
+        required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
@@ -13174,6 +15094,7 @@ class RegistroH030(models.AbstractModel):
 
     VL_ICMS_ST = fields.Float(
         string="Valor médio unitário do ICMS ST",
+        required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
@@ -13183,6 +15104,7 @@ class RegistroH030(models.AbstractModel):
 
     VL_FCP = fields.Float(
         string="Valor médio unitário do FCP",
+        required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
@@ -13198,24 +15120,6 @@ class RegistroH030(models.AbstractModel):
     )
 
 
-class RegistroK010(models.AbstractModel):
-    "Informação sobre o tipo de leiaute (simplificado / completo)"
-
-    _description = textwrap.dedent(f"    {__doc__}")
-    _name = "l10n_br_sped.efd_icms_ipi.19.k010"
-    _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
-    _sped_level = 2
-
-    IND_TP_LEIAUTE = fields.Char(
-        string="Indicador de tipo de leiaute adotado",
-        sped_length="1*",
-        help=(
-            "Indicador de tipo de leiaute adotado: 0- Leiaute simplificado 1- Leiaute "
-            "completo 2- Leiaute restrito aos saldos de estoque"
-        ),
-    )
-
-
 class RegistroK100(models.AbstractModel):
     "Período de Apuração do ICMS/IPI"
 
@@ -13225,11 +15129,11 @@ class RegistroK100(models.AbstractModel):
     _sped_level = 2
 
     DT_INI = fields.Date(
-        string="Data inicial a que a apuração se refere", sped_length="8"
+        string="Data inicial a que a apuração se refere", required=True, sped_length="8"
     )
 
     DT_FIN = fields.Date(
-        string="Data final a que a apuração se refere", sped_length="8"
+        string="Data final a que a apuração se refere", required=True, sped_length="8"
     )
 
     reg_K200_ids = fields.One2many(
@@ -13314,16 +15218,18 @@ class RegistroK200(models.AbstractModel):
     _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
     _sped_level = 3
 
-    DT_EST = fields.Date(string="Data do estoque final", sped_length="8")
+    DT_EST = fields.Date(string="Data do estoque final", required=True, sped_length="8")
 
     COD_ITEM = fields.Char(
         string="Código do item",
+        required=True,
         sped_length="6",
         help="Código do item (campo 02 do Registro 0200)",
     )
 
     QTD = fields.Float(
         string="Quantidade em estoque",
+        required=True,
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -13332,12 +15238,14 @@ class RegistroK200(models.AbstractModel):
     )
 
     IND_EST = fields.Char(
-        string="Indicador do tipo de estoque",
+        string="Indicador do tipo de estoque: 0",
+        required=True,
         sped_length="1",
         help=(
-            "Indicador do tipo de estoque: 0 = Estoque de propriedade do informante e "
-            "em seu poder 1 = Estoque de propriedade do informante e em posse de "
-            "terceiros 2 = Estoque de propriedade de terceiros e em posse do informante"
+            "Indicador do tipo de estoque: 0 - Estoque de propriedade do informante e "
+            "em seu poder; 1 - Estoque de propriedade do informante e em posse de "
+            "terceiros; 2 - Estoque de propriedade de terceiros e em posse do "
+            "informante"
         ),
     )
 
@@ -13420,12 +15328,14 @@ class RegistroK215(models.AbstractModel):
 
     COD_ITEM_DES = fields.Char(
         string="Código do item de destino",
+        required=True,
         sped_length="6",
         help="Código do item de destino (campo 02 do Registro 0200)",
     )
 
     QTD_DES = fields.Float(
         string="Quantidade de destino – entrada em estoque",
+        required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
@@ -13449,22 +15359,27 @@ class RegistroK220(models.AbstractModel):
     _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
     _sped_level = 3
 
-    DT_MOV = fields.Date(string="Data da movimentação interna", sped_length="8")
+    DT_MOV = fields.Date(
+        string="Data da movimentação interna", required=True, sped_length="8"
+    )
 
     COD_ITEM_ORI = fields.Char(
         string="Código do item de origem",
+        required=True,
         sped_length="6",
         help="Código do item de origem (campo 02 do Registro 0200)",
     )
 
     COD_ITEM_DEST = fields.Char(
         string="Código do item de destino",
+        required=True,
         sped_length="6",
         help="Código do item de destino (campo 02 do Registro 0200)",
     )
 
     QTD_ORI = fields.Float(
         string="Quantidade movimentada do item de origem",
+        required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
@@ -13474,6 +15389,7 @@ class RegistroK220(models.AbstractModel):
 
     QTD_DEST = fields.Float(
         string="Quantidade movimentada do item de destino",
+        required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
@@ -13511,12 +15427,14 @@ class RegistroK230(models.AbstractModel):
 
     COD_ITEM = fields.Char(
         string="Código do item produzido",
+        required=True,
         sped_length="6",
         help="Código do item produzido (campo 02 do Registro 0200)",
     )
 
     QTD_ENC = fields.Float(
         string="Quantidade de produção acabada",
+        required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
@@ -13548,21 +15466,34 @@ class RegistroK235(models.AbstractModel):
     _sped_level = 4
 
     DT_SAIDA = fields.Date(
-        string="Data de saída do estoque para alocação ao produto", sped_length="8"
+        string="Data de saída do estoque para alocação ao produto",
+        required=True,
+        sped_length="8",
     )
 
     COD_ITEM = fields.Char(
         string="Código do item componente/insumo",
+        required=True,
         sped_length="6",
         help="Código do item componente/insumo (campo 02 do Registro 0200)",
     )
 
     QTD = fields.Float(
         string="Quantidade consumida do item",
+        required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
             6,
+        ),
+    )
+
+    COD_INS_SUBST = fields.Char(
+        string="Código do insumo que foi substituído",
+        sped_length="6",
+        help=(
+            "Código do insumo que foi substituído, caso ocorra a substituição (campo 02"
+            " do Registro 0210)"
         ),
     )
 
@@ -13632,6 +15563,7 @@ class RegistroK255(models.AbstractModel):
 
     DT_CONS = fields.Date(
         string="Data do reconhecimento do consumo",
+        required=True,
         sped_length="8",
         help=(
             "Data do reconhecimento do consumo do insumo referente ao produto informado"
@@ -13641,12 +15573,14 @@ class RegistroK255(models.AbstractModel):
 
     COD_ITEM = fields.Char(
         string="Código do insumo",
+        required=True,
         sped_length="6",
         help="Código do insumo (campo 02 do Registro 0200)",
     )
 
     QTD = fields.Float(
         string="Quantidade de consumo do insumo",
+        required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
@@ -13691,6 +15625,7 @@ class RegistroK260(models.AbstractModel):
 
     COD_ITEM = fields.Char(
         string="Código do produto/insumo",
+        required=True,
         sped_length="6",
         help=(
             "Código do produto/insumo a ser reprocessado/reparado ou já "
@@ -13698,10 +15633,13 @@ class RegistroK260(models.AbstractModel):
         ),
     )
 
-    DT_SAIDA = fields.Date(string="Data de saída do estoque", sped_length="8*")
+    DT_SAIDA = fields.Date(
+        string="Data de saída do estoque", required=True, sped_length="8*"
+    )
 
     QTD_SAIDA = fields.Float(
         string="Quantidade de saída do estoque",
+        required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
@@ -13749,6 +15687,7 @@ class RegistroK265(models.AbstractModel):
 
     COD_ITEM = fields.Char(
         string="Código da mercadoria",
+        required=True,
         sped_length="6",
         help="Código da mercadoria (campo 02 do Registro 0200)",
     )
@@ -13769,56 +15708,6 @@ class RegistroK265(models.AbstractModel):
             16,
             6,
         ),
-    )
-
-    UNID = fields.Char(
-        string="Unidade do item",
-        out_required=True,
-        sped_length="6",
-        help="Unidade do item (Campo 02 do registro 0190)",
-    )
-
-    VL_ITEM = fields.Monetary(
-        string="Valor total do item",
-        out_required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    CST_ICMS = fields.Char(
-        string="Código da Situação Tributária",
-        xsd_type="numeric_code",
-        out_required=True,
-        sped_length="3*",
-        help=(
-            "Código da Situação Tributária, conforme a Tabela indicada no item 4.3.1."
-        ),
-    )
-
-    CFOP = fields.Char(
-        string="Código Fiscal de Operação e Prestação",
-        xsd_type="numeric_code",
-        out_required=True,
-        sped_length="4*",
-    )
-
-    ALIQ_ICMS = fields.Float(
-        string="Alíquota do ICMS – Carga tributária efetiva",
-        sped_length="6",
-        xsd_type="TDec_1602",
-        digits=(
-            16,
-            2,
-        ),
-        help="Alíquota do ICMS – Carga tributária efetiva em percentual",
-    )
-
-    VL_PIS = fields.Monetary(
-        string="Valor do PIS", xsd_type="TDec_1602", currency_field="brl_currency_id"
-    )
-
-    VL_COFINS = fields.Monetary(
-        string="Valor da COFINS", xsd_type="TDec_1602", currency_field="brl_currency_id"
     )
 
     reg_K265_ids_RegistroK260_id = fields.Many2one(
@@ -14006,14 +15895,63 @@ class RegistroK280(models.AbstractModel):
 
     DT_EST = fields.Date(
         string="Data do estoque final escriturado",
+        required=True,
         sped_length="8*",
         help="Data do estoque final escriturado que está sendo corrigido",
     )
 
     COD_ITEM = fields.Char(
         string="Código do item",
+        required=True,
         sped_length="6",
         help="Código do item (campo 02 do Registro 0200)",
+    )
+
+    QTD_COR_POS = fields.Float(
+        string="Quantidade de correção positiva",
+        xsd_type="TDec_1603",
+        digits=(
+            16,
+            3,
+        ),
+        help=(
+            "Quantidade de correção positiva de apontamento ocorrido em período de "
+            "apuração anterior"
+        ),
+    )
+
+    QTD_COR_NEG = fields.Float(
+        string="Quantidade de correção negativa",
+        xsd_type="TDec_1603",
+        digits=(
+            16,
+            3,
+        ),
+        help=(
+            "Quantidade de correção negativa de apontamento ocorrido em período de "
+            "apuração anterior"
+        ),
+    )
+
+    IND_EST = fields.Char(
+        string="Indicador do tipo de estoque",
+        required=True,
+        sped_length="1",
+        help=(
+            "Indicador do tipo de estoque: 0 = Estoque de propriedade do informante e "
+            "em seu poder; 1 = Estoque de propriedade do informante e em posse de "
+            "terceiros; 2 = Estoque de propriedade de terceiros e em posse do "
+            "informante"
+        ),
+    )
+
+    COD_PART = fields.Char(
+        string="Código do participante",
+        sped_length="6",
+        help=(
+            "Código do participante (campo 02 do Registro 0150): - "
+            "proprietário/possuidor que não seja o informante do arquivo"
+        ),
     )
 
     reg_K280_ids_RegistroK100_id = fields.Many2one(
@@ -14076,12 +16014,14 @@ class RegistroK291(models.AbstractModel):
 
     COD_ITEM = fields.Char(
         string="Código do item produzido",
+        required=True,
         sped_length="6",
         help="Código do item produzido (campo 02 do Registro 0200)",
     )
 
     QTD = fields.Float(
         string="Quantidade de produção acabada",
+        required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
@@ -14107,12 +16047,14 @@ class RegistroK292(models.AbstractModel):
 
     COD_ITEM = fields.Char(
         string="Código do insumo/componente consumido",
+        required=True,
         sped_length="6",
         help="Código do insumo/componente consumido (campo 02 do Registro 0200)",
     )
 
     QTD = fields.Float(
         string="Quantidade consumida",
+        required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
@@ -14138,6 +16080,7 @@ class RegistroK300(models.AbstractModel):
 
     DT_PROD = fields.Date(
         string="Data do reconhecimento da produção ocorrida",
+        required=True,
         sped_length="8",
         help="Data do reconhecimento da produção ocorrida no terceiro",
     )
@@ -14183,12 +16126,14 @@ class RegistroK301(models.AbstractModel):
 
     COD_ITEM = fields.Char(
         string="Código do item produzido",
+        required=True,
         sped_length="6",
         help="Código do item produzido (campo 02 do Registro 0200)",
     )
 
     QTD = fields.Float(
         string="Quantidade produzida",
+        required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
@@ -14216,12 +16161,14 @@ class RegistroK302(models.AbstractModel):
 
     COD_ITEM = fields.Char(
         string="Código do insumo",
+        required=True,
         sped_length="6",
         help="Código do insumo (campo 02 do Registro 0200)",
     )
 
     QTD = fields.Float(
         string="Quantidade consumida",
+        required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
@@ -14248,107 +16195,117 @@ class Registro1010(models.AbstractModel):
 
     IND_EXP = fields.Char(
         string="Reg",
+        required=True,
         sped_length="1*",
         help=(
-            "Reg. 1100 - Ocorreu averbação (conclusão) de exportação no período: S - "
+            "Reg. 1100 - Ocorreu averbação (conclusão) de exportação no período: S – "
             "Sim N - Não"
         ),
     )
 
     IND_CCRF = fields.Char(
-        string="Reg 1200",
+        string="Reg 1200 – Existem informações acerca de créditos",
+        required=True,
         sped_length="1*",
         help=(
-            "Reg 1200 - Existem informações acerca de créditos de ICMS a serem "
-            "controlados, definidos pela Sefaz: S - Sim N - Não"
+            "Reg 1200 – Existem informações acerca de créditos de ICMS a serem "
+            "controlados, definidos pela Sefaz: S – Sim N - Não"
         ),
     )
 
     IND_COMB = fields.Char(
         string="Reg (IND_COMB)",
+        required=True,
         sped_length="1*",
         help=(
-            "Reg. 1300 - É comércio varejista de combustíveis com movimentação e/ou "
-            "estoque no período: S - Sim N - Não"
+            "Reg. 1300 – É comércio varejista de combustíveis com movimentação e/ou "
+            "estoque no período: S – Sim N - Não"
         ),
     )
 
     IND_USINA = fields.Char(
         string="Reg (IND_USINA)",
+        required=True,
         sped_length="1*",
         help=(
-            "Reg. 1390 - Usinas de açúcar e/álcool - O estabelecimento é produtor de "
+            "Reg. 1390 – Usinas de açúcar e/álcool – O estabelecimento é produtor de "
             "açúcar e/ou álcool carburante com movimentação e/ou estoque no período: S "
-            "- Sim N - Não"
+            "– Sim N - Não"
         ),
     )
 
     IND_VA = fields.Char(
         string="Reg 1400",
+        required=True,
         sped_length="1*",
-        help=(
-            "Reg 1400 - Sendo o registro obrigatório em sua Unidade de Federação, "
-            "existem informações a serem prestadas neste registro: S - Sim N - Não"
-        ),
+        help="Reg 1400 - Sendo o registro obrigatório em sua Unidade",
     )
 
     IND_EE = fields.Char(
         string="Reg 1500",
+        required=True,
         sped_length="1*",
         help=(
             "Reg 1500 - A empresa é distribuidora de energia e ocorreu fornecimento de "
-            "energia elétrica para consumidores de outra UF: S - Sim N - Não"
+            "energia elétrica para consumidores de outra UF: S – Sim; N - Não"
         ),
     )
 
     IND_CART = fields.Char(
         string="Reg 1601",
+        required=True,
         sped_length="1*",
         help=(
-            "Reg 1601 - Realizou vendas com instrumentos eletrônicos de pagamento: S - "
-            "Sim N - Não"
+            "Reg 1601 - Realizou vendas com instrumentos eletrônicos de pagamento: S – "
+            "Sim; N - Não"
         ),
     )
 
     IND_FORM = fields.Char(
         string="Reg (IND_FORM)",
+        required=True,
         sped_length="1*",
         help=(
             "Reg. 1700 - Foram emitidos documentos fiscais em papel no período em "
             "unidade da federação que exija o controle de utilização de documentos "
-            "fiscais: S - Sim N - Não"
+            "fiscais: S – Sim N - Não"
         ),
     )
 
     IND_AER = fields.Char(
-        string="Reg 1800 – A empresa prestou serviços",
+        string="Reg 1800",
+        required=True,
         sped_length="1*",
         help=(
-            "Reg 1800 – A empresa prestou serviços de transporte aéreo de cargas e de "
-            "passageiros: S - Sim N - Não"
+            "Reg 1800 - A empresa prestou serviços de transporte aéreo de cargas e de "
+            "passageiros: S – Sim N - Não"
         ),
     )
 
     IND_GIAF1 = fields.Char(
         string="Reg (IND_GIAF1)",
+        required=True,
         sped_length="1*",
         help="Reg. 1960 - Possui informações GIAF1? S – Sim; N – Não.",
     )
 
     IND_GIAF3 = fields.Char(
         string="Reg (IND_GIAF3)",
+        required=True,
         sped_length="1*",
         help="Reg. 1970 - Possui informações GIAF3? S – Sim; N – Não.",
     )
 
     IND_GIAF4 = fields.Char(
         string="Reg (IND_GIAF4)",
+        required=True,
         sped_length="1*",
         help="Reg. 1980 - Possui informações GIAF4? S – Sim; N – Não.",
     )
 
     IND_REST_RESSARC_COMPL_ICMS = fields.Char(
         string="Reg (IND_REST_RESSARC_COMPL_ICMS)",
+        required=True,
         sped_length="1*",
         help=(
             "Reg. 1250 – Possui informações consolidadas de saldos de restituição, "
@@ -14366,21 +16323,25 @@ class Registro1100(models.AbstractModel):
     _sped_level = 2
 
     IND_DOC = fields.Char(
-        string="Informe o tipo de documento: 0",
+        string="Informe o tipo de documento",
+        required=True,
         xsd_type="numeric_code",
         sped_length="1*",
         help=(
-            "Informe o tipo de documento: 0 - Declaração de Exportação 1 - Declaração "
-            "Simplificada de Exportação 2 - Declaração Única de Exportação"
+            "Informe o tipo de documento: 0 – Declaração de Exportação; 1 – Declaração "
+            "Simplificada de Exportação; 2 – Declaração Única de Exportação."
         ),
     )
 
-    NRO_DE = fields.Char(string="Número da declaração", sped_length="14")
+    NRO_DE = fields.Char(string="Número da declaração", required=True, sped_length="14")
 
-    DT_DE = fields.Date(string="Data da declaração (DDMMAAAA)", sped_length="8*")
+    DT_DE = fields.Date(
+        string="Data da declaração (DDMMAAAA)", required=True, sped_length="8*"
+    )
 
     NAT_EXP = fields.Char(
         string="Preencher com: 0",
+        required=True,
         xsd_type="numeric_code",
         sped_length="1*",
         help="Preencher com: 0 - Exportação Direta 1 - Exportação Indireta",
@@ -14406,8 +16367,34 @@ class Registro1100(models.AbstractModel):
 
     DT_AVB = fields.Date(
         string="Data da averbação da Declaração de exportação",
+        required=True,
         sped_length="8*",
         help="Data da averbação da Declaração de exportação (ddmmaaaa)",
+    )
+
+    TP_CHC = fields.Char(
+        string="Informação do tipo de conhecimento de embarque",
+        required=True,
+        xsd_type="numeric_code",
+        sped_length="2*",
+        help=(
+            "Informação do tipo de conhecimento de embarque: 01 – AWB; 02 – MAWB; 03 – "
+            "HAWB; 04 – COMAT; 06 – R. EXPRESSAS; 07 – ETIQ. REXPRESSAS; 08 – HR. "
+            "EXPRESSAS; 09 – AV7; 10 – BL; 11 – MBL; 12 – HBL; 13 – CRT; 14 – DSIC; 16 "
+            "– COMAT BL; 17 – RWB; 18 – HRWB; 19 – TIF/DTA; 20 – CP2; 91 – NÂO IATA; 92"
+            " – MNAO IATA; 93 – HNAO IATA; 99 – OUTROS."
+        ),
+    )
+
+    PAIS = fields.Char(
+        string="Código do país de destino da mercadoria",
+        required=True,
+        xsd_type="numeric_code",
+        sped_length="3",
+        help=(
+            "Código do país de destino da mercadoria (Preencher conforme tabela do "
+            "SISCOMEX)"
+        ),
     )
 
     reg_1105_ids = fields.One2many(
@@ -14428,6 +16415,7 @@ class Registro1105(models.AbstractModel):
 
     COD_MOD = fields.Char(
         string="Código do modelo da NF",
+        required=True,
         sped_length="2*",
         help="Código do modelo da NF, conforme tabela 4.1.1",
     )
@@ -14436,6 +16424,7 @@ class Registro1105(models.AbstractModel):
 
     NUM_DOC = fields.Char(
         string="Número de Nota Fiscal de Exportação emitida",
+        required=True,
         xsd_type="numeric_code",
         sped_length="9",
         help="Número de Nota Fiscal de Exportação emitida pelo Exportador",
@@ -14447,10 +16436,13 @@ class Registro1105(models.AbstractModel):
         sped_length="44*",
     )
 
-    DT_DOC = fields.Date(string="Data da emissão da NF de exportação", sped_length="8*")
+    DT_DOC = fields.Date(
+        string="Data da emissão da NF de exportação", required=True, sped_length="8*"
+    )
 
     COD_ITEM = fields.Char(
         string="Código do item",
+        required=True,
         sped_length="6",
         help="Código do item (campo 02 do Registro 0200)",
     )
@@ -14480,35 +16472,41 @@ class Registro1110(models.AbstractModel):
     _sped_level = 4
 
     COD_PART = fields.Char(
-        string="Código do participante",
+        string="Código do participante-Fornecedor",
+        required=True,
         sped_length="6",
         help=(
-            "Código do participante - fornecedor da mercadoria destinada à exportação "
+            "Código do participante-Fornecedor da Mercadoria destinada à exportação "
             "(campo 02 do Registro 0150)"
         ),
     )
 
     COD_MOD = fields.Char(
         string="Código do documento fiscal",
+        required=True,
         sped_length="2*",
-        help="Código do documento fiscal, conforme a tabela 4.1.1",
+        help="Código do documento fiscal, conforme a Tabela 4.1.1",
     )
 
     SER = fields.Char(
         string="Série do documento fiscal recebido",
         sped_length="4",
-        help="Série do documento fiscal recebido com fins específicos de exportação",
+        help=("Série do documento fiscal recebido com fins específicos de exportação."),
     )
 
     NUM_DOC = fields.Char(
         string="Número do documento fiscal recebido",
+        required=True,
         xsd_type="numeric_code",
         sped_length="9",
-        help=("Número do documento fiscal recebido com fins específicos de exportação"),
+        help=(
+            "Número do documento fiscal recebido com fins específicos de exportação."
+        ),
     )
 
     DT_DOC = fields.Date(
         string="Data da emissão do documento fiscal recebido",
+        required=True,
         sped_length="8*",
         help=(
             "Data da emissão do documento fiscal recebido com fins específicos de "
@@ -14526,11 +16524,19 @@ class Registro1110(models.AbstractModel):
 
     QTD = fields.Float(
         string="Quantidade do item efetivamente exportado",
+        required=True,
         xsd_type="TDec_1603",
         digits=(
             16,
             3,
         ),
+    )
+
+    UNID = fields.Char(
+        string="Unidade do item",
+        required=True,
+        sped_length="6",
+        help="Unidade do item (Campo 02 do registro 0190)",
     )
 
     reg_1110_ids_Registro1105_id = fields.Many2one(
@@ -14628,14 +16634,16 @@ class Registro1210(models.AbstractModel):
 
     TIPO_UTIL = fields.Char(
         string="Tipo de utilização do crédito",
+        required=True,
         sped_length="4*",
-        help="Tipo de utilização do crédito, conforme tabela indicada no item 5.5",
+        help="Tipo de utilização do crédito, conforme tabela indicada no item 5.5.",
     )
 
     NR_DOC = fields.Char(string="Número do documento utilizado na baixa de créditos")
 
     VL_CRED_UTIL = fields.Monetary(
         string="Total de crédito utilizado",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -14827,13 +16835,19 @@ class Registro1300(models.AbstractModel):
     _sped_level = 2
 
     COD_ITEM = fields.Char(
-        string="Código do produto", help="Código do produto, constante do registro 0200"
+        string="Código do Produto",
+        required=True,
+        sped_length="6",
+        help="Código do Produto, constante do registro 0200",
     )
 
-    DT_FECH = fields.Date(string="Data do fechamento da movimentação", sped_length="8*")
+    DT_FECH = fields.Date(
+        string="Data do fechamento da movimentação", required=True, sped_length="8*"
+    )
 
     ESTQ_ABERT = fields.Float(
-        string="Estoque no inicio do dia, em litros",
+        string="Estoque no início do dia, em litros",
+        required=True,
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -14842,7 +16856,8 @@ class Registro1300(models.AbstractModel):
     )
 
     VOL_ENTR = fields.Float(
-        string="Volume recebido no dia (em litros)",
+        string="Volume Recebido no dia (em litros)",
+        required=True,
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -14851,17 +16866,19 @@ class Registro1300(models.AbstractModel):
     )
 
     VOL_DISP = fields.Float(
-        string="Volume disponível (04 + 05)",
+        string="Volume Disponível (04 + 05)",
+        required=True,
         xsd_type="TDec_1603",
         digits=(
             16,
             3,
         ),
-        help="Volume disponível (04 + 05), em litros",
+        help="Volume Disponível (04 + 05), em litros",
     )
 
     VOL_SAIDAS = fields.Float(
-        string="Volume total das saídas, em litros",
+        string="Volume Total das Saídas, em litros",
+        required=True,
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -14870,7 +16887,8 @@ class Registro1300(models.AbstractModel):
     )
 
     ESTQ_ESCR = fields.Float(
-        string="Estoque escritural (06 - 07), litros",
+        string="Estoque Escritural (06 – 07), litros",
+        required=True,
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -14879,7 +16897,8 @@ class Registro1300(models.AbstractModel):
     )
 
     VAL_AJ_PERDA = fields.Float(
-        string="Valor da perda, em litros",
+        string="Valor da Perda, em litros",
+        required=True,
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -14889,6 +16908,7 @@ class Registro1300(models.AbstractModel):
 
     VAL_AJ_GANHO = fields.Float(
         string="Valor do ganho, em litros",
+        required=True,
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -14897,7 +16917,8 @@ class Registro1300(models.AbstractModel):
     )
 
     FECH_FISICO = fields.Float(
-        string="Estoque de fechamento, em litros",
+        string="Estoque de Fechamento, em litros",
+        required=True,
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -15034,13 +17055,13 @@ class Registro1320(models.AbstractModel):
     _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
     _sped_level = 4
 
-    NUM_BICO = fields.Integer(string="Bico ligado à bomba")
+    NUM_BICO = fields.Integer(string="Bico Ligado à Bomba", required=True)
 
     NR_INTERV = fields.Integer(string="Número da intervenção")
 
-    MOT_INTERV = fields.Char(string="Motivo da intervenção", sped_length="5")
+    MOT_INTERV = fields.Char(string="Motivo da Intervenção", sped_length="5")
 
-    NOM_INTERV = fields.Char(string="Nome do interventor", sped_length="3")
+    NOM_INTERV = fields.Char(string="Nome do Interventor", sped_length="3")
 
     CNPJ_INTERV = fields.Char(
         string="CNPJ da empresa responsável pela intervenção",
@@ -15056,6 +17077,7 @@ class Registro1320(models.AbstractModel):
 
     VAL_FECHA = fields.Float(
         string="Valor da leitura final do contador",
+        required=True,
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -15066,6 +17088,7 @@ class Registro1320(models.AbstractModel):
 
     VAL_ABERT = fields.Float(
         string="Valor da leitura inicial do contador",
+        required=True,
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -15075,7 +17098,7 @@ class Registro1320(models.AbstractModel):
     )
 
     VOL_AFERI = fields.Float(
-        string="Aferições da bomba, em litros",
+        string="Aferições da Bomba, em litros",
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -15084,13 +17107,14 @@ class Registro1320(models.AbstractModel):
     )
 
     VOL_VENDAS = fields.Float(
-        string="Vendas (08 - 09 - 10 ) do bico",
+        string="Vendas (08 – 09 - 10 ) do bico ",
+        required=True,
         xsd_type="TDec_1603",
         digits=(
             16,
             3,
         ),
-        help="Vendas (08 - 09 - 10 ) do bico, em litros",
+        help="Vendas (08 – 09 - 10 ) do bico , em litros",
     )
 
     reg_1320_ids_Registro1310_id = fields.Many2one(
@@ -15109,16 +17133,19 @@ class Registro1350(models.AbstractModel):
     _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
     _sped_level = 2
 
-    SERIE = fields.Char(string="Número de série da bomba")
+    SERIE = fields.Char(string="Número de Série da Bomba", required=True)
 
-    FABRICANTE = fields.Char(string="Nome do fabricante da bomba", sped_length="6")
+    FABRICANTE = fields.Char(
+        string="Nome do Fabricante da Bomba", required=True, sped_length="6"
+    )
 
-    MODELO = fields.Char(string="Modelo da bomba")
+    MODELO = fields.Char(string="Modelo da Bomba", required=True)
 
     TIPO_MEDICAO = fields.Char(
-        string="Identificador de medição: 0",
+        string="Identificador de medição",
+        required=True,
         sped_length="1",
-        help="Identificador de medição: 0 - analógico 1 - digital",
+        help="Identificador de medição: 0 – analógico 1 – digital",
     )
 
     reg_1360_ids = fields.One2many(
@@ -15145,7 +17172,11 @@ class Registro1360(models.AbstractModel):
     _sped_level = 3
 
     NUM_LACRE = fields.Char(
-        string="Número do lacre associado na bomba", sped_length="2"
+        string="Número do Lacre associado na Bomba", required=True, sped_length="2"
+    )
+
+    DT_APLICACAO = fields.Date(
+        string="Data de aplicação do Lacre", required=True, sped_length="8*"
     )
 
     reg_1360_ids_Registro1350_id = fields.Many2one(
@@ -15200,6 +17231,7 @@ class Registro1390(models.AbstractModel):
 
     COD_PROD = fields.Char(
         string="Código do produto conforme tabela 5",
+        required=True,
         xsd_type="numeric_code",
         sped_length="2*",
         help="Código do produto conforme tabela 5.8",
@@ -15221,7 +17253,9 @@ class Registro1391(models.AbstractModel):
     _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
     _sped_level = 3
 
-    DT_REGISTRO = fields.Date(string="Data de produção (DDMMAAAA)", sped_length="8*")
+    DT_REGISTRO = fields.Date(
+        string="Data de produção (DDMMAAAA)", required=True, sped_length="8*"
+    )
 
     QTD_MOID = fields.Float(
         string="Quantidade de insumo esmagado",
@@ -15235,6 +17269,7 @@ class Registro1391(models.AbstractModel):
 
     ESTQ_INI = fields.Float(
         string="Estoque inicial (litros / kg)",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -15302,10 +17337,18 @@ class Registro1391(models.AbstractModel):
         ),
     )
 
-    SAIDAS = fields.Char(string="Saídas (litros / kg)")
+    SAIDAS = fields.Float(
+        string="Saídas (litros / kg)",
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+    )
 
     ESTQ_FIN = fields.Float(
         string="Estoque final (litros / kg)",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -15358,22 +17401,22 @@ class Registro1391(models.AbstractModel):
 
     COD_ITEM = fields.Char(
         string="insumo conforme código do item",
+        required=True,
         sped_length="6",
         help="insumo conforme código do item (campo 02 do Registro 0200)",
     )
 
     TP_RESIDUO = fields.Char(
-        string="Tipo de resíduo produzido",
+        string="Tipo de resíduo produzido: 01",
+        required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help=(
-            "Tipo de resíduo produzido: 01 – Bagaço de cana 02 - DDG 03 – WDG 04 – (DDG"
-            " + WDG)"
-        ),
+        help="Tipo de resíduo produzido: 01 - Bagaço de cana 02 - DDG 03 - WDG",
     )
 
     QTD_RESIDUO = fields.Float(
         string="Quantidade de resíduo produzido",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -15398,23 +17441,26 @@ class Registro1400(models.AbstractModel):
     _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
     _sped_level = 2
 
-    COD_ITEM = fields.Char(
-        string="- IPM Código do item",
+    COD_ITEM_IPM = fields.Char(
+        string="Código do item",
+        required=True,
         sped_length="6",
         help=(
-            "- IPM Código do item (tabela própria da unidade da federação ou campo 02 "
-            "do Registro 0200)"
+            "Código do item (Tabela própria da unidade da federação (Tabela de Itens UF"
+            " Índice de Participação dos Municípios) ou campo 02 do Registro 0200"
         ),
     )
 
     MUN = fields.Char(
-        string="Código do município de origem/destino",
+        string="Código do Município de origem/destino",
+        required=True,
         xsd_type="numeric_code",
         sped_length="7*",
     )
 
     VALOR = fields.Monetary(
         string="Valor mensal correspondente ao município",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -15430,19 +17476,22 @@ class Registro1500(models.AbstractModel):
     _sped_level = 2
 
     IND_OPER = fields.Char(
-        string="Indicador do tipo de operação: 1",
+        string="Indicador do tipo de operação",
+        required=True,
         sped_length="1*",
-        help="Indicador do tipo de operação: 1 - Saída",
+        help="Indicador do tipo de operação: 1- Saída",
     )
 
     IND_EMIT = fields.Char(
         string="Indicador do emitente do documento fiscal",
+        required=True,
         sped_length="1*",
-        help="Indicador do emitente do documento fiscal: 0 - Emissão própria;",
+        help="Indicador do emitente do documento fiscal: 0- Emissão própria;",
     )
 
     COD_PART = fields.Char(
         string="Código do participante",
+        required=True,
         sped_length="6",
         help=(
             "Código do participante (campo 02 do Registro 0150): - do adquirente, no "
@@ -15452,15 +17501,17 @@ class Registro1500(models.AbstractModel):
 
     COD_MOD = fields.Char(
         string="Código do modelo do documento fiscal",
+        required=True,
         sped_length="2*",
-        help="Código do modelo do documento fiscal, conforme a tabela 4.1.1",
+        help="Código do modelo do documento fiscal, conforme a",
     )
 
     COD_SIT = fields.Char(
         string="Código da situação do documento fiscal",
+        required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help="Código da situação do documento fiscal, conforme a tabela 4.1.2",
+        help="Código da situação do documento fiscal, conforme a Tabela 4.1.2",
     )
 
     SER = fields.Char(string="Série do documento fiscal", sped_length="4")
@@ -15471,24 +17522,33 @@ class Registro1500(models.AbstractModel):
 
     COD_CONS = fields.Char(
         string="Código de classe de consumo de energia elétrica",
+        required=True,
         sped_length="2*",
         help=(
-            "Código de classe de consumo de energia elétrica ou gás: 01 - Comercial 02 "
-            "- Consumo Próprio 03 - Iluminação Pública 04 - Industrial 05 - Poder "
-            "Público 06 - Residencial 07 - Rural 08 - Serviço Público"
+            "Código de classe de consumo de energia elétrica: 01 - Comercial 02 - "
+            "Consumo Próprio 03 - Iluminação Pública 04 - Industrial 05 - Poder Público"
+            " 06 - Residencial 07 - Rural 08 - Serviço Público"
         ),
     )
 
     NUM_DOC = fields.Char(
-        string="Número do documento fiscal", xsd_type="numeric_code", sped_length="9"
+        string="Número do documento fiscal",
+        required=True,
+        xsd_type="numeric_code",
+        sped_length="9",
     )
 
-    DT_DOC = fields.Date(string="Data da emissão do documento fiscal", sped_length="8*")
+    DT_DOC = fields.Date(
+        string="Data da emissão do documento fiscal", required=True, sped_length="8*"
+    )
 
-    DT_E_S = fields.Date(string="Data da entrada ou da saída", sped_length="8*")
+    DT_E_S = fields.Date(
+        string="Data da entrada ou da saída", required=True, sped_length="8*"
+    )
 
     VL_DOC = fields.Monetary(
         string="Valor total do documento fiscal",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -15501,6 +17561,7 @@ class Registro1500(models.AbstractModel):
 
     VL_FORN = fields.Monetary(
         string="Valor total fornecido/consumido",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -15610,22 +17671,25 @@ class Registro1510(models.AbstractModel):
 
     NUM_ITEM = fields.Char(
         string="Número sequencial do item no documento fiscal",
+        required=True,
         xsd_type="numeric_code",
         sped_length="3",
     )
 
     COD_ITEM = fields.Char(
         string="Código do item",
+        required=True,
         sped_length="6",
         help="Código do item (campo 02 do Registro 0200)",
     )
 
     COD_CLASS = fields.Char(
         string="Código de classificação do item",
+        required=True,
         xsd_type="numeric_code",
         sped_length="4*",
         help=(
-            "Código de classificação do item de energia elétrica, conforme a tabela "
+            "Código de classificação do item de energia elétrica, conforme a Tabela "
             "4.4.1"
         ),
     )
@@ -15646,7 +17710,10 @@ class Registro1510(models.AbstractModel):
     )
 
     VL_ITEM = fields.Monetary(
-        string="Valor do item", xsd_type="TDec_1602", currency_field="brl_currency_id"
+        string="Valor do item",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
     )
 
     VL_DESC = fields.Monetary(
@@ -15657,15 +17724,15 @@ class Registro1510(models.AbstractModel):
 
     CST_ICMS = fields.Char(
         string="Código da Situação Tributária",
+        required=True,
         xsd_type="numeric_code",
         sped_length="3*",
-        help=(
-            "Código da Situação Tributária, conforme a tabela indicada no item 4.3.1"
-        ),
+        help="Código da Situação Tributária, conforme a Tabela indicada no",
     )
 
     CFOP = fields.Char(
         string="Código Fiscal de Operação e Prestação",
+        required=True,
         xsd_type="numeric_code",
         sped_length="4*",
     )
@@ -15720,6 +17787,7 @@ class Registro1510(models.AbstractModel):
 
     IND_REC = fields.Char(
         string="Indicador do tipo de receita",
+        required=True,
         sped_length="1*",
         help=(
             "Indicador do tipo de receita: 0- Receita própria; 1- Receita de terceiros"
@@ -15810,6 +17878,7 @@ class Registro1601(models.AbstractModel):
 
     COD_PART_IP = fields.Char(
         string="Código do participante",
+        required=True,
         sped_length="6",
         help=(
             "Código do participante (campo 02 do Registro 0150): identificação da "
@@ -15828,6 +17897,7 @@ class Registro1601(models.AbstractModel):
 
     TOT_VS = fields.Float(
         string="Valor total bruto das vendas e/ou prestações",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -15841,6 +17911,7 @@ class Registro1601(models.AbstractModel):
 
     TOT_ISS = fields.Float(
         string="Valor total bruto das prestações de serviços",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -15853,6 +17924,7 @@ class Registro1601(models.AbstractModel):
 
     TOT_OUTROS = fields.Float(
         string="Valor total de operações deduzido dos valores",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -15874,19 +17946,21 @@ class Registro1700(models.AbstractModel):
 
     COD_DISP = fields.Char(
         string="Código dispositivo autorizado: 00",
+        required=True,
         sped_length="2*",
         help=(
-            "Código dispositivo autorizado: 00 - Formulário de Segurança - impressor "
-            "autônomo 01 - FS-DA - Formulário de Segurança para Impressão de DANFE 02 -"
-            " Formulário de segurança - NF-e 03 - Formulário Contínuo 04 - Blocos 05 - "
+            "Código dispositivo autorizado: 00 - Formulário de Segurança – impressor "
+            "autônomo 01 - FS-DA – Formulário de Segurança para Impressão de DANFE 02 –"
+            " Formulário de segurança - NF-e 03 - Formulário Contínuo 04 – Blocos 05 - "
             "Jogos Soltos"
         ),
     )
 
     COD_MOD = fields.Char(
         string="Código do modelo do dispositivo autorizado",
+        required=True,
         sped_length="2*",
-        help="Código do modelo do dispositivo autorizado, conforme a tabela 4.1.1",
+        help="Código do modelo do dispositivo autorizado, conforme a Tabela 4.1.1",
     )
 
     SER = fields.Char(string="Série do dispositivo autorizado", sped_length="4")
@@ -15894,19 +17968,24 @@ class Registro1700(models.AbstractModel):
     SUB = fields.Char(string="Subsérie do dispositivo autorizado", sped_length="3")
 
     NUM_DOC_INI = fields.Char(
-        string="Número inicial do dispositivo autorizado",
+        string="Número do dispositivo autorizado",
+        required=True,
         xsd_type="numeric_code",
         sped_length="12",
+        help="Número do dispositivo autorizado (utilizado) inicial",
     )
 
     NUM_DOC_FIN = fields.Char(
-        string="Número final do dispositivo autorizado",
+        string="Número do dispositivo autorizado (NUM_DOC_FIN)",
+        required=True,
         xsd_type="numeric_code",
         sped_length="12",
+        help="Número do dispositivo autorizado (utilizado) final",
     )
 
     NUM_AUT = fields.Char(
         string="Número da autorização",
+        required=True,
         xsd_type="numeric_code",
         sped_length="6",
         help="Número da autorização, conforme dispositivo autorizado",
@@ -15929,15 +18008,19 @@ class Registro1710(models.AbstractModel):
     _sped_level = 3
 
     NUM_DOC_INI = fields.Char(
-        string="Número inicial do dispositivo autorizado",
+        string="Número do dispositivo autorizado",
+        required=True,
         xsd_type="numeric_code",
         sped_length="12",
+        help="Número do dispositivo autorizado (inutilizado) inicial",
     )
 
     NUM_DOC_FIN = fields.Char(
-        string="Número final do dispositivo autorizado",
+        string="Número do dispositivo autorizado (NUM_DOC_FIN)",
+        required=True,
         xsd_type="numeric_code",
         sped_length="12",
+        help="Número do dispositivo autorizado (inutilizado) final",
     )
 
     reg_1710_ids_Registro1700_id = fields.Many2one(
@@ -16035,15 +18118,16 @@ class Registro1900(models.AbstractModel):
 
     IND_APUR_ICMS = fields.Char(
         string="Indicador de outra apuração do ICMS",
+        required=True,
         sped_length="1*",
         help=(
-            "Indicador de outra apuração do ICMS: 3 - APURAÇÃO 1 4 - APURAÇÃO 2 5 - "
-            "APURAÇÃO 3 6 - APURAÇÃO 4 7 - APURAÇÃO 5 8 - APURAÇÃO 6"
+            "Indicador de outra apuração do ICMS: 3 – APURAÇÃO 1; 4 – APURAÇÃO 2; 5 – "
+            "APURAÇÃO 3; 6 – APURAÇÃO 4; 7 – APURAÇÃO 5; 8 – APURAÇÃO 6."
         ),
     )
 
     DESCR_COMPL_OUT_APUR = fields.Char(
-        string="Descrição complementar de Outra Apuração do ICMS"
+        string="Descrição complementar de Outra Apuração do ICMS", required=True
     )
 
     reg_1910_ids = fields.One2many(
@@ -16062,9 +18146,13 @@ class Registro1910(models.AbstractModel):
     _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
     _sped_level = 3
 
-    DT_INI = fields.Date(string="Data inicial da sub-apuração", sped_length="8*")
+    DT_INI = fields.Date(
+        string="Data inicial da sub-apuração", required=True, sped_length="8*"
+    )
 
-    DT_FIN = fields.Date(string="Data final da sub-apuração", sped_length="8*")
+    DT_FIN = fields.Date(
+        string="Data final da sub-apuração", required=True, sped_length="8*"
+    )
 
     reg_1910_ids_Registro1900_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.1900",
@@ -16090,78 +18178,100 @@ class Registro1920(models.AbstractModel):
     _sped_level = 4
 
     VL_TOT_TRANSF_DEBITOS_OA = fields.Monetary(
-        string="Valor total dos débitos por 'Saídas e prestações",
+        string="Valor total dos débitos por “Saídas e prestações",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor total dos débitos por 'Saídas e prestações com débito do imposto'"
+            "Valor total dos débitos por “Saídas e prestações com débito do imposto”"
         ),
     )
 
     VL_TOT_AJ_DEBITOS_OA = fields.Monetary(
-        string="Valor total de 'Ajustes a débito'",
+        string="Valor total de “Ajustes a débito”",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_ESTORNOS_CRED_OA = fields.Monetary(
         string="Valor total de Ajustes “Estornos de créditos”",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_TOT_TRANSF_CREDITOS_OA = fields.Monetary(
-        string="Valor total dos créditos por 'Entradas",
+        string="Valor total dos créditos por “Entradas",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor total dos créditos por 'Entradas e aquisições com crédito do "
-            "imposto'"
+            "Valor total dos créditos por “Entradas e aquisições com crédito do "
+            "imposto”"
         ),
     )
 
     VL_TOT_AJ_CREDITOS_OA = fields.Monetary(
-        string="Valor total de 'Ajustes a crédito'",
+        string="Valor total de “Ajustes a crédito”",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_ESTORNOS_DEB_OA = fields.Monetary(
         string="Valor total de Ajustes “Estornos de Débitos”",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_SLD_CREDOR_ANT_OA = fields.Monetary(
-        string="Valor total de 'Saldo credor do período anterior'",
+        string="Valor total de “Saldo credor do período anterior”",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_SLD_APURADO_OA = fields.Monetary(
         string="Valor do saldo devedor apurado",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_TOT_DED = fields.Monetary(
-        string="Valor total de 'Deduções'",
+        string="Valor total de “Deduções”",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_ICMS_RECOLHER_OA = fields.Monetary(
         string="Valor total de 'ICMS a recolher",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help="Valor total de 'ICMS a recolher (09-10)",
     )
 
     VL_SLD_CREDOR_TRANSP_OA = fields.Monetary(
-        string="Valor total de 'Saldo credor a transportar",
+        string="Valor total de “Saldo credor a transportar",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor total de 'Saldo credor a transportar para o período seguinte”",
+        help="Valor total de “Saldo credor a transportar para o período seguinte”",
+    )
+
+    DEB_ESP_OA = fields.Float(
+        string="Valores recolhidos ou a recolher",
+        required=True,
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+        help="Valores recolhidos ou a recolher, extra- apuração.",
     )
 
     reg_1920_ids_Registro1910_id = fields.Many2one(
@@ -16208,10 +18318,11 @@ class Registro1921(models.AbstractModel):
 
     COD_AJ_APUR = fields.Char(
         string="Código do ajuste da SUB-APURAÇÃO e dedução",
+        required=True,
         sped_length="8*",
         help=(
-            "Código do ajuste da SUB-APURAÇÃO e dedução, conforme a tabela indicada no "
-            "item 5.1.1"
+            "Código do ajuste da SUB-APURAÇÃO e dedução, conforme a Tabela indicada no "
+            "item 5.1.1."
         ),
     )
 
@@ -16219,6 +18330,7 @@ class Registro1921(models.AbstractModel):
 
     VL_AJ_APUR = fields.Monetary(
         string="Valor do ajuste da apuração",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -16265,7 +18377,7 @@ class Registro1922(models.AbstractModel):
 
     NUM_PROC = fields.Char(
         string="Número do processo ao qual o ajuste está vinculado",
-        sped_length="6",
+        sped_length="15",
         help="Número do processo ao qual o ajuste está vinculado, se houver",
     )
 
@@ -16273,8 +18385,8 @@ class Registro1922(models.AbstractModel):
         string="Indicador da origem do processo",
         sped_length="1*",
         help=(
-            "Indicador da origem do processo: 0- SEFAZ 1- Justiça Federal 2- Justiça "
-            "Estadual 9- Outros"
+            "Indicador da origem do processo: 0- SEFAZ; 1- Justiça Federal; 2- Justiça "
+            "Estadual; 9- Outros"
         ),
     )
 
@@ -16305,6 +18417,7 @@ class Registro1923(models.AbstractModel):
 
     COD_PART = fields.Char(
         string="Código do participante",
+        required=True,
         sped_length="6",
         help=(
             "Código do participante (campo 02 do Registro 0150): - do emitente do "
@@ -16315,8 +18428,9 @@ class Registro1923(models.AbstractModel):
 
     COD_MOD = fields.Char(
         string="Código do modelo do documento fiscal",
+        required=True,
         sped_length="2*",
-        help="Código do modelo do documento fiscal, conforme a tabela 4.1.1",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
     )
 
     SER = fields.Char(string="Série do documento fiscal", sped_length="4")
@@ -16326,10 +18440,15 @@ class Registro1923(models.AbstractModel):
     )
 
     NUM_DOC = fields.Char(
-        string="Número do documento fiscal", xsd_type="numeric_code", sped_length="9"
+        string="Número do documento fiscal",
+        required=True,
+        xsd_type="numeric_code",
+        sped_length="9",
     )
 
-    DT_DOC = fields.Date(string="Data da emissão do documento fiscal", sped_length="8*")
+    DT_DOC = fields.Date(
+        string="Data da emissão do documento fiscal", required=True, sped_length="8*"
+    )
 
     COD_ITEM = fields.Char(
         string="Código do item",
@@ -16339,6 +18458,7 @@ class Registro1923(models.AbstractModel):
 
     VL_AJ_ITEM = fields.Monetary(
         string="Valor do ajuste para a operação/item",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -16368,15 +18488,17 @@ class Registro1925(models.AbstractModel):
 
     COD_INF_ADIC = fields.Char(
         string="Código da informação adicional conforme tabela",
+        required=True,
         sped_length="8*",
         help=(
             "Código da informação adicional conforme tabela a ser definida pelas SEFAZ,"
-            " conforme tabela definida no item 5.2"
+            " conforme tabela definida no item 5.2."
         ),
     )
 
     VL_INF_ADIC = fields.Monetary(
         string="Valor referente à informação adicional",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -16477,6 +18599,7 @@ class Registro1960(models.AbstractModel):
 
     IND_AP = fields.Char(
         string="Indicador da sub-apuração por tipo de benefício",
+        required=True,
         xsd_type="numeric_code",
         sped_length="2*",
         help=(
@@ -16486,6 +18609,7 @@ class Registro1960(models.AbstractModel):
 
     G1_01 = fields.Float(
         string="Percentual de crédito presumido",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16495,6 +18619,7 @@ class Registro1960(models.AbstractModel):
 
     G1_02 = fields.Float(
         string="Saídas não incentivadas de PI",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16504,6 +18629,7 @@ class Registro1960(models.AbstractModel):
 
     G1_03 = fields.Float(
         string="Saídas incentivadas de PI",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16513,6 +18639,7 @@ class Registro1960(models.AbstractModel):
 
     G1_04 = fields.Float(
         string="Saídas incentivadas de PI para fora do Nordeste",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16522,6 +18649,7 @@ class Registro1960(models.AbstractModel):
 
     G1_05 = fields.Float(
         string="Saldo devedor do ICMS antes das deduções",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16532,6 +18660,7 @@ class Registro1960(models.AbstractModel):
 
     G1_06 = fields.Float(
         string="Saldo devedor do ICMS relativo à faixa incentivada",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16542,6 +18671,7 @@ class Registro1960(models.AbstractModel):
 
     G1_07 = fields.Float(
         string="Crédito presumido nas saídas incentivadas de PI",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16552,6 +18682,7 @@ class Registro1960(models.AbstractModel):
 
     G1_08 = fields.Float(
         string="Saldo devedor relativo à faixa incentivada",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16565,6 +18696,7 @@ class Registro1960(models.AbstractModel):
 
     G1_09 = fields.Float(
         string="Crédito presumido",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16574,6 +18706,7 @@ class Registro1960(models.AbstractModel):
 
     G1_10 = fields.Float(
         string="Dedução de incentivo da Indústria",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16584,6 +18717,7 @@ class Registro1960(models.AbstractModel):
 
     G1_11 = fields.Float(
         string="Saldo devedor do ICMS após deduções",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16604,6 +18738,7 @@ class Registro1970(models.AbstractModel):
 
     IND_AP = fields.Char(
         string="Indicador da sub-apuração por tipo de benefício",
+        required=True,
         xsd_type="numeric_code",
         sped_length="2*",
         help=(
@@ -16613,6 +18748,7 @@ class Registro1970(models.AbstractModel):
 
     G3_01 = fields.Float(
         string="Importações com ICMS diferido",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16622,6 +18758,7 @@ class Registro1970(models.AbstractModel):
 
     G3_02 = fields.Float(
         string="ICMS diferido nas importações",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16631,6 +18768,81 @@ class Registro1970(models.AbstractModel):
 
     G3_03 = fields.Float(
         string="Saídas não incentivadas de PI",
+        required=True,
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+    )
+
+    G3_04 = fields.Float(
+        string="Percentual de incentivo nas saídas",
+        required=True,
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+        help="Percentual de incentivo nas saídas para fora do Estado",
+    )
+
+    G3_05 = fields.Float(
+        string="Saídas incentivadas de PI para fora do Estado",
+        required=True,
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+    )
+
+    G3_06 = fields.Float(
+        string="ICMS das saídas incentivadas de PI",
+        required=True,
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+        help="ICMS das saídas incentivadas de PI para fora do Estado",
+    )
+
+    G3_07 = fields.Float(
+        string="Crédito presumido nas saídas para fora do Estado",
+        required=True,
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+    )
+
+    G3_T = fields.Float(
+        string="Dedução de incentivo da Importação",
+        required=True,
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+        help="Dedução de incentivo da Importação (crédito presumido)",
+    )
+
+    G3_08 = fields.Float(
+        string="Saldo devedor do ICMS antes das deduções",
+        required=True,
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+        help="Saldo devedor do ICMS antes das deduções do incentivo",
+    )
+
+    G3_09 = fields.Float(
+        string="Saldo devedor do ICMS após deduções do incentivo",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16661,6 +18873,7 @@ class Registro1975(models.AbstractModel):
 
     ALIQ_IMP_BASE = fields.Float(
         string="Alíquota incidente sobre as importações-base",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16670,6 +18883,7 @@ class Registro1975(models.AbstractModel):
 
     G3_10 = fields.Float(
         string="Saídas incentivadas de PI",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16679,6 +18893,7 @@ class Registro1975(models.AbstractModel):
 
     G3_11 = fields.Float(
         string="Importações-base para o crédito presumido",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16688,6 +18903,7 @@ class Registro1975(models.AbstractModel):
 
     G3_12 = fields.Float(
         string="Crédito presumido nas saídas internas",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16719,15 +18935,17 @@ class Registro1980(models.AbstractModel):
 
     IND_AP = fields.Char(
         string="Indicador da sub-apuração por tipo de benefício",
+        required=True,
         xsd_type="numeric_code",
-        sped_length="2*",
+        sped_length="2 *",
         help=(
-            "Indicador da sub-apuração por tipo de benefício (conforme tabela 4.7.1)"
+            "Indicador da sub-apuração por tipo de benefício (conforme Tabela 4.7.1)"
         ),
     )
 
     G4_01 = fields.Float(
         string="Entradas (percentual de incentivo)",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16737,6 +18955,7 @@ class Registro1980(models.AbstractModel):
 
     G4_02 = fields.Float(
         string="Entradas não incentivadas de PI",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16746,6 +18965,7 @@ class Registro1980(models.AbstractModel):
 
     G4_03 = fields.Float(
         string="Entradas incentivadas de PI",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16755,6 +18975,7 @@ class Registro1980(models.AbstractModel):
 
     G4_04 = fields.Float(
         string="Saídas (percentual de incentivo)",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16764,6 +18985,7 @@ class Registro1980(models.AbstractModel):
 
     G4_05 = fields.Float(
         string="Saídas não incentivadas de PI",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16773,6 +18995,7 @@ class Registro1980(models.AbstractModel):
 
     G4_06 = fields.Float(
         string="Saídas incentivadas de PI",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16782,6 +19005,7 @@ class Registro1980(models.AbstractModel):
 
     G4_07 = fields.Float(
         string="Saldo devedor do ICMS antes das deduções",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16795,6 +19019,7 @@ class Registro1980(models.AbstractModel):
 
     G4_08 = fields.Float(
         string="Crédito presumido nas entradas incentivadas de PI",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16804,6 +19029,7 @@ class Registro1980(models.AbstractModel):
 
     G4_09 = fields.Float(
         string="Crédito presumido nas saídas incentivadas de PI",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16813,6 +19039,7 @@ class Registro1980(models.AbstractModel):
 
     G4_10 = fields.Float(
         string="Dedução de incentivo da Central de Distribuição",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16823,6 +19050,7 @@ class Registro1980(models.AbstractModel):
 
     G4_11 = fields.Float(
         string="Saldo devedor do ICMS após deduções do incentivo",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
@@ -16832,6 +19060,7 @@ class Registro1980(models.AbstractModel):
 
     G4_12 = fields.Float(
         string="Índice de recolhimento da central de distribuição",
+        required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
