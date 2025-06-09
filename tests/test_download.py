@@ -65,7 +65,7 @@ def test_download_mod_pdf_success_unit(
 
     # mock_requests_global is the mock of requests.get
     mock_requests_global.assert_any_call(
-        "http://sped.rfb.gov.br/arquivo/download/5965", stream=True, timeout=30
+        "http://sped.rfb.gov.br/arquivo/download/7300", stream=True, timeout=30
     )
 
     expected_pdf_path = (

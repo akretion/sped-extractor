@@ -211,8 +211,8 @@ class Registro0000(models.AbstractModel):
         xsd_type="numeric_code",
         sped_length="14",
         help=(
-            "CNPJ da SCP (Art. 4º, XVII, da IN RFB nº 1.863, de 27 de dezembro de "
-            "2018). Observação: Só deve ser preenchido pela própria SCP com o CNPJ da "
+            "CNPJ da SCP (Anexo I, XVIII, da IN RFB nº 2.119, de 06 de dezembro de "
+            "2022). Observação: Só deve ser preenchido pela própria SCP com o CNPJ da "
             "SCP (Não é preenchido pelo sócio ostensivo)."
         ),
     )
@@ -359,10 +359,6 @@ class Registro0020(models.AbstractModel):
         string="Número de Identificação do Registro de Empresas",
         xsd_type="numeric_code",
         sped_length="11",
-        help=(
-            "Número de Identificação do Registro de Empresas da matriz ou da filial na "
-            "Junta Comercial."
-        ),
     )
 
 
@@ -379,8 +375,8 @@ class Registro0035(models.AbstractModel):
         required=True,
         sped_length="14",
         help=(
-            "CNPJ da SCP (Art. 4º, XVII, da Instrução Normativa RFB nº 1.863, de 27 de "
-            "dezembro de 2018)."
+            "CNPJ da SCP (Aenxo I, XVIII, da Instrução Normativa RFB nº 2.119, de 06 de"
+            " dezembro de 2022)."
         ),
     )
 
@@ -1779,9 +1775,7 @@ class RegistroJ005(models.AbstractModel):
         help=(
             "O Data inicial das demonstrações contábeis. bservação: A data inicial das "
             "demonstrações deve ser a data posterior ao último encerramento do "
-            "exercício, mesmo que essa data não esteja no período da ECD transmitida. "
-            "Exemplo: Data do Último Encerramento do Exercício: 31/12/2021 Data Inicial"
-            " das Demonstrações Contábeis: 01/01/2022"
+            "exercício, mesmo que essa data não"
         ),
     )
 
@@ -1994,9 +1988,7 @@ class RegistroJ150(models.AbstractModel):
         string="O Código de aglutinação das linhas",
         help=(
             "O Código de aglutinação das linhas, atribuído pela pessoa jurídica. "
-            "bservação: Caso o indicador de código de aglutinação seja totalizador (T),"
-            " o código de aglutinação deve ser informado, mas não deve estar cadastrado"
-            " no"
+            "bservação: Caso o indicador de código de"
         ),
     )
 
@@ -2285,7 +2277,7 @@ class RegistroJ800(models.AbstractModel):
     ARQ_RTF = fields.Char(
         string="Sequência de bytes que representem",
         required=True,
-        sped_length="Não existe limite de tamanho",
+        sped_length="3 megabytes",
         help=(
             "Sequência de bytes que representem um único arquivo no formato RTF (Rich "
             "Text Format)."
@@ -2352,7 +2344,7 @@ class RegistroJ801(models.AbstractModel):
     ARQ_RTF = fields.Char(
         string="Sequência de bytes que representem",
         required=True,
-        sped_length="Não existe limite de tamanho",
+        sped_length="3 megabytes",
         help=(
             "Sequência de bytes que representem um único arquivo no formato RTF (Rich "
             "Text Format)."

@@ -287,6 +287,20 @@
     </record>
     <menuitem action="efd_icms_ipi_d695_action" parent="efd_icms_ipi_d" id="efd_icms_ipi_d695" />
 
+    <record id="efd_icms_ipi_d700_action" model="ir.actions.act_window">
+        <field name="name">D700 Nota Fiscal Fatura Eletrônica de Serviços de Comunicação – NFCom</field>
+        <field name="res_model">l10n_br_sped.efd_icms_ipi.d700</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem action="efd_icms_ipi_d700_action" parent="efd_icms_ipi_d" id="efd_icms_ipi_d700" />
+
+    <record id="efd_icms_ipi_d750_action" model="ir.actions.act_window">
+        <field name="name">D750 Escrituração consolidada da Nota Fiscal Fatura Eletrônica de Serviços de Comunicação – NFCom</field>
+        <field name="res_model">l10n_br_sped.efd_icms_ipi.d750</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem action="efd_icms_ipi_d750_action" parent="efd_icms_ipi_d" id="efd_icms_ipi_d750" />
+
 
     <menuitem name="BLOCO E" parent="efd_icms_ipi" id="efd_icms_ipi_e" />
 
@@ -340,6 +354,13 @@
 
 
     <menuitem name="BLOCO K" parent="efd_icms_ipi" id="efd_icms_ipi_k" />
+
+    <record id="efd_icms_ipi_k010_action" model="ir.actions.act_window">
+        <field name="name">K010 Informação sobre o tipo de leiaute</field>
+        <field name="res_model">l10n_br_sped.efd_icms_ipi.k010</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem action="efd_icms_ipi_k010_action" parent="efd_icms_ipi_k" id="efd_icms_ipi_k010" />
 
     <record id="efd_icms_ipi_k100_action" model="ir.actions.act_window">
         <field name="name">K100 Período de Apuração do ICMS/IPI</field>
