@@ -26,6 +26,7 @@ STRUCTURE SPED EFD_ICMS_IPI
     - 0206 Código de produto conforme Tabela ANP
     ≡ 0210 Consumo Específico Padronizado
     ≡ 0220 Fatores de Conversão de Unidades
+    ≡ 0221 Correlação entre códigos de itens comercializados
 
   - 0300 CADASTRO DE BENS OU COMPONENTES DO ATIVO IMOBILIZADO
     - 0305 Informação sobre a Utilização do Bem
@@ -64,7 +65,7 @@ STRUCTURE SPED EFD_ICMS_IPI
 
   - C100 DOCUMENTO - NOTA FISCAL (CÓDIGO 01)
     - C101 Informação complementar dos documentos fiscais quando das operações interestaduais destinadas
-    - C105 Operações com ICMS ST recolhido para UF diversa do destinatário do docu- mento fiscal
+    - C105 Operações com ICMS ST recolhido para UF diversa do destinatário do documento fiscal
     ≡ C110 Complemento de Documento
       ≡ C111
       ≡ C112
@@ -90,7 +91,7 @@ STRUCTURE SPED EFD_ICMS_IPI
       - C179
       - C180
       ≡ C181
-    ≡ C185 Informações complementares das operações de sa- ída de mercadorias sujeitas
+    ≡ C185 Informações complementares das operações de saída de mercadorias sujeitas à substituição tributária
     ≡ C186 Informações complementares das operações de devolução de entradas de mercadorias sujeitas
     ≡ C190 Registro Analítico do Documento
       - C191
@@ -142,11 +143,15 @@ STRUCTURE SPED EFD_ICMS_IPI
     ≡ C810 Itens do documento do cupom fiscal eletrônico – SAT
       - C815
     ≡ C850 Registro Analítico do CF-e
+    ≡ C855 Observações do lançamento fiscal
+      ≡ C857
 
   - C860 IDENTIFICAÇÃO DO EQUIPAMENTO SAT-CF-E
     ≡ C870 Itens do documento do cupom fiscal eletrônico – SAT
       - C880
     ≡ C890 Resumo diário de CF-e
+    ≡ C895 Observações do lançamento fiscal
+      ≡ C897
 
 <BLOCO D>
 
@@ -195,6 +200,16 @@ STRUCTURE SPED EFD_ICMS_IPI
     ≡ D696 Registro Analítico dos Documentos
       ≡ D697
 
+  - D700 NOTA FISCAL FATURA ELETRÔNICA DE SERVIÇOS DE COMUNICAÇÃO – NFCOM
+    ≡ D730 Registro analítico Nota Fiscal Fatura Eletrônica de Serviços de Comunicação – NFCom
+      - D731
+    ≡ D735 Observações do lançamento fiscal
+      ≡ D737
+
+  - D750 ESCRITURAÇÃO CONSOLIDADA DA NOTA FISCAL FATURA ELETRÔNICA DE SERVIÇOS DE COMUNICAÇÃO – NFCOM
+    ≡ D760 Registro analítico da escrituração consolidada da Nota Fiscal Fatura Eletrônica de Serviços
+      - D761
+
 <BLOCO E>
 
   - E100 PERÍODO DE APURAÇÃO DO ICMS
@@ -228,7 +243,7 @@ STRUCTURE SPED EFD_ICMS_IPI
 <BLOCO G>
 
   - G110 ICMS – ATIVO PERMANENTE – CIAP
-    ≡ G125 Movimentação de bem ou componente
+    ≡ G125 Movimentação de bem ou componente do Ativo Imobilizado
       ≡ G126
       ≡ G130
         ≡ G140
@@ -241,6 +256,8 @@ STRUCTURE SPED EFD_ICMS_IPI
       - H030
 
 <BLOCO K>
+
+  - K010 INFORMAÇÃO SOBRE O TIPO DE LEIAUTE
 
   - K100 PERÍODO DE APURAÇÃO DO ICMS/IPI
     ≡ K200 Estoque Escriturado
@@ -502,7 +519,7 @@ class Registro0015(models.AbstractModel):
         sped_length="2*",
         help=(
             "Sigla da unidade da federação do contribuinte substituído ou unidade de "
-            "federação do consumidor final não contribuinte -"
+            "federação do consumidor final não contribuinte - ICMS Destino EC 87/15."
         ),
     )
 
@@ -805,6 +822,14 @@ class Registro0200(models.AbstractModel):
         sped_card="1:N",
     )
 
+    reg_0221_ids = fields.One2many(
+        "l10n_br_sped.efd_icms_ipi.0221",
+        "reg_0221_ids_Registro0200_id",
+        string="0221 Correlação entre códigos",
+        sped_card="1:N",
+        help="0221 Correlação entre códigos de itens comercializados",
+    )
+
 
 class Registro0205(models.AbstractModel):
     "Alteração do Item"
@@ -967,6 +992,44 @@ class Registro0220(models.AbstractModel):
     )
 
 
+class Registro0221(models.AbstractModel):
+    "Correlação entre códigos de itens comercializados"
+
+    _description = textwrap.dedent(f"    {__doc__}")
+    _name = "l10n_br_sped.efd_icms_ipi.19.0221"
+    _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
+    _sped_level = 3
+
+    COD_ITEM_ATOMICO = fields.Char(
+        string="código do item atômico contido no item informado",
+        required=True,
+        sped_length="6",
+        help="código do item atômico contido no item informado no 0200 Pai.",
+    )
+
+    QTD_CONTIDA = fields.Float(
+        string="Informar quantos itens atômicos estão contidos",
+        required=True,
+        xsd_type="TDec_1606",
+        digits=(
+            16,
+            6,
+        ),
+        help=(
+            "Informar quantos itens atômicos estão contidos no item informado no 0200 "
+            "Pai."
+        ),
+    )
+
+    reg_0221_ids_Registro0200_id = fields.Many2one(
+        comodel_name="l10n_br_sped.efd_icms_ipi.0200",
+        string="Tabela de Identificação do Item",
+        required=True,
+        ondelete="cascade",
+        help="Tabela de Identificação do Item (Produtos e Serviços)",
+    )
+
+
 class Registro0300(models.AbstractModel):
     "Cadastro de bens ou componentes do Ativo Imobilizado"
 
@@ -1005,8 +1068,8 @@ class Registro0300(models.AbstractModel):
         string="Código de cadastro do bem principal nos casos",
         sped_length="6",
         help=(
-            "Código de cadastro do bem principal nos casos em que o bem ou componente ("
-            " campo 02) esteja vinculado a um bem principal."
+            "Código de cadastro do bem principal nos casos em que o bem ou componente "
+            "(campo 02) esteja vinculado a um bem principal."
         ),
     )
 
@@ -1220,8 +1283,7 @@ class Registro0600(models.AbstractModel):
 class RegistroB020(models.AbstractModel):
     """Nota Fiscal (código 01), Nota Fiscal de Serviços (código 03), Nota
     Fiscal de Serviços Avulsa (código 3B), Nota Fiscal de Produtor (código
-    04), Conhecimento de Transporte Rodoviário de Cargas (código 08), NF-e
-    (código 55) e NFC-e (código 65)"""
+    04), Conhecimento de Transporte Rodoviário de"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_icms_ipi.19.b020"
@@ -1463,8 +1525,7 @@ class RegistroB025(models.AbstractModel):
         help=(
             "Nota Fiscal (código 01), Nota Fiscal de Serviços (código 03), Nota Fiscal "
             "de Serviços Avulsa (código 3B), Nota Fiscal de Produtor (código 04), "
-            "Conhecimento de Transporte Rodoviário de Cargas (código 08), NF-e (código "
-            "55) e NFC-e (código 65)"
+            "Conhecimento de Transporte Rodoviário de"
         ),
     )
 
@@ -1567,7 +1628,7 @@ class RegistroB350(models.AbstractModel):
         string="Código COSIF a que está subordinada a conta do ISS",
         xsd_type="numeric_code",
         out_required=True,
-        sped_length="8*",
+        sped_length="8 *",
         help=(
             "Código COSIF a que está subordinada a conta do ISS das instituições "
             "financeiras"
@@ -1582,7 +1643,7 @@ class RegistroB350(models.AbstractModel):
         string="Item da lista de serviços",
         xsd_type="numeric_code",
         out_required=True,
-        sped_length="4*",
+        sped_length="4 *",
         help="Item da lista de serviços, conforme Tabela 4.6.3.",
     )
 
@@ -1711,11 +1772,7 @@ class RegistroB440(models.AbstractModel):
     COD_PART = fields.Char(
         string="Código do participante",
         in_required=True,
-        help=(
-            "Código do participante (campo 02 do Registro 0150): - do prestador, no "
-            "caso de aquisição de serviço pelo declarante; - do tomador, no caso de "
-            "prestação de serviço pelo declarante"
-        ),
+        help="Código do participante (campo 02 do Registro 0150):",
     )
 
     VL_CONT_RT = fields.Monetary(
@@ -1768,8 +1825,7 @@ class RegistroB460(models.AbstractModel):
         sped_length="1*",
         help=(
             "Indicador do tipo de dedução: 0 - Compensação do ISS calculado a maior; 1 "
-            "- Benefício fiscal por incentivo à cultura; 2 - Decisão administrativa ou "
-            "judicial; 9 - Outros"
+            "- Benefício fiscal por incentivo à cultura;"
         ),
     )
 
@@ -1808,8 +1864,9 @@ class RegistroB460(models.AbstractModel):
         in_required=True,
         sped_length="1*",
         help=(
-            "Indicador da obrigação onde será aplicada a dedução: 0 - ISS Próprio; 1 - "
-            "ISS Substituto (devido pelas aquisições de serviços do declarante)."
+            "Indicador da obrigação onde será aplicada a dedução: 0 - ISS Próprio; - "
+            "ISS Substituto (devido pelas aquisições de serviços do declarante). - ISS "
+            "Uniprofissionais."
         ),
     )
 
@@ -1931,7 +1988,7 @@ class RegistroB470(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "M - Valor total do ISS substituto a recolher pelas aquisições do "
-            "declarante"
+            "declarante (tomador)"
         ),
     )
 
@@ -2031,7 +2088,7 @@ class RegistroB510(models.AbstractModel):
 class RegistroC100(models.AbstractModel):
     """Documento - Nota Fiscal (código 01), Nota Fiscal Avulsa (código 1B),
     Nota Fiscal de Produtor (código 04), Nota Fiscal Eletrônica (código 55)
-    e Nota Fis- cal Eletrônica para Consumidor Final (código 65)"""
+    e Nota Fiscal Eletrônica para Consumidor Final (código 65)"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_icms_ipi.19.c100"
@@ -2214,9 +2271,10 @@ class RegistroC100(models.AbstractModel):
     )
 
     VL_PIS_ST = fields.Monetary(
-        string="Valor total do PIS retido por substituição",
+        string="Valor total do PIS retido",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
+        help="Valor total do PIS retido por substituição tributária",
     )
 
     VL_COFINS_ST = fields.Monetary(
@@ -2244,7 +2302,7 @@ class RegistroC100(models.AbstractModel):
         sped_card="1:1",
         help=(
             "C105 Operações com ICMS ST recolhido para UF diversa do destinatário do "
-            "docu- mento fiscal (Código 55)"
+            "documento fiscal (Código 55)"
         ),
     )
 
@@ -2271,7 +2329,7 @@ class RegistroC100(models.AbstractModel):
         sped_card="1:1",
         help=(
             "C160 Complemento de Documento - Volumes Transportados (código 01 e 04) "
-            "Exce- to Combustíveis"
+            "Exceto Combustíveis"
         ),
     )
 
@@ -2321,7 +2379,7 @@ class RegistroC100(models.AbstractModel):
         string="C185 Informações complementares das operações",
         sped_card="1:N",
         help=(
-            "C185 Informações complementares das operações de sa- ída de mercadorias "
+            "C185 Informações complementares das operações de saída de mercadorias "
             "sujeitas à substituição tributária (código 01, 1B, 04 e 55)"
         ),
     )
@@ -2382,6 +2440,7 @@ class RegistroC101(models.AbstractModel):
         in_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
+        help="Valor total do ICMS Interestadual para a UF de destino",
     )
 
     VL_ICMS_UF_REM = fields.Monetary(
@@ -2400,14 +2459,14 @@ class RegistroC101(models.AbstractModel):
         help=(
             "Documento - Nota Fiscal (código 01), Nota Fiscal Avulsa (código 1B), Nota "
             "Fiscal de Produtor (código 04), Nota Fiscal Eletrônica (código 55) e Nota "
-            "Fis- cal Eletrônica para Consumidor Final (código 65)"
+            "Fiscal Eletrônica para Consumidor Final (código 65)"
         ),
     )
 
 
 class RegistroC105(models.AbstractModel):
-    """Operações com ICMS ST recolhido para UF diversa do destinatário do docu-
-    mento fiscal (Código 55)"""
+    """Operações com ICMS ST recolhido para UF diversa do destinatário do
+    documento fiscal (Código 55)"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_icms_ipi.19.c105"
@@ -2415,13 +2474,14 @@ class RegistroC105(models.AbstractModel):
     _sped_level = 3
 
     OPER = fields.Char(
-        string="Indicador do tipo de operação",
+        string="Indicador do tipo de operação: 0",
         xsd_type="numeric_code",
         in_required=True,
         sped_length="1*",
         help=(
-            "Indicador do tipo de operação: 0- Combustíveis e Lubrificantes; 1- Leasing"
-            " de veículos ou faturamento direto."
+            "Indicador do tipo de operação: 0 - Combustíveis e Lubrificantes; 1 - "
+            "Leasing de veículos ou faturamento direto. 2 - Recusa de recebimento (de "
+            "acordo com as condições descritas nas instruções do Registro)"
         ),
     )
 
@@ -2437,7 +2497,7 @@ class RegistroC105(models.AbstractModel):
         help=(
             "Documento - Nota Fiscal (código 01), Nota Fiscal Avulsa (código 1B), Nota "
             "Fiscal de Produtor (código 04), Nota Fiscal Eletrônica (código 55) e Nota "
-            "Fis- cal Eletrônica para Consumidor Final (código 65)"
+            "Fiscal Eletrônica para Consumidor Final (código 65)"
         ),
     )
 
@@ -2471,7 +2531,7 @@ class RegistroC110(models.AbstractModel):
         help=(
             "Documento - Nota Fiscal (código 01), Nota Fiscal Avulsa (código 1B), Nota "
             "Fiscal de Produtor (código 04), Nota Fiscal Eletrônica (código 55) e Nota "
-            "Fis- cal Eletrônica para Consumidor Final (código 65)"
+            "Fiscal Eletrônica para Consumidor Final (código 65)"
         ),
     )
 
@@ -2535,7 +2595,7 @@ class RegistroC111(models.AbstractModel):
     NUM_PROC = fields.Char(
         string="Identificação do processo ou ato concessório",
         in_required=True,
-        sped_length="15",
+        sped_length="6",
     )
 
     IND_PROC = fields.Char(
@@ -2569,11 +2629,11 @@ class RegistroC112(models.AbstractModel):
     _sped_level = 4
 
     COD_DA = fields.Char(
-        string="Código do modelo do documento de arrecadação ",
+        string="Código do modelo do documento de arrecadação",
         in_required=True,
         sped_length="1*",
         help=(
-            "Código do modelo do documento de arrecadação : 0 – Documento estadual de "
+            "Código do modelo do documento de arrecadação: 0 – Documento estadual de "
             "arrecadação 1 – GNRE"
         ),
     )
@@ -2941,7 +3001,7 @@ class RegistroC120(models.AbstractModel):
         help=(
             "Documento - Nota Fiscal (código 01), Nota Fiscal Avulsa (código 1B), Nota "
             "Fiscal de Produtor (código 04), Nota Fiscal Eletrônica (código 55) e Nota "
-            "Fis- cal Eletrônica para Consumidor Final (código 65)"
+            "Fiscal Eletrônica para Consumidor Final (código 65)"
         ),
     )
 
@@ -3009,7 +3069,7 @@ class RegistroC130(models.AbstractModel):
         help=(
             "Documento - Nota Fiscal (código 01), Nota Fiscal Avulsa (código 1B), Nota "
             "Fiscal de Produtor (código 04), Nota Fiscal Eletrônica (código 55) e Nota "
-            "Fis- cal Eletrônica para Consumidor Final (código 65)"
+            "Fiscal Eletrônica para Consumidor Final (código 65)"
         ),
     )
 
@@ -3069,7 +3129,7 @@ class RegistroC140(models.AbstractModel):
         help=(
             "Documento - Nota Fiscal (código 01), Nota Fiscal Avulsa (código 1B), Nota "
             "Fiscal de Produtor (código 04), Nota Fiscal Eletrônica (código 55) e Nota "
-            "Fis- cal Eletrônica para Consumidor Final (código 65)"
+            "Fiscal Eletrônica para Consumidor Final (código 65)"
         ),
     )
 
@@ -3101,6 +3161,13 @@ class RegistroC141(models.AbstractModel):
         string="Data de vencimento da parcela", in_required=True, sped_length="8*"
     )
 
+    VL_PARC = fields.Monetary(
+        string="Valor da parcela a receber/pagar",
+        in_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
     reg_C141_ids_RegistroC140_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.c140",
         string="Complemento de Documento - Fatura",
@@ -3111,8 +3178,8 @@ class RegistroC141(models.AbstractModel):
 
 
 class RegistroC160(models.AbstractModel):
-    """Complemento de Documento - Volumes Transportados (código 01 e 04) Exce-
-    to Combustíveis"""
+    """Complemento de Documento - Volumes Transportados (código 01 e 04) Exceto
+    Combustíveis"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_icms_ipi.19.c160"
@@ -3168,7 +3235,7 @@ class RegistroC160(models.AbstractModel):
         help=(
             "Documento - Nota Fiscal (código 01), Nota Fiscal Avulsa (código 1B), Nota "
             "Fiscal de Produtor (código 04), Nota Fiscal Eletrônica (código 55) e Nota "
-            "Fis- cal Eletrônica para Consumidor Final (código 65)"
+            "Fiscal Eletrônica para Consumidor Final (código 65)"
         ),
     )
 
@@ -3195,8 +3262,8 @@ class RegistroC165(models.AbstractModel):
     )
 
     COD_AUT = fields.Char(
-        string="Código da autorização fornecido",
-        help="Código da autorização fornecido pela",
+        string="Código da autorização fornecido pela SEFAZ",
+        help="Código da autorização fornecido pela SEFAZ (combustíveis)",
     )
 
     NR_PASSE = fields.Char(string="Número do Passe Fiscal")
@@ -3263,7 +3330,7 @@ class RegistroC165(models.AbstractModel):
         help=(
             "Documento - Nota Fiscal (código 01), Nota Fiscal Avulsa (código 1B), Nota "
             "Fiscal de Produtor (código 04), Nota Fiscal Eletrônica (código 55) e Nota "
-            "Fis- cal Eletrônica para Consumidor Final (código 65)"
+            "Fiscal Eletrônica para Consumidor Final (código 65)"
         ),
     )
 
@@ -3328,7 +3395,10 @@ class RegistroC170(models.AbstractModel):
     )
 
     IND_MOV = fields.Char(
-        string="Movimentação física do ITEM/PRODUTO", in_required=True, sped_length="1*"
+        string="Movimentação física do ITEM/PRODUTO",
+        in_required=True,
+        sped_length="1*",
+        help="Movimentação física do ITEM/PRODUTO: 0. SIM 1. NÃO",
     )
 
     CST_ICMS = fields.Char(
@@ -3456,7 +3526,9 @@ class RegistroC170(models.AbstractModel):
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Valor da base de cálculo do PIS", currency_field="brl_currency_id"
+        string="Valor da base de cálculo do PIS",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
     )
 
     ALIQ_PIS = fields.Float(
@@ -3469,9 +3541,23 @@ class RegistroC170(models.AbstractModel):
         ),
     )
 
-    QUANT_BC_PIS = fields.Integer(string="Quantidade – Base de cálculo PIS")
+    QUANT_BC_PIS = fields.Float(
+        string="Quantidade – Base de cálculo PIS",
+        xsd_type="TDec_1603",
+        digits=(
+            16,
+            3,
+        ),
+    )
 
-    ALIQ_PIS_INDEX_29 = fields.Integer(string="Alíquota do PIS (em reais)")
+    ALIQ_PIS_INDEX_29 = fields.Float(
+        string="Alíquota do PIS (em reais)",
+        xsd_type="TDec_1604",
+        digits=(
+            16,
+            4,
+        ),
+    )
 
     VL_PIS = fields.Monetary(
         string="Valor do PIS", xsd_type="TDec_1602", currency_field="brl_currency_id"
@@ -3484,7 +3570,9 @@ class RegistroC170(models.AbstractModel):
     )
 
     VL_BC_COFINS = fields.Monetary(
-        string="Valor da base de cálculo da COFINS", currency_field="brl_currency_id"
+        string="Valor da base de cálculo da COFINS",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
     )
 
     ALIQ_COFINS = fields.Float(
@@ -3497,9 +3585,23 @@ class RegistroC170(models.AbstractModel):
         ),
     )
 
-    QUANT_BC_COFINS = fields.Integer(string="Quantidade – Base de cálculo COFINS")
+    QUANT_BC_COFINS = fields.Float(
+        string="Quantidade – Base de cálculo COFINS",
+        xsd_type="TDec_1603",
+        digits=(
+            16,
+            3,
+        ),
+    )
 
-    ALIQ_COFINS_INDEX_35 = fields.Integer(string="Alíquota da COFINS (em reais)")
+    ALIQ_COFINS_INDEX_35 = fields.Float(
+        string="Alíquota da COFINS (em reais)",
+        xsd_type="TDec_1604",
+        digits=(
+            16,
+            4,
+        ),
+    )
 
     VL_COFINS = fields.Monetary(
         string="Valor da COFINS", xsd_type="TDec_1602", currency_field="brl_currency_id"
@@ -3523,7 +3625,7 @@ class RegistroC170(models.AbstractModel):
         help=(
             "Documento - Nota Fiscal (código 01), Nota Fiscal Avulsa (código 1B), Nota "
             "Fiscal de Produtor (código 04), Nota Fiscal Eletrônica (código 55) e Nota "
-            "Fis- cal Eletrônica para Consumidor Final (código 65)"
+            "Fiscal Eletrônica para Consumidor Final (código 65)"
         ),
     )
 
@@ -3560,8 +3662,8 @@ class RegistroC170(models.AbstractModel):
         string="C180 Informações complementares das operações",
         sped_card="1:1",
         help=(
-            "C180 Informações complementares das operações de en- trada de mercadorias "
-            "sujeitas à substituição tribu- tária (código 01, 1B, 04 e 55)"
+            "C180 Informações complementares das operações de entrada de mercadorias "
+            "sujeitas à substituição tributária (código 01, 1B, 04 e 55)"
         ),
     )
 
@@ -3606,7 +3708,7 @@ class RegistroC170(models.AbstractModel):
         sped_card="1:N",
         help=(
             "C176 Complemento de Item -Ressarcimento de ICMS em operações com "
-            "Substitui- ção Tributária (código 01,55)"
+            "Substituição Tributária (código 01,55)"
         ),
     )
 
@@ -3747,9 +3849,7 @@ class RegistroC173(models.AbstractModel):
         help=(
             "Indicador de tipo de referência da base de cálculo do ICMS (ST) do produto"
             " farmacêutico: 0 - Base de cálculo referente ao preço tabelado ou preço "
-            "máximo sugerido; 1 - Base cálculo – Margem de valor agregado; 2 - Base de "
-            "cálculo referente à Lista Negativa; 3 - Base de cálculo referente à Lista "
-            "Positiva; 4 - Base de cálculo referente à Lista Neutra"
+            "máximo sugerido;"
         ),
     )
 
@@ -3829,7 +3929,8 @@ class RegistroC175(models.AbstractModel):
         sped_length="1*",
         help=(
             "Indicador do tipo de operação com veículo: 0 - Venda para concessionária; "
-            "1 - Faturamento direto; 2 - Venda direta;"
+            "1 - Faturamento direto; 2 - Venda direta; 3 - Venda da concessionária; 9 -"
+            " Outros"
         ),
     )
 
@@ -3855,8 +3956,8 @@ class RegistroC175(models.AbstractModel):
 
 
 class RegistroC176(models.AbstractModel):
-    """Complemento de Item -Ressarcimento de ICMS em operações com Substitui-
-    ção Tributária (código 01,55)"""
+    """Complemento de Item -Ressarcimento de ICMS em operações com Substituição
+    Tributária (código 01,55)"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_icms_ipi.19.c176"
@@ -3925,14 +4026,14 @@ class RegistroC176(models.AbstractModel):
     )
 
     VL_UNIT_BC_ST = fields.Float(
-        string="Valor unitário da base de cálculo",
+        string="Valor unitário da base de cálculo do imposto pago",
         out_required=True,
         xsd_type="TDec_1603",
         digits=(
             16,
             3,
         ),
-        help="Valor unitário da base de cálculo do",
+        help="Valor unitário da base de cálculo do imposto pago por substituição.",
     )
 
     CHAVE_NFE_ULT_E = fields.Char(
@@ -3953,7 +4054,7 @@ class RegistroC176(models.AbstractModel):
     )
 
     VL_UNIT_BC_ICMS_ULT_E = fields.Monetary(
-        string="VL_UNIT_BC_ICMS_ULT_E",
+        string="Valor unitário da base de cálculo",
         out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
@@ -4042,8 +4143,7 @@ class RegistroC176(models.AbstractModel):
         help=(
             "Código do motivo do ressarcimento: 1 - Saída para outra UF; 2 -Saída "
             "amparada por isenção ou não incidência; 3 - Perda ou deterioração; 4 - "
-            "Furto ou roubo; 5 - Exportação; 6 - Venda interna para Simples Nacional 9 "
-            "- Outros"
+            "Furto ou roubo; 5 - Exportação;"
         ),
     )
 
@@ -4087,9 +4187,12 @@ class RegistroC176(models.AbstractModel):
     )
 
     COD_DA = fields.Char(
-        string="Código do modelo do documento",
+        string="Código do modelo do documento de arrecadação",
         sped_length="1*",
-        help="Código do modelo do documento de",
+        help=(
+            "Código do modelo do documento de arrecadação: 0 – Documento estadual de "
+            "arrecadação 1 – GNRE"
+        ),
     )
 
     NUM_DA = fields.Char(
@@ -4270,8 +4373,8 @@ class RegistroC179(models.AbstractModel):
 
 
 class RegistroC180(models.AbstractModel):
-    """Informações complementares das operações de en- trada de mercadorias
-    sujeitas à substituição tribu- tária (código 01, 1B, 04 e 55)"""
+    """Informações complementares das operações de entrada de mercadorias
+    sujeitas à substituição tributária (código 01, 1B, 04 e 55)"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_icms_ipi.19.c180"
@@ -4504,7 +4607,7 @@ class RegistroC181(models.AbstractModel):
 
 
 class RegistroC185(models.AbstractModel):
-    """Informações complementares das operações de sa- ída de mercadorias
+    """Informações complementares das operações de saída de mercadorias
     sujeitas à substituição tributária (código 01, 1B, 04 e 55)"""
 
     _description = textwrap.dedent(f"    {__doc__}")
@@ -4646,7 +4749,7 @@ class RegistroC185(models.AbstractModel):
         help=(
             "Documento - Nota Fiscal (código 01), Nota Fiscal Avulsa (código 1B), Nota "
             "Fiscal de Produtor (código 04), Nota Fiscal Eletrônica (código 55) e Nota "
-            "Fis- cal Eletrônica para Consumidor Final (código 65)"
+            "Fiscal Eletrônica para Consumidor Final (código 65)"
         ),
     )
 
@@ -4795,7 +4898,7 @@ class RegistroC186(models.AbstractModel):
         help=(
             "Documento - Nota Fiscal (código 01), Nota Fiscal Avulsa (código 1B), Nota "
             "Fiscal de Produtor (código 04), Nota Fiscal Eletrônica (código 55) e Nota "
-            "Fis- cal Eletrônica para Consumidor Final (código 65)"
+            "Fiscal Eletrônica para Consumidor Final (código 65)"
         ),
     )
 
@@ -4877,8 +4980,7 @@ class RegistroC190(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Parcela correspondente ao 'Valor da base de cálculo do ICMS' da "
-            "substituição tributária referente à combinação de CST_ICMS, CFOP e "
-            "alíquota do ICMS."
+            "substituição tributária"
         ),
     )
 
@@ -4930,7 +5032,7 @@ class RegistroC190(models.AbstractModel):
         help=(
             "Documento - Nota Fiscal (código 01), Nota Fiscal Avulsa (código 1B), Nota "
             "Fiscal de Produtor (código 04), Nota Fiscal Eletrônica (código 55) e Nota "
-            "Fis- cal Eletrônica para Consumidor Final (código 65)"
+            "Fiscal Eletrônica para Consumidor Final (código 65)"
         ),
     )
 
@@ -5020,7 +5122,7 @@ class RegistroC195(models.AbstractModel):
         help=(
             "Documento - Nota Fiscal (código 01), Nota Fiscal Avulsa (código 1B), Nota "
             "Fiscal de Produtor (código 04), Nota Fiscal Eletrônica (código 55) e Nota "
-            "Fis- cal Eletrônica para Consumidor Final (código 65)"
+            "Fiscal Eletrônica para Consumidor Final (código 65)"
         ),
     )
 
@@ -5031,14 +5133,14 @@ class RegistroC195(models.AbstractModel):
         sped_card="1:N",
         help=(
             "C197 Outras Obrigações Tributárias, Ajustes e Informações provenientes de "
-            "Docu- mento Fiscal"
+            "Documento Fiscal"
         ),
     )
 
 
 class RegistroC197(models.AbstractModel):
     """Outras Obrigações Tributárias, Ajustes e Informações provenientes de
-    Docu- mento Fiscal"""
+    Documento Fiscal"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_icms_ipi.19.c197"
@@ -5046,11 +5148,11 @@ class RegistroC197(models.AbstractModel):
     _sped_level = 4
 
     COD_AJ = fields.Char(
-        string="Código do ajustes/benefício/incentivo",
+        string="Código dos ajustes/benefício/incentivo",
         in_required=True,
         sped_length="1*",
         help=(
-            "Código do ajustes/benefício/incentivo, conforme tabela indicada no item "
+            "Código dos ajustes/benefício/incentivo, conforme tabela indicada no item "
             "5.3."
         ),
     )
@@ -5105,8 +5207,8 @@ class RegistroC197(models.AbstractModel):
 
 
 class RegistroC300(models.AbstractModel):
-    """Documento - Resumo Diário das Notas Fiscais de Venda a Consumidor (códi-
-    go 02)"""
+    """Documento - Resumo Diário das Notas Fiscais de Venda a Consumidor
+    (código 02)"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_icms_ipi.19.c300"
@@ -5166,7 +5268,7 @@ class RegistroC300(models.AbstractModel):
     )
 
     COD_CTA = fields.Char(
-        string="Código", help="Código da conta analítica contábil debitada/ creditada"
+        string="Código", help="Código da conta analítica contábil debitada/creditada"
     )
 
     reg_C310_ids = fields.One2many(
@@ -5211,8 +5313,8 @@ class RegistroC310(models.AbstractModel):
         required=True,
         ondelete="cascade",
         help=(
-            "Documento - Resumo Diário das Notas Fiscais de Venda a Consumidor (códi- "
-            "go 02)"
+            "Documento - Resumo Diário das Notas Fiscais de Venda a Consumidor (código "
+            "02)"
         ),
     )
 
@@ -5310,8 +5412,8 @@ class RegistroC320(models.AbstractModel):
         required=True,
         ondelete="cascade",
         help=(
-            "Documento - Resumo Diário das Notas Fiscais de Venda a Consumidor (códi- "
-            "go 02)"
+            "Documento - Resumo Diário das Notas Fiscais de Venda a Consumidor (código "
+            "02)"
         ),
     )
 
@@ -5406,12 +5508,16 @@ class RegistroC321(models.AbstractModel):
         "reg_C330_ids_RegistroC321_id",
         string="C330 Informações complementares das operações",
         sped_card="1:1",
-        help="C330 Informações complementares das operações de sa-",
+        help=(
+            "C330 Informações complementares das operações de saída de mercadorias "
+            "sujeitas à substituição tributária (código 02)"
+        ),
     )
 
 
 class RegistroC330(models.AbstractModel):
-    "Informações complementares das operações de sa-"
+    """Informações complementares das operações de saída de mercadorias
+    sujeitas à substituição tributária (código 02)"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_icms_ipi.19.c330"
@@ -5676,14 +5782,14 @@ class RegistroC370(models.AbstractModel):
         string="C380 Informações complementares das operações",
         sped_card="1:1",
         help=(
-            "C380 Informações complementares das operações de sa- ída de mercadorias "
+            "C380 Informações complementares das operações de saída de mercadorias "
             "sujeitas à substituição tributária (código 02)"
         ),
     )
 
 
 class RegistroC380(models.AbstractModel):
-    """Informações complementares das operações de sa- ída de mercadorias
+    """Informações complementares das operações de saída de mercadorias
     sujeitas à substituição tributária (código 02)"""
 
     _description = textwrap.dedent(f"    {__doc__}")
@@ -6177,14 +6283,14 @@ class RegistroC425(models.AbstractModel):
         string="C430 Informações complementares das operações",
         sped_card="1:N",
         help=(
-            "C430 Informações complementares das operações de sa- ída de mercadorias "
+            "C430 Informações complementares das operações de saída de mercadorias "
             "sujeitas à substituição tributária (código 02, 2D e 60)"
         ),
     )
 
 
 class RegistroC430(models.AbstractModel):
-    """Informações complementares das operações de sa- ída de mercadorias
+    """Informações complementares das operações de saída de mercadorias
     sujeitas à substituição tributária (código 02, 2D e 60)"""
 
     _description = textwrap.dedent(f"    {__doc__}")
@@ -6201,7 +6307,6 @@ class RegistroC430(models.AbstractModel):
 
     QUANT_CONV = fields.Float(
         string="Quantidade do item",
-        out_required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
@@ -6210,14 +6315,11 @@ class RegistroC430(models.AbstractModel):
     )
 
     UNID = fields.Char(
-        string="Unidade adotada para informar o campo QUANT_CONV",
-        out_required=True,
-        sped_length="6",
+        string="Unidade adotada para informar o campo QUANT_CONV", sped_length="6"
     )
 
     VL_UNIT_CONV = fields.Float(
         string="Valor unitário da mercadoria",
-        out_required=True,
         xsd_type="TDec_1606",
         digits=(
             16,
@@ -6447,7 +6549,7 @@ class RegistroC470(models.AbstractModel):
             16,
             3,
         ),
-        help="Quantidade cancelada, no caso de cancelamento",
+        help="Quantidade cancelada, no caso de cancelamento parcial de item",
     )
 
     UNID = fields.Char(
@@ -6514,14 +6616,14 @@ class RegistroC470(models.AbstractModel):
         string="C480 Informações complementares das operações",
         sped_card="1:1",
         help=(
-            "C480 Informações complementares das operações de sa- ída de mercadorias "
+            "C480 Informações complementares das operações de saída de mercadorias "
             "sujeitas à substituição tributária (código 02, 2D e 60)"
         ),
     )
 
 
 class RegistroC480(models.AbstractModel):
-    """Informações complementares das operações de sa- ída de mercadorias
+    """Informações complementares das operações de saída de mercadorias
     sujeitas à substituição tributária (código 02, 2D e 60)"""
 
     _description = textwrap.dedent(f"    {__doc__}")
@@ -6837,7 +6939,7 @@ class RegistroC495(models.AbstractModel):
 class RegistroC500(models.AbstractModel):
     """Nota Fiscal/Conta de Energia Elétrica (código 06), Nota Fiscal de
     Energia Elétrica Eletrônica (código 66) , Nota Fiscal/Conta de
-    fornecimento dágua ca- nalizada (código 29) e Nota Fiscal/Consumo
+    fornecimento dágua canalizada (código 29) e Nota Fiscal/Consumo
     Fornecimento de Gás (Código 28)"""
 
     _description = textwrap.dedent(f"    {__doc__}")
@@ -6866,7 +6968,10 @@ class RegistroC500(models.AbstractModel):
         string="Código do participante",
         in_required=True,
         sped_length="6",
-        help="Código do participante (campo 02 do Registro 0150):",
+        help=(
+            "Código do participante (campo 02 do Registro 0150): - do adquirente, no "
+            "caso das saídas; - do fornecedor no caso de entradas"
+        ),
     )
 
     COD_MOD = fields.Char(
@@ -6896,8 +7001,7 @@ class RegistroC500(models.AbstractModel):
         help=(
             "- Código de classe de consumo de energia elétrica ou gás: 01 - Comercial "
             "02 - Consumo Próprio 03 - Iluminação Pública 04 - Industrial 05 - Poder "
-            "Público 06 - Residencial 07 - Rural 08 - Serviço Público. - Código de "
-            "classe de consumo de Fornecimento D´água – Tabela 4.4.2."
+            "Público 06 - Residencial"
         ),
     )
 
@@ -7013,7 +7117,10 @@ class RegistroC500(models.AbstractModel):
             " Alta Tensão (88 a 138kV) 03 - A3 - Alta Tensão (69kV) 04 - A3a - Alta "
             "Tensão (30kV a 44kV) 05 - A4 - Alta Tensão (2,3kV a 25kV) 06 - AS - Alta "
             "Tensão Subterrâneo 06 07 - B1 - Residencial 07 08 - B1 - Residencial Baixa"
-            " Renda 08 09 - B2 - Rural 09"
+            " Renda 08 09 - B2 - Rural 09 10 - B2 - Cooperativa de Eletrificação Rural "
+            "11 - B2 - Serviço Público de Irrigação 12 - B3 - Demais Classes 13 - B4a -"
+            " Iluminação Pública - rede de distribuição 14 - B4b - Iluminação Pública -"
+            " bulbo de lâmpada"
         ),
     )
 
@@ -7120,7 +7227,7 @@ class RegistroC500(models.AbstractModel):
         help=(
             "C510 Itens do Documento - Nota Fiscal/Conta de Energia Elétrica (código "
             "06), Nota Fiscal/Conta de fornecimento d'água canalizada (código 29) e "
-            "Nota Fiscal/ Conta Fornecimento de Gás (Código 28)"
+            "Nota Fiscal/Conta Fornecimento de Gás (Código 28)"
         ),
     )
 
@@ -7132,7 +7239,7 @@ class RegistroC500(models.AbstractModel):
         help=(
             "C590 Registro Analítico do Documento - Nota Fiscal/Conta de Energia "
             "Elétrica (código 06), Nota Fiscal de Energia Elétrica Eletrônica (código "
-            "66), Nota Fis- cal/Conta de fornecimento d'água canalizada (código 29) e "
+            "66), Nota Fiscal/Conta de fornecimento d'água canalizada (código 29) e "
             "Nota Fiscal/Conta Fornecimento de Gás (Código 28)"
         ),
     )
@@ -7149,7 +7256,7 @@ class RegistroC500(models.AbstractModel):
 class RegistroC510(models.AbstractModel):
     """Itens do Documento - Nota Fiscal/Conta de Energia Elétrica (código 06),
     Nota Fiscal/Conta de fornecimento d'água canalizada (código 29) e Nota
-    Fiscal/ Conta Fornecimento de Gás (Código 28)"""
+    Fiscal/Conta Fornecimento de Gás (Código 28)"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_icms_ipi.19.c510"
@@ -7301,7 +7408,7 @@ class RegistroC510(models.AbstractModel):
     )
 
     COD_CTA = fields.Char(
-        string="Código", help="Código da conta analítica contábil debitada/ creditada"
+        string="Código", help="Código da conta analítica contábil debitada/creditada"
     )
 
     reg_C510_ids_RegistroC500_id = fields.Many2one(
@@ -7312,8 +7419,8 @@ class RegistroC510(models.AbstractModel):
         help=(
             "Nota Fiscal/Conta de Energia Elétrica (código 06), Nota Fiscal de Energia "
             "Elétrica Eletrônica (código 66) , Nota Fiscal/Conta de fornecimento dágua "
-            "ca- nalizada (código 29) e Nota Fiscal/Consumo Fornecimento de Gás (Código"
-            " 28)"
+            "canalizada (código 29) e Nota Fiscal/Consumo Fornecimento de Gás (Código "
+            "28)"
         ),
     )
 
@@ -7321,8 +7428,8 @@ class RegistroC510(models.AbstractModel):
 class RegistroC590(models.AbstractModel):
     """Registro Analítico do Documento - Nota Fiscal/Conta de Energia Elétrica
     (código 06), Nota Fiscal de Energia Elétrica Eletrônica (código 66),
-    Nota Fis- cal/Conta de fornecimento d'água canalizada (código 29) e
-    Nota Fiscal/Conta Fornecimento de Gás (Código 28)"""
+    Nota Fiscal/Conta de fornecimento d'água canalizada (código 29) e Nota
+    Fiscal/Conta Fornecimento de Gás (Código 28)"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_icms_ipi.19.c590"
@@ -7438,8 +7545,8 @@ class RegistroC590(models.AbstractModel):
         help=(
             "Nota Fiscal/Conta de Energia Elétrica (código 06), Nota Fiscal de Energia "
             "Elétrica Eletrônica (código 66) , Nota Fiscal/Conta de fornecimento dágua "
-            "ca- nalizada (código 29) e Nota Fiscal/Consumo Fornecimento de Gás (Código"
-            " 28)"
+            "canalizada (código 29) e Nota Fiscal/Consumo Fornecimento de Gás (Código "
+            "28)"
         ),
     )
 
@@ -7491,7 +7598,7 @@ class RegistroC591(models.AbstractModel):
         help=(
             "Registro Analítico do Documento - Nota Fiscal/Conta de Energia Elétrica "
             "(código 06), Nota Fiscal de Energia Elétrica Eletrônica (código 66), Nota "
-            "Fis- cal/Conta de fornecimento d'água canalizada (código 29) e Nota "
+            "Fiscal/Conta de fornecimento d'água canalizada (código 29) e Nota "
             "Fiscal/Conta Fornecimento de Gás (Código 28)"
         ),
     )
@@ -7522,8 +7629,8 @@ class RegistroC595(models.AbstractModel):
         help=(
             "Nota Fiscal/Conta de Energia Elétrica (código 06), Nota Fiscal de Energia "
             "Elétrica Eletrônica (código 66) , Nota Fiscal/Conta de fornecimento dágua "
-            "ca- nalizada (código 29) e Nota Fiscal/Consumo Fornecimento de Gás (Código"
-            " 28)"
+            "canalizada (código 29) e Nota Fiscal/Consumo Fornecimento de Gás (Código "
+            "28)"
         ),
     )
 
@@ -8006,6 +8113,10 @@ class RegistroC690(models.AbstractModel):
         out_required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
+        help=(
+            "Parcela correspondente ao 'Valor da base de cálculo do ICMS' referente à "
+            "combinação CST_ICMS, CFOP e alíquota do ICMS"
+        ),
     )
 
     VL_ICMS = fields.Monetary(
@@ -8068,8 +8179,9 @@ class RegistroC690(models.AbstractModel):
 class RegistroC700(models.AbstractModel):
     """Consolidação dos Documentos Nota Fiscal/Conta Energia Elétrica (código
     06) emitidas em via única - (Empresas obrigadas à entrega do arquivo
-    previsto no Convênio ICMS 115/03) e Nota Fiscal/Conta de Fornecimento
-    de Gás Canali- zado (Código 28)"""
+    previsto no Convênio ICMS 115/03), Nota Fiscal/Conta de Fornecimento de
+    Gás Canalizado (Código 28) e Nota Fiscal de Energia Elétrica Eletrônica
+    (código 66)"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_icms_ipi.19.c700"
@@ -8119,14 +8231,11 @@ class RegistroC700(models.AbstractModel):
     )
 
     NOM_MEST = fields.Char(
-        string="Nome do arquivo Mestre de Documento Fiscal",
-        out_required=True,
-        sped_length="33",
+        string="Nome do arquivo Mestre de Documento Fiscal", sped_length="33"
     )
 
     CHV_COD_DIG = fields.Char(
         string="Chave de codificação digital do arquivo Mestre",
-        out_required=True,
         sped_length="32",
         help="Chave de codificação digital do arquivo Mestre de Documento Fiscal",
     )
@@ -8136,16 +8245,12 @@ class RegistroC700(models.AbstractModel):
         "reg_C790_ids_RegistroC700_id",
         string="C790 Registro Analítico dos Documentos",
         sped_card="1:N",
-        help=(
-            "C790 Registro Analítico dos Documentos - Nota Fiscal/Conta Energia "
-            "Elétrica (códi- go 06) emitidas em via única"
-        ),
+        help="C790 Registro Analítico dos Documentos (Códigos 06, 28 e 66)",
     )
 
 
 class RegistroC790(models.AbstractModel):
-    """Registro Analítico dos Documentos - Nota Fiscal/Conta Energia Elétrica
-    (códi- go 06) emitidas em via única"""
+    "Registro Analítico dos Documentos (Códigos 06, 28 e 66)"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_icms_ipi.19.c790"
@@ -8190,7 +8295,7 @@ class RegistroC790(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Valor da operação correspondente à combinação de CST_ICMS, CFOP, e "
-            "alíquota do ICMS."
+            "alíquota do ICMS"
         ),
     )
 
@@ -8238,7 +8343,7 @@ class RegistroC790(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Valor não tributado em função da redução da base de cálculo do ICMS, "
-            "referente à combinação de CST_ICMS, CFOP e alíquota do ICMS.."
+            "referente à combinação de CST_ICMS, CFOP e alíquota do ICMS"
         ),
     )
 
@@ -8256,8 +8361,9 @@ class RegistroC790(models.AbstractModel):
         help=(
             "Consolidação dos Documentos Nota Fiscal/Conta Energia Elétrica (código 06)"
             " emitidas em via única - (Empresas obrigadas à entrega do arquivo previsto"
-            " no Convênio ICMS 115/03) e Nota Fiscal/Conta de Fornecimento de Gás "
-            "Canali- zado (Código 28)"
+            " no Convênio ICMS 115/03), Nota Fiscal/Conta de Fornecimento de Gás "
+            "Canalizado (Código 28) e Nota Fiscal de Energia Elétrica Eletrônica "
+            "(código 66)"
         ),
     )
 
@@ -8266,11 +8372,12 @@ class RegistroC790(models.AbstractModel):
         "reg_C791_ids_RegistroC790_id",
         string="C791 Registro de Informações de ICMS ST por UF",
         sped_card="1:N",
+        help="C791 Registro de Informações de ICMS ST por UF (Código 06 e 66)",
     )
 
 
 class RegistroC791(models.AbstractModel):
-    "Registro de Informações de ICMS ST por UF"
+    "Registro de Informações de ICMS ST por UF (Código 06 e 66)"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_icms_ipi.19.c791"
@@ -8304,10 +8411,7 @@ class RegistroC791(models.AbstractModel):
         string="Registro Analítico dos Documentos",
         required=True,
         ondelete="cascade",
-        help=(
-            "Registro Analítico dos Documentos - Nota Fiscal/Conta Energia Elétrica "
-            "(códi- go 06) emitidas em via única"
-        ),
+        help="Registro Analítico dos Documentos (Códigos 06, 28 e 66)",
     )
 
 
@@ -8448,6 +8552,14 @@ class RegistroC800(models.AbstractModel):
         help="C850 Registro Analítico do CF-e (Código 59)",
     )
 
+    reg_C855_ids = fields.One2many(
+        "l10n_br_sped.efd_icms_ipi.c855",
+        "reg_C855_ids_RegistroC800_id",
+        string="C855 Observações do lançamento fiscal",
+        sped_card="1:N",
+        help="C855 Observações do lançamento fiscal (Código 59)",
+    )
+
 
 class RegistroC810(models.AbstractModel):
     """Itens do documento do cupom fiscal eletrônico – SAT (CF-E-SAT) (código
@@ -8525,14 +8637,14 @@ class RegistroC810(models.AbstractModel):
         string="C815 Informações complementares das operações",
         sped_card="1:1",
         help=(
-            "C815 Informações complementares das operações de sa- ída de mercadorias "
+            "C815 Informações complementares das operações de saída de mercadorias "
             "sujeitas à substituição tributária (CF-E-SAT) (código 59)"
         ),
     )
 
 
 class RegistroC815(models.AbstractModel):
-    """Informações complementares das operações de sa- ída de mercadorias
+    """Informações complementares das operações de saída de mercadorias
     sujeitas à substituição tributária (CF-E-SAT) (código 59)"""
 
     _description = textwrap.dedent(f"    {__doc__}")
@@ -8703,7 +8815,7 @@ class RegistroC850(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Valor acumulado da base de cálculo do ICMS, referente à combinação de "
-            "CST_ICMS, CFOP, e"
+            "CST_ICMS, CFOP, e alíquota do ICMS."
         ),
     )
 
@@ -8730,6 +8842,108 @@ class RegistroC850(models.AbstractModel):
         required=True,
         ondelete="cascade",
         help="Registro Cupom Fiscal Eletrônico - CF-e (Código 59)",
+    )
+
+
+class RegistroC855(models.AbstractModel):
+    "Observações do lançamento fiscal (Código 59)"
+
+    _description = textwrap.dedent(f"    {__doc__}")
+    _name = "l10n_br_sped.efd_icms_ipi.19.c855"
+    _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
+    _sped_level = 3
+
+    COD_OBS = fields.Char(
+        string="Código da observação do lançamento fiscal",
+        in_required=True,
+        sped_length="6",
+        help="Código da observação do lançamento fiscal (campo 02 do Registro 0460)",
+    )
+
+    TXT_COMPL = fields.Char(string="Descrição complementar do código de observação")
+
+    reg_C855_ids_RegistroC800_id = fields.Many2one(
+        comodel_name="l10n_br_sped.efd_icms_ipi.c800",
+        string="Registro Cupom Fiscal Eletrônico",
+        required=True,
+        ondelete="cascade",
+        help="Registro Cupom Fiscal Eletrônico - CF-e (Código 59)",
+    )
+
+    reg_C857_ids = fields.One2many(
+        "l10n_br_sped.efd_icms_ipi.c857",
+        "reg_C857_ids_RegistroC855_id",
+        string="C857 Outras obrigações tributárias",
+        sped_card="1:N",
+        help=(
+            "C857 Outras obrigações tributárias, ajustes e informações de valores "
+            "provenientes de documento fiscal."
+        ),
+    )
+
+
+class RegistroC857(models.AbstractModel):
+    """Outras obrigações tributárias, ajustes e informações de valores
+    provenientes de documento fiscal."""
+
+    _description = textwrap.dedent(f"    {__doc__}")
+    _name = "l10n_br_sped.efd_icms_ipi.19.c857"
+    _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
+    _sped_level = 4
+
+    COD_AJ = fields.Char(
+        string="Código do ajustes/benefício/incentivo",
+        in_required=True,
+        sped_length="1*",
+        help=(
+            "Código do ajustes/benefício/incentivo, conforme tabela indicada no item "
+            "5.3."
+        ),
+    )
+
+    DESCR_COMPL_AJ = fields.Char(
+        string="Descrição complementar do ajuste",
+        help="Descrição complementar do ajuste do documento fiscal",
+    )
+
+    COD_ITEM = fields.Char(
+        string="Código do item",
+        sped_length="6",
+        help="Código do item (campo 02 do Registro 0200)",
+    )
+
+    VL_BC_ICMS = fields.Monetary(
+        string="Base de cálculo do ICMS ou do ICMS ST",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    ALIQ_ICMS = fields.Float(
+        string="Alíquota do ICMS",
+        sped_length="6",
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+    )
+
+    VL_ICMS = fields.Monetary(
+        string="Valor do ICMS ou do ICMS ST",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_OUTROS = fields.Monetary(
+        string="Outros valores", xsd_type="TDec_1602", currency_field="brl_currency_id"
+    )
+
+    reg_C857_ids_RegistroC855_id = fields.Many2one(
+        comodel_name="l10n_br_sped.efd_icms_ipi.c855",
+        string="Observações do lançamento fiscal",
+        required=True,
+        ondelete="cascade",
+        help="Observações do lançamento fiscal (Código 59)",
     )
 
 
@@ -8794,6 +9008,14 @@ class RegistroC860(models.AbstractModel):
         help="C890 Resumo diário de CF-e (Código 59) por equipamento SAT-CF-e",
     )
 
+    reg_C895_ids = fields.One2many(
+        "l10n_br_sped.efd_icms_ipi.c895",
+        "reg_C895_ids_RegistroC860_id",
+        string="C895 Observações do lançamento fiscal",
+        sped_card="1:N",
+        help="C895 Observações do lançamento fiscal (Código 59)",
+    )
+
 
 class RegistroC870(models.AbstractModel):
     """Itens do documento do cupom fiscal eletrônico – SAT (CF-E-SAT) (código
@@ -8856,14 +9078,14 @@ class RegistroC870(models.AbstractModel):
         string="C880 Informações complementares das operações",
         sped_card="1:1",
         help=(
-            "C880 Informações complementares das operações de sa- ída de mercadorias "
+            "C880 Informações complementares das operações de saída de mercadorias "
             "sujeitas à substituição tributária (CF-E-SAT) (código 59)"
         ),
     )
 
 
 class RegistroC880(models.AbstractModel):
-    """Informações complementares das operações de sa- ída de mercadorias
+    """Informações complementares das operações de saída de mercadorias
     sujeitas à substituição tributária (CF-E-SAT) (código 59)"""
 
     _description = textwrap.dedent(f"    {__doc__}")
@@ -9064,15 +9286,117 @@ class RegistroC890(models.AbstractModel):
     )
 
 
+class RegistroC895(models.AbstractModel):
+    "Observações do lançamento fiscal (Código 59)"
+
+    _description = textwrap.dedent(f"    {__doc__}")
+    _name = "l10n_br_sped.efd_icms_ipi.19.c895"
+    _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
+    _sped_level = 3
+
+    COD_OBS = fields.Char(
+        string="Código da observação do lançamento fiscal",
+        in_required=True,
+        sped_length="6",
+        help="Código da observação do lançamento fiscal (campo 02 do Registro 0460)",
+    )
+
+    TXT_COMPL = fields.Char(string="Descrição complementar do código de observação")
+
+    reg_C895_ids_RegistroC860_id = fields.Many2one(
+        comodel_name="l10n_br_sped.efd_icms_ipi.c860",
+        string="Identificação do equipamento SAT-CF-e",
+        required=True,
+        ondelete="cascade",
+        help="Identificação do equipamento SAT-CF-e (Código 59)",
+    )
+
+    reg_C897_ids = fields.One2many(
+        "l10n_br_sped.efd_icms_ipi.c897",
+        "reg_C897_ids_RegistroC895_id",
+        string="C897 Outras obrigações tributárias",
+        sped_card="1:N",
+        help=(
+            "C897 Outras obrigações tributárias, ajustes e informações de valores "
+            "provenientes de documento fiscal."
+        ),
+    )
+
+
+class RegistroC897(models.AbstractModel):
+    """Outras obrigações tributárias, ajustes e informações de valores
+    provenientes de documento fiscal."""
+
+    _description = textwrap.dedent(f"    {__doc__}")
+    _name = "l10n_br_sped.efd_icms_ipi.19.c897"
+    _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
+    _sped_level = 4
+
+    COD_AJ = fields.Char(
+        string="Código do ajustes/benefício/incentivo",
+        in_required=True,
+        sped_length="1*",
+        help=(
+            "Código do ajustes/benefício/incentivo, conforme tabela indicada no item "
+            "5.3."
+        ),
+    )
+
+    DESCR_COMPL_AJ = fields.Char(
+        string="Descrição complementar do ajuste",
+        help="Descrição complementar do ajuste do documento fiscal",
+    )
+
+    COD_ITEM = fields.Char(
+        string="Código do item",
+        sped_length="6",
+        help="Código do item (campo 02 do Registro 0200)",
+    )
+
+    VL_BC_ICMS = fields.Monetary(
+        string="Base de cálculo do ICMS ou do ICMS ST",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    ALIQ_ICMS = fields.Float(
+        string="Alíquota do ICMS",
+        sped_length="6",
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+    )
+
+    VL_ICMS = fields.Monetary(
+        string="Valor do ICMS ou do ICMS ST",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_OUTROS = fields.Monetary(
+        string="Outros valores", xsd_type="TDec_1602", currency_field="brl_currency_id"
+    )
+
+    reg_C897_ids_RegistroC895_id = fields.Many2one(
+        comodel_name="l10n_br_sped.efd_icms_ipi.c895",
+        string="Observações do lançamento fiscal",
+        required=True,
+        ondelete="cascade",
+        help="Observações do lançamento fiscal (Código 59)",
+    )
+
+
 class RegistroD100(models.AbstractModel):
     """Nota Fiscal de Serviço de Transporte (código 07), Conhecimentos de
-    Transpor- te Rodoviário De Cargas (código 08), Conhecimentos de
+    Transporte Rodoviário De Cargas (código 08), Conhecimentos de
     Transporte de Cargas Avulso (código 8b), Aquaviário de Cargas (código
-    09), Aéreo (código 10), Fer- roviário de Cargas (código 11), Multimodal
+    09), Aéreo (código 10), Ferroviário de Cargas (código 11), Multimodal
     de Cargas (código 26), Nota Fiscal de Transporte Ferroviário de Carga
     (código 27), Conhecimento de Transporte Eletrônico – CT-e (código 57),
     Conhecimento de Transporte Eletrônico para Outros Serviços - CT-e OS
-    (código 67) e Bilhete de Passagem Eletrônico (códi- go 63)"""
+    (código 67) e Bilhete de Passagem Eletrônico (código 63)"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_icms_ipi.19.d100"
@@ -9165,10 +9489,9 @@ class RegistroD100(models.AbstractModel):
     )
 
     CHV_CTE_REF = fields.Char(
-        string="Chave do Bilhete",
+        string="Chave do Documento Eletrônico Substituído",
         xsd_type="numeric_code",
         sped_length="44*",
-        help="Chave do Bilhete de Passagem Eletrônico substituído",
     )
 
     VL_DOC = fields.Monetary(
@@ -9218,7 +9541,12 @@ class RegistroD100(models.AbstractModel):
     )
 
     COD_INF = fields.Char(
-        string="Código da informação complementar do documento", sped_length="6"
+        string="Código da informação complementar",
+        sped_length="6",
+        help=(
+            "Código da informação complementar do documento fiscal (campo 02 do "
+            "Registro 0450)"
+        ),
     )
 
     COD_CTA = fields.Char(
@@ -9300,7 +9628,7 @@ class RegistroD100(models.AbstractModel):
         sped_card="1:N",
         help=(
             "D130 Complemento do Conhecimento Rodoviário de Cargas (código 08) e "
-            "Conheci- mento de Transporte de Cargas Avulso (Código 8B)"
+            "Conhecimento de Transporte de Cargas Avulso (Código 8B)"
         ),
     )
 
@@ -9385,13 +9713,13 @@ class RegistroD101(models.AbstractModel):
         ondelete="cascade",
         help=(
             "Nota Fiscal de Serviço de Transporte (código 07), Conhecimentos de "
-            "Transpor- te Rodoviário De Cargas (código 08), Conhecimentos de Transporte"
-            " de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
-            "(código 10), Fer- roviário de Cargas (código 11), Multimodal de Cargas "
+            "Transporte Rodoviário De Cargas (código 08), Conhecimentos de Transporte "
+            "de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
+            "(código 10), Ferroviário de Cargas (código 11), Multimodal de Cargas "
             "(código 26), Nota Fiscal de Transporte Ferroviário de Carga (código 27), "
             "Conhecimento de Transporte Eletrônico – CT-e (código 57), Conhecimento de "
             "Transporte Eletrônico para Outros Serviços - CT-e OS (código 67) e Bilhete"
-            " de Passagem Eletrônico (códi- go 63)"
+            " de Passagem Eletrônico (código 63)"
         ),
     )
 
@@ -9437,13 +9765,13 @@ class RegistroD110(models.AbstractModel):
         ondelete="cascade",
         help=(
             "Nota Fiscal de Serviço de Transporte (código 07), Conhecimentos de "
-            "Transpor- te Rodoviário De Cargas (código 08), Conhecimentos de Transporte"
-            " de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
-            "(código 10), Fer- roviário de Cargas (código 11), Multimodal de Cargas "
+            "Transporte Rodoviário De Cargas (código 08), Conhecimentos de Transporte "
+            "de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
+            "(código 10), Ferroviário de Cargas (código 11), Multimodal de Cargas "
             "(código 26), Nota Fiscal de Transporte Ferroviário de Carga (código 27), "
             "Conhecimento de Transporte Eletrônico – CT-e (código 57), Conhecimento de "
             "Transporte Eletrônico para Outros Serviços - CT-e OS (código 67) e Bilhete"
-            " de Passagem Eletrônico (códi- go 63)"
+            " de Passagem Eletrônico (código 63)"
         ),
     )
 
@@ -9470,8 +9798,8 @@ class RegistroD120(models.AbstractModel):
         out_required=True,
         sped_length="7*",
         help=(
-            "Código do município de origem do serviço, conforme a tabela IBGE(Preencher"
-            " com 9999999, se Exterior)"
+            "Código do município de origem do serviço, conforme a tabela IBGE "
+            "(Preencher com 9999999, se Exterior)"
         ),
     )
 
@@ -9481,7 +9809,7 @@ class RegistroD120(models.AbstractModel):
         out_required=True,
         sped_length="7*",
         help=(
-            "Código do município de destino, conforme a tabela IBGE(Preencher com "
+            "Código do município de destino, conforme a tabela IBGE (Preencher com "
             "9999999, se Exterior)"
         ),
     )
@@ -9500,8 +9828,8 @@ class RegistroD120(models.AbstractModel):
 
 
 class RegistroD130(models.AbstractModel):
-    """Complemento do Conhecimento Rodoviário de Cargas (código 08) e Conheci-
-    mento de Transporte de Cargas Avulso (Código 8B)"""
+    """Complemento do Conhecimento Rodoviário de Cargas (código 08) e
+    Conhecimento de Transporte de Cargas Avulso (Código 8B)"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_icms_ipi.19.d130"
@@ -9609,13 +9937,13 @@ class RegistroD130(models.AbstractModel):
         ondelete="cascade",
         help=(
             "Nota Fiscal de Serviço de Transporte (código 07), Conhecimentos de "
-            "Transpor- te Rodoviário De Cargas (código 08), Conhecimentos de Transporte"
-            " de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
-            "(código 10), Fer- roviário de Cargas (código 11), Multimodal de Cargas "
+            "Transporte Rodoviário De Cargas (código 08), Conhecimentos de Transporte "
+            "de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
+            "(código 10), Ferroviário de Cargas (código 11), Multimodal de Cargas "
             "(código 26), Nota Fiscal de Transporte Ferroviário de Carga (código 27), "
             "Conhecimento de Transporte Eletrônico – CT-e (código 57), Conhecimento de "
             "Transporte Eletrônico para Outros Serviços - CT-e OS (código 67) e Bilhete"
-            " de Passagem Eletrônico (códi- go 63)"
+            " de Passagem Eletrônico (código 63)"
         ),
     )
 
@@ -9642,6 +9970,10 @@ class RegistroD140(models.AbstractModel):
         xsd_type="numeric_code",
         out_required=True,
         sped_length="7*",
+        help=(
+            "Código do município de origem do serviço, conforme a tabela IBGE(Preencher"
+            " com 9999999, se Exterior)"
+        ),
     )
 
     COD_MUN_DEST = fields.Char(
@@ -9723,13 +10055,13 @@ class RegistroD140(models.AbstractModel):
         ondelete="cascade",
         help=(
             "Nota Fiscal de Serviço de Transporte (código 07), Conhecimentos de "
-            "Transpor- te Rodoviário De Cargas (código 08), Conhecimentos de Transporte"
-            " de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
-            "(código 10), Fer- roviário de Cargas (código 11), Multimodal de Cargas "
+            "Transporte Rodoviário De Cargas (código 08), Conhecimentos de Transporte "
+            "de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
+            "(código 10), Ferroviário de Cargas (código 11), Multimodal de Cargas "
             "(código 26), Nota Fiscal de Transporte Ferroviário de Carga (código 27), "
             "Conhecimento de Transporte Eletrônico – CT-e (código 57), Conhecimento de "
             "Transporte Eletrônico para Outros Serviços - CT-e OS (código 67) e Bilhete"
-            " de Passagem Eletrônico (códi- go 63)"
+            " de Passagem Eletrônico (código 63)"
         ),
     )
 
@@ -9813,13 +10145,13 @@ class RegistroD150(models.AbstractModel):
         ondelete="cascade",
         help=(
             "Nota Fiscal de Serviço de Transporte (código 07), Conhecimentos de "
-            "Transpor- te Rodoviário De Cargas (código 08), Conhecimentos de Transporte"
-            " de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
-            "(código 10), Fer- roviário de Cargas (código 11), Multimodal de Cargas "
+            "Transporte Rodoviário De Cargas (código 08), Conhecimentos de Transporte "
+            "de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
+            "(código 10), Ferroviário de Cargas (código 11), Multimodal de Cargas "
             "(código 26), Nota Fiscal de Transporte Ferroviário de Carga (código 27), "
             "Conhecimento de Transporte Eletrônico – CT-e (código 57), Conhecimento de "
             "Transporte Eletrônico para Outros Serviços - CT-e OS (código 67) e Bilhete"
-            " de Passagem Eletrônico (códi- go 63)"
+            " de Passagem Eletrônico (código 63)"
         ),
     )
 
@@ -9856,8 +10188,8 @@ class RegistroD160(models.AbstractModel):
         out_required=True,
         sped_length="7*",
         help=(
-            "Código do Município de origem, conforme tabela IBGE(Preencher com 9999999,"
-            " se Exterior)"
+            "Código do Município de origem, conforme tabela IBGE (Preencher com "
+            "9999999, se exterior)"
         ),
     )
 
@@ -9885,7 +10217,7 @@ class RegistroD160(models.AbstractModel):
         out_required=True,
         sped_length="7*",
         help=(
-            "Código do Município de destino, conforme tabela IBGE(Preencher com "
+            "Código do Município de destino, conforme tabela IBGE (Preencher com "
             "9999999, se Exterior)"
         ),
     )
@@ -9897,13 +10229,13 @@ class RegistroD160(models.AbstractModel):
         ondelete="cascade",
         help=(
             "Nota Fiscal de Serviço de Transporte (código 07), Conhecimentos de "
-            "Transpor- te Rodoviário De Cargas (código 08), Conhecimentos de Transporte"
-            " de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
-            "(código 10), Fer- roviário de Cargas (código 11), Multimodal de Cargas "
+            "Transporte Rodoviário De Cargas (código 08), Conhecimentos de Transporte "
+            "de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
+            "(código 10), Ferroviário de Cargas (código 11), Multimodal de Cargas "
             "(código 26), Nota Fiscal de Transporte Ferroviário de Carga (código 27), "
             "Conhecimento de Transporte Eletrônico – CT-e (código 57), Conhecimento de "
             "Transporte Eletrônico para Outros Serviços - CT-e OS (código 67) e Bilhete"
-            " de Passagem Eletrônico (códi- go 63)"
+            " de Passagem Eletrônico (código 63)"
         ),
     )
 
@@ -9962,8 +10294,8 @@ class RegistroD161(models.AbstractModel):
         out_required=True,
         sped_length="7*",
         help=(
-            "Código do Município do local de coleta, conforme tabela IBGE(Preencher com"
-            " 9999999, se Exterior)"
+            "Código do Município do local de coleta, conforme tabela IBGE (Preencher "
+            "com 9999999, se Exterior)"
         ),
     )
 
@@ -9983,7 +10315,7 @@ class RegistroD161(models.AbstractModel):
         out_required=True,
         sped_length="7*",
         help=(
-            "Código do Município do local de entrega, conforme tabela IBGE(Preencher "
+            "Código do Município do local de entrega, conforme tabela IBGE (Preencher "
             "com 9999999, se Exterior)"
         ),
     )
@@ -10169,13 +10501,13 @@ class RegistroD170(models.AbstractModel):
         ondelete="cascade",
         help=(
             "Nota Fiscal de Serviço de Transporte (código 07), Conhecimentos de "
-            "Transpor- te Rodoviário De Cargas (código 08), Conhecimentos de Transporte"
-            " de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
-            "(código 10), Fer- roviário de Cargas (código 11), Multimodal de Cargas "
+            "Transporte Rodoviário De Cargas (código 08), Conhecimentos de Transporte "
+            "de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
+            "(código 10), Ferroviário de Cargas (código 11), Multimodal de Cargas "
             "(código 26), Nota Fiscal de Transporte Ferroviário de Carga (código 27), "
             "Conhecimento de Transporte Eletrônico – CT-e (código 57), Conhecimento de "
             "Transporte Eletrônico para Outros Serviços - CT-e OS (código 67) e Bilhete"
-            " de Passagem Eletrônico (códi- go 63)"
+            " de Passagem Eletrônico (código 63)"
         ),
     )
 
@@ -10202,8 +10534,8 @@ class RegistroD180(models.AbstractModel):
         ),
     )
 
-    CNPJ_CPF_EMIT = fields.Char(
-        string="CNPJ ou CPF do participante emitente do modal",
+    CNPJ_CPF_EMITCNPJ = fields.Char(
+        string="ou CPF do participante emitente do modal",
         xsd_type="numeric_code",
         out_required=True,
         sped_length="14",
@@ -10306,13 +10638,13 @@ class RegistroD180(models.AbstractModel):
         ondelete="cascade",
         help=(
             "Nota Fiscal de Serviço de Transporte (código 07), Conhecimentos de "
-            "Transpor- te Rodoviário De Cargas (código 08), Conhecimentos de Transporte"
-            " de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
-            "(código 10), Fer- roviário de Cargas (código 11), Multimodal de Cargas "
+            "Transporte Rodoviário De Cargas (código 08), Conhecimentos de Transporte "
+            "de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
+            "(código 10), Ferroviário de Cargas (código 11), Multimodal de Cargas "
             "(código 26), Nota Fiscal de Transporte Ferroviário de Carga (código 27), "
             "Conhecimento de Transporte Eletrônico – CT-e (código 57), Conhecimento de "
             "Transporte Eletrônico para Outros Serviços - CT-e OS (código 67) e Bilhete"
-            " de Passagem Eletrônico (códi- go 63)"
+            " de Passagem Eletrônico (código 63)"
         ),
     )
 
@@ -10414,13 +10746,13 @@ class RegistroD190(models.AbstractModel):
         ondelete="cascade",
         help=(
             "Nota Fiscal de Serviço de Transporte (código 07), Conhecimentos de "
-            "Transpor- te Rodoviário De Cargas (código 08), Conhecimentos de Transporte"
-            " de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
-            "(código 10), Fer- roviário de Cargas (código 11), Multimodal de Cargas "
+            "Transporte Rodoviário De Cargas (código 08), Conhecimentos de Transporte "
+            "de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
+            "(código 10), Ferroviário de Cargas (código 11), Multimodal de Cargas "
             "(código 26), Nota Fiscal de Transporte Ferroviário de Carga (código 27), "
             "Conhecimento de Transporte Eletrônico – CT-e (código 57), Conhecimento de "
             "Transporte Eletrônico para Outros Serviços - CT-e OS (código 67) e Bilhete"
-            " de Passagem Eletrônico (códi- go 63)"
+            " de Passagem Eletrônico (código 63)"
         ),
     )
 
@@ -10441,8 +10773,6 @@ class RegistroD195(models.AbstractModel):
         help="Código da observação do lançamento fiscal (campo 02 do Registro 0460)",
     )
 
-    TXT_COMPL = fields.Char(string="Descrição complementar do código de observação")
-
     reg_D195_ids_RegistroD100_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.d100",
         string="Nota Fiscal de Serviço de Transporte",
@@ -10450,13 +10780,13 @@ class RegistroD195(models.AbstractModel):
         ondelete="cascade",
         help=(
             "Nota Fiscal de Serviço de Transporte (código 07), Conhecimentos de "
-            "Transpor- te Rodoviário De Cargas (código 08), Conhecimentos de Transporte"
-            " de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
-            "(código 10), Fer- roviário de Cargas (código 11), Multimodal de Cargas "
+            "Transporte Rodoviário De Cargas (código 08), Conhecimentos de Transporte "
+            "de Cargas Avulso (código 8b), Aquaviário de Cargas (código 09), Aéreo "
+            "(código 10), Ferroviário de Cargas (código 11), Multimodal de Cargas "
             "(código 26), Nota Fiscal de Transporte Ferroviário de Carga (código 27), "
             "Conhecimento de Transporte Eletrônico – CT-e (código 57), Conhecimento de "
             "Transporte Eletrônico para Outros Serviços - CT-e OS (código 67) e Bilhete"
-            " de Passagem Eletrônico (códi- go 63)"
+            " de Passagem Eletrônico (código 63)"
         ),
     )
 
@@ -11288,10 +11618,10 @@ class RegistroD410(models.AbstractModel):
     _sped_level = 3
 
     COD_MOD = fields.Char(
-        string="Código do modelo do documento fiscal ",
+        string="Código do modelo do documento fiscal",
         out_required=True,
         sped_length="2*",
-        help="Código do modelo do documento fiscal , conforme a Tabela 4.1.1",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
     )
 
     SER = fields.Char(
@@ -11313,7 +11643,7 @@ class RegistroD410(models.AbstractModel):
     NUM_DOC_FIN = fields.Integer(
         string="Número do documento fiscal final",
         out_required=True,
-        help="Número do documento fiscal final(mesmo modelo, série e subsérie)",
+        help="Número do documento fiscal final (mesmo modelo, série e subsérie)",
     )
 
     DT_DOC = fields.Date(
@@ -11457,6 +11787,12 @@ class RegistroD420(models.AbstractModel):
         currency_field="brl_currency_id",
     )
 
+    VL_ICMS = fields.Monetary(
+        string="Valor total do ICMS",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
     reg_D420_ids_RegistroD400_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.d400",
         string="Resumo do Movimento Diário",
@@ -11468,7 +11804,7 @@ class RegistroD420(models.AbstractModel):
 
 class RegistroD500(models.AbstractModel):
     """Nota Fiscal de Serviço de Comunicação (código 21) e Serviço de
-    Telecomuni- cação (código 22)"""
+    Telecomunicação (código 22)"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_icms_ipi.19.d500"
@@ -11792,7 +12128,9 @@ class RegistroD510(models.AbstractModel):
         string="Valor da COFINS", xsd_type="TDec_1602", currency_field="brl_currency_id"
     )
 
-    COD_CTA = fields.Char(string="Código da conta analítica contábil")
+    COD_CTA = fields.Char(
+        string="Código", help="Código da conta analítica contábil debitada/creditada"
+    )
 
     reg_D510_ids_RegistroD500_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.d500",
@@ -11800,8 +12138,8 @@ class RegistroD510(models.AbstractModel):
         required=True,
         ondelete="cascade",
         help=(
-            "Nota Fiscal de Serviço de Comunicação (código 21) e Serviço de Telecomuni-"
-            " cação (código 22)"
+            "Nota Fiscal de Serviço de Comunicação (código 21) e Serviço de "
+            "Telecomunicação (código 22)"
         ),
     )
 
@@ -11851,8 +12189,8 @@ class RegistroD530(models.AbstractModel):
         required=True,
         ondelete="cascade",
         help=(
-            "Nota Fiscal de Serviço de Comunicação (código 21) e Serviço de Telecomuni-"
-            " cação (código 22)"
+            "Nota Fiscal de Serviço de Comunicação (código 21) e Serviço de "
+            "Telecomunicação (código 22)"
         ),
     )
 
@@ -11974,8 +12312,8 @@ class RegistroD590(models.AbstractModel):
         required=True,
         ondelete="cascade",
         help=(
-            "Nota Fiscal de Serviço de Comunicação (código 21) e Serviço de Telecomuni-"
-            " cação (código 22)"
+            "Nota Fiscal de Serviço de Comunicação (código 21) e Serviço de "
+            "Telecomunicação (código 22)"
         ),
     )
 
@@ -12338,7 +12676,7 @@ class RegistroD690(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Parcela correspondente ao valor da base de cálculo do ICMS de outras UFs, "
-            "referente à"
+            "referente à combinação de CST_ICMS, CFOP e alíquota do ICMS."
         ),
     )
 
@@ -12362,6 +12700,12 @@ class RegistroD690(models.AbstractModel):
             "Valor não tributado em função da redução da base de cálculo do ICMS, "
             "referente à combinação de CST_ICMS, CFOP e alíquota do ICMS."
         ),
+    )
+
+    COD_OBS = fields.Char(
+        string="Código da observação do lançamento fiscal",
+        sped_length="6",
+        help="Código da observação do lançamento fiscal (campo 02 do Registro 0460)",
     )
 
     reg_D690_ids_RegistroD600_id = fields.Many2one(
@@ -12580,14 +12924,14 @@ class RegistroD696(models.AbstractModel):
         sped_card="1:N",
         help=(
             "D697 Registro de informações de outras UFs, relativamente aos serviços "
-            "“não-medi- dos” de televisão por assinatura via satélite"
+            "“não- medidos” de televisão por assinatura via satélite"
         ),
     )
 
 
 class RegistroD697(models.AbstractModel):
     """Registro de informações de outras UFs, relativamente aos serviços “não-
-    medi- dos” de televisão por assinatura via satélite"""
+    medidos” de televisão por assinatura via satélite"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_icms_ipi.19.d697"
@@ -12618,6 +12962,768 @@ class RegistroD697(models.AbstractModel):
         required=True,
         ondelete="cascade",
         help="Registro Analítico dos Documentos (códigos 21 e 22)",
+    )
+
+
+class RegistroD700(models.AbstractModel):
+    """Nota Fiscal Fatura Eletrônica de Serviços de Comunicação – NFCom (Código
+    62)"""
+
+    _description = textwrap.dedent(f"    {__doc__}")
+    _name = "l10n_br_sped.efd_icms_ipi.19.d700"
+    _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
+    _sped_level = 2
+
+    IND_OPER = fields.Char(
+        string="Indicador do tipo de prestação: 0",
+        in_required=True,
+        sped_length="1*",
+        help="Indicador do tipo de prestação: 0: Entrada 1: Saída",
+    )
+
+    IND_EMIT = fields.Char(
+        string="Indicador do emitente do documento fiscal",
+        in_required=True,
+        sped_length="1*",
+        help=(
+            "Indicador do emitente do documento fiscal: 0: Emissão própria; 1: "
+            "Terceiros."
+        ),
+    )
+
+    COD_PART = fields.Char(
+        string="Código do participante",
+        in_required=True,
+        sped_length="6",
+        help=(
+            "Código do participante (Campo 02 do Registro 0150) do prestador, no caso "
+            "de entradas."
+        ),
+    )
+
+    COD_MOD = fields.Char(
+        string="Código do modelo do documento fiscal",
+        in_required=True,
+        sped_length="2*",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1.",
+    )
+
+    COD_SIT = fields.Char(
+        string="Código da situação do documento fiscal",
+        xsd_type="numeric_code",
+        in_required=True,
+        sped_length="2*",
+        help="Código da situação do documento fiscal, conforme a Tabela 4.1.2.",
+    )
+
+    SER = fields.Char(
+        string="Série do documento fiscal",
+        xsd_type="numeric_code",
+        in_required=True,
+        sped_length="3",
+    )
+
+    NUM_DOC = fields.Char(
+        string="Número do documento fiscal",
+        xsd_type="numeric_code",
+        in_required=True,
+        sped_length="9",
+    )
+
+    DT_DOC = fields.Date(
+        string="Data da emissão do documento fiscal", in_required=True, sped_length="8*"
+    )
+
+    DT_E_S = fields.Date(string="Data da entrada ou da saída", sped_length="8*")
+
+    VL_DOC = fields.Monetary(
+        string="Valor do documento fiscal",
+        in_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_DESC = fields.Monetary(
+        string="Valor do desconto",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_SERV = fields.Monetary(
+        string="Valor dos serviços tributados pelo ICMS",
+        in_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_SERV_NT = fields.Monetary(
+        string="Valores cobrados em nome do prestador sem destaque",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help="Valores cobrados em nome do prestador sem destaque de ICMS.",
+    )
+
+    VL_TERC = fields.Monetary(
+        string="Valores cobrados em nome de terceiros",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_DA = fields.Monetary(
+        string="Valor de despesas acessórias indicadas",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help="Valor de despesas acessórias indicadas no documento fiscal.",
+    )
+
+    VL_BC_ICMS = fields.Monetary(
+        string="Valor da Base de Cálculo",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help="Valor da Base de Cálculo (BC) do ICMS.",
+    )
+
+    VL_ICMS = fields.Monetary(
+        string="Valor do ICMS", xsd_type="TDec_1602", currency_field="brl_currency_id"
+    )
+
+    COD_INF = fields.Char(
+        string="Código da informação complementar",
+        sped_length="6",
+        help=(
+            "Código da informação complementar do documento fiscal (campo 02 do "
+            "Registro 0450)."
+        ),
+    )
+
+    VL_PIS = fields.Monetary(
+        string="Valor do PIS/Pasep",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_COFINS = fields.Monetary(
+        string="Valor do Cofins", xsd_type="TDec_1602", currency_field="brl_currency_id"
+    )
+
+    CHV_DOCE = fields.Char(
+        string="Chave da Nota Fiscal Fatura",
+        required=True,
+        help="Chave da Nota Fiscal Fatura de Serviço Comunicação Eletrônica. de N",
+    )
+
+    FIN_DOCE = fields.Char(
+        string="Finalidade da emissão do documento eletrônico",
+        xsd_type="numeric_code",
+        in_required=True,
+        sped_length="1*",
+        help=(
+            "Finalidade da emissão do documento eletrônico: 0 - NFCom Normal; 3 - NFCom"
+            " de Substituição; 4 - NFCom de Ajuste;"
+        ),
+    )
+
+    TIP_FAT = fields.Char(
+        string="Tipo de faturamento do documento eletrônico",
+        xsd_type="numeric_code",
+        in_required=True,
+        sped_length="1*",
+        help=(
+            "Tipo de faturamento do documento eletrônico: 0 - Faturamento Normal; 1 - "
+            "Faturamento centralizado; 2 - Cofaturamento"
+        ),
+    )
+
+    COD_MOD_DOC_REF = fields.Char(
+        string="Código do modelo do documento fiscal referenciado",
+        xsd_type="numeric_code",
+        sped_length="2*",
+        help=(
+            "Código do modelo do documento fiscal referenciado, conforme a Tabela "
+            "4.1.1."
+        ),
+    )
+
+    CHV_DOCE_REF = fields.Char(
+        string="Chave da nota referenciada", xsd_type="numeric_code", sped_length="44*"
+    )
+
+    HASH_DOC_REF = fields.Char(
+        string="Código de autenticação digital do registro",
+        sped_length="32",
+        help=(
+            "Código de autenticação digital do registro, campo 36 do registro do "
+            "Arquivo tipo mestre de documento fiscal, conforme definido no Convênio "
+            "115/2003."
+        ),
+    )
+
+    SER_DOC_REF = fields.Char(
+        string="Série do documento fiscal referenciado", sped_length="4"
+    )
+
+    NUM_DOC_REF = fields.Char(
+        string="Número do documento fiscal referenciado",
+        xsd_type="numeric_code",
+        sped_length="9",
+    )
+
+    MES_DOC_REF = fields.Char(
+        string="Mês e ano da emissão",
+        xsd_type="numeric_code",
+        sped_length="6*",
+        help="Mês e ano da emissão do documento fiscal referenciado.",
+    )
+
+    COD_MUN_DEST = fields.Char(
+        string="Código do município do destinatário conforme",
+        xsd_type="numeric_code",
+        out_required=True,
+        sped_length="7*",
+        help="Código do município do destinatário conforme a tabela do IBGE.",
+    )
+
+    DED = fields.Float(
+        string="Deduções",
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+    )
+
+    reg_D730_ids = fields.One2many(
+        "l10n_br_sped.efd_icms_ipi.d730",
+        "reg_D730_ids_RegistroD700_id",
+        string="D730",
+        sped_card="1:N",
+        help=(
+            "D730 Registro analítico Nota Fiscal Fatura Eletrônica de Serviços de "
+            "Comunicação – NFCom (Código 62)"
+        ),
+    )
+
+    reg_D735_ids = fields.One2many(
+        "l10n_br_sped.efd_icms_ipi.d735",
+        "reg_D735_ids_RegistroD700_id",
+        string="D735 Observações do lançamento fiscal",
+        sped_card="1:N",
+        help="D735 Observações do lançamento fiscal (Código 62)",
+    )
+
+
+class RegistroD730(models.AbstractModel):
+    """Registro analítico Nota Fiscal Fatura Eletrônica de Serviços de
+    Comunicação – NFCom (Código 62)"""
+
+    _description = textwrap.dedent(f"    {__doc__}")
+    _name = "l10n_br_sped.efd_icms_ipi.19.d730"
+    _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
+    _sped_level = 3
+
+    CST_ICMS = fields.Char(
+        string="Código da Situação Tributária",
+        xsd_type="numeric_code",
+        in_required=True,
+        sped_length="3*",
+        help=(
+            "Código da Situação Tributária, conforme a tabela indicada no item 4.3.1"
+        ),
+    )
+
+    CFOP = fields.Char(
+        string="Código Fiscal de Operação e Prestação",
+        xsd_type="numeric_code",
+        in_required=True,
+        sped_length="4*",
+        help=(
+            "Código Fiscal de Operação e Prestação, conforme a tabela indicada no item "
+            "4.2.2"
+        ),
+    )
+
+    ALIQ_ICMS = fields.Float(
+        string="Alíquota do ICMS",
+        sped_length="6",
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+    )
+
+    VL_OPR = fields.Monetary(
+        string="Valor total dos itens relacionados",
+        in_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor total dos itens relacionados aos serviços próprios, com destaque de "
+            "ICMS, correspondente à combinação de CST_ICMS, CFOP, e alíquota do ICMS."
+        ),
+    )
+
+    VL_BC_ICMS = fields.Monetary(
+        string="Parcela correspondente ao 'Valor da base",
+        in_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Parcela correspondente ao 'Valor da base de cálculo do ICMS' referente à "
+            "combinação CST_ICMS, CFOP, e alíquota do ICMS"
+        ),
+    )
+
+    VL_ICMS = fields.Char(
+        string="Parcela correspondente ao 'Valor",
+        required=True,
+        sped_length="2",
+        help=(
+            "Parcela correspondente ao 'Valor do ICMS' referente à combinação CST_ICMS,"
+            " CFOP, e alíquota do ICMS, incluindo o FCP, quando aplicável, referente "
+            "combinação de CST_ICMS, CFOP e alíquota do ICMS. N à"
+        ),
+    )
+
+    VL_RED_BC = fields.Monetary(
+        string="Valor não tributado em função da redução da base",
+        in_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor não tributado em função da redução da base de cálculo do ICMS, "
+            "referente à combinação de CST_ICMS, CFOP e alíquota do ICMS."
+        ),
+    )
+
+    COD_OBS = fields.Char(
+        string="Código da observação",
+        sped_length="6",
+        help="Código da observação (campo 02 do Registro 0460)",
+    )
+
+    reg_D730_ids_RegistroD700_id = fields.Many2one(
+        comodel_name="l10n_br_sped.efd_icms_ipi.d700",
+        string="Nota Fiscal Fatura Eletrônica de Serviços",
+        required=True,
+        ondelete="cascade",
+        help=(
+            "Nota Fiscal Fatura Eletrônica de Serviços de Comunicação – NFCom (Código "
+            "62)"
+        ),
+    )
+
+    reg_D731_ids = fields.One2many(
+        "l10n_br_sped.efd_icms_ipi.d731",
+        "reg_D731_ids_RegistroD730_id",
+        string="D731 Informações do fundo de combate",
+        sped_card="1:1",
+        help="D731 Informações do fundo de combate à pobreza – FCP – (Código 62)",
+    )
+
+
+class RegistroD731(models.AbstractModel):
+    "Informações do fundo de combate à pobreza – FCP – (Código 62)"
+
+    _description = textwrap.dedent(f"    {__doc__}")
+    _name = "l10n_br_sped.efd_icms_ipi.19.d731"
+    _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
+    _sped_level = 4
+
+    VL_FCP_OP = fields.Monetary(
+        string="Valor do Fundo de Combate à Pobreza",
+        in_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor do Fundo de Combate à Pobreza (FCP) vinculado à operação própria, na"
+            " combinação de CST_ICMS, CFOP e alíquota do ICMS"
+        ),
+    )
+
+    reg_D731_ids_RegistroD730_id = fields.Many2one(
+        comodel_name="l10n_br_sped.efd_icms_ipi.d730",
+        string="Registro analítico Nota Fiscal Fatura Eletrônica",
+        required=True,
+        ondelete="cascade",
+        help=(
+            "Registro analítico Nota Fiscal Fatura Eletrônica de Serviços de "
+            "Comunicação – NFCom (Código 62)"
+        ),
+    )
+
+
+class RegistroD735(models.AbstractModel):
+    "Observações do lançamento fiscal (Código 62)"
+
+    _description = textwrap.dedent(f"    {__doc__}")
+    _name = "l10n_br_sped.efd_icms_ipi.19.d735"
+    _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
+    _sped_level = 3
+
+    COD_OBS = fields.Char(
+        string="Código da observação do lançamento fiscal",
+        in_required=True,
+        sped_length="6",
+        help="Código da observação do lançamento fiscal (campo 02 do Registro 0460)",
+    )
+
+    TXT_COMPL = fields.Char(string="Descrição complementar do código de observação")
+
+    reg_D735_ids_RegistroD700_id = fields.Many2one(
+        comodel_name="l10n_br_sped.efd_icms_ipi.d700",
+        string="Nota Fiscal Fatura Eletrônica de Serviços",
+        required=True,
+        ondelete="cascade",
+        help=(
+            "Nota Fiscal Fatura Eletrônica de Serviços de Comunicação – NFCom (Código "
+            "62)"
+        ),
+    )
+
+    reg_D737_ids = fields.One2many(
+        "l10n_br_sped.efd_icms_ipi.d737",
+        "reg_D737_ids_RegistroD735_id",
+        string="D737 Outras obrigações tributárias",
+        sped_card="1:N",
+        help=(
+            "D737 Outras obrigações tributárias, ajustes e informações de valores "
+            "proveniente de documento fiscal"
+        ),
+    )
+
+
+class RegistroD737(models.AbstractModel):
+    """Outras obrigações tributárias, ajustes e informações de valores
+    proveniente de documento fiscal"""
+
+    _description = textwrap.dedent(f"    {__doc__}")
+    _name = "l10n_br_sped.efd_icms_ipi.19.d737"
+    _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
+    _sped_level = 4
+
+    COD_AJ = fields.Char(
+        string="Código do ajustes/benefício/incentivo",
+        in_required=True,
+        sped_length="1*",
+        help=(
+            "Código do ajustes/benefício/incentivo, conforme tabela indicada no item "
+            "5.3."
+        ),
+    )
+
+    DESCR_COMPL_AJ = fields.Char(
+        string="Descrição complementar do ajuste",
+        help="Descrição complementar do ajuste do documento fiscal",
+    )
+
+    COD_ITEM = fields.Char(
+        string="Código do item",
+        sped_length="6",
+        help="Código do item (campo 02 do Registro 0200)",
+    )
+
+    VL_BC_ICMS = fields.Monetary(
+        string="Base de cálculo do ICMS",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    ALIQ_ICMS = fields.Float(
+        string="Alíquota do ICMS",
+        sped_length="6",
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+    )
+
+    VL_ICMS = fields.Monetary(
+        string="Valor do ICMS", xsd_type="TDec_1602", currency_field="brl_currency_id"
+    )
+
+    VL_OUTROS = fields.Monetary(
+        string="Outros valores", xsd_type="TDec_1602", currency_field="brl_currency_id"
+    )
+
+    reg_D737_ids_RegistroD735_id = fields.Many2one(
+        comodel_name="l10n_br_sped.efd_icms_ipi.d735",
+        string="Observações do lançamento fiscal",
+        required=True,
+        ondelete="cascade",
+        help="Observações do lançamento fiscal (Código 62)",
+    )
+
+
+class RegistroD750(models.AbstractModel):
+    """Escrituração consolidada da Nota Fiscal Fatura Eletrônica de Serviços de
+    Comunicação – NFCom (Código 62)"""
+
+    _description = textwrap.dedent(f"    {__doc__}")
+    _name = "l10n_br_sped.efd_icms_ipi.19.d750"
+    _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
+    _sped_level = 2
+
+    COD_MOD = fields.Char(
+        string="Código do modelo do documento fiscal",
+        out_required=True,
+        sped_length="2*",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
+    )
+
+    SER = fields.Char(
+        string="Série do documento fiscal",
+        xsd_type="numeric_code",
+        out_required=True,
+        sped_length="3",
+    )
+
+    DT_DOC = fields.Date(
+        string="Data da emissão dos documentos", out_required=True, sped_length="8*"
+    )
+
+    QTD_CONS = fields.Integer(
+        string="Quantidade",
+        out_required=True,
+        help="Quantidade de documentos consolidados neste registro",
+    )
+
+    IND_PREPAGO = fields.Char(
+        string="Forma de pagamento",
+        xsd_type="numeric_code",
+        out_required=True,
+        sped_length="1",
+        help="Forma de pagamento: 0 – pré pago 1 – pós pago",
+    )
+
+    VL_DOC = fields.Monetary(
+        string="Valor total dos documentos",
+        out_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_SERV = fields.Monetary(
+        string="Valor dos serviços tributados pelo ICMS",
+        out_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_SERV_NT = fields.Monetary(
+        string="Valores cobrados em nome do prestador sem destaque",
+        out_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help="Valores cobrados em nome do prestador sem destaque de ICMS.",
+    )
+
+    VL_TERC = fields.Monetary(
+        string="Valor total cobrado em nome de terceiros",
+        out_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_DESC = fields.Monetary(
+        string="Valor total dos descontos",
+        out_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_DA = fields.Monetary(
+        string="Valor total das despesas acessórias",
+        out_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_BC_ICMS = fields.Monetary(
+        string="Valor total da base de cálculo do ICMS",
+        out_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_ICMS = fields.Monetary(
+        string="Valor total do ICMS",
+        out_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_PIS = fields.Monetary(
+        string="Valor total do PIS",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_COFINS = fields.Monetary(
+        string="Valor total da COFINS",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    DED = fields.Float(
+        string="Deduções",
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+    )
+
+    reg_D760_ids = fields.One2many(
+        "l10n_br_sped.efd_icms_ipi.d760",
+        "reg_D760_ids_RegistroD750_id",
+        string="D760 Registro analítico",
+        sped_card="1:N",
+        help=(
+            "D760 Registro analítico da escrituração consolidada da Nota Fiscal Fatura "
+            "Eletrônica de Serviços de Comunicação – NFCom (Código 62)"
+        ),
+    )
+
+
+class RegistroD760(models.AbstractModel):
+    """Registro analítico da escrituração consolidada da Nota Fiscal Fatura
+    Eletrônica de Serviços de Comunicação – NFCom (Código 62)"""
+
+    _description = textwrap.dedent(f"    {__doc__}")
+    _name = "l10n_br_sped.efd_icms_ipi.19.d760"
+    _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
+    _sped_level = 3
+
+    CST_ICMS = fields.Char(
+        string="Código da Situação Tributária",
+        xsd_type="numeric_code",
+        in_required=True,
+        sped_length="3*",
+        help=(
+            "Código da Situação Tributária, conforme a tabela indicada no item 4.3.1"
+        ),
+    )
+
+    CFOP = fields.Char(
+        string="Código Fiscal de Operação e Prestação",
+        xsd_type="numeric_code",
+        in_required=True,
+        sped_length="4*",
+        help=(
+            "Código Fiscal de Operação e Prestação, conforme a tabela indicada no item "
+            "4.2.2"
+        ),
+    )
+
+    ALIQ_ICMS = fields.Float(
+        string="Alíquota do ICMS",
+        sped_length="6",
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+    )
+
+    VL_OPR = fields.Monetary(
+        string="Valor total dos itens relacionados",
+        in_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor total dos itens relacionados aos serviços próprios, com destaque de "
+            "ICMS, correspondente à combinação de CST_ICMS, CFOP, e alíquota do ICMS."
+        ),
+    )
+
+    VL_BC_ICMS = fields.Monetary(
+        string="Parcela correspondente ao 'Valor da base",
+        in_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Parcela correspondente ao 'Valor da base de cálculo do ICMS' referente à "
+            "combinação CST_ICMS, CFOP, e alíquota do ICMS"
+        ),
+    )
+
+    VL_ICMS = fields.Char(
+        string="Parcela correspondente ao 'Valor do ICMS'",
+        required=True,
+        sped_length="2",
+        help=(
+            "Parcela correspondente ao 'Valor do ICMS', incluindo o FCP, quando "
+            "aplicável, referente à combinação CST_ICMS, CFOP e alíquota do ICMS. N de"
+        ),
+    )
+
+    VL_RED_BC = fields.Monetary(
+        string="Valor não tributado em função da redução da base",
+        in_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor não tributado em função da redução da base de cálculo do ICMS, "
+            "referente à combinação de CST_ICMS, CFOP e alíquota do ICMS."
+        ),
+    )
+
+    COD_OBS = fields.Char(
+        string="Código da observação",
+        sped_length="6",
+        help="Código da observação (campo 02 do Registro 0460)",
+    )
+
+    reg_D760_ids_RegistroD750_id = fields.Many2one(
+        comodel_name="l10n_br_sped.efd_icms_ipi.d750",
+        string="Escrituração consolidada",
+        required=True,
+        ondelete="cascade",
+        help=(
+            "Escrituração consolidada da Nota Fiscal Fatura Eletrônica de Serviços de "
+            "Comunicação – NFCom (Código 62)"
+        ),
+    )
+
+    reg_D761_ids = fields.One2many(
+        "l10n_br_sped.efd_icms_ipi.d761",
+        "reg_D761_ids_RegistroD760_id",
+        string="D761 Informações do fundo de combate",
+        sped_card="1:1",
+        help="D761 Informações do fundo de combate à pobreza FCP – (Código 62)",
+    )
+
+
+class RegistroD761(models.AbstractModel):
+    "Informações do fundo de combate à pobreza FCP – (Código 62)"
+
+    _description = textwrap.dedent(f"    {__doc__}")
+    _name = "l10n_br_sped.efd_icms_ipi.19.d761"
+    _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
+    _sped_level = 4
+
+    VL_FCP_OP = fields.Monetary(
+        string="Valor do Fundo de Combate à Pobreza",
+        in_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor do Fundo de Combate à Pobreza (FCP) vinculado à operação própria, na"
+            " combinação de CST_ICMS, CFOP e alíquota do ICMS"
+        ),
+    )
+
+    reg_D761_ids_RegistroD760_id = fields.Many2one(
+        comodel_name="l10n_br_sped.efd_icms_ipi.d760",
+        string="Registro analítico da escrituração consolidada",
+        required=True,
+        ondelete="cascade",
+        help=(
+            "Registro analítico da escrituração consolidada da Nota Fiscal Fatura "
+            "Eletrônica de Serviços de Comunicação – NFCom (Código 62)"
+        ),
     )
 
 
@@ -12693,7 +13799,10 @@ class RegistroE110(models.AbstractModel):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor total dos créditos por 'Entradas e aquisições com",
+        help=(
+            "Valor total dos créditos por 'Entradas e aquisições com crédito do "
+            "imposto'"
+        ),
     )
 
     VL_AJ_CREDITOS = fields.Monetary(
@@ -12870,7 +13979,7 @@ class RegistroE112(models.AbstractModel):
 
     NUM_PROC = fields.Char(
         string="Número do processo ao qual o ajuste está vinculado",
-        sped_length="15",
+        sped_length="6",
         help="Número do processo ao qual o ajuste está vinculado, se houver",
     )
 
@@ -12954,6 +14063,12 @@ class RegistroE113(models.AbstractModel):
         currency_field="brl_currency_id",
     )
 
+    CHV_DOCE = fields.Char(
+        string="Chave do Documento Eletrônico",
+        xsd_type="numeric_code",
+        sped_length="44*",
+    )
+
     reg_E113_ids_RegistroE111_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.e111",
         string="Ajuste/Benefício/Incentivo da Apuração do ICMS",
@@ -13035,7 +14150,7 @@ class RegistroE116(models.AbstractModel):
 
     NUM_PROC = fields.Char(
         string="Número do processo ou auto de infração",
-        sped_length="15",
+        sped_length="6",
         help=(
             "Número do processo ou auto de infração ao qual a obrigação está vinculada,"
             " se houver."
@@ -13045,10 +14160,7 @@ class RegistroE116(models.AbstractModel):
     IND_PROC = fields.Char(
         string="Indicador da origem do processo",
         sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 0- SEFAZ; 1- Justiça Federal; 2- Justiça "
-            "Estadual; 9- Outros"
-        ),
+        help="Indicador da origem do processo: 0- SEFAZ; 1- Justiça Federal;",
     )
 
     PROC = fields.Char(
@@ -13227,17 +14339,6 @@ class RegistroE210(models.AbstractModel):
         ),
     )
 
-    DEB_ESP_ST = fields.Float(
-        string="Valores recolhidos ou a recolher",
-        required=True,
-        xsd_type="TDec_1602",
-        digits=(
-            16,
-            2,
-        ),
-        help="Valores recolhidos ou a recolher, extra-apuração.",
-    )
-
     reg_E210_ids_RegistroE200_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.e200",
         string="Período de Apuração do ICMS",
@@ -13309,7 +14410,7 @@ class RegistroE220(models.AbstractModel):
         sped_card="1:N",
         help=(
             "E230 Informações Adicionais dos Ajustes da Apuração do ICMS Substituição "
-            "Tributá- ria"
+            "Tributária"
         ),
     )
 
@@ -13320,14 +14421,14 @@ class RegistroE220(models.AbstractModel):
         sped_card="1:N",
         help=(
             "E240 Informações Adicionais dos Ajustes da Apuração do ICMS Substituição "
-            "Tributá- ria - Identificação dos documentos fiscais"
+            "Tributária - Identificação dos documentos fiscais"
         ),
     )
 
 
 class RegistroE230(models.AbstractModel):
     """Informações Adicionais dos Ajustes da Apuração do ICMS Substituição
-    Tributá- ria"""
+    Tributária"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_icms_ipi.19.e230"
@@ -13341,7 +14442,7 @@ class RegistroE230(models.AbstractModel):
 
     NUM_PROC = fields.Char(
         string="Número do processo ao qual o ajuste está vinculado",
-        sped_length="15",
+        sped_length="6",
         help="Número do processo ao qual o ajuste está vinculado, se houver",
     )
 
@@ -13349,10 +14450,7 @@ class RegistroE230(models.AbstractModel):
         string="Indicador da origem do processo: 0",
         xsd_type="numeric_code",
         sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 0 - Sefaz; 1 - Justiça Federal; 2 - "
-            "Justiça Estadual; 9 - Outros"
-        ),
+        help="Indicador da origem do processo: 0 - Sefaz; 1 - Justiça Federal;",
     )
 
     PROC = fields.Char(
@@ -13375,7 +14473,7 @@ class RegistroE230(models.AbstractModel):
 
 class RegistroE240(models.AbstractModel):
     """Informações Adicionais dos Ajustes da Apuração do ICMS Substituição
-    Tributá- ria - Identificação dos documentos fiscais"""
+    Tributária - Identificação dos documentos fiscais"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_icms_ipi.19.e240"
@@ -13484,7 +14582,7 @@ class RegistroE250(models.AbstractModel):
 
     NUM_PROC = fields.Char(
         string="Número do processo ou auto de infração",
-        sped_length="15",
+        sped_length="6",
         help=(
             "Número do processo ou auto de infração ao qual a obrigação está vinculada,"
             " se houver"
@@ -13687,11 +14785,15 @@ class RegistroE310(models.AbstractModel):
         ),
     )
 
-    VL_SLD_CRED_TRANSPOR = fields.Monetary(
-        string="Saldo credor a transportar para o período seguinte",
+    VL_SLD_CRED_TRANSPORTAR = fields.Monetary(
+        string="Saldo credor a transportar",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
+        help=(
+            "Saldo credor a transportar para o período seguinte referente a FCP e "
+            "Imposto do Diferencial de Alíquota da UF de Origem/Destino"
+        ),
     )
 
     DEB_ESP_DIFAL = fields.Float(
@@ -13756,7 +14858,7 @@ class RegistroE310(models.AbstractModel):
     )
 
     VL_SLD_CRED_TRANSPORTAR_FCP = fields.Monetary(
-        string="Saldo credor a transportar",
+        string="VL_SLD_CRED_TRANSPORTAR_FCP",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
@@ -13883,7 +14985,7 @@ class RegistroE312(models.AbstractModel):
 
     NUM_PROC = fields.Char(
         string="Número do processo ao qual o ajuste está vinculado",
-        sped_length="15",
+        sped_length="6",
         help="Número do processo ao qual o ajuste está vinculado, se houver",
     )
 
@@ -14024,7 +15126,7 @@ class RegistroE316(models.AbstractModel):
 
     NUM_PROC = fields.Char(
         string="Número do processo ou auto de infração",
-        sped_length="15",
+        sped_length="6",
         help=(
             "Número do processo ou auto de infração ao qual a obrigação está vinculada,"
             " se houver"
@@ -14343,7 +15445,8 @@ class RegistroE531(models.AbstractModel):
         sped_length="6",
         help=(
             "Código do participante (campo 02 do Registro 0150): - do emitente do "
-            "documento ou do remetente das mercadorias, no"
+            "documento ou do remetente das mercadorias, no caso de entradas; - do "
+            "adquirente, no caso de saídas"
         ),
     )
 
@@ -14427,7 +15530,8 @@ class RegistroG110(models.AbstractModel):
         ),
         help=(
             "Saldo inicial de ICMS do CIAP, composto por ICMS de bens que entraram "
-            "anteriormente ao período de apuração"
+            "anteriormente ao período de apuração (somatório dos campos 05 a 08 dos "
+            "registros G125)"
         ),
     )
 
@@ -14504,12 +15608,12 @@ class RegistroG110(models.AbstractModel):
         "reg_G125_ids_RegistroG110_id",
         string="G125 Movimentação de bem ou componente",
         sped_card="1:N",
-        help="G125 Movimentação de bem ou componente do",
+        help="G125 Movimentação de bem ou componente do Ativo Imobilizado",
     )
 
 
 class RegistroG125(models.AbstractModel):
-    "Movimentação de bem ou componente do"
+    "Movimentação de bem ou componente do Ativo Imobilizado"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_icms_ipi.19.g125"
@@ -14700,7 +15804,7 @@ class RegistroG126(models.AbstractModel):
         string="Movimentação de bem ou componente",
         required=True,
         ondelete="cascade",
-        help="Movimentação de bem ou componente do",
+        help="Movimentação de bem ou componente do Ativo Imobilizado",
     )
 
 
@@ -14723,11 +15827,11 @@ class RegistroG130(models.AbstractModel):
     )
 
     COD_PART = fields.Char(
-        string="Código do participante ",
+        string="Código do participante",
         required=True,
         sped_length="6",
         help=(
-            "Código do participante : - do emitente do documento ou do remetente das "
+            "Código do participante: - do emitente do documento ou do remetente das "
             "mercadorias, no caso de entradas; - do adquirente, no caso de saídas"
         ),
     )
@@ -14768,7 +15872,7 @@ class RegistroG130(models.AbstractModel):
         string="Movimentação de bem ou componente",
         required=True,
         ondelete="cascade",
-        help="Movimentação de bem ou componente do",
+        help="Movimentação de bem ou componente do Ativo Imobilizado",
     )
 
     reg_G140_ids = fields.One2many(
@@ -14825,14 +15929,12 @@ class RegistroG140(models.AbstractModel):
         help="Unidade do item constante no documento fiscal de entrada",
     )
 
-    VL_ICMS_OP_APLICADO = fields.Monetary(
+    VL_ICMS_OP_APLICADO = fields.Char(
         string="Valor do ICMS da Operação Própria na entrada",
         required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
         help=(
             "Valor do ICMS da Operação Própria na entrada do item, proporcional à "
-            "quantidade aplicada no bem ou componente."
+            "quantidade aplicada no bem componente."
         ),
     )
 
@@ -14847,14 +15949,12 @@ class RegistroG140(models.AbstractModel):
         ),
     )
 
-    VL_ICMS_FRT_APLICADO = fields.Monetary(
+    VL_ICMS_FRT_APLICADO = fields.Char(
         string="Valor do ICMS sobre Frete do Conhecimento",
         required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
         help=(
             "Valor do ICMS sobre Frete do Conhecimento de Transporte na entrada do "
-            "item, proporcional à quantidade aplicada no bem ou componente."
+            "item, proporcional quantidade aplicada no bem ou componente."
         ),
     )
 
@@ -15006,7 +16106,7 @@ class RegistroH010(models.AbstractModel):
         sped_card="1:1",
         help=(
             "H030 Informações complementares do inventário das mercadorias sujeitas ao "
-            "regime de substituição tri- butária"
+            "regime de substituição tributária"
         ),
     )
 
@@ -15065,7 +16165,7 @@ class RegistroH020(models.AbstractModel):
 
 class RegistroH030(models.AbstractModel):
     """Informações complementares do inventário das mercadorias sujeitas ao
-    regime de substituição tri- butária"""
+    regime de substituição tributária"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_icms_ipi.19.h030"
@@ -15117,6 +16217,25 @@ class RegistroH030(models.AbstractModel):
         string="Inventário",
         required=True,
         ondelete="cascade",
+    )
+
+
+class RegistroK010(models.AbstractModel):
+    "Informação sobre o tipo de leiaute (simplificado / completo)"
+
+    _description = textwrap.dedent(f"    {__doc__}")
+    _name = "l10n_br_sped.efd_icms_ipi.19.k010"
+    _inherit = "l10n_br_sped.mixin.efd_icms_ipi"
+    _sped_level = 2
+
+    IND_TP_LEIAUTE = fields.Char(
+        string="Indicador de tipo de leiaute adotado",
+        required=True,
+        sped_length="1*",
+        help=(
+            "Indicador de tipo de leiaute adotado: 0 – Leiaute simplificado 1 - Leiaute"
+            " completo 2 – Leiaute restrito aos saldos de estoque"
+        ),
     )
 
 
@@ -15185,6 +16304,9 @@ class RegistroK100(models.AbstractModel):
         "reg_K270_ids_RegistroK100_id",
         string="K270 Correção de Apontamento dos Registros K210",
         sped_card="1:N",
+        help=(
+            "K270 Correção de Apontamento dos Registros K210, K220, K230, K250 e K260"
+        ),
     )
 
     reg_K280_ids = fields.One2many(
@@ -15243,9 +16365,7 @@ class RegistroK200(models.AbstractModel):
         sped_length="1",
         help=(
             "Indicador do tipo de estoque: 0 - Estoque de propriedade do informante e "
-            "em seu poder; 1 - Estoque de propriedade do informante e em posse de "
-            "terceiros; 2 - Estoque de propriedade de terceiros e em posse do "
-            "informante"
+            "em seu poder;"
         ),
     )
 
@@ -15719,7 +16839,7 @@ class RegistroK265(models.AbstractModel):
 
 
 class RegistroK270(models.AbstractModel):
-    "Correção de Apontamento dos Registros K210,"
+    "Correção de Apontamento dos Registros K210, K220, K230, K250 e K260"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_icms_ipi.19.k270"
@@ -15797,13 +16917,12 @@ class RegistroK270(models.AbstractModel):
             "Registros K230/K235; 2 – correção de apontamento de produção e/ou consumo "
             "relativo aos Registros K250/K255; 3 – correção de apontamento de "
             "desmontagem e/ou consumo relativo aos Registros K210/K215; 4 – correção de"
-            " apontamento de reprocessamento/reparo e/ ou consumo relativo aos "
-            "Registros K260/K265; 5 – correção de apontamento de movimentação interna "
-            "relativo ao Registro K220. 6 – correção de apontamento de produção "
-            "relativo ao Registro K291; 7 – correção de apontamento de consumo relativo"
-            " ao Registro K292; 8 – correção de apontamento de produção relativo ao "
-            "Registro K301; 9 – correção de apontamento de consumo relativo ao Registro"
-            " K302."
+            " apontamento de reprocessamento/reparo e/ou consumo relativo aos Registros"
+            " K260/K265; 5 – correção de apontamento de movimentação interna relativo "
+            "ao Registro K220. 6 – correção de apontamento de produção relativo ao "
+            "Registro K291; 7 – correção de apontamento de consumo relativo ao Registro"
+            " K292; 8 – correção de apontamento de produção relativo ao Registro K301; "
+            "9 – correção de apontamento de consumo relativo ao Registro K302."
         ),
     )
 
@@ -15882,6 +17001,7 @@ class RegistroK275(models.AbstractModel):
         string="Correção de Apontamento dos Registros K210",
         required=True,
         ondelete="cascade",
+        help="Correção de Apontamento dos Registros K210, K220, K230, K250 e K260",
     )
 
 
@@ -16238,7 +17358,10 @@ class Registro1010(models.AbstractModel):
         string="Reg 1400",
         required=True,
         sped_length="1*",
-        help="Reg 1400 - Sendo o registro obrigatório em sua Unidade",
+        help=(
+            "Reg 1400 - Sendo o registro obrigatório em sua Unidade de Federação, "
+            "existem informações a serem prestadas neste registro: S – Sim; N - Não"
+        ),
     )
 
     IND_EE = fields.Char(
@@ -16309,7 +17432,7 @@ class Registro1010(models.AbstractModel):
         sped_length="1*",
         help=(
             "Reg. 1250 – Possui informações consolidadas de saldos de restituição, "
-            "ressarcimento e complementação do ICMS? S – Sim; N – Não."
+            "ressarcimento e complementação do ICMS?"
         ),
     )
 
@@ -16381,8 +17504,7 @@ class Registro1100(models.AbstractModel):
             "Informação do tipo de conhecimento de embarque: 01 – AWB; 02 – MAWB; 03 – "
             "HAWB; 04 – COMAT; 06 – R. EXPRESSAS; 07 – ETIQ. REXPRESSAS; 08 – HR. "
             "EXPRESSAS; 09 – AV7; 10 – BL; 11 – MBL; 12 – HBL; 13 – CRT; 14 – DSIC; 16 "
-            "– COMAT BL; 17 – RWB; 18 – HRWB; 19 – TIF/DTA; 20 – CP2; 91 – NÂO IATA; 92"
-            " – MNAO IATA; 93 – HNAO IATA; 99 – OUTROS."
+            "– COMAT BL;"
         ),
     )
 
@@ -16440,13 +17562,6 @@ class Registro1105(models.AbstractModel):
         string="Data da emissão da NF de exportação", required=True, sped_length="8*"
     )
 
-    COD_ITEM = fields.Char(
-        string="Código do item",
-        required=True,
-        sped_length="6",
-        help="Código do item (campo 02 do Registro 0200)",
-    )
-
     reg_1105_ids_Registro1100_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_icms_ipi.1100",
         string="Registro de Informações sobre Exportação",
@@ -16486,57 +17601,6 @@ class Registro1110(models.AbstractModel):
         required=True,
         sped_length="2*",
         help="Código do documento fiscal, conforme a Tabela 4.1.1",
-    )
-
-    SER = fields.Char(
-        string="Série do documento fiscal recebido",
-        sped_length="4",
-        help=("Série do documento fiscal recebido com fins específicos de exportação."),
-    )
-
-    NUM_DOC = fields.Char(
-        string="Número do documento fiscal recebido",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="9",
-        help=(
-            "Número do documento fiscal recebido com fins específicos de exportação."
-        ),
-    )
-
-    DT_DOC = fields.Date(
-        string="Data da emissão do documento fiscal recebido",
-        required=True,
-        sped_length="8*",
-        help=(
-            "Data da emissão do documento fiscal recebido com fins específicos de "
-            "exportação"
-        ),
-    )
-
-    CHV_NFE = fields.Char(
-        string="Chave da Nota Fiscal Eletrônica",
-        xsd_type="numeric_code",
-        sped_length="44*",
-    )
-
-    NR_MEMO = fields.Integer(string="Número do Memorando de Exportação")
-
-    QTD = fields.Float(
-        string="Quantidade do item efetivamente exportado",
-        required=True,
-        xsd_type="TDec_1603",
-        digits=(
-            16,
-            3,
-        ),
-    )
-
-    UNID = fields.Char(
-        string="Unidade do item",
-        required=True,
-        sped_length="6",
-        help="Unidade do item (Campo 02 do registro 0190)",
     )
 
     reg_1110_ids_Registro1105_id = fields.Many2one(
@@ -16792,14 +17856,12 @@ class Registro1255(models.AbstractModel):
         ),
     )
 
-    VL_ICMS_ST_COMPL_MOT = fields.Monetary(
-        string="valor total do débito referente ao complemento",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
+    VL_ICMS_ST_COMPL_MOT = fields.Char(
+        string="valor total do débito referente complemento",
+        sped_length="2",
         help=(
-            "valor total do débito referente ao complemento do imposto, nos casos "
-            "previstos na legislação, para o mesmo “COD_MOT_REST_COMPL”"
+            "valor total do débito referente complemento do imposto, nos casos "
+            "previstos na legislação, para o mesmo “COD_MOT_REST_COMPL” ao N"
         ),
     )
 
@@ -16948,7 +18010,7 @@ class Registro1310(models.AbstractModel):
     )
 
     ESTQ_ABERT = fields.Float(
-        string="Estoque no inicio do dia, em litros",
+        string="Estoque no início do dia, em litros",
         required=True,
         xsd_type="TDec_1603",
         digits=(
@@ -17411,7 +18473,10 @@ class Registro1391(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help="Tipo de resíduo produzido: 01 - Bagaço de cana 02 - DDG 03 - WDG",
+        help=(
+            "Tipo de resíduo produzido: 01 - Bagaço de cana 02 - DDG 03 – WDG 04 – (DDG"
+            " + WDG)"
+        ),
     )
 
     QTD_RESIDUO = fields.Float(
@@ -17423,6 +18488,39 @@ class Registro1391(models.AbstractModel):
             2,
         ),
         help="Quantidade de resíduo produzido (toneladas)",
+    )
+
+    QTD_RESIDUO_DDG = fields.Float(
+        string="Quantidade de resíduo produzido de DDG",
+        required=True,
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+        help="Quantidade de resíduo produzido de DDG (toneladas)",
+    )
+
+    QTD_RESIDUO_WDG = fields.Float(
+        string="Quantidade de resíduo produzido de WDG",
+        required=True,
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+        help="Quantidade de resíduo produzido de WDG (toneladas)",
+    )
+
+    QTD_RESIDUO_CANA = fields.Float(
+        string="Quantidade de resíduo produzido de bagaço de cana",
+        required=True,
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+        help="Quantidade de resíduo produzido de bagaço de cana (toneladas)",
     )
 
     reg_1391_ids_Registro1390_id = fields.Many2one(
@@ -17446,8 +18544,9 @@ class Registro1400(models.AbstractModel):
         required=True,
         sped_length="6",
         help=(
-            "Código do item (Tabela própria da unidade da federação (Tabela de Itens UF"
-            " Índice de Participação dos Municípios) ou campo 02 do Registro 0200"
+            "Código do item (Tabela 5.9.1 de Itens UF Índice de Participação dos "
+            "Municípios ou Tabela 5.9.2 de Itens UF_ST Índice de participação dos "
+            "Municípios) ou campo 02 do Registro 0200"
         ),
     )
 
@@ -17503,7 +18602,7 @@ class Registro1500(models.AbstractModel):
         string="Código do modelo do documento fiscal",
         required=True,
         sped_length="2*",
-        help="Código do modelo do documento fiscal, conforme a",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
     )
 
     COD_SIT = fields.Char(
@@ -17635,20 +18734,7 @@ class Registro1500(models.AbstractModel):
         help="Código de tipo de Ligação 1 - Monofásico 2 - Bifásico 3 - Trifásico",
     )
 
-    COD_GRUPO_TENSAO = fields.Char(
-        string="Código de grupo de tensão: 01 - A1",
-        sped_length="2*",
-        help=(
-            "Código de grupo de tensão: 01 - A1 - Alta Tensão (230kV ou mais) 02 - A2 -"
-            " Alta Tensão (88 a 138kV) 03 - A3 - Alta Tensão (69kV) 04 - A3a - Alta "
-            "Tensão (30kV a 44kV) 05 - A4 - Alta Tensão (2,3kV a 25kV) 06 - AS - Alta "
-            "Tensão Subterrâneo 06 07 - B1 - Residencial 07 08 - B1 - Residencial Baixa"
-            " Renda 08 09 - B2 - Rural 09 10 - B2 - Cooperativa de Eletrificação Rural "
-            "11 - B2 - Serviço Público de Irrigação 12 - B3 - Demais Classes 13 - B4a -"
-            " Iluminação Pública - rede de distribuição 14 - B4b - Iluminação Pública -"
-            " bulbo de lâmpada"
-        ),
-    )
+    COD_GRUPO_TENSAO = fields.Char(string="Código de grupo de tensão", sped_length="2*")
 
     reg_1510_ids = fields.One2many(
         "l10n_br_sped.efd_icms_ipi.1510",
@@ -17727,7 +18813,9 @@ class Registro1510(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="3*",
-        help="Código da Situação Tributária, conforme a Tabela indicada no",
+        help=(
+            "Código da Situação Tributária, conforme a Tabela indicada no item 4.3.1"
+        ),
     )
 
     CFOP = fields.Char(
@@ -18104,7 +19192,9 @@ class Registro1800(models.AbstractModel):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor da diferença a ser levada a estorno de crédito na",
+        help=(
+            "Valor da diferença a ser levada a estorno de crédito na apuração (6 - 8)"
+        ),
     )
 
 
@@ -18122,7 +19212,7 @@ class Registro1900(models.AbstractModel):
         sped_length="1*",
         help=(
             "Indicador de outra apuração do ICMS: 3 – APURAÇÃO 1; 4 – APURAÇÃO 2; 5 – "
-            "APURAÇÃO 3; 6 – APURAÇÃO 4; 7 – APURAÇÃO 5; 8 – APURAÇÃO 6."
+            "APURAÇÃO 3; 6 – APURAÇÃO 4;"
         ),
     )
 
@@ -18377,7 +19467,7 @@ class Registro1922(models.AbstractModel):
 
     NUM_PROC = fields.Char(
         string="Número do processo ao qual o ajuste está vinculado",
-        sped_length="15",
+        sped_length="6",
         help="Número do processo ao qual o ajuste está vinculado, se houver",
     )
 
@@ -18550,7 +19640,7 @@ class Registro1926(models.AbstractModel):
 
     NUM_PROC = fields.Char(
         string="Número do processo ou auto de infração",
-        sped_length="15",
+        sped_length="6",
         help=(
             "Número do processo ou auto de infração ao qual a obrigação está vinculada,"
             " se houver."
@@ -18937,7 +20027,7 @@ class Registro1980(models.AbstractModel):
         string="Indicador da sub-apuração por tipo de benefício",
         required=True,
         xsd_type="numeric_code",
-        sped_length="2 *",
+        sped_length="2*",
         help=(
             "Indicador da sub-apuração por tipo de benefício (conforme Tabela 4.7.1)"
         ),
