@@ -187,11 +187,11 @@ Esse package está administrado por `Akretion <https://akretion.com/pt-BR>`_.
 .. _python-sped: https://github.com/sped-br/python-sped/
 
 .. _ECD_registers.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/ecd/9/registers.csv
-.. _ECF_registers.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/ecf/9/registers.csv
-.. _EFD_ICMS_IPI_registers.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/efd_icms_ipi/19/icms_ipi_registers.csv
-.. _EFD_PIS_COFINS_registers.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/efd_pis_cofins/6/pis_cofins_registers.csv
+.. _ECF_registers.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/ecf/10/registers.csv
+.. _EFD_ICMS_IPI_registers.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/efd_icms_ipi/19/registers.csv
+.. _EFD_PIS_COFINS_registers.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/efd_pis_cofins/6/registers.csv
 
-.. _ECD_fields.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/ecd/ecd_fields.csv
-.. _ECF_fields.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/ecf/ecf_fields.csv
-.. _EFD_ICMS_IPI_fields.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/efd_icms_ipi/efd_icms_ipi_fields.csv
-.. _EFD_PIS_COFINS_fields.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/2020/efd_pis_cofins/efd_pis_cofins_fields.csv
+.. _ECD_fields.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/ecd/9/fields.csv
+.. _ECF_fields.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/ecf/10/fields.csv
+.. _EFD_ICMS_IPI_fields.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/efd_icms_ipi/19/fields.csv
+.. _EFD_PIS_COFINS_fields.csv: https://github.com/akretion/sped-extractor/blob/master/spedextractor/specs/efd_pis_cofins/6/fields.csv
