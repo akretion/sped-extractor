@@ -69,7 +69,7 @@ def download_mod_pdf(mod_name: str) -> bool:
     required=False,
     help="Specific SPED module to download. If not provided, all modules will be downloaded.",
 )
-def main(target_module_str: Optional[str]):
+def main(target_module_str: Optional[str]) -> None:
     """Download SPED specification PDFs from official sources."""
     # Configure basic logging if not already configured by test runner or other setup
     # This is a simple fallback for direct script execution.

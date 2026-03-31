@@ -1,12 +1,14 @@
 import pathlib
 import logging
-from typing import Tuple, List, Dict
+from typing import TypedDict, NotRequired, Tuple, List, Dict
 
 logger = logging.getLogger(__name__)
 
 SPECS_PATH: pathlib.Path = pathlib.Path(__file__).parent.resolve() / "specs"
 
-MODULES: dict[str, tuple] = {
+ModuleInfo = tuple[int, str, str]
+
+MODULES: dict[str, ModuleInfo] = {
     "ecd": (9, "2024-11-01", "http://sped.rfb.gov.br/arquivo/download/7300"),
     "ecf": (10, "2025-05-02", "http://sped.rfb.gov.br/arquivo/download/7625"),
     "efd_icms_ipi": (19, "2024-11-28", "http://sped.rfb.gov.br/arquivo/download/7607"),
@@ -56,3 +58,58 @@ MODULE_HEADER: Dict[str, List[Tuple[str, str]]] = {
         ("Obrig", "spec_required"),
     ],
 }
+
+
+class RegisterDict(TypedDict):
+    block: str
+    code: str
+    desc: str
+    level: int
+    card: str
+    required: NotRequired[bool]
+    conditional_required: NotRequired[bool]
+    in_required: NotRequired[bool]
+    out_required: NotRequired[bool]
+    conditional_in_required: NotRequired[bool]
+    conditional_out_required: NotRequired[bool]
+    spec_required: NotRequired[str]
+    spec_in: NotRequired[str]
+    spec_out: NotRequired[str]
+    parent: NotRequired["RegisterDict"]
+    o2m_parent: NotRequired["RegisterDict"]
+    children_o2m: NotRequired[list["RegisterDict"]]
+    children_m2o: NotRequired[list["RegisterDict"]]
+    short_desc: NotRequired[str]
+
+
+class FieldDict(TypedDict):
+    register: str
+    index: int
+    code: str
+    desc: NotRequired[str]
+    type: NotRequired[str]
+    xsd_type: NotRequired[str]
+    required: NotRequired[bool]
+    conditional_required: NotRequired[bool]
+    in_required: NotRequired[bool]
+    out_required: NotRequired[bool]
+    conditional_in_required: NotRequired[bool]
+    conditional_out_required: NotRequired[bool]
+    length: NotRequired[str]
+    decimal: NotRequired[str]
+    spec_type: NotRequired[str]
+    spec_required: NotRequired[str]
+    spec_in: NotRequired[str]
+    spec_out: NotRequired[str]
+    spec_values: NotRequired[str]
+    values: NotRequired[list[str]]
+    rules: NotRequired[list[str]]
+
+
+class BlockDict(TypedDict):
+    code: str
+    desc: str
+    info: NotRequired[str]
+
+
+RawRows = dict[int, list[list[str]]]

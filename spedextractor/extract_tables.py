@@ -171,7 +171,7 @@ def main(
     target_module_str: Optional[str],
     limit_pages_to_extract: int,
     chunk_size: int,
-):
+) -> None:
     """
     Extract tables from SPED module PDF using Camelot.
     PDFs are expected in './specs/MODULE/LAYOUT/pdf/' or will be downloaded if missing.
