@@ -137,8 +137,8 @@ def clean_row(row: list[str]) -> list[str]:
         # e.g. change "Entr." to "Entr" in fields table's headers
         if re.match(r"^[a-zA-Z]+\.$", clean_cell):
             clean_cell = clean_cell[:-1]
-        # e.g. change "N'" to "N" in column "Tipo"
-        if re.match(r"^[a-zA-Z]+\'$", clean_cell):
+        # e.g. change "N'" or "N'" (unicode U+2019) to "N" in column "Tipo"
+        if re.match(r"^[a-zA-Z]+['\u2019]$", clean_cell):
             clean_cell = clean_cell[:-1]
         row[index] = clean_cell
 
