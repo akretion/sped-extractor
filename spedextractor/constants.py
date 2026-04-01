@@ -11,7 +11,11 @@ ModuleInfo = tuple[int, str, str]
 MODULES: dict[str, ModuleInfo] = {
     "ecd": (9, "2024-11-01", "http://sped.rfb.gov.br/arquivo/download/7300"),
     "ecf": (10, "2025-05-02", "http://sped.rfb.gov.br/arquivo/download/7625"),
-    "efd_icms_ipi": (19, "2024-11-28", "http://sped.rfb.gov.br/arquivo/download/7607"),
+    "efd_icms_ipi": (
+        20,
+        "2025-07-07",
+        "http://sped.rfb.gov.br/estatico/A7/5FB73968C31ABA91EA180EC5CFDB714293F604/NT-2025.001%20v1.0.pdf",
+    ),
     "efd_pis_cofins": (6, "2021-06-18", "http://sped.rfb.gov.br/arquivo/download/5836"),
 }
 
