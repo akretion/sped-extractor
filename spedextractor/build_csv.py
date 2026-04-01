@@ -192,7 +192,9 @@ def _map_register_row(mod: str, row: list[str]) -> RegisterDict | bool:
                 }
 
         elif mod == "efd_icms_ipi":
-            if len(row[0]) == 1 and row[0] != "":
+            # Handle both simple format (6 cols) and complex format with Perfil A/B/C (11 cols)
+            # First 5 columns are consistent: block, desc, code, level, card
+            if len(row) >= 6 and len(row[0]) == 1 and row[0] != "":
                 register = {
                     "block": row[0],
                     "code": row[2],
@@ -225,17 +227,24 @@ def extract_registers_list(
 
     for page in raw_rows:
         for row in raw_rows[page]:
+            # Check if any cell contains the header keywords (handles merged cells)
+            has_bloco = (
+                any("BLOCO" in cell for cell in row)
+                or any("Bloco" in cell for cell in row)
+                or any("Registro" in cell for cell in row)
+            )
+            has_nivel = (
+                any("NÍVEL" in cell for cell in row)
+                or any("Nível" in cell for cell in row)
+                or any(r"N\xc3\xadvel" in cell for cell in row)
+            )
+            has_nome_registro = any("Nome do Registro" in cell for cell in row)
+            has_reg = any("Reg." in cell for cell in row)
+            has_bloco_desc = any("BLOCO  DESCRIÇÃO" in cell for cell in row)  # ecf
+
             if (
-                ("BLOCO" in row or "Bloco" in row or "Registro" in row)
-                and (
-                    "NÍVEL" in row
-                    or "Nível" in row
-                    or r"N\xc3\xadvel" in row
-                    or "Nome do Registro" in row
-                    or "Reg." in row
-                )
-                or "BLOCO  DESCRIÇÃO" in row  # ecf
-            ):  # ecd
+                has_bloco and (has_nivel or has_nome_registro or has_reg)
+            ) or has_bloco_desc:
                 in_block = True
                 continue
             if in_block:
@@ -282,6 +291,20 @@ def _split_code_desc(row: list[str], c: int) -> tuple[str, str] | None:
 def _format_row(row: list[str]) -> list[str]:
     """Separates columns joined together"""
 
+    # Handle layout 20 merged header "Nº  Campo" -> split into "Nº", "Campo"
+    # Check if first column contains "Nº" and "Campo" merged (e.g., "01  REG" or "Nº  Campo")
+    if row and "Nº" in row[0] and "Campo" in row[0] and len(row) <= 6:
+        # This is a layout 20 row with merged Nº and Campo
+        # Split "Nº  Campo" or "01  REG" into separate columns
+        parts = row[0].split("  ", 1)  # Split on double space first
+        if len(parts) == 2:
+            row = [parts[0], parts[1]] + row[1:]
+        else:
+            # Try single space split
+            parts = row[0].split(" ", 1)
+            if len(parts) == 2:
+                row = [parts[0], parts[1]] + row[1:]
+
     # change ["04  VL_BC_RET", ""] into ["04","VL_BC_RET"]
     if _is_joined_index(row, 0) and row[1] == "":
         split = row[0].split(" ")
@@ -320,6 +343,10 @@ def _map_row_mod_header(row: list[str], mod: str) -> list[str]:
         if len(row) == len_header - 1:
             # i.e. row has the columns 'Entr' and 'Saída' but not 'Obrig'
             row.insert(6, "")
+        elif len(row) == 6:
+            # Layout 20 format: Nº, Campo, Desc, Tipo, Tam, Dec (no Obrig, Entr, Saídas)
+            # Insert empty placeholders for Obrig, Entr, Saídas at positions 6, 7, 8
+            row.extend(["", "", ""])
     # Add empty cells in row if incomplete
     if row and len(row) < len_header:
         extension = [""] * (len_header - len(row))
@@ -372,24 +399,48 @@ def _apply_camelot_patch(
 #     return False
 
 
-def _is_field_row(row: list[str], last_field_index: int) -> bool:
-    """Returns True if the row match a series of condition to be a register's field"""
+def _is_field_row(
+    row: list[str], last_field_index: int, register_name: str = "", page: int = 0
+) -> bool:
+    """Returns True if the row match a series of condition to be a register's field.
+    Allows gaps up to 2 missing fields (e.g., 15 -> 17 or 15 -> 18) to handle PDF errors."""
+    # Check basic field code validity
     if (
         row[1] != ""
         and len(row[1]) < 32
         and len(row[1]) > 1
         and not row[1][0].isdigit()
         and "RZ_CONT" not in row[1]  # in ECD, doesn't look like a real data field
-        and (
-            row[0].isdigit()
-            and row[1] != "REG"
-            and int(row[0]) == last_field_index + 1
-            or row[0] == "*"
-        )
     ):
-        return True
-    else:
-        return False
+        # Handle special case: "*" index
+        if row[0] == "*":
+            return True
+
+        # Check if it's a valid field row with numeric index
+        if row[0].isdigit() and row[1] != "REG":
+            field_index = int(row[0])
+            gap = field_index - last_field_index
+
+            # Consecutive field (gap = 1)
+            if gap == 1:
+                return True
+            # Allow gaps of 1 or 2 missing fields (gap = 2 or 3)
+            elif 2 <= gap <= 3:
+                context = (
+                    f" [Register: {register_name}, Page: {page}]"
+                    if register_name
+                    else ""
+                )
+                logger.warning(
+                    f"    GAP DETECTED:{context} Field {field_index} follows {last_field_index} "
+                    f"(gap of {gap - 1} missing field(s)). Accepting but PDF may have errors."
+                )
+                return True
+            # Gap too large - likely wrong table
+            elif gap > 3:
+                return False
+
+    return False
 
 
 def extract_register_fields(
@@ -440,7 +491,7 @@ def extract_register_fields(
                 # TODO : handle instances where the field's row is split in two by a
                 # page break. (=all the fields are empty except Description - 3rd
                 # column). Example : EFD PIS COFINS page 78 Registro 0200
-                if _is_field_row(row, last_field_index):
+                if _is_field_row(row, last_field_index, register_name, page):
                     last_field_index = int(row[0])
 
                     # Add register's name and page columns
@@ -881,6 +932,21 @@ def _get_usable_csv_header(fields: list[FieldDict]) -> list[str]:
         for key in field.keys():
             if key not in header:
                 header.append(key)
+
+    # Ensure standard obrigatoriedade columns are present for consistent CSV structure
+    # This handles layout 20 where obrigatoriedade data is in register tables, not field tables
+    standard_columns = [
+        "required",
+        "in_required",
+        "out_required",
+        "conditional_required",
+        "conditional_in_required",
+        "conditional_out_required",
+    ]
+    for col in standard_columns:
+        if col not in header:
+            header.append(col)
+
     header.sort(key=_sort_header_order)
     return header
 
