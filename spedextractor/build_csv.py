@@ -622,13 +622,17 @@ def build_accurate_fields_csv(
             f"catched by camelot : {reg_with_no_field}"
         )
 
-    with open(accurate_file, "w") as accurate_csv:
+    with open(accurate_file, "w", newline="") as accurate_csv:
         # Delete actual fields_file's datas before writing
         accurate_csv.seek(0)
         accurate_csv.truncate()
 
         accurate_rows = csv.writer(
-            accurate_csv, delimiter=",", quotechar='"', quoting=csv.QUOTE_ALL
+            accurate_csv,
+            delimiter=",",
+            quotechar='"',
+            quoting=csv.QUOTE_ALL,
+            lineterminator="\n",
         )
         # Write module's header
         mod_header = ["Register", "Page"] + [c[0] for c in _get_mod_header(mod)]
@@ -1034,13 +1038,17 @@ def build_usable_fields_csv(mod: str, layout: int) -> None:
     logger.info(f"> Building {mod} {layout} fields.csv")
 
     # Open the CSV with the accurate fields list
-    with open(fields_file, "w") as f_file:
+    with open(fields_file, "w", newline="") as f_file:
         # Delete actual usable_file's datas before writing
         f_file.seek(0)
         f_file.truncate()
 
         fields_csv = csv.writer(
-            f_file, delimiter=",", quotechar='"', quoting=csv.QUOTE_ALL
+            f_file,
+            delimiter=",",
+            quotechar='"',
+            quoting=csv.QUOTE_ALL,
+            lineterminator="\n",
         )
 
         header = _get_usable_csv_header(fields)
@@ -1071,13 +1079,17 @@ def build_registers_csv(
 
     logger.info(f"> Building {mod}_registers.csv")
 
-    with open(registers_file, "w") as reg_file:
+    with open(registers_file, "w", newline="") as reg_file:
         # Delete actual reg_file's datas before writing
         reg_file.seek(0)
         reg_file.truncate()
 
         reg_csv = csv.writer(
-            reg_file, delimiter=",", quotechar='"', quoting=csv.QUOTE_ALL
+            reg_file,
+            delimiter=",",
+            quotechar='"',
+            quoting=csv.QUOTE_ALL,
+            lineterminator="\n",
         )
         # First line is columns titles
         reg_csv.writerow(header)
