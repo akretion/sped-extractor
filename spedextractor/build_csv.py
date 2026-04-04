@@ -383,6 +383,45 @@ def _apply_camelot_patch(
     return row
 
 
+def _get_missing_field_patches(
+    mod: str, layout: int, register: str, start_idx: int, end_idx: int
+) -> list[list[str]]:
+    """
+    Get patch rows for missing field indices in the given range.
+    Returns a list of patch rows sorted by field index.
+
+    Patch file format: Register,Page,Nº,Campo,Descrição,Tipo,Tam,Dec,Obrig,Entr,Saídas,...
+    Where Nº is the field index.
+    """
+    patch_file = SPECS_PATH / mod / str(layout) / "camelot_patch" / "camelot_patch.csv"
+    missing_patches: list[list[str]] = []
+
+    try:
+        with open(patch_file, "r") as patch_csv:
+            patch_rows = csv.reader(patch_csv, delimiter=",", quotechar='"')
+            for patch_row in patch_rows:
+                # Skip empty rows or comments
+                if not patch_row or not patch_row[0] or patch_row[0].startswith("#"):
+                    continue
+
+                # Check if this patch is for the right register and missing index
+                if patch_row[0] == register and patch_row[2].isdigit():
+                    field_idx = int(patch_row[2])
+                    if start_idx <= field_idx < end_idx:
+                        # patch_row[2:] contains: Nº,Campo,Descrição,Tipo,Tam,Dec,Obrig,Entr,Saídas,...
+                        # We need to strip the Register and Page columns to get just the field data
+                        missing_patches.append(patch_row[2:])
+                        logger.warning(
+                            f"    [{mod.upper()}] PATCH INSERT: Field {field_idx} ({patch_row[3]}) for register {register}"
+                        )
+    except FileNotFoundError:
+        pass
+
+    # Sort by field index (first element of each patch row)
+    missing_patches.sort(key=lambda x: int(x[0]) if x[0].isdigit() else 0)
+    return missing_patches
+
+
 # def _is_field_row(row, last_field_index=0): # last_field_index is effectively unused for sequence check
 #
 #     """Returns True if the row match a series of condition to be a register's field"""
@@ -401,9 +440,15 @@ def _apply_camelot_patch(
 
 def _is_field_row(
     row: list[str], last_field_index: int, register_name: str = "", page: int = 0
-) -> bool:
+) -> tuple[bool, dict | None]:
     """Returns True if the row match a series of condition to be a register's field.
-    Allows gaps up to 2 missing fields (e.g., 15 -> 17 or 15 -> 18) to handle PDF errors."""
+    Allows gaps up to 2 missing fields (e.g., 15 -> 17 or 15 -> 18) to handle PDF errors.
+
+    Returns:
+        tuple: (is_valid_field, gap_info)
+            - is_valid_field: True if this is a valid field row
+            - gap_info: dict with 'start' and 'end' indices if there's a gap, None otherwise
+    """
     # Check basic field code validity
     if (
         row[1] != ""
@@ -414,7 +459,7 @@ def _is_field_row(
     ):
         # Handle special case: "*" index
         if row[0] == "*":
-            return True
+            return True, None
 
         # Check if it's a valid field row with numeric index
         if row[0].isdigit() and row[1] != "REG":
@@ -423,7 +468,7 @@ def _is_field_row(
 
             # Consecutive field (gap = 1)
             if gap == 1:
-                return True
+                return True, None
             # Allow gaps of 1 or 2 missing fields (gap = 2 or 3)
             elif 2 <= gap <= 3:
                 context = (
@@ -431,16 +476,18 @@ def _is_field_row(
                     if register_name
                     else ""
                 )
+                module_tag = f"[{register_name.upper()}] " if register_name else ""
                 logger.warning(
-                    f"    GAP DETECTED:{context} Field {field_index} follows {last_field_index} "
+                    f"    {module_tag}GAP DETECTED:{context} Field {field_index} follows {last_field_index} "
                     f"(gap of {gap - 1} missing field(s)). Accepting but PDF may have errors."
                 )
-                return True
+                gap_info = {"start": last_field_index + 1, "end": field_index}
+                return True, gap_info
             # Gap too large - likely wrong table
             elif gap > 3:
-                return False
+                return False, None
 
-    return False
+    return False, None
 
 
 def extract_register_fields(
@@ -491,8 +538,38 @@ def extract_register_fields(
                 # TODO : handle instances where the field's row is split in two by a
                 # page break. (=all the fields are empty except Description - 3rd
                 # column). Example : EFD PIS COFINS page 78 Registro 0200
-                if _is_field_row(row, last_field_index, register_name, page):
-                    last_field_index = int(row[0])
+                is_field, gap_info = _is_field_row(
+                    row, last_field_index, register_name, page
+                )
+                if is_field:
+                    current_field_idx = int(row[0])
+
+                    # Check if there's a gap and try to fill it with patches
+                    if gap_info and patch:
+                        missing_start = last_field_index + 1
+                        missing_end = current_field_idx
+                        missing_patches = _get_missing_field_patches(
+                            mod, layout, register_name, missing_start, missing_end
+                        )
+
+                        patch_count = len(missing_patches)
+                        logger.warning(
+                            f"    [{mod.upper()}] PATCHES APPLIED: Inserted {patch_count} field(s) from patch file for register {register_name}"
+                        )
+
+                        for patch_row in missing_patches:
+                            # Apply the patch
+                            patched_field_idx = int(patch_row[0])
+                            logger.warning(
+                                f"      [{mod.upper()}] -> Field {patched_field_idx} ({patch_row[1]})"
+                            )
+
+                            # Add register's name and page columns
+                            patch_row_copy = [register_name, page] + patch_row
+                            reg_fields.append(patch_row_copy)
+                            last_field_index = patched_field_idx
+
+                    last_field_index = current_field_idx
 
                     # Add register's name and page columns
                     row.insert(0, page)
