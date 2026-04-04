@@ -1006,7 +1006,7 @@ def _sort_header_order(key: str) -> int:
         return 50
 
 
-def _get_usable_csv_header(fields: list[FieldDict]) -> list[str]:
+def _get_usable_csv_header(fields: list[FieldDict], mod: str) -> list[str]:
     """Return a list of all the different keys available in fields"""
     header: list[str] = []
     for field in fields:
@@ -1014,19 +1014,21 @@ def _get_usable_csv_header(fields: list[FieldDict]) -> list[str]:
             if key not in header:
                 header.append(key)
 
-    # Ensure standard obrigatoriedade columns are present for consistent CSV structure
-    # This handles layout 20 where obrigatoriedade data is in register tables, not field tables
-    standard_columns = [
-        "required",
-        "in_required",
-        "out_required",
-        "conditional_required",
-        "conditional_in_required",
-        "conditional_out_required",
-    ]
-    for col in standard_columns:
-        if col not in header:
-            header.append(col)
+    # Only add these columns for efd_icms_ipi which has spec_in and spec_out
+    # This ensures consistent CSV structure for layout 20 where obrigatoriedade
+    # data may be in register tables instead of field tables
+    if mod == "efd_icms_ipi":
+        standard_columns = [
+            "required",
+            "in_required",
+            "out_required",
+            "conditional_required",
+            "conditional_in_required",
+            "conditional_out_required",
+        ]
+        for col in standard_columns:
+            if col not in header:
+                header.append(col)
 
     header.sort(key=_sort_header_order)
     return header
@@ -1051,7 +1053,7 @@ def build_usable_fields_csv(mod: str, layout: int) -> None:
             lineterminator="\n",
         )
 
-        header = _get_usable_csv_header(fields)
+        header = _get_usable_csv_header(fields, mod)
         fields_csv.writerow(header)
         for field in fields:
             row: list[str | list[str]] = []
@@ -1075,7 +1077,7 @@ def build_registers_csv(
     """
     registers_file = SPECS_PATH / mod / str(layout) / "registers.csv"
     registers = get_registers(mod, layout, raw_rows, extracted_registers)
-    header = _get_usable_csv_header(registers)  # type: ignore[arg-type]
+    header = _get_usable_csv_header(registers, mod)  # type: ignore[arg-type]
 
     logger.info(f"> Building {mod}_registers.csv")
 
