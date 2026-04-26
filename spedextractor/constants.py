@@ -1,6 +1,11 @@
 import pathlib
 import logging
-from typing import TypedDict, NotRequired, Tuple, List, Dict
+from typing import TypedDict, Tuple, List, Dict
+
+try:
+    from typing import NotRequired
+except ImportError:
+    from typing_extensions import NotRequired
 
 logger = logging.getLogger(__name__)
 
