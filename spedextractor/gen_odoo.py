@@ -2,7 +2,7 @@ import os
 import logging
 from collections import OrderedDict, defaultdict
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, List
 
 import click
 from xsdata.codegen.models import Attr, AttrType, Class, Restrictions
@@ -11,7 +11,7 @@ from xsdata_odoo.generator import OdooFilters, OdooGenerator
 from xsdata_odoo.text_utils import extract_string_and_help
 
 from .build_csv import get_fields, get_registers
-from .constants import MODULES, SPECS_PATH
+from .constants import MODULES, SPECS_PATH, RegisterDict
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler())
@@ -29,7 +29,7 @@ from odoo import fields, models
 """
 
 
-def collect_register_children(registers):
+def collect_register_children(registers: list[RegisterDict]) -> None:
     """read the registers hierarchy."""
     for register_info in registers:
         if register_info["level"] > 1:
@@ -55,7 +55,7 @@ def collect_register_children(registers):
             register_info["children_m2o"] = children_m2o
 
 
-def _get_alphanum_sequence(register_code):
+def _get_alphanum_sequence(register_code: str) -> str:
     """
     Used to order the SPED register in the same order
     as in the SPED layout (the register name alone won't cut it)
@@ -71,7 +71,7 @@ def _get_alphanum_sequence(register_code):
         return "1" + register_code
 
 
-def get_structure(mod, registers):
+def get_structure(mod: str, registers: list[RegisterDict]) -> str:
     structure = f"STRUCTURE SPED {mod.upper()}"
     for reg in registers:
         short_desc, left = extract_string_and_help(
@@ -118,7 +118,7 @@ class SpedFilters(OdooFilters):
         name = self.class_name(name)
         return f"{self.schema}.{self.version}.{name[-4:].lower()}"
 
-    def registry_comodel(self, type_name: str):
+    def registry_comodel(self, type_name: str) -> str:
         # NOTE: we take only the last part of inner Types with .split(".")[-1]
         # but if that were to create Type duplicates we could change that.
         clean_type_names = type_name.replace('"', "").split(".")
@@ -129,12 +129,12 @@ class SpedFilters(OdooFilters):
     def class_properties(
         self,
         obj: Class,
-        parents: List[Class],
+        parents: list[Class],
     ) -> str:
         register = list(filter(lambda x: x["code"] == obj.name[-4:], self.registers))[0]
         return f"_sped_level = {register['level']}"
 
-    def odoo_class_name(self, obj: Class, parents: List[Class] = []):
+    def odoo_class_name(self, obj: Class, parents: list[Class] = []) -> str:
         return obj.name
 
     def odoo_inherit_model(self, obj: Class) -> str:
@@ -217,7 +217,9 @@ class SpedFilters(OdooFilters):
 
         return kwargs
 
-    def _extract_number_attrs(self, obj: Class, attr: Attr, kwargs: Dict[str, Dict]):
+    def _extract_number_attrs(
+        self, obj: Class, attr: Attr, kwargs: dict[str, Any]
+    ) -> None:
         python_type = attr.types[0].datatype.code
         if python_type in ("float", "decimal", "integer"):
             xsd_type = kwargs.get("xsd_type", "")
@@ -242,7 +244,7 @@ class SpedFilters(OdooFilters):
 
 
 @click.command()
-def main():
+def main() -> None:
     """Generate Odoo models."""
 
     os.environ["XSDATA_LANG"] = "portuguese"
@@ -308,8 +310,9 @@ def main():
         registers = list(
             sorted(
                 filter(
-                    lambda x: x["code"][0] != "C"
-                    or mod not in ("ecd", "ecf"),  # filled by the validator
+                    lambda x: (
+                        x["code"][0] != "C" or mod not in ("ecd", "ecf")
+                    ),  # filled by the validator
                     get_registers(mod, layout),
                 ),
                 key=lambda x: _get_alphanum_sequence(x["code"]),

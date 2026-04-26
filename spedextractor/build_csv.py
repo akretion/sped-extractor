@@ -20,31 +20,41 @@ extracted by extract_tables.py :
 
 import csv
 import logging
+import pathlib
 import re
+
 from unidecode import unidecode
 
 import click
 
 from . import extract_tables
-from .constants import MODULE_HEADER, MODULES, SPECS_PATH
+from .constants import (
+    MODULE_HEADER,
+    MODULES,
+    SPECS_PATH,
+    RawRows,
+    RegisterDict,
+    FieldDict,
+    BlockDict,
+)
 
 logger = logging.getLogger(__name__)
 # logger.addHandler(logging.StreamHandler())
 # logger.setLevel(logging.INFO)
 
 
-def _get_mod_header(mod):
+def _get_mod_header(mod: str) -> list[tuple[str, str]] | None:
     # Override this method if the hard code MODULE_HEADER is not wanted
     return MODULE_HEADER.get(mod)
 
 
 # used to sort csv files
-def _atoi(text):
+def _atoi(text: str) -> int | str:
     return int(text) if text.isdigit() else text
 
 
 # used to sort csv files
-def natural_keys(file):
+def natural_keys(file: pathlib.Path) -> list[int | str]:
     """
     alist.sort(key=natural_keys) sorts in human order
     http://nedbatchelder.com/blog/200712/human_sorting.html
@@ -52,7 +62,7 @@ def natural_keys(file):
     return [_atoi(c) for c in re.split(r"(\d+)", file.name)]
 
 
-def get_raw_rows(mod, layout):
+def get_raw_rows(mod: str, layout: int) -> RawRows:
     """Walk through ./specs/MODULE/LAYOUT/raw_camelot_csv/ and return a big dictionary
     of all the raw rows found in raw CSV files extracted by ./extract_tables.py,
     gathered by their page number :
@@ -118,7 +128,7 @@ def get_raw_rows(mod, layout):
     return raw_rows
 
 
-def clean_row(row):
+def clean_row(row: list[str]) -> list[str]:
     """Clean row's content"""
     row = [str(x) for x in row]
     for index, cell in enumerate(row):
@@ -127,8 +137,8 @@ def clean_row(row):
         # e.g. change "Entr." to "Entr" in fields table's headers
         if re.match(r"^[a-zA-Z]+\.$", clean_cell):
             clean_cell = clean_cell[:-1]
-        # e.g. change "N’" to "N" in column "Tipo"
-        if re.match(r"^[a-zA-Z]+\’$", clean_cell):
+        # e.g. change "N'" or "N'" (unicode U+2019) to "N" in column "Tipo"
+        if re.match(r"^[a-zA-Z]+['\u2019]$", clean_cell):
             clean_cell = clean_cell[:-1]
         row[index] = clean_cell
 
@@ -139,13 +149,13 @@ def clean_row(row):
 # ===========================
 
 
-def _is_register_code(code):
+def _is_register_code(code: str | None) -> bool:
     if not code:
         return False
     return len(code) == 4 and code[1:3].isdigit()
 
 
-def _map_register_row(mod, row):
+def _map_register_row(mod: str, row: list[str]) -> RegisterDict | bool:
     """Extracts register's row information for each kind of module"""
     # TODO : Join rows content when they are from the same register's line but
     # splited in two because of page break.
@@ -182,7 +192,9 @@ def _map_register_row(mod, row):
                 }
 
         elif mod == "efd_icms_ipi":
-            if len(row[0]) == 1 and row[0] != "":
+            # Handle both simple format (6 cols) and complex format with Perfil A/B/C (11 cols)
+            # First 5 columns are consistent: block, desc, code, level, card
+            if len(row) >= 6 and len(row[0]) == 1 and row[0] != "":
                 register = {
                     "block": row[0],
                     "code": row[2],
@@ -202,28 +214,37 @@ def _map_register_row(mod, row):
     return register
 
 
-def extract_registers_list(mod, layout, raw_rows=None):
+def extract_registers_list(
+    mod: str, layout: int, raw_rows: RawRows | None = None
+) -> list[RegisterDict]:
     """Scans the raw csv rows and return 'registers', a list of dictionaries giving
     all the information about the module's registers (block, code, description,
     hierarchy level and card) found in the block's registers lists."""
-    registers = []
+    registers: list[RegisterDict] = []
     in_block = False
     if not raw_rows:
         raw_rows = get_raw_rows(mod, layout)
 
     for page in raw_rows:
         for row in raw_rows[page]:
+            # Check if any cell contains the header keywords (handles merged cells)
+            has_bloco = (
+                any("BLOCO" in cell for cell in row)
+                or any("Bloco" in cell for cell in row)
+                or any("Registro" in cell for cell in row)
+            )
+            has_nivel = (
+                any("NÍVEL" in cell for cell in row)
+                or any("Nível" in cell for cell in row)
+                or any(r"N\xc3\xadvel" in cell for cell in row)
+            )
+            has_nome_registro = any("Nome do Registro" in cell for cell in row)
+            has_reg = any("Reg." in cell for cell in row)
+            has_bloco_desc = any("BLOCO  DESCRIÇÃO" in cell for cell in row)  # ecf
+
             if (
-                ("BLOCO" in row or "Bloco" in row or "Registro" in row)
-                and (
-                    "NÍVEL" in row
-                    or "Nível" in row
-                    or r"N\xc3\xadvel" in row
-                    or "Nome do Registro" in row
-                    or "Reg." in row
-                )
-                or "BLOCO  DESCRIÇÃO" in row  # ecf
-            ):  # ecd
+                has_bloco and (has_nivel or has_nome_registro or has_reg)
+            ) or has_bloco_desc:
                 in_block = True
                 continue
             if in_block:
@@ -243,34 +264,46 @@ def extract_registers_list(mod, layout, raw_rows=None):
 # ============================
 
 
-def _is_joined_index(row, c):
+def _is_joined_index(row: list[str], c: int) -> bool:
     """Checks if row's column 'c' start with row's index and need to be split"""
     if len(row) > 4 and row[c][0:1].isdigit() and len(row[c]) > 3 and " " in row[c]:
         return True
     return False
 
 
-def _split_code_desc(row, c):
+def _split_code_desc(row: list[str], c: int) -> tuple[str, str] | None:
     """Checks if row's column 'c' is a joined code and description and return 2 split
     items to be used if true"""
     i_end = 0
-    code = []
-    desc = []
     for i, part_cell in enumerate(row[c].split(" ")):
         if not re.match(r"\b[A-Z_ÇÃÕÍÚe0-9]+\b", part_cell):
             i_end = i
             break
     if i_end != 0:
         split = row[c].split(" ")
-        code = " ".join(split[:i_end])
-        desc = " ".join(split[i_end:])
-        return code, desc
+        code_str = " ".join(split[:i_end])
+        desc_str = " ".join(split[i_end:])
+        return code_str, desc_str
     else:
         return None
 
 
-def _format_row(row):
+def _format_row(row: list[str]) -> list[str]:
     """Separates columns joined together"""
+
+    # Handle layout 20 merged header "Nº  Campo" -> split into "Nº", "Campo"
+    # Check if first column contains "Nº" and "Campo" merged (e.g., "01  REG" or "Nº  Campo")
+    if row and "Nº" in row[0] and "Campo" in row[0] and len(row) <= 6:
+        # This is a layout 20 row with merged Nº and Campo
+        # Split "Nº  Campo" or "01  REG" into separate columns
+        parts = row[0].split("  ", 1)  # Split on double space first
+        if len(parts) == 2:
+            row = [parts[0], parts[1]] + row[1:]
+        else:
+            # Try single space split
+            parts = row[0].split(" ", 1)
+            if len(parts) == 2:
+                row = [parts[0], parts[1]] + row[1:]
 
     # change ["04  VL_BC_RET", ""] into ["04","VL_BC_RET"]
     if _is_joined_index(row, 0) and row[1] == "":
@@ -303,13 +336,17 @@ def _format_row(row):
     return row
 
 
-def _map_row_mod_header(row, mod):
+def _map_row_mod_header(row: list[str], mod: str) -> list[str]:
     """Inserts empty column when needed to align with module's header columns order"""
     len_header = len(_get_mod_header(mod))
     if row and mod == "efd_icms_ipi":
         if len(row) == len_header - 1:
             # i.e. row has the columns 'Entr' and 'Saída' but not 'Obrig'
             row.insert(6, "")
+        elif len(row) == 6:
+            # Layout 20 format: Nº, Campo, Desc, Tipo, Tam, Dec (no Obrig, Entr, Saídas)
+            # Insert empty placeholders for Obrig, Entr, Saídas at positions 6, 7, 8
+            row.extend(["", "", ""])
     # Add empty cells in row if incomplete
     if row and len(row) < len_header:
         extension = [""] * (len_header - len(row))
@@ -318,13 +355,15 @@ def _map_row_mod_header(row, mod):
     return row
 
 
-def _is_reg_row(row):
+def _is_reg_row(row: list[str]) -> bool:
     if "REG" in row[1] and "Texto" in row[2]:
         return True
     return False
 
 
-def _apply_camelot_patch(mod, layout, register, row):
+def _apply_camelot_patch(
+    mod: str, layout: int, register: str, row: list[str]
+) -> list[str]:
     """Catches patched row in ./camelot_patch/ and return override current row"""
     patch_file = SPECS_PATH / mod / str(layout) / "camelot_patch" / "camelot_patch.csv"
 
@@ -344,6 +383,45 @@ def _apply_camelot_patch(mod, layout, register, row):
     return row
 
 
+def _get_missing_field_patches(
+    mod: str, layout: int, register: str, start_idx: int, end_idx: int
+) -> list[list[str]]:
+    """
+    Get patch rows for missing field indices in the given range.
+    Returns a list of patch rows sorted by field index.
+
+    Patch file format: Register,Page,Nº,Campo,Descrição,Tipo,Tam,Dec,Obrig,Entr,Saídas,...
+    Where Nº is the field index.
+    """
+    patch_file = SPECS_PATH / mod / str(layout) / "camelot_patch" / "camelot_patch.csv"
+    missing_patches: list[list[str]] = []
+
+    try:
+        with open(patch_file, "r") as patch_csv:
+            patch_rows = csv.reader(patch_csv, delimiter=",", quotechar='"')
+            for patch_row in patch_rows:
+                # Skip empty rows or comments
+                if not patch_row or not patch_row[0] or patch_row[0].startswith("#"):
+                    continue
+
+                # Check if this patch is for the right register and missing index
+                if patch_row[0] == register and patch_row[2].isdigit():
+                    field_idx = int(patch_row[2])
+                    if start_idx <= field_idx < end_idx:
+                        # patch_row[2:] contains: Nº,Campo,Descrição,Tipo,Tam,Dec,Obrig,Entr,Saídas,...
+                        # We need to strip the Register and Page columns to get just the field data
+                        missing_patches.append(patch_row[2:])
+                        logger.warning(
+                            f"    [{mod.upper()}] PATCH INSERT: Field {field_idx} ({patch_row[3]}) for register {register}"
+                        )
+    except FileNotFoundError:
+        pass
+
+    # Sort by field index (first element of each patch row)
+    missing_patches.sort(key=lambda x: int(x[0]) if x[0].isdigit() else 0)
+    return missing_patches
+
+
 # def _is_field_row(row, last_field_index=0): # last_field_index is effectively unused for sequence check
 #
 #     """Returns True if the row match a series of condition to be a register's field"""
@@ -360,32 +438,77 @@ def _apply_camelot_patch(mod, layout, register, row):
 #     return False
 
 
-def _is_field_row(row, last_field_index):
-    """Returns True if the row match a series of condition to be a register's field"""
+def _is_field_row(
+    row: list[str],
+    last_field_index: int,
+    mod: str,
+    register_name: str = "",
+    page: int = 0,
+) -> tuple[bool, dict | None]:
+    """Returns True if the row match a series of condition to be a register's field.
+    Allows gaps up to 2 missing fields (e.g., 15 -> 17 or 15 -> 18) to handle PDF errors.
+
+    Returns:
+        tuple: (is_valid_field, gap_info)
+            - is_valid_field: True if this is a valid field row
+            - gap_info: dict with 'start' and 'end' indices if there's a gap, None otherwise
+    """
+    # Check basic field code validity
     if (
         row[1] != ""
         and len(row[1]) < 32
         and len(row[1]) > 1
         and not row[1][0].isdigit()
         and "RZ_CONT" not in row[1]  # in ECD, doesn't look like a real data field
-        and (
-            row[0].isdigit()
-            and row[1] != "REG"
-            and int(row[0]) == last_field_index + 1
-            or row[0] == "*"
-        )
     ):
-        return True
-    else:
-        return False
+        # Handle special case: "*" index
+        if row[0] == "*":
+            return True, None
+
+        # Check if it's a valid field row with numeric index
+        if row[0].isdigit() and row[1] != "REG":
+            field_index = int(row[0])
+            gap = field_index - last_field_index
+
+            # Consecutive field (gap = 1)
+            if gap == 1:
+                return True, None
+            # Allow gaps of 1 or 2 missing fields (gap = 2 or 3) only for efd_icms_ipi
+            # where PDF extraction genuinely misses fields. Other modules use strict
+            # consecutive checking to avoid picking up neighboring register tables.
+            max_gap = 3 if mod == "efd_icms_ipi" else 1
+            if 2 <= gap <= max_gap:
+                context = (
+                    f" [Register: {register_name}, Page: {page}]"
+                    if register_name
+                    else ""
+                )
+                module_tag = f"[{register_name.upper()}] " if register_name else ""
+                logger.warning(
+                    f"    {module_tag}GAP DETECTED:{context} Field {field_index} follows {last_field_index} "
+                    f"(gap of {gap - 1} missing field(s)). Accepting but PDF may have errors."
+                )
+                gap_info = {"start": last_field_index + 1, "end": field_index}
+                return True, gap_info
+            # Gap too large - likely wrong table
+            elif gap > max_gap:
+                return False, None
+
+    return False, None
 
 
-def extract_register_fields(mod, layout, register_name, raw_rows=None, patch=True):
+def extract_register_fields(
+    mod: str,
+    layout: int,
+    register_name: str,
+    raw_rows: RawRows | None = None,
+    patch: bool = True,
+) -> list[list[str]]:
     """Scans the raw_rows to find the rows describing the fields
     of a given register."""
     in_register = False
     last_field_index = 1
-    reg_fields = []
+    reg_fields: list[list[str]] = []
 
     if not raw_rows:
         raw_rows = get_raw_rows(mod, layout)
@@ -422,8 +545,38 @@ def extract_register_fields(mod, layout, register_name, raw_rows=None, patch=Tru
                 # TODO : handle instances where the field's row is split in two by a
                 # page break. (=all the fields are empty except Description - 3rd
                 # column). Example : EFD PIS COFINS page 78 Registro 0200
-                if _is_field_row(row, last_field_index):
-                    last_field_index = int(row[0])
+                is_field, gap_info = _is_field_row(
+                    row, last_field_index, mod, register_name, page
+                )
+                if is_field:
+                    current_field_idx = int(row[0])
+
+                    # Check if there's a gap and try to fill it with patches
+                    if gap_info and patch:
+                        missing_start = last_field_index + 1
+                        missing_end = current_field_idx
+                        missing_patches = _get_missing_field_patches(
+                            mod, layout, register_name, missing_start, missing_end
+                        )
+
+                        patch_count = len(missing_patches)
+                        logger.warning(
+                            f"    [{mod.upper()}] PATCHES APPLIED: Inserted {patch_count} field(s) from patch file for register {register_name}"
+                        )
+
+                        for patch_row in missing_patches:
+                            # Apply the patch
+                            patched_field_idx = int(patch_row[0])
+                            logger.warning(
+                                f"      [{mod.upper()}] -> Field {patched_field_idx} ({patch_row[1]})"
+                            )
+
+                            # Add register's name and page columns
+                            patch_row_copy = [register_name, page] + patch_row
+                            reg_fields.append(patch_row_copy)
+                            last_field_index = patched_field_idx
+
+                    last_field_index = current_field_idx
 
                     # Add register's name and page columns
                     row.insert(0, page)
@@ -438,15 +591,19 @@ def extract_register_fields(mod, layout, register_name, raw_rows=None, patch=Tru
 
 
 def build_accurate_fields_csv(
-    mod, layout, raw_rows=None, extracted_registers=None, patch=True
-):
+    mod: str,
+    layout: int,
+    raw_rows: RawRows | None = None,
+    extracted_registers: list[RegisterDict] | None = None,
+    patch: bool = True,
+) -> None:
     """Build a CSV file with the module's fields rows as they appear in the original
     pdf.
 
     If the registers list is passed as an argument, it avoids to make the extraction
     another time."""
     accurate_file = SPECS_PATH / mod / str(layout) / "accurate_fields.csv"
-    reg_with_no_field = []
+    reg_with_no_field: list[str] = []
     if not extracted_registers:
         extracted_registers = extract_registers_list(mod, layout, raw_rows)
 
@@ -472,13 +629,17 @@ def build_accurate_fields_csv(
             f"catched by camelot : {reg_with_no_field}"
         )
 
-    with open(accurate_file, "w") as accurate_csv:
+    with open(accurate_file, "w", newline="") as accurate_csv:
         # Delete actual fields_file's datas before writing
         accurate_csv.seek(0)
         accurate_csv.truncate()
 
         accurate_rows = csv.writer(
-            accurate_csv, delimiter=",", quotechar='"', quoting=csv.QUOTE_ALL
+            accurate_csv,
+            delimiter=",",
+            quotechar='"',
+            quoting=csv.QUOTE_ALL,
+            lineterminator="\n",
         )
         # Write module's header
         mod_header = ["Register", "Page"] + [c[0] for c in _get_mod_header(mod)]
@@ -492,7 +653,7 @@ def build_accurate_fields_csv(
 # ===================================
 
 
-def _normalize_field_code(code):
+def _normalize_field_code(code: str) -> str:
     """
     The pdf SPED specification has plenty of typing errors. We fix them here.
     This method can be completed in an incremental form: logging warnings
@@ -517,7 +678,7 @@ def _normalize_field_code(code):
     return new_code.upper()
 
 
-def _convert_field_type(field):
+def _convert_field_type(field: FieldDict) -> FieldDict:
     """Return a string giving the 'interpreted' field's type :
     'char', 'int', 'float' or 'date'."""
     spec_type = field.get("spec_type")
@@ -563,7 +724,7 @@ def _convert_field_type(field):
     return field
 
 
-def _convert_field_required(field):
+def _convert_field_required(field: FieldDict) -> FieldDict:
     """Return field with additional required boolean keys if necessary"""
     spec_required = field.get("spec_required")
     if spec_required in ["O", "S", "Sim", "Sm", "sim"]:
@@ -580,6 +741,78 @@ def _convert_field_required(field):
     elif field.get("spec_required"):
         # In this case we are converting a register item not a field
         logger.warning(f"    Could not define if register {field['code']} is required")
+    return field
+
+
+def _convert_field_in_out(field: FieldDict) -> FieldDict:
+    # TODO : interpret field["spec_in"] when it is an integer
+    # (cf register C170 in EFD_ICMS_IPI page 71)
+    spec_in = field.get("spec_in")
+    if spec_in == "O":
+        field["in_required"] = True
+    elif spec_in == "OC":
+        field["conditional_in_required"] = True
+
+    spec_out = field.get("spec_out")
+    if spec_out == "O":
+        field["out_required"] = True
+    elif spec_out == "OC":
+        field["conditional_out_required"] = True
+    return field
+
+
+def _convert_values(field: FieldDict) -> FieldDict:
+    """Add a 'values' keys if field["spec_values"] can be interpreted as a list of items"""
+    values = field.get("spec_values")
+    if values:
+        # Remove unnecessary quotes
+        values = field["spec_values"].replace(""", "").replace(""", "").replace('"', "")
+        if values[0] == "[" and values[-1] == "]":
+            values = values[1:-1]
+        if "," in values:
+            values = values.split(",")
+        elif ";" in values:
+            values = values.split(";")
+        if isinstance(values, list):
+            field["values"] = [v.replace(" ", "").replace("''", "") for v in values]
+        if field.get("spec_type") and field["spec_type"] == "NS":
+            field["values"] = ["+", "-"]  # cf. ECF pdf page 26
+    # TODO : There is still around 30 fields with "spec_values" which is not easily
+    # convertible into a list
+    return field
+
+
+def _convert_rules(field: FieldDict) -> FieldDict:
+    """Convert rules string in a iterable list"""
+    rules = field.get("rules")
+    if rules:
+        field["rules"] = rules[:-1].replace(" ", "").replace("[", "").split("]")
+    return field
+
+
+def _map_field_row(row: list[str], mod: str) -> FieldDict:
+    """Return a field dictionary with interpreted information"""
+    field: FieldDict = {}
+    mod_keys = [c[1] for c in _get_mod_header(mod)]
+
+    # Catch raw datas from row
+    field["register"] = row[0]
+    for index, key in enumerate(mod_keys):
+        if index + 2 < len(row) and row[index + 2] not in ["-", ""]:
+            field[key] = row[index + 2]
+
+    # Interpret raw datas
+    field["index"] = int(
+        field.get("index", "0").replace("*", "0")
+    )  # TODO check * cases
+    field["code"] = _normalize_field_code(field["code"])
+
+    field = _convert_field_type(field)
+    field = _convert_field_required(field)
+    field = _convert_field_in_out(field)
+    field = _convert_values(field)
+    field = _convert_rules(field)
+
     return field
 
 
@@ -655,7 +888,7 @@ def _map_field_row(row, mod):
     return field
 
 
-def get_fields(mod, layout, with_reg=False):
+def get_fields(mod: str, layout: int, with_reg: bool = False) -> list[FieldDict]:
     """Returns a list of the module's fields recorded as dictionaries with interpreted
     values.
 
@@ -676,7 +909,7 @@ def get_fields(mod, layout, with_reg=False):
             f"'{mod}' is not a valid module name. Choose between {MODULES.keys()}"
         )
     accurate_file = SPECS_PATH / mod / str(layout) / "accurate_fields.csv"
-    fields = []
+    fields: list[FieldDict] = []
 
     # Build MODULE_accurate_fields.csv if empty or not existing
     if not accurate_file.exists() or accurate_file.stat().st_size == 0:
@@ -696,7 +929,12 @@ def get_fields(mod, layout, with_reg=False):
     return fields
 
 
-def get_registers(mod, layout, raw_rows=None, extracted_registers=None):
+def get_registers(
+    mod: str,
+    layout: int,
+    raw_rows: RawRows | None = None,
+    extracted_registers: list[RegisterDict] | None = None,
+) -> list[RegisterDict]:
     """Add the `required` and `field_in_out` attributes (calculated from the
     MODULE_accurate_fields.csv file) to the registers extracted by
     `extract_registers_list()` and return this registers list.
@@ -749,7 +987,7 @@ def get_registers(mod, layout, raw_rows=None, extracted_registers=None):
 # ======================================================
 
 
-def _sort_header_order(key):
+def _sort_header_order(key: str) -> int:
     """Reorder hearder's keys"""
     header_base = [
         "register",
@@ -775,72 +1013,102 @@ def _sort_header_order(key):
         return 50
 
 
-def _get_usable_csv_header(fields):
+def _get_usable_csv_header(fields: list[FieldDict], mod: str) -> list[str]:
     """Return a list of all the different keys available in fields"""
-    header = []
+    header: list[str] = []
     for field in fields:
         for key in field.keys():
             if key not in header:
                 header.append(key)
+
+    # Only add these columns for efd_icms_ipi which has spec_in and spec_out
+    # This ensures consistent CSV structure for layout 20 where obrigatoriedade
+    # data may be in register tables instead of field tables
+    if mod == "efd_icms_ipi":
+        standard_columns = [
+            "required",
+            "in_required",
+            "out_required",
+            "conditional_required",
+            "conditional_in_required",
+            "conditional_out_required",
+        ]
+        for col in standard_columns:
+            if col not in header:
+                header.append(col)
+
     header.sort(key=_sort_header_order)
     return header
 
 
-def build_usable_fields_csv(mod, layout):
+def build_usable_fields_csv(mod: str, layout: int) -> None:
     fields_file = SPECS_PATH / mod / str(layout) / "fields.csv"
     fields = get_fields(mod, layout)
     logger.info(f"> Building {mod} {layout} fields.csv")
 
     # Open the CSV with the accurate fields list
-    with open(fields_file, "w") as f_file:
+    with open(fields_file, "w", newline="") as f_file:
         # Delete actual usable_file's datas before writing
         f_file.seek(0)
         f_file.truncate()
 
         fields_csv = csv.writer(
-            f_file, delimiter=",", quotechar='"', quoting=csv.QUOTE_ALL
+            f_file,
+            delimiter=",",
+            quotechar='"',
+            quoting=csv.QUOTE_ALL,
+            lineterminator="\n",
         )
 
-        header = _get_usable_csv_header(fields)
+        header = _get_usable_csv_header(fields, mod)
         fields_csv.writerow(header)
         for field in fields:
-            row = []
+            row: list[str | list[str]] = []
             # Add missing keys with empty values to field
             for col in header:
                 if col not in field.keys():
-                    field[col] = ""
-                row.append(field[col])
+                    field[col] = ""  # type: ignore[literal-required]
+                row.append(field[col])  # type: ignore[misc]
             fields_csv.writerow(row)
 
 
-def build_registers_csv(mod, layout, raw_rows=None, extracted_registers=None):
+def build_registers_csv(
+    mod: str,
+    layout: int,
+    raw_rows: RawRows | None = None,
+    extracted_registers: list[RegisterDict] | None = None,
+) -> None:
     """Generate a csv with the Registers specifications. One line for each register.
     If no registers argument is passed, the registers list extraction will be made by
     `get_registers`.
     """
     registers_file = SPECS_PATH / mod / str(layout) / "registers.csv"
     registers = get_registers(mod, layout, raw_rows, extracted_registers)
-    header = _get_usable_csv_header(registers)
+    header = _get_usable_csv_header(registers, mod)  # type: ignore[arg-type]
 
     logger.info(f"> Building {mod}_registers.csv")
 
-    with open(registers_file, "w") as reg_file:
+    with open(registers_file, "w", newline="") as reg_file:
         # Delete actual reg_file's datas before writing
         reg_file.seek(0)
         reg_file.truncate()
 
         reg_csv = csv.writer(
-            reg_file, delimiter=",", quotechar='"', quoting=csv.QUOTE_ALL
+            reg_file,
+            delimiter=",",
+            quotechar='"',
+            quoting=csv.QUOTE_ALL,
+            lineterminator="\n",
         )
         # First line is columns titles
         reg_csv.writerow(header)
         for register in registers:
-            row = []
+            row: list[str | list[str]] = []
             # Add missing keys with empty values to field
             for col in header:
                 if col not in register.keys():
-                    register[col] = ""
-                row.append(register[col])
+                    register[col] = ""  # type: ignore[literal-required]
+                row.append(register[col])  # type: ignore[misc]
             reg_csv.writerow(row)
 
 
@@ -848,9 +1116,11 @@ def build_registers_csv(mod, layout, raw_rows=None, extracted_registers=None):
 # ======================================================
 
 
-def extract_blocks(mod, layout, raw_rows=None):
+def extract_blocks(
+    mod: str, layout: int, raw_rows: RawRows | None = None
+) -> list[list[str]]:
     """Return a list of the module's blocks rows as found in path_raw"""
-    extracted_blocks = []
+    extracted_blocks: list[list[str]] = []
     in_block_list = False
 
     if not raw_rows:
@@ -874,19 +1144,25 @@ def extract_blocks(mod, layout, raw_rows=None):
         return []
 
 
-def get_blocks(mod, layout, raw_rows=None, extracted_blocks=None):
+def get_blocks(
+    mod: str,
+    layout: int,
+    raw_rows: RawRows | None = None,
+    extracted_blocks: list[list[str]] | None = None,
+) -> list[BlockDict]:
     """Return a list of dictionaries representing module's blocks."""
     if mod not in MODULES:
         raise ValueError(
             f"'{mod}' is not a valid module name. Choose between {MODULES.keys()}"
         )
-    blocks = []
+    blocks: list[BlockDict] = []
     if not extracted_blocks:
         extracted_blocks = extract_blocks(mod, layout, raw_rows)
     for row in extracted_blocks:
-        block = {}
-        block["code"] = row[0].replace("*", "")
-        block["desc"] = " ".join(row[1].split())
+        block: BlockDict = {
+            "code": row[0].replace("*", ""),
+            "desc": " ".join(row[1].split()),
+        }
         if len(row) == 3:  # in ECF
             block["info"] = row[2]
         blocks.append(block)
@@ -905,7 +1181,12 @@ def get_blocks(mod, layout, raw_rows=None, extracted_blocks=None):
     "'..specs/MODULE/LAYOUT/camelot_patch/'",
     show_default=True,
 )
-def main(patch):
+@click.option(
+    "--mod",
+    type=click.Choice(list(MODULES.keys())),
+    help="Build CSV files for a specific module only.",
+)
+def main(patch: bool, mod: str | None) -> None:
     """Build 3 CSV files for each SPED modules (ECD, ECF, EFD_ICMS_IPI and
     EFD_PIS_COFINS) :
 
@@ -917,7 +1198,8 @@ def main(patch):
     - MODULE_fields.csv : list all the module's registers fields with unified and
     'usable' interpreted values (useful to create python objects from these fields)."""
 
-    for mod in MODULES:
+    modules_to_build = [mod] if mod else list(MODULES.keys())
+    for mod in modules_to_build:
         logger.info(f"\n==== Building CSV files for {mod.upper()} ====")
         layout = MODULES[mod][0]
 
