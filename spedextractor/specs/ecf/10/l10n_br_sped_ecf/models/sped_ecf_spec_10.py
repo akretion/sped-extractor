@@ -3218,7 +3218,7 @@ class RegistroM315(models.AbstractModel):
     _sped_level = 4
 
     IND_PROC = fields.Char(
-        string="Tipo do Processo: 1",
+        string="Tipo do Processo",
         required=True,
         sped_length="1",
         help="Tipo do Processo: 1 - Judicial 2 – Administrativo",
@@ -3478,7 +3478,7 @@ class RegistroM365(models.AbstractModel):
     _sped_level = 4
 
     IND_PROC = fields.Char(
-        string="Tipo do Processo: 1",
+        string="Tipo do Processo",
         required=True,
         sped_length="1",
         help="Tipo do Processo: 1 - Judicial 2 – Administrativo",
@@ -3594,7 +3594,7 @@ class RegistroM415(models.AbstractModel):
     _sped_level = 4
 
     IND_PROC = fields.Char(
-        string="Tipo do Processo: 1",
+        string="Tipo do Processo",
         required=True,
         sped_length="1",
         help="Tipo do Processo: 1 - Judicial 2 – Administrativo",
