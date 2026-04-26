@@ -2052,6 +2052,13 @@ class RegistroC100(models.AbstractModel):
         ),
     )
 
+    VL_MERC = fields.Monetary(
+        string="Valor total das mercadorias e serviços",
+        in_required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
     IND_FRT = fields.Char(
         string="Indicador do tipo de frete: 0",
         sped_length="1*",
@@ -8983,6 +8990,22 @@ class RegistroC880(models.AbstractModel):
             "utilizado para cálculo de ressarcimento/restituição de ST, no desfazimento"
             " da substituição tributária, quando se utiliza a fórmula descrita nas "
             "instruções de preenchimento do campo 11, no item a1)."
+        ),
+    )
+
+    VL_UNIT_ICMS_OP_ESTOQUE_CONV = fields.Float(
+        string="Valor médio unitário do ICMS",
+        xsd_type="TDec_1603",
+        digits=(
+            16,
+            3,
+        ),
+        help=(
+            "Valor médio unitário do ICMS que o contribuinte teria se creditado "
+            "referente à operação de entrada das mercadorias em estoque caso estivesse "
+            "submetida ao regime comum de tributação, calculado conforme a legislação "
+            "de cada UF, considerando a unidade utilizada para informar o campo "
+            "“QUANT_CONV”"
         ),
     )
 
