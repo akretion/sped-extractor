@@ -358,7 +358,7 @@ class Registro0000(models.AbstractModel):
     )
 
     COD_FIN = fields.Char(
-        string="Código da finalidade do arquivo: 0",
+        string="Código da finalidade do arquivo",
         xsd_type="numeric_code",
         sped_length="1",
         help=(
@@ -414,7 +414,7 @@ class Registro0000(models.AbstractModel):
     )
 
     IND_ATIV = fields.Char(
-        string="Indicador de tipo de atividade: 0",
+        string="Indicador de tipo de atividade",
         xsd_type="numeric_code",
         sped_length="1",
         help=(
@@ -1664,7 +1664,7 @@ class RegistroB440(models.AbstractModel):
     _sped_level = 2
 
     IND_OPER = fields.Char(
-        string="Indicador do tipo de operação: 0",
+        string="Indicador do tipo de operação",
         xsd_type="numeric_code",
         help="Indicador do tipo de operação: 0 - Aquisição 1 – Prestação",
     )
@@ -1720,7 +1720,7 @@ class RegistroB460(models.AbstractModel):
     _sped_level = 2
 
     IND_DED = fields.Char(
-        string="Indicador do tipo de dedução: 0",
+        string="Indicador do tipo de dedução",
         sped_length="1*",
         help=(
             "Indicador do tipo de dedução: 0 - Compensação do ISS calculado a maior 1 -"
@@ -1741,7 +1741,7 @@ class RegistroB460(models.AbstractModel):
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo: 0",
+        string="Indicador da origem do processo",
         sped_length="1*",
         help=(
             "Indicador da origem do processo: 0 - Sefin 1 - Justiça Federal 2 - Justiça"
@@ -1971,7 +1971,7 @@ class RegistroC100(models.AbstractModel):
     _sped_level = 2
 
     IND_OPER = fields.Char(
-        string="Indicador do tipo de operação: 0",
+        string="Indicador do tipo de operação",
         sped_length="1*",
         help="Indicador do tipo de operação: 0 - Entrada 1 – Saída",
     )
@@ -2031,7 +2031,7 @@ class RegistroC100(models.AbstractModel):
     )
 
     IND_PGTO = fields.Char(
-        string="Indicador do tipo de pagamento: 0",
+        string="Indicador do tipo de pagamento",
         sped_length="1*",
         help="Indicador do tipo de pagamento: 0 - À vista 1 - A prazo 2 – Outros",
     )
@@ -2060,7 +2060,7 @@ class RegistroC100(models.AbstractModel):
     )
 
     IND_FRT = fields.Char(
-        string="Indicador do tipo de frete: 0",
+        string="Indicador do tipo de frete",
         sped_length="1*",
         help=(
             "Indicador do tipo de frete: 0 - contratação do frete por conta do "
@@ -2332,7 +2332,7 @@ class RegistroC105(models.AbstractModel):
     _sped_level = 3
 
     OPER = fields.Char(
-        string="Indicador do tipo de operação: 0",
+        string="Indicador do tipo de operação",
         xsd_type="numeric_code",
         sped_length="1*",
         help=(
@@ -2650,7 +2650,7 @@ class RegistroC115(models.AbstractModel):
     _sped_level = 4
 
     IND_CARGA = fields.Char(
-        string="Indicador do tipo de transporte: 0",
+        string="Indicador do tipo de transporte",
         xsd_type="numeric_code",
         sped_length="1*",
         help=(
@@ -2775,7 +2775,7 @@ class RegistroC120(models.AbstractModel):
     _sped_level = 3
 
     COD_DOC_IMP = fields.Char(
-        string="Documento de importação: 0",
+        string="Documento de importação",
         sped_length="1*",
         help=(
             "Documento de importação: 0 - Declaração de importação; 1 - Declaração "
@@ -2896,7 +2896,7 @@ class RegistroC140(models.AbstractModel):
     _sped_level = 3
 
     IND_EMIT = fields.Char(
-        string="Indicador do emitente do título: 0",
+        string="Indicador do emitente do título",
         sped_length="1*",
         help="Indicador do emitente do título: 0 - Emissão própria 1 - Terceiros",
     )
@@ -3887,7 +3887,7 @@ class RegistroC176(models.AbstractModel):
     )
 
     COD_MOT_RES = fields.Char(
-        string="Código do motivo do ressarcimento: 1",
+        string="Código do motivo do ressarcimento",
         xsd_type="numeric_code",
         sped_length="1*",
         help=(
@@ -6857,7 +6857,7 @@ class RegistroC500(models.AbstractModel):
     _sped_level = 2
 
     IND_OPER = fields.Char(
-        string="Indicador do tipo de operação: 0",
+        string="Indicador do tipo de operação",
         sped_length="1*",
         help="Indicador do tipo de operação: 0 - Entrada 1 - Saída",
     )
@@ -11414,7 +11414,7 @@ class RegistroD500(models.AbstractModel):
     _sped_level = 2
 
     IND_OPER = fields.Char(
-        string="Indicador do tipo de operação: 0",
+        string="Indicador do tipo de operação",
         sped_length="1*",
         help="Indicador do tipo de operação: 0 - Aquisição 1 – Prestação",
     )
@@ -11532,7 +11532,7 @@ class RegistroD500(models.AbstractModel):
     )
 
     TP_ASSINANTE = fields.Char(
-        string="Código do Tipo de Assinante: 1",
+        string="Código do Tipo de Assinante",
         xsd_type="numeric_code",
         sped_length="1*",
         help=(
@@ -11674,7 +11674,7 @@ class RegistroD510(models.AbstractModel):
     )
 
     IND_REC = fields.Char(
-        string="Indicador do tipo de receita: 0",
+        string="Indicador do tipo de receita",
         sped_length="1*",
         help=(
             "Indicador do tipo de receita: 0 - Receita própria - serviços prestados 1 -"
@@ -12487,7 +12487,7 @@ class RegistroD700(models.AbstractModel):
     _sped_level = 2
 
     IND_OPER = fields.Char(
-        string="Indicador do tipo de prestação: 0",
+        string="Indicador do tipo de prestação",
         sped_length="1*",
         help="Indicador do tipo de prestação: 0: Entrada 1: Saída",
     )
@@ -13652,7 +13652,7 @@ class RegistroE210(models.AbstractModel):
     _sped_level = 3
 
     IND_MOV_ST = fields.Char(
-        string="Indicador de movimento: 0",
+        string="Indicador de movimento",
         sped_length="1",
         help=(
             "Indicador de movimento: 0 - Sem operações com ST 1 - Com operações de ST"
@@ -13986,7 +13986,7 @@ class RegistroE310(models.AbstractModel):
     _sped_level = 3
 
     IND_MOV_FCP_DIFAL = fields.Char(
-        string="Indicador de movimento: 0",
+        string="Indicador de movimento",
         help="Indicador de movimento: 0 - Sem operações 1 - Com operações",
     )
 
@@ -16405,7 +16405,7 @@ class Registro1100(models.AbstractModel):
     _sped_level = 2
 
     IND_DOC = fields.Char(
-        string="Informe o tipo de documento: 0",
+        string="Informe o tipo de documento",
         xsd_type="numeric_code",
         sped_length="1*",
         help=(
@@ -17045,7 +17045,7 @@ class Registro1350(models.AbstractModel):
     MODELO = fields.Char(string="Modelo da bomba")
 
     TIPO_MEDICAO = fields.Char(
-        string="Identificador de medição: 0",
+        string="Identificador de medição",
         sped_length="1",
         help="Identificador de medição: 0 - analógico 1 - digital",
     )
@@ -17389,7 +17389,7 @@ class Registro1500(models.AbstractModel):
     _sped_level = 2
 
     IND_OPER = fields.Char(
-        string="Indicador do tipo de operação: 1",
+        string="Indicador do tipo de operação",
         sped_length="1*",
         help="Indicador do tipo de operação: 1 - Saída",
     )
