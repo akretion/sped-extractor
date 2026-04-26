@@ -439,7 +439,11 @@ def _get_missing_field_patches(
 
 
 def _is_field_row(
-    row: list[str], last_field_index: int, register_name: str = "", page: int = 0
+    row: list[str],
+    last_field_index: int,
+    mod: str,
+    register_name: str = "",
+    page: int = 0,
 ) -> tuple[bool, dict | None]:
     """Returns True if the row match a series of condition to be a register's field.
     Allows gaps up to 2 missing fields (e.g., 15 -> 17 or 15 -> 18) to handle PDF errors.
@@ -469,8 +473,11 @@ def _is_field_row(
             # Consecutive field (gap = 1)
             if gap == 1:
                 return True, None
-            # Allow gaps of 1 or 2 missing fields (gap = 2 or 3)
-            elif 2 <= gap <= 3:
+            # Allow gaps of 1 or 2 missing fields (gap = 2 or 3) only for efd_icms_ipi
+            # where PDF extraction genuinely misses fields. Other modules use strict
+            # consecutive checking to avoid picking up neighboring register tables.
+            max_gap = 3 if mod == "efd_icms_ipi" else 1
+            if 2 <= gap <= max_gap:
                 context = (
                     f" [Register: {register_name}, Page: {page}]"
                     if register_name
@@ -484,7 +491,7 @@ def _is_field_row(
                 gap_info = {"start": last_field_index + 1, "end": field_index}
                 return True, gap_info
             # Gap too large - likely wrong table
-            elif gap > 3:
+            elif gap > max_gap:
                 return False, None
 
     return False, None
@@ -539,7 +546,7 @@ def extract_register_fields(
                 # page break. (=all the fields are empty except Description - 3rd
                 # column). Example : EFD PIS COFINS page 78 Registro 0200
                 is_field, gap_info = _is_field_row(
-                    row, last_field_index, register_name, page
+                    row, last_field_index, mod, register_name, page
                 )
                 if is_field:
                     current_field_idx = int(row[0])
@@ -1174,7 +1181,12 @@ def get_blocks(
     "'..specs/MODULE/LAYOUT/camelot_patch/'",
     show_default=True,
 )
-def main(patch: bool) -> None:
+@click.option(
+    "--mod",
+    type=click.Choice(list(MODULES.keys())),
+    help="Build CSV files for a specific module only.",
+)
+def main(patch: bool, mod: str | None) -> None:
     """Build 3 CSV files for each SPED modules (ECD, ECF, EFD_ICMS_IPI and
     EFD_PIS_COFINS) :
 
@@ -1186,7 +1198,8 @@ def main(patch: bool) -> None:
     - MODULE_fields.csv : list all the module's registers fields with unified and
     'usable' interpreted values (useful to create python objects from these fields)."""
 
-    for mod in MODULES:
+    modules_to_build = [mod] if mod else list(MODULES.keys())
+    for mod in modules_to_build:
         logger.info(f"\n==== Building CSV files for {mod.upper()} ====")
         layout = MODULES[mod][0]
 
