@@ -43,6 +43,7 @@ Bug-Tracker = "https://github.com/akretion/sped-extractor/issues"
 sped-download = "spedextractor.download:main"
 sped-extract-tables = "spedextractor.extract_tables:main"
 sped-build-csv = "spedextractor.build_csv:main"
+sped-pva = "spedextractor.pva:main"
 sped-gen-odoo = "spedextractor.gen_odoo:main"
 
 [project.optional-dependencies]
