@@ -174,6 +174,24 @@ def _field_row(register: ET.Element, field: ET.Element, mod: str) -> list[str] |
     return [reg_code, "pva"] + [known.get(key, "") for _, key in MODULE_HEADER[mod]]
 
 
+def _level(node: ET.Element, code: str, depth: int) -> int:
+    """The register's hierarchy level.
+
+    Some descriptors carry it as the `nivel` attribute (EFD ICMS/IPI, EFD
+    PIS/COFINS, ECF); the ECD one does not, and there the nesting depth of
+    the <registro> elements IS the hierarchy: a register hanging directly off
+    its <bloco> is a level 1 opener, and each nesting adds one. The 0000 is
+    the level 0 declaration in every layout, and in the ECD it WRAPS the rest
+    of its block, so it does not count as a nesting level for its children
+    (the caller keeps the depth unchanged below it).
+    """
+    if node.get("nivel"):
+        return int(node.get("nivel", "0"))
+    if code == "0000":
+        return 0
+    return depth
+
+
 def build_from_descriptor(mod: str, layout: int, xml_bytes: bytes) -> None:
     """Write accurate_fields.csv and registers_pva.csv from one descriptor."""
     root = ET.fromstring(_sanitize(xml_bytes))
@@ -183,19 +201,20 @@ def build_from_descriptor(mod: str, layout: int, xml_bytes: bytes) -> None:
     registers: list[RegisterDict] = []
     field_rows: list[list[str]] = []
     seen: set[str] = set()
-    # iter() is document order, so registers come out in layout order and a
-    # parent always comes before its children (the nesting is the hierarchy;
-    # the level attribute carries it downstream)
-    for node in root.iter("registro"):
+
+    def visit(node: ET.Element, depth: int) -> None:
+        """Document order, so registers come out in layout order and a parent
+        always comes before its children. Only <registro> adds depth: the
+        <bloco> wrappers some descriptors use are transparent."""
         code = node.get("id")
         if not code or code in seen:
-            continue
+            return
         seen.add(code)
         register: RegisterDict = {
             "block": code[0],
             "code": code,
             "desc": node.get("descricao") or node.get("rotulo") or "",
-            "level": int(node.get("nivel", "0")),
+            "level": _level(node, code, depth),
             "card": _CARD.get(node.get("ocorrencia", "2"), "1:N"),
         }
         if node.get("obrigatorio") == "1":
@@ -210,6 +229,20 @@ def build_from_descriptor(mod: str, layout: int, xml_bytes: bytes) -> None:
         # the file is positional: keep the fields in their declared position
         rows.sort(key=lambda r: int(r[2]))
         field_rows.extend(rows)
+
+        # the 0000 wrapper is transparent: its children are level 1 openers
+        child_depth = depth if code == "0000" else depth + 1
+        for child in node.findall("registro"):
+            visit(child, child_depth)
+
+    def descend(element: ET.Element, depth: int) -> None:
+        for child in element:
+            if child.tag == "registro":
+                visit(child, depth + 1)
+            else:
+                descend(child, depth)
+
+    descend(root, 0)
 
     accurate_file = base / "accurate_fields.csv"
     with open(accurate_file, "w", newline="") as accurate_csv:

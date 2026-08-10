@@ -29,6 +29,36 @@ DESCRIPTOR = """<descritor-escrituracao>
 </descritor-escrituracao>"""
 
 
+# The ECD descriptor carries no `nivel` attribute: the nesting of the
+# <registro> elements inside the <bloco> wrappers is the hierarchy. Its 0000
+# WRAPS the rest of block 0, while the other blocks hold their openers
+# directly; both shapes appear in the same real file.
+DESCRIPTOR_NO_LEVELS = """<descritor-escrituracao>
+  <bloco id="0">
+    <registro id="0000" descricao="Abertura" ocorrencia="1" obrigatorio="1">
+      <campo n="1" id="REG" tipo="C" tamanho="[4]" obrigatorio="1" rotulo="Registro" />
+      <registro id="0001" descricao="ABERTURA DO BLOCO 0" ocorrencia="1" obrigatorio="1">
+        <campo n="1" id="REG" tipo="C" tamanho="[4]" obrigatorio="1" rotulo="Registro" />
+        <registro id="0007" descricao="Inscricoes" ocorrencia="2" obrigatorio="1">
+          <campo n="1" id="REG" tipo="C" tamanho="[4]" obrigatorio="1" rotulo="Registro" />
+          <registro id="0008" descricao="Detalhe" ocorrencia="2" obrigatorio="0">
+            <campo n="1" id="REG" tipo="C" tamanho="[4]" obrigatorio="1" rotulo="Registro" />
+          </registro>
+        </registro>
+      </registro>
+    </registro>
+  </bloco>
+  <bloco id="I">
+    <registro id="I001" descricao="ABERTURA DO BLOCO I" ocorrencia="1" obrigatorio="1">
+      <campo n="1" id="REG" tipo="C" tamanho="[4]" obrigatorio="1" rotulo="Registro" />
+      <registro id="I010" descricao="Identificacao" ocorrencia="0" obrigatorio="1">
+        <campo n="1" id="REG" tipo="C" tamanho="[4]" obrigatorio="1" rotulo="Registro" />
+      </registro>
+    </registro>
+  </bloco>
+</descritor-escrituracao>"""
+
+
 @pytest.fixture
 def specs_path(tmp_path, monkeypatch):
     monkeypatch.setattr(pva, "SPECS_PATH", tmp_path)
@@ -82,6 +112,21 @@ def test_registers_csv_roundtrip(generated):
     assert by_code["E110"]["card"] == "1:1"
     assert by_code["E110"]["required"] is True
     assert "required" not in by_code["E100"]  # obrigatorio=2 is not plain required
+
+
+def test_levels_come_from_the_nesting_when_nivel_is_absent(specs_path):
+    """The ECD descriptor has no nivel attribute: depth is the hierarchy."""
+    pva.build_from_descriptor("ecd", 99, DESCRIPTOR_NO_LEVELS.encode())
+    registers = pva.read_registers_csv(specs_path / "ecd" / "99" / "registers_pva.csv")
+    levels = {register["code"]: register["level"] for register in registers}
+    assert levels == {
+        "0000": 0,
+        "0001": 1,
+        "0007": 2,
+        "0008": 3,
+        "I001": 1,
+        "I010": 2,
+    }
 
 
 def test_extract_registers_list_prefers_the_descriptor(generated):
