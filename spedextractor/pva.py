@@ -32,6 +32,12 @@ produces, with "pva" in the Page column) and `registers_pva.csv` next to it.
 From there the regular pipeline works unchanged: `get_fields`,
 `get_registers`, `build_usable_fields_csv`, `build_registers_csv` and
 `gen_odoo` read the same files.
+
+Two more files document what the pdf cannot: `values_pva.csv` keeps the valid
+values WITH their labels (what a Selection field needs) and `rules_pva.csv`
+the whole validation catalogue the PVA applies, register by register, worded
+with the exact text of `validador.prop` (found automatically inside the PVA's
+jars, or passed with --messages).
 """
 
 import csv
@@ -144,6 +150,114 @@ def _field_rules(field: ET.Element) -> str:
     )
 
 
+def _raw_values(field: ET.Element) -> str:
+    """The `valores` attribute verbatim, when it is a real value list.
+
+    A single value with no pair is the fixed content of a REG field, not a
+    selection. The labels (`0=Original;1=Retificadora`) are kept as written:
+    they are the wording the taxpayer sees, and what a Selection field needs.
+    """
+    values = field.find("valores-validos")
+    raw = values.get("valores", "") if values is not None else ""
+    return raw if ";" in raw else ""
+
+
+def _parse_prop(text: str) -> dict[str, str]:
+    messages: dict[str, str] = {}
+    for line in text.splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, _, value = line.partition("=")
+        messages[key.strip()] = value.strip()
+    return messages
+
+
+def load_messages(path: pathlib.Path) -> dict[str, str]:
+    """Read a `validador.prop` into `{id: message}`.
+
+    It is a Java properties file in latin-1, shipped beside the layout at
+    `descritor/comum/mensagens/validador.prop`, with the exact wording the
+    taxpayer reads in the validation report.
+    """
+    return _parse_prop(path.read_text(encoding="latin-1", errors="replace"))
+
+
+def _find_messages(pva_dir: pathlib.Path) -> dict[str, str]:
+    """The validador.prop inside the PVA's own jars, when there is one."""
+    for jar in sorted(pva_dir.rglob("*.jar")):
+        try:
+            with zipfile.ZipFile(jar) as archive:
+                for member in archive.namelist():
+                    if member.endswith("mensagens/validador.prop"):
+                        return _parse_prop(
+                            archive.read(member).decode("latin-1", "replace")
+                        )
+        except zipfile.BadZipFile:
+            continue
+    return {}
+
+
+def _message_for(rule_id: str, messages: dict[str, str]) -> str:
+    """Best effort match between a rule id and a message id.
+
+    The two namespaces do not line up one to one (`REGRA_*` against `MSG_*`),
+    so the direct hit is tried first and then the same name under the message
+    prefix. Whatever is left stays blank rather than guessed.
+    """
+    if rule_id in messages:
+        return messages[rule_id]
+    stem = rule_id.removeprefix("REGRA_")
+    for candidate in (f"MSG_{stem}", stem):
+        if candidate in messages:
+            return messages[candidate]
+    return ""
+
+
+def _rule_rows(
+    register: ET.Element, code: str, messages: dict[str, str]
+) -> list[list[str]]:
+    """The validations the PVA declares on one register and its fields.
+
+    The descriptor names each rule, its severity (`tipo`), the field the
+    message points at and the other fields the rule reads; the wording comes
+    from validador.prop. What each rule computes lives in compiled classes,
+    but for most of them the message already states the formula.
+    """
+    rows = []
+    for required in register.findall("obrigatoriedade"):
+        rule_id = required.get("id", "")
+        if rule_id:
+            rows.append(
+                [
+                    code,
+                    "",
+                    rule_id,
+                    "obrigatoriedade",
+                    "",
+                    _message_for(rule_id, messages),
+                ]
+            )
+    for holder, field_code in [(register, "")] + [
+        (field, field.get("id", "")) for field in register.findall("campo")
+    ]:
+        for rule in holder.findall("validador"):
+            rule_id = rule.get("id", "")
+            if not rule_id:
+                continue
+            rows.append(
+                [
+                    code,
+                    field_code or rule.get("campoMsg", ""),
+                    rule_id,
+                    rule.get("tipo", ""),
+                    rule.get("outrosCamposEnvolvidosValidacao", ""),
+                    _message_for(rule_id, messages),
+                ]
+            )
+    return rows
+
+
 def _field_row(register: ET.Element, field: ET.Element, mod: str) -> list[str] | None:
     """One accurate_fields.csv row, in the module's own column layout."""
     code = field.get("id")
@@ -192,14 +306,25 @@ def _level(node: ET.Element, code: str, depth: int) -> int:
     return depth
 
 
-def build_from_descriptor(mod: str, layout: int, xml_bytes: bytes) -> None:
-    """Write accurate_fields.csv and registers_pva.csv from one descriptor."""
+def build_from_descriptor(
+    mod: str, layout: int, xml_bytes: bytes, messages: dict[str, str] | None = None
+) -> None:
+    """Write the layout CSVs from one descriptor.
+
+    `accurate_fields.csv` and `registers_pva.csv` feed the regular pipeline;
+    `values_pva.csv` keeps the valid values WITH their labels (what a
+    Selection field needs) and `rules_pva.csv` the validation catalogue, with
+    the wording from validador.prop when `messages` is given.
+    """
+    messages = messages or {}
     root = ET.fromstring(_sanitize(xml_bytes))
     base = SPECS_PATH / mod / str(layout)
     base.mkdir(parents=True, exist_ok=True)
 
     registers: list[RegisterDict] = []
     field_rows: list[list[str]] = []
+    value_rows: list[list[str]] = []
+    rule_rows: list[list[str]] = []
     seen: set[str] = set()
 
     def visit(node: ET.Element, depth: int) -> None:
@@ -226,9 +351,13 @@ def build_from_descriptor(mod: str, layout: int, xml_bytes: bytes) -> None:
             row = _field_row(node, field, mod)
             if row is not None:
                 rows.append(row)
+            values = _raw_values(field)
+            if values and field.get("id"):
+                value_rows.append([code, field.get("id", ""), values])
         # the file is positional: keep the fields in their declared position
         rows.sort(key=lambda r: int(r[2]))
         field_rows.extend(rows)
+        rule_rows.extend(_rule_rows(node, code, messages))
 
         # the 0000 wrapper is transparent: its children are level 1 openers
         child_depth = depth if code == "0000" else depth + 1
@@ -280,6 +409,36 @@ def build_from_descriptor(mod: str, layout: int, xml_bytes: bytes) -> None:
             )
     logger.info(f"> {registers_file} written ({len(registers)} registers)")
 
+    values_file = base / "values_pva.csv"
+    with open(values_file, "w", newline="") as values_csv:
+        writer = csv.writer(
+            values_csv,
+            delimiter=",",
+            quotechar='"',
+            quoting=csv.QUOTE_ALL,
+            lineterminator="\n",
+        )
+        writer.writerow(["register", "field", "values"])
+        writer.writerows(value_rows)
+    logger.info(f"> {values_file} written ({len(value_rows)} selection fields)")
+
+    rules_file = base / "rules_pva.csv"
+    with open(rules_file, "w", newline="") as rules_csv:
+        writer = csv.writer(
+            rules_csv,
+            delimiter=",",
+            quotechar='"',
+            quoting=csv.QUOTE_ALL,
+            lineterminator="\n",
+        )
+        writer.writerow(["register", "field", "rule", "severity", "reads", "message"])
+        writer.writerows(rule_rows)
+    worded = sum(1 for row in rule_rows if row[5])
+    logger.info(
+        f"> {rules_file} written ({len(rule_rows)} rules, {worded} with the "
+        "validador.prop wording)"
+    )
+
 
 def read_registers_csv(path: pathlib.Path) -> list[RegisterDict]:
     """The registers list of a descriptor-generated layout."""
@@ -309,6 +468,13 @@ def read_registers_csv(path: pathlib.Path) -> list[RegisterDict]:
 @click.option(
     "--descriptor-version", default="", help="v<N> of the descriptor, NOT the layout."
 )
+@click.option(
+    "--messages",
+    type=click.Path(exists=True, path_type=pathlib.Path),
+    default=None,
+    help="A validador.prop for the rules wording. When SOURCE is a PVA dir "
+    "the one inside its jars is used automatically.",
+)
 def main(
     source: pathlib.Path,
     mod: str,
@@ -316,14 +482,16 @@ def main(
     structure: str,
     ato: str,
     descriptor_version: str,
+    messages: pathlib.Path | None,
 ) -> None:
     """Build the CSVs of MOD from the official PVA descriptor in SOURCE.
 
     SOURCE is the install dir of the PVA (the descriptor is pulled from its
     jars) or a descriptor.xml already extracted.
     """
+    wording = load_messages(messages) if messages else {}
     if source.is_file():
-        build_from_descriptor(mod, layout, source.read_bytes())
+        build_from_descriptor(mod, layout, source.read_bytes(), wording)
         return
     descriptors = find_descriptors(source)
     if not descriptors:
@@ -344,7 +512,9 @@ def main(
             "the one the PVA prints in the status bar after importing a file "
             f"of the target period ({len(wanted or descriptors)} candidates)"
         )
-    build_from_descriptor(mod, layout, _read_descriptor(wanted[0]))
+    if not wording:
+        wording = _find_messages(source)
+    build_from_descriptor(mod, layout, _read_descriptor(wanted[0]), wording)
 
 
 if __name__ == "__main__":

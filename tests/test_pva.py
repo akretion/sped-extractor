@@ -16,8 +16,12 @@ DESCRIPTOR = """<descritor-escrituracao>
       <campo n="1" id="REG" tipo="C" tamanho="[4]" obrigatorio="1" rotulo="Registro" />
       <campo n="2" id="DT_INI" tipo="D" tamanho="[8]" obrigatorio="1" rotulo="Data inicial" descrição="Data inicial do periodo" />
       <registro id="E110" descricao="Apuracao do ICMS" nivel="3" ocorrencia="1" obrigatorio="1" rotulo="E110">
+        <obrigatoriedade id="REGRA_REGISTRO_OBRIGATORIO_E110" />
+        <validador id="REGRA_VL_TOT" tipo="2" campoMsg="VL_TOT_CREDITOS" outrosCamposEnvolvidosValidacao="IND_MOV" />
         <campo n="1" id="REG" tipo="C" tamanho="[4]" obrigatorio="1" rotulo="Registro" />
-        <campo n="3'" id="VL_TOT_CREDITOS" tipo="N" casasdecimais="2" obrigatorio="1" rotulo="Total dos creditos" />
+        <campo n="3'" id="VL_TOT_CREDITOS" tipo="N" casasdecimais="2" obrigatorio="1" rotulo="Total dos creditos">
+          <validador id="REGRA_MAIOR_IGUAL_ZERO" tipo="0" />
+        </campo>
         <campo n="2" id="IND_MOV" tipo="N" tamanho="1" obrigatorio="1" rotulo="Movimento">
           <valores-validos valores="0=Sem movimento;1=Com movimento" />
         </campo>
@@ -133,6 +137,34 @@ def test_extract_registers_list_prefers_the_descriptor(generated):
     """With registers_pva.csv in place the pdf pipeline must not be touched."""
     registers = build_csv.extract_registers_list("efd_icms_ipi", 99)
     assert [register["code"] for register in registers] == ["0000", "E100", "E110"]
+
+
+def test_values_csv_keeps_the_labels(generated):
+    """The labels are what a Selection field needs; the pdf mangles them."""
+    content = (generated / "values_pva.csv").read_text().splitlines()
+    assert '"E110","IND_MOV","0=Sem movimento;1=Com movimento"' in content
+    # the fixed content of a REG field is not a selection
+    assert not any('"REG"' in line for line in content)
+
+
+def test_rules_csv_carries_the_catalogue(specs_path):
+    pva.build_from_descriptor(
+        "efd_icms_ipi",
+        99,
+        DESCRIPTOR.encode(),
+        messages={"REGRA_VL_TOT": "O total deve ser maior ou igual a zero."},
+    )
+    lines = (specs_path / "efd_icms_ipi" / "99" / "rules_pva.csv").read_text()
+    # register-level rule, pointing at the field of its message, with wording
+    assert (
+        '"E110","VL_TOT_CREDITOS","REGRA_VL_TOT","2","IND_MOV",'
+        '"O total deve ser maior ou igual a zero."' in lines
+    )
+    # field-level rule and the mandatoriness rule of the register
+    assert '"E110","VL_TOT_CREDITOS","REGRA_MAIOR_IGUAL_ZERO","0","",""' in lines
+    assert (
+        '"E110","","REGRA_REGISTRO_OBRIGATORIO_E110","obrigatoriedade","",""' in lines
+    )
 
 
 def test_get_fields_interprets_the_descriptor_rows(generated):

@@ -147,6 +147,8 @@ Cada campo vem com posição, código, tipo, tamanho, casas decimais, obrigatori
 
 O descritor certo é o que o PVA imprime na barra de status logo depois de importar um arquivo do período alvo ("ID do Descritor: ... Versão do Descritor: ..."): cada PVA carrega todos os leiautes históricos, então escolher o número mais alto é chute. Rodando ``sped-pva`` num diretório de PVA sem as opções de seleção, ele lista os descritores disponíveis. Também é possível passar um *descritor.xml* já extraído no lugar do diretório.
 
+Além dos CSV do pipeline, o ``sped-pva`` escreve dois arquivos com o que o pdf não tem: *values_pva.csv*, com os valores válidos de cada campo COM os rótulos (o que um campo ``Selection`` precisa), e *rules_pva.csv*, com o catálogo completo de validações que o PVA aplica (registro, campo, regra, severidade, campos lidos e a mensagem exata do *validador.prop*, encontrado automaticamente nos jars do PVA ou passado com ``--messages``).
+
 Configuração
 ============
 
