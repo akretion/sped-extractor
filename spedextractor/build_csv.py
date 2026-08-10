@@ -219,7 +219,15 @@ def extract_registers_list(
 ) -> list[RegisterDict]:
     """Scans the raw csv rows and return 'registers', a list of dictionaries giving
     all the information about the module's registers (block, code, description,
-    hierarchy level and card) found in the block's registers lists."""
+    hierarchy level and card) found in the block's registers lists.
+
+    When the layout was generated from the official PVA descriptor (see pva.py),
+    the registers come from the descriptor itself and no pdf is read."""
+    pva_registers = SPECS_PATH / mod / str(layout) / "registers_pva.csv"
+    if pva_registers.exists():
+        from .pva import read_registers_csv
+
+        return read_registers_csv(pva_registers)
     registers: list[RegisterDict] = []
     in_block = False
     if not raw_rows:
@@ -365,6 +373,8 @@ def _apply_camelot_patch(
     mod: str, layout: int, register: str, row: list[str]
 ) -> list[str]:
     """Catches patched row in ./camelot_patch/ and return override current row"""
+    if len(row) > 1 and row[1] == "pva":
+        return row  # descriptor-generated rows have nothing to patch
     patch_file = SPECS_PATH / mod / str(layout) / "camelot_patch" / "camelot_patch.csv"
 
     try:
@@ -948,7 +958,8 @@ def get_registers(
     accurate_file = SPECS_PATH / mod / str(layout) / "accurate_fields.csv"
     mod_keys = [c[1] for c in _get_mod_header(mod)]
 
-    if not raw_rows:
+    pva_registers = SPECS_PATH / mod / str(layout) / "registers_pva.csv"
+    if not raw_rows and not pva_registers.exists():
         raw_rows = get_raw_rows(mod, layout)
     if extracted_registers:
         registers = extracted_registers
@@ -1211,6 +1222,16 @@ def main(patch: bool, mod: str | None) -> None:
                 f"    No CSV patch 'camelot_patch.csv' found for {mod.upper()} "
                 f"in './specs/{mod}/{layout}/'"
             )
+
+        pva_registers = SPECS_PATH / mod / str(layout) / "registers_pva.csv"
+        if pva_registers.exists():
+            # this layout was generated from the official PVA descriptor (see
+            # pva.py): accurate_fields.csv is already written and there is no
+            # pdf to download, extract or patch
+            logger.info("    (from the PVA descriptor, no pdf work)")
+            build_registers_csv(mod, layout)
+            build_usable_fields_csv(mod, layout)
+            continue
 
         raw_rows = get_raw_rows(mod, layout)
         extracted_registers = extract_registers_list(mod, layout, raw_rows)
