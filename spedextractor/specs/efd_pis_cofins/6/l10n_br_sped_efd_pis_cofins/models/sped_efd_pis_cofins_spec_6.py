@@ -8,36 +8,35 @@ STRUCTURE SPED EFD_PIS_COFINS
 
 <BLOCO 0>
 
-  - 0035 IDENTIFICAÇÃO DA SOCIEDADE EM CONTA DE PARTICIPAÇÃO
+  - 0035 IDENTIFICAÇÃO DE SCP
 
   - 0100 DADOS DO CONTABILISTA
 
   - 0110 REGIMES DE APURAÇÃO DA CONTRIBUIÇÃO SOCIAL E DE APROPRIAÇÃO DE CRÉDITO
     - 0111 Tabela de Receita Bruta Mensal para Fins de Rateio de Créditos Comuns
 
-  - 0120 IDENTIFICAÇÃO DE EFD-CONTRIBUIÇÕES SEM DADOS A ESCRITURAR
+  - 0120 IDENTIFICAÇÃO DE EFD CONTRIBUIÇÕES SEM DADOS A ESCRITURAR E OUTRAS INFORMAÇÕES DE INTERESSE DO FISCO
 
   - 0140 TABELA DE CADASTRO DE ESTABELECIMENTO
-    - 0145 Regime de Apuração da Contribuição Previdenciária sobre a Receita Bruta
     ≡ 0150 Tabela de Cadastro do Participante
-    ≡ 0190 Identificação das Unidades de Medida
+    ≡ 0190 Identificação das unidades de medida
     ≡ 0200 Tabela de Identificação do Item
       ≡ 0205
       - 0206
       - 0208
     ≡ 0400 Tabela de Natureza da Operação/ Prestação
-    ≡ 0450 Tabela de Informação Complementar do Documento Fiscal
+    ≡ 0450 Tabela de Informação Complementar do documento fiscal
 
-  - 0500 PLANO DE CONTAS CONTÁBEIS – CONTAS INFORMADAS
+  - 0500 PLANO DE CONTAS CONTÁBEIS
 
   - 0600 CENTRO DE CUSTOS
 
-  - 0900 COMPOSIÇÃO DAS RECEITAS DO PERÍODO – RECEITA BRUTA E DEMAIS RECEITAS
+  - 0900 COMPOSIÇÃO DAS RECEITAS DO PERÍODO
 
 <BLOCO A>
 
   - A010 IDENTIFICAÇÃO DO ESTABELECIMENTO
-    ≡ A100 Documento – Nota Fiscal de Serviço
+    ≡ A100 Documento - Nota Fiscal de Serviços
       ≡ A110
       ≡ A111
       ≡ A120
@@ -46,7 +45,7 @@ STRUCTURE SPED EFD_PIS_COFINS
 <BLOCO C>
 
   - C010 IDENTIFICAÇÃO DO ESTABELECIMENTO
-    ≡ C100 Documento - Nota Fiscal (código 01)
+    ≡ C100 Documento - Nota Fiscal
       ≡ C110
       ≡ C111
       ≡ C120
@@ -61,12 +60,12 @@ STRUCTURE SPED EFD_PIS_COFINS
       ≡ C195
       ≡ C198
       ≡ C199
-    ≡ C380 Nota Fiscal de Venda a Consumidor
+    ≡ C380 C380 - Nota Fiscal de Venda a Consumidor...
       ≡ C381
       ≡ C385
-    ≡ C395 Notas Fiscais de Venda a Consumidor
+    ≡ C395 Nota Fiscal de Venda a Consumidor
       ≡ C396
-    ≡ C400 Equipamento ECF (códigos 02 e 2D)
+    ≡ C400 Equipamento ECF
       ≡ C405
         ≡ C481
         ≡ C485
@@ -83,11 +82,7 @@ STRUCTURE SPED EFD_PIS_COFINS
       ≡ C601
       ≡ C605
       ≡ C609
-    ≡ C800 Cupom Fiscal Eletrônico – CF-e
-      ≡ C810
-      ≡ C820
-      ≡ C830
-    ≡ C860 Identificação do Equipamento SAT- CF-e
+    ≡ C860 Identificação do Equipamento SAT-CF-e
       ≡ C870
       ≡ C880
       ≡ C890
@@ -99,19 +94,19 @@ STRUCTURE SPED EFD_PIS_COFINS
       ≡ D101
       ≡ D105
       ≡ D111
-    ≡ D200 Resumo da Escrituração Diária – Prestação de Serviços de Transportes
+    ≡ D200 Resumo da Escrituração Diária
       ≡ D201
       ≡ D205
       ≡ D209
-    ≡ D300 Resumo da Escrituração Diária
+    ≡ D300 Consolidação Diária
       ≡ D309
     ≡ D350 Resumo Diário de Cupom Fiscal Emitido por ECF
       ≡ D359
-    ≡ D500 Nota Fiscal de Serviço de Comunicação
+    ≡ D500 Nota Fiscal de Serviço de Comunicação e Serviço de Telecomunicação
       ≡ D501
       ≡ D505
       ≡ D509
-    ≡ D600 Consolidação da Prestação de Serviços – Notas de Serviço de Comunicação
+    ≡ D600 Consolidação da Prestação de Serviços
       ≡ D601
       ≡ D605
       ≡ D609
@@ -121,23 +116,23 @@ STRUCTURE SPED EFD_PIS_COFINS
   - F010 IDENTIFICAÇÃO DO ESTABELECIMENTO
     ≡ F100 Demais Documentos e Operações Geradoras de Contribuição e Créditos
       ≡ F111
-    ≡ F120 Bens Incorporados ao Ativo Imobilizado – Operações Geradoras de Créditos com base nos Encargos
+    ≡ F120 Bens Incorporados ao Ativo Imobilizado
       ≡ F129
-    ≡ F130 Bens Incorporados ao Ativo Imobilizado – Operações Geradoras de Créditos com base no Valor
+    ≡ F130 Bens Incorporados ao Ativo Imobilizado
       ≡ F139
     ≡ F150 Crédito Presumido sobre Estoque de Abertura
-    ≡ F200 Operações da Atividade Imobiliária – Unidade Imobiliária Vendida
-      - F205
+    ≡ F200 Operações da Atividade Imobiliária
+      ≡ F205
       ≡ F210
       ≡ F211
-    ≡ F500 Consolidação das Operações da Pessoa Jurídica Submetida ao Regime de Tributação com Base
+    ≡ F500 Consolidação das operações da pessoa jurídica submetida ao regime de tributação com base
       ≡ F509
-    ≡ F510 Consolidação das Operações da Pessoa Jurídica Submetida ao Regime de Tributação com Base
+    ≡ F510 Consolidação das operações da pessoa jurídica submetida ao regime de tributação com base
       ≡ F519
-    ≡ F525 Composição da Receita Escriturada no Período – Detalhamento da Receita Recebida pelo Regime de Caixa
-    ≡ F550 Consolidação das Operações da Pessoa Jurídica Submetida ao Regime de Tributação com Base
+    ≡ F525 Composição da receita escriturada no período
+    ≡ F550 Consolidação das operações da pessoa jurídica submetida ao regime de tributação com base
       ≡ F559
-    ≡ F560 Consolidação das Operações da Pessoa Jurídica Submetida ao Regime de Tributação com Base
+    ≡ F560 Consolidação das operações da pessoa jurídica submetida ao regime de tributação com base
       ≡ F569
     ≡ F600 Contribuição Retida na Fonte
     ≡ F700 Deduções Diversas
@@ -145,7 +140,7 @@ STRUCTURE SPED EFD_PIS_COFINS
 
 <BLOCO I>
 
-  - I010 IDENTIFICAÇÃO DA PESSOA JURÍDICA
+  - I010 IDENTIFICAÇÃO DO ESTABELECIMENTO
     ≡ I100 Consolidação das Operações do Período
       ≡ I199
       ≡ I200
@@ -156,13 +151,13 @@ STRUCTURE SPED EFD_PIS_COFINS
 <BLOCO M>
 
   - M100 CRÉDITO DE PIS/PASEP RELATIVO AO PERÍODO
-    ≡ M105 Detalhamento da Base de Cálculo do Crédito Apurado no Período – PIS/PASEP
-    ≡ M110 Ajustes do Crédito de PIS/PASEP Apurado
+    ≡ M105 Detalhamento da Base de Cálculo do Crédito Apurado no Período
+    ≡ M110 Ajustes do Crédito de PIS/Pasep Apurado
       ≡ M115
 
   - M200 CONSOLIDAÇÃO DA CONTRIBUIÇÃO PARA O PIS/PASEP DO PERÍODO
-    ≡ M205 Contribuição para o PIS/Pasep a Recolher – Detalhamento por Código de Receita
-    ≡ M210 Detalhamento da Contribuição para o PIS/PASEP do Período
+    ≡ M205 Detalhamento por Código de Receita
+    ≡ M210 Detalhamento da Contribuição para o PIS/Pasep do Período
       - M211
       ≡ M215
       ≡ M220
@@ -173,16 +168,16 @@ STRUCTURE SPED EFD_PIS_COFINS
 
   - M350 PIS/PASEP - FOLHA DE SALÁRIOS
 
-  - M400 RECEITAS ISENTAS
+  - M400 RECEITAS ISENTAS OU NÃO ALCANÇADAS PELA INCIDÊNCIA DA CONTRIBUIÇÃO OU SUJEITAS A ALÍQUOTA ZERO
     ≡ M410 Detalhamento das Receitas Isentas
 
   - M500 CRÉDITO DE COFINS RELATIVO AO PERÍODO
-    ≡ M505 Detalhamento da Base de Cálculo do Crédito Apurado no Período – COFINS
+    ≡ M505 Detalhamento da Base de Cálculo do Crédito Apurado no Período
     ≡ M510 Ajustes do Crédito de COFINS Apurado
       ≡ M515
 
   - M600 CONSOLIDAÇÃO DA CONTRIBUIÇÃO PARA A SEGURIDADE SOCIAL
-    ≡ M605 Contribuição para a Seguridade Social
+    ≡ M605 Detalhamento por Código de Receita
     ≡ M610 Detalhamento da Contribuição para a Seguridade Social
       - M611
       ≡ M615
@@ -190,54 +185,34 @@ STRUCTURE SPED EFD_PIS_COFINS
         ≡ M625
       ≡ M630
 
-  - M700 COFINS DIFERIDA EM PERÍODOS ANTERIORES – VALORES A PAGAR NO PERÍODO
+  - M700 COFINS DIFERIDA EM PERÍODOS ANTERIORES
 
-  - M800 RECEITAS ISENTAS
+  - M800 RECEITAS ISENTAS OU NÃO ALCANÇADAS PELA INCIDÊNCIA DA CONTRIBUIÇÃO OU SUJEITAS À ALÍQUOTA ZERO
     ≡ M810 Detalhamento das Receitas Isentas
 
 <BLOCO P>
 
-  - P010 IDENTIFICAÇÃO DO ESTABELECIMENTO
-    ≡ P100 Contribuição Previdenciária sobre a Receita Bruta
-      ≡ P110
-      ≡ P199
-
-  - P200 CONSOLIDAÇÃO DA CONTRIBUIÇÃO PREVIDENCIÁRIA SOBRE A RECEITA BRUTA
-    ≡ P210 Ajuste da Contribuição Previdenciária Apurada sobre a Receita Bruta
-
 <BLOCO 1>
 
-  - 1010 PROCESSO REFERENCIADO – AÇÃO JUDICIAL
+  - 1010 PROCESSO REFERENCIADO
     ≡ 1011 Detalhamento das Contribuições com Exigibilidade Suspensa
 
-  - 1020 PROCESSO REFERENCIADO – PROCESSO ADMINISTRATIVO
+  - 1020 PROCESSO REFERENCIADO
 
-  - 1050 DETALHAMENTO DOS AJUSTES DA BASE DE CÁLCULO MENSAL DE PIS/PASEP E COFINS – VALORES EXTRA APURAÇÃO
+  - 1050 DETALHAMENTO DE AJUSTE DE BASE DE CÁLCULO
 
-  - 1100 CONTROLE DE CRÉDITOS FISCAIS – PIS/PASEP
-    ≡ 1101 Apuração de Crédito Extemporâneo
-      - 1102
+  - 1100 CONTROLE DE CRÉDITOS FISCAIS
 
-  - 1200 CONTRIBUIÇÃO SOCIAL EXTEMPORÂNEA – PIS/PASEP
-    ≡ 1210 Detalhamento da Contribuição Social Extemporânea – PIS/PASEP
-    ≡ 1220 Demonstração do Crédito a Descontar da Contribuição Extemporânea – PIS/PASEP
+  - 1300 CONTROLE DOS VALORES RETIDOS NA FONTE
 
-  - 1300 CONTROLE DOS VALORES RETIDOS NA FONTE – PIS/PASEP
+  - 1500 CONTROLE DE CRÉDITOS FISCAIS
 
-  - 1500 CONTROLE DE CRÉDITOS FISCAIS – COFINS
-    ≡ 1501 Apuração de Crédito Extemporâneo
-      - 1502
+  - 1700 CONTROLE DOS VALORES RETIDOS NA FONTE
 
-  - 1600 CONTRIBUIÇÃO SOCIAL EXTEMPORÂNEA – COFINS
-    ≡ 1610 Detalhamento da Contribuição Social Extemporânea – COFINS
-    ≡ 1620 Demonstração do Crédito a Descontar da Contribuição Extemporânea – COFINS
-
-  - 1700 CONTROLE DOS VALORES RETIDOS NA FONTE – COFINS
-
-  - 1800 INCORPORAÇÃO IMOBILIÁRIA – RET
+  - 1800 INCORPORAÇÃO IMOBILIÁRIA - RET
     ≡ 1809 Processo Referenciado
 
-  - 1900 CONSOLIDAÇÃO DOS DOCUMENTOS EMITIDOS POR PESSOA JURÍDICA SUBMETIDA AO REGIME DE TRIBUTAÇÃO COM BASE
+  - 1900 CONSOLIDAÇÃO DOS DOCUMENTOS EMITIDOS NO PERÍODO POR PESSOA JURÍDICA SUBMETIDA AO REGIME
 
 <BLOCO 9>
 
@@ -262,33 +237,28 @@ class Registro0000(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="3*",
-        help="Código da versão do leiaute conforme a tabela 3.1.1.",
+        help="Código da versão do leiaute conforme a tabela 3.1.1",
     )
 
     TIPO_ESCRIT = fields.Char(
         string="Tipo de escrituração",
         required=True,
         xsd_type="numeric_code",
-        sped_length="1*",
-        help="Tipo de escrituração: 0 - Original; 1 – Retificadora.",
+        sped_length="1",
     )
 
     IND_SIT_ESP = fields.Char(
         string="Indicador de situação especial",
         xsd_type="numeric_code",
-        sped_length="1*",
-        help=(
-            "Indicador de situação especial: 0 - Abertura 1 - Cisão 2 - Fusão 3 - "
-            "Incorporação 4 – Encerramento"
-        ),
+        sped_length="1",
     )
 
     NUM_REC_ANTERIOR = fields.Char(
-        string="Número do Recibo da Escrituração anterior",
+        string="Número do Recibo da Escrituração Anterior",
         sped_length="41*",
         help=(
-            "Número do Recibo da Escrituração anterior a ser retificada, utilizado "
-            "quando TIPO_ESCRIT for igual a 1"
+            "Número do Recibo da Escrituração Anterior, a ser Retificada. Utilizado "
+            "para escrituração retificadora"
         ),
     )
 
@@ -314,12 +284,12 @@ class Registro0000(models.AbstractModel):
         xsd_type="numeric_code",
         sped_length="14*",
         help=(
-            "Número de inscrição do estabelecimento matriz da pessoa jurídica no CNPJ."
+            "Número de inscrição do estabelecimento matriz da pessoa jurídica no CNPJ"
         ),
     )
 
     UF = fields.Char(
-        string="Sigla da Unidade da Federação da pessoa jurídica",
+        string="Sigla da unidade da federação da pessoa jurídica",
         required=True,
         sped_length="2*",
     )
@@ -343,11 +313,6 @@ class Registro0000(models.AbstractModel):
         string="Indicador da natureza da pessoa jurídica",
         xsd_type="numeric_code",
         sped_length="2*",
-        help=(
-            "Indicador da natureza da pessoa jurídica: 00 – Pessoa jurídica em geral 01"
-            " – Sociedade cooperativa 02 – Entidade sujeita ao PIS/Pasep exclusivamente"
-            " com base na Folha de Salários"
-        ),
     )
 
     IND_ATIV = fields.Char(
@@ -355,30 +320,31 @@ class Registro0000(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="1",
-        help=(
-            "Indicador de tipo de atividade preponderante: 0 – Industrial ou equiparado"
-            " a industrial; 1 – Prestador de serviços; 2 - Atividade de comércio; 3 – "
-            "Pessoas jurídicas referidas nos §§ 6º, 8º e 9º do art. 3º da Lei nº 9.718,"
-            " de 1998; 4 – Atividade imobiliária; 9 – Outros."
-        ),
     )
 
 
 class Registro0035(models.AbstractModel):
-    "Identificação da Sociedade em Conta de Participação - SCP"
+    "Identificação de SCP"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.0035"
     _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
     _sped_level = 2
 
-    COD_SCP = fields.Char(
-        string="Identificação da SCP", xsd_type="numeric_code", sped_length="14*"
+    NOME_SCP = fields.Char(
+        string="Nome empresarial do estabelecimento", sped_length="255"
     )
 
-    DESC_SCP = fields.Char(string="Descrição da SCP")
+    COD_SCP = fields.Char(
+        string="Código de identificação do estabelecimento",
+        required=True,
+        xsd_type="numeric_code",
+        sped_length="14*",
+    )
 
-    INF_COMP = fields.Char(string="Informação Complementar")
+    INF_COMP = fields.Char(
+        string="Informação Complementar do registro", sped_length="255"
+    )
 
 
 class Registro0100(models.AbstractModel):
@@ -403,7 +369,7 @@ class Registro0100(models.AbstractModel):
         required=True,
         sped_length="15",
         help=(
-            "Número de inscrição do contabilista no Conselho Regional de Contabilidade."
+            "Número de inscrição do contabilista no Conselho Regional de Contabilidade"
         ),
     )
 
@@ -411,7 +377,7 @@ class Registro0100(models.AbstractModel):
         string="Número de inscrição do escritório de contabilidade",
         xsd_type="numeric_code",
         sped_length="14*",
-        help=("Número de inscrição do escritório de contabilidade no CNPJ, se houver."),
+        help="Número de inscrição do escritório de contabilidade no CNPJ, se houver",
     )
 
     CEP = fields.Char(
@@ -438,7 +404,7 @@ class Registro0100(models.AbstractModel):
         string="Código do município",
         xsd_type="numeric_code",
         sped_length="7*",
-        help="Código do município, conforme tabela IBGE.",
+        help="Código do município, conforme tabela IBGE",
     )
 
 
@@ -455,52 +421,32 @@ class Registro0110(models.AbstractModel):
         string="Código indicador da incidência tributária",
         required=True,
         xsd_type="numeric_code",
-        sped_length="1 *",
-        help=(
-            "Código indicador da incidência tributária no período: 1 – Escrituração de "
-            "operações com incidência exclusivamente no regime não-cumulativo; 2 – "
-            "Escrituração de operações com incidência exclusivamente no regime "
-            "cumulativo; 3 – Escrituração de operações com incidência nos regimes não-"
-            "cumulativo e cumulativo."
-        ),
+        sped_length="1*",
+        help="Código indicador da incidência tributária no período",
     )
 
     IND_APRO_CRED = fields.Char(
         string="Código indicador de método de apropriação",
         xsd_type="numeric_code",
-        sped_length="1 *",
+        sped_length="1*",
         help=(
             "Código indicador de método de apropriação de créditos comuns, no caso de "
-            "incidência no regime não-cumulativo (COD_INC_TRIB = 1 ou 3): 1 – Método de"
-            " Apropriação Direta; 2 – Método de Rateio Proporcional (Receita Bruta)"
+            "incidência no regime não-cumulativo (COD_INC_TRIB = 1 ou 3)"
         ),
     )
 
     COD_TIPO_CONT = fields.Char(
         string="Código indicador do Tipo de Contribuição Apurada",
         xsd_type="numeric_code",
-        sped_length="1 *",
-        help=(
-            "Código indicador do Tipo de Contribuição Apurada no Período 1 – Apuração "
-            "da Contribuição Exclusivamente a Alíquota Básica 2 – Apuração da "
-            "Contribuição a Alíquotas Específicas (Diferenciadas e/ou por Unidade de "
-            "Medida de Produto)"
-        ),
+        sped_length="1*",
+        help="Código indicador do Tipo de Contribuição Apurada no Período",
     )
 
     IND_REG_CUM = fields.Char(
-        string="Código indicador do critério de escrituração",
+        string="Código indicador do Tipo de Critério",
         xsd_type="numeric_code",
-        sped_length="1 *",
-        help=(
-            "Código indicador do critério de escrituração e apuração adotado, no caso "
-            "de incidência exclusivamente no regime cumulativo (COD_INC_TRIB = 2), pela"
-            " pessoa jurídica submetida ao regime de tributação com base no lucro "
-            "presumido: 1 – Regime de Caixa – Escrituração consolidada (Registro F500);"
-            " 2 – Regime de Competência - Escrituração consolidada (Registro F550); 9 –"
-            " Regime de Competência - Escrituração detalhada, com base nos registros "
-            "dos Blocos “A”, “C”, “D” e “F”."
-        ),
+        sped_length="1*",
+        help="Código indicador do Tipo de Critério de escrituração e apuração",
     )
 
     reg_0111_ids = fields.One2many(
@@ -534,27 +480,25 @@ class Registro0111(models.AbstractModel):
     )
 
     REC_BRU_NCUM_NT_MI = fields.Float(
-        string="Receita Bruta Não-Cumulativa – Não Tributada",
+        string="Receita Bruta Não-Cumulativa (REC_BRU_NCUM_NT_MI)",
         required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
             2,
         ),
-        help=(
-            "Receita Bruta Não-Cumulativa – Não Tributada no Mercado Interno (Vendas "
-            "com suspensão, alíquota zero, isenção e sem incidência das contribuições)"
-        ),
+        help="Receita Bruta Não-Cumulativa - Não Tributada no Mercado Interno",
     )
 
     REC_BRU_NCUM_EXP = fields.Float(
-        string="Receita Bruta Não-Cumulativa – Exportação",
+        string="Receita Bruta Não Cumulativa",
         required=True,
         xsd_type="TDec_1602",
         digits=(
             16,
             2,
         ),
+        help="Receita Bruta Não Cumulativa - Exportação",
     )
 
     REC_BRU_CUM = fields.Float(
@@ -587,20 +531,21 @@ class Registro0111(models.AbstractModel):
 
 
 class Registro0120(models.AbstractModel):
-    "Identificação de EFD-Contribuições sem dados a Escriturar"
+    """Identificação de EFD Contribuições Sem Dados a Escriturar e Outras
+    Informações de Interesse do Fisco"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.0120"
     _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
     _sped_level = 2
 
-    MES_REFER = fields.Char(
+    MES_DISPENSA = fields.Char(
         string="Mês de referência do ano-calendário",
         required=True,
+        xsd_type="numeric_code",
         sped_length="6*",
         help=(
-            "Mês de referência do ano-calendário da escrituração sem dados, dispensada "
-            "da entrega. Campo a ser preenchido no formato “mmaaaa”"
+            "Mês de referência do ano-calendário da escrituração, dispensada da entrega"
         ),
     )
 
@@ -609,19 +554,9 @@ class Registro0120(models.AbstractModel):
         required=True,
         sped_length="9",
         help=(
-            "Informação complementar do registro. No caso de escrituração sem dados, "
-            "deve ser informado o real motivo dessa situação, conforme indicadores "
-            "abaixo: 01 - Pessoa jurídica imune ou isenta do IRPJ 02 - Órgãos públicos,"
-            " autarquias e fundações públicas 03 - Pessoa jurídica inativa 04 - Pessoa "
-            "jurídica em geral, que não realizou operações geradoras de receitas "
-            "(tributáveis ou não) ou de créditos 05 - Sociedade em Conta de "
-            "Participação - SCP, que não realizou operações geradoras de receitas "
-            "(tributáveis ou não) ou de créditos 06 - Sociedade Cooperativa, que não "
-            "realizou operações geradoras de receitas (tributáveis ou não) ou de "
-            "créditos 07 - Escrituração decorrente de incorporação, fusão ou cisão, sem"
-            " operações geradoras de receitas (tributáveis ou não) ou de créditos 99 - "
-            "Demais hipóteses de dispensa de escrituração, relacionadas no art. 5º, da "
-            "IN RFB nº 1.252, de 2012"
+            "Informação complementar do registro, definidor da situação em que a pessoa"
+            " jurídica se enquadra no período, para estar procedendo à escrituração sem"
+            " dados, nos Blocos A, C, D, F e/ou I"
         ),
     )
 
@@ -635,7 +570,7 @@ class Registro0140(models.AbstractModel):
     _sped_level = 2
 
     COD_EST = fields.Char(
-        string="Código de identificação do estabelecimento", sped_length="6"
+        string="Codigo de identificação do estabelecimento", sped_length="6"
     )
 
     NOME = fields.Char(
@@ -658,7 +593,7 @@ class Registro0140(models.AbstractModel):
     IE = fields.Char(
         string="Inscrição Estadual do estabelecimento",
         sped_length="14",
-        help="Inscrição Estadual do estabelecimento, se contribuinte de ICMS.",
+        help="Inscrição Estadual do estabelecimento, se contribuinte de ICMS",
     )
 
     COD_MUN = fields.Char(
@@ -674,22 +609,11 @@ class Registro0140(models.AbstractModel):
 
     IM = fields.Char(
         string="Inscrição Municipal do estabelecimento",
-        help="Inscrição Municipal do estabelecimento, se contribuinte do ISS.",
+        help="Inscrição Municipal do estabelecimento, se contribuinte do ISS",
     )
 
     SUFRAMA = fields.Char(
         string="Inscrição do estabelecimento na Suframa", sped_length="9*"
-    )
-
-    reg_0145_ids = fields.One2many(
-        "l10n_br_sped.efd_pis_cofins.0145",
-        "reg_0145_ids_Registro0140_id",
-        string="0145 Regime de Apuração",
-        sped_card="1:1",
-        help=(
-            "0145 Regime de Apuração da Contribuição Previdenciária sobre a Receita "
-            "Bruta"
-        ),
     )
 
     reg_0150_ids = fields.One2many(
@@ -702,7 +626,7 @@ class Registro0140(models.AbstractModel):
     reg_0190_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.0190",
         "reg_0190_ids_Registro0140_id",
-        string="0190 Identificação das Unidades de Medida",
+        string="0190 Identificação das unidades de medida",
         sped_card="1:N",
     )
 
@@ -726,69 +650,7 @@ class Registro0140(models.AbstractModel):
         "reg_0450_ids_Registro0140_id",
         string="0450 Tabela de Informação Complementar",
         sped_card="1:N",
-        help="0450 Tabela de Informação Complementar do Documento Fiscal",
-    )
-
-
-class Registro0145(models.AbstractModel):
-    """Regime de Apuração da Contribuição Previdenciária sobre a Receita
-    Bruta"""
-
-    _description = textwrap.dedent(f"    {__doc__}")
-    _name = "l10n_br_sped.efd_pis_cofins.6.0145"
-    _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
-    _sped_level = 3
-
-    COD_INC_TRIB = fields.Char(
-        string="Código indicador da incidência tributária",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="1*",
-        help=(
-            "Código indicador da incidência tributária no período: 1 – Contribuição "
-            "Previdenciária apurada no período, exclusivamente com base na Receita "
-            "Bruta; 2 – Contribuição Previdenciária apurada no período, com base na "
-            "Receita Bruta e com base nas Remunerações pagas, na forma dos nos incisos "
-            "I e III do art. 22 da Lei no 8.212, de 1991."
-        ),
-    )
-
-    VL_REC_TOT = fields.Monetary(
-        string="Valor da Receita Bruta Total da Pessoa Jurídica",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help="Valor da Receita Bruta Total da Pessoa Jurídica no Período",
-    )
-
-    VL_REC_ATIV = fields.Monetary(
-        string="Valor",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help=(
-            "Valor da Receita Bruta da(s) Atividade(s) Sujeita(s) à Contribuição "
-            "Previdenciária sobre a Receita Bruta"
-        ),
-    )
-
-    VL_REC_DEMAIS_ATIV = fields.Monetary(
-        string="Valor da Receita Bruta da(s) Atividade(s)",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help=(
-            "Valor da Receita Bruta da(s) Atividade(s) não Sujeita(s) à Contribuição "
-            "Previdenciária sobre a Receita Bruta"
-        ),
-    )
-
-    INFO_COMPL = fields.Char(string="Informação complementar")
-
-    reg_0145_ids_Registro0140_id = fields.Many2one(
-        comodel_name="l10n_br_sped.efd_pis_cofins.0140",
-        string="Tabela de Cadastro de Estabelecimento",
-        required=True,
-        ondelete="cascade",
+        help="0450 Tabela de Informação Complementar do documento fiscal",
     )
 
 
@@ -818,7 +680,7 @@ class Registro0150(models.AbstractModel):
         xsd_type="numeric_code",
         sped_length="5",
         help=(
-            "Código do país do participante, conforme a tabela indicada no item 3.2.1."
+            "Código do país do participante, conforme a tabela indicada no item 3.2.1"
         ),
     )
 
@@ -860,7 +722,7 @@ class Registro0150(models.AbstractModel):
 
 
 class Registro0190(models.AbstractModel):
-    "Identificação das Unidades de Medida"
+    "Identificação das unidades de medida"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.0190"
@@ -895,33 +757,27 @@ class Registro0200(models.AbstractModel):
 
     COD_BARRA = fields.Char(
         string="Representação alfanumérico do código de barra",
-        help="Representação alfanumérico do código de barra do produto, se houver.",
+        help="Representação alfanumérico do código de barra do produto, se houver",
     )
 
     COD_ANT_ITEM = fields.Char(
         string="Código anterior do item com relação",
         sped_length="6",
-        help="Código anterior do item com relação à última informação apresentada.",
+        help="Código anterior do item com relação à última informação apresentada",
     )
 
     UNID_INV = fields.Char(
         string="Unidade de medida utilizada na quantificação",
         sped_length="6",
-        help="Unidade de medida utilizada na quantificação de estoques.",
+        help="Unidade de medida utilizada na quantificação de estoques",
     )
 
     TIPO_ITEM = fields.Char(
-        string="Tipo do item – Atividades Industriais",
+        string="Tipo do item",
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help=(
-            "Tipo do item – Atividades Industriais, Comerciais e Serviços: 00 – "
-            "Mercadoria para Revenda; 01 – Matéria-Prima; 02 – Embalagem; 03 – Produto "
-            "em Processo; 04 – Produto Acabado; 05 – Subproduto; 06 – Produto "
-            "Intermediário; 07 – Material de Uso e Consumo; 08 – Ativo Imobilizado; 09 "
-            "– Serviços; 10 – Outros insumos; 99 – Outras"
-        ),
+        help="Tipo do item - Atividades Industriais, Comerciais e Serviços",
     )
 
     COD_NCM = fields.Char(
@@ -934,16 +790,15 @@ class Registro0200(models.AbstractModel):
         string="Código do gênero do item",
         xsd_type="numeric_code",
         sped_length="2*",
-        help="Código do gênero do item, conforme a Tabela 4.2.1.",
+        help="Código do gênero do item, conforme a Tabela 4.2.1",
     )
 
     COD_LST = fields.Char(
         string="Código do serviço conforme lista do Anexo I",
-        xsd_type="numeric_code",
-        sped_length="4",
+        sped_length="5",
         help=(
             "Código do serviço conforme lista do Anexo I da Lei Complementar Federal nº"
-            " 116/03."
+            " 116/03"
         ),
     )
 
@@ -968,17 +823,19 @@ class Registro0200(models.AbstractModel):
     reg_0206_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.0206",
         "reg_0206_ids_Registro0200_id",
-        string="0206 Código de Produto conforme Tabela ANP",
+        string="0206 Código de produto conforme Tabela publicada",
         sped_card="1:1",
-        help="0206 Código de Produto conforme Tabela ANP (Combustíveis)",
+        help=(
+            "0206 Código de produto conforme Tabela publicada pela ANP (Combustíveis)"
+        ),
     )
 
     reg_0208_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.0208",
         "reg_0208_ids_Registro0200_id",
-        string="0208 Código de Grupos por Marca Comercial – REFRI",
+        string="0208 Código de Grupos por Marca Comercial",
         sped_card="1:1",
-        help="0208 Código de Grupos por Marca Comercial – REFRI (Bebidas Frias)",
+        help="0208 Código de Grupos por Marca Comercial - REFRI (Bebidas Frias)",
     )
 
     reg_0205_ids = fields.One2many(
@@ -1014,7 +871,7 @@ class Registro0205(models.AbstractModel):
     COD_ANT_ITEM = fields.Char(
         string="Código anterior do item com relação",
         sped_length="6",
-        help="Código anterior do item com relação à última informação apresentada.",
+        help="Código anterior do item com relação à última informação apresentada",
     )
 
     reg_0205_ids_Registro0200_id = fields.Many2one(
@@ -1027,7 +884,7 @@ class Registro0205(models.AbstractModel):
 
 
 class Registro0206(models.AbstractModel):
-    "Código de Produto conforme Tabela ANP (Combustíveis)"
+    "Código de produto conforme Tabela publicada pela ANP (Combustíveis)"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.0206"
@@ -1050,7 +907,7 @@ class Registro0206(models.AbstractModel):
 
 
 class Registro0208(models.AbstractModel):
-    "Código de Grupos por Marca Comercial – REFRI (Bebidas Frias)"
+    "Código de Grupos por Marca Comercial - REFRI (Bebidas Frias)"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.0208"
@@ -1063,20 +920,17 @@ class Registro0208(models.AbstractModel):
         sped_length="2",
         help=(
             "Código indicador da Tabela de Incidência, conforme Anexo III do Decreto nº"
-            " 6.707/08: 01 – Tabela I 02 – Tabela II 03 – Tabela III 04 – Tabela IV 05 "
-            "– Tabela V 06 – Tabela VI 07 – Tabela VII 08– Tabela VIII 09 – Tabela IX "
-            "10 – Tabela X 11 – Tabela XI 12 – Tabela XII"
+            " 6.707/08"
         ),
     )
 
     COD_GRU = fields.Char(
         string="Código do grupo",
-        required=True,
         sped_length="2",
-        help="Código do grupo, conforme Anexo III do Decreto nº 6.707/08.",
+        help="Código do grupo, conforme Anexo III do Decreto nº 6.707/08",
     )
 
-    MARCA_COM = fields.Char(string="Marca Comercial", required=True, sped_length="6")
+    MARCA_COM = fields.Char(string="Marca Comercial", sped_length="6")
 
     reg_0208_ids_Registro0200_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.0200",
@@ -1114,7 +968,7 @@ class Registro0400(models.AbstractModel):
 
 
 class Registro0450(models.AbstractModel):
-    "Tabela de Informação Complementar do Documento Fiscal"
+    "Tabela de Informação Complementar do documento fiscal"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.0450"
@@ -1125,7 +979,7 @@ class Registro0450(models.AbstractModel):
         string="Código da informação complementar",
         required=True,
         sped_length="6",
-        help="Código da informação complementar do documento fiscal.",
+        help="Código da informação complementar do documento fiscal",
     )
 
     TXT = fields.Char(
@@ -1134,7 +988,7 @@ class Registro0450(models.AbstractModel):
         help=(
             "Texto livre da informação complementar existente no documento fiscal, "
             "inclusive espécie de normas legais, poder normativo, número, capitulação, "
-            "data e demais referências pertinentes com indicação referentes ao tributo."
+            "data e demais referências pertinentes com indicação referentes ao tributo"
         ),
     )
 
@@ -1147,7 +1001,7 @@ class Registro0450(models.AbstractModel):
 
 
 class Registro0500(models.AbstractModel):
-    "Plano de Contas Contábeis – Contas Informadas"
+    "Plano de Contas Contábeis - Contas Informadas"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.0500"
@@ -1162,21 +1016,10 @@ class Registro0500(models.AbstractModel):
         string="Código da natureza da conta/grupo de contas",
         required=True,
         sped_length="2*",
-        help=(
-            "Código da natureza da conta/grupo de contas: 01 - Contas de ativo 02 - "
-            "Contas de passivo; 03 - Patrimônio líquido; 04 - Contas de resultado; 05 -"
-            " Contas de compensação; 09 - Outras."
-        ),
     )
 
     IND_CTA = fields.Char(
-        string="Indicador do tipo de conta: S",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador do tipo de conta: S - Sintética (grupo de contas); A - Analítica"
-            " (conta)."
-        ),
+        string="Indicador do tipo de conta", required=True, sped_length="1*"
     )
 
     NIVEL = fields.Char(
@@ -1198,20 +1041,19 @@ class Registro0500(models.AbstractModel):
 
     COD_CTA_REF = fields.Char(
         string="Código da conta correlacionada no Plano",
-        sped_length="6",
+        sped_length="255",
         help=(
             "Código da conta correlacionada no Plano de Contas Referenciado, publicado "
-            "pela RFB."
+            "pela RFB"
         ),
     )
 
     CNPJ_EST = fields.Char(
         string="CNPJ do estabelecimento",
-        xsd_type="numeric_code",
         sped_length="14*",
         help=(
             "CNPJ do estabelecimento, no caso da conta informada no campo COD_CTA ser "
-            "específica de um estabelecimento."
+            "específica de um estabelecimento"
         ),
     )
 
@@ -1238,7 +1080,7 @@ class Registro0600(models.AbstractModel):
 
 
 class Registro0900(models.AbstractModel):
-    """Composição das Receitas do Período – Receita Bruta e Demais Receitas"""
+    """Composição das Receitas do Período - Receita Bruta e Demais Receitas"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.0900"
@@ -1264,7 +1106,7 @@ class Registro0900(models.AbstractModel):
             2,
         ),
         help=(
-            "Parcela da receita total escriturada no Bloco A (Campo 02), não "
+            "Parcela da receita total escriturada no Bloco A (Campo 02) não "
             "classificada como receita bruta"
         ),
     )
@@ -1288,7 +1130,7 @@ class Registro0900(models.AbstractModel):
             2,
         ),
         help=(
-            "Parcela da receita total escriturada no Bloco C (Campo 04), não "
+            "Parcela da receita total escriturada no Bloco C (Campo 04) não "
             "classificada como receita bruta"
         ),
     )
@@ -1312,7 +1154,7 @@ class Registro0900(models.AbstractModel):
             2,
         ),
         help=(
-            "Parcela da receita total escriturada no Bloco D (Campo 06), não "
+            "Parcela da receita total escriturada no Bloco D (Campo 06) não "
             "classificada como receita bruta"
         ),
     )
@@ -1336,7 +1178,7 @@ class Registro0900(models.AbstractModel):
             2,
         ),
         help=(
-            "Parcela da receita total escriturada no Bloco F (Campo 08), não "
+            "Parcela da receita total escriturada no Bloco F (Campo 08) não "
             "classificada como receita bruta"
         ),
     )
@@ -1384,7 +1226,7 @@ class Registro0900(models.AbstractModel):
             2,
         ),
         help=(
-            "Parcela da receita total escriturada no Bloco 1 (Campo 12), não "
+            "Parcela da receita total escriturada no Bloco 1 (Campo 12) não "
             "classificada como receita bruta"
         ),
     )
@@ -1397,7 +1239,7 @@ class Registro0900(models.AbstractModel):
             16,
             2,
         ),
-        help="Receita total (Soma dos Campos 02, 04, 06, 08, 10 e 12)",
+        help="Receita total (Soma dos campos 02, 04, 06, 08, 10 e 12)",
     )
 
     REC_TOTAL_NRB_PERIODO = fields.Float(
@@ -1408,8 +1250,8 @@ class Registro0900(models.AbstractModel):
             2,
         ),
         help=(
-            "Parcela da receita total escriturada (Campo 14), não classificada como "
-            "receita bruta (Soma dos Campos 03, 05, 07, 09, 11 e 13)"
+            "Parcela da receita total escriturada (Campo 14) não classificada como "
+            "receita bruta (Soma dos campos 03, 05, 07, 09, 11 e 13)"
         ),
     )
 
@@ -1432,13 +1274,14 @@ class RegistroA010(models.AbstractModel):
     reg_A100_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.a100",
         "reg_A100_ids_RegistroA010_id",
-        string="A100 Documento – Nota Fiscal de Serviço",
+        string="A100 Documento",
         sped_card="1:N",
+        help="A100 Documento - Nota Fiscal de Serviços",
     )
 
 
 class RegistroA100(models.AbstractModel):
-    "Documento – Nota Fiscal de Serviço"
+    "Documento - Nota Fiscal de Serviços"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.a100"
@@ -1446,32 +1289,22 @@ class RegistroA100(models.AbstractModel):
     _sped_level = 3
 
     IND_OPER = fields.Char(
-        string="Indicador do tipo de operação",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador do tipo de operação: 0 - Serviço Contratado pelo "
-            "Estabelecimento; 1 - Serviço Prestado pelo Estabelecimento."
-        ),
+        string="Indicador do tipo de operação", required=True, sped_length="1*"
     )
 
     IND_EMIT = fields.Char(
         string="Indicador do emitente do documento fiscal",
         required=True,
         sped_length="1*",
-        help=(
-            "Indicador do emitente do documento fiscal: 0 - Emissão Própria; 1 - "
-            "Emissão de Terceiros"
-        ),
     )
 
     COD_PART = fields.Char(
         string="Código do participante",
         sped_length="6",
         help=(
-            "Código do participante (campo 02 do Registro 0150): - do emitente do "
-            "documento, no caso de emissão de terceiros; - do adquirente, no caso de "
-            "serviços prestados."
+            "Código do participante (campo 02 do Registro 0150): emitente do documento,"
+            " no caso de emissão de terceiros; adquirente, no caso de serviços "
+            "prestados"
         ),
     )
 
@@ -1480,10 +1313,6 @@ class RegistroA100(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help=(
-            "Código da situação do documento fiscal: 00 – Documento regular 02 – "
-            "Documento cancelado"
-        ),
     )
 
     SER = fields.Char(string="Série do documento fiscal", sped_length="2")
@@ -1493,14 +1322,12 @@ class RegistroA100(models.AbstractModel):
     NUM_DOC = fields.Char(
         string="Número do documento fiscal",
         required=True,
-        sped_length="6",
+        sped_length="128",
         help="Número do documento fiscal ou documento internacional equivalente",
     )
 
     CHV_NFSE = fields.Char(
-        string="Chave/Código de Verificação da nota fiscal",
-        sped_length="6",
-        help="Chave/Código de Verificação da nota fiscal de serviço eletrônica",
+        string="Chave da nota fiscal de serviço eletronica", sped_length="128"
     )
 
     DT_DOC = fields.Date(
@@ -1519,12 +1346,7 @@ class RegistroA100(models.AbstractModel):
     )
 
     IND_PGTO = fields.Char(
-        string="Indicador do tipo de pagamento",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador do tipo de pagamento: 0- À vista; 1- A prazo; 9- Sem pagamento."
-        ),
+        string="Indicador do tipo de pagamento", required=True, sped_length="1*"
     )
 
     VL_DESC = fields.Monetary(
@@ -1534,7 +1356,7 @@ class RegistroA100(models.AbstractModel):
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Valor da base de cálculo do PIS/PASEP",
+        string="Valor da base de cálculo do PIS/Pasep",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
@@ -1587,9 +1409,9 @@ class RegistroA100(models.AbstractModel):
     reg_A110_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.a110",
         "reg_A110_ids_RegistroA100_id",
-        string="A110 Complemento",
+        string="A110 Complemento de Documento",
         sped_card="1:N",
-        help="A110 Complemento de Documento – Informação Complementar da NF",
+        help="A110 Complemento de Documento - Informação Complementar da NF",
     )
 
     reg_A111_ids = fields.One2many(
@@ -1602,21 +1424,22 @@ class RegistroA100(models.AbstractModel):
     reg_A120_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.a120",
         "reg_A120_ids_RegistroA100_id",
-        string="A120 Informação Complementar – Operações",
+        string="A120 Informação Complementar",
         sped_card="1:N",
-        help="A120 Informação Complementar – Operações de Importação",
+        help="A120 Informação Complementar - Operações de Importação",
     )
 
     reg_A170_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.a170",
         "reg_A170_ids_RegistroA100_id",
-        string="A170 Complemento de Documento – Itens do Documento",
+        string="A170 Complemento de Documento",
         sped_card="1:N",
+        help="A170 Complemento de Documento - Itens do Documento",
     )
 
 
 class RegistroA110(models.AbstractModel):
-    "Complemento de Documento – Informação Complementar da NF"
+    "Complemento de Documento - Informação Complementar da NF"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.a110"
@@ -1624,11 +1447,11 @@ class RegistroA110(models.AbstractModel):
     _sped_level = 4
 
     COD_INF = fields.Char(
-        string="Código da informação complementar",
+        string="Codigo da informação complementar",
         required=True,
         sped_length="6",
         help=(
-            "Código da informação complementar do documento fiscal (Campo 02 do "
+            "Codigo da informação complementar do documento fiscal (Campo 02 do "
             "Registro 0450)"
         ),
     )
@@ -1637,7 +1460,7 @@ class RegistroA110(models.AbstractModel):
 
     reg_A110_ids_RegistroA100_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.a100",
-        string="Documento – Nota Fiscal de Serviço",
+        string="Documento - Nota Fiscal de Serviços",
         required=True,
         ondelete="cascade",
     )
@@ -1654,29 +1477,23 @@ class RegistroA111(models.AbstractModel):
     NUM_PROC = fields.Char(
         string="Identificação do processo ou ato concessório",
         required=True,
-        sped_length="15",
+        sped_length="2",
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil 9 - Outros."
-        ),
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_A111_ids_RegistroA100_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.a100",
-        string="Documento – Nota Fiscal de Serviço",
+        string="Documento - Nota Fiscal de Serviços",
         required=True,
         ondelete="cascade",
     )
 
 
 class RegistroA120(models.AbstractModel):
-    "Informação Complementar – Operações de Importação"
+    "Informação Complementar - Operações de Importação"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.a120"
@@ -1690,66 +1507,66 @@ class RegistroA120(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Valor total do serviço, prestado por pessoa física ou jurídica domiciliada"
-            " no exterior."
+            " no exterior"
         ),
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Valor da base de cálculo",
+        string="Valor da base de cálculo da Operação",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor da base de cálculo da Operação – PIS/PASEP – Importação",
+        help="Valor da base de cálculo da Operação - PIS/Pasep - Importação",
     )
 
     VL_PIS_IMP = fields.Monetary(
-        string="Valor pago/recolhido de PIS/PASEP – Importação",
+        string="Valor pago/recolhido de PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
+        help="Valor pago/recolhido de PIS/Pasep - Importação",
     )
 
     DT_PAG_PIS = fields.Date(
-        string="Data de pagamento do PIS/PASEP – Importação", sped_length="8 *"
+        string="Data de pagamento do PIS/Pasep",
+        sped_length="8*",
+        help="Data de pagamento do PIS/Pasep - Importação",
     )
 
     VL_BC_COFINS = fields.Monetary(
-        string="Valor da base de cálculo (VL_BC_COFINS)",
+        string="VL_BC_COFINS",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor da base de cálculo da Operação – COFINS – Importação",
+        help="Valor da base de cálculo da Operação - COFINS - Importação",
     )
 
     VL_COFINS_IMP = fields.Monetary(
-        string="Valor pago/recolhido de COFINS – Importação",
+        string="Valor pago/recolhido de COFINS",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
+        help="Valor pago/recolhido de COFINS - Importação",
     )
 
     DT_PAG_COFINS = fields.Date(
-        string="Data de pagamento do COFINS – Importação", sped_length="8 *"
+        string="Data de pagamento do COFINS",
+        sped_length="8*",
+        help="Data de pagamento do COFINS - Importação",
     )
 
     LOC_EXE_SERV = fields.Char(
-        string="Local da execução do serviço",
-        required=True,
-        sped_length="1 *",
-        help=(
-            "Local da execução do serviço: 0 – Executado no País; 1 – Executado no "
-            "Exterior, cujo resultado se verifique no País."
-        ),
+        string="Local da execução do serviço", required=True, sped_length="1*"
     )
 
     reg_A120_ids_RegistroA100_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.a100",
-        string="Documento – Nota Fiscal de Serviço",
+        string="Documento - Nota Fiscal de Serviços",
         required=True,
         ondelete="cascade",
     )
 
 
 class RegistroA170(models.AbstractModel):
-    "Complemento de Documento – Itens do Documento"
+    "Complemento de Documento - Itens do Documento"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.a170"
@@ -1757,7 +1574,7 @@ class RegistroA170(models.AbstractModel):
     _sped_level = 4
 
     NUM_ITEM = fields.Char(
-        string="Número seqüencial do item no documento fiscal",
+        string="Número sequencial do item no documento fiscal",
         required=True,
         xsd_type="numeric_code",
         sped_length="4",
@@ -1784,31 +1601,23 @@ class RegistroA170(models.AbstractModel):
     )
 
     VL_DESC = fields.Monetary(
-        string="Valor do desconto comercial / exclusão da base",
+        string="Valor do desconto do item / Exclusão",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=(
-            "Valor do desconto comercial / exclusão da base de cálculo do PIS/PASEP e "
-            "da COFINS"
-        ),
     )
 
     NAT_BC_CRED = fields.Char(
-        string="Código da base de cálculo do crédito",
-        sped_length="2*",
+        string="Código da Natureza da Base de Cálculo do Crédito",
+        sped_length="2",
         help=(
-            "Código da base de cálculo do crédito, conforme a Tabela indicada no item "
-            "4.3.7, caso seja informado"
+            "Código da Natureza da Base de Cálculo do Crédito, conforme a Tabela "
+            "indicada no item 4.3.7, caso seja informado código representativo de "
+            "crédito no Campo CST_PIS ou CST_COFINS"
         ),
     )
 
     IND_ORIG_CRED = fields.Char(
-        string="Indicador da origem do crédito",
-        sped_length="1*",
-        help=(
-            "Indicador da origem do crédito: 0 – Operação no Mercado Interno 1 – "
-            "Operação de Importação"
-        ),
+        string="Indicador da origem do crédito", sped_length="1*"
     )
 
     CST_PIS = fields.Char(
@@ -1816,37 +1625,37 @@ class RegistroA170(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help="Código da Situação Tributária referente ao PIS/PASEP – Tabela 4.3.3.",
+        help="Código da Situação Tributária referente ao PIS/Pasep - Tabela 4.3.3",
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Valor da base de cálculo do PIS/PASEP",
+        string="Valor da base de cálculo do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
-        xsd_type="TDec_1602",
+        string="Alíquota do PIS/Pasep",
+        xsd_type="TDec_1604",
         digits=(
             16,
-            2,
+            4,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     CST_COFINS = fields.Char(
-        string="CST_COFINS",
+        string="Código da Situação Tributária referente ao COFINS",
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help="Código da Situação Tributária referente ao COFINS – Tabela 4.3.4.",
+        help="Código da Situação Tributária referente ao COFINS - Tabela 4.3.4",
     )
 
     VL_BC_COFINS = fields.Monetary(
@@ -1858,10 +1667,10 @@ class RegistroA170(models.AbstractModel):
     ALIQ_COFINS = fields.Float(
         string="Alíquota do COFINS (em percentual)",
         sped_length="6",
-        xsd_type="TDec_1602",
+        xsd_type="TDec_1604",
         digits=(
             16,
-            2,
+            4,
         ),
     )
 
@@ -1879,7 +1688,7 @@ class RegistroA170(models.AbstractModel):
 
     reg_A170_ids_RegistroA100_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.a100",
-        string="Documento – Nota Fiscal de Serviço",
+        string="Documento - Nota Fiscal de Serviços",
         required=True,
         ondelete="cascade",
     )
@@ -1905,10 +1714,7 @@ class RegistroC010(models.AbstractModel):
         sped_length="1*",
         help=(
             "Indicador da apuração das contribuições e créditos, na escrituração das "
-            "operações por NF-e e ECF, no período: 1 – Apuração com base nos registros "
-            "de consolidação das operações por NF-e (C180 e C190) e por ECF (C490); 2 –"
-            " Apuração com base no registro individualizado de NF-e (C100 e C170) e de "
-            "ECF (C400)"
+            "operações por NF-e e ECF, no período"
         ),
     )
 
@@ -1918,8 +1724,8 @@ class RegistroC010(models.AbstractModel):
         string="C100 Documento - Nota Fiscal",
         sped_card="1:N",
         help=(
-            "C100 Documento - Nota Fiscal (código 01), Nota Fiscal Avulsa (código 1B), "
-            "Nota Fiscal de Produtor (código 04) e NF-e (código 55)"
+            "C100 Documento - Nota Fiscal, Nota Fiscal Avulsa, Nota Fiscal de Produtor,"
+            " Nota Fiscal Eletrônica e Nota Fiscal do Consumidor Eletrônica"
         ),
     )
 
@@ -1930,7 +1736,7 @@ class RegistroC010(models.AbstractModel):
         sped_card="1:N",
         help=(
             "C180 Consolidação de Notas Fiscais Eletrônicas Emitidas pela Pessoa "
-            "Jurídica (Código 55) – Operações de Vendas"
+            "Jurídica (Código 55 e 65) - Operações de Vendas"
         ),
     )
 
@@ -1940,31 +1746,30 @@ class RegistroC010(models.AbstractModel):
         string="C190 Consolidação de Notas Fiscais Eletrônicas",
         sped_card="1:N",
         help=(
-            "C190 Consolidação de Notas Fiscais Eletrônicas (Código 55) – Operações de "
+            "C190 Consolidação de Notas Fiscais Eletrônicas (Código 55) - Operações de "
             "Aquisição com Direito a Crédito, e Operações de Devolução de Compras e "
-            "Vendas."
+            "Vendas"
         ),
     )
 
     reg_C380_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.c380",
         "reg_C380_ids_RegistroC010_id",
-        string="C380 Nota Fiscal de Venda a Consumidor",
+        string="C380 C380",
         sped_card="1:N",
         help=(
-            "C380 Nota Fiscal de Venda a Consumidor (Código 02) - Consolidação de "
-            "Documentos Emitidos"
+            "C380 C380 - Nota Fiscal de Venda a Consumidor - Consolidação de Documentos"
+            " Emitidos"
         ),
     )
 
     reg_C395_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.c395",
         "reg_C395_ids_RegistroC010_id",
-        string="C395 Notas Fiscais de Venda a Consumidor",
+        string="C395 Nota Fiscal de Venda a Consumidor",
         sped_card="1:N",
         help=(
-            "C395 Notas Fiscais de Venda a Consumidor (Códigos 02, 2D, 2E e 59) – "
-            "Aquisições/Entradas com Crédito"
+            "C395 Nota Fiscal de Venda a Consumidor - Aquisições/Entradas com Crédito"
         ),
     )
 
@@ -1973,7 +1778,6 @@ class RegistroC010(models.AbstractModel):
         "reg_C400_ids_RegistroC010_id",
         string="C400 Equipamento ECF",
         sped_card="1:N",
-        help="C400 Equipamento ECF (códigos 02 e 2D)",
     )
 
     reg_C490_ids = fields.One2many(
@@ -1981,9 +1785,7 @@ class RegistroC010(models.AbstractModel):
         "reg_C490_ids_RegistroC010_id",
         string="C490 Consolidação de Documentos Emitidos por ECF",
         sped_card="1:N",
-        help=(
-            "C490 Consolidação de Documentos Emitidos por ECF (Códigos 02, 2D, 59 e 60)"
-        ),
+        help=("C490 Consolidação de Documentos Emitidos por ECF - Saída de Mercadoria"),
     )
 
     reg_C500_ids = fields.One2many(
@@ -1992,11 +1794,9 @@ class RegistroC010(models.AbstractModel):
         string="C500 Nota Fiscal/Conta de Energia Elétrica",
         sped_card="1:N",
         help=(
-            "C500 Nota Fiscal/Conta de Energia Elétrica (Código 06), Nota Fiscal de "
-            "Energia Elétrica Eletrônica – NF3e (Código 66), Nota Fiscal/Conta de "
-            "fornecimento D’água Canalizada (Código 29), Nota Fiscal/Consumo "
-            "Fornecimento de Gás (Código 28) e NF-e (Código 55) – Documentos de Entrada"
-            " / Aquisição com Crédito"
+            "C500 Nota Fiscal/Conta de Energia Elétrica, Nota Fiscal/Conta de "
+            "Fornecimento D’Água Canalizada e Nota Fiscal/Consumo Fornecimento de Gás -"
+            " Documentos de Entrada / Aquisição"
         ),
     )
 
@@ -2006,36 +1806,24 @@ class RegistroC010(models.AbstractModel):
         string="C600 Consolidação Diária de Notas Fiscais/Contas",
         sped_card="1:N",
         help=(
-            "C600 Consolidação Diária de Notas Fiscais/Contas de Energia Elétrica "
-            "(Código 06), Nota Fiscal/Conta de Fornecimento d´água (Código 29) e Nota "
-            "Fiscal/Conta de Fornecimento de Gás (Código 28) (Empresas Obrigadas ou Não"
-            " Obrigadas Ao Convenio ICMS 115/03) - - Documentos de Saídas"
+            "C600 Consolidação Diária de Notas Fiscais/Contas de Energia Elétrica, Nota"
+            " Fiscal/Conta de Fornecimento d´água e Nota Fiscal/Conta de Fornecimento "
+            "de Gás (Empresas Obrigadas ou Não Obrigadas Ao Convenio ICMS 115/03) - "
+            "Documentos de Saídas"
         ),
-    )
-
-    reg_C800_ids = fields.One2many(
-        "l10n_br_sped.efd_pis_cofins.c800",
-        "reg_C800_ids_RegistroC010_id",
-        string="C800 Cupom Fiscal Eletrônico – CF-e",
-        sped_card="1:N",
-        help="C800 Cupom Fiscal Eletrônico – CF-e (Código 59)",
     )
 
     reg_C860_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.c860",
         "reg_C860_ids_RegistroC010_id",
-        string="C860 Identificação do Equipamento SAT- CF-e",
+        string="C860 Identificação do Equipamento SAT-CF-e",
         sped_card="1:N",
-        help=(
-            "C860 Identificação do Equipamento SAT- CF-e (Código 59) (*) A partir da "
-            "versão 2.11 do PVA (Período de apuração a partir de maio/2015)"
-        ),
     )
 
 
 class RegistroC100(models.AbstractModel):
-    """Documento - Nota Fiscal (código 01), Nota Fiscal Avulsa (código 1B),
-    Nota Fiscal de Produtor (código 04) e NF-e (código 55)"""
+    """Documento - Nota Fiscal, Nota Fiscal Avulsa, Nota Fiscal de Produtor,
+    Nota Fiscal Eletrônica e Nota Fiscal do Consumidor Eletrônica"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c100"
@@ -2043,20 +1831,13 @@ class RegistroC100(models.AbstractModel):
     _sped_level = 3
 
     IND_OPER = fields.Char(
-        string="Indicador do tipo de operação",
-        required=True,
-        sped_length="1*",
-        help="Indicador do tipo de operação: 0- Entrada; 1- Saída",
+        string="Indicador do tipo de operação", required=True, sped_length="1*"
     )
 
     IND_EMIT = fields.Char(
         string="Indicador do emitente do documento fiscal",
         required=True,
         sped_length="1*",
-        help=(
-            "Indicador do emitente do documento fiscal: 0- Emissão própria; 1- "
-            "Terceiros"
-        ),
     )
 
     COD_PART = fields.Char(
@@ -2064,9 +1845,9 @@ class RegistroC100(models.AbstractModel):
         required=True,
         sped_length="6",
         help=(
-            "Código do participante (campo 02 do Registro 0150): - do emitente do "
-            "documento ou do remetente das mercadorias, no caso de entradas; - do "
-            "adquirente, no caso de saídas"
+            "Código do participante (campo 02 do Registro 0150): emitente do documento "
+            "ou do remetente das mercadorias, no caso de entradas; adquirente, no caso "
+            "de saídas"
         ),
     )
 
@@ -2082,7 +1863,6 @@ class RegistroC100(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help="Código da situação do documento fiscal, conforme a Tabela 4.1.2",
     )
 
     SER = fields.Char(string="Série do documento fiscal", sped_length="3")
@@ -2095,9 +1875,7 @@ class RegistroC100(models.AbstractModel):
     )
 
     CHV_NFE = fields.Char(
-        string="Chave da Nota Fiscal Eletrônica ou da NFC-e",
-        xsd_type="numeric_code",
-        sped_length="44*",
+        string="Chave da NF-e / NFC-e", xsd_type="numeric_code", sped_length="44*"
     )
 
     DT_DOC = fields.Date(
@@ -2114,12 +1892,7 @@ class RegistroC100(models.AbstractModel):
     )
 
     IND_PGTO = fields.Char(
-        string="Indicador do tipo de pagamento",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador do tipo de pagamento: 0- À vista; 1- A prazo; 9- Sem pagamento."
-        ),
+        string="Indicador do tipo de pagamento", required=True, sped_length="1*"
     )
 
     VL_DESC = fields.Monetary(
@@ -2134,7 +1907,7 @@ class RegistroC100(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Abatimento não tributado e não comercial Ex. desconto ICMS nas remessas "
-            "para ZFM."
+            "para ZFM"
         ),
     )
 
@@ -2145,13 +1918,7 @@ class RegistroC100(models.AbstractModel):
     )
 
     IND_FRT = fields.Char(
-        string="Indicador do tipo do frete",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador do tipo do frete: 0- Por conta de terceiros; 1- Por conta do "
-            "emitente; 2- Por conta do destinatário; 9- Sem cobrança de frete."
-        ),
+        string="Indicador do tipo do frete", required=True, sped_length="1*"
     )
 
     VL_FRT = fields.Monetary(
@@ -2237,12 +2004,9 @@ class RegistroC100(models.AbstractModel):
     reg_C110_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.c110",
         "reg_C110_ids_RegistroC100_id",
-        string="C110 Complemento",
+        string="C110 Complemento de Documento",
         sped_card="1:N",
-        help=(
-            "C110 Complemento de Documento – Informação Complementar da Nota Fiscal "
-            "(códigos 01, 1B, 04 e 55)"
-        ),
+        help=("C110 Complemento de Documento - Informação Complementar da Nota Fiscal"),
     )
 
     reg_C111_ids = fields.One2many(
@@ -2255,20 +2019,17 @@ class RegistroC100(models.AbstractModel):
     reg_C120_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.c120",
         "reg_C120_ids_RegistroC100_id",
-        string="C120 Complemento de Documento – Operações",
+        string="C120 Complemento de Documento",
         sped_card="1:N",
-        help="C120 Complemento de Documento – Operações de Importação (código 01)",
+        help="C120 Complemento de Documento - Operações de Importação",
     )
 
     reg_C170_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.c170",
         "reg_C170_ids_RegistroC100_id",
-        string="C170 Complemento de Documento – Itens do Documento",
+        string="C170 Complemento de Documento",
         sped_card="1:N",
-        help=(
-            "C170 Complemento de Documento – Itens do Documento (códigos 01, 1B, 04 e "
-            "55)"
-        ),
+        help="C170 Complemento de Documento - Itens do Documento",
     )
 
     reg_C175_ids = fields.One2many(
@@ -2276,16 +2037,12 @@ class RegistroC100(models.AbstractModel):
         "reg_C175_ids_RegistroC100_id",
         string="C175 Registro Analítico do Documento",
         sped_card="1:N",
-        help=(
-            "C175 Registro Analítico do Documento (código 65) (*) Disponíbilizado na "
-            "versão 2.09 do PVA ."
-        ),
+        help="C175 Registro Analítico do Documento (Código 65)",
     )
 
 
 class RegistroC110(models.AbstractModel):
-    """Complemento de Documento – Informação Complementar da Nota Fiscal
-    (códigos 01, 1B, 04 e 55)"""
+    "Complemento de Documento - Informação Complementar da Nota Fiscal"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c110"
@@ -2306,12 +2063,12 @@ class RegistroC110(models.AbstractModel):
 
     reg_C110_ids_RegistroC100_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.c100",
-        string="Documento - Nota Fiscal (código 01)",
+        string="Documento - Nota Fiscal",
         required=True,
         ondelete="cascade",
         help=(
-            "Documento - Nota Fiscal (código 01), Nota Fiscal Avulsa (código 1B), Nota "
-            "Fiscal de Produtor (código 04) e NF-e (código 55)"
+            "Documento - Nota Fiscal, Nota Fiscal Avulsa, Nota Fiscal de Produtor, Nota"
+            " Fiscal Eletrônica e Nota Fiscal do Consumidor Eletrônica"
         ),
     )
 
@@ -2331,29 +2088,23 @@ class RegistroC111(models.AbstractModel):
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil"
-        ),
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_C111_ids_RegistroC100_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.c100",
-        string="Documento - Nota Fiscal (código 01)",
+        string="Documento - Nota Fiscal",
         required=True,
         ondelete="cascade",
         help=(
-            "Documento - Nota Fiscal (código 01), Nota Fiscal Avulsa (código 1B), Nota "
-            "Fiscal de Produtor (código 04) e NF-e (código 55)"
+            "Documento - Nota Fiscal, Nota Fiscal Avulsa, Nota Fiscal de Produtor, Nota"
+            " Fiscal Eletrônica e Nota Fiscal do Consumidor Eletrônica"
         ),
     )
 
 
 class RegistroC120(models.AbstractModel):
-    "Complemento de Documento – Operações de Importação (código 01)"
+    "Complemento de Documento - Operações de Importação"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c120"
@@ -2361,15 +2112,7 @@ class RegistroC120(models.AbstractModel):
     _sped_level = 4
 
     COD_DOC_IMP = fields.Char(
-        string="Documento de importação",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Documento de importação: 0 – Declaração de Importação; 1 – Declaração "
-            "Simplificada de Importação; A partir dos fatos geradores ocorridos em "
-            "01/2019: Documento de importação: 0 – Declaração de Importação; 1 – "
-            "Declaração Simplificada de Importação; 2 – Declaração Única de Importação"
-        ),
+        string="Documento de importação", required=True, sped_length="1*"
     )
 
     NUM_DOC_IMP = fields.Char(
@@ -2394,19 +2137,18 @@ class RegistroC120(models.AbstractModel):
 
     reg_C120_ids_RegistroC100_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.c100",
-        string="Documento - Nota Fiscal (código 01)",
+        string="Documento - Nota Fiscal",
         required=True,
         ondelete="cascade",
         help=(
-            "Documento - Nota Fiscal (código 01), Nota Fiscal Avulsa (código 1B), Nota "
-            "Fiscal de Produtor (código 04) e NF-e (código 55)"
+            "Documento - Nota Fiscal, Nota Fiscal Avulsa, Nota Fiscal de Produtor, Nota"
+            " Fiscal Eletrônica e Nota Fiscal do Consumidor Eletrônica"
         ),
     )
 
 
 class RegistroC170(models.AbstractModel):
-    """Complemento de Documento – Itens do Documento (códigos 01, 1B, 04 e
-    55)"""
+    "Complemento de Documento - Itens do Documento"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c170"
@@ -2456,20 +2198,12 @@ class RegistroC170(models.AbstractModel):
     )
 
     VL_DESC = fields.Monetary(
-        string="Valor do desconto comercial / exclusão da base",
+        string="Valor do desconto comercial",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=(
-            "Valor do desconto comercial / exclusão da base de cálculo do PIS/PASEP e "
-            "da COFINS"
-        ),
     )
 
-    IND_MOV = fields.Char(
-        string="Movimentação física do ITEM/PRODUTO",
-        sped_length="1",
-        help="Movimentação física do ITEM/PRODUTO: 0. SIM 1. NÃO",
-    )
+    IND_MOV = fields.Char(string="Movimentação física do ITEM/PRODUTO", sped_length="1")
 
     CST_ICMS = fields.Char(
         string="Código da Situação Tributária referente ao ICMS",
@@ -2544,9 +2278,7 @@ class RegistroC170(models.AbstractModel):
     )
 
     IND_APUR = fields.Char(
-        string="Indicador de período de apuração do IPI",
-        sped_length="1*",
-        help="Indicador de período de apuração do IPI: 0 - Mensal; 1 Decendial",
+        string="Indicador de período de apuração do IPI", sped_length="1*"
     )
 
     CST_IPI = fields.Char(
@@ -2597,7 +2329,7 @@ class RegistroC170(models.AbstractModel):
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Valor da base de cálculo do PIS/PASEP",
+        string="Valor da base de cálculo do PIS",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -2613,7 +2345,7 @@ class RegistroC170(models.AbstractModel):
     )
 
     QUANT_BC_PIS = fields.Float(
-        string="Quantidade – Base de cálculo PIS/PASEP",
+        string="Base de cálculo em quantidade PIS/Pasep",
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -2622,7 +2354,7 @@ class RegistroC170(models.AbstractModel):
     )
 
     ALIQ_PIS_QUANT = fields.Float(
-        string="Alíquota do PIS/PASEP (em reais)",
+        string="Alíquota do PIS (em reais)",
         xsd_type="TDec_1604",
         digits=(
             16,
@@ -2631,14 +2363,11 @@ class RegistroC170(models.AbstractModel):
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
+        string="Valor do PIS", xsd_type="TDec_1602", currency_field="brl_currency_id"
     )
 
     CST_COFINS = fields.Char(
         string="Código da Situação Tributária referente ao COFINS",
-        required=True,
         xsd_type="numeric_code",
         sped_length="2*",
     )
@@ -2660,7 +2389,7 @@ class RegistroC170(models.AbstractModel):
     )
 
     QUANT_BC_COFINS = fields.Float(
-        string="Quantidade – Base de cálculo COFINS",
+        string="Base de cálculo em quantidade COFINS",
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -2689,19 +2418,18 @@ class RegistroC170(models.AbstractModel):
 
     reg_C170_ids_RegistroC100_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.c100",
-        string="Documento - Nota Fiscal (código 01)",
+        string="Documento - Nota Fiscal",
         required=True,
         ondelete="cascade",
         help=(
-            "Documento - Nota Fiscal (código 01), Nota Fiscal Avulsa (código 1B), Nota "
-            "Fiscal de Produtor (código 04) e NF-e (código 55)"
+            "Documento - Nota Fiscal, Nota Fiscal Avulsa, Nota Fiscal de Produtor, Nota"
+            " Fiscal Eletrônica e Nota Fiscal do Consumidor Eletrônica"
         ),
     )
 
 
 class RegistroC175(models.AbstractModel):
-    """Registro Analítico do Documento (código 65) (*) Disponíbilizado na
-    versão 2.09 do PVA ."""
+    "Registro Analítico do Documento (Código 65)"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c175"
@@ -2715,67 +2443,64 @@ class RegistroC175(models.AbstractModel):
         sped_length="4*",
     )
 
-    VL_OPR = fields.Monetary(
+    VL_OPER = fields.Monetary(
         string="Valor da operação na combinação de CFOP",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
             "Valor da operação na combinação de CFOP, CST e alíquotas, correspondente "
-            "ao somatório do valor das mercadorias e produtos constantes no documento."
+            "ao somatório do valor das mercadorias e produtos constantes no documento"
         ),
     )
 
     VL_DESC = fields.Monetary(
-        string="Valor do desconto comercial / exclusão da base",
+        string="Valor do desconto comercial/Exclusão",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=(
-            "Valor do desconto comercial / exclusão da base de cálculo do PIS/PASEP e "
-            "da COFINS"
-        ),
     )
 
     CST_PIS = fields.Char(
         string="Código da Situação Tributária referente",
+        required=True,
         xsd_type="numeric_code",
         sped_length="2*",
         help=(
-            "Código da Situação Tributária referente ao PIS/PASEP, conforme a Tabela "
+            "Código da Situação Tributária referente ao PIS/Pasep, conforme a Tabela "
             "indicada no item 4.3.3."
         ),
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Valor da base de cálculo do PIS/PASEP",
+        string="Valor da base de cálculo do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor da base de cálculo do PIS/PASEP (em valor)",
+        help="Valor da base de cálculo do PIS/Pasep (em valor)",
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     QUANT_BC_PIS = fields.Float(
-        string="Base de cálculo PIS/PASEP",
+        string="Base de cálculo PIS/Pasep",
         xsd_type="TDec_1603",
         digits=(
             16,
             3,
         ),
-        help="Base de cálculo PIS/PASEP (em quantidade)",
+        help="Base de cálculo PIS/Pasep (em quantidade)",
     )
 
     ALIQ_PIS_QUANT = fields.Float(
-        string="Alíquota do PIS (em reais)",
+        string="Alíquota do PIS/Pasep (em Reais)",
         xsd_type="TDec_1604",
         digits=(
             16,
@@ -2784,30 +2509,30 @@ class RegistroC175(models.AbstractModel):
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     CST_COFINS = fields.Char(
-        string="Código da Situação Tributária referente a Cofins",
+        string="CST_COFINS",
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
         help=(
-            "Código da Situação Tributária referente a Cofins, conforme a Tabela "
+            "Código da Situação Tributária referente a COFINS conforme a Tabela "
             "indicada no item 4.3.4."
         ),
     )
 
     VL_BC_COFINS = fields.Monetary(
-        string="Valor da base de cálculo da Cofins",
+        string="Valor da base de cálculo da COFINS",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     ALIQ_COFINS = fields.Float(
-        string="Alíquota da Cofins (em percentual)",
+        string="Alíquota da COFINS (em percentual)",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
@@ -2836,7 +2561,7 @@ class RegistroC175(models.AbstractModel):
     )
 
     VL_COFINS = fields.Monetary(
-        string="Valor da Cofins", xsd_type="TDec_1602", currency_field="brl_currency_id"
+        string="Valor da COFINS", xsd_type="TDec_1602", currency_field="brl_currency_id"
     )
 
     COD_CTA = fields.Char(
@@ -2849,19 +2574,19 @@ class RegistroC175(models.AbstractModel):
 
     reg_C175_ids_RegistroC100_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.c100",
-        string="Documento - Nota Fiscal (código 01)",
+        string="Documento - Nota Fiscal",
         required=True,
         ondelete="cascade",
         help=(
-            "Documento - Nota Fiscal (código 01), Nota Fiscal Avulsa (código 1B), Nota "
-            "Fiscal de Produtor (código 04) e NF-e (código 55)"
+            "Documento - Nota Fiscal, Nota Fiscal Avulsa, Nota Fiscal de Produtor, Nota"
+            " Fiscal Eletrônica e Nota Fiscal do Consumidor Eletrônica"
         ),
     )
 
 
 class RegistroC180(models.AbstractModel):
     """Consolidação de Notas Fiscais Eletrônicas Emitidas pela Pessoa Jurídica
-    (Código 55) – Operações de Vendas"""
+    (Código 55 e 65) - Operações de Vendas"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c180"
@@ -2869,13 +2594,10 @@ class RegistroC180(models.AbstractModel):
     _sped_level = 3
 
     COD_MOD = fields.Char(
-        string="Texto fixo contendo '55' ou “65”",
+        string="Texto fixo contendo “55”",
         required=True,
         sped_length="2*",
-        help=(
-            "Texto fixo contendo '55' ou “65”(Código da NF-e ou da NFC-e, conforme a "
-            "Tabela 4.1.1)"
-        ),
+        help=("Texto fixo contendo “55” - Código da Nota Fiscal Eletrônica, modelo 55"),
     )
 
     DT_DOC_INI = fields.Date(
@@ -2887,14 +2609,14 @@ class RegistroC180(models.AbstractModel):
     )
 
     COD_ITEM = fields.Char(
-        string="Código do Item",
+        string="Código do item",
         required=True,
         sped_length="6",
-        help="Código do Item (campo 02 do Registro 0200)",
+        help="Código do item (campo 02 do Registro 0200)",
     )
 
     COD_NCM = fields.Char(
-        string="Código da Nomenclatura Comum do Mercosul", sped_length="8*"
+        string="Código da Nomenclatura Comum do Mercosul", sped_length="8"
     )
 
     EX_IPI = fields.Char(string="Código EX, conforme a TIPI", sped_length="3")
@@ -2918,7 +2640,7 @@ class RegistroC180(models.AbstractModel):
         "reg_C181_ids_RegistroC180_id",
         string="C181 Detalhamento da Consolidação",
         sped_card="1:N",
-        help="C181 Detalhamento da Consolidação - Operações de Vendas - PIS/PASEP",
+        help="C181 Detalhamento da Consolidação - Operações de Vendas - PIS/Pasep",
     )
 
     reg_C185_ids = fields.One2many(
@@ -2926,7 +2648,7 @@ class RegistroC180(models.AbstractModel):
         "reg_C185_ids_RegistroC180_id",
         string="C185 Detalhamento da Consolidação",
         sped_card="1:N",
-        help="C185 Detalhamento da Consolidação - Operações de Vendas – COFINS",
+        help="C185 Detalhamento da Consolidação - Operações de Vendas - COFINS",
     )
 
     reg_C188_ids = fields.One2many(
@@ -2938,7 +2660,7 @@ class RegistroC180(models.AbstractModel):
 
 
 class RegistroC181(models.AbstractModel):
-    "Detalhamento da Consolidação - Operações de Vendas - PIS/PASEP"
+    "Detalhamento da Consolidação - Operações de Vendas - PIS/Pasep"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c181"
@@ -2950,10 +2672,7 @@ class RegistroC181(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help=(
-            "Código da Situação Tributária referente ao PIS/PASEP, conforme a Tabela "
-            "indicada no item 4.3.3."
-        ),
+        help="Código da Situação Tributária referente ao PIS/Pasep",
     )
 
     CFOP = fields.Char(
@@ -2964,38 +2683,37 @@ class RegistroC181(models.AbstractModel):
     )
 
     VL_ITEM = fields.Monetary(
-        string="Valor do item",
+        string="Valor total do item",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_DESC = fields.Monetary(
-        string="Valor do desconto comercial / exclusão da base",
+        string="Valor do desconto comercial / Exclusão",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor do desconto comercial / exclusão da base de cálculo",
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Valor da base de cálculo do PIS/PASEP",
+        string="Valor da base de cálculo do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     QUANT_BC_PIS = fields.Float(
-        string="Quantidade – Base de cálculo PIS/PASEP",
+        string="Base de cálculo em quantidade PIS/Pasep",
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -3004,7 +2722,7 @@ class RegistroC181(models.AbstractModel):
     )
 
     ALIQ_PIS_QUANT = fields.Float(
-        string="Alíquota do PIS/PASEP (em reais)",
+        string="Alíquota do PIS/Pasep (em reais)",
         xsd_type="TDec_1604",
         digits=(
             16,
@@ -3013,7 +2731,7 @@ class RegistroC181(models.AbstractModel):
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -3031,13 +2749,13 @@ class RegistroC181(models.AbstractModel):
         ondelete="cascade",
         help=(
             "Consolidação de Notas Fiscais Eletrônicas Emitidas pela Pessoa Jurídica "
-            "(Código 55) – Operações de Vendas"
+            "(Código 55 e 65) - Operações de Vendas"
         ),
     )
 
 
 class RegistroC185(models.AbstractModel):
-    "Detalhamento da Consolidação - Operações de Vendas – COFINS"
+    "Detalhamento da Consolidação - Operações de Vendas - COFINS"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c185"
@@ -3049,10 +2767,6 @@ class RegistroC185(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help=(
-            "Código da Situação Tributária referente a COFINS, conforme a Tabela "
-            "indicada no item 4.3.4."
-        ),
     )
 
     CFOP = fields.Char(
@@ -3063,17 +2777,16 @@ class RegistroC185(models.AbstractModel):
     )
 
     VL_ITEM = fields.Monetary(
-        string="Valor do item",
+        string="Valor total do item",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_DESC = fields.Monetary(
-        string="Valor do desconto comercial / exclusão da base",
+        string="Valor do desconto comercial / Exclusão",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor do desconto comercial / exclusão da base de cálculo",
     )
 
     VL_BC_COFINS = fields.Monetary(
@@ -3093,7 +2806,7 @@ class RegistroC185(models.AbstractModel):
     )
 
     QUANT_BC_COFINS = fields.Float(
-        string="Quantidade – Base de cálculo da COFINS",
+        string="Base de cálculo em quantidade COFINS",
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -3127,7 +2840,7 @@ class RegistroC185(models.AbstractModel):
         ondelete="cascade",
         help=(
             "Consolidação de Notas Fiscais Eletrônicas Emitidas pela Pessoa Jurídica "
-            "(Código 55) – Operações de Vendas"
+            "(Código 55 e 65) - Operações de Vendas"
         ),
     )
 
@@ -3147,10 +2860,7 @@ class RegistroC188(models.AbstractModel):
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        required=True,
-        sped_length="1*",
-        help="Indicador da origem do processo: 1 - Justiça Federal;",
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_C188_ids_RegistroC180_id = fields.Many2one(
@@ -3160,15 +2870,15 @@ class RegistroC188(models.AbstractModel):
         ondelete="cascade",
         help=(
             "Consolidação de Notas Fiscais Eletrônicas Emitidas pela Pessoa Jurídica "
-            "(Código 55) – Operações de Vendas"
+            "(Código 55 e 65) - Operações de Vendas"
         ),
     )
 
 
 class RegistroC190(models.AbstractModel):
-    """Consolidação de Notas Fiscais Eletrônicas (Código 55) – Operações de
+    """Consolidação de Notas Fiscais Eletrônicas (Código 55) - Operações de
     Aquisição com Direito a Crédito, e Operações de Devolução de Compras e
-    Vendas."""
+    Vendas"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c190"
@@ -3176,23 +2886,23 @@ class RegistroC190(models.AbstractModel):
     _sped_level = 3
 
     COD_MOD = fields.Char(
-        string="Texto fixo contendo '55'",
+        string="Código do modelo do documento fiscal",
         required=True,
         sped_length="2*",
         help=(
-            "Texto fixo contendo '55' (Código da Nota Fiscal Eletrônica, modelo 55, "
-            "conforme a Tabela 4.1.1)"
+            "Código do modelo do documento fiscal, conforme a Tabela 4.1.1 (Código 55 -"
+            " Nota Fiscal Eletrônica)"
         ),
     )
 
     DT_REF_INI = fields.Date(
-        string="Data Inicial de Referência da Consolidação",
+        string="Data Inicial de Referencia da Consolidação",
         required=True,
         sped_length="8*",
     )
 
     DT_REF_FIN = fields.Date(
-        string="Data Final de Referência da Consolidação",
+        string="Data Final de Referencia da Consolidação",
         required=True,
         sped_length="8*",
     )
@@ -3205,7 +2915,7 @@ class RegistroC190(models.AbstractModel):
     )
 
     COD_NCM = fields.Char(
-        string="Código da Nomenclatura Comum do Mercosul", sped_length="8*"
+        string="Código da Nomenclatura Comum do Mercosul", sped_length="8"
     )
 
     EX_IPI = fields.Char(string="Código EX, conforme a TIPI", sped_length="3")
@@ -3227,11 +2937,11 @@ class RegistroC190(models.AbstractModel):
     reg_C191_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.c191",
         "reg_C191_ids_RegistroC190_id",
-        string="C191 Detalhamento da Consolidação – Operações",
+        string="C191 Detalhamento da Consolidação",
         sped_card="1:N",
         help=(
-            "C191 Detalhamento da Consolidação – Operações de Aquisição com Direito a "
-            "Crédito, e Operações de Devolução de Compras e Vendas – PIS/PASEP"
+            "C191 Detalhamento da Consolidação - Operações de Aquisição com Direito a "
+            "Crédito, e Operações de Devolução de Compras e Vendas - PIS/Pasep"
         ),
     )
 
@@ -3242,7 +2952,7 @@ class RegistroC190(models.AbstractModel):
         sped_card="1:N",
         help=(
             "C195 Detalhamento da Consolidação - Operações de Aquisição com Direito a "
-            "Crédito, e Operações de Devolução de Compras e Vendas – COFINS"
+            "Crédito, e Operações de Devolução de Compras e Vendas - COFINS"
         ),
     )
 
@@ -3256,15 +2966,15 @@ class RegistroC190(models.AbstractModel):
     reg_C199_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.c199",
         "reg_C199_ids_RegistroC190_id",
-        string="C199 Complemento de Documento – Operações",
+        string="C199 Complemento de Documento",
         sped_card="1:N",
-        help="C199 Complemento de Documento – Operações de Importação (código 55)",
+        help="C199 Complemento de Documento - Operações de Importação",
     )
 
 
 class RegistroC191(models.AbstractModel):
-    """Detalhamento da Consolidação – Operações de Aquisição com Direito a
-    Crédito, e Operações de Devolução de Compras e Vendas – PIS/PASEP"""
+    """Detalhamento da Consolidação - Operações de Aquisição com Direito a
+    Crédito, e Operações de Devolução de Compras e Vendas - PIS/Pasep"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c191"
@@ -3285,7 +2995,7 @@ class RegistroC191(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help="Código da Situação Tributária referente ao PIS/PASEP",
+        help="Código da Situação Tributária referente ao PIS/Pasep",
     )
 
     CFOP = fields.Char(
@@ -3296,7 +3006,7 @@ class RegistroC191(models.AbstractModel):
     )
 
     VL_ITEM = fields.Monetary(
-        string="Valor do item",
+        string="Valor total do item",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
@@ -3309,24 +3019,24 @@ class RegistroC191(models.AbstractModel):
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Valor da base de cálculo do PIS/PASEP",
+        string="Valor da base de cálculo do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     QUANT_BC_PIS = fields.Float(
-        string="Quantidade – Base de cálculo PIS/PASEP",
+        string="Base de cálculo em quantidade PIS/Pasep",
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -3335,7 +3045,7 @@ class RegistroC191(models.AbstractModel):
     )
 
     ALIQ_PIS_QUANT = fields.Float(
-        string="Alíquota do PIS/PASEP (em reais)",
+        string="Alíquota do PIS/Pasep (em reais)",
         xsd_type="TDec_1604",
         digits=(
             16,
@@ -3344,7 +3054,7 @@ class RegistroC191(models.AbstractModel):
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -3361,16 +3071,16 @@ class RegistroC191(models.AbstractModel):
         required=True,
         ondelete="cascade",
         help=(
-            "Consolidação de Notas Fiscais Eletrônicas (Código 55) – Operações de "
+            "Consolidação de Notas Fiscais Eletrônicas (Código 55) - Operações de "
             "Aquisição com Direito a Crédito, e Operações de Devolução de Compras e "
-            "Vendas."
+            "Vendas"
         ),
     )
 
 
 class RegistroC195(models.AbstractModel):
     """Detalhamento da Consolidação - Operações de Aquisição com Direito a
-    Crédito, e Operações de Devolução de Compras e Vendas – COFINS"""
+    Crédito, e Operações de Devolução de Compras e Vendas - COFINS"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c195"
@@ -3401,7 +3111,7 @@ class RegistroC195(models.AbstractModel):
     )
 
     VL_ITEM = fields.Monetary(
-        string="Valor do item",
+        string="Valor total do item",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
@@ -3430,7 +3140,7 @@ class RegistroC195(models.AbstractModel):
     )
 
     QUANT_BC_COFINS = fields.Float(
-        string="Quantidade – Base de cálculo da COFINS",
+        string="Base de cálculo em quantidade COFINS",
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -3463,9 +3173,9 @@ class RegistroC195(models.AbstractModel):
         required=True,
         ondelete="cascade",
         help=(
-            "Consolidação de Notas Fiscais Eletrônicas (Código 55) – Operações de "
+            "Consolidação de Notas Fiscais Eletrônicas (Código 55) - Operações de "
             "Aquisição com Direito a Crédito, e Operações de Devolução de Compras e "
-            "Vendas."
+            "Vendas"
         ),
     )
 
@@ -3485,13 +3195,7 @@ class RegistroC198(models.AbstractModel):
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil 9 – Outros."
-        ),
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_C198_ids_RegistroC190_id = fields.Many2one(
@@ -3500,15 +3204,15 @@ class RegistroC198(models.AbstractModel):
         required=True,
         ondelete="cascade",
         help=(
-            "Consolidação de Notas Fiscais Eletrônicas (Código 55) – Operações de "
+            "Consolidação de Notas Fiscais Eletrônicas (Código 55) - Operações de "
             "Aquisição com Direito a Crédito, e Operações de Devolução de Compras e "
-            "Vendas."
+            "Vendas"
         ),
     )
 
 
 class RegistroC199(models.AbstractModel):
-    "Complemento de Documento – Operações de Importação (código 55)"
+    "Complemento de Documento - Operações de Importação"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c199"
@@ -3516,15 +3220,7 @@ class RegistroC199(models.AbstractModel):
     _sped_level = 4
 
     COD_DOC_IMP = fields.Char(
-        string="Documento de importação",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Documento de importação: 0 – Declaração de Importação; 1 – Declaração "
-            "Simplificada de Importação; A partir dos fatos geradores ocorridos em "
-            "01/2019: Documento de importação: 0 – Declaração de Importação; 1 – "
-            "Declaração Simplificada de Importação; 2 – Declaração Única de Importação"
-        ),
+        string="Documento de importação", required=True, sped_length="1*"
     )
 
     NUM_DOC_IMP = fields.Char(
@@ -3553,16 +3249,16 @@ class RegistroC199(models.AbstractModel):
         required=True,
         ondelete="cascade",
         help=(
-            "Consolidação de Notas Fiscais Eletrônicas (Código 55) – Operações de "
+            "Consolidação de Notas Fiscais Eletrônicas (Código 55) - Operações de "
             "Aquisição com Direito a Crédito, e Operações de Devolução de Compras e "
-            "Vendas."
+            "Vendas"
         ),
     )
 
 
 class RegistroC380(models.AbstractModel):
-    """Nota Fiscal de Venda a Consumidor (Código 02) - Consolidação de
-    Documentos Emitidos"""
+    """C380 - Nota Fiscal de Venda a Consumidor - Consolidação de Documentos
+    Emitidos"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c380"
@@ -3573,10 +3269,7 @@ class RegistroC380(models.AbstractModel):
         string="Código do modelo do documento fiscal",
         required=True,
         sped_length="2*",
-        help=(
-            "Código do modelo do documento fiscal, conforme a Tabela 4.1.1 (Código 02 –"
-            " Nota Fiscal de Venda a Consumidor)"
-        ),
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
     )
 
     DT_DOC_INI = fields.Date(
@@ -3600,7 +3293,7 @@ class RegistroC380(models.AbstractModel):
     )
 
     VL_DOC = fields.Monetary(
-        string="Valor total dos documentos emitidos",
+        string="Valor total dos documentos regulares",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
@@ -3623,20 +3316,22 @@ class RegistroC380(models.AbstractModel):
     reg_C381_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.c381",
         "reg_C381_ids_RegistroC380_id",
-        string="C381 Detalhamento da Consolidação – PIS/PASEP",
+        string="C381 Detalhamento da Consolidação",
         sped_card="1:N",
+        help="C381 Detalhamento da Consolidação - PIS/Pasep",
     )
 
     reg_C385_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.c385",
         "reg_C385_ids_RegistroC380_id",
-        string="C385 Detalhamento da Consolidação – COFINS",
+        string="C385 Detalhamento da Consolidação",
         sped_card="1:N",
+        help="C385 Detalhamento da Consolidação - COFINS",
     )
 
 
 class RegistroC381(models.AbstractModel):
-    "Detalhamento da Consolidação – PIS/PASEP"
+    "Detalhamento da Consolidação - PIS/Pasep"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c381"
@@ -3648,7 +3343,7 @@ class RegistroC381(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help="Código da Situação Tributária referente ao PIS/PASEP",
+        help="Código da Situação Tributária referente ao PIS/Pasep",
     )
 
     COD_ITEM = fields.Char(
@@ -3666,24 +3361,24 @@ class RegistroC381(models.AbstractModel):
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Valor da base de cálculo do PIS/PASEP",
+        string="Valor da base de cálculo do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     QUANT_BC_PIS = fields.Float(
-        string="Quantidade – Base de cálculo do PIS/PASEP",
+        string="Base de cálculo em quantidade PIS/Pasep",
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -3692,7 +3387,7 @@ class RegistroC381(models.AbstractModel):
     )
 
     ALIQ_PIS_QUANT = fields.Float(
-        string="Alíquota do PIS/PASEP (em reais)",
+        string="Alíquota do PIS/Pasep (em reais)",
         xsd_type="TDec_1604",
         digits=(
             16,
@@ -3701,7 +3396,7 @@ class RegistroC381(models.AbstractModel):
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
@@ -3715,18 +3410,18 @@ class RegistroC381(models.AbstractModel):
 
     reg_C381_ids_RegistroC380_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.c380",
-        string="Nota Fiscal de Venda a Consumidor",
+        string="C380",
         required=True,
         ondelete="cascade",
         help=(
-            "Nota Fiscal de Venda a Consumidor (Código 02) - Consolidação de Documentos"
-            " Emitidos"
+            "C380 - Nota Fiscal de Venda a Consumidor - Consolidação de Documentos "
+            "Emitidos"
         ),
     )
 
 
 class RegistroC385(models.AbstractModel):
-    "Detalhamento da Consolidação – COFINS"
+    "Detalhamento da Consolidação - COFINS"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c385"
@@ -3771,7 +3466,7 @@ class RegistroC385(models.AbstractModel):
     )
 
     QUANT_BC_COFINS = fields.Float(
-        string="Quantidade – Base de cálculo da COFINS",
+        string="Base de cálculo em quantidade COFINS",
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -3803,19 +3498,18 @@ class RegistroC385(models.AbstractModel):
 
     reg_C385_ids_RegistroC380_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.c380",
-        string="Nota Fiscal de Venda a Consumidor",
+        string="C380",
         required=True,
         ondelete="cascade",
         help=(
-            "Nota Fiscal de Venda a Consumidor (Código 02) - Consolidação de Documentos"
-            " Emitidos"
+            "C380 - Nota Fiscal de Venda a Consumidor - Consolidação de Documentos "
+            "Emitidos"
         ),
     )
 
 
 class RegistroC395(models.AbstractModel):
-    """Notas Fiscais de Venda a Consumidor (Códigos 02, 2D, 2E e 59) –
-    Aquisições/Entradas com Crédito"""
+    "Nota Fiscal de Venda a Consumidor - Aquisições/Entradas com Crédito"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c395"
@@ -3830,21 +3524,20 @@ class RegistroC395(models.AbstractModel):
     )
 
     COD_PART = fields.Char(
-        string="Código do participante emitente do documento",
+        string="Código do participante",
+        required=True,
         sped_length="6",
         help=(
-            "Código do participante emitente do documento (campo 02 do Registro 0150)."
+            "Código do participante (campo 02 do Registro 0150) - emitente do documento"
         ),
     )
 
-    SER = fields.Char(
-        string="Série do documento fiscal", required=True, sped_length="3"
-    )
+    SER = fields.Char(string="Série do documento fiscal", sped_length="3")
 
     SUB_SER = fields.Char(string="Subsérie do documento fiscal", sped_length="3")
 
     NUM_DOC = fields.Char(
-        string="Número do documento fiscal", required=True, sped_length="6"
+        string="Número do documento fiscal", required=True, sped_length="44"
     )
 
     DT_DOC = fields.Date(
@@ -3870,16 +3563,12 @@ class RegistroC395(models.AbstractModel):
         "reg_C396_ids_RegistroC395_id",
         string="C396 Itens do Documento",
         sped_card="1:N",
-        help=(
-            "C396 Itens do Documento (Códigos 02, 2D, 2E e 59) – Aquisições/Entradas "
-            "com Crédito"
-        ),
+        help="C396 Itens do Documento - Aquisições/Entradas com Crédito",
     )
 
 
 class RegistroC396(models.AbstractModel):
-    """Itens do Documento (Códigos 02, 2D, 2E e 59) – Aquisições/Entradas com
-    Crédito"""
+    "Itens do Documento - Aquisições/Entradas com Crédito"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c396"
@@ -3908,12 +3597,12 @@ class RegistroC396(models.AbstractModel):
     )
 
     NAT_BC_CRED = fields.Char(
-        string="Código da Base de Cálculo do Crédito",
+        string="Código da Natureza da Base de Cálculo do Crédito",
         required=True,
-        sped_length="2*",
+        sped_length="2",
         help=(
-            "Código da Base de Cálculo do Crédito, conforme a Tabela indicada no item "
-            "4.3.7."
+            "Código da Natureza da Base de Cálculo do Crédito, conforme a Tabela "
+            "indicada no item 4.3.7"
         ),
     )
 
@@ -3922,28 +3611,28 @@ class RegistroC396(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help="Código da Situação Tributária referente ao PIS/PASEP",
+        help="Código da Situação Tributária referente ao PIS/Pasep",
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Valor da base de cálculo do crédito de PIS/PASEP",
+        string="Valor da base de cálculo do credito de PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do crédito de PIS/PASEP",
+        string="Valor do crédito de PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -3985,18 +3674,15 @@ class RegistroC396(models.AbstractModel):
 
     reg_C396_ids_RegistroC395_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.c395",
-        string="Notas Fiscais de Venda a Consumidor",
+        string="Nota Fiscal de Venda a Consumidor",
         required=True,
         ondelete="cascade",
-        help=(
-            "Notas Fiscais de Venda a Consumidor (Códigos 02, 2D, 2E e 59) – "
-            "Aquisições/Entradas com Crédito"
-        ),
+        help="Nota Fiscal de Venda a Consumidor - Aquisições/Entradas com Crédito",
     )
 
 
 class RegistroC400(models.AbstractModel):
-    "Equipamento ECF (códigos 02 e 2D)"
+    "Equipamento ECF"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c400"
@@ -4035,7 +3721,7 @@ class RegistroC400(models.AbstractModel):
     reg_C405_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.c405",
         "reg_C405_ids_RegistroC400_id",
-        string="C405 Redução Z (códigos 02 e 2D)",
+        string="C405 Redução Z",
         sped_card="1:N",
     )
 
@@ -4048,7 +3734,7 @@ class RegistroC400(models.AbstractModel):
 
 
 class RegistroC405(models.AbstractModel):
-    "Redução Z (códigos 02 e 2D)"
+    "Redução Z"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c405"
@@ -4079,7 +3765,7 @@ class RegistroC405(models.AbstractModel):
         string="Número do Contador de Ordem de Operação",
         required=True,
         xsd_type="numeric_code",
-        sped_length="6",
+        sped_length="9",
         help=(
             "Número do Contador de Ordem de Operação do último documento emitido no dia"
             " (Número do COO na Redução Z)"
@@ -4105,7 +3791,7 @@ class RegistroC405(models.AbstractModel):
 
     reg_C405_ids_RegistroC400_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.c400",
-        string="Equipamento ECF (códigos 02 e 2D)",
+        string="Equipamento ECF",
         required=True,
         ondelete="cascade",
     )
@@ -4113,29 +3799,22 @@ class RegistroC405(models.AbstractModel):
     reg_C481_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.c481",
         "reg_C481_ids_RegistroC405_id",
-        string="C481 Resumo Diário de Documentos Emitidos",
+        string="C481 Resumo Diário de Documentos Emitidos por ECF",
         sped_card="1:N",
-        help=(
-            "C481 Resumo Diário de Documentos Emitidos por ECF – PIS/PASEP (Códigos 02 "
-            "e 2D)"
-        ),
+        help="C481 Resumo Diário de Documentos Emitidos por ECF - PIS/Pasep",
     )
 
     reg_C485_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.c485",
         "reg_C485_ids_RegistroC405_id",
-        string="C485 Resumo Diário de Documentos Emitidos",
+        string="C485 Resumo Diário de Documentos Emitidos por ECF",
         sped_card="1:N",
-        help=(
-            "C485 Resumo Diário de Documentos Emitidos por ECF – COFINS (Códigos 02 e "
-            "2D)"
-        ),
+        help="C485 Resumo Diário de Documentos Emitidos por ECF - COFINS",
     )
 
 
 class RegistroC481(models.AbstractModel):
-    """Resumo Diário de Documentos Emitidos por ECF – PIS/PASEP (Códigos 02 e
-    2D)"""
+    "Resumo Diário de Documentos Emitidos por ECF - PIS/Pasep"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c481"
@@ -4147,7 +3826,7 @@ class RegistroC481(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help="Código da Situação Tributária referente ao PIS/PASEP",
+        help="Código da Situação Tributária referente ao PIS/Pasep",
     )
 
     VL_ITEM = fields.Monetary(
@@ -4158,24 +3837,24 @@ class RegistroC481(models.AbstractModel):
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Valor da base de cálculo do PIS/PASEP",
+        string="Valor da base de cálculo do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     QUANT_BC_PIS = fields.Float(
-        string="Quantidade – Base de cálculo PIS/PASEP",
+        string="Base de cálculo em quantidade PIS/Pasep",
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -4184,7 +3863,7 @@ class RegistroC481(models.AbstractModel):
     )
 
     ALIQ_PIS_QUANT = fields.Float(
-        string="Alíquota do PIS/PASEP (em reais)",
+        string="Alíquota do PIS/Pasep (em reais)",
         xsd_type="TDec_1604",
         digits=(
             16,
@@ -4193,7 +3872,7 @@ class RegistroC481(models.AbstractModel):
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -4212,15 +3891,14 @@ class RegistroC481(models.AbstractModel):
 
     reg_C481_ids_RegistroC405_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.c405",
-        string="Redução Z (códigos 02 e 2D)",
+        string="Redução Z",
         required=True,
         ondelete="cascade",
     )
 
 
 class RegistroC485(models.AbstractModel):
-    """Resumo Diário de Documentos Emitidos por ECF – COFINS (Códigos 02 e
-    2D)"""
+    "Resumo Diário de Documentos Emitidos por ECF - COFINS"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c485"
@@ -4258,7 +3936,7 @@ class RegistroC485(models.AbstractModel):
     )
 
     QUANT_BC_COFINS = fields.Float(
-        string="Quantidade – Base de cálculo da COFINS",
+        string="Base de cálculo em quantidade COFINS",
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -4293,7 +3971,7 @@ class RegistroC485(models.AbstractModel):
 
     reg_C485_ids_RegistroC405_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.c405",
-        string="Redução Z (códigos 02 e 2D)",
+        string="Redução Z",
         required=True,
         ondelete="cascade",
     )
@@ -4314,25 +3992,19 @@ class RegistroC489(models.AbstractModel):
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil 9 - Outros."
-        ),
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_C489_ids_RegistroC400_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.c400",
-        string="Equipamento ECF (códigos 02 e 2D)",
+        string="Equipamento ECF",
         required=True,
         ondelete="cascade",
     )
 
 
 class RegistroC490(models.AbstractModel):
-    """Consolidação de Documentos Emitidos por ECF (Códigos 02, 2D, 59 e 60)"""
+    "Consolidação de Documentos Emitidos por ECF - Saída de Mercadoria"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c490"
@@ -4367,8 +4039,8 @@ class RegistroC490(models.AbstractModel):
         string="C491 Detalhamento da Consolidação",
         sped_card="1:N",
         help=(
-            "C491 Detalhamento da Consolidação de Documentos Emitidos por ECF (Códigos "
-            "02, 2D, 59 e 60) – PIS/PASEP"
+            "C491 Detalhamento da Consolidação de Documentos emitidos por ECF - "
+            "PIS/Pasep"
         ),
     )
 
@@ -4378,8 +4050,7 @@ class RegistroC490(models.AbstractModel):
         string="C495 Detalhamento da Consolidação",
         sped_card="1:N",
         help=(
-            "C495 Detalhamento da Consolidação de Documentos Emitidos por ECF (Códigos "
-            "02, 2D, 59 e 60) – COFINS"
+            "C495 Detalhamento da Consolidação de Documentos emitidos por ECF - COFINS"
         ),
     )
 
@@ -4388,13 +4059,13 @@ class RegistroC490(models.AbstractModel):
         "reg_C499_ids_RegistroC490_id",
         string="C499 Processo Referenciado",
         sped_card="1:N",
-        help="C499 Processo Referenciado - Documentos Emitidos Por ECF",
+        help="C499 Processo Referenciado - Documentos Emitidos Por ECF",
     )
 
 
 class RegistroC491(models.AbstractModel):
-    """Detalhamento da Consolidação de Documentos Emitidos por ECF (Códigos 02,
-    2D, 59 e 60) – PIS/PASEP"""
+    """Detalhamento da Consolidação de Documentos emitidos por ECF -
+    PIS/Pasep"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c491"
@@ -4412,7 +4083,7 @@ class RegistroC491(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help="Código da Situação Tributária referente ao PIS/PASEP",
+        help="Código da Situação Tributária referente ao PIS/Pasep",
     )
 
     CFOP = fields.Char(
@@ -4429,24 +4100,24 @@ class RegistroC491(models.AbstractModel):
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Valor da base de cálculo do PIS/PASEP",
+        string="Valor da base de cálculo do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     QUANT_BC_PIS = fields.Float(
-        string="Quantidade – Base de cálculo PIS/PASEP",
+        string="Base de cálculo em quantidade PIS/Pasep",
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -4455,7 +4126,7 @@ class RegistroC491(models.AbstractModel):
     )
 
     ALIQ_PIS_QUANT = fields.Float(
-        string="Alíquota do PIS/PASEP (em reais)",
+        string="Alíquota do PIS/Pasep (em reais)",
         xsd_type="TDec_1604",
         digits=(
             16,
@@ -4464,7 +4135,7 @@ class RegistroC491(models.AbstractModel):
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -4480,13 +4151,12 @@ class RegistroC491(models.AbstractModel):
         string="Consolidação de Documentos Emitidos por ECF",
         required=True,
         ondelete="cascade",
-        help="Consolidação de Documentos Emitidos por ECF (Códigos 02, 2D, 59 e 60)",
+        help="Consolidação de Documentos Emitidos por ECF - Saída de Mercadoria",
     )
 
 
 class RegistroC495(models.AbstractModel):
-    """Detalhamento da Consolidação de Documentos Emitidos por ECF (Códigos 02,
-    2D, 59 e 60) – COFINS"""
+    """Detalhamento da Consolidação de Documentos emitidos por ECF - COFINS"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c495"
@@ -4536,7 +4206,7 @@ class RegistroC495(models.AbstractModel):
     )
 
     QUANT_BC_COFINS = fields.Float(
-        string="Quantidade – Base de cálculo da COFINS",
+        string="Base de cálculo em quantidade COFINS",
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -4568,7 +4238,7 @@ class RegistroC495(models.AbstractModel):
         string="Consolidação de Documentos Emitidos por ECF",
         required=True,
         ondelete="cascade",
-        help="Consolidação de Documentos Emitidos por ECF (Códigos 02, 2D, 59 e 60)",
+        help="Consolidação de Documentos Emitidos por ECF - Saída de Mercadoria",
     )
 
 
@@ -4587,13 +4257,7 @@ class RegistroC499(models.AbstractModel):
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil 9 - Outros."
-        ),
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_C499_ids_RegistroC490_id = fields.Many2one(
@@ -4601,16 +4265,14 @@ class RegistroC499(models.AbstractModel):
         string="Consolidação de Documentos Emitidos por ECF",
         required=True,
         ondelete="cascade",
-        help="Consolidação de Documentos Emitidos por ECF (Códigos 02, 2D, 59 e 60)",
+        help="Consolidação de Documentos Emitidos por ECF - Saída de Mercadoria",
     )
 
 
 class RegistroC500(models.AbstractModel):
-    """Nota Fiscal/Conta de Energia Elétrica (Código 06), Nota Fiscal de
-    Energia Elétrica Eletrônica – NF3e (Código 66), Nota Fiscal/Conta de
-    fornecimento D’água Canalizada (Código 29), Nota Fiscal/Consumo
-    Fornecimento de Gás (Código 28) e NF-e (Código 55) – Documentos de
-    Entrada / Aquisição com Crédito"""
+    """Nota Fiscal/Conta de Energia Elétrica, Nota Fiscal/Conta de Fornecimento
+    D’Água Canalizada e Nota Fiscal/Consumo Fornecimento de Gás -
+    Documentos de Entrada / Aquisição"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c500"
@@ -4621,7 +4283,7 @@ class RegistroC500(models.AbstractModel):
         string="Código do participante do fornecedor",
         required=True,
         sped_length="6",
-        help="Código do participante do fornecedor (campo 02 do Registro 0150).",
+        help="Código do participante do fornecedor (campo 02 do Registro 0150)",
     )
 
     COD_MOD = fields.Char(
@@ -4649,14 +4311,14 @@ class RegistroC500(models.AbstractModel):
         string="Número do documento fiscal",
         required=True,
         xsd_type="numeric_code",
-        sped_length="9",
+        sped_length="6",
     )
 
     DT_DOC = fields.Date(
         string="Data da emissão do documento fiscal", required=True, sped_length="8*"
     )
 
-    DT_ENT = fields.Date(string="Data da entrada", sped_length="8*")
+    DT_E_S = fields.Date(string="Data da entrada", sped_length="8*")
 
     VL_DOC = fields.Monetary(
         string="Valor total do documento fiscal",
@@ -4681,7 +4343,7 @@ class RegistroC500(models.AbstractModel):
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -4690,7 +4352,7 @@ class RegistroC500(models.AbstractModel):
         string="Valor da COFINS", xsd_type="TDec_1602", currency_field="brl_currency_id"
     )
 
-    CHV_DOCE = fields.Char(
+    CHV_DOC_E = fields.Char(
         string="Chave do Documento Fiscal Eletrônico",
         xsd_type="numeric_code",
         sped_length="44*",
@@ -4708,7 +4370,7 @@ class RegistroC500(models.AbstractModel):
         "reg_C501_ids_RegistroC500_id",
         string="C501 Complemento da operação",
         sped_card="1:N",
-        help="C501 Complemento da operação (Códigos 06, 28 e 29) – PIS/PASEP",
+        help="C501 Complemento da operação - PIS/Pasep",
     )
 
     reg_C505_ids = fields.One2many(
@@ -4716,7 +4378,7 @@ class RegistroC500(models.AbstractModel):
         "reg_C505_ids_RegistroC500_id",
         string="C505 Complemento da operação",
         sped_card="1:N",
-        help="C505 Complemento da operação (Códigos 06, 28 e 29) – COFINS",
+        help="C505 Complemento da operação - COFINS",
     )
 
     reg_C509_ids = fields.One2many(
@@ -4728,7 +4390,7 @@ class RegistroC500(models.AbstractModel):
 
 
 class RegistroC501(models.AbstractModel):
-    "Complemento da operação (Códigos 06, 28 e 29) – PIS/PASEP"
+    "Complemento da operação - PIS/Pasep"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c501"
@@ -4740,7 +4402,7 @@ class RegistroC501(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help="Código da Situação Tributária referente ao PIS/PASEP",
+        help="Código da Situação Tributária referente ao PIS/Pasep",
     )
 
     VL_ITEM = fields.Monetary(
@@ -4751,23 +4413,23 @@ class RegistroC501(models.AbstractModel):
     )
 
     NAT_BC_CRED = fields.Char(
-        string="Código da Base de Cálculo do Crédito",
-        sped_length="2*",
+        string="Código da Natureza da Base de Cálculo do Crédito",
+        sped_length="2",
         help=(
-            "Código da Base de Cálculo do Crédito, conforme a Tabela indicada no item "
-            "4.3.7."
+            "Código da Natureza da Base de Cálculo do Crédito, conforme a Tabela "
+            "indicada no item 4.3.7"
         ),
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Valor da base de cálculo do PIS/PASEP",
+        string="Valor da base de cálculo do PIS/Pasep",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         required=True,
         sped_length="8",
         xsd_type="TDec_1604",
@@ -4775,11 +4437,11 @@ class RegistroC501(models.AbstractModel):
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
@@ -4797,17 +4459,15 @@ class RegistroC501(models.AbstractModel):
         required=True,
         ondelete="cascade",
         help=(
-            "Nota Fiscal/Conta de Energia Elétrica (Código 06), Nota Fiscal de Energia "
-            "Elétrica Eletrônica – NF3e (Código 66), Nota Fiscal/Conta de fornecimento "
-            "D’água Canalizada (Código 29), Nota Fiscal/Consumo Fornecimento de Gás "
-            "(Código 28) e NF-e (Código 55) – Documentos de Entrada / Aquisição com "
-            "Crédito"
+            "Nota Fiscal/Conta de Energia Elétrica, Nota Fiscal/Conta de Fornecimento "
+            "D’Água Canalizada e Nota Fiscal/Consumo Fornecimento de Gás - Documentos "
+            "de Entrada / Aquisição"
         ),
     )
 
 
 class RegistroC505(models.AbstractModel):
-    "Complemento da operação (Códigos 06, 28 e 29) – COFINS"
+    "Complemento da operação - COFINS"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c505"
@@ -4829,11 +4489,11 @@ class RegistroC505(models.AbstractModel):
     )
 
     NAT_BC_CRED = fields.Char(
-        string="Código da Base de Cálculo do Crédito",
-        sped_length="2*",
+        string="Código da Natureza da Base de Cálculo do Crédito",
+        sped_length="2",
         help=(
-            "Código da Base de Cálculo do Crédito, conforme a Tabela indicada no item "
-            "4.3.7"
+            "Código da Natureza da Base de Cálculo do Crédito, conforme a Tabela "
+            "indicada no item 4.3.7"
         ),
     )
 
@@ -4874,11 +4534,9 @@ class RegistroC505(models.AbstractModel):
         required=True,
         ondelete="cascade",
         help=(
-            "Nota Fiscal/Conta de Energia Elétrica (Código 06), Nota Fiscal de Energia "
-            "Elétrica Eletrônica – NF3e (Código 66), Nota Fiscal/Conta de fornecimento "
-            "D’água Canalizada (Código 29), Nota Fiscal/Consumo Fornecimento de Gás "
-            "(Código 28) e NF-e (Código 55) – Documentos de Entrada / Aquisição com "
-            "Crédito"
+            "Nota Fiscal/Conta de Energia Elétrica, Nota Fiscal/Conta de Fornecimento "
+            "D’Água Canalizada e Nota Fiscal/Consumo Fornecimento de Gás - Documentos "
+            "de Entrada / Aquisição"
         ),
     )
 
@@ -4898,13 +4556,7 @@ class RegistroC509(models.AbstractModel):
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil 9 – Outros."
-        ),
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_C509_ids_RegistroC500_id = fields.Many2one(
@@ -4913,20 +4565,18 @@ class RegistroC509(models.AbstractModel):
         required=True,
         ondelete="cascade",
         help=(
-            "Nota Fiscal/Conta de Energia Elétrica (Código 06), Nota Fiscal de Energia "
-            "Elétrica Eletrônica – NF3e (Código 66), Nota Fiscal/Conta de fornecimento "
-            "D’água Canalizada (Código 29), Nota Fiscal/Consumo Fornecimento de Gás "
-            "(Código 28) e NF-e (Código 55) – Documentos de Entrada / Aquisição com "
-            "Crédito"
+            "Nota Fiscal/Conta de Energia Elétrica, Nota Fiscal/Conta de Fornecimento "
+            "D’Água Canalizada e Nota Fiscal/Consumo Fornecimento de Gás - Documentos "
+            "de Entrada / Aquisição"
         ),
     )
 
 
 class RegistroC600(models.AbstractModel):
-    """Consolidação Diária de Notas Fiscais/Contas de Energia Elétrica (Código
-    06), Nota Fiscal/Conta de Fornecimento d´água (Código 29) e Nota
-    Fiscal/Conta de Fornecimento de Gás (Código 28) (Empresas Obrigadas ou
-    Não Obrigadas Ao Convenio ICMS 115/03) - - Documentos de Saídas"""
+    """Consolidação Diária de Notas Fiscais/Contas de Energia Elétrica, Nota
+    Fiscal/Conta de Fornecimento d´água e Nota Fiscal/Conta de Fornecimento
+    de Gás (Empresas Obrigadas ou Não Obrigadas Ao Convenio ICMS 115/03) -
+    Documentos de Saídas"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c600"
@@ -4955,12 +4605,11 @@ class RegistroC600(models.AbstractModel):
 
     COD_CONS = fields.Char(
         string="Código de classe de consumo de energia elétrica",
-        xsd_type="numeric_code",
         sped_length="2*",
         help=(
             "Código de classe de consumo de energia elétrica, conforme a Tabela 4.4.5, "
-            "ou Código de Consumo de Fornecimento D´água – Tabela 4.4.2 ou Código da "
-            "classe de consumo de gás canalizado conforme Tabela 4.4.3."
+            "ou Código de Consumo de Fornecimento D'água - Tabela 4.4.2 ou Código da "
+            "classe de consumo de gás canalizado conforme Tabela 4.4.3"
         ),
     )
 
@@ -5046,7 +4695,7 @@ class RegistroC600(models.AbstractModel):
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor acumulado do PIS/PASEP",
+        string="Valor acumulado do PIS/Pasep",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
@@ -5072,8 +4721,7 @@ class RegistroC600(models.AbstractModel):
         string="C601 Complemento da Consolidação Diária",
         sped_card="1:N",
         help=(
-            "C601 Complemento da Consolidação Diária (Códigos 06, 29 e 28) – Documentos"
-            " de Saidas - PIS/PASEP"
+            "C601 Complemento da Consolidação Diária - Documentos de Saída - PIS/Pasep"
         ),
     )
 
@@ -5083,8 +4731,7 @@ class RegistroC600(models.AbstractModel):
         string="C605 Complemento da Consolidação Diária",
         sped_card="1:N",
         help=(
-            "C605 Complemento da Consolidação Diária (Códigos 06, 29 e 28) – Documentos"
-            " de Saidas – COFINS"
+            "C605 Complemento da Consolidação Diária  - Documentos de Saída - COFINS"
         ),
     )
 
@@ -5097,8 +4744,7 @@ class RegistroC600(models.AbstractModel):
 
 
 class RegistroC601(models.AbstractModel):
-    """Complemento da Consolidação Diária (Códigos 06, 29 e 28) – Documentos de
-    Saidas - PIS/PASEP"""
+    """Complemento da Consolidação Diária - Documentos de Saída - PIS/Pasep"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c601"
@@ -5110,7 +4756,7 @@ class RegistroC601(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help="Código da Situação Tributária referente ao PIS/PASEP",
+        help="Código da Situação Tributária referente ao PIS/Pasep",
     )
 
     VL_ITEM = fields.Monetary(
@@ -5121,27 +4767,24 @@ class RegistroC601(models.AbstractModel):
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Valor da base de cálculo do PIS/PASEP",
-        required=True,
+        string="Valor da base de cálculo do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
-        required=True,
+        string="Alíquota do PIS/Pasep",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
-        required=True,
+        string="Valor do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -5158,17 +4801,16 @@ class RegistroC601(models.AbstractModel):
         required=True,
         ondelete="cascade",
         help=(
-            "Consolidação Diária de Notas Fiscais/Contas de Energia Elétrica (Código "
-            "06), Nota Fiscal/Conta de Fornecimento d´água (Código 29) e Nota "
-            "Fiscal/Conta de Fornecimento de Gás (Código 28) (Empresas Obrigadas ou Não"
-            " Obrigadas Ao Convenio ICMS 115/03) - - Documentos de Saídas"
+            "Consolidação Diária de Notas Fiscais/Contas de Energia Elétrica, Nota "
+            "Fiscal/Conta de Fornecimento d´água e Nota Fiscal/Conta de Fornecimento de"
+            " Gás (Empresas Obrigadas ou Não Obrigadas Ao Convenio ICMS 115/03) - "
+            "Documentos de Saídas"
         ),
     )
 
 
 class RegistroC605(models.AbstractModel):
-    """Complemento da Consolidação Diária (Códigos 06, 29 e 28) – Documentos de
-    Saidas – COFINS"""
+    "Complemento da Consolidação Diária - Documentos de Saída - COFINS"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c605"
@@ -5191,14 +4833,12 @@ class RegistroC605(models.AbstractModel):
 
     VL_BC_COFINS = fields.Monetary(
         string="Valor da base de cálculo da COFINS",
-        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     ALIQ_COFINS = fields.Float(
         string="Alíquota da COFINS (em percentual)",
-        required=True,
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
@@ -5208,10 +4848,7 @@ class RegistroC605(models.AbstractModel):
     )
 
     VL_COFINS = fields.Monetary(
-        string="Valor da COFINS",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
+        string="Valor da COFINS", xsd_type="TDec_1602", currency_field="brl_currency_id"
     )
 
     COD_CTA = fields.Char(
@@ -5226,10 +4863,10 @@ class RegistroC605(models.AbstractModel):
         required=True,
         ondelete="cascade",
         help=(
-            "Consolidação Diária de Notas Fiscais/Contas de Energia Elétrica (Código "
-            "06), Nota Fiscal/Conta de Fornecimento d´água (Código 29) e Nota "
-            "Fiscal/Conta de Fornecimento de Gás (Código 28) (Empresas Obrigadas ou Não"
-            " Obrigadas Ao Convenio ICMS 115/03) - - Documentos de Saídas"
+            "Consolidação Diária de Notas Fiscais/Contas de Energia Elétrica, Nota "
+            "Fiscal/Conta de Fornecimento d´água e Nota Fiscal/Conta de Fornecimento de"
+            " Gás (Empresas Obrigadas ou Não Obrigadas Ao Convenio ICMS 115/03) - "
+            "Documentos de Saídas"
         ),
     )
 
@@ -5249,13 +4886,7 @@ class RegistroC609(models.AbstractModel):
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil"
-        ),
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_C609_ids_RegistroC600_id = fields.Many2one(
@@ -5264,403 +4895,16 @@ class RegistroC609(models.AbstractModel):
         required=True,
         ondelete="cascade",
         help=(
-            "Consolidação Diária de Notas Fiscais/Contas de Energia Elétrica (Código "
-            "06), Nota Fiscal/Conta de Fornecimento d´água (Código 29) e Nota "
-            "Fiscal/Conta de Fornecimento de Gás (Código 28) (Empresas Obrigadas ou Não"
-            " Obrigadas Ao Convenio ICMS 115/03) - - Documentos de Saídas"
+            "Consolidação Diária de Notas Fiscais/Contas de Energia Elétrica, Nota "
+            "Fiscal/Conta de Fornecimento d´água e Nota Fiscal/Conta de Fornecimento de"
+            " Gás (Empresas Obrigadas ou Não Obrigadas Ao Convenio ICMS 115/03) - "
+            "Documentos de Saídas"
         ),
-    )
-
-
-class RegistroC800(models.AbstractModel):
-    "Cupom Fiscal Eletrônico – CF-e (Código 59)"
-
-    _description = textwrap.dedent(f"    {__doc__}")
-    _name = "l10n_br_sped.efd_pis_cofins.6.c800"
-    _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
-    _sped_level = 3
-
-    COD_MOD = fields.Char(
-        string="Código do modelo do documento fiscal",
-        required=True,
-        sped_length="2",
-        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
-    )
-
-    COD_SIT = fields.Char(
-        string="Código da situação do documento fiscal",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="2",
-        help="Código da situação do documento fiscal, conforme a Tabela 4.1.2",
-    )
-
-    NUM_CFE = fields.Char(
-        string="Número do Cupom Fiscal Eletrônico",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="9",
-    )
-
-    DT_DOC = fields.Date(
-        string="Data da emissão do Cupom Fiscal Eletrônico",
-        required=True,
-        sped_length="8",
-    )
-
-    VL_CFE = fields.Monetary(
-        string="Valor total do Cupom Fiscal Eletrônico",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    VL_PIS = fields.Monetary(
-        string="Valor total do PIS",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    VL_COFINS = fields.Monetary(
-        string="Valor total da COFINS",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    CNPJ_CPF = fields.Char(
-        string="CNPJ ou CPF do destinatário", xsd_type="numeric_code", sped_length="14"
-    )
-
-    NR_SAT = fields.Char(
-        string="Número de Série do equipamento SAT",
-        xsd_type="numeric_code",
-        sped_length="9",
-    )
-
-    CHV_CFE = fields.Char(
-        string="Chave do Cupom Fiscal Eletrônico",
-        xsd_type="numeric_code",
-        sped_length="44",
-    )
-
-    VL_DESC = fields.Monetary(
-        string="Valor total do desconto/exclusão sobre item",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    VL_MERC = fields.Monetary(
-        string="Valor total das mercadorias e serviços",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    VL_OUT_DA = fields.Monetary(
-        string="Valor de outras desp",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help="Valor de outras desp. Acessórias (acréscimo)",
-    )
-
-    VL_ICMS = fields.Monetary(
-        string="Valor do ICMS", xsd_type="TDec_1602", currency_field="brl_currency_id"
-    )
-
-    VL_PIS_ST = fields.Monetary(
-        string="Valor total do PIS retido por subst",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help="Valor total do PIS retido por subst. trib.",
-    )
-
-    VL_COFINS_ST = fields.Monetary(
-        string="Valor total da COFINS retido por subst",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help="Valor total da COFINS retido por subst. trib.",
-    )
-
-    reg_C800_ids_RegistroC010_id = fields.Many2one(
-        comodel_name="l10n_br_sped.efd_pis_cofins.c010",
-        string="Identificação do Estabelecimento",
-        required=True,
-        ondelete="cascade",
-    )
-
-    reg_C810_ids = fields.One2many(
-        "l10n_br_sped.efd_pis_cofins.c810",
-        "reg_C810_ids_RegistroC800_id",
-        string="C810 Detalhamento",
-        sped_card="1:N",
-        help=(
-            "C810 Detalhamento do Cupom Fiscal Eletrônico – CF-e (Código 59) – "
-            "PIS/PASEP e COFINS"
-        ),
-    )
-
-    reg_C820_ids = fields.One2many(
-        "l10n_br_sped.efd_pis_cofins.c820",
-        "reg_C820_ids_RegistroC800_id",
-        string="C820 Detalhamento",
-        sped_card="1:N",
-        help=(
-            "C820 Detalhamento do Cupom Fiscal Eletrônico – CF-e (código 59) – "
-            "PIS/PASEP e COFINS Apurado por Unidade de Medida de Produto"
-        ),
-    )
-
-    reg_C830_ids = fields.One2many(
-        "l10n_br_sped.efd_pis_cofins.c830",
-        "reg_C830_ids_RegistroC800_id",
-        string="C830 Processo Referenciado",
-        sped_card="1:N",
-    )
-
-
-class RegistroC810(models.AbstractModel):
-    """Detalhamento do Cupom Fiscal Eletrônico – CF-e (Código 59) – PIS/PASEP e
-    COFINS"""
-
-    _description = textwrap.dedent(f"    {__doc__}")
-    _name = "l10n_br_sped.efd_pis_cofins.6.c810"
-    _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
-    _sped_level = 4
-
-    CFOP = fields.Char(
-        string="Código fiscal de operação e prestação",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="4",
-    )
-
-    VL_ITEM = fields.Monetary(
-        string="Valor total dos itens",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    COD_ITEM = fields.Char(
-        string="Código do item",
-        sped_length="6",
-        help="Código do item (campo 02 do Registro 0200)",
-    )
-
-    CST_PIS = fields.Char(
-        string="Código da Situação Tributária referente",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="2*",
-        help="Código da Situação Tributária referente ao PIS/PASEP",
-    )
-
-    VL_BC_PIS = fields.Monetary(
-        string="Valor da base de cálculo do PIS/PASEP",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
-        sped_length="8",
-        xsd_type="TDec_1604",
-        digits=(
-            16,
-            4,
-        ),
-        help="Alíquota do PIS/PASEP (em percentual)",
-    )
-
-    VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    CST_COFINS = fields.Char(
-        string="Código da Situação Tributária referente a COFINS",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="2*",
-    )
-
-    VL_BC_COFINS = fields.Monetary(
-        string="Valor da base de cálculo da COFINS",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    ALIQ_COFINS = fields.Float(
-        string="Alíquota da COFINS (em percentual)",
-        sped_length="8",
-        xsd_type="TDec_1604",
-        digits=(
-            16,
-            4,
-        ),
-    )
-
-    VL_COFINS = fields.Monetary(
-        string="Valor da COFINS", xsd_type="TDec_1602", currency_field="brl_currency_id"
-    )
-
-    COD_CTA = fields.Char(
-        string="Código",
-        sped_length="255",
-        help="Código da conta analítica contábil debitada/creditada",
-    )
-
-    reg_C810_ids_RegistroC800_id = fields.Many2one(
-        comodel_name="l10n_br_sped.efd_pis_cofins.c800",
-        string="Cupom Fiscal Eletrônico – CF-e",
-        required=True,
-        ondelete="cascade",
-        help="Cupom Fiscal Eletrônico – CF-e (Código 59)",
-    )
-
-
-class RegistroC820(models.AbstractModel):
-    """Detalhamento do Cupom Fiscal Eletrônico – CF-e (código 59) – PIS/PASEP e
-    COFINS Apurado por Unidade de Medida de Produto"""
-
-    _description = textwrap.dedent(f"    {__doc__}")
-    _name = "l10n_br_sped.efd_pis_cofins.6.c820"
-    _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
-    _sped_level = 4
-
-    CFOP = fields.Char(
-        string="Código fiscal de operação e prestação",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="4*",
-    )
-
-    VL_ITEM = fields.Monetary(
-        string="Valor total dos itens",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    COD_ITEM = fields.Char(
-        string="Código do item",
-        sped_length="6",
-        help="Código do item (campo 02 do Registro 0200)",
-    )
-
-    CST_PIS = fields.Char(
-        string="Código da Situação Tributária referente",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="2*",
-        help="Código da Situação Tributária referente ao PIS/PASEP",
-    )
-
-    QUANT_BC_PIS = fields.Float(
-        string="Base de cálculo em quantidade",
-        xsd_type="TDec_1603",
-        digits=(
-            16,
-            3,
-        ),
-        help="Base de cálculo em quantidade - PIS/PASEP",
-    )
-
-    ALIQ_PIS_QUANT = fields.Float(
-        string="Alíquota do PIS/PASEP (em reais)",
-        xsd_type="TDec_1604",
-        digits=(
-            16,
-            4,
-        ),
-    )
-
-    VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    CST_COFINS = fields.Char(
-        string="Código da Situação Tributária referente a COFINS",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="2*",
-    )
-
-    QUANT_BC_COFINS = fields.Float(
-        string="Base de cálculo em quantidade – COFINS",
-        xsd_type="TDec_1603",
-        digits=(
-            16,
-            3,
-        ),
-    )
-
-    ALIQ_COFINS_QUANT = fields.Float(
-        string="Alíquota da COFINS (em reais)",
-        xsd_type="TDec_1604",
-        digits=(
-            16,
-            4,
-        ),
-    )
-
-    VL_COFINS = fields.Monetary(
-        string="Valor da COFINS", xsd_type="TDec_1602", currency_field="brl_currency_id"
-    )
-
-    COD_CTA = fields.Char(
-        string="Código",
-        sped_length="255",
-        help="Código da conta analítica contábil debitada/creditada",
-    )
-
-    reg_C820_ids_RegistroC800_id = fields.Many2one(
-        comodel_name="l10n_br_sped.efd_pis_cofins.c800",
-        string="Cupom Fiscal Eletrônico – CF-e",
-        required=True,
-        ondelete="cascade",
-        help="Cupom Fiscal Eletrônico – CF-e (Código 59)",
-    )
-
-
-class RegistroC830(models.AbstractModel):
-    "Processo Referenciado"
-
-    _description = textwrap.dedent(f"    {__doc__}")
-    _name = "l10n_br_sped.efd_pis_cofins.6.c830"
-    _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
-    _sped_level = 4
-
-    NUM_PROC = fields.Char(
-        string="Identificação do processo ou ato concessório",
-        required=True,
-        sped_length="2",
-    )
-
-    IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil 9 - Outros."
-        ),
-    )
-
-    reg_C830_ids_RegistroC800_id = fields.Many2one(
-        comodel_name="l10n_br_sped.efd_pis_cofins.c800",
-        string="Cupom Fiscal Eletrônico – CF-e",
-        required=True,
-        ondelete="cascade",
-        help="Cupom Fiscal Eletrônico – CF-e (Código 59)",
     )
 
 
 class RegistroC860(models.AbstractModel):
-    """Identificação do Equipamento SAT- CF-e (Código 59) (*) A partir da
-    versão 2.11 do PVA (Período de apuração a partir de maio/2015)"""
+    "Identificação do Equipamento SAT-CF-e"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c860"
@@ -5670,27 +4914,38 @@ class RegistroC860(models.AbstractModel):
     COD_MOD = fields.Char(
         string="Código do modelo do documento fiscal",
         required=True,
-        sped_length="2",
-        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
+        sped_length="2*",
+        help=(
+            "Código do modelo do documento fiscal, conforme a Tabela 4.1.1 (Código 59 -"
+            " Cupom Fiscal Eletrônico CF-e)"
+        ),
     )
 
     NR_SAT = fields.Char(
-        string="Número de Série do equipamento SAT",
+        string="Número de série do equipamento (SAT)",
         required=True,
         xsd_type="numeric_code",
         sped_length="9",
     )
 
     DT_DOC = fields.Date(
-        string="Data de emissão dos documentos fiscais", sped_length="8"
+        string="Data de emissão do(s) documento(s) fiscal(is)",
+        required=True,
+        sped_length="8*",
     )
 
     DOC_INI = fields.Char(
-        string="Número do documento inicial", xsd_type="numeric_code", sped_length="9"
+        string="Número do documento inicial",
+        required=True,
+        xsd_type="numeric_code",
+        sped_length="9",
     )
 
     DOC_FIM = fields.Char(
-        string="Número do documento final", xsd_type="numeric_code", sped_length="9"
+        string="Número do documento final",
+        required=True,
+        xsd_type="numeric_code",
+        sped_length="9",
     )
 
     reg_C860_ids_RegistroC010_id = fields.Many2one(
@@ -5703,20 +4958,23 @@ class RegistroC860(models.AbstractModel):
     reg_C870_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.c870",
         "reg_C870_ids_RegistroC860_id",
-        string="C870 Detalhamento do Cupom Fiscal Eletrônico",
+        string="C870 Resumo Diário de Documentos Emitidos",
         sped_card="1:N",
         help=(
-            "C870 Detalhamento do Cupom Fiscal Eletrônico (Código 59) – PIS/PASEP e "
-            "COFINS"
+            "C870 Resumo Diário de Documentos Emitidos por Equipamento SAT-CF-e (Código"
+            " 59) - PIS/Pasep e Cofins"
         ),
     )
 
     reg_C880_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.c880",
         "reg_C880_ids_RegistroC860_id",
-        string="C880 Detalhamento do Cupom Fiscal Eletrônico",
+        string="C880 Resumo Diário de Documentos Emitidos",
         sped_card="1:N",
-        help="C880 Detalhamento do Cupom Fiscal Eletrônico (Código 59) – PIS/PASEP",
+        help=(
+            "C880 Resumo Diário de Documentos Emitidos por Equipamento SAT-CF-e (Código"
+            " 59) - PIS/Pasep e Cofins Apurado por Unidade de Medida de Produto"
+        ),
     )
 
     reg_C890_ids = fields.One2many(
@@ -5728,8 +4986,8 @@ class RegistroC860(models.AbstractModel):
 
 
 class RegistroC870(models.AbstractModel):
-    """Detalhamento do Cupom Fiscal Eletrônico (Código 59) – PIS/PASEP e
-    COFINS"""
+    """Resumo Diário de Documentos Emitidos por Equipamento SAT-CF-e (Código
+    59) - PIS/Pasep e Cofins"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c870"
@@ -5738,13 +4996,13 @@ class RegistroC870(models.AbstractModel):
 
     COD_ITEM = fields.Char(
         string="Código do item",
+        required=True,
         sped_length="6",
         help="Código do item (campo 02 do Registro 0200)",
     )
 
     CFOP = fields.Char(
-        string="Código fiscal de operação e prestação",
-        required=True,
+        string="Código Fiscal de Operação e Prestação",
         xsd_type="numeric_code",
         sped_length="4*",
     )
@@ -5757,7 +5015,7 @@ class RegistroC870(models.AbstractModel):
     )
 
     VL_DESC = fields.Monetary(
-        string="Valor da exclusão/desconto comercial dos itens",
+        string="Valor da exclusão / desconto comercial dos itens",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -5767,28 +5025,28 @@ class RegistroC870(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help="Código da Situação Tributária referente ao PIS/PASEP",
+        help="Código da Situação Tributária referente ao PIS/Pasep",
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Valor da base de cálculo do PIS/PASEP",
+        string="Valor da base de cálculo do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -5828,18 +5086,15 @@ class RegistroC870(models.AbstractModel):
 
     reg_C870_ids_RegistroC860_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.c860",
-        string="Identificação do Equipamento SAT- CF-e",
+        string="Identificação do Equipamento SAT-CF-e",
         required=True,
         ondelete="cascade",
-        help=(
-            "Identificação do Equipamento SAT- CF-e (Código 59) (*) A partir da versão "
-            "2.11 do PVA (Período de apuração a partir de maio/2015)"
-        ),
     )
 
 
 class RegistroC880(models.AbstractModel):
-    "Detalhamento do Cupom Fiscal Eletrônico (Código 59) – PIS/PASEP"
+    """Resumo Diário de Documentos Emitidos por Equipamento SAT-CF-e (Código
+    59) - PIS/Pasep e Cofins Apurado por Unidade de Medida de Produto"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.c880"
@@ -5848,13 +5103,13 @@ class RegistroC880(models.AbstractModel):
 
     COD_ITEM = fields.Char(
         string="Código do item",
+        required=True,
         sped_length="6",
         help="Código do item (campo 02 do Registro 0200)",
     )
 
     CFOP = fields.Char(
-        string="Código fiscal de operação e prestação",
-        required=True,
+        string="Código Fiscal de Operação e Prestação",
         xsd_type="numeric_code",
         sped_length="4*",
     )
@@ -5867,7 +5122,7 @@ class RegistroC880(models.AbstractModel):
     )
 
     VL_DESC = fields.Monetary(
-        string="Valor da exclusão/desconto comercial dos itens",
+        string="Valor da exclusão / desconto comercial dos itens",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -5877,7 +5132,7 @@ class RegistroC880(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help="Código da Situação Tributária referente ao PIS/PASEP",
+        help="Código da Situação Tributária referente ao PIS/Pasep",
     )
 
     QUANT_BC_PIS = fields.Float(
@@ -5887,11 +5142,11 @@ class RegistroC880(models.AbstractModel):
             16,
             3,
         ),
-        help="Base de cálculo em quantidade - PIS/PASEP",
+        help="Base de cálculo em quantidade - PIS/Pasep",
     )
 
     ALIQ_PIS_QUANT = fields.Float(
-        string="Alíquota do PIS/PASEP (em reais)",
+        string="Alíquota do PIS (em reais)",
         xsd_type="TDec_1604",
         digits=(
             16,
@@ -5900,7 +5155,7 @@ class RegistroC880(models.AbstractModel):
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -5913,7 +5168,7 @@ class RegistroC880(models.AbstractModel):
     )
 
     QUANT_BC_COFINS = fields.Float(
-        string="Base de cálculo em quantidade – COFINS",
+        string="Base de cálculo em quantidade COFINS",
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -5942,13 +5197,9 @@ class RegistroC880(models.AbstractModel):
 
     reg_C880_ids_RegistroC860_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.c860",
-        string="Identificação do Equipamento SAT- CF-e",
+        string="Identificação do Equipamento SAT-CF-e",
         required=True,
         ondelete="cascade",
-        help=(
-            "Identificação do Equipamento SAT- CF-e (Código 59) (*) A partir da versão "
-            "2.11 do PVA (Período de apuração a partir de maio/2015)"
-        ),
     )
 
 
@@ -5967,24 +5218,14 @@ class RegistroC890(models.AbstractModel):
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil 9 - Outros."
-        ),
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_C890_ids_RegistroC860_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.c860",
-        string="Identificação do Equipamento SAT- CF-e",
+        string="Identificação do Equipamento SAT-CF-e",
         required=True,
         ondelete="cascade",
-        help=(
-            "Identificação do Equipamento SAT- CF-e (Código 59) (*) A partir da versão "
-            "2.11 do PVA (Período de apuração a partir de maio/2015)"
-        ),
     )
 
 
@@ -6008,29 +5249,24 @@ class RegistroD010(models.AbstractModel):
         "reg_D100_ids_RegistroD010_id",
         string="D100 Aquisição de Serviços de Transportes",
         sped_card="1:N",
-        help=(
-            "D100 Aquisição de Serviços de Transportes (Códigos 07, 08, 8B, 09, 10, 11,"
-            " 26, 27, 57, 63 e 67)."
-        ),
     )
 
     reg_D200_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.d200",
         "reg_D200_ids_RegistroD010_id",
-        string="D200 Resumo da Escrituração Diária – Prestação",
+        string="D200 Resumo da Escrituração Diária",
         sped_card="1:N",
         help=(
-            "D200 Resumo da Escrituração Diária – Prestação de Serviços de Transportes "
-            "(Códigos 07, 08, 8B, 09, 10, 11, 26, 27, 57, 63 e 67)."
+            "D200 Resumo da Escrituração Diária - Prestação de Serviços de Transportes"
         ),
     )
 
     reg_D300_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.d300",
         "reg_D300_ids_RegistroD010_id",
-        string="D300 Resumo da Escrituração Diária",
+        string="D300 Consolidação Diária",
         sped_card="1:N",
-        help="D300 Resumo da Escrituração Diária (Códigos 13, 14, 15, 16 e 18).",
+        help="D300 Consolidação Diária - Bilhetes de Passagem",
     )
 
     reg_D350_ids = fields.One2many(
@@ -6038,10 +5274,6 @@ class RegistroD010(models.AbstractModel):
         "reg_D350_ids_RegistroD010_id",
         string="D350 Resumo Diário de Cupom Fiscal Emitido por ECF",
         sped_card="1:N",
-        help=(
-            "D350 Resumo Diário de Cupom Fiscal Emitido por ECF (Códigos 2E, 13, 14, 15"
-            " e 16)"
-        ),
     )
 
     reg_D500_ids = fields.One2many(
@@ -6050,26 +5282,25 @@ class RegistroD010(models.AbstractModel):
         string="D500 Nota Fiscal de Serviço de Comunicação",
         sped_card="1:N",
         help=(
-            "D500 Nota Fiscal de Serviço de Comunicação (Código 21) e Serviço de "
-            "Telecomunicação (Código 22) - Operação de Aquisição com Direito a Crédito"
+            "D500 Nota Fiscal de Serviço de Comunicação e Serviço de Telecomunicação - "
+            "Operação de Aquisição com Direito a Crédito"
         ),
     )
 
     reg_D600_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.d600",
         "reg_D600_ids_RegistroD010_id",
-        string="D600 Consolidação da Prestação de Serviços – Notas",
+        string="D600 Consolidação da Prestação de Serviços",
         sped_card="1:N",
         help=(
-            "D600 Consolidação da Prestação de Serviços – Notas de Serviço de "
-            "Comunicação (Código 21) e de Serviço de Telecomunicação (Código 22)"
+            "D600 Consolidação da Prestação de Serviços - Notas de Serviço de "
+            "Comunicação e de Serviço de Telecomunicação"
         ),
     )
 
 
 class RegistroD100(models.AbstractModel):
-    """Aquisição de Serviços de Transportes (Códigos 07, 08, 8B, 09, 10, 11,
-    26, 27, 57, 63 e 67)."""
+    "Aquisição de Serviços de Transportes"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.d100"
@@ -6077,27 +5308,24 @@ class RegistroD100(models.AbstractModel):
     _sped_level = 3
 
     IND_OPER = fields.Char(
-        string="Indicador do tipo de operação",
-        required=True,
-        sped_length="1*",
-        help="Indicador do tipo de operação: 0- Aquisição",
+        string="Indicador do tipo de operação", required=True, sped_length="1*"
     )
 
     IND_EMIT = fields.Char(
         string="Indicador do emitente do documento fiscal",
         required=True,
         sped_length="1*",
-        help=(
-            "Indicador do emitente do documento fiscal: 0- Emissão Própria; 1- Emissão "
-            "por Terceiros"
-        ),
     )
 
     COD_PART = fields.Char(
         string="Código do participante",
         required=True,
         sped_length="6",
-        help="Código do participante (campo 02 do Registro 0150).",
+        help=(
+            "Código do participante (campo 02 do Registro 0150): do prestador de "
+            "serviço, no caso de aquisição de serviço; tomador do serviço, no caso de "
+            "prestação de serviços"
+        ),
     )
 
     COD_MOD = fields.Char(
@@ -6133,16 +5361,14 @@ class RegistroD100(models.AbstractModel):
     )
 
     DT_DOC = fields.Date(
-        string="Data de referência/emissão dos documentos fiscais",
-        required=True,
-        sped_length="8*",
+        string="Data da emissão do documento fiscal", required=True, sped_length="8*"
     )
 
     DT_A_P = fields.Date(
         string="Data da aquisição ou da prestação do serviço", sped_length="8*"
     )
 
-    TP_CT_E = fields.Char(
+    TP_CTE = fields.Char(
         string="Tipo de Conhecimento",
         xsd_type="numeric_code",
         sped_length="1*",
@@ -6158,8 +5384,7 @@ class RegistroD100(models.AbstractModel):
         sped_length="44*",
         help=(
             "Chave do CT-e de referência cujos valores foram complementados (opção “1” "
-            "do campo anterior) ou cujo débito foi anulado (opção “2” do campo "
-            "anterior)."
+            "do campo anterior) ou cujo débito foi anulado(opção “2” do campo anterior)"
         ),
     )
 
@@ -6177,13 +5402,7 @@ class RegistroD100(models.AbstractModel):
     )
 
     IND_FRT = fields.Char(
-        string="Indicador do tipo do frete",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador do tipo do frete: 0- Por conta de terceiros; 1- Por conta do "
-            "emitente; 2- Por conta do destinatário; 9- Sem cobrança de frete."
-        ),
+        string="Indicador do tipo do frete", required=True, sped_length="1*"
     )
 
     VL_SERV = fields.Monetary(
@@ -6234,17 +5453,17 @@ class RegistroD100(models.AbstractModel):
     reg_D101_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.d101",
         "reg_D101_ids_RegistroD100_id",
-        string="D101 Complemento do Documento",
+        string="D101 Complemento do Documento de Transporte",
         sped_card="1:N",
-        help="D101 Complemento do Documento de Transporte – PIS/PASEP",
+        help="D101 Complemento do Documento de Transporte - PIS/Pasep",
     )
 
     reg_D105_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.d105",
         "reg_D105_ids_RegistroD100_id",
-        string="D105 Complemento do Documento",
+        string="D105 Complemento do Documento de Transporte",
         sped_card="1:N",
-        help="D105 Complemento do Documento de Transporte – COFINS",
+        help="D105 Complemento do Documento de Transporte - COFINS",
     )
 
     reg_D111_ids = fields.One2many(
@@ -6256,7 +5475,7 @@ class RegistroD100(models.AbstractModel):
 
 
 class RegistroD101(models.AbstractModel):
-    "Complemento do Documento de Transporte – PIS/PASEP"
+    "Complemento do Documento de Transporte - PIS/Pasep"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.d101"
@@ -6264,20 +5483,7 @@ class RegistroD101(models.AbstractModel):
     _sped_level = 4
 
     IND_NAT_FRT = fields.Char(
-        string="Indicador da Natureza do Frete Contratado",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da Natureza do Frete Contratado, referente a: 0 – Operações de "
-            "vendas, com ônus suportado pelo estabelecimento vendedor; 1 – Operações de"
-            " vendas, com ônus suportado pelo adquirente; 2 – Operações de compras "
-            "(bens para revenda, matérias- prima e outros produtos, geradores de "
-            "crédito); 3 – Operações de compras (bens para revenda, matérias- prima e "
-            "outros produtos, não geradores de crédito); 4 – Transferência de produtos "
-            "acabados entre estabelecimentos da pessoa jurídica; 5 – Transferência de "
-            "produtos em elaboração entre estabelecimentos da pessoa jurídica 9 – "
-            "Outras."
-        ),
+        string="Indicador da Natureza do Frete", required=True, sped_length="1*"
     )
 
     VL_ITEM = fields.Monetary(
@@ -6292,37 +5498,37 @@ class RegistroD101(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help="Código da Situação Tributária referente ao PIS/PASEP",
+        help="Código da Situação Tributária referente ao PIS/Pasep",
     )
 
     NAT_BC_CRED = fields.Char(
-        string="Código da Base de Cálculo do Crédito",
-        sped_length="2*",
+        string="Código da Natureza da Base de Cálculo do Crédito",
+        sped_length="2",
         help=(
-            "Código da Base de Cálculo do Crédito, conforme a Tabela indicada no item "
-            "4.3.7."
+            "Código da Natureza da Base de Cálculo do Crédito, conforme a Tabela "
+            "indicada no item 4.3.7"
         ),
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Valor da base de cálculo do PIS/PASEP",
+        string="Valor da base de cálculo do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -6338,15 +5544,11 @@ class RegistroD101(models.AbstractModel):
         string="Aquisição de Serviços de Transportes",
         required=True,
         ondelete="cascade",
-        help=(
-            "Aquisição de Serviços de Transportes (Códigos 07, 08, 8B, 09, 10, 11, 26, "
-            "27, 57, 63 e 67)."
-        ),
     )
 
 
 class RegistroD105(models.AbstractModel):
-    "Complemento do Documento de Transporte – COFINS"
+    "Complemento do Documento de Transporte - COFINS"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.d105"
@@ -6354,20 +5556,7 @@ class RegistroD105(models.AbstractModel):
     _sped_level = 4
 
     IND_NAT_FRT = fields.Char(
-        string="Indicador da Natureza do Frete Contratado",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da Natureza do Frete Contratado, referente a: 0 – Operações de "
-            "vendas, com ônus suportado pelo estabelecimento vendedor; 1 – Operações de"
-            " vendas, com ônus suportado pelo adquirente; 2 – Operações de compras "
-            "(bens para revenda, matérias- prima e outros produtos, geradores de "
-            "crédito); 3 – Operações de compras (bens para revenda, matérias- prima e "
-            "outros produtos, não geradores de crédito); 4 – Transferência de produtos "
-            "acabados entre estabelecimentos da pessoa jurídica 5 – Transferência de "
-            "produtos em elaboração entre estabelecimentos da pessoa jurídica 9 – "
-            "Outras."
-        ),
+        string="Indicador da Natureza do Frete", required=True, sped_length="1*"
     )
 
     VL_ITEM = fields.Monetary(
@@ -6385,11 +5574,11 @@ class RegistroD105(models.AbstractModel):
     )
 
     NAT_BC_CRED = fields.Char(
-        string="Código da base de Cálculo do Crédito",
-        sped_length="2*",
+        string="Código da Natureza da base de Cálculo do Crédito",
+        sped_length="2",
         help=(
-            "Código da base de Cálculo do Crédito, conforme a Tabela indicada no item "
-            "4.3.7"
+            "Código da Natureza da base de Cálculo do Crédito, conforme a Tabela "
+            "indicada no item 4.3.7"
         ),
     )
 
@@ -6424,10 +5613,6 @@ class RegistroD105(models.AbstractModel):
         string="Aquisição de Serviços de Transportes",
         required=True,
         ondelete="cascade",
-        help=(
-            "Aquisição de Serviços de Transportes (Códigos 07, 08, 8B, 09, 10, 11, 26, "
-            "27, 57, 63 e 67)."
-        ),
     )
 
 
@@ -6446,13 +5631,7 @@ class RegistroD111(models.AbstractModel):
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil 9 – Outros."
-        ),
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_D111_ids_RegistroD100_id = fields.Many2one(
@@ -6460,16 +5639,11 @@ class RegistroD111(models.AbstractModel):
         string="Aquisição de Serviços de Transportes",
         required=True,
         ondelete="cascade",
-        help=(
-            "Aquisição de Serviços de Transportes (Códigos 07, 08, 8B, 09, 10, 11, 26, "
-            "27, 57, 63 e 67)."
-        ),
     )
 
 
 class RegistroD200(models.AbstractModel):
-    """Resumo da Escrituração Diária – Prestação de Serviços de Transportes
-    (Códigos 07, 08, 8B, 09, 10, 11, 26, 27, 57, 63 e 67)."""
+    """Resumo da Escrituração Diária - Prestação de Serviços de Transportes"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.d200"
@@ -6496,25 +5670,19 @@ class RegistroD200(models.AbstractModel):
     SUB = fields.Char(string="Subsérie do documento fiscal", sped_length="3")
 
     NUM_DOC_INI = fields.Char(
-        string="Número do documento fiscal inicial emitido",
+        string="Número do documento fiscal inicial",
         required=True,
         xsd_type="numeric_code",
         sped_length="9",
-        help=(
-            "Número do documento fiscal inicial emitido no período (mesmo modelo, série"
-            " e subsérie)."
-        ),
+        help="Número do documento fiscal inicial (mesmo modelo, série e subsérie)",
     )
 
     NUM_DOC_FIN = fields.Char(
-        string="Número do documento fiscal final emitido",
+        string="Número do documento fiscal final",
         required=True,
         xsd_type="numeric_code",
         sped_length="9",
-        help=(
-            "Número do documento fiscal final emitido no período (mesmo modelo, série e"
-            " subsérie)."
-        ),
+        help="Número do documento fiscal final (mesmo modelo, série e subsérie)",
     )
 
     CFOP = fields.Char(
@@ -6557,15 +5725,17 @@ class RegistroD200(models.AbstractModel):
     reg_D201_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.d201",
         "reg_D201_ids_RegistroD200_id",
-        string="D201 Totalização do Resumo Diário – PIS/PASEP",
+        string="D201 Totalização do Resumo Diário",
         sped_card="1:N",
+        help="D201 Totalização do Resumo Diário - PIS/Pasep",
     )
 
     reg_D205_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.d205",
         "reg_D205_ids_RegistroD200_id",
-        string="D205 Totalização do Resumo Diário – COFINS",
+        string="D205 Totalização do Resumo Diário",
         sped_card="1:N",
+        help="D205 Totalização do Resumo Diário - COFINS",
     )
 
     reg_D209_ids = fields.One2many(
@@ -6577,7 +5747,7 @@ class RegistroD200(models.AbstractModel):
 
 
 class RegistroD201(models.AbstractModel):
-    "Totalização do Resumo Diário – PIS/PASEP"
+    "Totalização do Resumo Diário - PIS/Pasep"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.d201"
@@ -6589,7 +5759,7 @@ class RegistroD201(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help="Código da Situação Tributária referente ao PIS/PASEP",
+        help="Código da Situação Tributária referente ao PIS/Pasep",
     )
 
     VL_ITEM = fields.Monetary(
@@ -6600,24 +5770,24 @@ class RegistroD201(models.AbstractModel):
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Valor da base de cálculo do PIS/PASEP",
+        string="Valor da base de cálculo do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -6630,18 +5800,15 @@ class RegistroD201(models.AbstractModel):
 
     reg_D201_ids_RegistroD200_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.d200",
-        string="Resumo da Escrituração Diária – Prestação",
+        string="Resumo da Escrituração Diária",
         required=True,
         ondelete="cascade",
-        help=(
-            "Resumo da Escrituração Diária – Prestação de Serviços de Transportes "
-            "(Códigos 07, 08, 8B, 09, 10, 11, 26, 27, 57, 63 e 67)."
-        ),
+        help="Resumo da Escrituração Diária - Prestação de Serviços de Transportes",
     )
 
 
 class RegistroD205(models.AbstractModel):
-    "Totalização do Resumo Diário – COFINS"
+    "Totalização do Resumo Diário - COFINS"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.d205"
@@ -6651,8 +5818,8 @@ class RegistroD205(models.AbstractModel):
     CST_COFINS = fields.Char(
         string="Código da Situação Tributária referente a COFINS",
         required=True,
+        xsd_type="numeric_code",
         sped_length="2*",
-        help="Código da Situação Tributária referente a COFINS. N",
     )
 
     VL_ITEM = fields.Monetary(
@@ -6690,13 +5857,10 @@ class RegistroD205(models.AbstractModel):
 
     reg_D205_ids_RegistroD200_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.d200",
-        string="Resumo da Escrituração Diária – Prestação",
+        string="Resumo da Escrituração Diária",
         required=True,
         ondelete="cascade",
-        help=(
-            "Resumo da Escrituração Diária – Prestação de Serviços de Transportes "
-            "(Códigos 07, 08, 8B, 09, 10, 11, 26, 27, 57, 63 e 67)."
-        ),
+        help="Resumo da Escrituração Diária - Prestação de Serviços de Transportes",
     )
 
 
@@ -6715,29 +5879,20 @@ class RegistroD209(models.AbstractModel):
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil 9 – Outros."
-        ),
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_D209_ids_RegistroD200_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.d200",
-        string="Resumo da Escrituração Diária – Prestação",
+        string="Resumo da Escrituração Diária",
         required=True,
         ondelete="cascade",
-        help=(
-            "Resumo da Escrituração Diária – Prestação de Serviços de Transportes "
-            "(Códigos 07, 08, 8B, 09, 10, 11, 26, 27, 57, 63 e 67)."
-        ),
+        help="Resumo da Escrituração Diária - Prestação de Serviços de Transportes",
     )
 
 
 class RegistroD300(models.AbstractModel):
-    "Resumo da Escrituração Diária (Códigos 13, 14, 15, 16 e 18)."
+    "Consolidação Diária - Bilhetes de Passagem"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.d300"
@@ -6748,7 +5903,7 @@ class RegistroD300(models.AbstractModel):
         string="Código do modelo do documento fiscal",
         required=True,
         sped_length="2*",
-        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1.",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
     )
 
     SER = fields.Char(string="Série do documento fiscal", sped_length="4")
@@ -6762,18 +5917,15 @@ class RegistroD300(models.AbstractModel):
         xsd_type="numeric_code",
         sped_length="6",
         help=(
-            "Número do primeiro documento fiscal emitido no período (mesmo modelo, "
-            "série e subsérie)"
+            "Número do primeiro documento fiscal emitido (mesmo modelo, série e "
+            "subsérie)"
         ),
     )
 
-    NUM_DOC_FIN = fields.Char(
+    NUM_DOC_FIN = fields.Integer(
         string="Número do último documento fiscal emitido",
-        xsd_type="numeric_code",
-        sped_length="6",
         help=(
-            "Número do último documento fiscal emitido no período (mesmo modelo, série "
-            "e subsérie)"
+            "Número do último documento fiscal emitido (mesmo modelo, série e subsérie)"
         ),
     )
 
@@ -6812,28 +5964,28 @@ class RegistroD300(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help="Código da Situação Tributária referente ao PIS/PASEP",
+        help="Código da Situação Tributária referente ao PIS/Pasep",
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Valor da base de cálculo do PIS/PASEP",
+        string="Valor da base de cálculo do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -6901,27 +6053,20 @@ class RegistroD309(models.AbstractModel):
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil 9 – Outros."
-        ),
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_D309_ids_RegistroD300_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.d300",
-        string="Resumo da Escrituração Diária",
+        string="Consolidação Diária",
         required=True,
         ondelete="cascade",
-        help="Resumo da Escrituração Diária (Códigos 13, 14, 15, 16 e 18).",
+        help="Consolidação Diária - Bilhetes de Passagem",
     )
 
 
 class RegistroD350(models.AbstractModel):
-    """Resumo Diário de Cupom Fiscal Emitido por ECF (Códigos 2E, 13, 14, 15 e
-    16)"""
+    "Resumo Diário de Cupom Fiscal Emitido por ECF"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.d350"
@@ -6967,7 +6112,7 @@ class RegistroD350(models.AbstractModel):
         string="Número do Contador de Ordem de Operação",
         required=True,
         xsd_type="numeric_code",
-        sped_length="6",
+        sped_length="9",
         help=(
             "Número do Contador de Ordem de Operação do último documento emitido no "
             "dia. (Número do COO na Redução Z)"
@@ -6996,28 +6141,28 @@ class RegistroD350(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help="Código da Situação Tributária referente ao PIS/PASEP",
+        help="Código da Situação Tributária referente ao PIS/Pasep",
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Valor da base de cálculo do PIS/PASEP",
+        string="Valor da base de cálculo do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     QUANT_BC_PIS = fields.Float(
-        string="Quantidade – Base de cálculo PIS/PASEP",
+        string="Base de cálculo em quantidade PIS/Pasep",
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -7026,7 +6171,7 @@ class RegistroD350(models.AbstractModel):
     )
 
     ALIQ_PIS_QUANT = fields.Float(
-        string="Alíquota do PIS/PASEP (em reais)",
+        string="Alíquota do PIS/Pasep (em reais)",
         xsd_type="TDec_1604",
         digits=(
             16,
@@ -7035,7 +6180,7 @@ class RegistroD350(models.AbstractModel):
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -7064,7 +6209,7 @@ class RegistroD350(models.AbstractModel):
     )
 
     QUANT_BC_COFINS = fields.Float(
-        string="Quantidade – Base de cálculo da COFINS",
+        string="Base de cálculo em quantidade COFINS",
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -7121,13 +6266,7 @@ class RegistroD359(models.AbstractModel):
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil 9 – Outros."
-        ),
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_D359_ids_RegistroD350_id = fields.Many2one(
@@ -7135,17 +6274,12 @@ class RegistroD359(models.AbstractModel):
         string="Resumo Diário de Cupom Fiscal Emitido por ECF",
         required=True,
         ondelete="cascade",
-        help=(
-            "Resumo Diário de Cupom Fiscal Emitido por ECF (Códigos 2E, 13, 14, 15 e "
-            "16)"
-        ),
     )
 
 
 class RegistroD500(models.AbstractModel):
-    """Nota Fiscal de Serviço de Comunicação (Código 21) e Serviço de
-    Telecomunicação (Código 22) - Operação de Aquisição com Direito a
-    Crédito"""
+    """Nota Fiscal de Serviço de Comunicação e Serviço de Telecomunicação -
+    Operação de Aquisição com Direito a Crédito"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.d500"
@@ -7153,20 +6287,13 @@ class RegistroD500(models.AbstractModel):
     _sped_level = 3
 
     IND_OPER = fields.Char(
-        string="Indicador do tipo de operação",
-        required=True,
-        sped_length="1*",
-        help="Indicador do tipo de operação: 0- Aquisição",
+        string="Indicador do tipo de operação", required=True, sped_length="1*"
     )
 
     IND_EMIT = fields.Char(
         string="Indicador do emitente do documento fiscal",
         required=True,
         sped_length="1*",
-        help=(
-            "Indicador do emitente do documento fiscal: 0- Emissão própria; 1- "
-            "Terceiros"
-        ),
     )
 
     COD_PART = fields.Char(
@@ -7174,7 +6301,7 @@ class RegistroD500(models.AbstractModel):
         required=True,
         sped_length="6",
         help=(
-            "Código do participante prestador do serviço (campo 02 do Registro 0150)."
+            "Código do participante prestador do serviço (campo 02 do Registro 0150)"
         ),
     )
 
@@ -7182,7 +6309,7 @@ class RegistroD500(models.AbstractModel):
         string="Código do modelo do documento fiscal",
         required=True,
         sped_length="2*",
-        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1.",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
     )
 
     COD_SIT = fields.Char(
@@ -7190,7 +6317,7 @@ class RegistroD500(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help="Çódigo da situação do documento fiscal, conforme a Tabela 4.1.2.",
+        help="Çódigo da situação do documento fiscal, conforme a Tabela 4.1.2",
     )
 
     SER = fields.Char(string="Série do documento fiscal", sped_length="4")
@@ -7270,13 +6397,19 @@ class RegistroD500(models.AbstractModel):
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_COFINS = fields.Monetary(
         string="Valor da COFINS", xsd_type="TDec_1602", currency_field="brl_currency_id"
+    )
+
+    CHV_DOC_E = fields.Char(
+        string="Chave do Documento Fiscal Eletrônico",
+        xsd_type="numeric_code",
+        sped_length="44*",
     )
 
     reg_D500_ids_RegistroD010_id = fields.Many2one(
@@ -7291,7 +6424,7 @@ class RegistroD500(models.AbstractModel):
         "reg_D501_ids_RegistroD500_id",
         string="D501 Complemento da Operação",
         sped_card="1:N",
-        help="D501 Complemento da Operação (Código 21 e 22) – PIS/PASEP",
+        help="D501 Complemento da Operação - PIS/Pasep",
     )
 
     reg_D505_ids = fields.One2many(
@@ -7299,7 +6432,7 @@ class RegistroD500(models.AbstractModel):
         "reg_D505_ids_RegistroD500_id",
         string="D505 Complemento da Operação",
         sped_card="1:N",
-        help="D505 Complemento da Operação (Código 21 e 22) – COFINS",
+        help="D505 Complemento da Operação - COFINS",
     )
 
     reg_D509_ids = fields.One2many(
@@ -7311,7 +6444,7 @@ class RegistroD500(models.AbstractModel):
 
 
 class RegistroD501(models.AbstractModel):
-    "Complemento da Operação (Código 21 e 22) – PIS/PASEP"
+    "Complemento da Operação - PIS/Pasep"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.d501"
@@ -7323,7 +6456,7 @@ class RegistroD501(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help="Código da Situação Tributária referente ao PIS/PASEP",
+        help="Código da Situação Tributária referente ao PIS/Pasep",
     )
 
     VL_ITEM = fields.Monetary(
@@ -7331,36 +6464,37 @@ class RegistroD501(models.AbstractModel):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
+        help="Valor Total dos Itens  (Serviços)",
     )
 
     NAT_BC_CRED = fields.Char(
-        string="Código da Base de Cálculo do Crédito",
-        sped_length="2*",
+        string="Código da Natureza da Base de Cálculo do Crédito",
+        sped_length="2",
         help=(
-            "Código da Base de Cálculo do Crédito, conforme a Tabela indicada no item "
-            "4.3.7."
+            "Código da Natureza da Base de Cálculo do Crédito, conforme a Tabela "
+            "indicada no item 4.3.7"
         ),
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Valor da base de cálculo do PIS/PASEP",
+        string="Valor da base de cálculo do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -7373,18 +6507,18 @@ class RegistroD501(models.AbstractModel):
 
     reg_D501_ids_RegistroD500_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.d500",
-        string="Nota Fiscal de Serviço de Comunicação",
+        string="Nota Fiscal de Serviço de Comunicação e Serviço",
         required=True,
         ondelete="cascade",
         help=(
-            "Nota Fiscal de Serviço de Comunicação (Código 21) e Serviço de "
-            "Telecomunicação (Código 22) - Operação de Aquisição com Direito a Crédito"
+            "Nota Fiscal de Serviço de Comunicação e Serviço de Telecomunicação - "
+            "Operação de Aquisição com Direito a Crédito"
         ),
     )
 
 
 class RegistroD505(models.AbstractModel):
-    "Complemento da Operação (Código 21 e 22) – COFINS"
+    "Complemento da Operação - COFINS"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.d505"
@@ -7406,11 +6540,11 @@ class RegistroD505(models.AbstractModel):
     )
 
     NAT_BC_CRED = fields.Char(
-        string="Código da Base de Cálculo do Crédito",
-        sped_length="2*",
+        string="Código da Natureza da Base de Cálculo do Crédito",
+        sped_length="2",
         help=(
-            "Código da Base de Cálculo do Crédito, conforme a Tabela indicada no item "
-            "4.3.7."
+            "Código da Natureza da Base de Cálculo do Crédito, conforme a Tabela "
+            "indicada no item 4.3.7"
         ),
     )
 
@@ -7434,14 +6568,20 @@ class RegistroD505(models.AbstractModel):
         string="Valor da COFINS", xsd_type="TDec_1602", currency_field="brl_currency_id"
     )
 
+    COD_CTA = fields.Char(
+        string="Código",
+        sped_length="255",
+        help="Código da conta analítica contábil debitada/creditada",
+    )
+
     reg_D505_ids_RegistroD500_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.d500",
-        string="Nota Fiscal de Serviço de Comunicação",
+        string="Nota Fiscal de Serviço de Comunicação e Serviço",
         required=True,
         ondelete="cascade",
         help=(
-            "Nota Fiscal de Serviço de Comunicação (Código 21) e Serviço de "
-            "Telecomunicação (Código 22) - Operação de Aquisição com Direito a Crédito"
+            "Nota Fiscal de Serviço de Comunicação e Serviço de Telecomunicação - "
+            "Operação de Aquisição com Direito a Crédito"
         ),
     )
 
@@ -7461,30 +6601,24 @@ class RegistroD509(models.AbstractModel):
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil 9 – Outros."
-        ),
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_D509_ids_RegistroD500_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.d500",
-        string="Nota Fiscal de Serviço de Comunicação",
+        string="Nota Fiscal de Serviço de Comunicação e Serviço",
         required=True,
         ondelete="cascade",
         help=(
-            "Nota Fiscal de Serviço de Comunicação (Código 21) e Serviço de "
-            "Telecomunicação (Código 22) - Operação de Aquisição com Direito a Crédito"
+            "Nota Fiscal de Serviço de Comunicação e Serviço de Telecomunicação - "
+            "Operação de Aquisição com Direito a Crédito"
         ),
     )
 
 
 class RegistroD600(models.AbstractModel):
-    """Consolidação da Prestação de Serviços – Notas de Serviço de Comunicação
-    (Código 21) e de Serviço de Telecomunicação (Código 22)"""
+    """Consolidação da Prestação de Serviços - Notas de Serviço de Comunicação
+    e de Serviço de Telecomunicação"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.d600"
@@ -7495,7 +6629,7 @@ class RegistroD600(models.AbstractModel):
         string="Código do modelo do documento fiscal",
         required=True,
         sped_length="2*",
-        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1.",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
     )
 
     COD_MUN = fields.Char(
@@ -7516,35 +6650,20 @@ class RegistroD600(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="1*",
-        help=(
-            "Indicador do tipo de receita: 0- Receita própria - serviços prestados; 1- "
-            "Receita própria - cobrança de débitos; 2- Receita própria - venda de "
-            "serviço pré-pago – faturamento de períodos anteriores; 3- Receita própria "
-            "- venda de serviço pré-pago – faturamento no período; 4- Outras receitas "
-            "próprias de serviços de comunicação e telecomunicação; 5- Receita própria "
-            "- co-faturamento; 6- Receita própria – serviços a faturar em período "
-            "futuro; 7– Outras receitas próprias de natureza não-cumulativa; 8 - Outras"
-            " receitas de terceiros 9 – Outras receitas"
-        ),
     )
 
     QTD_CONS = fields.Integer(
-        string="Quantidade",
-        required=True,
-        help="Quantidade de documentos consolidados neste registro",
+        string="Quantidade", help="Quantidade de documentos consolidados neste registro"
     )
 
     DT_DOC_INI = fields.Date(
         string="Data Inicial dos documentos consolidados",
         required=True,
         sped_length="8*",
-        help="Data Inicial dos documentos consolidados no período",
     )
 
     DT_DOC_FIN = fields.Date(
-        string="Data Final dos documentos consolidados no período",
-        required=True,
-        sped_length="8*",
+        string="Data Final dos documentos consolidados", required=True, sped_length="8*"
     )
 
     VL_DOC = fields.Monetary(
@@ -7600,7 +6719,7 @@ class RegistroD600(models.AbstractModel):
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -7621,10 +6740,7 @@ class RegistroD600(models.AbstractModel):
         "reg_D601_ids_RegistroD600_id",
         string="D601 Complemento da Consolidação da Prestação",
         sped_card="1:N",
-        help=(
-            "D601 Complemento da Consolidação da Prestação de Serviços (Código 21 e 22)"
-            " – PIS/PASEP"
-        ),
+        help="D601 Complemento da Consolidação da Prestação de Serviços - PIS/Pasep",
     )
 
     reg_D605_ids = fields.One2many(
@@ -7632,10 +6748,7 @@ class RegistroD600(models.AbstractModel):
         "reg_D605_ids_RegistroD600_id",
         string="D605 Complemento da Consolidação da Prestação",
         sped_card="1:N",
-        help=(
-            "D605 Complemento da Consolidação da Prestação de Serviços (Código 21 e 22)"
-            " – COFINS"
-        ),
+        help="D605 Complemento da Consolidação da Prestação de Serviços - COFINS",
     )
 
     reg_D609_ids = fields.One2many(
@@ -7647,8 +6760,7 @@ class RegistroD600(models.AbstractModel):
 
 
 class RegistroD601(models.AbstractModel):
-    """Complemento da Consolidação da Prestação de Serviços (Código 21 e 22) –
-    PIS/PASEP"""
+    "Complemento da Consolidação da Prestação de Serviços - PIS/Pasep"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.d601"
@@ -7674,10 +6786,9 @@ class RegistroD601(models.AbstractModel):
     )
 
     VL_DESC = fields.Monetary(
-        string="Valor acumulado dos descontos/exclusões da base",
+        string="Valor acumulado dos descontos",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor acumulado dos descontos/exclusões da base de cálculo",
     )
 
     CST_PIS = fields.Char(
@@ -7685,51 +6796,52 @@ class RegistroD601(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help="Código da Situação Tributária referente ao PIS/PASEP",
+        help="Código da Situação Tributária referente ao PIS/Pasep",
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Valor da base de cálculo do PIS/PASEP",
+        string="Valor da base de cálculo do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     COD_CTA = fields.Char(
-        string="Código da conta contábil debitada/creditada", sped_length="255"
+        string="Código",
+        sped_length="255",
+        help="Código da conta analítica contábil debitada/creditada",
     )
 
     reg_D601_ids_RegistroD600_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.d600",
-        string="Consolidação da Prestação de Serviços – Notas",
+        string="Consolidação da Prestação de Serviços",
         required=True,
         ondelete="cascade",
         help=(
-            "Consolidação da Prestação de Serviços – Notas de Serviço de Comunicação "
-            "(Código 21) e de Serviço de Telecomunicação (Código 22)"
+            "Consolidação da Prestação de Serviços - Notas de Serviço de Comunicação e "
+            "de Serviço de Telecomunicação"
         ),
     )
 
 
 class RegistroD605(models.AbstractModel):
-    """Complemento da Consolidação da Prestação de Serviços (Código 21 e 22) –
-    COFINS"""
+    "Complemento da Consolidação da Prestação de Serviços - COFINS"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.d605"
@@ -7755,10 +6867,9 @@ class RegistroD605(models.AbstractModel):
     )
 
     VL_DESC = fields.Monetary(
-        string="Valor acumulado dos descontos/exclusões da base",
+        string="Valor acumulado dos descontos",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor acumulado dos descontos/exclusões da base de cálculo",
     )
 
     CST_COFINS = fields.Char(
@@ -7776,7 +6887,7 @@ class RegistroD605(models.AbstractModel):
 
     ALIQ_COFINS = fields.Float(
         string="Alíquota da COFINS (em percentual)",
-        sped_length="8-",
+        sped_length="8",
         xsd_type="TDec_1604",
         digits=(
             16,
@@ -7789,17 +6900,19 @@ class RegistroD605(models.AbstractModel):
     )
 
     COD_CTA = fields.Char(
-        string="Código da conta contábil debitada/creditada", sped_length="255"
+        string="Código",
+        sped_length="255",
+        help="Código da conta analítica contábil debitada/creditada",
     )
 
     reg_D605_ids_RegistroD600_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.d600",
-        string="Consolidação da Prestação de Serviços – Notas",
+        string="Consolidação da Prestação de Serviços",
         required=True,
         ondelete="cascade",
         help=(
-            "Consolidação da Prestação de Serviços – Notas de Serviço de Comunicação "
-            "(Código 21) e de Serviço de Telecomunicação (Código 22)"
+            "Consolidação da Prestação de Serviços - Notas de Serviço de Comunicação e "
+            "de Serviço de Telecomunicação"
         ),
     )
 
@@ -7819,23 +6932,17 @@ class RegistroD609(models.AbstractModel):
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil 9 – Outros."
-        ),
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_D609_ids_RegistroD600_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.d600",
-        string="Consolidação da Prestação de Serviços – Notas",
+        string="Consolidação da Prestação de Serviços",
         required=True,
         ondelete="cascade",
         help=(
-            "Consolidação da Prestação de Serviços – Notas de Serviço de Comunicação "
-            "(Código 21) e de Serviço de Telecomunicação (Código 22)"
+            "Consolidação da Prestação de Serviços - Notas de Serviço de Comunicação e "
+            "de Serviço de Telecomunicação"
         ),
     )
 
@@ -7868,10 +6975,10 @@ class RegistroF010(models.AbstractModel):
     reg_F120_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.f120",
         "reg_F120_ids_RegistroF010_id",
-        string="F120 Bens Incorporados",
+        string="F120 Bens Incorporados ao Ativo Imobilizado",
         sped_card="1:N",
         help=(
-            "F120 Bens Incorporados ao Ativo Imobilizado – Operações Geradoras de "
+            "F120 Bens Incorporados ao Ativo Imobilizado - Operações Geradoras de "
             "Créditos com base nos Encargos de Depreciação/Amortização"
         ),
     )
@@ -7879,10 +6986,10 @@ class RegistroF010(models.AbstractModel):
     reg_F130_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.f130",
         "reg_F130_ids_RegistroF010_id",
-        string="F130 Bens Incorporados",
+        string="F130 Bens Incorporados ao Ativo Imobilizado",
         sped_card="1:N",
         help=(
-            "F130 Bens Incorporados ao Ativo Imobilizado – Operações Geradoras de "
+            "F130 Bens Incorporados ao Ativo Imobilizado - Operações Geradoras de "
             "Créditos com base no Valor de Aquisição"
         ),
     )
@@ -7897,69 +7004,69 @@ class RegistroF010(models.AbstractModel):
     reg_F200_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.f200",
         "reg_F200_ids_RegistroF010_id",
-        string="F200 Operações",
+        string="F200 Operações da Atividade Imobiliária",
         sped_card="1:N",
-        help="F200 Operações da Atividade Imobiliária – Unidade Imobiliária Vendida",
+        help="F200 Operações da Atividade Imobiliária - Unidade Imobiliária Vendida",
     )
 
     reg_F500_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.f500",
         "reg_F500_ids_RegistroF010_id",
-        string="F500 Consolidação das Operações",
+        string="F500 Consolidação das operações",
         sped_card="1:N",
         help=(
-            "F500 Consolidação das Operações da Pessoa Jurídica Submetida ao Regime de "
-            "Tributação com Base no Lucro Presumido – Incidência do PIS/Pasep e da "
-            "Cofins pelo Regime de Caixa"
+            "F500 Consolidação das operações da pessoa jurídica submetida ao regime de "
+            "tributação com base no lucro presumido - incidência do PIS/Pasep e da "
+            "Cofins pelo regime de caixa"
         ),
     )
 
     reg_F510_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.f510",
         "reg_F510_ids_RegistroF010_id",
-        string="F510 Consolidação das Operações",
+        string="F510 Consolidação das operações",
         sped_card="1:N",
         help=(
-            "F510 Consolidação das Operações da Pessoa Jurídica Submetida ao Regime de "
-            "Tributação com Base no Lucro Presumido – Incidência do PIS/Pasep e da "
-            "Cofins pelo Regime de Caixa (Apuração da Contribuição por Unidade de "
-            "Medida de Produto)"
+            "F510 Consolidação das operações da pessoa jurídica submetida ao regime de "
+            "tributação com base no lucro presumido - incidência do PIS/Pasep e da "
+            "Cofins pelo regime de caixa (apuração da contribuição por unidade de "
+            "medida de produto - alíquota em reais)"
         ),
     )
 
     reg_F525_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.f525",
         "reg_F525_ids_RegistroF010_id",
-        string="F525 Composição da Receita Escriturada",
+        string="F525 Composição da receita escriturada no período",
         sped_card="1:N",
         help=(
-            "F525 Composição da Receita Escriturada no Período – Detalhamento da "
-            "Receita Recebida pelo Regime de Caixa"
+            "F525 Composição da receita escriturada no período - detalhamento da "
+            "receita recebida pelo regime de caixa"
         ),
     )
 
     reg_F550_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.f550",
         "reg_F550_ids_RegistroF010_id",
-        string="F550 Consolidação das Operações",
+        string="F550 Consolidação das operações",
         sped_card="1:N",
         help=(
-            "F550 Consolidação das Operações da Pessoa Jurídica Submetida ao Regime de "
-            "Tributação com Base no Lucro Presumido – Incidência do PIS/Pasep e da "
-            "Cofins pelo Regime de Competência"
+            "F550 Consolidação das operações da pessoa jurídica submetida ao regime de "
+            "tributação com base no lucro presumido - incidência do PIS/Pasep e da "
+            "Cofins pelo regime de competência"
         ),
     )
 
     reg_F560_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.f560",
         "reg_F560_ids_RegistroF010_id",
-        string="F560 Consolidação das Operações",
+        string="F560 Consolidação das operações",
         sped_card="1:N",
         help=(
-            "F560 Consolidação das Operações da Pessoa Jurídica Submetida ao Regime de "
-            "Tributação com Base no Lucro Presumido – Incidência do PIS/Pasep e da "
-            "Cofins pelo Regime de Competência (Apuração da Contribuição por Unidade de"
-            " Medida de Produto)"
+            "F560 Consolidação das operações da pessoa jurídica submetida ao regime de "
+            "tributação com base no lucro presumido - incidência do PIS/Pasep e da "
+            "Cofins pelo regime de competência (apuração da contribuição por unidade de"
+            " medida de produto - alíquota em reais)"
         ),
     )
 
@@ -7995,18 +7102,7 @@ class RegistroF100(models.AbstractModel):
     _sped_level = 3
 
     IND_OPER = fields.Char(
-        string="Indicador do Tipo da Operação",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador do Tipo da Operação: 0 – Operação Representativa de Aquisição, "
-            "Custos, Despesa ou Encargos, ou Receitas, Sujeita à Incidência de Crédito "
-            "de PIS/Pasep ou Cofins (CST 50 a 66). 1 – Operação Representativa de "
-            "Receita Auferida Sujeita ao Pagamento da Contribuição para o PIS/Pasep e "
-            "da Cofins (CST 01, 02, 03 ou 05). 2 - Operação Representativa de Receita "
-            "Auferida Não Sujeita ao Pagamento da Contribuição para o PIS/Pasep e da "
-            "Cofins (CST 04, 06, 07, 08, 09, 49 ou 99)."
-        ),
+        string="Indicador do Tipo da Operação", required=True, sped_length="1*"
     )
 
     COD_PART = fields.Char(
@@ -8026,7 +7122,7 @@ class RegistroF100(models.AbstractModel):
     )
 
     VL_OPER = fields.Monetary(
-        string="Valor da Operação/Item",
+        string="Valor da Operação",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
@@ -8038,13 +7134,13 @@ class RegistroF100(models.AbstractModel):
         xsd_type="numeric_code",
         sped_length="2*",
         help=(
-            "Código da Situação Tributária referente ao PIS/PASEP, conforme a Tabela "
-            "indicada no item 4.3.3."
+            "Código da Situação Tributária referente ao PIS/Pasep, conforme a Tabela "
+            "indicada no item 4.3.3 (IN RFB nº 1.009, de 2010)"
         ),
     )
 
     VL_BC_PIS = fields.Float(
-        string="Base de cálculo do PIS/PASEP",
+        string="Base de Cálculo do PIS/Pasep",
         xsd_type="TDec_1604",
         digits=(
             16,
@@ -8053,7 +7149,7 @@ class RegistroF100(models.AbstractModel):
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
@@ -8063,7 +7159,7 @@ class RegistroF100(models.AbstractModel):
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -8075,12 +7171,12 @@ class RegistroF100(models.AbstractModel):
         sped_length="2*",
         help=(
             "Código da Situação Tributária referente a COFINS, conforme a Tabela "
-            "indicada no item 4.3.4."
+            "indicada no item 4.3.4 (IN RFB nº 1.009, de 2010)"
         ),
     )
 
     VL_BC_COFINS = fields.Float(
-        string="Base de cálculo da COFINS",
+        string="Base de Cálculo da COFINS",
         xsd_type="TDec_1604",
         digits=(
             16,
@@ -8103,12 +7199,11 @@ class RegistroF100(models.AbstractModel):
     )
 
     NAT_BC_CRED = fields.Char(
-        string="Código da Base de Cálculo dos Créditos",
-        sped_length="2*",
+        string="Código da Natureza da Base de Cálculo do Crédito",
+        sped_length="2",
         help=(
-            "Código da Base de Cálculo dos Créditos, conforme a tabela indicada no item"
-            " 4.3.7, caso seja informado código representativo de crédito nos Campos 07"
-            " (CST_PIS) e 11 (CST_COFINS)."
+            "Código da Natureza da Base de Cálculo do Crédito, conforme a Tabela "
+            "indicada no item 4.3.7 (Lei nº 12.058/09. art. 35)."
         ),
     )
 
@@ -8156,13 +7251,7 @@ class RegistroF111(models.AbstractModel):
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil 9 – Outros."
-        ),
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_F111_ids_RegistroF100_id = fields.Many2one(
@@ -8175,7 +7264,7 @@ class RegistroF111(models.AbstractModel):
 
 
 class RegistroF120(models.AbstractModel):
-    """Bens Incorporados ao Ativo Imobilizado – Operações Geradoras de Créditos
+    """Bens Incorporados ao Ativo Imobilizado - Operações Geradoras de Créditos
     com base nos Encargos de Depreciação/Amortização"""
 
     _description = textwrap.dedent(f"    {__doc__}")
@@ -8186,26 +7275,19 @@ class RegistroF120(models.AbstractModel):
     NAT_BC_CRED = fields.Char(
         string="Código da Base de Cálculo",
         required=True,
-        sped_length="2*",
+        sped_length="2",
         help=(
             "Código da Base de Cálculo do Crédito sobre Bens Incorporados ao Ativo "
-            "Imobilizado, conforme a Tabela indicada no item 4.3.7: 09 = Crédito com "
-            "Base nos Encargos de Depreciação; 11 = Crédito com Base nos Encargos de "
-            "Amortização"
+            "Imobilizado, conforme a Tabela indicada no item 4.3.7"
         ),
     )
 
     IDENT_BEM_IMOB = fields.Char(
-        string="Identificação dos Bens/Grupo de Bens Incorporados",
+        string="Identificação dos Bens Incorporados",
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help=(
-            "Identificação dos Bens/Grupo de Bens Incorporados ao Ativo Imobilizado: 01"
-            " = Edificações e Benfeitorias em Imóveis Próprios; 02 = Edificações e "
-            "Benfeitorias em Imóveis de Terceiros; 03 = Instalações; 04 = Máquinas; 05 "
-            "= Equipamentos; 06 = Veículos; 99 = Outros ."
-        ),
+        help="Identificação dos Bens Incorporados ao Ativo Imobilizado",
     )
 
     IND_ORIG_CRED = fields.Char(
@@ -8213,8 +7295,7 @@ class RegistroF120(models.AbstractModel):
         sped_length="1*",
         help=(
             "Indicador da origem do bem incorporado ao ativo imobilizado, gerador de "
-            "crédito: 0 – Aquisição no Mercado Interno 1 – Aquisição no Mercado Externo"
-            " (Importação)"
+            "crédito"
         ),
     )
 
@@ -8223,11 +7304,7 @@ class RegistroF120(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="1*",
-        help=(
-            "Indicador da Utilização dos Bens Incorporados ao Ativo Imobilizado: 1 – "
-            "Produção de Bens Destinados a Venda; 2 – Prestação de Serviços; 3 – "
-            "Locação a Terceiros;"
-        ),
+        help="Indicador da Utilização dos Bens Incorporados ao Ativo Imobilizado",
     )
 
     VL_OPER_DEP = fields.Monetary(
@@ -8257,31 +7334,31 @@ class RegistroF120(models.AbstractModel):
         xsd_type="numeric_code",
         sped_length="2*",
         help=(
-            "Código da Situação Tributária referente ao PIS/PASEP, conforme a Tabela "
-            "indicada no item 4.3.3."
+            "Código da Situação Tributária referente ao PIS/Pasep, conforme a Tabela "
+            "indicada no item 4.3.3"
         ),
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Base de cálculo do Crédito de PIS/PASEP no período",
+        string="Base de Cálculo do Crédito de PIS/Pasep no período",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Base de cálculo do Crédito de PIS/PASEP no período (06 – 07)",
+        help="Base de Cálculo do Crédito de PIS/Pasep no período (06 - 07)",
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do Crédito de PIS/PASEP",
+        string="Valor do Crédito de PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -8293,7 +7370,7 @@ class RegistroF120(models.AbstractModel):
         sped_length="2*",
         help=(
             "Código da Situação Tributária referente a COFINS, conforme a Tabela "
-            "indicada no item 4.3.4."
+            "indicada no item 4.3.4"
         ),
     )
 
@@ -8301,7 +7378,6 @@ class RegistroF120(models.AbstractModel):
         string="Base de Cálculo do Crédito da COFINS no período",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Base de Cálculo do Crédito da COFINS no período (06 – 07)",
     )
 
     ALIQ_COFINS = fields.Float(
@@ -8315,7 +7391,7 @@ class RegistroF120(models.AbstractModel):
     )
 
     VL_COFINS = fields.Monetary(
-        string="Valor do crédito da COFINS",
+        string="Valor do Crédito da COFINS",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -8366,29 +7442,23 @@ class RegistroF129(models.AbstractModel):
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil 9 – Outros."
-        ),
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_F129_ids_RegistroF120_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.f120",
-        string="Bens Incorporados",
+        string="Bens Incorporados ao Ativo Imobilizado",
         required=True,
         ondelete="cascade",
         help=(
-            "Bens Incorporados ao Ativo Imobilizado – Operações Geradoras de Créditos "
+            "Bens Incorporados ao Ativo Imobilizado - Operações Geradoras de Créditos "
             "com base nos Encargos de Depreciação/Amortização"
         ),
     )
 
 
 class RegistroF130(models.AbstractModel):
-    """Bens Incorporados ao Ativo Imobilizado – Operações Geradoras de Créditos
+    """Bens Incorporados ao Ativo Imobilizado - Operações Geradoras de Créditos
     com base no Valor de Aquisição"""
 
     _description = textwrap.dedent(f"    {__doc__}")
@@ -8397,26 +7467,25 @@ class RegistroF130(models.AbstractModel):
     _sped_level = 3
 
     NAT_BC_CRED = fields.Char(
-        string="Texto fixo contendo '10'",
+        string="Texto fixo contendo 10 Código da Base de Cálculo",
         required=True,
-        sped_length="2*",
+        sped_length="2",
         help=(
-            "Texto fixo contendo '10' (Código da Base de Cálculo do Crédito sobre Bens "
+            "Texto fixo contendo 10 Código da Base de Cálculo do Crédito sobre Bens "
             "Incorporados ao Ativo Imobilizado, conforme a Tabela indicada no item "
-            "4.3.7)"
+            "4.3.7."
         ),
     )
 
     IDENT_BEM_IMOB = fields.Char(
-        string="Identificação dos bens ou grupo",
+        string="Identificação dos Bens Incorporados",
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
         help=(
-            "Identificação dos bens ou grupo de bens incorporados ao Ativo Imobilizado:"
-            " 01 = Edificações e Benfeitorias; 03 = Instalações; 04 = Máquinas; 05 = "
-            "Equipamentos; 06 = Veículos; 99 = Outros bens incorporados ao Ativo "
-            "Imobilizado."
+            "Identificação dos Bens Incorporados ao Ativo Imobilizado: 01 = Edificações"
+            " e Benfeitorias; 03 = Instalações; 04 = Máquinas; 05 = Equipamentos; 06 = "
+            "Veículos; 99 = Outras Situações"
         ),
     )
 
@@ -8425,7 +7494,7 @@ class RegistroF130(models.AbstractModel):
         sped_length="1*",
         help=(
             "Indicador da origem do bem incorporado ao ativo imobilizado, gerador de "
-            "crédito: 0 – Aquisição no Mercado Interno 1 – Aquisição no Mercado Externo"
+            "crédito: 0 - Aquisição no Mercado Interno 1 - Aquisição no Mercado Externo"
             " (Importação)"
         ),
     )
@@ -8436,9 +7505,9 @@ class RegistroF130(models.AbstractModel):
         xsd_type="numeric_code",
         sped_length="1*",
         help=(
-            "Indicador da Utilização dos Bens Incorporados ao Ativo Imobilizado: 1 – "
-            "Produção de Bens Destinados a Venda; 2 – Prestação de Serviços; 3 – "
-            "Locação a Terceiros; 9 – Outros."
+            "Indicador da Utilização dos Bens Incorporados ao Ativo Imobilizado: 1 - "
+            "Produção de Bens Destinados a Venda; 2 - Prestação de Serviços; 3 - "
+            "Locação a Terceiros; 9 - Outros."
         ),
     )
 
@@ -8458,7 +7527,7 @@ class RegistroF130(models.AbstractModel):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor de Aquisição dos Bens Incorporados ao Ativo Imobilizado – Crédito "
+            "Valor de Aquisição dos Bens Incorporados ao Ativo Imobilizado - Crédito "
             "com base no valor de aquisição."
         ),
     )
@@ -8480,7 +7549,7 @@ class RegistroF130(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Valor da Base de Cálculo do Crédito sobre Bens Incorporados ao Ativo "
-            "Imobilizado (07 – 08)"
+            "Imobilizado (07 - 08)"
         ),
     )
 
@@ -8491,9 +7560,8 @@ class RegistroF130(models.AbstractModel):
         sped_length="1*",
         help=(
             "Indicador do Número de Parcelas a serem apropriadas (Crédito sobre Valor "
-            "de Aquisição): 1 – Integral (Mês de Aquisição); 2 – 12 Meses; 3 – 24 "
-            "Meses; 4 – 48 Meses; 5 – 6 Meses (Embalagens de bebidas frias) 9 – Outra "
-            "periodicidade definida em Lei."
+            "de Aquisição): 1 - Integral (Mês de Aquisição); 2 - 12 Meses; 3 - 24 "
+            "Meses; 4 - 48 Meses; 5 - Outra periodicidade definida em Lei."
         ),
     )
 
@@ -8503,23 +7571,23 @@ class RegistroF130(models.AbstractModel):
         xsd_type="numeric_code",
         sped_length="2*",
         help=(
-            "Código da Situação Tributária referente ao PIS/PASEP, conforme a Tabela "
-            "indicada no item 4.3.3."
+            "Código da Situação Tributária referente ao PIS/Pasep, conforme a Tabela "
+            "indicada no item 4.3.3"
         ),
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Base de cálculo Mensal do Crédito de PIS/PASEP",
+        string="Base de cálculo Mensal do Crédito de PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Base de cálculo Mensal do Crédito de PIS/PASEP, conforme indicador "
+            "Base de cálculo Mensal do Crédito de PIS/Pasep, conforme indicador "
             "informado no campo 10."
         ),
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
@@ -8529,7 +7597,7 @@ class RegistroF130(models.AbstractModel):
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do Crédito de PIS/PASEP",
+        string="Valor do Crédito de PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -8541,7 +7609,7 @@ class RegistroF130(models.AbstractModel):
         sped_length="2*",
         help=(
             "Código da Situação Tributária referente a COFINS, conforme a Tabela "
-            "indicada no item 4.3.4."
+            "indicada no item 4.3.4"
         ),
     )
 
@@ -8597,13 +7665,13 @@ class RegistroF130(models.AbstractModel):
     reg_F139_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.f139",
         "reg_F139_ids_RegistroF130_id",
-        string="F139 Processo Referenciado",
+        string="F139 F139 - Processo Referenciado",
         sped_card="1:N",
     )
 
 
 class RegistroF139(models.AbstractModel):
-    "Processo Referenciado"
+    "F139 - Processo Referenciado"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.f139"
@@ -8617,22 +7685,16 @@ class RegistroF139(models.AbstractModel):
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil 9 – Outros."
-        ),
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_F139_ids_RegistroF130_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.f130",
-        string="Bens Incorporados",
+        string="Bens Incorporados ao Ativo Imobilizado",
         required=True,
         ondelete="cascade",
         help=(
-            "Bens Incorporados ao Ativo Imobilizado – Operações Geradoras de Créditos "
+            "Bens Incorporados ao Ativo Imobilizado - Operações Geradoras de Créditos "
             "com base no Valor de Aquisição"
         ),
     )
@@ -8647,12 +7709,12 @@ class RegistroF150(models.AbstractModel):
     _sped_level = 3
 
     NAT_BC_CRED = fields.Char(
-        string="Texto fixo contendo '18' Código da Base de Cálculo",
+        string="Texto fixo contendo 18 Código da Base de Cálculo",
         required=True,
         sped_length="2*",
         help=(
-            "Texto fixo contendo '18' Código da Base de Cálculo do Crédito sobre "
-            "Estoque de Abertura, conforme a Tabela indicada no item 4.3.7."
+            "Texto fixo contendo 18 Código da Base de Cálculo do Crédito sobre Estoque "
+            "de Abertura, conforme a Tabela indicada no item 4.3.7."
         ),
     )
 
@@ -8682,7 +7744,7 @@ class RegistroF150(models.AbstractModel):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor da Base de Cálculo do Crédito sobre o Estoque de Abertura (03 – 04)"
+            "Valor da Base de Cálculo do Crédito sobre o Estoque de Abertura (03 - 04)"
         ),
     )
 
@@ -8703,13 +7765,13 @@ class RegistroF150(models.AbstractModel):
         xsd_type="numeric_code",
         sped_length="2*",
         help=(
-            "Código da Situação Tributária referente ao PIS/PASEP, conforme a Tabela "
-            "indicada no item 4.3.3."
+            "Código da Situação Tributária referente ao PIS/Pasep, conforme a Tabela "
+            "indicada no item 4.3.3"
         ),
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         required=True,
         sped_length="8",
         xsd_type="TDec_1604",
@@ -8717,7 +7779,7 @@ class RegistroF150(models.AbstractModel):
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     VL_CRED_PIS = fields.Monetary(
@@ -8725,10 +7787,7 @@ class RegistroF150(models.AbstractModel):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=(
-            "Valor Mensal do Crédito Presumido Apurado para o Período - PIS/PASEP (06 x"
-            " 08)"
-        ),
+        help="Valor Mensal do Crédito Presumido Apurado -  PIS/Pasep  (06 x 08)",
     )
 
     CST_COFINS = fields.Char(
@@ -8758,10 +7817,7 @@ class RegistroF150(models.AbstractModel):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=(
-            "Valor Mensal do Crédito Presumido Apurado para o Período - COFINS (06 x "
-            "11)"
-        ),
+        help="Valor Mensal do Crédito Presumido Apurado -  COFINS (06 x 11)",
     )
 
     DESC_EST = fields.Char(string="Descrição do estoque", sped_length="1")
@@ -8781,7 +7837,7 @@ class RegistroF150(models.AbstractModel):
 
 
 class RegistroF200(models.AbstractModel):
-    "Operações da Atividade Imobiliária – Unidade Imobiliária Vendida"
+    "Operações da Atividade Imobiliária - Unidade Imobiliária Vendida"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.f200"
@@ -8793,11 +7849,6 @@ class RegistroF200(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help=(
-            "Indicador do Tipo da Operação: 01 – Venda a Vista de Unidade Concluída; 02"
-            " – Venda a Prazo de Unidade Concluída; 03 – Venda a Vista de Unidade em "
-            "Construção; 04 – Venda a Prazo de Unidade em Construção; 05 – Outras."
-        ),
     )
 
     UNID_IMOB = fields.Char(
@@ -8805,12 +7856,6 @@ class RegistroF200(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help=(
-            "Indicador do tipo de unidade imobiliária Vendida: 01 – Terreno adquirido "
-            "para venda; 02 – Terreno decorrente de loteamento; 03 – Lote oriundo de "
-            "desmembramento de terreno; 04 – Unidade resultante de incorporação "
-            "imobiliária; 05 – Prédio construído/em construção para venda; 06 – Outras."
-        ),
     )
 
     IDENT_EMP = fields.Char(
@@ -8818,15 +7863,11 @@ class RegistroF200(models.AbstractModel):
     )
 
     DESC_UNID_IMOB = fields.Char(
-        string="Descrição resumida da unidade imobiliária vendida", sped_length="9"
+        string="Descrição Resumida da Unidade Imobiliária Vendida", sped_length="9"
     )
 
     NUM_CONT = fields.Char(
-        string="Número do Contrato/Documento que formaliza a Venda",
-        sped_length="9",
-        help=(
-            "Número do Contrato/Documento que formaliza a Venda da Unidade Imobiliária"
-        ),
+        string="Número do Contrato de Venda da Unidade Imobiliária", sped_length="9"
     )
 
     CPF_CNPJ_ADQU = fields.Char(
@@ -8834,33 +7875,28 @@ class RegistroF200(models.AbstractModel):
         required=True,
         sped_length="14",
         help=(
-            "Identificação da pessoa física (CPF) ou da pessoa jurídica (CNPJ) "
+            "Identificação da pessoa  física (CPF) ou da pessoa jurídica (CNPJ) "
             "adquirente da unidade imobiliária"
         ),
     )
 
     DT_OPER = fields.Date(
-        string="Data da operação de venda da unidade imobiliária",
+        string="Data da operação de venda da Unidade Imobiliária",
         required=True,
         sped_length="8*",
     )
 
     VL_TOT_VEND = fields.Monetary(
-        string="Valor total",
-        required=True,
+        string="Valor total da unidade imobiliária vendida",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=(
-            "Valor total da unidade imobiliária vendida atualizado até o período da "
-            "escrituração"
-        ),
     )
 
     VL_REC_ACUM = fields.Monetary(
-        string="Valor recebido acumulado até o mês anterior",
+        string="Valor recebido",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor recebido acumulado até o mês anterior ao da escrituração.",
+        help="Valor recebido, acumulado até o mês anterior ao da escrituração.",
     )
 
     VL_TOT_REC = fields.Monetary(
@@ -8876,30 +7912,30 @@ class RegistroF200(models.AbstractModel):
         xsd_type="numeric_code",
         sped_length="2*",
         help=(
-            "Código da Situação Tributária referente ao PIS/PASEP, conforme a Tabela "
-            "indicada no item 4.3.3."
+            "Código da Situação Tributária referente ao PIS/Pasep, conforme a Tabela "
+            "indicada no item 4.3.3 (IN RFB nº 1.009, de 2010)"
         ),
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Base de Cálculo do PIS/PASEP",
+        string="Base de Cálculo do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -8911,7 +7947,7 @@ class RegistroF200(models.AbstractModel):
         sped_length="2*",
         help=(
             "Código da Situação Tributária referente a COFINS, conforme a Tabela "
-            "indicada no item 4.3.4."
+            "indicada no item 4.3.4 (IN RFB nº 1.009, de 2010)"
         ),
     )
 
@@ -8967,21 +8003,21 @@ class RegistroF200(models.AbstractModel):
     reg_F205_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.f205",
         "reg_F205_ids_RegistroF200_id",
-        string="F205 Operações",
-        sped_card="1:1",
+        string="F205 Operações da Atividade Imobiliária",
+        sped_card="1:N",
         help=(
-            "F205 Operações da Atividade Imobiliária – Custo Incorrido da Unidade "
-            "Imobiliária"
+            "F205 Operações da Atividade Imobiliária - Custo Incorrido da Unidade "
+            "Imobiliária Vendida"
         ),
     )
 
     reg_F210_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.f210",
         "reg_F210_ids_RegistroF200_id",
-        string="F210 Operações",
+        string="F210 Operações da Atividade Imobiliária",
         sped_card="1:N",
         help=(
-            "F210 Operações da Atividade Imobiliária – Custo Orçado da Unidade "
+            "F210 Operações da Atividade Imobiliária - Custo Orçado da Unidade "
             "Imobiliária Vendida"
         ),
     )
@@ -8995,8 +8031,8 @@ class RegistroF200(models.AbstractModel):
 
 
 class RegistroF205(models.AbstractModel):
-    """Operações da Atividade Imobiliária – Custo Incorrido da Unidade
-    Imobiliária"""
+    """Operações da Atividade Imobiliária - Custo Incorrido da Unidade
+    Imobiliária Vendida"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.f205"
@@ -9043,7 +8079,7 @@ class RegistroF205(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Parcela do Custo Incorrido sem direito ao crédito da atividade "
-            "imobiliária, acumulado até o período."
+            "imobiliária, acumulado até o período"
         ),
     )
 
@@ -9054,7 +8090,7 @@ class RegistroF205(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Valor da Base de Cálculo do Crédito sobre o Custo Incorrido, acumulado até"
-            " o período da escrituração (Campo 04 – 05)"
+            " o período da escrituração (Campo 04 - 05)"
         ),
     )
 
@@ -9064,13 +8100,13 @@ class RegistroF205(models.AbstractModel):
         xsd_type="numeric_code",
         sped_length="2*",
         help=(
-            "Código da Situação Tributária referente ao PIS/PASEP, conforme a Tabela "
-            "indicada no item 4.3.3."
+            "Código da Situação Tributária referente ao PIS/Pasep, conforme a Tabela "
+            "indicada no item 4.3.3"
         ),
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         required=True,
         sped_length="8",
         xsd_type="TDec_1604",
@@ -9078,7 +8114,7 @@ class RegistroF205(models.AbstractModel):
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     VL_CRED_PIS_ACUM = fields.Monetary(
@@ -9087,7 +8123,7 @@ class RegistroF205(models.AbstractModel):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor Total do Crédito Acumulado sobre o custo incorrido – PIS/PASEP "
+            "Valor Total do Crédito Acumulado sobre o custo incorrido - PIS/Pasep "
             "(Campo 06 x 08)"
         ),
     )
@@ -9099,7 +8135,7 @@ class RegistroF205(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Parcela do crédito descontada até o período anterior da escrituração – "
-            "PIS/PASEP (proporcional à receita recebida até o mês anterior)."
+            "PIS/Pasep (proporcional à receita recebida até o mês anterior)"
         ),
     )
 
@@ -9109,18 +8145,18 @@ class RegistroF205(models.AbstractModel):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Parcela a descontar no período da escrituração – PIS/PASEP (proporcional à"
-            " receita recebida no mês)."
+            "Parcela a descontar no período da escrituração  – PIS/Pasep (proporcional "
+            "à receita recebida no mês)"
         ),
     )
 
     VL_CRED_PIS_DESC_FUT = fields.Monetary(
-        string="Parcela a descontar",
+        string="Parcela a descontar em períodos futuros",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Parcela a descontar em períodos futuros – PIS/PASEP (Campo 09 – 10 – 11)."
+            "Parcela a descontar em períodos futuros - PIS/Pasep (Campo 09 - 10 - 11)"
         ),
     )
 
@@ -9131,12 +8167,12 @@ class RegistroF205(models.AbstractModel):
         sped_length="2*",
         help=(
             "Código da Situação Tributária referente ao COFINS, conforme a Tabela "
-            "indicada no item 4.3.4."
+            "indicada no item 4.3.4"
         ),
     )
 
     ALIQ_COFINS = fields.Float(
-        string="Alíquota do COFINS (em percentual)",
+        string="Alíquota da COFINS (em percentual)",
         required=True,
         sped_length="8",
         xsd_type="TDec_1604",
@@ -9163,41 +8199,41 @@ class RegistroF205(models.AbstractModel):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Parcela do crédito descontada até o período anterior da escrituração – "
-            "COFINS (proporcional à receita recebida até o mês anterior)."
+            "Parcela do crédito descontada até o período anterior da escrituração - "
+            "COFINS (proporcional à receita recebida até o mês anterior)"
         ),
     )
 
     VL_CRED_COFINS_DESC = fields.Monetary(
-        string="VL_CRED_COFINS_DESC",
+        string="Parcela a descontar no período da escrituração",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Parcela a descontar no período da escrituração – COFINS (proporcional à "
-            "receita recebida no mês)."
+            "Parcela a descontar no período da escrituração - COFINS (proporcional à "
+            "receita recebida no mês)"
         ),
     )
 
     VL_CRED_COFINS_DESC_FUT = fields.Monetary(
-        string="Parcela a descontar em períodos futuros – COFINS",
+        string="VL_CRED_COFINS_DESC_FUT",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=("Parcela a descontar em períodos futuros – COFINS (Campo 15 – 16 – 17)."),
+        help="Parcela a descontar em períodos futuros - COFINS (Campo 15 - 16 - 17)",
     )
 
     reg_F205_ids_RegistroF200_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.f200",
-        string="Operações",
+        string="Operações da Atividade Imobiliária",
         required=True,
         ondelete="cascade",
-        help="Operações da Atividade Imobiliária – Unidade Imobiliária Vendida",
+        help="Operações da Atividade Imobiliária - Unidade Imobiliária Vendida",
     )
 
 
 class RegistroF210(models.AbstractModel):
-    """Operações da Atividade Imobiliária – Custo Orçado da Unidade Imobiliária
+    """Operações da Atividade Imobiliária - Custo Orçado da Unidade Imobiliária
     Vendida"""
 
     _description = textwrap.dedent(f"    {__doc__}")
@@ -9232,7 +8268,7 @@ class RegistroF210(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Valor da Base de Calculo do Crédito sobre o Custo Orçado Ajustado (Campo "
-            "02 – 03)."
+            "02 - 03)."
         ),
     )
 
@@ -9241,10 +8277,7 @@ class RegistroF210(models.AbstractModel):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=(
-            "Valor da Base de Cálculo do Crédito sobre o Custo Orçado referente ao mês "
-            "da escrituração, proporcionalizada em função da receita recebida no mês."
-        ),
+        help="Valor da Base de Cálculo do Crédito sobre o Custo Orçado no Período",
     )
 
     CST_PIS = fields.Char(
@@ -9253,20 +8286,20 @@ class RegistroF210(models.AbstractModel):
         xsd_type="numeric_code",
         sped_length="2*",
         help=(
-            "Código da Situação Tributária referente ao PIS/PASEP, conforme a Tabela "
+            "Código da Situação Tributária referente ao PIS/Pasep, conforme a Tabela "
             "indicada no item 4.3.3."
         ),
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     VL_CRED_PIS_UTIL = fields.Monetary(
@@ -9275,7 +8308,7 @@ class RegistroF210(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Valor do Crédito sobre o custo orçado a ser utilizado no período da "
-            "escrituração - PIS/PASEP (Campo 05 x 07)"
+            "escrituração - PIS/Pasep"
         ),
     )
 
@@ -9306,16 +8339,16 @@ class RegistroF210(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Valor do Crédito sobre o custo orçado a ser utilizado no período da "
-            "escrituração - COFINS (Campo 05 x 10)"
+            "escrituração - COFINS"
         ),
     )
 
     reg_F210_ids_RegistroF200_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.f200",
-        string="Operações",
+        string="Operações da Atividade Imobiliária",
         required=True,
         ondelete="cascade",
-        help="Operações da Atividade Imobiliária – Unidade Imobiliária Vendida",
+        help="Operações da Atividade Imobiliária - Unidade Imobiliária Vendida",
     )
 
 
@@ -9334,28 +8367,22 @@ class RegistroF211(models.AbstractModel):
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil 9 - Outros."
-        ),
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_F211_ids_RegistroF200_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.f200",
-        string="Operações",
+        string="Operações da Atividade Imobiliária",
         required=True,
         ondelete="cascade",
-        help="Operações da Atividade Imobiliária – Unidade Imobiliária Vendida",
+        help="Operações da Atividade Imobiliária - Unidade Imobiliária Vendida",
     )
 
 
 class RegistroF500(models.AbstractModel):
-    """Consolidação das Operações da Pessoa Jurídica Submetida ao Regime de
-    Tributação com Base no Lucro Presumido – Incidência do PIS/Pasep e da
-    Cofins pelo Regime de Caixa"""
+    """Consolidação das operações da pessoa jurídica submetida ao regime de
+    tributação com base no lucro presumido - incidência do PIS/Pasep e da
+    Cofins pelo regime de caixa"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.f500"
@@ -9368,7 +8395,7 @@ class RegistroF500(models.AbstractModel):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor total da receita recebida, referente à combinação de CST e Alíquota."
+            "Valor total da receita recebida, referente à combinação de CST e Alíquota"
         ),
     )
 
@@ -9377,7 +8404,7 @@ class RegistroF500(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help="Código da Situação Tributária referente ao PIS/PASEP",
+        help="Código da Situação Tributária referente ao PIS/Pasep",
     )
 
     VL_DESC_PIS = fields.Monetary(
@@ -9387,24 +8414,24 @@ class RegistroF500(models.AbstractModel):
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Valor da base de cálculo do PIS/PASEP",
+        string="Valor da base de cálculo do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -9441,13 +8468,13 @@ class RegistroF500(models.AbstractModel):
     )
 
     COD_MOD = fields.Char(
-        string="Código do modelo do documento fiscal conforme",
+        string="Código do modelo do documento fiscal",
         sped_length="2*",
-        help="Código do modelo do documento fiscal conforme a Tabela 4.1.1",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
     )
 
     CFOP = fields.Char(
-        string="Código fiscal de operação e prestação",
+        string="Código Fiscal de Operação e Prestação",
         xsd_type="numeric_code",
         sped_length="4*",
     )
@@ -9490,33 +8517,27 @@ class RegistroF509(models.AbstractModel):
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil 9 - Outros."
-        ),
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_F509_ids_RegistroF500_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.f500",
-        string="Consolidação das Operações",
+        string="Consolidação das operações",
         required=True,
         ondelete="cascade",
         help=(
-            "Consolidação das Operações da Pessoa Jurídica Submetida ao Regime de "
-            "Tributação com Base no Lucro Presumido – Incidência do PIS/Pasep e da "
-            "Cofins pelo Regime de Caixa"
+            "Consolidação das operações da pessoa jurídica submetida ao regime de "
+            "tributação com base no lucro presumido - incidência do PIS/Pasep e da "
+            "Cofins pelo regime de caixa"
         ),
     )
 
 
 class RegistroF510(models.AbstractModel):
-    """Consolidação das Operações da Pessoa Jurídica Submetida ao Regime de
-    Tributação com Base no Lucro Presumido – Incidência do PIS/Pasep e da
-    Cofins pelo Regime de Caixa (Apuração da Contribuição por Unidade de
-    Medida de Produto)"""
+    """Consolidação das operações da pessoa jurídica submetida ao regime de
+    tributação com base no lucro presumido - incidência do PIS/Pasep e da
+    Cofins pelo regime de caixa (apuração da contribuição por unidade de
+    medida de produto - alíquota em reais)"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.f510"
@@ -9529,7 +8550,7 @@ class RegistroF510(models.AbstractModel):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor total da receita recebida, referente à combinação de CST e Alíquota."
+            "Valor total da receita recebida, referente à combinação de CST e Alíquota"
         ),
     )
 
@@ -9538,28 +8559,26 @@ class RegistroF510(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help="Código da Situação Tributária referente ao PIS/PASEP",
+        help="Código da Situação Tributária referente ao PIS/Pasep",
     )
 
     VL_DESC_PIS = fields.Monetary(
-        string="Valor do desconto / exclusão",
+        string="Valor do desconto / exclusão da base de cálculo",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     QUANT_BC_PIS = fields.Float(
-        string="Base de cálculo em quantidade",
+        string="Base de cálculo em quantidade PIS/Pasep",
         xsd_type="TDec_1603",
         digits=(
             16,
             3,
         ),
-        help="Base de cálculo em quantidade - PIS/PASEP",
     )
 
     ALIQ_PIS_QUANT = fields.Float(
-        string="Alíquota do PIS/PASEP (em reais)",
-        sped_length="8",
+        string="Alíquota do PIS (em reais)",
         xsd_type="TDec_1604",
         digits=(
             16,
@@ -9568,7 +8587,7 @@ class RegistroF510(models.AbstractModel):
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -9581,24 +8600,20 @@ class RegistroF510(models.AbstractModel):
     )
 
     VL_DESC_COFINS = fields.Monetary(
-        string="Valor do desconto / exclusão (VL_DESC_COFINS)",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
+        string="VL_DESC_COFINS", xsd_type="TDec_1602", currency_field="brl_currency_id"
     )
 
     QUANT_BC_COFINS = fields.Float(
-        string="Base de cálculo em quantidade (QUANT_BC_COFINS)",
+        string="Base de cálculo em quantidade COFINS",
         xsd_type="TDec_1603",
         digits=(
             16,
             3,
         ),
-        help="Base de cálculo em quantidade - COFINS",
     )
 
     ALIQ_COFINS_QUANT = fields.Float(
         string="Alíquota da COFINS (em reais)",
-        sped_length="8",
         xsd_type="TDec_1604",
         digits=(
             16,
@@ -9611,13 +8626,13 @@ class RegistroF510(models.AbstractModel):
     )
 
     COD_MOD = fields.Char(
-        string="Código do modelo do documento fiscal conforme",
+        string="Código do modelo do documento fiscal",
         sped_length="2*",
-        help="Código do modelo do documento fiscal conforme a Tabela 4.1.1",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
     )
 
     CFOP = fields.Char(
-        string="Código fiscal de operação e prestação",
+        string="Código Fiscal de Operação e Prestação",
         xsd_type="numeric_code",
         sped_length="4*",
     )
@@ -9660,32 +8675,26 @@ class RegistroF519(models.AbstractModel):
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil 9 - Outros."
-        ),
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_F519_ids_RegistroF510_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.f510",
-        string="Consolidação das Operações",
+        string="Consolidação das operações",
         required=True,
         ondelete="cascade",
         help=(
-            "Consolidação das Operações da Pessoa Jurídica Submetida ao Regime de "
-            "Tributação com Base no Lucro Presumido – Incidência do PIS/Pasep e da "
-            "Cofins pelo Regime de Caixa (Apuração da Contribuição por Unidade de "
-            "Medida de Produto)"
+            "Consolidação das operações da pessoa jurídica submetida ao regime de "
+            "tributação com base no lucro presumido - incidência do PIS/Pasep e da "
+            "Cofins pelo regime de caixa (apuração da contribuição por unidade de "
+            "medida de produto - alíquota em reais)"
         ),
     )
 
 
 class RegistroF525(models.AbstractModel):
-    """Composição da Receita Escriturada no Período – Detalhamento da Receita
-    Recebida pelo Regime de Caixa"""
+    """Composição da receita escriturada no período - detalhamento da receita
+    recebida pelo regime de caixa"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.f525"
@@ -9706,11 +8715,8 @@ class RegistroF525(models.AbstractModel):
     IND_REC = fields.Char(
         string="Indicador da composição da receita recebida",
         required=True,
-        sped_length="2*",
-        help=(
-            "Indicador da composição da receita recebida no período (Campo 02), por: "
-            "01- Clientes 02- Administradora de cartão de débito/crédito"
-        ),
+        sped_length="2",
+        help="Indicador da composição da receita recebida no período (Campo 02)",
     )
 
     CNPJ_CPF = fields.Char(
@@ -9720,7 +8726,7 @@ class RegistroF525(models.AbstractModel):
             "CNPJ/CPF do participante (cliente/pessoa física ou jurídica pagadora) ou "
             "da administradora de cartões (vendas por cartão de débito ou de crédito), "
             "no caso de detalhamento da receita recebida conforme os indicadores “01” "
-            "ou “02”, respectivamente."
+            "ou “02”, respectivamente"
         ),
     )
 
@@ -9730,7 +8736,7 @@ class RegistroF525(models.AbstractModel):
         help=(
             "Número do título de crédito ou do documento fiscal, no caso de "
             "detalhamento da receita recebida conforme os indicadores “03” ou “04”, "
-            "respectivamente."
+            "respectivamente"
         ),
     )
 
@@ -9739,7 +8745,7 @@ class RegistroF525(models.AbstractModel):
         sped_length="6",
         help=(
             "Código do item (campo 02 do Registro 0200), no caso de detalhamento da "
-            "receita recebida por item vendido, conforme o indicador “05”."
+            "receita recebida por item vendido, conforme o indicador “05”"
         ),
     )
 
@@ -9750,18 +8756,19 @@ class RegistroF525(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Valor da receita detalhada, correspondente ao conteúdo informado no campo "
-            "04, 05, 06 ou 10."
+            "04, 05 ou 06"
         ),
     )
 
     CST_PIS = fields.Char(
-        string="Código da Situação Tributária do PIS/Pasep",
+        string="Código da Situação Tributária referente",
         xsd_type="numeric_code",
         sped_length="2*",
+        help="Código da Situação Tributária referente ao PIS/Pasep",
     )
 
     CST_COFINS = fields.Char(
-        string="Código da Situação Tributária da Cofins",
+        string="Código da Situação Tributária referente a COFINS",
         xsd_type="numeric_code",
         sped_length="2*",
     )
@@ -9783,9 +8790,9 @@ class RegistroF525(models.AbstractModel):
 
 
 class RegistroF550(models.AbstractModel):
-    """Consolidação das Operações da Pessoa Jurídica Submetida ao Regime de
-    Tributação com Base no Lucro Presumido – Incidência do PIS/Pasep e da
-    Cofins pelo Regime de Competência"""
+    """Consolidação das operações da pessoa jurídica submetida ao regime de
+    tributação com base no lucro presumido - incidência do PIS/Pasep e da
+    Cofins pelo regime de competência"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.f550"
@@ -9798,7 +8805,7 @@ class RegistroF550(models.AbstractModel):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor total da receita auferida, referente à combinação de CST e Alíquota."
+            "Valor total da receita auferida, referente à combinação de CST e Alíquota"
         ),
     )
 
@@ -9807,7 +8814,7 @@ class RegistroF550(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help="Código da Situação Tributária referente ao PIS/PASEP",
+        help="Código da Situação Tributária referente ao PIS/Pasep",
     )
 
     VL_DESC_PIS = fields.Monetary(
@@ -9817,24 +8824,24 @@ class RegistroF550(models.AbstractModel):
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Valor da base de cálculo do PIS/PASEP",
+        string="Valor da base de cálculo do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -9871,13 +8878,13 @@ class RegistroF550(models.AbstractModel):
     )
 
     COD_MOD = fields.Char(
-        string="Código do modelo do documento fiscal conforme",
+        string="Código do modelo do documento fiscal",
         sped_length="2*",
-        help="Código do modelo do documento fiscal conforme a Tabela 4.1.1",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
     )
 
     CFOP = fields.Char(
-        string="Código fiscal de operação e prestação",
+        string="Código Fiscal de Operação e Prestação",
         xsd_type="numeric_code",
         sped_length="4*",
     )
@@ -9885,7 +8892,7 @@ class RegistroF550(models.AbstractModel):
     COD_CTA = fields.Char(
         string="Código",
         sped_length="255",
-        help="Código da conta analítica contábil debitada / creditada",
+        help="Código da conta analítica contábil debitada/creditada",
     )
 
     INFO_COMPL = fields.Char(string="Informação complementar")
@@ -9920,33 +8927,27 @@ class RegistroF559(models.AbstractModel):
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil 9 - Outros."
-        ),
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_F559_ids_RegistroF550_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.f550",
-        string="Consolidação das Operações",
+        string="Consolidação das operações",
         required=True,
         ondelete="cascade",
         help=(
-            "Consolidação das Operações da Pessoa Jurídica Submetida ao Regime de "
-            "Tributação com Base no Lucro Presumido – Incidência do PIS/Pasep e da "
-            "Cofins pelo Regime de Competência"
+            "Consolidação das operações da pessoa jurídica submetida ao regime de "
+            "tributação com base no lucro presumido - incidência do PIS/Pasep e da "
+            "Cofins pelo regime de competência"
         ),
     )
 
 
 class RegistroF560(models.AbstractModel):
-    """Consolidação das Operações da Pessoa Jurídica Submetida ao Regime de
-    Tributação com Base no Lucro Presumido – Incidência do PIS/Pasep e da
-    Cofins pelo Regime de Competência (Apuração da Contribuição por Unidade
-    de Medida de Produto)"""
+    """Consolidação das operações da pessoa jurídica submetida ao regime de
+    tributação com base no lucro presumido - incidência do PIS/Pasep e da
+    Cofins pelo regime de competência (apuração da contribuição por unidade
+    de medida de produto - alíquota em reais)"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.f560"
@@ -9959,7 +8960,7 @@ class RegistroF560(models.AbstractModel):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor total da receita auferida, referente à combinação de CST e Alíquota."
+            "Valor total da receita auferida, referente à combinação de CST e Alíquota"
         ),
     )
 
@@ -9967,12 +8968,12 @@ class RegistroF560(models.AbstractModel):
         string="Código da Situação Tributária referente",
         required=True,
         xsd_type="numeric_code",
-        sped_length="2 *",
-        help="Código da Situação Tributária referente ao PIS/PASEP",
+        sped_length="2*",
+        help="Código da Situação Tributária referente ao PIS/Pasep",
     )
 
     VL_DESC_PIS = fields.Monetary(
-        string="Valor do desconto / exclusão",
+        string="Valor do desconto / exclusão da base de cálculo",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -9984,11 +8985,11 @@ class RegistroF560(models.AbstractModel):
             16,
             3,
         ),
-        help="Base de cálculo em quantidade - PIS/PASEP",
+        help="Base de cálculo em quantidade - PIS/Pasep",
     )
 
     ALIQ_PIS_QUANT = fields.Float(
-        string="Alíquota do PIS/PASEP (em reais)",
+        string="Alíquota do PIS/Pasep (em reais)",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
@@ -9998,7 +8999,7 @@ class RegistroF560(models.AbstractModel):
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -10007,22 +9008,21 @@ class RegistroF560(models.AbstractModel):
         string="Código da Situação Tributária referente a COFINS",
         required=True,
         xsd_type="numeric_code",
-        sped_length="2 *",
+        sped_length="2*",
     )
 
     VL_DESC_COFINS = fields.Monetary(
-        string="Valor do desconto / exclusão (VL_DESC_COFINS)",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
+        string="VL_DESC_COFINS", xsd_type="TDec_1602", currency_field="brl_currency_id"
     )
 
     QUANT_BC_COFINS = fields.Float(
-        string="Base de cálculo em quantidade – COFINS",
+        string="Base de cálculo em quantidade (QUANT_BC_COFINS)",
         xsd_type="TDec_1603",
         digits=(
             16,
             3,
         ),
+        help="Base de cálculo em quantidade - COFINS",
     )
 
     ALIQ_COFINS_QUANT = fields.Float(
@@ -10040,21 +9040,21 @@ class RegistroF560(models.AbstractModel):
     )
 
     COD_MOD = fields.Char(
-        string="Código do modelo do documento fiscal conforme",
-        sped_length="2 *",
-        help="Código do modelo do documento fiscal conforme a Tabela 4.1.1",
+        string="Código do modelo do documento fiscal",
+        sped_length="2*",
+        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1",
     )
 
     CFOP = fields.Char(
-        string="Código fiscal de operação e prestação",
+        string="Código Fiscal de Operação e Prestação",
         xsd_type="numeric_code",
-        sped_length="4 *",
+        sped_length="4*",
     )
 
     COD_CTA = fields.Char(
         string="Código",
         sped_length="255",
-        help="Código da conta analítica contábil debitada / creditada",
+        help="Código da conta analítica contábil debitada/creditada",
     )
 
     INFO_COMPL = fields.Char(string="Informação complementar")
@@ -10089,25 +9089,19 @@ class RegistroF569(models.AbstractModel):
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil 9 - Outros."
-        ),
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_F569_ids_RegistroF560_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.f560",
-        string="Consolidação das Operações",
+        string="Consolidação das operações",
         required=True,
         ondelete="cascade",
         help=(
-            "Consolidação das Operações da Pessoa Jurídica Submetida ao Regime de "
-            "Tributação com Base no Lucro Presumido – Incidência do PIS/Pasep e da "
-            "Cofins pelo Regime de Competência (Apuração da Contribuição por Unidade de"
-            " Medida de Produto)"
+            "Consolidação das operações da pessoa jurídica submetida ao regime de "
+            "tributação com base no lucro presumido - incidência do PIS/Pasep e da "
+            "Cofins pelo regime de competência (apuração da contribuição por unidade de"
+            " medida de produto - alíquota em reais)"
         ),
     )
 
@@ -10127,24 +9121,27 @@ class RegistroF600(models.AbstractModel):
         sped_length="2*",
         help=(
             "Indicador de Natureza da Retenção na Fonte: 01 - Retenção por Órgãos, "
-            "Autarquias e Fundações Federais 02 - Retenção por outras Entidades da "
-            "Administração Pública Federal 03 - Retenção por Pessoas Jurídicas de "
-            "Direito Privado 04 - Recolhimento por Sociedade Cooperativa 05 - Retenção "
-            "por Fabricante de Máquinas e Veículos 99 - Outras Retenções"
+            "Autarquias e Fundações Federais; 02 - Retenção por outras Entidades da "
+            "Adm. Pública Federal; 03 - Retenção por Pessoas Jurídicas de Direito "
+            "Privado; 04 - Retenção por Sociedade Cooperativa; 05 - Retenção por "
+            "Fabricante de Máquinas e Veículos; 99 - Outras Retenções"
         ),
     )
 
     DT_RET = fields.Date(string="Data da Retenção", required=True, sped_length="8*")
 
     VL_BC_RET = fields.Float(
-        string="Base de calculo da retenção ou do recolhimento",
+        string="Valor da base de cálculo da retenção",
         required=True,
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help=("Base de calculo da retenção ou do recolhimento (sociedade cooperativa)"),
+        help=(
+            "Valor da base de cálculo da retenção ou do recolhimento (sociedade "
+            "cooperativa)"
+        ),
     )
 
     VL_RET = fields.Monetary(
@@ -10162,47 +9159,41 @@ class RegistroF600(models.AbstractModel):
         xsd_type="numeric_code",
         sped_length="1*",
         help=(
-            "Indicador da Natureza da Receita: 0 – Receita de Natureza Não Cumulativa 1"
-            " – Receita de Natureza Cumulativa"
+            "Indicador da Natureza da Receita: 0 - Receita de Natureza Não Cumulativa; "
+            "1 - Receita de Natureza Cumulativa"
         ),
     )
 
     CNPJ = fields.Char(
-        string="CNPJ referente",
+        string="CNPJ da Fonte Pagadora ou Beneficiária",
         required=True,
         xsd_type="numeric_code",
         sped_length="14*",
-        help=(
-            "CNPJ referente a: - Fonte Pagadora Responsável pela Retenção / "
-            "Recolhimento (no caso de o registro ser escriturado pela pessoa jurídica "
-            "beneficiária da retenção); ou"
-        ),
+        help="CNPJ da Fonte Pagadora ou Beneficiária da Retenção / Recolhimento",
     )
 
     VL_RET_PIS = fields.Monetary(
-        string="Valor Retido na Fonte – Parcela Referente",
+        string="Valor Retido na Fonte",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor Retido na Fonte – Parcela Referente ao PIS/Pasep",
+        help="Valor Retido na Fonte - Parcela Referente ao PIS/Pasep",
     )
 
     VL_RET_COFINS = fields.Monetary(
-        string="Valor Retido na Fonte – Parcela Referente a COFINS",
+        string="Valor Retido na Fonte (VL_RET_COFINS)",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
+        help="Valor Retido na Fonte - Parcela Referente a COFINS",
     )
 
     IND_DEC = fields.Char(
-        string="Indicador da condição",
+        string="Indicador da Condição",
         required=True,
         xsd_type="numeric_code",
         sped_length="1*",
-        help=(
-            "Indicador da condição da pessoa jurídica declarante: 0 – Beneficiária da "
-            "Retenção / Recolhimento 1- Responsável pelo Recolhimento"
-        ),
+        help="Indicador da Condição da Pessoa Jurídica Declarante",
     )
 
     reg_F600_ids_RegistroF010_id = fields.Many2one(
@@ -10226,12 +9217,6 @@ class RegistroF700(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help=(
-            "Indicador de Origem de Deduções Diversas: 01 – Créditos Presumidos - "
-            "Medicamentos 02 – Créditos Admitidos no Regime Cumulativo – Bebidas Frias "
-            "03 – Contribuição Paga pelo Substituto Tributário - ZFM 04 – Substituição "
-            "Tributária – Não Ocorrência do Fato Gerador Presumido 99 - Outras Deduções"
-        ),
     )
 
     IND_NAT_DED = fields.Char(
@@ -10239,53 +9224,36 @@ class RegistroF700(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="1*",
-        help=(
-            "Indicador da Natureza da Dedução: 0 – Dedução de Natureza Não Cumulativa 1"
-            " – Dedução de Natureza Cumulativa"
-        ),
     )
 
     VL_DED_PIS = fields.Monetary(
-        string="Valor a Deduzir - PIS/PASEP",
+        string="Valor a Deduzir - PIS/Pasep",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_DED_COFINS = fields.Monetary(
-        string="Valor a Deduzir – Cofins",
+        string="Valor a Deduzir - COFINS",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_BC_OPER = fields.Monetary(
-        string="Valor da Base de Cálculo da Operação que ensejou",
+        string="Valor da Base de Cálculo da Operação",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=(
-            "Valor da Base de Cálculo da Operação que ensejou o Valor a Deduzir "
-            "informado nos Campos 04 e 05"
-        ),
     )
 
     CNPJ = fields.Char(
         string="CNPJ da Pessoa Jurídica relacionada à Operação",
         xsd_type="numeric_code",
         sped_length="14*",
-        help=(
-            "CNPJ da Pessoa Jurídica relacionada à Operação que ensejou o Valor a "
-            "Deduzir informado nos Campos 04 e 05."
-        ),
     )
 
     INF_COMP = fields.Char(
-        string="Informações Complementares do Documento/Operação",
-        sped_length="9",
-        help=(
-            "Informações Complementares do Documento/Operação que ensejou o Valor a "
-            "Deduzir informado nos Campos 04 e 05."
-        ),
+        string="Informações Complementares do Documento/Operação", sped_length="9"
     )
 
     reg_F700_ids_RegistroF010_id = fields.Many2one(
@@ -10309,10 +9277,6 @@ class RegistroF800(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help=(
-            "Indicador da Natureza do Evento de Sucessão: 01 – Incorporação 02 – Fusão "
-            "03 – Cisão Total 04 – Cisão Parcial 99 – Outros"
-        ),
     )
 
     DT_EVEN = fields.Date(string="Data do Evento", required=True, sped_length="8*")
@@ -10325,11 +9289,11 @@ class RegistroF800(models.AbstractModel):
     )
 
     PA_CONT_CRED = fields.Char(
-        string="Período de Apuração do Crédito – Mês/Ano",
+        string="Período de Apuração do Crédito",
         required=True,
         xsd_type="numeric_code",
         sped_length="6*",
-        help="Período de Apuração do Crédito – Mês/Ano (MM/AAAA)",
+        help="Período de Apuração do Crédito - Mês/Ano (MM/AAAA)",
     )
 
     COD_CRED = fields.Char(
@@ -10376,7 +9340,7 @@ class RegistroF800(models.AbstractModel):
 
 
 class RegistroI010(models.AbstractModel):
-    "Identificação da Pessoa Jurídica"
+    "Identificação do Estabelecimento"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.i010"
@@ -10384,26 +9348,20 @@ class RegistroI010(models.AbstractModel):
     _sped_level = 2
 
     CNPJ = fields.Char(
-        string="Número de inscrição da pessoa jurídica no CNPJ",
+        string="Número de inscrição do estabelecimento no CNPJ",
+        required=True,
         xsd_type="numeric_code",
         sped_length="14*",
     )
 
     IND_ATIV = fields.Char(
         string="Indicador de operações realizadas no período",
+        required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help=(
-            "Indicador de operações realizadas no período: 01 – Exclusivamente "
-            "operações de Instituições Financeiras e Assemelhadas 02 – Exclusivamente "
-            "operações de Seguros Privados 03 – Exclusivamente operações de Previdência"
-            " Complementar 04 – Exclusivamente operações de Capitalização 05 – "
-            "Exclusivamente operações de Planos de Assistência à Saúde 06 – Realizou "
-            "operações referentes a mais de um dos indicadores acima"
-        ),
     )
 
-    INFO_COMPL = fields.Char(string="Informação Complementar")
+    INFO_COMPL = fields.Char(string="Informação complementar")
 
     reg_I100_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.i100",
@@ -10421,20 +9379,21 @@ class RegistroI100(models.AbstractModel):
     _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
     _sped_level = 3
 
-    VL_REC = fields.Monetary(
+    VL_REC_FIN = fields.Monetary(
         string="Valor Total do Faturamento/Receita Bruta",
+        required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help="Valor Total do Faturamento/Receita Bruta no Período",
     )
 
-    CST_PIS_COFINS = fields.Char(
+    CST = fields.Char(
         string="Código de Situação Tributária referente",
+        required=True,
         xsd_type="numeric_code",
         sped_length="2*",
         help=(
-            "Código de Situação Tributária referente à Receita informada no Campo 02 "
-            "(Tabelas 4.3.3 e 4.3.4)"
+            "Código de Situação Tributária referente à Receita informada no Campo 02"
         ),
     )
 
@@ -10453,30 +9412,30 @@ class RegistroI100(models.AbstractModel):
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="Valor da base de cálculo do PIS/PASEP",
+        string="Valor da base de cálculo do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         sped_length="8",
         xsd_type="TDec_1602",
         digits=(
             16,
             2,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     VL_BC_COFINS = fields.Monetary(
-        string="Valor da base de cálculo da Cofins",
+        string="Valor da base de cálculo da COFINS",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -10495,14 +9454,11 @@ class RegistroI100(models.AbstractModel):
         string="Valor da COFINS", xsd_type="TDec_1602", currency_field="brl_currency_id"
     )
 
-    INFO_COMPL = fields.Char(
-        string="Informação Complementar dos dados informados",
-        help="Informação Complementar dos dados informados no registro",
-    )
+    INF_COMP = fields.Char(string="Informações Complementares", sped_length="9")
 
     reg_I100_ids_RegistroI010_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.i010",
-        string="Identificação da Pessoa Jurídica",
+        string="Identificação do Estabelecimento",
         required=True,
         ondelete="cascade",
     )
@@ -10517,9 +9473,9 @@ class RegistroI100(models.AbstractModel):
     reg_I200_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.i200",
         "reg_I200_ids_RegistroI100_id",
-        string="I200 Composição das Receitas",
+        string="I200 Detalhamento das Receitas",
         sped_card="1:N",
-        help="I200 Composição das Receitas, Deduções e/ou Exclusões do Período",
+        help="I200 Detalhamento das Receitas, Deduções e/ou Exclusões do Período",
     )
 
 
@@ -10532,16 +9488,13 @@ class RegistroI199(models.AbstractModel):
     _sped_level = 4
 
     NUM_PROC = fields.Char(
-        string="Identificação do processo ou ato concessório", sped_length="2"
+        string="Identificação do processo ou ato concessório",
+        required=True,
+        sped_length="2",
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil 9 – Outros."
-        ),
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_I199_ids_RegistroI100_id = fields.Many2one(
@@ -10553,7 +9506,7 @@ class RegistroI199(models.AbstractModel):
 
 
 class RegistroI200(models.AbstractModel):
-    "Composição das Receitas, Deduções e/ou Exclusões do Período"
+    "Detalhamento das Receitas, Deduções e/ou Exclusões do Período"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.i200"
@@ -10561,43 +9514,31 @@ class RegistroI200(models.AbstractModel):
     _sped_level = 4
 
     NUM_CAMPO = fields.Char(
-        string="número do campo do registro “I100”",
+        string="Número do Campo do registro I100 objeto",
+        required=True,
         sped_length="2*",
-        help=(
-            "número do campo do registro “I100” (Campos 02, 04 ou 05), objeto de "
-            "informação neste registro."
-        ),
+        help="Número do Campo do registro I100 objeto de detalhamento",
     )
 
     COD_DET = fields.Char(
-        string="Código do tipo de detalhamento",
-        sped_length="5*",
-        help="Código do tipo de detalhamento, conforme Tabelas 7.1.1 e/ou 7.1.2",
+        string="Código do Tipo de Detalhamento", required=True, sped_length="5*"
     )
 
-    DET_VALOR = fields.Float(
-        string="Valor detalhado referente ao campo 03",
+    VL_DET = fields.Monetary(
+        string="Valor detalhado referente",
+        required=True,
         xsd_type="TDec_1602",
-        digits=(
-            16,
-            2,
-        ),
-        help="Valor detalhado referente ao campo 03 (COD_DET) deste registro",
+        currency_field="brl_currency_id",
+        help="Valor detalhado referente ao campo 02 deste registro",
     )
 
     COD_CTA = fields.Char(
         string="Código da conta contábil referente",
         sped_length="255",
-        help=(
-            "Código da conta contábil referente ao valor informado no campo 04 "
-            "(DET_VALOR)"
-        ),
+        help="Código da conta contábil referente ao valor informado no campo 04",
     )
 
-    INFO_COMPL = fields.Char(
-        string="Informação Complementar dos dados informados",
-        help="Informação Complementar dos dados informados no registro",
-    )
+    INF_COMP = fields.Char(string="Informações Complementares", sped_length="9")
 
     reg_I200_ids_RegistroI100_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.i100",
@@ -10616,11 +9557,11 @@ class RegistroI200(models.AbstractModel):
     reg_I300_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.i300",
         "reg_I300_ids_RegistroI200_id",
-        string="I300 Complemento das Operações – Detalhamento",
+        string="I300 Complemento das Operações",
         sped_card="1:N",
         help=(
-            "I300 Complemento das Operações – Detalhamento das Receitas, Deduções e/ou "
-            "Exclusões do Período"
+            "I300 Complemento das Operações - Informações Complementares de Receitas, "
+            "Deduções e/ou Exclusões"
         ),
     )
 
@@ -10634,30 +9575,27 @@ class RegistroI299(models.AbstractModel):
     _sped_level = 5
 
     NUM_PROC = fields.Char(
-        string="Identificação do processo ou ato concessório", sped_length="2"
+        string="Identificação do processo ou ato concessório",
+        required=True,
+        sped_length="2",
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil 9 – Outros."
-        ),
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_I299_ids_RegistroI200_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.i200",
-        string="Composição das Receitas",
+        string="Detalhamento das Receitas",
         required=True,
         ondelete="cascade",
-        help="Composição das Receitas, Deduções e/ou Exclusões do Período",
+        help="Detalhamento das Receitas, Deduções e/ou Exclusões do Período",
     )
 
 
 class RegistroI300(models.AbstractModel):
-    """Complemento das Operações – Detalhamento das Receitas, Deduções e/ou
-    Exclusões do Período"""
+    """Complemento das Operações - Informações Complementares de Receitas,
+    Deduções e/ou Exclusões"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.i300"
@@ -10665,47 +9603,27 @@ class RegistroI300(models.AbstractModel):
     _sped_level = 5
 
     COD_COMP = fields.Char(
-        string="Código das Tabelas 7.1.3",
-        sped_length="6",
-        help=(
-            "Código das Tabelas 7.1.3 (Receitas – Visão Analítica/Referenciada) e/ou "
-            "7.1.4 (Deduções e exclusões – Visão Analítica/Referenciada), objeto de "
-            "complemento neste registro"
-        ),
+        string="Código do Complemento", required=True, sped_length="8*"
     )
 
-    DET_VALOR = fields.Float(
-        string="Valor da receita",
+    VL_COMP = fields.Monetary(
+        string="Valor detalhado referente",
+        required=True,
         xsd_type="TDec_1602",
-        digits=(
-            16,
-            2,
-        ),
-        help=(
-            "Valor da receita, dedução ou exclusão, objeto de complemento/detalhamento "
-            "neste registro, conforme código informado no campo 02 (especificados nas "
-            "tabelas analíticas 7.1.3 e 7.1.4) ou no campo 04 (código da conta "
-            "contábil)"
-        ),
+        currency_field="brl_currency_id",
+        help="Valor detalhado referente ao campo 02 deste registro",
     )
 
-    COD_CTA = fields.Char(
-        string="Código da conta contábil referente",
-        sped_length="255",
-        help="Código da conta contábil referente ao valor informado no campo 03",
-    )
+    COD_CTA = fields.Char(string="Conta Contábil", sped_length="255")
 
-    INFO_COMPL = fields.Char(
-        string="Informação Complementar dos dados informados",
-        help="Informação Complementar dos dados informados no registro",
-    )
+    INF_COMP = fields.Char(string="Informações Complementares", sped_length="9")
 
     reg_I300_ids_RegistroI200_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.i200",
-        string="Composição das Receitas",
+        string="Detalhamento das Receitas",
         required=True,
         ondelete="cascade",
-        help="Composição das Receitas, Deduções e/ou Exclusões do Período",
+        help="Detalhamento das Receitas, Deduções e/ou Exclusões do Período",
     )
 
     reg_I399_ids = fields.One2many(
@@ -10725,32 +9643,29 @@ class RegistroI399(models.AbstractModel):
     _sped_level = 6
 
     NUM_PROC = fields.Char(
-        string="Identificação do processo ou ato concessório", sped_length="2"
+        string="Identificação do processo ou ato concessório",
+        required=True,
+        sped_length="2",
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil 9 – Outros."
-        ),
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_I399_ids_RegistroI300_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.i300",
-        string="Complemento das Operações – Detalhamento",
+        string="Complemento das Operações",
         required=True,
         ondelete="cascade",
         help=(
-            "Complemento das Operações – Detalhamento das Receitas, Deduções e/ou "
-            "Exclusões do Período"
+            "Complemento das Operações - Informações Complementares de Receitas, "
+            "Deduções e/ou Exclusões"
         ),
     )
 
 
 class RegistroM100(models.AbstractModel):
-    "Crédito de PIS/PASEP Relativo ao Período"
+    "Crédito de PIS/Pasep Relativo ao Período"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.m100"
@@ -10761,7 +9676,7 @@ class RegistroM100(models.AbstractModel):
         string="Código de Tipo de Crédito apurado no período",
         required=True,
         sped_length="3*",
-        help=("Código de Tipo de Crédito apurado no período, conforme a Tabela 4.3.6."),
+        help="Código de Tipo de Crédito apurado no período, conforme a Tabela 4.3.6",
     )
 
     IND_CRED_ORI = fields.Char(
@@ -10769,31 +9684,28 @@ class RegistroM100(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="1*",
-        help=(
-            "Indicador de Crédito Oriundo de: 0 – Operações próprias 1 – Evento de "
-            "incorporação, cisão ou fusão"
-        ),
+        help="Indicador de Crédito Oriundo de",
     )
 
-    VL_BC_PIS = fields.Monetary(
+    VL_BC_CRED = fields.Monetary(
         string="Valor da Base de Cálculo do Crédito",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     QUANT_BC_PIS = fields.Float(
-        string="Quantidade – Base de cálculo PIS",
+        string="Base de cálculo em quantidade PIS/Pasep",
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -10844,20 +9756,16 @@ class RegistroM100(models.AbstractModel):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor Total do Crédito Disponível relativo ao Período (08 + 09 – 10 – 11)"
+            "Valor Total do Crédito Disponível relativo ao Período (07 + 08 - 09 - 10)"
         ),
     )
 
     IND_DESC_CRED = fields.Char(
-        string="Indicador de opção de utilização",
+        string="Indicador de utilização do crédito disponível",
         required=True,
+        xsd_type="numeric_code",
         sped_length="1*",
-        help=(
-            "Indicador de opção de utilização do crédito disponível no período: 0 – "
-            "Utilização do valor total para desconto da contribuição apurada no "
-            "período, no Registro M200; 1 – Utilização de valor parcial para desconto "
-            "da contribuição apurada no período, no Registro M200."
-        ),
+        help="Indicador de utilização do crédito disponível no período.",
     )
 
     VL_CRED_DESC = fields.Monetary(
@@ -10866,8 +9774,7 @@ class RegistroM100(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Valor do Crédito disponível, descontado da contribuição apurada no próprio"
-            " período. Se IND_DESC_CRED=0, informar o valor total do Campo 12; Se "
-            "IND_DESC_CRED=1, informar o valor parcial do Campo 12."
+            " período"
         ),
     )
 
@@ -10879,7 +9786,7 @@ class RegistroM100(models.AbstractModel):
             16,
             2,
         ),
-        help="Saldo de créditos a utilizar em períodos futuros (12 – 14)",
+        help="Saldo de créditos a utilizar em períodos futuros (12 - 14)",
     )
 
     reg_M105_ids = fields.One2many(
@@ -10888,22 +9795,22 @@ class RegistroM100(models.AbstractModel):
         string="M105 Detalhamento da Base de Cálculo",
         sped_card="1:N",
         help=(
-            "M105 Detalhamento da Base de Cálculo do Crédito Apurado no Período – "
-            "PIS/PASEP"
+            "M105 Detalhamento da Base de Cálculo do Crédito Apurado no Período - "
+            "PIS/Pasep"
         ),
     )
 
     reg_M110_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.m110",
         "reg_M110_ids_RegistroM100_id",
-        string="M110 Ajustes do Crédito de PIS/PASEP Apurado",
+        string="M110 Ajustes do Crédito de PIS/Pasep Apurado",
         sped_card="1:N",
     )
 
 
 class RegistroM105(models.AbstractModel):
-    """Detalhamento da Base de Cálculo do Crédito Apurado no Período –
-    PIS/PASEP"""
+    """Detalhamento da Base de Cálculo do Crédito Apurado no Período -
+    PIS/Pasep"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.m105"
@@ -10911,12 +9818,12 @@ class RegistroM105(models.AbstractModel):
     _sped_level = 3
 
     NAT_BC_CRED = fields.Char(
-        string="Código da Base de Cálculo do Crédito apurado",
+        string="Código da Natureza da Base de Cálculo",
         required=True,
         sped_length="2*",
         help=(
-            "Código da Base de Cálculo do Crédito apurado no período, conforme a Tabela"
-            " 4.3.7."
+            "Código da Natureza da Base de Cálculo do Crédito apurado no período, "
+            "conforme a Tabela 4.3.7"
         ),
     )
 
@@ -10927,7 +9834,8 @@ class RegistroM105(models.AbstractModel):
         sped_length="2*",
         help=(
             "Código da Situação Tributária referente ao crédito de PIS/Pasep (Tabela "
-            "4.3.3) vinculado ao tipo de crédito escriturado em M100."
+            "4.3.3) - Códigos 50 a 56 (créditos Básicos) e de 60 a 66 (Créditos "
+            "Presumidos)."
         ),
     )
 
@@ -10937,7 +9845,7 @@ class RegistroM105(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Valor Total da Base de Cálculo escriturada nos documentos e operações "
-            "(Blocos “A”, “C”, “D” e “F”), referente ao CST_PIS informado no Campo 03."
+            "(Blocos “A”, “C”, “D” e “F”), referente ao CST_PIS informado no Campo 03"
         ),
     )
 
@@ -10948,7 +9856,7 @@ class RegistroM105(models.AbstractModel):
         help=(
             "Parcela do Valor Total da Base de Cálculo informada no Campo 04, vinculada"
             " a receitas com incidência cumulativa. Campo de preenchimento específico "
-            "para a pessoa jurídica sujeita ao regime cumulativo e não- cumulativo da "
+            "para a pessoa jurídica sujeita ao regime cumulativo e não-cumulativo da "
             "contribuição (COD_INC_TRIB = 3 do Registro 0110)"
         ),
     )
@@ -10959,23 +9867,22 @@ class RegistroM105(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Valor Total da Base de Cálculo do Crédito, vinculada a receitas com "
-            "incidência não-cumulativa (Campo 04 – Campo 05)."
+            "incidência não-cumulativa (Campo 04 - Campo 05)."
         ),
     )
 
     VL_BC_PIS = fields.Monetary(
-        string="O Valor da Base de Cálculo do Crédito",
+        string="Valor da Base de Cálculo do Crédito",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "O Valor da Base de Cálculo do Crédito, vinculada ao tipo de Crédito "
-            "escriturado em M100. - Para os CST_PIS = “50”, “51”, “52”, “60”, “61” e "
-            "“62”: Informar o valor do Campo 06 (VL_BC_PIS_NC); - Para os CST_PIS = "
-            "“53”, “54”, “55”, “56”, “63”, “64” “65” e “66” (Crédito sobre operações "
+            "Valor da Base de Cálculo do Crédito, vinculada ao tipo de Crédito "
+            "escriturado em M100. Para os CST_PIS = “50”, “51”, “52”, “60”, “61” e "
+            "“62”: Informar o valor do Campo 06 (VL_BC_PIS_NC); para os CST_PIS = “53”,"
+            " “54”, “55”, “56”, “63”, “64” “65” e “66” (Crédito sobre operações "
             "vinculadas a mais de um tipo de receita): Informar a parcela do valor do "
             "Campo 06 (VL_BC_PIS_NC) vinculada especificamente ao tipo de crédito "
-            "escriturado em M100. valor deste campo será transportado para o Campo 04 "
-            "(VL_BC_PIS) do registro M100."
+            "escriturado em M100"
         ),
     )
 
@@ -10988,26 +9895,21 @@ class RegistroM105(models.AbstractModel):
         ),
         help=(
             "Quantidade Total da Base de Cálculo do Crédito apurado em Unidade de "
-            "Medida de Produto, escriturada nos documentos e operações (Blocos “A”, "
-            "“C”, “D” e “F”), referente ao CST_PIS informado no Campo 03"
+            "Medida de Produto, escriturada nos documentos e operações (Bloco “C”), "
+            "referente ao CST_PIS informado no Campo 03"
         ),
     )
 
     QUANT_BC_PIS = fields.Float(
-        string="O Parcela da base de cálculo do crédito",
+        string="Parcela da base de cálculo do crédito",
         xsd_type="TDec_1603",
         digits=(
             16,
             3,
         ),
         help=(
-            "O Parcela da base de cálculo do crédito em quantidade (campo 08) vinculada"
-            " ao tipo de crédito escriturado em M100. - Para os CST_PIS = “50”, “51” e "
-            "“52”: Informar o valor do Campo 08 (QUANT_BC_PIS); - Para os CST_PIS = "
-            "“53”, “54”, “55” e “56” (crédito vinculado a mais de um tipo de receita): "
-            "Informar a parcela do valor do Campo 08 (QUANT_BC_PIS) vinculada ao tipo "
-            "de crédito escriturado em M100. valor deste campo será transportado para o"
-            " Campo 06 (QUANT_BC_PIS) do registro M100."
+            "Parcela da base de cálculo do crédito em quantidade (campo 08) vinculada "
+            "ao tipo de crédito escriturado em M100."
         ),
     )
 
@@ -11015,14 +9917,14 @@ class RegistroM105(models.AbstractModel):
 
     reg_M105_ids_RegistroM100_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.m100",
-        string="Crédito de PIS/PASEP Relativo ao Período",
+        string="Crédito de PIS/Pasep Relativo ao Período",
         required=True,
         ondelete="cascade",
     )
 
 
 class RegistroM110(models.AbstractModel):
-    "Ajustes do Crédito de PIS/PASEP Apurado"
+    "Ajustes do Crédito de PIS/Pasep Apurado"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.m110"
@@ -11030,10 +9932,7 @@ class RegistroM110(models.AbstractModel):
     _sped_level = 3
 
     IND_AJ = fields.Char(
-        string="Indicador do tipo de ajuste",
-        required=True,
-        sped_length="1*",
-        help="Indicador do tipo de ajuste: 0- Ajuste de redução;",
+        string="Indicador do tipo de ajuste", required=True, sped_length="1*"
     )
 
     VL_AJ = fields.Monetary(
@@ -11051,9 +9950,9 @@ class RegistroM110(models.AbstractModel):
     )
 
     NUM_DOC = fields.Char(
-        string="Número do processo",
+        string="Número do documento / processo / declaração",
         help=(
-            "Número do processo, documento ou ato concessório ao qual o ajuste está "
+            "Número do documento / processo / declaração ao qual o ajuste está "
             "vinculado, se houver."
         ),
     )
@@ -11068,7 +9967,7 @@ class RegistroM110(models.AbstractModel):
 
     reg_M110_ids_RegistroM100_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.m100",
-        string="Crédito de PIS/PASEP Relativo ao Período",
+        string="Crédito de PIS/Pasep Relativo ao Período",
         required=True,
         ondelete="cascade",
     )
@@ -11076,20 +9975,14 @@ class RegistroM110(models.AbstractModel):
     reg_M115_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.m115",
         "reg_M115_ids_RegistroM110_id",
-        string="M115 Detalhamento dos Ajustes do Crédito",
+        string="M115 Detalhamento do Ajuste do Crédito",
         sped_card="1:N",
-        help=(
-            "M115 Detalhamento dos Ajustes do Crédito de Pis/Pasep Apurado "
-            "(Disponibilizado na versão 2.0.12 do PVA, para período de apuração a "
-            "partir de 01/10/2015)"
-        ),
+        help="M115 Detalhamento do Ajuste do Crédito de PIS/Pasep Apurado",
     )
 
 
 class RegistroM115(models.AbstractModel):
-    """Detalhamento dos Ajustes do Crédito de Pis/Pasep Apurado
-    (Disponibilizado na versão 2.0.12 do PVA, para período de apuração a
-    partir de 01/10/2015)"""
+    "Detalhamento do Ajuste do Crédito de PIS/Pasep Apurado"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.m115"
@@ -11106,7 +9999,7 @@ class RegistroM115(models.AbstractModel):
         ),
         help=(
             "Detalhamento do valor do crédito reduzido ou acrescido, informado no Campo"
-            " 03 (VL_AJ) do registro M110."
+            " 03 (VL_AJ) do registro M110"
         ),
     )
 
@@ -11116,7 +10009,7 @@ class RegistroM115(models.AbstractModel):
         sped_length="2*",
         help=(
             "Código de Situação Tributária referente à operação detalhada neste "
-            "registro."
+            "registro"
         ),
     )
 
@@ -11145,11 +10038,12 @@ class RegistroM115(models.AbstractModel):
         string="Data da operação a que se refere",
         required=True,
         sped_length="8*",
-        help="Data da operação a que se refere o ajuste informado neste registro.",
+        help="Data da operação a que se refere o ajuste informado neste registro",
     )
 
     DESC_AJ = fields.Char(
         string="Descrição da(s) operação(ões) a que se refere",
+        sped_length="255",
         help=(
             "Descrição da(s) operação(ões) a que se refere o valor informado no Campo "
             "02 (DET_VALOR_AJ)"
@@ -11160,18 +10054,18 @@ class RegistroM115(models.AbstractModel):
         string="Código da conta contábil debitada/creditada", sped_length="255"
     )
 
-    INFO_COMPL = fields.Char(string="Informação complementar")
+    INFO_COMPL = fields.Char(string="Informação complementar", sped_length="255")
 
     reg_M115_ids_RegistroM110_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.m110",
-        string="Ajustes do Crédito de PIS/PASEP Apurado",
+        string="Ajustes do Crédito de PIS/Pasep Apurado",
         required=True,
         ondelete="cascade",
     )
 
 
 class RegistroM200(models.AbstractModel):
-    "Consolidação da Contribuição para o PIS/PASEP do Período"
+    "Consolidação da Contribuição para o PIS/Pasep do Período"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.m200"
@@ -11185,7 +10079,8 @@ class RegistroM200(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Valor Total da Contribuição Não Cumulativa do Período (recuperado do campo"
-            " 13 do Registro M210, quando o campo “COD_CONT” = 01, 02, 03, 04, 32 e 71)"
+            " 13 do Registro M210, quando o campo COD_CONT for igual a 01, 02, 03, 04, "
+            "32 e 71)"
         ),
     )
 
@@ -11216,7 +10111,7 @@ class RegistroM200(models.AbstractModel):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor Total da Contribuição Não Cumulativa Devida (02 – 03 - 04)",
+        help="Valor Total da Contribuição Não Cumulativa Devida (02 - 03 - 04)",
     )
 
     VL_RET_NC = fields.Monetary(
@@ -11224,13 +10119,15 @@ class RegistroM200(models.AbstractModel):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
+        help="Valor Retido na Fonte Deduzido no Período (Não Cumulativo)",
     )
 
     VL_OUT_DED_NC = fields.Monetary(
-        string="Outras Deduções no Período",
+        string="Outras Deduções do Regime Não Cumulativo",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
+        help="Outras Deduções do Regime Não Cumulativo no Período",
     )
 
     VL_CONT_NC_REC = fields.Monetary(
@@ -11238,7 +10135,7 @@ class RegistroM200(models.AbstractModel):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor da Contribuição Não Cumulativa a Recolher/Pagar (05 – 06 - 07)",
+        help="Valor da Contribuição Não Cumulativa a Recolher/Pagar (05 - 06 - 07)",
     )
 
     VL_TOT_CONT_CUM_PER = fields.Monetary(
@@ -11248,7 +10145,8 @@ class RegistroM200(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Valor Total da Contribuição Cumulativa do Período (recuperado do campo 13 "
-            "do Registro M210, quando o campo “COD_CONT” = 31, 32, 51, 52, 53, 54 e 72)"
+            "do Registro M210, quando o campo COD_CONT for igual a 31, 32, 51, 52, 53, "
+            "54 e 72)"
         ),
     )
 
@@ -11257,10 +10155,11 @@ class RegistroM200(models.AbstractModel):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
+        help="Valor Retido na Fonte Deduzido no Período (Cumulativo)",
     )
 
     VL_OUT_DED_CUM = fields.Monetary(
-        string="Outras Deduções no Período (VL_OUT_DED_CUM)",
+        string="Outras Deduções do Regime Cumulativo no Período",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
@@ -11271,7 +10170,7 @@ class RegistroM200(models.AbstractModel):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor da Contribuição Cumulativa a Recolher/Pagar (09 - 10 – 11)",
+        help="Valor da Contribuição Cumulativa a Recolher/Pagar (09 - 10 - 11)",
     )
 
     VL_TOT_CONT_REC = fields.Monetary(
@@ -11285,26 +10184,22 @@ class RegistroM200(models.AbstractModel):
     reg_M205_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.m205",
         "reg_M205_ids_RegistroM200_id",
-        string="M205 Contribuição para o PIS/Pasep",
+        string="M205 Detalhamento por Código de Receita",
         sped_card="1:N",
-        help=(
-            "M205 Contribuição para o PIS/Pasep a Recolher – Detalhamento por Código de"
-            " Receita (Visão Débito DCTF)"
-        ),
+        help="M205 Detalhamento por Código de Receita (Visão Debito DCTF)",
     )
 
     reg_M210_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.m210",
         "reg_M210_ids_RegistroM200_id",
-        string="M210 Detalhamento da Contribuição para o PIS/PASEP",
+        string="M210 Detalhamento da Contribuição para o PIS/Pasep",
         sped_card="1:N",
-        help="M210 Detalhamento da Contribuição para o PIS/PASEP do Período",
+        help="M210 Detalhamento da Contribuição para o PIS/Pasep do Período",
     )
 
 
 class RegistroM205(models.AbstractModel):
-    """Contribuição para o PIS/Pasep a Recolher – Detalhamento por Código de
-    Receita (Visão Débito DCTF)"""
+    "Detalhamento por Código de Receita (Visão Debito DCTF)"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.m205"
@@ -11312,48 +10207,41 @@ class RegistroM205(models.AbstractModel):
     _sped_level = 3
 
     NUM_CAMPO = fields.Char(
-        string="número do campo do registro “M200”",
-        required=True,
-        sped_length="2*",
-        help=(
-            "número do campo do registro “M200” (Campo 08 (contribuição não cumulativa)"
-            " ou Campo 12 (contribuição cumulativa)), objeto de detalhamento neste "
-            "registro."
-        ),
+        string="número do campo do registro M200", required=True, sped_length="2*"
     )
 
     COD_REC = fields.Char(
-        string="código da receita referente à contribuição",
+        string="Código da Receita referente à contribuição",
         required=True,
-        sped_length="6*",
+        sped_length="6",
         help=(
-            "código da receita referente à contribuição a recolher, detalhada neste "
-            "registro."
+            "Código da Receita referente à contribuição a recolher, detalhada neste "
+            "registro"
         ),
     )
 
     VL_DEBITO = fields.Monetary(
-        string="Valor do Débito correspondente ao código",
+        string="Valor do Débito correspondente à contribuição",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor do Débito correspondente ao código do Campo 03, conforme informação "
-            "na DCTF."
+            "Valor do Débito correspondente à contribuição a recolher, detalhada neste "
+            "registro"
         ),
     )
 
     reg_M205_ids_RegistroM200_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.m200",
-        string="Consolidação da Contribuição para o PIS/PASEP",
+        string="Consolidação da Contribuição para o PIS/Pasep",
         required=True,
         ondelete="cascade",
-        help="Consolidação da Contribuição para o PIS/PASEP do Período",
+        help="Consolidação da Contribuição para o PIS/Pasep do Período",
     )
 
 
 class RegistroM210(models.AbstractModel):
-    "Detalhamento da Contribuição para o PIS/PASEP do Período"
+    "Detalhamento da Contribuição para o PIS/Pasep do Período"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.m210"
@@ -11363,7 +10251,7 @@ class RegistroM210(models.AbstractModel):
     COD_CONT = fields.Char(
         string="Código da contribuição social apurada no período",
         required=True,
-        sped_length="2*",
+        sped_length="2",
         help=(
             "Código da contribuição social apurada no período, conforme a Tabela 4.3.5."
         ),
@@ -11383,19 +10271,52 @@ class RegistroM210(models.AbstractModel):
         currency_field="brl_currency_id",
     )
 
+    VL_AJUS_ACRES_BC = fields.Monetary(
+        string="Valor do total dos ajustes de acréscimo da base",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor do total dos ajustes de acréscimo da base de cálculo da contribuição"
+            " a que se refere o Campo 04"
+        ),
+    )
+
+    VL_AJUS_REDUC_BC = fields.Monetary(
+        string="Valor do total dos ajustes de redução da base",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor do total dos ajustes de redução da base de cálculo da contribuição a"
+            " que se refere o Campo 04"
+        ),
+    )
+
+    VL_BC_CONT_AJUS = fields.Monetary(
+        string="VL_BC_CONT_AJUS",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor da Base de Cálculo da Contribuição, após os ajustes (Campo 07 = "
+            "Campo 04 + Campo 05 - Campo 06)"
+        ),
+    )
+
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP (em percentual)",
+        help="Alíquota do PIS/Pasep (em percentual)",
     )
 
     QUANT_BC_PIS = fields.Float(
-        string="Quantidade – Base de cálculo PIS",
+        string="Base de cálculo em quantidade PIS/Pasep",
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -11451,57 +10372,33 @@ class RegistroM210(models.AbstractModel):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor Total da Contribuição do Período (08 + 09 – 10 – 11+12)",
-    )
-
-    VL_CONT_DIFER_INDEX_14 = fields.Monetary(
-        string="VL_CONT_DIFER_INDEX_14",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    VL_CONT_DIFER_ANT_INDEX_15 = fields.Monetary(
-        string="VL_CONT_DIFER_ANT_INDEX_15",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help="Valor da contribuição diferida em períodos anteriores",
-    )
-
-    VL_CONT_PER_INDEX_16 = fields.Monetary(
-        string="VL_CONT_PER_INDEX_16",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help="Valor Total da Contribuição do Período (11 + 12 – 13 – 14+15)",
+        help="Valor Total da Contribuição do Período (11 + 12 - 13 - 14 + 15)",
     )
 
     reg_M210_ids_RegistroM200_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.m200",
-        string="Consolidação da Contribuição para o PIS/PASEP",
+        string="Consolidação da Contribuição para o PIS/Pasep",
         required=True,
         ondelete="cascade",
-        help="Consolidação da Contribuição para o PIS/PASEP do Período",
+        help="Consolidação da Contribuição para o PIS/Pasep do Período",
     )
 
     reg_M211_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.m211",
         "reg_M211_ids_RegistroM210_id",
-        string="M211 Sociedades Cooperativas – Composição da Base",
+        string="M211 Sociedades Cooperativas",
         sped_card="1:1",
         help=(
-            "M211 Sociedades Cooperativas – Composição da Base de Cálculo – PIS/PASEP"
+            "M211 Sociedades Cooperativas - Composição Da Base De Calculo - PIS/Pasep"
         ),
     )
 
     reg_M215_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.m215",
         "reg_M215_ids_RegistroM210_id",
-        string="M215 Detalhamento dos Ajustes da Base",
+        string="M215 Ajuste da Base de Cálculo",
         sped_card="1:N",
-        help=(
-            "M215 Detalhamento dos Ajustes da Base de Cálculo Mensal de PIS/Pasep "
-            "Apurada"
-        ),
+        help="M215 Ajuste da Base de Cálculo da Contribuição PIS/Pasep Apurada",
     )
 
     reg_M220_ids = fields.One2many(
@@ -11509,7 +10406,7 @@ class RegistroM210(models.AbstractModel):
         "reg_M220_ids_RegistroM210_id",
         string="M220 Ajustes da Contribuição",
         sped_card="1:N",
-        help="M220 Ajustes da Contribuição para o PIS/PASEP Apurada",
+        help="M220 Ajustes da Contribuição para o PIS/Pasep Apurada",
     )
 
     reg_M230_ids = fields.One2many(
@@ -11521,7 +10418,7 @@ class RegistroM210(models.AbstractModel):
 
 
 class RegistroM211(models.AbstractModel):
-    "Sociedades Cooperativas – Composição da Base de Cálculo – PIS/PASEP"
+    "Sociedades Cooperativas - Composição Da Base De Calculo - PIS/Pasep"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.m211"
@@ -11533,12 +10430,6 @@ class RegistroM211(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help=(
-            "Indicador do Tipo de Sociedade Cooperativa: 01 – Cooperativa de Produção "
-            "Agropecuária; 02 – Cooperativa de Consumo; 03 – Cooperativa de Crédito; 04"
-            " – Cooperativa de Eletrificação Rural; 05 – Cooperativa de Transporte "
-            "Rodoviário de Cargas; 06 – Cooperativa de Médicos; 99 – Outras."
-        ),
     )
 
     VL_BC_CONT_ANT_EXC_COOP = fields.Monetary(
@@ -11548,7 +10439,7 @@ class RegistroM211(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Valor da Base de Cálculo da Contribuição, conforme Registros escriturados "
-            "nos Blocos A, C, D e F, antes das Exclusões das Cooperativas."
+            "nos Blocos A, C, D e F, antes das Exclusões das Cooperativas"
         ),
     )
 
@@ -11569,7 +10460,7 @@ class RegistroM211(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Valor das Exclusões da Base de Cálculo Especifica do Tipo da Sociedade "
-            "Cooperativa, conforme Campo 02 (IND_TIP_COOP)."
+            "Cooperativa, conforme Campo 02 (IND_TIP_COOP)"
         ),
     )
 
@@ -11579,23 +10470,22 @@ class RegistroM211(models.AbstractModel):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor da Base de Cálculo, Após as Exclusões Especificas da Sociedade "
-            "Cooperativa (04 – 05 – 06) – Transportar para M210."
+            "Valor da Base de Cálculo, após as Exclusões Especificas da Sociedade "
+            "Cooperativa (03 - 04 - 05) - Transportar para M210"
         ),
     )
 
     reg_M211_ids_RegistroM210_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.m210",
-        string="Detalhamento da Contribuição para o PIS/PASEP",
+        string="Detalhamento da Contribuição para o PIS/Pasep",
         required=True,
         ondelete="cascade",
-        help="Detalhamento da Contribuição para o PIS/PASEP do Período",
+        help="Detalhamento da Contribuição para o PIS/Pasep do Período",
     )
 
 
 class RegistroM215(models.AbstractModel):
-    """Detalhamento dos Ajustes da Base de Cálculo Mensal de PIS/Pasep
-    Apurada"""
+    "Ajuste da Base de Cálculo da Contribuição PIS/Pasep Apurada"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.m215"
@@ -11606,31 +10496,30 @@ class RegistroM215(models.AbstractModel):
         string="Indicador do tipo de ajuste da base de cálculo",
         required=True,
         sped_length="1*",
-        help=(
-            "Indicador do tipo de ajuste da base de cálculo: 0 - Ajuste de redução; 1 -"
-            " Ajuste de acréscimo."
-        ),
     )
 
     VL_AJ_BC = fields.Monetary(
-        string="Valor do ajuste de base de cálculo",
+        string="Valor do ajuste da base de cálculo",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     COD_AJ_BC = fields.Char(
-        string="Código do ajuste",
+        string="Código do ajuste da base de cálculo",
         required=True,
         sped_length="2*",
-        help="Código do ajuste, conforme a Tabela indicada no item 4.3.18",
+        help=(
+            "Código do ajuste da base de cálculo, conforme a Tabela indicada no item "
+            "4.3.18"
+        ),
     )
 
     NUM_DOC = fields.Char(
         string="Número do processo",
         help=(
             "Número do processo, documento ou ato concessório ao qual o ajuste está "
-            "vinculado, se houver."
+            "vinculado, se houver"
         ),
     )
 
@@ -11650,24 +10539,23 @@ class RegistroM215(models.AbstractModel):
 
     CNPJ = fields.Char(
         string="CNPJ do estabelecimento a que se refere o ajuste",
-        required=True,
         xsd_type="numeric_code",
         sped_length="14*",
     )
 
-    INFO_COMPL = fields.Char(string="Informação complementar do registro")
+    INFO_COMPL = fields.Char(string="Informação complementar")
 
     reg_M215_ids_RegistroM210_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.m210",
-        string="Detalhamento da Contribuição para o PIS/PASEP",
+        string="Detalhamento da Contribuição para o PIS/Pasep",
         required=True,
         ondelete="cascade",
-        help="Detalhamento da Contribuição para o PIS/PASEP do Período",
+        help="Detalhamento da Contribuição para o PIS/Pasep do Período",
     )
 
 
 class RegistroM220(models.AbstractModel):
-    "Ajustes da Contribuição para o PIS/PASEP Apurada"
+    "Ajustes da Contribuição para o PIS/Pasep Apurada"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.m220"
@@ -11675,12 +10563,7 @@ class RegistroM220(models.AbstractModel):
     _sped_level = 4
 
     IND_AJ = fields.Char(
-        string="Indicador do tipo de ajuste",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador do tipo de ajuste: 0- Ajuste de redução; 1- Ajuste de acréscimo."
-        ),
+        string="Indicador do tipo de ajuste", required=True, sped_length="1*"
     )
 
     VL_AJ = fields.Monetary(
@@ -11698,10 +10581,10 @@ class RegistroM220(models.AbstractModel):
     )
 
     NUM_DOC = fields.Char(
-        string="Número do processo",
+        string="Número do documento / processo / declaração",
         help=(
-            "Número do processo, documento ou ato concessório ao qual o ajuste está "
-            "vinculado, se houver."
+            "Número do documento / processo / declaração ao qual o ajuste está "
+            "vinculado, se houver"
         ),
     )
 
@@ -11715,29 +10598,23 @@ class RegistroM220(models.AbstractModel):
 
     reg_M220_ids_RegistroM210_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.m210",
-        string="Detalhamento da Contribuição para o PIS/PASEP",
+        string="Detalhamento da Contribuição para o PIS/Pasep",
         required=True,
         ondelete="cascade",
-        help="Detalhamento da Contribuição para o PIS/PASEP do Período",
+        help="Detalhamento da Contribuição para o PIS/Pasep do Período",
     )
 
     reg_M225_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.m225",
         "reg_M225_ids_RegistroM220_id",
-        string="M225 Detalhamento dos Ajustes da Contribuição",
+        string="M225 Detalhamento do Ajuste da Contribuição",
         sped_card="1:N",
-        help=(
-            "M225 Detalhamento dos Ajustes da Contribuição para o PIS/Pasep Apurada "
-            "(Disponibilizado na versão 2.0.12 do PVA, para período de apuração a "
-            "partir de 01/10/2015)"
-        ),
+        help="M225 Detalhamento do Ajuste da Contribuição para o PIS/Pasep Apurada",
     )
 
 
 class RegistroM225(models.AbstractModel):
-    """Detalhamento dos Ajustes da Contribuição para o PIS/Pasep Apurada
-    (Disponibilizado na versão 2.0.12 do PVA, para período de apuração a
-    partir de 01/10/2015)"""
+    "Detalhamento do Ajuste da Contribuição para o PIS/Pasep Apurada"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.m225"
@@ -11753,8 +10630,8 @@ class RegistroM225(models.AbstractModel):
             2,
         ),
         help=(
-            "Detalhamento do valor da contribuição reduzida ou acrescida, informado no "
-            "Campo 03 (VL_AJ) do registro M220."
+            "Detalhamento do valor da contribuição reduzida ou acrescida,informado no "
+            "Campo 03 (VL_AJ) do registro M220"
         ),
     )
 
@@ -11764,7 +10641,7 @@ class RegistroM225(models.AbstractModel):
         sped_length="2*",
         help=(
             "Código de Situação Tributária referente à operação detalhada neste "
-            "registro."
+            "registro"
         ),
     )
 
@@ -11793,11 +10670,12 @@ class RegistroM225(models.AbstractModel):
         string="Data da operação a que se refere",
         required=True,
         sped_length="8*",
-        help="Data da operação a que se refere o ajuste informado neste registro.",
+        help="Data da operação a que se refere o ajuste informado neste registro",
     )
 
     DESC_AJ = fields.Char(
         string="Descrição da(s) operação(ões) a que se refere",
+        sped_length="255",
         help=(
             "Descrição da(s) operação(ões) a que se refere o valor informado no Campo "
             "02 (DET_VALOR_AJ)"
@@ -11808,11 +10686,11 @@ class RegistroM225(models.AbstractModel):
         string="Código da conta contábil debitada/creditada", sped_length="255"
     )
 
-    INFO_COMPL = fields.Char(string="Informação complementar")
+    INFO_COMPL = fields.Char(string="Informação complementar", sped_length="255")
 
     reg_M225_ids_RegistroM220_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.m220",
-        string="Ajustes da Contribuição para o PIS/PASEP Apurada",
+        string="Ajustes da Contribuição para o PIS/Pasep Apurada",
         required=True,
         ondelete="cascade",
     )
@@ -11867,22 +10745,20 @@ class RegistroM230(models.AbstractModel):
     COD_CRED = fields.Char(
         string="Código de Tipo de Crédito diferido no período",
         sped_length="3*",
-        help=(
-            "Código de Tipo de Crédito diferido no período, conforme a Tabela 4.3.6."
-        ),
+        help=("Código de Tipo de Crédito diferido no período, conforme a Tabela 4.3.6"),
     )
 
     reg_M230_ids_RegistroM210_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.m210",
-        string="Detalhamento da Contribuição para o PIS/PASEP",
+        string="Detalhamento da Contribuição para o PIS/Pasep",
         required=True,
         ondelete="cascade",
-        help="Detalhamento da Contribuição para o PIS/PASEP do Período",
+        help="Detalhamento da Contribuição para o PIS/Pasep do Período",
     )
 
 
 class RegistroM300(models.AbstractModel):
-    """Contribuição de PIS/PASEP Diferida em Períodos Anteriores - Valores a
+    """Contribuição de PIS/Pasep Diferida em Períodos Anteriores - Valores a
     Pagar no Período"""
 
     _description = textwrap.dedent(f"    {__doc__}")
@@ -11895,8 +10771,8 @@ class RegistroM300(models.AbstractModel):
         required=True,
         sped_length="2",
         help=(
-            "Código da contribuição social diferida em períodos anteriores, conforme a "
-            "Tabela 4.3.5."
+            "Código da contribuição  social diferida em períodos anteriores , conforme "
+            "a Tabela 4.3.5"
         ),
     )
 
@@ -11905,17 +10781,17 @@ class RegistroM300(models.AbstractModel):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor da Contribuição Apurada, diferida em períodos anteriores.",
+        help="Valor da Contribuição Apurada, diferida em períodos anteriores",
     )
 
     NAT_CRED_DESC = fields.Char(
         string="Natureza do Crédito Diferido",
         sped_length="2",
         help=(
-            "Natureza do Crédito Diferido, vinculado à receita tributada no mercado "
-            "interno, a descontar: 01 – Crédito a Alíquota Básica; 02 – Crédito a "
-            "Alíquota Diferenciada; 03 – Crédito a Alíquota por Unidade de Produto; 04 "
-            "– Crédito Presumido da Agroindústria."
+            "Natureza do Crédito Diferido, vinculado a receita tributada no mercado "
+            "interno, a descontar:01 - Crédito a Alíquota Básica;02 - Crédito a "
+            "Alíquota Diferenciada;03 - Crédito a Alíquota por Unidade de Produto;04 "
+            "Crédito Presumido da Agroindústria."
         ),
     )
 
@@ -11923,7 +10799,7 @@ class RegistroM300(models.AbstractModel):
         string="Valor do Crédito a Descontar vinculado",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor do Crédito a Descontar vinculado à contribuição diferida.",
+        help="Valor do Crédito a Descontar vinculado à contribuição diferida",
     )
 
     VL_CONT_DIFER_ANT = fields.Monetary(
@@ -11956,7 +10832,7 @@ class RegistroM300(models.AbstractModel):
 
 
 class RegistroM350(models.AbstractModel):
-    "PIS/PASEP - Folha de Salários"
+    "PIS/Pasep - Folha de Salários"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.m350"
@@ -11985,7 +10861,7 @@ class RegistroM350(models.AbstractModel):
     )
 
     ALIQ_PIS_FOL = fields.Float(
-        string="Alíquota do PIS/PASEP – Folha de Salários",
+        string="Alíquota do PIS/Pasep",
         required=True,
         sped_length="6",
         xsd_type="TDec_1602",
@@ -11993,6 +10869,7 @@ class RegistroM350(models.AbstractModel):
             16,
             2,
         ),
+        help="Alíquota do PIS/Pasep - Folha de Salários",
     )
 
     VL_TOT_CONT_FOL = fields.Monetary(
@@ -12005,8 +10882,8 @@ class RegistroM350(models.AbstractModel):
 
 
 class RegistroM400(models.AbstractModel):
-    """Receitas Isentas, Não Alcançadas pela Incidência da Contribuição,
-    Sujeitas à Alíquota Zero ou de Vendas com Suspensão – PIS/PASEP"""
+    """Receitas Isentas ou Não Alcançadas pela Incidência da Contribuição ou
+    Sujeitas a Alíquota Zero ou com Suspensão - PIS/Pasep"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.m400"
@@ -12014,11 +10891,11 @@ class RegistroM400(models.AbstractModel):
     _sped_level = 2
 
     CST_PIS = fields.Char(
-        string="Código de Situação Tributária – CST",
+        string="Código de Situação Tributária",
         required=True,
-        sped_length="2*",
+        sped_length="2",
         help=(
-            "Código de Situação Tributária – CST das demais receitas auferidas no "
+            "Código de Situação Tributária - CST das demais receitas auferidas no "
             "período, sem incidência da contribuição, ou sem contribuição apurada a "
             "pagar, conforme a Tabela 4.3.3."
         ),
@@ -12034,7 +10911,7 @@ class RegistroM400(models.AbstractModel):
     COD_CTA = fields.Char(
         string="Código",
         sped_length="255",
-        help="Código da conta analítica contábil debitada/creditada.",
+        help="Código da conta analítica contábil debitada/creditada",
     )
 
     DESC_COMPL = fields.Char(string="Descrição Complementar da Natureza da Receita")
@@ -12046,16 +10923,16 @@ class RegistroM400(models.AbstractModel):
         sped_card="1:N",
         help=(
             "M410 Detalhamento das Receitas Isentas, Não Alcançadas pela Incidência da "
-            "Contribuição, Sujeitas à Alíquota Zero ou de Vendas com Suspensão – "
-            "PIS/PASEP"
+            "Contribuição, Sujeitas à Alíquota Zero ou de Vendas com Suspensão - "
+            "PIS/Pasep"
         ),
     )
 
 
 class RegistroM410(models.AbstractModel):
     """Detalhamento das Receitas Isentas, Não Alcançadas pela Incidência da
-    Contribuição, Sujeitas à Alíquota Zero ou de Vendas com Suspensão –
-    PIS/PASEP"""
+    Contribuição, Sujeitas à Alíquota Zero ou de Vendas com Suspensão -
+    PIS/Pasep"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.m410"
@@ -12063,14 +10940,20 @@ class RegistroM410(models.AbstractModel):
     _sped_level = 3
 
     NAT_REC = fields.Char(
-        string="Natureza da Receita",
+        string="<html>Natureza da Receita",
         required=True,
         sped_length="3*",
         help=(
-            "Natureza da Receita, conforme relação constante nas Tabelas de "
-            "Detalhamento da Natureza da Receita por Situação Tributária abaixo: - "
+            "<html>Natureza da Receita, conforme código constante nas Tabelas de "
+            "Detalhamento da Natureza da Receita por Situação Tributária abaixo:<br/>- "
             "Tabela 4.3.10: Produtos Sujeitos à Incidência Monofásica da Contribuição "
-            "Social – Alíquotas Diferenciadas (CST 04 - Revenda);"
+            "Social - Alíquotas Diferenciadas (CST 04);<br/>- Tabela 4.3.12: Produtos "
+            "Sujeitos à Substituição Tributária da Contribuição Social (CST 05);<br/>- "
+            "Tabela 4.3.13: Produtos Sujeitos à Alíquota Zero da Contribuição Social "
+            "(CST 06);<br/>- Tabela 4.3.14: Operações com Isenção da Contribuição "
+            "Social (CST 07);<br/>- Tabela 4.3.15: Operações sem Incidência da "
+            "Contribuição Social (CST 08);<br/>- Tabela 4.3.16: Operações com Suspensão"
+            " da Contribuição Social (CST 09).</html>"
         ),
     )
 
@@ -12088,19 +10971,19 @@ class RegistroM410(models.AbstractModel):
     COD_CTA = fields.Char(
         string="Código",
         sped_length="255",
-        help="Código da conta analítica contábil debitada/creditada.",
+        help="Código da conta analítica contábil debitada/creditada",
     )
 
     DESC_COMPL = fields.Char(string="Descrição Complementar da Natureza da Receita")
 
     reg_M410_ids_RegistroM400_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.m400",
-        string="Receitas Isentas",
+        string="Receitas Isentas ou Não Alcançadas pela Incidência",
         required=True,
         ondelete="cascade",
         help=(
-            "Receitas Isentas, Não Alcançadas pela Incidência da Contribuição, Sujeitas"
-            " à Alíquota Zero ou de Vendas com Suspensão – PIS/PASEP"
+            "Receitas Isentas ou Não Alcançadas pela Incidência da Contribuição ou "
+            "Sujeitas a Alíquota Zero ou com Suspensão - PIS/Pasep"
         ),
     )
 
@@ -12117,7 +11000,7 @@ class RegistroM500(models.AbstractModel):
         string="Código de Tipo de Crédito apurado no período",
         required=True,
         sped_length="3*",
-        help=("Código de Tipo de Crédito apurado no período, conforme a Tabela 4.3.6."),
+        help="Código de Tipo de Crédito apurado no período, conforme a Tabela 4.3.6",
     )
 
     IND_CRED_ORI = fields.Char(
@@ -12125,13 +11008,10 @@ class RegistroM500(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="1*",
-        help=(
-            "Indicador de Crédito Oriundo de: 0 – Operações próprias 1 – Evento de "
-            "incorporação, cisão ou fusão"
-        ),
+        help="Indicador de Crédito Oriundo de:",
     )
 
-    VL_BC_COFINS = fields.Monetary(
+    VL_BC_CRED = fields.Monetary(
         string="Valor da Base de Cálculo do Crédito",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
@@ -12148,7 +11028,7 @@ class RegistroM500(models.AbstractModel):
     )
 
     QUANT_BC_COFINS = fields.Float(
-        string="Quantidade – Base de cálculo COFINS",
+        string="Base de cálculo em quantidade COFINS",
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -12186,7 +11066,7 @@ class RegistroM500(models.AbstractModel):
         currency_field="brl_currency_id",
     )
 
-    VL_CRED_DIFER = fields.Monetary(
+    VL_CRED_DIF = fields.Monetary(
         string="Valor total do crédito diferido no período",
         required=True,
         xsd_type="TDec_1602",
@@ -12199,20 +11079,16 @@ class RegistroM500(models.AbstractModel):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor Total do Crédito Disponível relativo ao Período (08 + 09 – 10 – 11)"
+            "Valor Total do Crédito Disponível relativo ao Período (07 + 08 - 09 - 10)"
         ),
     )
 
     IND_DESC_CRED = fields.Char(
         string="Indicador de utilização do crédito disponível",
         required=True,
+        xsd_type="numeric_code",
         sped_length="1*",
-        help=(
-            "Indicador de utilização do crédito disponível no período: 0 – Utilização "
-            "do valor total para desconto da contribuição apurada no período, no "
-            "Registro M600; 1 – Utilização de valor parcial para desconto da "
-            "contribuição apurada no período, no Registro M600."
-        ),
+        help="Indicador de utilização do crédito disponível no período",
     )
 
     VL_CRED_DESC = fields.Monetary(
@@ -12221,8 +11097,7 @@ class RegistroM500(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Valor do Crédito disponível, descontado da contribuição apurada no próprio"
-            " período. Se IND_DESC_CRED=0, informar o valor total do Campo 12; Se "
-            "IND_DESC_CRED=1, informar o valor parcial do Campo 12."
+            " período"
         ),
     )
 
@@ -12234,7 +11109,7 @@ class RegistroM500(models.AbstractModel):
             16,
             2,
         ),
-        help="Saldo de créditos a utilizar em períodos futuros (12 – 14)",
+        help="Saldo de créditos a utilizar em períodos futuros (12 - 14)",
     )
 
     reg_M505_ids = fields.One2many(
@@ -12243,7 +11118,7 @@ class RegistroM500(models.AbstractModel):
         string="M505 Detalhamento da Base de Cálculo",
         sped_card="1:N",
         help=(
-            "M505 Detalhamento da Base de Cálculo do Crédito Apurado no Período – "
+            "M505 Detalhamento da Base de Cálculo do Crédito Apurado no Período - "
             "COFINS"
         ),
     )
@@ -12257,7 +11132,7 @@ class RegistroM500(models.AbstractModel):
 
 
 class RegistroM505(models.AbstractModel):
-    """Detalhamento da Base de Cálculo do Crédito Apurado no Período –
+    """Detalhamento da Base de Cálculo do Crédito Apurado no Período -
     COFINS"""
 
     _description = textwrap.dedent(f"    {__doc__}")
@@ -12266,12 +11141,12 @@ class RegistroM505(models.AbstractModel):
     _sped_level = 3
 
     NAT_BC_CRED = fields.Char(
-        string="Código da Base de Cálculo do Crédito apurado",
+        string="Código da Natureza da Base de Cálculo",
         required=True,
         sped_length="2*",
         help=(
-            "Código da Base de Cálculo do Crédito apurado no período, conforme a Tabela"
-            " 4.3.7."
+            "Código da Natureza da Base de Cálculo do Crédito apurado no período, "
+            "conforme a Tabela 4.3.7"
         ),
     )
 
@@ -12282,7 +11157,8 @@ class RegistroM505(models.AbstractModel):
         sped_length="2*",
         help=(
             "Código da Situação Tributária referente ao crédito de COFINS (Tabela "
-            "4.3.4) vinculado ao tipo de crédito escriturado em M500."
+            "4.3.4) - Códigos 50 a 56 (créditos Básicos) e de 60 a 66 (Créditos "
+            "Presumidos)."
         ),
     )
 
@@ -12293,7 +11169,7 @@ class RegistroM505(models.AbstractModel):
         help=(
             "Valor Total da Base de Cálculo escriturada nos documentos e operações "
             "(Blocos “A”, “C”, “D” e “F”), referente ao CST_COFINS informado no Campo "
-            "03."
+            "03"
         ),
     )
 
@@ -12304,7 +11180,7 @@ class RegistroM505(models.AbstractModel):
         help=(
             "Parcela do Valor Total da Base de Cálculo informada no Campo 04, vinculada"
             " a receitas com incidência cumulativa. Campo de preenchimento específico "
-            "para a pessoa jurídica sujeita ao regime cumulativo e não- cumulativo da "
+            "para a pessoa jurídica sujeita ao regime cumulativo e não-cumulativo da "
             "contribuição (COD_INC_TRIB = 3 do Registro 0110)"
         ),
     )
@@ -12315,7 +11191,7 @@ class RegistroM505(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Valor Total da Base de Cálculo do Crédito, vinculada a receitas com "
-            "incidência não-cumulativa (Campo 04 – Campo 05)."
+            "incidência não-cumulativa (Campo 04 - Campo 05)"
         ),
     )
 
@@ -12325,10 +11201,7 @@ class RegistroM505(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Valor da Base de Cálculo do Crédito, vinculada ao tipo de Crédito "
-            "escriturado em M500. - Para os CST_COFINS = “50”, “51”, “52”, “60”, “61” e"
-            " “62”: Informar o valor do Campo 06 (VL_BC_COFINS_NC); - Para os "
-            "CST_COFINS = “53”, “54”, “55”, “56”, “63”, “64” “65” e “66” (Crédito sobre"
-            " operações vinculadas a mais de um tipo de receita): Informar a"
+            "escriturado em M500."
         ),
     )
 
@@ -12341,26 +11214,21 @@ class RegistroM505(models.AbstractModel):
         ),
         help=(
             "Quantidade Total da Base de Cálculo do Crédito apurado em Unidade de "
-            "Medida de Produto, escriturada nos documentos e operações (Blocos “A”, "
-            "“C”, “D” e “F”), referente ao CST_COFINS informado no Campo 03"
+            "Medida de Produto, escriturada nos documentos e operações (Bloco “C”), "
+            "referente ao CST_COFINS informado no Campo 03"
         ),
     )
 
     QUANT_BC_COFINS = fields.Float(
-        string="O Parcela da base de cálculo do crédito",
+        string="Parcela da base de cálculo do crédito",
         xsd_type="TDec_1603",
         digits=(
             16,
             3,
         ),
         help=(
-            "O Parcela da base de cálculo do crédito em quantidade (campo 08) vinculada"
-            " ao tipo de crédito escriturado em M500. - Para os CST_COFINS = “50”, “51”"
-            " e “52”: Informar o valor do Campo 08 (QUANT_BC_COFINS); - Para os "
-            "CST_COFINS = “53”, “54”, “55” e “56” (crédito vinculado a mais de um tipo "
-            "de receita): Informar a parcela do valor do Campo 08 (QUANT_BC_COFINS) "
-            "vinculada ao tipo de crédito escriturado em M500. valor deste campo será "
-            "transportado para o Campo 06 (QUANT_BC_COFINS) do registro M500."
+            "Parcela da base de cálculo do crédito em quantidade (campo 08) vinculada "
+            "ao tipo de crédito escriturado em M500."
         ),
     )
 
@@ -12383,12 +11251,7 @@ class RegistroM510(models.AbstractModel):
     _sped_level = 3
 
     IND_AJ = fields.Char(
-        string="Indicador do tipo de ajuste",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador do tipo de ajuste: 0- Ajuste de redução; 1- Ajuste de acréscimo."
-        ),
+        string="Indicador do tipo de ajuste", required=True, sped_length="1*"
     )
 
     VL_AJ = fields.Monetary(
@@ -12406,10 +11269,10 @@ class RegistroM510(models.AbstractModel):
     )
 
     NUM_DOC = fields.Char(
-        string="Número do processo",
+        string="Número do documento / processo / declaração",
         help=(
-            "Número do processo, documento ou ato concessório ao qual o ajuste está "
-            "vinculado, se houver."
+            "Número do documento / processo / declaração ao qual o ajuste está "
+            "vinculado, se houver"
         ),
     )
 
@@ -12431,20 +11294,14 @@ class RegistroM510(models.AbstractModel):
     reg_M515_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.m515",
         "reg_M515_ids_RegistroM510_id",
-        string="M515 Detalhamento dos Ajustes do Crédito",
+        string="M515 Detalhamento do Ajuste do Crédito",
         sped_card="1:N",
-        help=(
-            "M515 Detalhamento dos Ajustes do Crédito de Cofins Apurado "
-            "(Disponibilizado na versão 2.0.12 do PVA, para período de apuração a "
-            "partir de 01/10/2015)"
-        ),
+        help="M515 Detalhamento do Ajuste do Crédito de COFINS Apurado",
     )
 
 
 class RegistroM515(models.AbstractModel):
-    """Detalhamento dos Ajustes do Crédito de Cofins Apurado (Disponibilizado
-    na versão 2.0.12 do PVA, para período de apuração a partir de
-    01/10/2015)"""
+    "Detalhamento do Ajuste do Crédito de COFINS Apurado"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.m515"
@@ -12461,7 +11318,7 @@ class RegistroM515(models.AbstractModel):
         ),
         help=(
             "Detalhamento do valor do crédito reduzido ou acrescido, informado no Campo"
-            " 03 (VL_AJ) do registro M510."
+            " 03 (VL_AJ) do registro M510"
         ),
     )
 
@@ -12471,7 +11328,7 @@ class RegistroM515(models.AbstractModel):
         sped_length="2*",
         help=(
             "Código de Situação Tributária referente à operação detalhada neste "
-            "registro."
+            "registro"
         ),
     )
 
@@ -12500,11 +11357,12 @@ class RegistroM515(models.AbstractModel):
         string="Data da operação a que se refere",
         required=True,
         sped_length="8*",
-        help="Data da operação a que se refere o ajuste informado neste registro.",
+        help="Data da operação a que se refere o ajuste informado neste registro",
     )
 
     DESC_AJ = fields.Char(
         string="Descrição da(s) operação(ões) a que se refere",
+        sped_length="255",
         help=(
             "Descrição da(s) operação(ões) a que se refere o valor informado no Campo "
             "02 (DET_VALOR_AJ)"
@@ -12515,7 +11373,7 @@ class RegistroM515(models.AbstractModel):
         string="Código da conta contábil debitada/creditada", sped_length="255"
     )
 
-    INFO_COMPL = fields.Char(string="Informação complementar")
+    INFO_COMPL = fields.Char(string="Informação complementar", sped_length="255")
 
     reg_M515_ids_RegistroM510_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.m510",
@@ -12540,8 +11398,9 @@ class RegistroM600(models.AbstractModel):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor Total da Contribuição Não Cumulativa do Período (recuperado do campo"
-            " 13 do Registro M610, quando o campo “COD_CONT” = 01, 02, 03, 04, 32 e 71)"
+            "Valor Total da Contribuição Não Cumulativa do Período  (recuperado do "
+            "campo 13 do Registro M610, quando o campo COD_CONT for igual a 01, 02, 03,"
+            " 04, 32 e 71)"
         ),
     )
 
@@ -12572,7 +11431,7 @@ class RegistroM600(models.AbstractModel):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor Total da Contribuição Não Cumulativa Devida (02 - 03 - 04)",
+        help="Valor Total da Contribuição Não Cumulativa Devida (02  03  04)",
     )
 
     VL_RET_NC = fields.Monetary(
@@ -12580,13 +11439,15 @@ class RegistroM600(models.AbstractModel):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
+        help="Valor Retido na Fonte Deduzido no Período (Não Cumulativo)",
     )
 
     VL_OUT_DED_NC = fields.Monetary(
-        string="Outras Deduções no Período",
+        string="Outras Deduções do Regime Não Cumulativo",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
+        help="Outras Deduções do Regime Não Cumulativo no Período",
     )
 
     VL_CONT_NC_REC = fields.Monetary(
@@ -12594,7 +11455,7 @@ class RegistroM600(models.AbstractModel):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor da Contribuição Não Cumulativa a Recolher/Pagar (05 - 06 - 07)",
+        help="Valor da Contribuição Não Cumulativa a Recolher/Pagar (05  06  07)",
     )
 
     VL_TOT_CONT_CUM_PER = fields.Monetary(
@@ -12603,8 +11464,9 @@ class RegistroM600(models.AbstractModel):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor Total da Contribuição Cumulativa do Período (recuperado do campo 13 "
-            "do Registro M610, quando o campo “COD_CONT” = 31, 32, 51, 52, 53, 54 e 72)"
+            "Valor Total da Contribuição Cumulativa  do Período (recuperado do campo 13"
+            " do Registro M610, quando o campo COD_CONT for igual a 31, 32, 51, 52, 53,"
+            " 54 e 72)"
         ),
     )
 
@@ -12613,10 +11475,11 @@ class RegistroM600(models.AbstractModel):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
+        help="Valor Retido na Fonte Deduzido no Período (Cumulativo)",
     )
 
     VL_OUT_DED_CUM = fields.Monetary(
-        string="Outras Deduções no Período (VL_OUT_DED_CUM)",
+        string="Outras Deduções do Regime Cumulativo no Período",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
@@ -12627,7 +11490,7 @@ class RegistroM600(models.AbstractModel):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor da Contribuição Cumulativa a Recolher/Pagar (09 - 10 - 11)",
+        help="Valor da Contribuição Cumulativa a Recolher/Pagar (09  10  11)",
     )
 
     VL_TOT_CONT_REC = fields.Monetary(
@@ -12635,18 +11498,15 @@ class RegistroM600(models.AbstractModel):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor Total da Contribuição a Recolher/Pagar no Período (08 + 12)",
+        help="Valor Total da Contribuição  a Recolher/Pagar no Período (08 + 12)",
     )
 
     reg_M605_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.m605",
         "reg_M605_ids_RegistroM600_id",
-        string="M605 Contribuição para a Seguridade Social",
+        string="M605 Detalhamento por Código de Receita",
         sped_card="1:N",
-        help=(
-            "M605 Contribuição para a Seguridade Social - COFINS a Recolher – "
-            "Detalhamento por Código de Receita (Visão Débito DCTF)"
-        ),
+        help="M605 Detalhamento por Código de Receita (Visão Debito DCTF)",
     )
 
     reg_M610_ids = fields.One2many(
@@ -12662,8 +11522,7 @@ class RegistroM600(models.AbstractModel):
 
 
 class RegistroM605(models.AbstractModel):
-    """Contribuição para a Seguridade Social - COFINS a Recolher – Detalhamento
-    por Código de Receita (Visão Débito DCTF)"""
+    "Detalhamento por Código de Receita (Visão Debito DCTF)"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.m605"
@@ -12671,34 +11530,27 @@ class RegistroM605(models.AbstractModel):
     _sped_level = 3
 
     NUM_CAMPO = fields.Char(
-        string="número do campo do registro “M600”",
-        required=True,
-        sped_length="2*",
-        help=(
-            "número do campo do registro “M600” (Campo 08 (contribuição não cumulativa)"
-            " ou Campo 12 (contribuição cumulativa)), objeto de detalhamento neste "
-            "registro."
-        ),
+        string="número do campo do registro M600", required=True, sped_length="2*"
     )
 
     COD_REC = fields.Char(
-        string="código da receita referente à contribuição",
+        string="Código da Receita referente à contribuição",
         required=True,
-        sped_length="6*",
+        sped_length="6",
         help=(
-            "código da receita referente à contribuição a recolher, detalhada neste "
-            "registro."
+            "Código da Receita referente à contribuição a recolher, detalhada neste "
+            "registro"
         ),
     )
 
     VL_DEBITO = fields.Monetary(
-        string="Valor do Débito correspondente ao código",
+        string="Valor do Débito correspondente à contribuição",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor do Débito correspondente ao código do Campo 03, conforme informação "
-            "na DCTF."
+            "Valor do Débito correspondente à contribuição a recolher, detalhada neste "
+            "registro"
         ),
     )
 
@@ -12745,6 +11597,39 @@ class RegistroM610(models.AbstractModel):
         currency_field="brl_currency_id",
     )
 
+    VL_AJUS_ACRES_BC = fields.Monetary(
+        string="Valor do total dos ajustes de acréscimo da base",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor do total dos ajustes de acréscimo da base de cálculo da contribuição"
+            " a que se refere o Campo 04"
+        ),
+    )
+
+    VL_AJUS_REDUC_BC = fields.Monetary(
+        string="Valor do total dos ajustes de redução da base",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor do total dos ajustes de redução da base de cálculo da contribuição a"
+            " que se refere o Campo 04"
+        ),
+    )
+
+    VL_BC_CONT_AJUS = fields.Monetary(
+        string="VL_BC_CONT_AJUS",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor da Base de Cálculo da Contribuição, após os ajustes (Campo 07 = "
+            "Campo 04 + Campo 05 - Campo 06)"
+        ),
+    )
+
     ALIQ_COFINS = fields.Float(
         string="Alíquota do COFINS (em percentual)",
         sped_length="8",
@@ -12756,7 +11641,7 @@ class RegistroM610(models.AbstractModel):
     )
 
     QUANT_BC_COFINS = fields.Float(
-        string="Quantidade – Base de cálculo COFINS",
+        string="Base de cálculo em quantidade COFINS",
         xsd_type="TDec_1603",
         digits=(
             16,
@@ -12795,7 +11680,7 @@ class RegistroM610(models.AbstractModel):
     )
 
     VL_CONT_DIFER = fields.Monetary(
-        string="Valor da contribuição a diferir no período",
+        string="Valor total da contribuição a diferir no período",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
@@ -12812,28 +11697,7 @@ class RegistroM610(models.AbstractModel):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor Total da Contribuição do Período (08 + 09 – 10 – 11 +12)",
-    )
-
-    VL_CONT_DIFER_INDEX_14 = fields.Monetary(
-        string="VL_CONT_DIFER_INDEX_14",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    VL_CONT_DIFER_ANT_INDEX_15 = fields.Monetary(
-        string="VL_CONT_DIFER_ANT_INDEX_15",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help="Valor da contribuição diferida em períodos anteriores",
-    )
-
-    VL_CONT_PER_INDEX_16 = fields.Monetary(
-        string="VL_CONT_PER_INDEX_16",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help="Valor Total da Contribuição do Período (11 + 12 – 13 – 14+15)",
+        help="Valor Total da Contribuição  do Período (11 + 12 - 13 - 14 + 15)",
     )
 
     reg_M610_ids_RegistroM600_id = fields.Many2one(
@@ -12849,19 +11713,16 @@ class RegistroM610(models.AbstractModel):
     reg_M611_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.m611",
         "reg_M611_ids_RegistroM610_id",
-        string="M611 Sociedades Cooperativas – Composição da Base",
+        string="M611 Sociedades Cooperativas",
         sped_card="1:1",
-        help="M611 Sociedades Cooperativas – Composição da Base de Cálculo – COFINS",
+        help="M611 Sociedades Cooperativas - Composição da Base de Cálculo - COFINS",
     )
 
     reg_M615_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.m615",
         "reg_M615_ids_RegistroM610_id",
-        string="M615 Detalhamento dos Ajustes da Base",
+        string="M615 Ajuste da Base de Cálculo da COFINS Apurada",
         sped_card="1:N",
-        help=(
-            "M615 Detalhamento dos Ajustes da Base de Cálculo Mensal da COFINS Apurada"
-        ),
     )
 
     reg_M620_ids = fields.One2many(
@@ -12880,7 +11741,7 @@ class RegistroM610(models.AbstractModel):
 
 
 class RegistroM611(models.AbstractModel):
-    "Sociedades Cooperativas – Composição da Base de Cálculo – COFINS"
+    "Sociedades Cooperativas - Composição da Base de Cálculo - COFINS"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.m611"
@@ -12888,16 +11749,10 @@ class RegistroM611(models.AbstractModel):
     _sped_level = 4
 
     IND_TIP_COOP = fields.Char(
-        string="Indicador do Tipo de Sociedade Cooperativa",
+        string="Indicador do Tipo de 1ociedade Cooperativa",
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help=(
-            "Indicador do Tipo de Sociedade Cooperativa: 01 – Cooperativa de Produção "
-            "Agropecuária; 02 – Cooperativa de Consumo; 03 – Cooperativa de Crédito; 04"
-            " – Cooperativa de Eletrificação Rural; 05 – Cooperativa de Transporte "
-            "Rodoviário de Cargas; 06 – Cooperativa de Médicos;"
-        ),
     )
 
     VL_BC_CONT_ANT_EXC_COOP = fields.Monetary(
@@ -12907,7 +11762,7 @@ class RegistroM611(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Valor da Base de Cálculo da Contribuição, conforme Registros escriturados "
-            "nos Blocos A, C, D e F, antes das Exclusões das Sociedades Cooperativas."
+            "nos Blocos A, C, D e F, antes das Exclusões das Cooperativas"
         ),
     )
 
@@ -12917,8 +11772,8 @@ class RegistroM611(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Valor de Exclusão Especifica das Cooperativas em Geral, decorrente das "
-            "Sobras Apuradas na DRE, destinadas a constituição do Fundo de Reserva e do"
-            " FATES."
+            "1obras Apuradas na DRE, destinadas a constituição do Fundo de Reserva e do"
+            " FATE1."
         ),
     )
 
@@ -12927,8 +11782,8 @@ class RegistroM611(models.AbstractModel):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor das Exclusões da Base de Cálculo Especifica do Tipo da Sociedade "
-            "Cooperativa, conforme Campo 02 (IND_TIP_COOP)."
+            "Valor das Exclusões da Base de Cálculo Especifica do Tipo da 1ociedade "
+            "Cooperativa, conforme Campo 02 (I0D_TIP_COOP)"
         ),
     )
 
@@ -12939,7 +11794,7 @@ class RegistroM611(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Valor da Base de Cálculo, Após as Exclusões Especificas da Sociedade "
-            "Cooperativa (04 – 05 – 06) – Transportar para M610."
+            "Cooperativa (03 - 04 - 05) - Transportar para M610"
         ),
     )
 
@@ -12955,7 +11810,7 @@ class RegistroM611(models.AbstractModel):
 
 
 class RegistroM615(models.AbstractModel):
-    """Detalhamento dos Ajustes da Base de Cálculo Mensal da COFINS Apurada"""
+    "Ajuste da Base de Cálculo da COFINS Apurada"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.m615"
@@ -12966,31 +11821,30 @@ class RegistroM615(models.AbstractModel):
         string="Indicador do tipo de ajuste da base de cálculo",
         required=True,
         sped_length="1*",
-        help=(
-            "Indicador do tipo de ajuste da base de cálculo: 0 - Ajuste de redução; 1 -"
-            " Ajuste de acréscimo."
-        ),
     )
 
     VL_AJ_BC = fields.Monetary(
-        string="Valor do ajuste de base de cálculo",
+        string="Valor do ajuste da base de cálculo",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     COD_AJ_BC = fields.Char(
-        string="Código do ajuste",
+        string="Código do ajuste da base de cálculo",
         required=True,
         sped_length="2*",
-        help="Código do ajuste, conforme a Tabela indicada no item 4.3.18",
+        help=(
+            "Código do ajuste da base de cálculo, conforme a Tabela indicada no item "
+            "4.3.18"
+        ),
     )
 
     NUM_DOC = fields.Char(
         string="Número do processo",
         help=(
             "Número do processo, documento ou ato concessório ao qual o ajuste está "
-            "vinculado, se houver."
+            "vinculado, se houver"
         ),
     )
 
@@ -13010,12 +11864,11 @@ class RegistroM615(models.AbstractModel):
 
     CNPJ = fields.Char(
         string="CNPJ do estabelecimento a que se refere o ajuste",
-        required=True,
         xsd_type="numeric_code",
         sped_length="14*",
     )
 
-    INFO_COMPL = fields.Char(string="Informação complementar do registro")
+    INFO_COMPL = fields.Char(string="Informação complementar")
 
     reg_M615_ids_RegistroM610_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.m610",
@@ -13037,12 +11890,7 @@ class RegistroM620(models.AbstractModel):
     _sped_level = 4
 
     IND_AJ = fields.Char(
-        string="Indicador do tipo de ajuste",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador do tipo de ajuste: 0- Ajuste de redução; 1- Ajuste de acréscimo."
-        ),
+        string="Indicador do tipo de ajuste", required=True, sped_length="1*"
     )
 
     VL_AJ = fields.Monetary(
@@ -13060,10 +11908,10 @@ class RegistroM620(models.AbstractModel):
     )
 
     NUM_DOC = fields.Char(
-        string="Número do processo",
+        string="Número do documento / processo / declaração",
         help=(
-            "Número do processo, documento ou ato concessório ao qual o ajuste está "
-            "vinculado, se houver."
+            "Número do documento / processo / declaração ao qual o ajuste está "
+            "vinculado, se houver"
         ),
     )
 
@@ -13088,18 +11936,13 @@ class RegistroM620(models.AbstractModel):
     reg_M625_ids = fields.One2many(
         "l10n_br_sped.efd_pis_cofins.m625",
         "reg_M625_ids_RegistroM620_id",
-        string="M625 Detalhamento dos Ajustes da Cofins Apurada",
+        string="M625 Detalhamento do Ajuste da COFINS Apurada",
         sped_card="1:N",
-        help=(
-            "M625 Detalhamento dos Ajustes da Cofins Apurada (Disponibilizado na versão"
-            " 2.0.12 do PVA, para período de apuração a partir de 01/10/2015)"
-        ),
     )
 
 
 class RegistroM625(models.AbstractModel):
-    """Detalhamento dos Ajustes da Cofins Apurada (Disponibilizado na versão
-    2.0.12 do PVA, para período de apuração a partir de 01/10/2015)"""
+    "Detalhamento do Ajuste da COFINS Apurada"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.m625"
@@ -13115,8 +11958,8 @@ class RegistroM625(models.AbstractModel):
             2,
         ),
         help=(
-            "Detalhamento do valor da contribuição reduzida ou acrescida, informado no "
-            "Campo 03 (VL_AJ) do registro M620."
+            "Detalhamento do valor da contribuição reduzida ou acrescida,informado no "
+            "Campo 03 (VL_AJ) do registro M620"
         ),
     )
 
@@ -13126,7 +11969,7 @@ class RegistroM625(models.AbstractModel):
         sped_length="2*",
         help=(
             "Código de Situação Tributária referente à operação detalhada neste "
-            "registro."
+            "registro"
         ),
     )
 
@@ -13155,11 +11998,12 @@ class RegistroM625(models.AbstractModel):
         string="Data da operação a que se refere",
         required=True,
         sped_length="8*",
-        help="Data da operação a que se refere o ajuste informado neste registro.",
+        help="Data da operação a que se refere o ajuste informado neste registro",
     )
 
     DESC_AJ = fields.Char(
         string="Descrição da(s) operação(ões) a que se refere",
+        sped_length="255",
         help=(
             "Descrição da(s) operação(ões) a que se refere o valor informado no Campo "
             "02 (DET_VALOR_AJ)"
@@ -13170,7 +12014,7 @@ class RegistroM625(models.AbstractModel):
         string="Código da conta contábil debitada/creditada", sped_length="255"
     )
 
-    INFO_COMPL = fields.Char(string="Informação complementar")
+    INFO_COMPL = fields.Char(string="Informação complementar", sped_length="255")
 
     reg_M625_ids_RegistroM620_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.m620",
@@ -13229,9 +12073,7 @@ class RegistroM630(models.AbstractModel):
     COD_CRED = fields.Char(
         string="Código de Tipo de Crédito diferido no período",
         sped_length="3*",
-        help=(
-            "Código de Tipo de Crédito diferido no período, conforme a Tabela 4.3.6."
-        ),
+        help=("Código de Tipo de Crédito diferido no período, conforme a Tabela 4.3.6"),
     )
 
     reg_M630_ids_RegistroM610_id = fields.Many2one(
@@ -13246,7 +12088,7 @@ class RegistroM630(models.AbstractModel):
 
 
 class RegistroM700(models.AbstractModel):
-    "COFINS Diferida em Períodos Anteriores – Valores a Pagar no Período"
+    "COFINS Diferida em Períodos Anteriores - Valores a Pagar no Período"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.m700"
@@ -13258,8 +12100,8 @@ class RegistroM700(models.AbstractModel):
         required=True,
         sped_length="2",
         help=(
-            "Código da contribuição social diferida em períodos anteriores, conforme a "
-            "Tabela 4.3.5."
+            "Código da contribuição  social diferida em períodos anteriores , conforme "
+            "a Tabela 4.3.5"
         ),
     )
 
@@ -13268,17 +12110,15 @@ class RegistroM700(models.AbstractModel):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor da Contribuição Apurada, diferida em períodos anteriores.",
+        help="Valor da Contribuição Apurada, diferida em períodos anteriores",
     )
 
-    NAT_CRED_DESC = fields.Char(
+    NAT_BC_CRED_DESC = fields.Char(
         string="Natureza do Crédito Diferido",
         sped_length="2",
         help=(
-            "Natureza do Crédito Diferido, vinculado à receita tributada no mercado "
-            "interno, a descontar: 01 – Crédito a Alíquota Básica; 02 – Crédito a "
-            "Alíquota Diferenciada; 03 – Crédito a Alíquota por Unidade de Produto; 04 "
-            "– Crédito Presumido da Agroindústria."
+            "Natureza do Crédito Diferido, vinculado a receita tributada no mercado "
+            "interno, a descontar."
         ),
     )
 
@@ -13286,7 +12126,7 @@ class RegistroM700(models.AbstractModel):
         string="Valor do Crédito a Descontar vinculado",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor do Crédito a Descontar vinculado à contribuição diferida.",
+        help="Valor do Crédito a Descontar vinculado à contribuição diferida",
     )
 
     VL_CONT_DIFER_ANT = fields.Monetary(
@@ -13301,26 +12141,26 @@ class RegistroM700(models.AbstractModel):
     )
 
     PER_APUR = fields.Char(
-        string="Período de apuração da contribuição social",
+        string="Periodo de apuração da contribuição social",
         required=True,
         xsd_type="numeric_code",
         sped_length="6*",
         help=(
-            "Período de apuração da contribuição social e dos créditos diferidos "
-            "(MMAAAA)."
+            "Periodo de apuração da contribuição social e dos créditos diferidos "
+            "(MMAAAA)"
         ),
     )
 
     DT_RECEB = fields.Date(
         string="Data de recebimento da receita",
         sped_length="8*",
-        help="Data de recebimento da receita, objeto de diferimento.",
+        help="Data de recebimento da receita, objeto de diferimento",
     )
 
 
 class RegistroM800(models.AbstractModel):
-    """Receitas Isentas, Não Alcançadas pela Incidência da Contribuição,
-    Sujeitas à Alíquota Zero ou de Vendas com Suspensão – COFINS"""
+    """Receitas Isentas ou Não Alcançadas pela Incidência da Contribuição ou
+    Sujeitas à Alíquota Zero ou com Suspensão - COFINS"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.m800"
@@ -13328,11 +12168,11 @@ class RegistroM800(models.AbstractModel):
     _sped_level = 2
 
     CST_COFINS = fields.Char(
-        string="Código de Situação Tributária – CST",
+        string="Código de Situação Tributária",
         required=True,
         sped_length="2*",
         help=(
-            "Código de Situação Tributária – CST das demais receitas auferidas no "
+            "Código de Situação Tributária - CST das demais receitas auferidas no "
             "período, sem incidência da contribuição, ou sem contribuição apurada a "
             "pagar, conforme a Tabela 4.3.4."
         ),
@@ -13348,7 +12188,7 @@ class RegistroM800(models.AbstractModel):
     COD_CTA = fields.Char(
         string="Código",
         sped_length="255",
-        help="Código da conta analítica contábil debitada/creditada.",
+        help="Código da conta analítica contábil debitada/creditada",
     )
 
     DESC_COMPL = fields.Char(string="Descrição Complementar da Natureza da Receita")
@@ -13360,14 +12200,15 @@ class RegistroM800(models.AbstractModel):
         sped_card="1:N",
         help=(
             "M810 Detalhamento das Receitas Isentas, Não Alcançadas pela Incidência da "
-            "Contribuição,"
+            "Contribuição, Sujeitas à Alíquota Zero ou de Vendas com Suspensão - COFINS"
         ),
     )
 
 
 class RegistroM810(models.AbstractModel):
     """Detalhamento das Receitas Isentas, Não Alcançadas pela Incidência da
-    Contribuição,"""
+    Contribuição, Sujeitas à Alíquota Zero ou de Vendas com Suspensão -
+    COFINS"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.m810"
@@ -13375,22 +12216,20 @@ class RegistroM810(models.AbstractModel):
     _sped_level = 3
 
     NAT_REC = fields.Char(
-        string="Natureza da Receita",
+        string="<html>Natureza da Receita",
         required=True,
-        sped_length="3*",
+        sped_length="3",
         help=(
-            "Natureza da Receita, conforme relação constante nas Tabelas de "
-            "Detalhamento da Natureza da Receita por Situação Tributária abaixo: - "
+            "<html>Natureza da Receita, conforme relação constante nas Tabelas de "
+            "Detalhamento da Natureza da Receita por Situação Tributária abaixo:<br/>- "
             "Tabela 4.3.10: Produtos Sujeitos à Incidência Monofásica da Contribuição "
-            "Social – Alíquotas Diferenciadas (CST 04 - Revenda); - Tabela 4.3.11: "
-            "Produtos Sujeitos à Incidência Monofásica da Contribuição Social – "
-            "Alíquotas por Unidade de Medida de Produto (CST 04 - Revenda); - Tabela "
-            "4.3.12: Produtos Sujeitos à Substituição Tributária da Contribuição Social"
-            " (CST 05 - Revenda); - Tabela 4.3.13: Produtos Sujeitos à Alíquota Zero da"
-            " Contribuição Social (CST 06); - Tabela 4.3.14: Operações com Isenção da "
-            "Contribuição Social (CST 07); - Tabela 4.3.15: Operações sem Incidência da"
-            " Contribuição Social (CST 08); - Tabela 4.3.16: Operações com Suspensão da"
-            " Contribuição Social (CST 09)."
+            "Social - Alíquotas Diferenciadas (CST 04);<br/>- Tabela 4.3.12: Produtos "
+            "Sujeitos à Substituição Tributária da Contribuição Social (CST 05);<br/>- "
+            "Tabela 4.3.13: Produtos Sujeitos à Alíquota Zero da Contribuição Social "
+            "(CST 06);<br/>- Tabela 4.3.14: Operações com Isenção da Contribuição "
+            "Social (CST 07);<br/>- Tabela 4.3.15: Operações sem Incidência da "
+            "Contribuição Social (CST 08);<br/>- Tabela 4.3.16: Operações com Suspensão"
+            " da Contribuição Social (CST 09).</html>"
         ),
     )
 
@@ -13408,385 +12247,25 @@ class RegistroM810(models.AbstractModel):
     COD_CTA = fields.Char(
         string="Código",
         sped_length="255",
-        help="Código da conta analítica contábil debitada/creditada.",
+        help="Código da conta analítica contábil debitada/creditada",
     )
 
     DESC_COMPL = fields.Char(string="Descrição Complementar da Natureza da Receita")
 
     reg_M810_ids_RegistroM800_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.m800",
-        string="Receitas Isentas",
+        string="Receitas Isentas ou Não Alcançadas pela Incidência",
         required=True,
         ondelete="cascade",
         help=(
-            "Receitas Isentas, Não Alcançadas pela Incidência da Contribuição, Sujeitas"
-            " à Alíquota Zero ou de Vendas com Suspensão – COFINS"
+            "Receitas Isentas ou Não Alcançadas pela Incidência da Contribuição ou "
+            "Sujeitas à Alíquota Zero ou com Suspensão - COFINS"
         ),
-    )
-
-
-class RegistroP010(models.AbstractModel):
-    "Identificação do Estabelecimento"
-
-    _description = textwrap.dedent(f"    {__doc__}")
-    _name = "l10n_br_sped.efd_pis_cofins.6.p010"
-    _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
-    _sped_level = 2
-
-    CNPJ = fields.Char(
-        string="Número de inscrição do estabelecimento no CNPJ",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="14*",
-    )
-
-    reg_P100_ids = fields.One2many(
-        "l10n_br_sped.efd_pis_cofins.p100",
-        "reg_P100_ids_RegistroP010_id",
-        string="P100 Contribuição Previdenciária sobre",
-        sped_card="1:N",
-        help="P100 Contribuição Previdenciária sobre a Receita Bruta",
-    )
-
-
-class RegistroP100(models.AbstractModel):
-    "Contribuição Previdenciária sobre a Receita Bruta"
-
-    _description = textwrap.dedent(f"    {__doc__}")
-    _name = "l10n_br_sped.efd_pis_cofins.6.p100"
-    _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
-    _sped_level = 3
-
-    DT_INI = fields.Date(
-        string="Data inicial a que a apuração se refere",
-        required=True,
-        sped_length="8*",
-    )
-
-    DT_FIN = fields.Date(
-        string="Data final a que a apuração se refere", required=True, sped_length="8*"
-    )
-
-    VL_REC_TOT_EST = fields.Monetary(
-        string="Valor da Receita Bruta Total do Estabelecimento",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help="Valor da Receita Bruta Total do Estabelecimento no Período",
-    )
-
-    COD_ATIV_ECON = fields.Char(
-        string="Código indicador correspondente",
-        required=True,
-        sped_length="8*",
-        help=(
-            "Código indicador correspondente à atividade sujeita a incidência da "
-            "Contribuição Previdenciária sobre a Receita Bruta, conforme Tabela 5.1.1."
-        ),
-    )
-
-    VL_REC_ATIV_ESTAB = fields.Monetary(
-        string="Valor da Receita Bruta do Estabelecimento",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help=(
-            "Valor da Receita Bruta do Estabelecimento, correspondente às "
-            "atividades/produtos referidos no Campo 05 (COD_ATIV_ECON)"
-        ),
-    )
-
-    VL_EXC = fields.Monetary(
-        string="Valor das Exclusões da Receita Bruta informada",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help="Valor das Exclusões da Receita Bruta informada no Campo 06",
-    )
-
-    VL_BC_CONT = fields.Monetary(
-        string="Valor da Base de Cálculo",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help=(
-            "Valor da Base de Cálculo da Contribuição Previdenciária sobre a Receita "
-            "Bruta (Campo 08 = Campo 06 – Campo 07)"
-        ),
-    )
-
-    ALIQ_CONT = fields.Float(
-        string="Alíquota da Contribuição Previdenciária sobre",
-        required=True,
-        sped_length="8",
-        xsd_type="TDec_1604",
-        digits=(
-            16,
-            4,
-        ),
-        help="Alíquota da Contribuição Previdenciária sobre a Receita B ruta",
-    )
-
-    VL_CONT_APU = fields.Monetary(
-        string="Valor da Contribuição Previdenciária Apurada sobre",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help="Valor da Contribuição Previdenciária Apurada sobre a Receita Bruta",
-    )
-
-    COD_CTA = fields.Char(
-        string="Código da conta analítica contábil referente",
-        sped_length="255",
-        help=(
-            "Código da conta analítica contábil referente à Contribuição Previdenciária"
-            " sobre a Receita Bruta"
-        ),
-    )
-
-    INFO_COMPL = fields.Char(string="Informação complementar do registro")
-
-    reg_P100_ids_RegistroP010_id = fields.Many2one(
-        comodel_name="l10n_br_sped.efd_pis_cofins.p010",
-        string="Identificação do Estabelecimento",
-        required=True,
-        ondelete="cascade",
-    )
-
-    reg_P110_ids = fields.One2many(
-        "l10n_br_sped.efd_pis_cofins.p110",
-        "reg_P110_ids_RegistroP100_id",
-        string="P110 Complemento da Escrituração – Detalhamento",
-        sped_card="1:N",
-        help=(
-            "P110 Complemento da Escrituração – Detalhamento da Apuração da "
-            "Contribuição"
-        ),
-    )
-
-    reg_P199_ids = fields.One2many(
-        "l10n_br_sped.efd_pis_cofins.p199",
-        "reg_P199_ids_RegistroP100_id",
-        string="P199 Processo Referenciado",
-        sped_card="1:N",
-    )
-
-
-class RegistroP110(models.AbstractModel):
-    """Complemento da Escrituração – Detalhamento da Apuração da
-    Contribuição"""
-
-    _description = textwrap.dedent(f"    {__doc__}")
-    _name = "l10n_br_sped.efd_pis_cofins.6.p110"
-    _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
-    _sped_level = 4
-
-    NUM_CAMPO = fields.Char(
-        string="número do campo do registro “P100”",
-        required=True,
-        sped_length="2*",
-        help=(
-            "número do campo do registro “P100”, objeto de detalhamento neste registro."
-        ),
-    )
-
-    COD_DET = fields.Char(
-        string="Código do tipo de detalhamento",
-        sped_length="8*",
-        help="Código do tipo de detalhamento, conforme Tabela 5.1.2",
-    )
-
-    DET_VALOR = fields.Float(
-        string="Valor detalhado referente",
-        required=True,
-        xsd_type="TDec_1602",
-        digits=(
-            16,
-            2,
-        ),
-        help="Valor detalhado referente ao campo 02 deste registro",
-    )
-
-    INF_COMPL = fields.Char(string="Informação complementar do detalhamento")
-
-    reg_P110_ids_RegistroP100_id = fields.Many2one(
-        comodel_name="l10n_br_sped.efd_pis_cofins.p100",
-        string="Contribuição Previdenciária sobre a Receita Bruta",
-        required=True,
-        ondelete="cascade",
-    )
-
-
-class RegistroP199(models.AbstractModel):
-    "Processo Referenciado"
-
-    _description = textwrap.dedent(f"    {__doc__}")
-    _name = "l10n_br_sped.efd_pis_cofins.6.p199"
-    _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
-    _sped_level = 4
-
-    NUM_PROC = fields.Char(
-        string="Identificação do processo ou ato concessório",
-        required=True,
-        sped_length="2",
-    )
-
-    IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil 9 – Outros."
-        ),
-    )
-
-    reg_P199_ids_RegistroP100_id = fields.Many2one(
-        comodel_name="l10n_br_sped.efd_pis_cofins.p100",
-        string="Contribuição Previdenciária sobre a Receita Bruta",
-        required=True,
-        ondelete="cascade",
-    )
-
-
-class RegistroP200(models.AbstractModel):
-    "Consolidação da Contribuição Previdenciária sobre a Receita Bruta"
-
-    _description = textwrap.dedent(f"    {__doc__}")
-    _name = "l10n_br_sped.efd_pis_cofins.6.p200"
-    _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
-    _sped_level = 2
-
-    PER_REF = fields.Char(
-        string="Período de referencia da escrituração",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="6*",
-        help="Período de referencia da escrituração (MMAAAA)",
-    )
-
-    VL_TOT_CONT_APU = fields.Monetary(
-        string="Valor total apurado",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help=(
-            "Valor total apurado da Contribuição Previdenciária sobre a Receita Bruta "
-            "(Somatório do Campo 10 “VL_CONT_APU“, do(s) Registro(s) P100)"
-        ),
-    )
-
-    VL_TOT_AJ_REDUC = fields.Monetary(
-        string="Valor total de “Ajustes de redução”",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help=(
-            "Valor total de “Ajustes de redução” (Registro P210, Campo 03, quando Campo"
-            " 02 = “0”)"
-        ),
-    )
-
-    VL_TOT_AJ_ACRES = fields.Monetary(
-        string="Valor total de “Ajustes de acréscimo”",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help=(
-            "Valor total de “Ajustes de acréscimo” (Registro P210, Campo 03, quando "
-            "Campo 02 = “1”)"
-        ),
-    )
-
-    VL_TOT_CONT_DEV = fields.Monetary(
-        string="Valor total da Contribuição Previdenciária sobre",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help=(
-            "Valor total da Contribuição Previdenciária sobre a Receita Bruta a "
-            "recolher (Campo 03 – Campo 04 + Campo 05)"
-        ),
-    )
-
-    COD_REC = fields.Char(
-        string="Código de Receita referente",
-        required=True,
-        sped_length="6*",
-        help=(
-            "Código de Receita referente à Contribuição Previdenciária, conforme "
-            "informado em DCTF"
-        ),
-    )
-
-    reg_P210_ids = fields.One2many(
-        "l10n_br_sped.efd_pis_cofins.p210",
-        "reg_P210_ids_RegistroP200_id",
-        string="P210 Ajuste",
-        sped_card="1:N",
-        help=(
-            "P210 Ajuste da Contribuição Previdenciária Apurada sobre a Receita Bruta"
-        ),
-    )
-
-
-class RegistroP210(models.AbstractModel):
-    "Ajuste da Contribuição Previdenciária Apurada sobre a Receita Bruta"
-
-    _description = textwrap.dedent(f"    {__doc__}")
-    _name = "l10n_br_sped.efd_pis_cofins.6.p210"
-    _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
-    _sped_level = 3
-
-    IND_AJ = fields.Char(
-        string="Indicador do tipo de ajuste",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador do tipo de ajuste: 0- Ajuste de redução; 1- Ajuste de acréscimo."
-        ),
-    )
-
-    VL_AJ = fields.Monetary(
-        string="Valor do ajuste",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    COD_AJ = fields.Char(
-        string="Código do ajuste",
-        required=True,
-        sped_length="2*",
-        help=(
-            "Código do ajuste, conforme a Tabela indicada no item 4.3.8., versão 1.01"
-        ),
-    )
-
-    NUM_DOC = fields.Char(
-        string="Número do processo",
-        help=(
-            "Número do processo, documento ou ato concessório ao qual o ajuste está "
-            "vinculado, se houver."
-        ),
-    )
-
-    DESCR_AJ = fields.Char(string="Descrição resumida do ajuste")
-
-    DT_REF = fields.Date(
-        string="Data de referência do ajuste",
-        sped_length="8*",
-        help="Data de referência do ajuste (ddmmaaaa)",
-    )
-
-    reg_P210_ids_RegistroP200_id = fields.Many2one(
-        comodel_name="l10n_br_sped.efd_pis_cofins.p200",
-        string="Consolidação da Contribuição Previdenciária sobre",
-        required=True,
-        ondelete="cascade",
-        help="Consolidação da Contribuição Previdenciária sobre a Receita Bruta",
     )
 
 
 class Registro1010(models.AbstractModel):
-    "Processo Referenciado – Ação Judicial"
+    "Processo Referenciado - Ação Judicial"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.1010"
@@ -13794,7 +12273,7 @@ class Registro1010(models.AbstractModel):
     _sped_level = 2
 
     NUM_PROC = fields.Char(
-        string="Identificação do Número do Processo Judicial",
+        string="Identificação do Numero do Processo Judicial",
         required=True,
         sped_length="2",
     )
@@ -13809,15 +12288,7 @@ class Registro1010(models.AbstractModel):
         string="Indicador da Natureza da Ação Judicial",
         required=True,
         sped_length="2*",
-        help=(
-            "Indicador da Natureza da Ação Judicial, impetrada na Justiça Federal: 01 –"
-            " Decisão judicial transitada em julgado, a favor da pessoa jurídica. 02 – "
-            "Decisão judicial não transitada em julgado, a favor da pessoa jurídica. 03"
-            " – Decisão judicial oriunda de liminar em mandado de segurança. 04 – "
-            "Decisão judicial oriunda de liminar em medida cautelar. 05 – Decisão "
-            "judicial oriunda de antecipação de tutela. 06 - Decisão judicial vinculada"
-            " a depósito administrativo ou judicial em montante integral."
-        ),
+        help="Indicador da Natureza da Ação Judicial, impetrada na Justiça Federal",
     )
 
     DESC_DEC_JUD = fields.Char(
@@ -13859,12 +12330,12 @@ class Registro1011(models.AbstractModel):
         ),
     )
 
-    CHAVE_DOC = fields.Char(string="Chave do documento eletrônico", sped_length="9")
+    CHAVE_DOC = fields.Char(string="Chave do documento eletrônico", sped_length="6")
 
     COD_PART = fields.Char(
         string="Código do participante",
         sped_length="6",
-        help="Código do participante (Campo 02 do Registro 0150)",
+        help="Código do participante (campo 02 do Registro 0150)",
     )
 
     COD_ITEM = fields.Char(
@@ -13878,70 +12349,66 @@ class Registro1011(models.AbstractModel):
     )
 
     VL_OPER = fields.Monetary(
-        string="Valor da Operação/Item",
+        string="Valor da Operação",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
     )
 
     CST_PIS = fields.Char(
-        string="Código",
+        string="Código da Situação Tributária referente",
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
         help=(
-            "Código da Situação Tributária conforme escrituração, referente ao "
-            "PIS/PASEP, conforme a Tabela indicada no item 4.3.3."
+            "Código da Situação Tributária referente ao PIS/Pasep, conforme a Tabela "
+            "indicada no item 4.3.3 (IN RFB nº 1.009, de 2010)"
         ),
     )
 
     VL_BC_PIS = fields.Float(
-        string="Base de cálculo do PIS/PASEP",
+        string="Base de Cálculo do PIS/Pasep",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Base de cálculo do PIS/PASEP, conforme escrituração",
     )
 
     ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
+        string="Alíquota do PIS/Pasep",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP, conforme escrituração",
     )
 
     VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
+        string="Valor do PIS/Pasep",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor do PIS/PASEP, conforme escrituração",
     )
 
     CST_COFINS = fields.Char(
-        string="Código (CST_COFINS)",
+        string="Código da Situação Tributária referente a COFINS",
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
         help=(
-            "Código da Situação Tributária conforme escrituração, referente a COFINS, "
-            "conforme a Tabela indicada no item 4.3.4."
+            "Código da Situação Tributária referente a COFINS, conforme a Tabela "
+            "indicada no item 4.3.4 (IN RFB nº 1.009, de 2010)"
         ),
     )
 
     VL_BC_COFINS = fields.Float(
-        string="Base de cálculo da COFINS",
+        string="Base de Cálculo da COFINS",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Base de cálculo da COFINS, conforme escrituração",
     )
 
     ALIQ_COFINS = fields.Float(
@@ -13952,29 +12419,25 @@ class Registro1011(models.AbstractModel):
             16,
             4,
         ),
-        help="Alíquota da COFINS, conforme escrituração",
     )
 
     VL_COFINS = fields.Monetary(
-        string="Valor da COFINS",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help="Valor da COFINS, conforme escrituração",
+        string="Valor da COFINS", xsd_type="TDec_1602", currency_field="brl_currency_id"
     )
 
     CST_PIS_SUSP = fields.Char(
-        string="Código (CST_PIS_SUSP)",
+        string="Código",
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
         help=(
             "Código da Situação Tributária conforme decisão judicial, referente ao "
-            "PIS/PASEP, conforme a Tabela indicada no item 4.3.3."
+            "PIS/PASEP, conforme a Tabela indicada no item 4.3.3"
         ),
     )
 
     VL_BC_PIS_SUSP = fields.Float(
-        string="Base de cálculo do PIS/PASEP (VL_BC_PIS_SUSP)",
+        string="Base de cálculo do PIS/PASEP",
         xsd_type="TDec_1604",
         digits=(
             16,
@@ -13984,21 +12447,21 @@ class Registro1011(models.AbstractModel):
     )
 
     ALIQ_PIS_SUSP = fields.Float(
-        string="Alíquota do PIS/PASEP (ALIQ_PIS_SUSP)",
+        string="Alíquota do PIS/Pasep (ALIQ_PIS_SUSP)",
         sped_length="8",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Alíquota do PIS/PASEP, conforme decisão judicial",
+        help="Alíquota do PIS/Pasep, conforme decisão judicial",
     )
 
     VL_PIS_SUSP = fields.Monetary(
-        string="Valor do PIS/PASEP (VL_PIS_SUSP)",
+        string="Valor do PIS/Pasep (VL_PIS_SUSP)",
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor do PIS/PASEP, conforme decisão judicial",
+        help="Valor do PIS/Pasep, conforme decisão judicial",
     )
 
     CST_COFINS_SUSP = fields.Char(
@@ -14007,19 +12470,20 @@ class Registro1011(models.AbstractModel):
         xsd_type="numeric_code",
         sped_length="2*",
         help=(
-            "Código da Situação Tributária conforme decisão judicial, referente a "
-            "COFINS, conforme a Tabela indicada no item 4.3.4."
+            "Código da Situação Tributária conforme decisão judicial referente a "
+            "COFINS, conforme a Tabela indicada no item 4.3.4 (IN RFB nº 1.009, de "
+            "2010)"
         ),
     )
 
     VL_BC_COFINS_SUSP = fields.Float(
-        string="Base de cálculo da COFINS (VL_BC_COFINS_SUSP)",
+        string="Base de Cálculo da COFINS (VL_BC_COFINS_SUSP)",
         xsd_type="TDec_1604",
         digits=(
             16,
             4,
         ),
-        help="Base de cálculo da COFINS, conforme decisão judicial",
+        help="Base de Cálculo da COFINS, conforme decisão judicial",
     )
 
     ALIQ_COFINS_SUSP = fields.Float(
@@ -14046,20 +12510,23 @@ class Registro1011(models.AbstractModel):
         help="Código da conta analítica contábil debitada/creditada",
     )
 
-    COD_CCUS = fields.Char(string="Código do Centro de Custos", sped_length="255")
+    COD_CCUS = fields.Char(string="Código do centro de custos", sped_length="255")
 
-    DESC_DOC_OPER = fields.Char(string="Descrição do Documento/Operação")
+    DESC_DOC_OPER = fields.Char(
+        string="Descrição do Documento/Operação", sped_length="255"
+    )
 
     reg_1011_ids_Registro1010_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.1010",
-        string="Processo Referenciado – Ação Judicial",
+        string="Processo Referenciado",
         required=True,
         ondelete="cascade",
+        help="Processo Referenciado - Ação Judicial",
     )
 
 
 class Registro1020(models.AbstractModel):
-    "Processo Referenciado – Processo Administrativo"
+    "Processo Referenciado - Processo Administrativo"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.1020"
@@ -14079,10 +12546,7 @@ class Registro1020(models.AbstractModel):
         sped_length="2*",
         help=(
             "Indicador da Natureza da Ação, decorrente de Processo Administrativo na "
-            "Secretaria da Receita Federal do Brasil: 01 – Processo Administrativo de "
-            "Consulta 02 – Despacho Decisório 03 – Ato Declaratório Executivo 04 – Ato "
-            "Declaratório Interpretativo 05 – Decisão Administrativa de DRJ ou do CARF "
-            "06 – Auto de Infração 99 – Outros"
+            "Secretaria da Receita Federal do Brasil"
         ),
     )
 
@@ -14094,8 +12558,7 @@ class Registro1020(models.AbstractModel):
 
 
 class Registro1050(models.AbstractModel):
-    """Detalhamento dos Ajustes da Base de Cálculo Mensal de PIS/Pasep e COFINS
-    – Valores Extra Apuração"""
+    "Detalhamento de ajuste de Base de Cálculo - Valores Extra Apuração"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.1050"
@@ -14110,18 +12573,17 @@ class Registro1050(models.AbstractModel):
     )
 
     IND_AJ_BC = fields.Char(
-        string="Indicador da natureza do ajuste da base de cálculo",
+        string="Código do ajuste da base de cálculo",
         required=True,
         sped_length="2*",
         help=(
-            "Indicador da natureza do ajuste da base de cálculo, conforme Tabela "
-            "Externa 4.3.18"
+            "Código do ajuste da base de cálculo, conforme a Tabela indicada no item "
+            "4.3.18"
         ),
     )
 
     CNPJ = fields.Char(
         string="CNPJ do estabelecimento a que se refere o ajuste",
-        required=True,
         xsd_type="numeric_code",
         sped_length="14*",
     )
@@ -14222,13 +12684,7 @@ class Registro1050(models.AbstractModel):
     )
 
     IND_APROP = fields.Char(
-        string="Indicador de apropriação do ajuste",
-        required=True,
-        sped_length="2*",
-        help=(
-            "Indicador de apropriação do ajuste: 01 – Referente ao PIS/Pasep e a Cofins"
-            " 02 – Referente unicamente ao PIS/Pasep 03 – Referente unicamente à Cofins"
-        ),
+        string="Indicador de apropriação do ajuste", required=True, sped_length="2*"
     )
 
     NUM_REC = fields.Char(
@@ -14237,11 +12693,11 @@ class Registro1050(models.AbstractModel):
         help="Número do recibo da escrituração a que se refere o ajuste",
     )
 
-    INFO_COMPL = fields.Char(string="Informação complementar do registro")
+    INFO_COMPL = fields.Char(string="Informação complementar")
 
 
 class Registro1100(models.AbstractModel):
-    "Controle de Créditos Fiscais – PIS/PASEP"
+    "Controle de Créditos Fiscais - PIS/Pasep"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.1100"
@@ -14252,7 +12708,7 @@ class Registro1100(models.AbstractModel):
         string="Período de Apuração do Crédito",
         required=True,
         xsd_type="numeric_code",
-        sped_length="6",
+        sped_length="6*",
         help="Período de Apuração do Crédito (MM/AAAA)",
     )
 
@@ -14261,10 +12717,6 @@ class Registro1100(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help=(
-            "Indicador da origem do crédito: 01 – Crédito decorrente de operações "
-            "próprias; 02 – Crédito transferido por pessoa jurídica sucedida."
-        ),
     )
 
     CNPJ_SUC = fields.Char(
@@ -14279,17 +12731,17 @@ class Registro1100(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="3*",
-        help="Código do Tipo do Crédito, conforme Tabela 4.3.6.",
+        help="Código do Tipo do Crédito, conforme Tabela 4.3.6",
     )
 
     VL_CRED_APU = fields.Monetary(
-        string="Valor total do crédito apurado",
+        string="Valor do Crédito apurado em Demonstrativo Dacon",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor total do crédito apurado na Escrituração Fiscal Digital (Registro "
-            "M100) ou em demonstrativo DACON (Fichas 06A e 06B) de período anterior."
+            "Valor do Crédito apurado em Demonstrativo Dacon ou em Escrituração Fiscal "
+            "Digital, em Período(s)  Anterior(es)."
         ),
     )
 
@@ -14299,7 +12751,7 @@ class Registro1100(models.AbstractModel):
         currency_field="brl_currency_id",
         help=(
             "Valor de Crédito Extemporâneo Apurado (Registro 1101), referente a Período"
-            " Anterior, Informado no Campo 02 – PER_APU_CRED"
+            " Anterior, Informado no Campo 02 - PER_APU_CRED"
         ),
     )
 
@@ -14317,732 +12769,7 @@ class Registro1100(models.AbstractModel):
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
         help=(
-            "Valor do Crédito utilizado mediante Desconto, em Período(s) Anterior(es)."
-        ),
-    )
-
-    VL_CRED_PER_PA_ANT = fields.Monetary(
-        string="Valor do Crédito utilizado mediante Pedido",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help=(
-            "Valor do Crédito utilizado mediante Pedido de Ressarcimento, em Período(s)"
-            " Anterior(es)."
-        ),
-    )
-
-    VL_CRED_DCOMP_PA_ANT = fields.Monetary(
-        string="Valor do Crédito utilizado mediante Declaração",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help=(
-            "Valor do Crédito utilizado mediante Declaração de Compensação "
-            "Intermediária (Crédito de Exportação), em Período(s) Anterior(es)."
-        ),
-    )
-
-    SD_CRED_DISP_EFD = fields.Float(
-        string="Saldo do Crédito Disponível",
-        required=True,
-        xsd_type="TDec_1602",
-        digits=(
-            16,
-            2,
-        ),
-        help=(
-            "Saldo do Crédito Disponível para Utilização neste Período de Escrituração "
-            "(08 – 09 – 10 - 11)."
-        ),
-    )
-
-    VL_CRED_DESC_EFD = fields.Monetary(
-        string="Valor do Crédito descontado neste período",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help="Valor do Crédito descontado neste período de escrituração.",
-    )
-
-    VL_CRED_PER_EFD = fields.Monetary(
-        string="Valor do Crédito objeto de Pedido de Ressarcimento",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help=(
-            "Valor do Crédito objeto de Pedido de Ressarcimento (PER) neste período de "
-            "escrituração."
-        ),
-    )
-
-    VL_CRED_DCOMP_EFD = fields.Monetary(
-        string="VL_CRED_DCOMP_EFD",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help=(
-            "Valor do Crédito utilizado mediante Declaração de Compensação "
-            "Intermediária neste período de escrituração."
-        ),
-    )
-
-    VL_CRED_TRANS = fields.Monetary(
-        string="Valor do crédito transferido em evento de cisão",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help=(
-            "Valor do crédito transferido em evento de cisão, fusão ou incorporação."
-        ),
-    )
-
-    VL_CRED_OUT = fields.Monetary(
-        string="Valor do crédito utilizado por outras formas",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    SLD_CRED_FIM = fields.Float(
-        string="Saldo de créditos a utilizar em período",
-        xsd_type="TDec_1602",
-        digits=(
-            16,
-            2,
-        ),
-        help=(
-            "Saldo de créditos a utilizar em período de apuração futuro (12 – 13 – 14 –"
-            " 15 – 16 - 17)."
-        ),
-    )
-
-    reg_1101_ids = fields.One2many(
-        "l10n_br_sped.efd_pis_cofins.1101",
-        "reg_1101_ids_Registro1100_id",
-        string="1101 Apuração de Crédito Extemporâneo",
-        sped_card="1:N",
-        help=(
-            "1101 Apuração de Crédito Extemporâneo - Documentos e Operações de Períodos"
-            " Anteriores – PIS/PASEP (Para períodos de apuração até Julho de 2013)"
-        ),
-    )
-
-
-class Registro1101(models.AbstractModel):
-    """Apuração de Crédito Extemporâneo - Documentos e Operações de Períodos
-    Anteriores – PIS/PASEP (Para períodos de apuração até Julho de 2013)"""
-
-    _description = textwrap.dedent(f"    {__doc__}")
-    _name = "l10n_br_sped.efd_pis_cofins.6.1101"
-    _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
-    _sped_level = 3
-
-    COD_PART = fields.Char(
-        string="Código do participante",
-        sped_length="6",
-        help="Código do participante (Campo 02 do Registro 0150)",
-    )
-
-    COD_ITEM = fields.Char(
-        string="Código do item",
-        sped_length="6",
-        help="Código do item (campo 02 do Registro 0200)",
-    )
-
-    COD_MOD = fields.Char(
-        string="Código do modelo do documento fiscal",
-        sped_length="2*",
-        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1.",
-    )
-
-    SER = fields.Char(string="Série do documento fiscal", sped_length="4")
-
-    SUB_SER = fields.Char(string="Subsérie do documento fiscal", sped_length="3")
-
-    NUM_DOC = fields.Char(
-        string="Número do documento fiscal", xsd_type="numeric_code", sped_length="9"
-    )
-
-    DT_OPER = fields.Date(
-        string="Data da Operação (ddmmaaaa)", required=True, sped_length="8*"
-    )
-
-    CHV_NFE = fields.Char(
-        string="Chave da Nota Fiscal Eletrônica",
-        xsd_type="numeric_code",
-        sped_length="44*",
-    )
-
-    VL_OPER = fields.Monetary(
-        string="Valor da Operação",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    CFOP = fields.Char(
-        string="Código fiscal de operação e prestação",
-        xsd_type="numeric_code",
-        sped_length="4*",
-    )
-
-    NAT_BC_CRED = fields.Char(
-        string="Código da Base de Cálculo do Crédito",
-        required=True,
-        sped_length="2*",
-        help=(
-            "Código da Base de Cálculo do Crédito, conforme a Tabela indicada no item "
-            "4.3.7."
-        ),
-    )
-
-    IND_ORIG_CRED = fields.Char(
-        string="Indicador da origem do crédito",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do crédito: 0 – Operação no Mercado Interno 1 – "
-            "Operação de Importação"
-        ),
-    )
-
-    CST_PIS = fields.Char(
-        string="Código da Situação Tributária referente",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="2*",
-        help=(
-            "Código da Situação Tributária referente ao PIS/PASEP, conforme a Tabela "
-            "indicada no item 4.3.3."
-        ),
-    )
-
-    VL_BC_PIS = fields.Float(
-        string="Base de Cálculo do Crédito de PIS/PASEP",
-        required=True,
-        xsd_type="TDec_1603",
-        digits=(
-            16,
-            3,
-        ),
-        help="Base de Cálculo do Crédito de PIS/PASEP (em valor ou em quantidade).",
-    )
-
-    ALIQ_PIS = fields.Float(
-        string="Alíquota do PIS/PASEP",
-        required=True,
-        xsd_type="TDec_1604",
-        digits=(
-            16,
-            4,
-        ),
-        help="Alíquota do PIS/PASEP (em percentual ou em reais).",
-    )
-
-    VL_PIS = fields.Monetary(
-        string="Valor do Crédito de PIS/PASEP",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    COD_CTA = fields.Char(
-        string="Código",
-        sped_length="255",
-        help="Código da conta analítica contábil debitada/creditada.",
-    )
-
-    COD_CCUS = fields.Char(string="Código do Centro de Custos", sped_length="255")
-
-    DESC_COMPL = fields.Char(string="Descrição complementar do Documento/Operação")
-
-    PER_ESCRIT = fields.Char(
-        string="Mês/Ano da Escrituração em que foi registrado",
-        xsd_type="numeric_code",
-        sped_length="6*",
-        help=(
-            "Mês/Ano da Escrituração em que foi registrado o documento/operação "
-            "(Crédito pelo método da Apropriação Direta)."
-        ),
-    )
-
-    CNPJ = fields.Char(
-        string="CNPJ do estabelecimento gerador",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="14*",
-        help=(
-            "CNPJ do estabelecimento gerador do crédito extemporâneo (Campo 04 do "
-            "Registro 0140)"
-        ),
-    )
-
-    reg_1101_ids_Registro1100_id = fields.Many2one(
-        comodel_name="l10n_br_sped.efd_pis_cofins.1100",
-        string="Controle de Créditos Fiscais – PIS/PASEP",
-        required=True,
-        ondelete="cascade",
-    )
-
-    reg_1102_ids = fields.One2many(
-        "l10n_br_sped.efd_pis_cofins.1102",
-        "reg_1102_ids_Registro1101_id",
-        string="1102 Detalhamento do Crédito Extemporâneo",
-        sped_card="1:1",
-        help=(
-            "1102 Detalhamento do Crédito Extemporâneo, Vinculado a mais de um Tipo de "
-            "Receita –"
-        ),
-    )
-
-
-class Registro1102(models.AbstractModel):
-    """Detalhamento do Crédito Extemporâneo, Vinculado a mais de um Tipo de
-    Receita –"""
-
-    _description = textwrap.dedent(f"    {__doc__}")
-    _name = "l10n_br_sped.efd_pis_cofins.6.1102"
-    _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
-    _sped_level = 4
-
-    VL_CRED_PIS_TRIB_MI = fields.Monetary(
-        string="Parcela do Crédito de PIS/PASEP",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help=(
-            "Parcela do Crédito de PIS/PASEP, vinculada a Receita Tributada no Mercado "
-            "Interno"
-        ),
-    )
-
-    VL_CRED_PIS_NT_MI = fields.Monetary(
-        string="VL_CRED_PIS_NT_MI",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help=(
-            "Parcela do Crédito de PIS/PASEP, vinculada a Receita Não Tributada no "
-            "Mercado Interno"
-        ),
-    )
-
-    VL_CRED_PIS_EXP = fields.Monetary(
-        string="Parcela do Crédito de PIS/PASEP (VL_CRED_PIS_EXP)",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help="Parcela do Crédito de PIS/PASEP, vinculada a Receita de Exportação",
-    )
-
-    reg_1102_ids_Registro1101_id = fields.Many2one(
-        comodel_name="l10n_br_sped.efd_pis_cofins.1101",
-        string="Apuração de Crédito Extemporâneo",
-        required=True,
-        ondelete="cascade",
-        help=(
-            "Apuração de Crédito Extemporâneo - Documentos e Operações de Períodos "
-            "Anteriores – PIS/PASEP (Para períodos de apuração até Julho de 2013)"
-        ),
-    )
-
-
-class Registro1200(models.AbstractModel):
-    """Contribuição Social Extemporânea – PIS/PASEP (Para períodos de apuração
-    até Julho de 2013)"""
-
-    _description = textwrap.dedent(f"    {__doc__}")
-    _name = "l10n_br_sped.efd_pis_cofins.6.1200"
-    _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
-    _sped_level = 2
-
-    PER_APUR_ANT = fields.Char(
-        string="Período de Apuração",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="6*",
-        help="Período de Apuração da Contribuição Social Extemporânea (MMAAAA).",
-    )
-
-    NAT_CONT_REC = fields.Char(
-        string="Natureza da Contribuição a Recolher",
-        required=True,
-        sped_length="2",
-        help="Natureza da Contribuição a Recolher, conforme Tabela 4.3.5.",
-    )
-
-    VL_CONT_APUR = fields.Monetary(
-        string="Valor da Contribuição Apurada",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    VL_CRED_PIS_DESC = fields.Monetary(
-        string="Valor do Crédito de PIS/PASEP a Descontar",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help=(
-            "Valor do Crédito de PIS/PASEP a Descontar, da Contribuição Social "
-            "Extemporânea."
-        ),
-    )
-
-    VL_CONT_DEV = fields.Monetary(
-        string="Valor da Contribuição Social Extemporânea Devida",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    VL_OUT_DED = fields.Monetary(
-        string="Valor de Outras Deduções",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    VL_CONT_EXT = fields.Monetary(
-        string="Valor da Contribuição Social Extemporânea a pagar",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    VL_MUL = fields.Monetary(
-        string="Valor da Multa", xsd_type="TDec_1602", currency_field="brl_currency_id"
-    )
-
-    VL_JUR = fields.Monetary(
-        string="Valor dos Juros", xsd_type="TDec_1602", currency_field="brl_currency_id"
-    )
-
-    DT_RECOL = fields.Date(string="Data do Recolhimento", sped_length="8*")
-
-    reg_1210_ids = fields.One2many(
-        "l10n_br_sped.efd_pis_cofins.1210",
-        "reg_1210_ids_Registro1200_id",
-        string="1210 Detalhamento",
-        sped_card="1:N",
-        help=(
-            "1210 Detalhamento da Contribuição Social Extemporânea – PIS/PASEP (Para "
-            "períodos de apuração até Julho de 2013)"
-        ),
-    )
-
-    reg_1220_ids = fields.One2many(
-        "l10n_br_sped.efd_pis_cofins.1220",
-        "reg_1220_ids_Registro1200_id",
-        string="1220 Demonstração do Crédito a Descontar",
-        sped_card="1:N",
-        help=(
-            "1220 Demonstração do Crédito a Descontar da Contribuição Extemporânea – "
-            "PIS/PASEP (Para períodos de apuração até Julho de 2013)"
-        ),
-    )
-
-
-class Registro1210(models.AbstractModel):
-    """Detalhamento da Contribuição Social Extemporânea – PIS/PASEP (Para
-    períodos de apuração até Julho de 2013)"""
-
-    _description = textwrap.dedent(f"    {__doc__}")
-    _name = "l10n_br_sped.efd_pis_cofins.6.1210"
-    _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
-    _sped_level = 3
-
-    CNPJ = fields.Char(
-        string="Número de inscrição do estabelecimento no CNPJ",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="14*",
-        help=(
-            "Número de inscrição do estabelecimento no CNPJ (Campo 04 do Registro "
-            "0140)."
-        ),
-    )
-
-    CST_PIS = fields.Char(
-        string="Código da Situação Tributária referente",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="2*",
-        help=(
-            "Código da Situação Tributária referente ao PIS/PASEP, conforme a Tabela "
-            "indicada no item 4.3.3."
-        ),
-    )
-
-    COD_PART = fields.Char(
-        string="Código do participante",
-        sped_length="6",
-        help="Código do participante (Campo 02 do Registro 0150)",
-    )
-
-    DT_OPER = fields.Date(
-        string="Data da Operação (ddmmaaaa)", required=True, sped_length="8*"
-    )
-
-    VL_OPER = fields.Monetary(
-        string="Valor da Operação",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    VL_BC_PIS = fields.Float(
-        string="Base de cálculo do PIS/PASEP",
-        required=True,
-        xsd_type="TDec_1603",
-        digits=(
-            16,
-            3,
-        ),
-        help="Base de cálculo do PIS/PASEP (em valor ou em quantidade)",
-    )
-
-    ALIQ_PIS = fields.Float(
-        string="Alíquota da PIS",
-        required=True,
-        xsd_type="TDec_1604",
-        digits=(
-            16,
-            4,
-        ),
-        help="Alíquota da PIS (em percentual ou em reais)",
-    )
-
-    VL_PIS = fields.Monetary(
-        string="Valor do PIS/PASEP",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    COD_CTA = fields.Char(
-        string="Código",
-        sped_length="255",
-        help="Código da conta analítica contábil debitada/creditada",
-    )
-
-    DESC_COMPL = fields.Char(string="Descrição complementar do Documento/Operação")
-
-    reg_1210_ids_Registro1200_id = fields.Many2one(
-        comodel_name="l10n_br_sped.efd_pis_cofins.1200",
-        string="Contribuição Social Extemporânea – PIS/PASEP",
-        required=True,
-        ondelete="cascade",
-        help=(
-            "Contribuição Social Extemporânea – PIS/PASEP (Para períodos de apuração "
-            "até Julho de 2013)"
-        ),
-    )
-
-
-class Registro1220(models.AbstractModel):
-    """Demonstração do Crédito a Descontar da Contribuição Extemporânea –
-    PIS/PASEP (Para períodos de apuração até Julho de 2013)"""
-
-    _description = textwrap.dedent(f"    {__doc__}")
-    _name = "l10n_br_sped.efd_pis_cofins.6.1220"
-    _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
-    _sped_level = 3
-
-    PER_APU_CRED = fields.Char(
-        string="Período de Apuração do Crédito",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="6",
-        help="Período de Apuração do Crédito (MM/AAAA)",
-    )
-
-    ORIG_CRED = fields.Char(
-        string="Indicador da origem do crédito",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="2*",
-        help=(
-            "Indicador da origem do crédito: 01 – Crédito decorrente de operações "
-            "próprias; 02 – Crédito transferido por pessoa jurídica sucedida."
-        ),
-    )
-
-    COD_CRED = fields.Char(
-        string="Código do Tipo do Crédito",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="3*",
-        help="Código do Tipo do Crédito, conforme Tabela 4.3.6.",
-    )
-
-    VL_CRED = fields.Monetary(
-        string="Valor do Crédito a Descontar",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    reg_1220_ids_Registro1200_id = fields.Many2one(
-        comodel_name="l10n_br_sped.efd_pis_cofins.1200",
-        string="Contribuição Social Extemporânea – PIS/PASEP",
-        required=True,
-        ondelete="cascade",
-        help=(
-            "Contribuição Social Extemporânea – PIS/PASEP (Para períodos de apuração "
-            "até Julho de 2013)"
-        ),
-    )
-
-
-class Registro1300(models.AbstractModel):
-    "Controle dos Valores Retidos na Fonte – PIS/PASEP"
-
-    _description = textwrap.dedent(f"    {__doc__}")
-    _name = "l10n_br_sped.efd_pis_cofins.6.1300"
-    _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
-    _sped_level = 2
-
-    IND_NAT_RET = fields.Char(
-        string="Indicador de Natureza da Retenção na Fonte",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="2*",
-        help=(
-            "Indicador de Natureza da Retenção na Fonte até 2013: 01 - Retenção por "
-            "Órgãos, Autarquias e Fundações Federais 02 - Retenção por outras Entidades"
-            " da Administração Pública Federal 03 - Retenção por Pessoas Jurídicas de "
-            "Direito Privado 04 - Recolhimento por Sociedade Cooperativa 05 - Retenção "
-            "por Fabricante de Máquinas e Veículos 99 - Outras Retenções"
-        ),
-    )
-
-    PR_REC_RET = fields.Char(
-        string="Período do Recebimento e da Retenção",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="6",
-        help="Período do Recebimento e da Retenção (MM/AAAA)",
-    )
-
-    VL_RET_APU = fields.Monetary(
-        string="Valor Total da Retenção",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    VL_RET_DED = fields.Monetary(
-        string="Valor da Retenção deduzida da Contribuição devida",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help=(
-            "Valor da Retenção deduzida da Contribuição devida no período da "
-            "escrituração e em períodos anteriores."
-        ),
-    )
-
-    VL_RET_PER = fields.Monetary(
-        string="Valor da Retenção utilizada mediante Pedido",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help="Valor da Retenção utilizada mediante Pedido de Restituição.",
-    )
-
-    VL_RET_DCOMP = fields.Monetary(
-        string="Valor da Retenção utilizada mediante Declaração",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help="Valor da Retenção utilizada mediante Declaração de Compensação.",
-    )
-
-    SLD_RET = fields.Float(
-        string="Saldo de Retenção a utilizar em períodos",
-        required=True,
-        xsd_type="TDec_1602",
-        digits=(
-            16,
-            2,
-        ),
-        help=(
-            "Saldo de Retenção a utilizar em períodos de apuração futuros (04 – 05 - 06"
-            " - 07)."
-        ),
-    )
-
-
-class Registro1500(models.AbstractModel):
-    "Controle de Créditos Fiscais – COFINS"
-
-    _description = textwrap.dedent(f"    {__doc__}")
-    _name = "l10n_br_sped.efd_pis_cofins.6.1500"
-    _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
-    _sped_level = 2
-
-    PER_APU_CRED = fields.Char(
-        string="Período de Apuração do Crédito",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="6",
-        help="Período de Apuração do Crédito (MM/AAAA)",
-    )
-
-    ORIG_CRED = fields.Char(
-        string="Indicador da origem do crédito",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="2*",
-        help=(
-            "Indicador da origem do crédito: 01 – Crédito decorrente de operações "
-            "próprias; 02 – Crédito transferido por pessoa jurídica sucedida."
-        ),
-    )
-
-    CNPJ_SUC = fields.Char(
-        string="CNPJ da pessoa jurídica cedente do crédito",
-        xsd_type="numeric_code",
-        sped_length="14*",
-        help="CNPJ da pessoa jurídica cedente do crédito (se ORIG_CRED = 02).",
-    )
-
-    COD_CRED = fields.Char(
-        string="Código do Tipo do Crédito",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="3*",
-        help="Código do Tipo do Crédito, conforme Tabela 4.3.6.",
-    )
-
-    VL_CRED_APU = fields.Monetary(
-        string="Valor Total do crédito apurado",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help=(
-            "Valor Total do crédito apurado na Escrituração Fiscal Digital (Registro "
-            "M500) ou em demonstrativo DACON (Fichas 16A e 16B) de período anterior."
-        ),
-    )
-
-    VL_CRED_EXT_APU = fields.Monetary(
-        string="Valor de Crédito Extemporâneo Apurado",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help=(
-            "Valor de Crédito Extemporâneo Apurado (Registro 1501), referente a Período"
-            " Anterior, Informado no Campo 02 – PER_APU_CRED"
-        ),
-    )
-
-    VL_TOT_CRED_APU = fields.Monetary(
-        string="Valor Total do Crédito Apurado",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help="Valor Total do Crédito Apurado (06 + 07)",
-    )
-
-    VL_CRED_DESC_PA_ANT = fields.Monetary(
-        string="Valor do Crédito utilizado mediante Desconto",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help=(
-            "Valor do Crédito utilizado mediante Desconto, em Período(s) Anterior(es)"
+            "Valor do Crédito utilizado mediante Desconto, em Período(s)  Anterior(es)"
         ),
     )
 
@@ -15134,487 +12861,12 @@ class Registro1500(models.AbstractModel):
         ),
     )
 
-    reg_1501_ids = fields.One2many(
-        "l10n_br_sped.efd_pis_cofins.1501",
-        "reg_1501_ids_Registro1500_id",
-        string="1501 Apuração de Crédito Extemporâneo",
-        sped_card="1:N",
-        help=(
-            "1501 Apuração de Crédito Extemporâneo - Documentos e Operações de Períodos"
-            " Anteriores – COFINS (Para períodos de apuração até Julho de 2013)"
-        ),
-    )
 
-
-class Registro1501(models.AbstractModel):
-    """Apuração de Crédito Extemporâneo - Documentos e Operações de Períodos
-    Anteriores – COFINS (Para períodos de apuração até Julho de 2013)"""
+class Registro1300(models.AbstractModel):
+    "Controle dos Valores Retidos na Fonte - PIS/Pasep"
 
     _description = textwrap.dedent(f"    {__doc__}")
-    _name = "l10n_br_sped.efd_pis_cofins.6.1501"
-    _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
-    _sped_level = 3
-
-    COD_PART = fields.Char(
-        string="Código do participante",
-        sped_length="6",
-        help="Código do participante (Campo 02 do Registro 0150)",
-    )
-
-    COD_ITEM = fields.Char(
-        string="Código do item",
-        sped_length="6",
-        help="Código do item (campo 02 do Registro 0200)",
-    )
-
-    COD_MOD = fields.Char(
-        string="Código do modelo do documento fiscal",
-        sped_length="2*",
-        help="Código do modelo do documento fiscal, conforme a Tabela 4.1.1.",
-    )
-
-    SER = fields.Char(string="Série do documento fiscal", sped_length="4")
-
-    SUB_SER = fields.Char(string="Subsérie do documento fiscal", sped_length="3")
-
-    NUM_DOC = fields.Char(
-        string="Número do documento fiscal", xsd_type="numeric_code", sped_length="9"
-    )
-
-    DT_OPER = fields.Date(
-        string="Data da Operação (ddmmaaaa)", required=True, sped_length="8*"
-    )
-
-    CHV_NFE = fields.Char(
-        string="Chave da Nota Fiscal Eletrônica",
-        xsd_type="numeric_code",
-        sped_length="44*",
-    )
-
-    VL_OPER = fields.Monetary(
-        string="Valor da Operação",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    CFOP = fields.Char(
-        string="Código fiscal de operação e prestação",
-        xsd_type="numeric_code",
-        sped_length="4*",
-    )
-
-    NAT_BC_CRED = fields.Char(
-        string="Código da Base de Cálculo do Crédito",
-        required=True,
-        sped_length="2*",
-        help=(
-            "Código da Base de Cálculo do Crédito, conforme a Tabela indicada no item "
-            "4.3.7."
-        ),
-    )
-
-    IND_ORIG_CRED = fields.Char(
-        string="Indicador da origem do crédito",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do crédito: 0 – Operação no Mercado Interno 1 – "
-            "Operação de Importação"
-        ),
-    )
-
-    CST_COFINS = fields.Char(
-        string="Código da Situação Tributária referente ao COFINS",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="2*",
-        help=(
-            "Código da Situação Tributária referente ao COFINS, conforme a Tabela "
-            "indicada no item 4.3.4."
-        ),
-    )
-
-    VL_BC_COFINS = fields.Float(
-        string="Base de Cálculo do Crédito de COFINS",
-        required=True,
-        xsd_type="TDec_1603",
-        digits=(
-            16,
-            3,
-        ),
-        help="Base de Cálculo do Crédito de COFINS (em valor ou em quantidade)",
-    )
-
-    ALIQ_COFINS = fields.Float(
-        string="Alíquota do COFINS",
-        required=True,
-        xsd_type="TDec_1604",
-        digits=(
-            16,
-            4,
-        ),
-        help="Alíquota do COFINS (em percentual ou em reais)",
-    )
-
-    VL_COFINS = fields.Monetary(
-        string="Valor do Crédito de COFINS",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    COD_CTA = fields.Char(
-        string="Código",
-        sped_length="255",
-        help="Código da conta analítica contábil debitada/creditada",
-    )
-
-    COD_CCUS = fields.Char(string="Código do Centro de Custos", sped_length="255")
-
-    DESC_COMPL = fields.Char(string="Descrição complementar do Documento/Operação")
-
-    PER_ESCRIT = fields.Char(
-        string="Mês/Ano da Escrituração em que foi registrado",
-        xsd_type="numeric_code",
-        sped_length="6*",
-        help=(
-            "Mês/Ano da Escrituração em que foi registrado o documento/operação "
-            "(Crédito pelo método da Apropriação Direta)."
-        ),
-    )
-
-    CNPJ = fields.Char(
-        string="CNPJ do estabelecimento gerador",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="14*",
-        help=(
-            "CNPJ do estabelecimento gerador do crédito extemporâneo (Campo 04 do "
-            "Registro 0140)"
-        ),
-    )
-
-    reg_1501_ids_Registro1500_id = fields.Many2one(
-        comodel_name="l10n_br_sped.efd_pis_cofins.1500",
-        string="Controle de Créditos Fiscais – COFINS",
-        required=True,
-        ondelete="cascade",
-    )
-
-    reg_1502_ids = fields.One2many(
-        "l10n_br_sped.efd_pis_cofins.1502",
-        "reg_1502_ids_Registro1501_id",
-        string="1502 Detalhamento do Crédito Extemporâneo",
-        sped_card="1:1",
-        help=(
-            "1502 Detalhamento do Crédito Extemporâneo, Vinculado a mais de um Tipo de "
-            "Receita – COFINS (Para períodos de apuração até Julho de 2013)"
-        ),
-    )
-
-
-class Registro1502(models.AbstractModel):
-    """Detalhamento do Crédito Extemporâneo, Vinculado a mais de um Tipo de
-    Receita – COFINS (Para períodos de apuração até Julho de 2013)"""
-
-    _description = textwrap.dedent(f"    {__doc__}")
-    _name = "l10n_br_sped.efd_pis_cofins.6.1502"
-    _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
-    _sped_level = 4
-
-    VL_CRED_COFINS_TRIB_MI = fields.Monetary(
-        string="Parcela do Crédito de COFINS",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help=(
-            "Parcela do Crédito de COFINS, vinculada a Receita Tributada no Mercado "
-            "Interno"
-        ),
-    )
-
-    VL_CRED_COFINS_NT_MI = fields.Monetary(
-        string="VL_CRED_COFINS_NT_MI",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help=(
-            "Parcela do Crédito de COFINS, vinculada a Receita Não Tributada no Mercado"
-            " Interno"
-        ),
-    )
-
-    VL_CRED_COFINS_EXP = fields.Monetary(
-        string="Parcela do Crédito de COFINS (VL_CRED_COFINS_EXP)",
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help="Parcela do Crédito de COFINS, vinculada a Receita de Exportação",
-    )
-
-    reg_1502_ids_Registro1501_id = fields.Many2one(
-        comodel_name="l10n_br_sped.efd_pis_cofins.1501",
-        string="Apuração de Crédito Extemporâneo",
-        required=True,
-        ondelete="cascade",
-        help=(
-            "Apuração de Crédito Extemporâneo - Documentos e Operações de Períodos "
-            "Anteriores – COFINS (Para períodos de apuração até Julho de 2013)"
-        ),
-    )
-
-
-class Registro1600(models.AbstractModel):
-    """Contribuição Social Extemporânea – COFINS (Para períodos de apuração até
-    Julho de 2013)"""
-
-    _description = textwrap.dedent(f"    {__doc__}")
-    _name = "l10n_br_sped.efd_pis_cofins.6.1600"
-    _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
-    _sped_level = 2
-
-    PER_APUR_ANT = fields.Char(
-        string="Período de Apuração",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="6*",
-        help="Período de Apuração da Contribuição Social Extemporânea (MMAAAA)",
-    )
-
-    NAT_CONT_REC = fields.Char(
-        string="Natureza da Contribuição a Recolher",
-        required=True,
-        sped_length="2",
-        help="Natureza da Contribuição a Recolher, conforme Tabela 4.3.5.",
-    )
-
-    VL_CONT_APUR = fields.Monetary(
-        string="Valor da Contribuição Apurada",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    VL_CRED_COFINS_DESC = fields.Monetary(
-        string="Valor do Crédito de COFINS a Descontar",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-        help=(
-            "Valor do Crédito de COFINS a Descontar, da Contribuição Social "
-            "Extemporânea."
-        ),
-    )
-
-    VL_CONT_DEV = fields.Monetary(
-        string="Valor da Contribuição Social Extemporânea Devida",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    VL_OUT_DED = fields.Monetary(
-        string="Valor de Outras Deduções",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    VL_CONT_EXT = fields.Monetary(
-        string="Valor da Contribuição Social Extemporânea a pagar",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    VL_MUL = fields.Monetary(
-        string="Valor da Multa", xsd_type="TDec_1602", currency_field="brl_currency_id"
-    )
-
-    VL_JUR = fields.Monetary(
-        string="Valor dos Juros", xsd_type="TDec_1602", currency_field="brl_currency_id"
-    )
-
-    DT_RECOL = fields.Date(string="Data do Recolhimento", sped_length="8*")
-
-    reg_1610_ids = fields.One2many(
-        "l10n_br_sped.efd_pis_cofins.1610",
-        "reg_1610_ids_Registro1600_id",
-        string="1610 Detalhamento",
-        sped_card="1:N",
-        help=(
-            "1610 Detalhamento da Contribuição Social Extemporânea – COFINS (Para "
-            "períodos de apuração até Julho de 2013)"
-        ),
-    )
-
-    reg_1620_ids = fields.One2many(
-        "l10n_br_sped.efd_pis_cofins.1620",
-        "reg_1620_ids_Registro1600_id",
-        string="1620 Demonstração do Crédito a Descontar",
-        sped_card="1:N",
-        help=(
-            "1620 Demonstração do Crédito a Descontar da Contribuição Extemporânea – "
-            "COFINS (Para períodos de apuração até Julho de 2013)"
-        ),
-    )
-
-
-class Registro1610(models.AbstractModel):
-    """Detalhamento da Contribuição Social Extemporânea – COFINS (Para períodos
-    de apuração até Julho de 2013)"""
-
-    _description = textwrap.dedent(f"    {__doc__}")
-    _name = "l10n_br_sped.efd_pis_cofins.6.1610"
-    _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
-    _sped_level = 3
-
-    CNPJ = fields.Char(
-        string="Número de inscrição do estabelecimento no CNPJ",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="14 *",
-        help=(
-            "Número de inscrição do estabelecimento no CNPJ (Campo 04 do Registro "
-            "0140)."
-        ),
-    )
-
-    CST_COFINS = fields.Char(
-        string="Código da Situação Tributária referente a COFINS",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="2 *",
-        help=(
-            "Código da Situação Tributária referente a COFINS, conforme a Tabela "
-            "indicada no item 4.3.4."
-        ),
-    )
-
-    COD_PART = fields.Char(
-        string="Código do participante",
-        sped_length="6",
-        help="Código do participante (Campo 02 do Registro 0150)",
-    )
-
-    DT_OPER = fields.Date(
-        string="Data da Operação (ddmmaaaa)", required=True, sped_length="8 *"
-    )
-
-    VL_OPER = fields.Monetary(
-        string="Valor da Operação",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    VL_BC_COFINS = fields.Float(
-        string="Base de cálculo da COFINS",
-        required=True,
-        xsd_type="TDec_1603",
-        digits=(
-            16,
-            3,
-        ),
-        help="Base de cálculo da COFINS (em valor ou em quantidade)",
-    )
-
-    ALIQ_COFINS = fields.Float(
-        string="Alíquota da COFINS",
-        required=True,
-        xsd_type="TDec_1604",
-        digits=(
-            16,
-            4,
-        ),
-        help="Alíquota da COFINS (em percentual ou em reais)",
-    )
-
-    VL_COFINS = fields.Monetary(
-        string="Valor da COFINS",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    COD_CTA = fields.Char(
-        string="Código",
-        sped_length="255",
-        help="Código da conta analítica contábil debitada/creditada",
-    )
-
-    DESC_COMPL = fields.Char(string="Descrição complementar do Documento/Operação")
-
-    reg_1610_ids_Registro1600_id = fields.Many2one(
-        comodel_name="l10n_br_sped.efd_pis_cofins.1600",
-        string="Contribuição Social Extemporânea – COFINS",
-        required=True,
-        ondelete="cascade",
-        help=(
-            "Contribuição Social Extemporânea – COFINS (Para períodos de apuração até "
-            "Julho de 2013)"
-        ),
-    )
-
-
-class Registro1620(models.AbstractModel):
-    """Demonstração do Crédito a Descontar da Contribuição Extemporânea –
-    COFINS (Para períodos de apuração até Julho de 2013)"""
-
-    _description = textwrap.dedent(f"    {__doc__}")
-    _name = "l10n_br_sped.efd_pis_cofins.6.1620"
-    _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
-    _sped_level = 3
-
-    PER_APU_CRED = fields.Char(
-        string="Período de Apuração do Crédito",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="6",
-        help="Período de Apuração do Crédito (MM/AAAA)",
-    )
-
-    ORIG_CRED = fields.Char(
-        string="Indicador da origem do crédito",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="2*",
-        help=(
-            "Indicador da origem do crédito: 01 – Crédito decorrente de operações "
-            "próprias; 02 – Crédito transferido por pessoa jurídica sucedida."
-        ),
-    )
-
-    COD_CRED = fields.Char(
-        string="Código do Tipo do Crédito",
-        required=True,
-        xsd_type="numeric_code",
-        sped_length="3*",
-        help="Código do Tipo do Crédito, conforme Tabela 4.3.6.",
-    )
-
-    VL_CRED = fields.Monetary(
-        string="Valor do Crédito a Descontar",
-        required=True,
-        xsd_type="TDec_1602",
-        currency_field="brl_currency_id",
-    )
-
-    reg_1620_ids_Registro1600_id = fields.Many2one(
-        comodel_name="l10n_br_sped.efd_pis_cofins.1600",
-        string="Contribuição Social Extemporânea – COFINS",
-        required=True,
-        ondelete="cascade",
-        help=(
-            "Contribuição Social Extemporânea – COFINS (Para períodos de apuração até "
-            "Julho de 2013)"
-        ),
-    )
-
-
-class Registro1700(models.AbstractModel):
-    "Controle dos Valores Retidos na Fonte – COFINS"
-
-    _description = textwrap.dedent(f"    {__doc__}")
-    _name = "l10n_br_sped.efd_pis_cofins.6.1700"
+    _name = "l10n_br_sped.efd_pis_cofins.6.1300"
     _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
     _sped_level = 2
 
@@ -15623,21 +12875,13 @@ class Registro1700(models.AbstractModel):
         required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help=(
-            "Indicador de Natureza da Retenção na Fonte até 2013: 01 - Retenção por "
-            "Órgãos, Autarquias e Fundações Federais 02 - Retenção por outras Entidades"
-            " da Administração Pública Federal 03 - Retenção por Pessoas Jurídicas de "
-            "Direito Privado 04 - Recolhimento por Sociedade Cooperativa 05 - Retenção "
-            "por Fabricante de Máquinas e Veículos 99 - Outras Retenções"
-        ),
     )
 
     PR_REC_RET = fields.Char(
-        string="Período do Recebimento e da Retenção",
+        string="Período do Recebimento e da Retenção(MM/AAAA)",
         required=True,
         xsd_type="numeric_code",
         sped_length="6*",
-        help="Período do Recebimento e da Retenção (MM/AAAA)",
     )
 
     VL_RET_APU = fields.Monetary(
@@ -15648,14 +12892,10 @@ class Registro1700(models.AbstractModel):
     )
 
     VL_RET_DED = fields.Monetary(
-        string="Valor da Retenção deduzida da Contribuição devida",
+        string="Valor da Retenção deduzida da Contribuição Devida",
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help=(
-            "Valor da Retenção deduzida da Contribuição devida no período da "
-            "escrituração e em períodos anteriores"
-        ),
     )
 
     VL_RET_PER = fields.Monetary(
@@ -15663,7 +12903,7 @@ class Registro1700(models.AbstractModel):
         required=True,
         xsd_type="TDec_1602",
         currency_field="brl_currency_id",
-        help="Valor da Retenção utilizada mediante Pedido de Restituição.",
+        help="Valor da Retenção utilizada mediante Pedido de Ressarcimento.",
     )
 
     VL_RET_DCOMP = fields.Monetary(
@@ -15682,15 +12922,242 @@ class Registro1700(models.AbstractModel):
             16,
             2,
         ),
+        help="Saldo de Retenção a utilizar em períodos de apuração futuros.",
+    )
+
+
+class Registro1500(models.AbstractModel):
+    "Controle de Créditos Fiscais - COFINS"
+
+    _description = textwrap.dedent(f"    {__doc__}")
+    _name = "l10n_br_sped.efd_pis_cofins.6.1500"
+    _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
+    _sped_level = 2
+
+    PER_APU_CRED = fields.Char(
+        string="Período de Apuração do Crédito",
+        required=True,
+        xsd_type="numeric_code",
+        sped_length="6*",
+        help="Período de Apuração do Crédito (MM/AAAA)",
+    )
+
+    ORIG_CRED = fields.Char(
+        string="Indicador da origem do crédito",
+        required=True,
+        xsd_type="numeric_code",
+        sped_length="2*",
+    )
+
+    CNPJ_SUC = fields.Char(
+        string="CNPJ da pessoa jurídica cedente do crédito",
+        xsd_type="numeric_code",
+        sped_length="14*",
+        help="CNPJ da pessoa jurídica cedente do crédito (se ORIG_CRED = 02).",
+    )
+
+    COD_CRED = fields.Char(
+        string="Código do Tipo do Crédito",
+        required=True,
+        xsd_type="numeric_code",
+        sped_length="3*",
+        help="Código do Tipo do Crédito, conforme Tabela 4.3.6",
+    )
+
+    VL_CRED_APU = fields.Monetary(
+        string="Valor do Crédito já apurado",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
         help=(
-            "Saldo de Retenção a utilizar em períodos de apuração futuros (04 - 05 - 06"
-            " - 07)."
+            "Valor do Crédito já apurado em Demonstrativo Dacon ou em Escrituração "
+            "Fiscal Digital."
+        ),
+    )
+
+    VL_CRED_EXT_APU = fields.Monetary(
+        string="Valor de Crédito Extemporâneo Apurado",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor de Crédito Extemporâneo Apurado (Registro 1501), referente a Período"
+            " Anterior, Informado no Campo 02 - PER_APU_CRED"
+        ),
+    )
+
+    VL_TOT_CRED_APU = fields.Monetary(
+        string="Valor Total do Crédito Apurado",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help="Valor Total do Crédito Apurado (06 + 07)",
+    )
+
+    VL_CRED_DESC_PA_ANT = fields.Monetary(
+        string="Valor do Crédito utilizado mediante Desconto",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor do Crédito utilizado mediante Desconto, em Período(s)  Anterior(es)"
+        ),
+    )
+
+    VL_CRED_PER_PA_ANT = fields.Monetary(
+        string="Valor do Crédito utilizado mediante Pedido",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor do Crédito utilizado mediante Pedido de Ressarcimento, em Período(s)"
+            " Anterior(es)."
+        ),
+    )
+
+    VL_CRED_DCOMP_PA_ANT = fields.Monetary(
+        string="Valor do Crédito utilizado mediante Declaração",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor do Crédito utilizado mediante Declaração de Compensação "
+            "Intermediária (Crédito de Exportação), em Período(s) Anterior(es)"
+        ),
+    )
+
+    SD_CRED_DISP_EFD = fields.Float(
+        string="Saldo do Crédito Disponível",
+        required=True,
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+        help=(
+            "Saldo do Crédito Disponível para Utilização neste  Período de Escrituração"
+            " (08-09-10-11)"
+        ),
+    )
+
+    VL_CRED_DESC_EFD = fields.Monetary(
+        string="Valor do Crédito descontado neste período",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help="Valor do Crédito descontado neste período de escrituração",
+    )
+
+    VL_CRED_PER_EFD = fields.Monetary(
+        string="Valor do Crédito objeto de Pedido de Ressarcimento",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor do Crédito objeto de Pedido de Ressarcimento (PER) neste período de "
+            "escrituração"
+        ),
+    )
+
+    VL_CRED_DCOMP_EFD = fields.Monetary(
+        string="VL_CRED_DCOMP_EFD",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=(
+            "Valor do Crédito utilizado mediante Declaração de Compensação "
+            "Intermediária neste período de escrituração"
+        ),
+    )
+
+    VL_CRED_TRANS = fields.Monetary(
+        string="Valor do crédito transferido em evento de cisão",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help=("Valor do crédito transferido em evento de cisão, fusão ou incorporação"),
+    )
+
+    VL_CRED_OUT = fields.Monetary(
+        string="Valor do crédito utilizado por outras formas",
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    SLD_CRED_FIM = fields.Float(
+        string="Saldo de créditos a utilizar em período",
+        required=True,
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+        help=(
+            "Saldo de créditos a utilizar em período de apuração futuro "
+            "(12-13-14-15-16-17)."
         ),
     )
 
 
+class Registro1700(models.AbstractModel):
+    "Controle dos Valores Retidos na Fonte - COFINS"
+
+    _description = textwrap.dedent(f"    {__doc__}")
+    _name = "l10n_br_sped.efd_pis_cofins.6.1700"
+    _inherit = "l10n_br_sped.mixin.efd_pis_cofins"
+    _sped_level = 2
+
+    IND_NAT_RET = fields.Char(
+        string="Indicador de Natureza da Retenção na Fonte",
+        required=True,
+        xsd_type="numeric_code",
+        sped_length="2*",
+    )
+
+    PR_REC_RET = fields.Char(
+        string="Período do Recebimento e da Retenção(MM/AAAA)",
+        required=True,
+        xsd_type="numeric_code",
+        sped_length="6*",
+    )
+
+    VL_RET_APU = fields.Monetary(
+        string="Valor Total da Retenção",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_RET_DED = fields.Monetary(
+        string="Valor da Retenção deduzida da Contribuição Devida",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+    )
+
+    VL_RET_PER = fields.Monetary(
+        string="Valor da Retenção utilizada mediante Pedido",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help="Valor da Retenção utilizada mediante Pedido de Ressarcimento.",
+    )
+
+    VL_RET_DCOMP = fields.Monetary(
+        string="Valor da Retenção utilizada mediante Declaração",
+        required=True,
+        xsd_type="TDec_1602",
+        currency_field="brl_currency_id",
+        help="Valor da Retenção utilizada mediante Declaração de Compensação.",
+    )
+
+    SLD_RET = fields.Float(
+        string="Saldo de Retenção a Utilizar em Períodos",
+        required=True,
+        xsd_type="TDec_1602",
+        digits=(
+            16,
+            2,
+        ),
+        help="Saldo de Retenção a Utilizar em Períodos de Apuração Futuros.",
+    )
+
+
 class Registro1800(models.AbstractModel):
-    "Incorporação Imobiliária – RET"
+    "Incorporação Imobiliária - RET"
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.1800"
@@ -15786,27 +13253,21 @@ class Registro1809(models.AbstractModel):
     )
 
     IND_PROC = fields.Char(
-        string="Indicador da origem do processo",
-        required=True,
-        sped_length="1*",
-        help=(
-            "Indicador da origem do processo: 1 - Justiça Federal; 3 – Secretaria da "
-            "Receita Federal do Brasil 9 – Outros."
-        ),
+        string="Indicador da origem do processo", required=True, sped_length="1*"
     )
 
     reg_1809_ids_Registro1800_id = fields.Many2one(
         comodel_name="l10n_br_sped.efd_pis_cofins.1800",
-        string="Incorporação Imobiliária – RET",
+        string="Incorporação Imobiliária - RET",
         required=True,
         ondelete="cascade",
     )
 
 
 class Registro1900(models.AbstractModel):
-    """Consolidação dos Documentos Emitidos por Pessoa Jurídica Submetida ao
-    Regime de Tributação com Base no Lucro Presumido – Regime de Caixa ou
-    de Competência"""
+    """Consolidação dos documentos emitidos no período por pessoa jurídica
+    submetida ao regime de tributação com base no lucro presumido - regime
+    de caixa ou de competência"""
 
     _description = textwrap.dedent(f"    {__doc__}")
     _name = "l10n_br_sped.efd_pis_cofins.6.1900"
@@ -15829,25 +13290,22 @@ class Registro1900(models.AbstractModel):
         required=True,
         sped_length="2*",
         help=(
-            "Código do modelo do documento fiscal conforme a Tabela 4.1.1, ou: 98 – "
-            "Nota Fiscal de Prestação de Serviços (ISSQN) 99 – Outros Documentos"
+            "Código do modelo do documento fiscal conforme a Tabela 4.1.1, ou 98 - Nota"
+            " Fiscal de Prestação de Serviços (ISSQN) ou 99 - Outros Documentos"
         ),
     )
 
     SER = fields.Char(string="Série do documento fiscal", sped_length="4")
 
     SUB_SER = fields.Char(
-        string="Subserie do documento fiscal", xsd_type="numeric_code", sped_length="2"
+        string="Subsérie do documento fiscal", xsd_type="numeric_code", sped_length="2"
     )
 
     COD_SIT = fields.Char(
         string="Código da situação do documento fiscal",
+        required=True,
         xsd_type="numeric_code",
         sped_length="2*",
-        help=(
-            "Código da situação do documento fiscal: 00 – Documento regular 02 – "
-            "Documento cancelado"
-        ),
     )
 
     VL_TOT_REC = fields.Monetary(
@@ -15866,27 +13324,28 @@ class Registro1900(models.AbstractModel):
     )
 
     CST_PIS = fields.Char(
-        string="Código da Situação Tributária do PIS/Pasep",
+        string="Código da Situação Tributária referente",
         xsd_type="numeric_code",
         sped_length="2*",
+        help="Código da Situação Tributária referente ao PIS/Pasep",
     )
 
     CST_COFINS = fields.Char(
-        string="Código da Situação Tributária da Cofins",
+        string="Código da Situação Tributária referente a COFINS",
         xsd_type="numeric_code",
         sped_length="2*",
     )
 
     CFOP = fields.Char(
-        string="Código fiscal de operação e prestação",
+        string="Código Fiscal de Operação e Prestação",
         xsd_type="numeric_code",
         sped_length="4*",
     )
 
-    INF_COMPL = fields.Char(string="Informações complementares")
+    INFO_COMPL = fields.Char(string="Informação complementar")
 
     COD_CTA = fields.Char(
         string="Código da conta analítica contábil representativa",
         sped_length="255",
-        help="Código da conta analítica contábil representativa da receita",
+        help="Código da conta analítica contábil representativa da receita recebida",
     )

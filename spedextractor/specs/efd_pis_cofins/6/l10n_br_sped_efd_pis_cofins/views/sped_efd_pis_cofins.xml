@@ -13,7 +13,7 @@
     <menuitem name="BLOCO 0" parent="efd_pis_cofins" id="efd_pis_cofins_0" />
 
     <record id="efd_pis_cofins_0035_action" model="ir.actions.act_window">
-        <field name="name">0035 Identificação da Sociedade em Conta de Participação</field>
+        <field name="name">0035 Identificação de SCP</field>
         <field name="res_model">l10n_br_sped.efd_pis_cofins.0035</field>
         <field name="view_mode">tree,form</field>
     </record>
@@ -34,7 +34,7 @@
     <menuitem action="efd_pis_cofins_0110_action" parent="efd_pis_cofins_0" id="efd_pis_cofins_0110" />
 
     <record id="efd_pis_cofins_0120_action" model="ir.actions.act_window">
-        <field name="name">0120 Identificação de EFD-Contribuições sem dados a Escriturar</field>
+        <field name="name">0120 Identificação de EFD Contribuições Sem Dados a Escriturar e Outras Informações de Interesse do Fisco</field>
         <field name="res_model">l10n_br_sped.efd_pis_cofins.0120</field>
         <field name="view_mode">tree,form</field>
     </record>
@@ -48,7 +48,7 @@
     <menuitem action="efd_pis_cofins_0140_action" parent="efd_pis_cofins_0" id="efd_pis_cofins_0140" />
 
     <record id="efd_pis_cofins_0500_action" model="ir.actions.act_window">
-        <field name="name">0500 Plano de Contas Contábeis – Contas Informadas</field>
+        <field name="name">0500 Plano de Contas Contábeis</field>
         <field name="res_model">l10n_br_sped.efd_pis_cofins.0500</field>
         <field name="view_mode">tree,form</field>
     </record>
@@ -62,7 +62,7 @@
     <menuitem action="efd_pis_cofins_0600_action" parent="efd_pis_cofins_0" id="efd_pis_cofins_0600" />
 
     <record id="efd_pis_cofins_0900_action" model="ir.actions.act_window">
-        <field name="name">0900 Composição das Receitas do Período – Receita Bruta e Demais Receitas</field>
+        <field name="name">0900 Composição das Receitas do Período</field>
         <field name="res_model">l10n_br_sped.efd_pis_cofins.0900</field>
         <field name="view_mode">tree,form</field>
     </record>
@@ -112,7 +112,7 @@
     <menuitem name="BLOCO I" parent="efd_pis_cofins" id="efd_pis_cofins_i" />
 
     <record id="efd_pis_cofins_i010_action" model="ir.actions.act_window">
-        <field name="name">I010 Identificação da Pessoa Jurídica</field>
+        <field name="name">I010 Identificação do Estabelecimento</field>
         <field name="res_model">l10n_br_sped.efd_pis_cofins.i010</field>
         <field name="view_mode">tree,form</field>
     </record>
@@ -122,35 +122,35 @@
     <menuitem name="BLOCO M" parent="efd_pis_cofins" id="efd_pis_cofins_m" />
 
     <record id="efd_pis_cofins_m100_action" model="ir.actions.act_window">
-        <field name="name">M100 Crédito de PIS/PASEP Relativo ao Período</field>
+        <field name="name">M100 Crédito de PIS/Pasep Relativo ao Período</field>
         <field name="res_model">l10n_br_sped.efd_pis_cofins.m100</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem action="efd_pis_cofins_m100_action" parent="efd_pis_cofins_m" id="efd_pis_cofins_m100" />
 
     <record id="efd_pis_cofins_m200_action" model="ir.actions.act_window">
-        <field name="name">M200 Consolidação da Contribuição para o PIS/PASEP do Período</field>
+        <field name="name">M200 Consolidação da Contribuição para o PIS/Pasep do Período</field>
         <field name="res_model">l10n_br_sped.efd_pis_cofins.m200</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem action="efd_pis_cofins_m200_action" parent="efd_pis_cofins_m" id="efd_pis_cofins_m200" />
 
     <record id="efd_pis_cofins_m300_action" model="ir.actions.act_window">
-        <field name="name">M300 Contribuição de PIS/PASEP Diferida em Períodos Anteriores</field>
+        <field name="name">M300 Contribuição de PIS/Pasep Diferida em Períodos Anteriores</field>
         <field name="res_model">l10n_br_sped.efd_pis_cofins.m300</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem action="efd_pis_cofins_m300_action" parent="efd_pis_cofins_m" id="efd_pis_cofins_m300" />
 
     <record id="efd_pis_cofins_m350_action" model="ir.actions.act_window">
-        <field name="name">M350 PIS/PASEP - Folha de Salários</field>
+        <field name="name">M350 PIS/Pasep - Folha de Salários</field>
         <field name="res_model">l10n_br_sped.efd_pis_cofins.m350</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem action="efd_pis_cofins_m350_action" parent="efd_pis_cofins_m" id="efd_pis_cofins_m350" />
 
     <record id="efd_pis_cofins_m400_action" model="ir.actions.act_window">
-        <field name="name">M400 Receitas Isentas</field>
+        <field name="name">M400 Receitas Isentas ou Não Alcançadas pela Incidência da Contribuição ou Sujeitas a Alíquota Zero</field>
         <field name="res_model">l10n_br_sped.efd_pis_cofins.m400</field>
         <field name="view_mode">tree,form</field>
     </record>
@@ -171,111 +171,80 @@
     <menuitem action="efd_pis_cofins_m600_action" parent="efd_pis_cofins_m" id="efd_pis_cofins_m600" />
 
     <record id="efd_pis_cofins_m700_action" model="ir.actions.act_window">
-        <field name="name">M700 COFINS Diferida em Períodos Anteriores – Valores a Pagar no Período</field>
+        <field name="name">M700 COFINS Diferida em Períodos Anteriores</field>
         <field name="res_model">l10n_br_sped.efd_pis_cofins.m700</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem action="efd_pis_cofins_m700_action" parent="efd_pis_cofins_m" id="efd_pis_cofins_m700" />
 
     <record id="efd_pis_cofins_m800_action" model="ir.actions.act_window">
-        <field name="name">M800 Receitas Isentas</field>
+        <field name="name">M800 Receitas Isentas ou Não Alcançadas pela Incidência da Contribuição ou Sujeitas à Alíquota Zero</field>
         <field name="res_model">l10n_br_sped.efd_pis_cofins.m800</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem action="efd_pis_cofins_m800_action" parent="efd_pis_cofins_m" id="efd_pis_cofins_m800" />
 
 
-    <menuitem name="BLOCO P" parent="efd_pis_cofins" id="efd_pis_cofins_p" />
-
-    <record id="efd_pis_cofins_p010_action" model="ir.actions.act_window">
-        <field name="name">P010 Identificação do Estabelecimento</field>
-        <field name="res_model">l10n_br_sped.efd_pis_cofins.p010</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-    <menuitem action="efd_pis_cofins_p010_action" parent="efd_pis_cofins_p" id="efd_pis_cofins_p010" />
-
-    <record id="efd_pis_cofins_p200_action" model="ir.actions.act_window">
-        <field name="name">P200 Consolidação da Contribuição Previdenciária sobre a Receita Bruta</field>
-        <field name="res_model">l10n_br_sped.efd_pis_cofins.p200</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-    <menuitem action="efd_pis_cofins_p200_action" parent="efd_pis_cofins_p" id="efd_pis_cofins_p200" />
-
-
     <menuitem name="BLOCO 1" parent="efd_pis_cofins" id="efd_pis_cofins_1" />
 
     <record id="efd_pis_cofins_1010_action" model="ir.actions.act_window">
-        <field name="name">1010 Processo Referenciado – Ação Judicial</field>
+        <field name="name">1010 Processo Referenciado</field>
         <field name="res_model">l10n_br_sped.efd_pis_cofins.1010</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem action="efd_pis_cofins_1010_action" parent="efd_pis_cofins_1" id="efd_pis_cofins_1010" />
 
     <record id="efd_pis_cofins_1020_action" model="ir.actions.act_window">
-        <field name="name">1020 Processo Referenciado – Processo Administrativo</field>
+        <field name="name">1020 Processo Referenciado</field>
         <field name="res_model">l10n_br_sped.efd_pis_cofins.1020</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem action="efd_pis_cofins_1020_action" parent="efd_pis_cofins_1" id="efd_pis_cofins_1020" />
 
     <record id="efd_pis_cofins_1050_action" model="ir.actions.act_window">
-        <field name="name">1050 Detalhamento dos Ajustes da Base de Cálculo Mensal de PIS/Pasep e COFINS – Valores Extra Apuração</field>
+        <field name="name">1050 Detalhamento de ajuste de Base de Cálculo</field>
         <field name="res_model">l10n_br_sped.efd_pis_cofins.1050</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem action="efd_pis_cofins_1050_action" parent="efd_pis_cofins_1" id="efd_pis_cofins_1050" />
 
     <record id="efd_pis_cofins_1100_action" model="ir.actions.act_window">
-        <field name="name">1100 Controle de Créditos Fiscais – PIS/PASEP</field>
+        <field name="name">1100 Controle de Créditos Fiscais</field>
         <field name="res_model">l10n_br_sped.efd_pis_cofins.1100</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem action="efd_pis_cofins_1100_action" parent="efd_pis_cofins_1" id="efd_pis_cofins_1100" />
 
-    <record id="efd_pis_cofins_1200_action" model="ir.actions.act_window">
-        <field name="name">1200 Contribuição Social Extemporânea – PIS/PASEP</field>
-        <field name="res_model">l10n_br_sped.efd_pis_cofins.1200</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-    <menuitem action="efd_pis_cofins_1200_action" parent="efd_pis_cofins_1" id="efd_pis_cofins_1200" />
-
     <record id="efd_pis_cofins_1300_action" model="ir.actions.act_window">
-        <field name="name">1300 Controle dos Valores Retidos na Fonte – PIS/PASEP</field>
+        <field name="name">1300 Controle dos Valores Retidos na Fonte</field>
         <field name="res_model">l10n_br_sped.efd_pis_cofins.1300</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem action="efd_pis_cofins_1300_action" parent="efd_pis_cofins_1" id="efd_pis_cofins_1300" />
 
     <record id="efd_pis_cofins_1500_action" model="ir.actions.act_window">
-        <field name="name">1500 Controle de Créditos Fiscais – COFINS</field>
+        <field name="name">1500 Controle de Créditos Fiscais</field>
         <field name="res_model">l10n_br_sped.efd_pis_cofins.1500</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem action="efd_pis_cofins_1500_action" parent="efd_pis_cofins_1" id="efd_pis_cofins_1500" />
 
-    <record id="efd_pis_cofins_1600_action" model="ir.actions.act_window">
-        <field name="name">1600 Contribuição Social Extemporânea – COFINS</field>
-        <field name="res_model">l10n_br_sped.efd_pis_cofins.1600</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-    <menuitem action="efd_pis_cofins_1600_action" parent="efd_pis_cofins_1" id="efd_pis_cofins_1600" />
-
     <record id="efd_pis_cofins_1700_action" model="ir.actions.act_window">
-        <field name="name">1700 Controle dos Valores Retidos na Fonte – COFINS</field>
+        <field name="name">1700 Controle dos Valores Retidos na Fonte</field>
         <field name="res_model">l10n_br_sped.efd_pis_cofins.1700</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem action="efd_pis_cofins_1700_action" parent="efd_pis_cofins_1" id="efd_pis_cofins_1700" />
 
     <record id="efd_pis_cofins_1800_action" model="ir.actions.act_window">
-        <field name="name">1800 Incorporação Imobiliária – RET</field>
+        <field name="name">1800 Incorporação Imobiliária - RET</field>
         <field name="res_model">l10n_br_sped.efd_pis_cofins.1800</field>
         <field name="view_mode">tree,form</field>
     </record>
     <menuitem action="efd_pis_cofins_1800_action" parent="efd_pis_cofins_1" id="efd_pis_cofins_1800" />
 
     <record id="efd_pis_cofins_1900_action" model="ir.actions.act_window">
-        <field name="name">1900 Consolidação dos Documentos Emitidos por Pessoa Jurídica Submetida ao Regime de Tributação com Base</field>
+        <field name="name">1900 Consolidação dos documentos emitidos no período por pessoa jurídica submetida ao regime</field>
         <field name="res_model">l10n_br_sped.efd_pis_cofins.1900</field>
         <field name="view_mode">tree,form</field>
     </record>
