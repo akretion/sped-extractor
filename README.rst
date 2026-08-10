@@ -131,6 +131,22 @@ Obviamente os scripts ``download.py`` e ``extract_tables.py`` são utilizáveis 
   $ python -m sped-extract-tables
 
 
+Fonte alternativa: o descritor oficial do PVA
+=============================================
+
+O Guia Prático em pdf atrasa em relação ao leiaute que o validador da Receita cobra, e a extração de pdf exige patches manuais. Existe uma fonte melhor: **todo PVA distribui, dentro dos próprios jars, o descritor XML do leiaute que ele valida** ::
+
+  <pva>/lib/**/*.jar
+      descritor/escrituracao/[ato<NNN>/]estrutura<ID>/v<N>/descritor.xml
+
+Cada campo vem com posição, código, tipo, tamanho, casas decimais, obrigatoriedade e valores válidos, e o aninhamento dos registros no XML é a própria hierarquia. O módulo ``pva.py`` constrói o *accurate_fields.csv* diretamente desse descritor (mais um *registers_pva.csv* com a lista de registros), e a partir daí o pipeline continua idêntico: ``build_csv.py`` e ``gen_odoo.py`` leem os mesmos arquivos, sem pdf, sem camelot e sem patch ::
+
+  $ sped-pva /caminho/do/pva-instalado --mod efd_icms_ipi --layout 20 --ato 020 --structure 001 --descriptor-version 2
+  $ sped-build-csv --mod efd_icms_ipi
+  $ sped-gen-odoo
+
+O descritor certo é o que o PVA imprime na barra de status logo depois de importar um arquivo do período alvo ("ID do Descritor: ... Versão do Descritor: ..."): cada PVA carrega todos os leiautes históricos, então escolher o número mais alto é chute. Rodando ``sped-pva`` num diretório de PVA sem as opções de seleção, ele lista os descritores disponíveis. Também é possível passar um *descritor.xml* já extraído no lugar do diretório.
+
 Configuração
 ============
 
