@@ -58,6 +58,9 @@ test = [
 include-package-data = true
 packages = ["spedextractor"]
 
+[tool.setuptools.package-data]
+spedextractor = ["specs/*/*/*.csv", "specs/*/*/*.xml"]
+
 [tool.setuptools.dynamic]
 version = {attr = "spedextractor.__version__"}
 
